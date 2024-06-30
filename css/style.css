@@ -240,12 +240,12 @@ button {
 .navbar-light .navbar-nav .nav-link.active,
 .navbar-light .navbar-nav .nav-link.show,
 .navbar-light .navbar-nav .show>.nav-link {
-    color: #f76d37;
+    color: #000000;
 }
 
 .navbar-light .navbar-nav .nav-link:focus,
 .navbar-light .navbar-nav .nav-link:hover {
-    color: #f76d37;
+    color: #000000;
 }
 
 .navbar {
@@ -327,7 +327,7 @@ button {
 }
 
 .learnmore_bt a:hover {
-    background-color: #f76d37;
+    background-color: #000000;
     color: #fff;
 }
 
@@ -362,7 +362,7 @@ button {
 #main_slider .carousel-control-prev:focus,
 #main_slider .carousel-control-prev:hover {
     color: #ffffff;
-    background-color: #f76d37;
+    background-color: #000000;
 }
 
 /* banner section end */
@@ -384,7 +384,7 @@ button {
     width: 100%;
     float: left;
     font-size: 40px;
-    color: #f76d37;
+    color: #000000;
     font-weight: bold;
     text-transform: uppercase;
 }
@@ -425,7 +425,7 @@ button {
 
 .read_bt a:hover {
     color: #ffffff;
-    background-color: #f76d37;
+    background-color: #000000;
 }
 
 /* about section end */
@@ -443,7 +443,7 @@ button {
     float: left;
     text-align: center;
     font-size: 40px;
-    color: #f76d37;
+    color: #000000;
     font-weight: bold;
 }
 
@@ -526,12 +526,12 @@ img.image {
 }
 
 .seemore_bt a:hover {
-    background-color: #f76d37;
+    background-color: #000000;
     color: #ffffff;
 }
 
 a:hover {
-    color: #f76d37;
+    color: #000000;
     text-decoration: underline;
 }
 
@@ -600,7 +600,7 @@ a:hover {
 
 .box_main {
     width: 100%;
-    background-color: #f76d37;
+    background-color: #000000;
     padding: 40px 30px;
     box-shadow: 0px 0px 18px -6px;
 }
@@ -687,7 +687,7 @@ a:hover {
 
 .readmore_bt a:hover {
     color: #ffffff;
-    background-color: #f76d37;
+    background-color: #000000;
 }
 
 /* services section end */
@@ -703,7 +703,7 @@ a:hover {
     width: 100%;
     float: left;
     font-size: 40px;
-    color: #f76d37;
+    color: #000000;
     font-weight: bold;
     font-family: 'Poppins', sans-serif;
 }
@@ -757,7 +757,7 @@ a:hover {
     width: 100%;
     float: left;
     font-size: 24px;
-    color: #f76d37;
+    color: #000000;
     text-transform: uppercase;
     padding-left: 100px;
     font-weight: bold;
@@ -794,7 +794,7 @@ a:hover {
 }
 
 .carousel-indicators .active {
-    background-color: #f76d37;
+    background-color: #000000;
 }
 
 /* client section end */
@@ -811,7 +811,7 @@ a:hover {
     float: left;
     font-size: 40px;
     text-align: center;
-    color: #f76d37;
+    color: #000000;
     font-weight: bold;
 }
 
@@ -946,7 +946,7 @@ a:hover {
 }
 
 .footer_menu li a:hover {
-    color: #f76d37;
+    color: #000000;
 }
 
 .dummy_text {
@@ -978,7 +978,7 @@ a:hover {
 }
 
 .location_text li a:hover {
-    color: #f76d37;
+    color: #000000;
 }
 
 .padding_left_10 {
@@ -1011,7 +1011,7 @@ a:hover {
 }
 
 .copyright_text a:hover {
-    color: #f76d37;
+    color: #000000;
 }
 
 
