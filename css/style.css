@@ -268,7 +268,8 @@ button {
 .banner_section {
     width: 100%;
     float: left;
-    background-image: url(../images/banner-bg.png);
+    /* background-image: url(../assets/0\ Overhead\ banner\ background.png); */
+    background-image: url('https://cdn.midjourney.com/6b813d0a-ad06-4802-bcf0-6b07792d8f2b/0_1.png');
     height: auto;
     background-size: 100%;
     padding: 10px 0px 25px 0px;
@@ -541,7 +542,8 @@ a:hover {
 .services_section {
     width: 100%;
     float: left;
-    background-image: url(../images/services-bg.png);
+    /* background-image: url(../images/services-bg.png); */
+    background-color: black;
     height: auto;
     padding-bottom: 100px;
     background-attachment: fixed;
@@ -624,6 +626,27 @@ a:hover {
     width: 100%;
     float: left;
     padding-top: 50px;
+}
+
+.services_images {
+    display: flex;
+    flex-wrap: wrap;
+    /* This allows items to wrap in the container */
+    justify-content: center;
+    /* Centers items horizontally */
+    align-items: center;
+    /* Centers items vertically */
+}
+
+.services_section_2 img {
+    max-width: 100%;
+    /* Ensures images are responsive */
+    height: auto;
+    /* Maintains aspect ratio */
+}
+
+.services_section_2 img:hover {
+    border: 4px solid white;
 }
 
 .decorate_text {
@@ -800,7 +823,7 @@ a:hover {
 .mail_section {
     width: 100%;
     float: left;
-    background-image: url(../images/img-9.png);
+    background-image: url(../assets/MUSE\ Website\ Build\ bottom.png);
     height: auto;
     padding: 23px 70px;
     background-repeat: no-repeat;
