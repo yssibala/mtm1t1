@@ -1020,3 +1020,303 @@ a:hover {
 .margin_top90 {
     margin-top: 90px;
 }
+
+/* =====================================================
+   SKU Nutrition Pages (ambrosia / jubilee / odyssey)
+   ===================================================== */
+
+.sku_header_section {
+    width: 100%;
+    float: left;
+    background-color: #252525;
+    padding: 40px 0 35px 0;
+    text-align: center;
+}
+
+.sku_back_link {
+    display: inline-block;
+    color: #EFA527;
+    font-size: 13px;
+    font-family: 'Poppins', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 20px;
+}
+
+.sku_back_link:hover {
+    color: #ffffff;
+    text-decoration: none;
+}
+
+.sku_name {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 64px;
+    font-weight: 700;
+    text-transform: uppercase;
+    line-height: 1;
+    padding: 0;
+    margin: 0;
+}
+
+.sku_tagline {
+    font-family: 'Poppins', sans-serif;
+    font-size: 15px;
+    color: #aaaaaa;
+    margin: 12px 0 0 0;
+    padding: 0;
+    font-weight: 300;
+    font-style: italic;
+}
+
+/* Meta strip */
+
+.sku_meta_strip {
+    width: 100%;
+    float: left;
+    background-color: #1a1a1a;
+    padding: 22px 0;
+}
+
+.sku_meta_item {
+    text-align: center;
+    padding: 8px 0;
+}
+
+.sku_meta_value {
+    display: block;
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 30px;
+    font-weight: 700;
+    color: #EFA527;
+    line-height: 1.1;
+}
+
+.sku_meta_label {
+    display: block;
+    font-family: 'Poppins', sans-serif;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: #888888;
+    margin-top: 2px;
+}
+
+/* Nutrition section wrapper */
+
+.nutrition_section {
+    width: 100%;
+    float: left;
+    background-color: #000000;
+    padding: 60px 0 70px 0;
+}
+
+.nutrition_section_title {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 36px;
+    font-weight: 700;
+    color: #EFA527;
+    text-align: center;
+    text-transform: uppercase;
+    padding: 0 0 40px 0;
+    margin: 0;
+    letter-spacing: 1px;
+}
+
+.nutrition_label_subtitle {
+    font-family: 'Poppins', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    color: #aaaaaa;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    text-align: center;
+    margin-bottom: 14px;
+    padding: 0;
+}
+
+/* FDA-style nutrition label card */
+
+.nutrition_label_card {
+    background: #ffffff;
+    border: 2px solid #000000;
+    padding: 6px 8px 8px 8px;
+    max-width: 380px;
+    margin: 0 auto 30px auto;
+    font-family: 'Arial', Helvetica, sans-serif;
+}
+
+.nutrition_label_title_text {
+    font-size: 34px;
+    font-weight: 900;
+    line-height: 1;
+    color: #000000;
+    border-bottom: 8px solid #000000;
+    padding-bottom: 3px;
+    margin-bottom: 1px;
+}
+
+.nutrition_label_servings_text {
+    font-size: 12px;
+    color: #000000;
+    margin: 0;
+    padding: 0;
+}
+
+.nutrition_label_serving_size_row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+    font-weight: 700;
+    color: #000000;
+    border-bottom: 4px solid #000000;
+    padding: 2px 0;
+}
+
+.nutrition_label_amount_per_serving {
+    font-size: 12px;
+    color: #000000;
+    padding-top: 4px;
+    margin: 0;
+}
+
+.nutrition_label_calories_row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    border-bottom: 4px solid #000000;
+    padding: 0 0 2px 0;
+}
+
+.nutrition_label_calories_label {
+    font-size: 22px;
+    font-weight: 700;
+    color: #000000;
+}
+
+.nutrition_label_calories_value {
+    font-size: 46px;
+    font-weight: 900;
+    color: #000000;
+    line-height: 1;
+}
+
+.nutrition_label_dv_header {
+    text-align: right;
+    font-size: 11px;
+    font-weight: 700;
+    color: #000000;
+    border-bottom: 1px solid #000000;
+    padding: 2px 0;
+}
+
+.nutrition_label_row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+    color: #000000;
+    border-bottom: 1px solid #cccccc;
+    padding: 2px 0;
+}
+
+.nutrition_label_row.bold-row {
+    font-weight: 700;
+}
+
+.nutrition_label_row.indent {
+    padding-left: 14px;
+    font-weight: 400;
+}
+
+.nutrition_label_row.indent2 {
+    padding-left: 28px;
+    font-weight: 400;
+}
+
+.nutrition_label_protein_row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+    font-weight: 700;
+    color: #000000;
+    border-bottom: 7px solid #000000;
+    padding: 2px 0;
+}
+
+.nutrition_label_vitamins_row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+    color: #000000;
+    border-bottom: 1px solid #cccccc;
+    padding: 2px 0;
+}
+
+.nutrition_label_vitamins_row.last {
+    border-bottom: none;
+}
+
+.nutrition_label_footnote {
+    font-size: 10px;
+    color: #000000;
+    border-top: 4px solid #000000;
+    margin-top: 4px;
+    padding-top: 4px;
+    line-height: 1.4;
+}
+
+/* Ingredients section */
+
+.ingredients_section {
+    width: 100%;
+    float: left;
+    background-color: #252525;
+    padding: 50px 0 55px 0;
+}
+
+.ingredients_title {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 30px;
+    font-weight: 700;
+    color: #EFA527;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding: 0 0 12px 0;
+    margin: 0;
+}
+
+.ingredients_text {
+    font-family: 'Poppins', sans-serif;
+    font-size: 15px;
+    color: #fdfcfa;
+    line-height: 1.8;
+    margin: 0;
+    padding: 0;
+    font-weight: 300;
+}
+
+.allergens_text {
+    font-family: 'Poppins', sans-serif;
+    font-size: 13px;
+    color: #888888;
+    margin: 14px 0 0 0;
+    padding: 0;
+}
+
+/* Disclaimer section */
+
+.disclaimer_section {
+    width: 100%;
+    float: left;
+    background-color: #1a1a1a;
+    padding: 28px 0;
+}
+
+.disclaimer_text {
+    font-family: 'Poppins', sans-serif;
+    font-size: 10px;
+    color: #555555;
+    line-height: 1.7;
+    font-style: italic;
+    margin: 0;
+    padding: 0;
+}
