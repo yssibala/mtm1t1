@@ -61,3 +61,30 @@ Guidelines for all images used on the MUSE website (`mt-muse.com`).
 ---
 
 ## Naming Convention
+Examples:
+- `7 Gallery 1.png`
+- `8 Services slide 2.png`
+- `6 About us (M_F).png`
+Spaces are acceptable; parentheses for variants. Keep filenames consistent with references in HTML.
+---
+## Alt Text
+Every `<img>` tag must include a descriptive `alt` attribute:
+- Gallery: `alt="Gallery [number]"` or a brief description of the subject
+- Services: `alt="MUSE Services"` with a short descriptor where possible
+- About: `alt="MUSE — [section description]"`
+- Logo: `alt="MUSE"`
+---
+## Accessibility & Performance
+- Use `loading="lazy"` on gallery images below the fold
+- Provide `width` and `height` attributes on images where dimensions are fixed to prevent layout shift
+- Gallery images must meet a minimum contrast ratio of 3:1 for any text overlaid on them
+- Do not embed text in images that conveys essential information — use HTML text instead
+---
+## SKU / Product Photography
+For individual SKU pages (e.g., `clio.html`):
+- **Bottle shots:** minimum 600 × 900 px, transparent PNG background preferred
+- **Lifestyle shots:** minimum 1200 × 800 px
+- Color temperature should complement the SKU accent color:
+  - Clio / Jubilee: warm reds, sunset tones
+  - Odyssey: deep blues, purples, evening atmosphere
+  - Ambrosia: bright golds, daylight/brunch settings
