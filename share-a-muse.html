@@ -4,8 +4,8 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Contact — MUSE RTD Cocktails</title>
-  <meta name="description" content="Get in touch with MUSE — questions, press, events, or just to say cheers.">
+  <title>Share Your Muse — MUSE RTD Cocktails</title>
+  <meta name="description" content="Nominate someone who inspires you — and we'll celebrate them amongst the clouds.">
   <link rel="preconnect" href="https://use.typekit.net" crossorigin>
   <link rel="icon" href="images/fevicon.png" type="image/png">
   <link rel="stylesheet" href="assets/fonts/font.css">
@@ -27,7 +27,7 @@
         </div>
       </div>
       <a href="gallery.html" class="muse-link" style="font-size:12px; letter-spacing:.18em; font-weight:500; color:#0A0B0C; text-decoration:none;">GALLERY</a>
-      <!-- CONTACT active -->
+      <!-- CONTACT active (Share a Muse is under Contact) -->
       <div class="muse-dropdown" style="position:relative; align-self:center; padding-bottom:16px; margin-bottom:-16px; display:flex; align-items:center;">
         <a href="contact.html" style="font-size:12px; letter-spacing:.18em; font-weight:600; color:#0A0B0C; text-decoration:none; border-bottom:2px solid #EFA527; padding-bottom:4px; display:inline-flex; align-items:center; gap:5px;">CONTACT<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" style="opacity:.5; flex:none;"><path d="m6 9 6 6 6-6"/></svg></a>
         <div class="muse-dropdown-menu" style="position:absolute; top:100%; left:0; width:220px; background:#FDFCFA; border:1px solid #E7DAC4; box-shadow:0 18px 44px -20px rgba(10,11,12,.5); padding:7px; z-index:60;">
@@ -97,85 +97,69 @@
 
 
 <!-- ========== HERO ========== -->
-<section id="contact-hero" style="position:relative; overflow:hidden; min-height:64vh; display:flex; flex-direction:column; align-items:center; justify-content:flex-end; padding:150px 24px 13vh; background-color:#FBF6EE; background-image:url('assets/clouds-crop.png'); background-repeat:no-repeat; background-position:center bottom; background-size:150% auto; text-align:center;">
+<section id="share-hero" style="position:relative; overflow:hidden; min-height:64vh; display:flex; flex-direction:column; align-items:center; justify-content:flex-end; padding:150px 24px 13vh; background-color:#FBF6EE; background-image:url('assets/clouds-crop.png'); background-repeat:no-repeat; background-position:center bottom; background-size:150% auto; text-align:center;">
   <div style="position:absolute; inset:0; pointer-events:none; z-index:1; background:linear-gradient(180deg,rgba(251,246,238,0) 46%,rgba(251,246,238,.55) 76%,rgba(251,246,238,.96) 100%);"></div>
-  <div style="position:relative; z-index:2; font-size:11px; letter-spacing:.32em; font-weight:600; color:#5A4A3A; margin-bottom:18px;">SAY HELLO</div>
-  <h1 style="position:relative; z-index:2; font-family:'Ogg','Cormorant Garamond',Georgia,serif; font-weight:400; font-size:clamp(40px,6vw,78px); line-height:1.02; margin:0; color:#0A0B0C;">Let's celebrate together</h1>
-  <p style="position:relative; z-index:2; font-style:italic; font-size:clamp(17px,2.1vw,24px); color:#252525; max-width:560px; margin:18px 0 0; line-height:1.4;">Questions, press, events, or just to say cheers — we'd love to hear from you.</p>
+  <div style="position:relative; z-index:2; font-size:11px; letter-spacing:.32em; font-weight:600; color:#5A4A3A; margin-bottom:18px;">CELEBRATING THOSE WHO INSPIRE</div>
+  <h1 style="position:relative; z-index:2; font-family:'Ogg','Cormorant Garamond',Georgia,serif; font-weight:400; font-size:clamp(40px,6vw,78px); line-height:1.02; margin:0; color:#0A0B0C;">Share your Muse</h1>
+  <p style="position:relative; z-index:2; font-style:italic; font-size:clamp(17px,2.1vw,24px); color:#252525; max-width:560px; margin:18px 0 0; line-height:1.4;">Nominate someone who inspires you — a friend, a mentor, a stranger who lit up the room — and we'll celebrate them amongst the clouds.</p>
   <div data-nav-sentinel style="position:absolute; left:0; bottom:9vh; width:1px; height:1px; pointer-events:none;"></div>
 </section>
 
 
-<!-- ========== CONTACT CARD ========== -->
+<!-- ========== SHARE CARD ========== -->
 <section style="background:#FBF6EE; padding:0 24px clamp(64px,9vw,110px);">
-  <div class="contact-card" style="max-width:1080px; margin:-72px auto 0; position:relative; z-index:3; background:#FDFCFA; border:1px solid #E7DAC4; box-shadow:0 24px 60px -32px rgba(10,11,12,.4); display:flex; flex-wrap:wrap;">
+  <div class="share-card" style="max-width:1080px; margin:-72px auto 0; position:relative; z-index:3; background:#FDFCFA; border:1px solid #E7DAC4; box-shadow:0 24px 60px -32px rgba(10,11,12,.4); display:flex; flex-wrap:wrap;">
 
     <!-- FORM -->
     <div style="flex:1; min-width:320px; padding:clamp(32px,3.6vw,48px); border-right:1px solid #EFE6D5;">
-      <div style="font-size:11px; letter-spacing:.22em; font-weight:600; color:#9A917F; margin-bottom:22px;">SEND A MESSAGE</div>
+      <div style="font-size:11px; letter-spacing:.22em; font-weight:600; color:#9A917F; margin-bottom:22px;">NOMINATE A MUSE</div>
 
-      <!-- Default form state -->
-      <div id="form-default">
+      <div id="share-default">
         <div style="display:flex; flex-direction:column; gap:14px;">
           <div style="display:flex; gap:14px; flex-wrap:wrap;">
-            <input id="cf-name" class="muse-field" placeholder="Name" style="flex:1; min-width:140px; height:46px; border-radius:30px; padding:0 18px;">
-            <input id="cf-email" class="muse-field" type="email" placeholder="Email" style="flex:1; min-width:140px; height:46px; border-radius:30px; padding:0 18px;">
+            <input id="sm-name" class="muse-field" placeholder="Your name" style="flex:1; min-width:140px; height:46px; border-radius:30px; padding:0 18px;">
+            <input id="sm-handle" class="muse-field" placeholder="Social handle (@…)" style="flex:1; min-width:140px; height:46px; border-radius:30px; padding:0 18px;">
           </div>
-          <input id="cf-subject" class="muse-field" placeholder="Subject" style="height:46px; border-radius:30px; padding:0 18px;">
-          <textarea id="cf-message" class="muse-field" placeholder="Your message" rows="5" style="border-radius:18px; padding:14px 18px; resize:vertical; line-height:1.6;"></textarea>
-          <div id="form-error">Please add your name, a valid email, and a message.</div>
-          <button id="btn-send" class="muse-pill muse-cta" style="align-self:flex-start; display:flex; align-items:center; gap:10px; background:#EFA527; color:#0A0B0C; border:none; border-radius:30px; padding:13px 30px; font-size:12px; letter-spacing:.18em; font-weight:600; margin-top:4px; font-family:inherit; cursor:pointer;">
-            SEND
+          <div style="display:flex; gap:14px; flex-wrap:wrap;">
+            <select id="sm-platform" class="muse-field" style="flex:1; min-width:140px; height:46px; border-radius:30px; padding:0 18px; appearance:none; -webkit-appearance:none; cursor:pointer; background-image:url('data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2212%22 height=%2212%22 viewBox=%220 0 24 24%22 fill=%22none%22 stroke=%22%230A0B0C%22 stroke-width=%222%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22><path d=%22m6 9 6 6 6-6%22/></svg>'); background-repeat:no-repeat; background-position:right 16px center;">
+              <option value="">Platform…</option>
+              <option>Instagram</option><option>TikTok</option><option>X / Twitter</option><option>Facebook</option><option>Other</option>
+            </select>
+            <input id="sm-muse-name" class="muse-field" placeholder="Your Muse's name (optional)" style="flex:1; min-width:140px; height:46px; border-radius:30px; padding:0 18px;">
+          </div>
+          <textarea id="sm-message" class="muse-field" placeholder="Why are they your Muse? Tell their story…" rows="5" style="border-radius:18px; padding:14px 18px; resize:vertical; line-height:1.6;"></textarea>
+          <div id="share-error">Please add your name, a social handle, and a few words about your Muse.</div>
+          <button id="btn-share" class="muse-pill muse-cta" style="align-self:flex-start; display:flex; align-items:center; gap:10px; background:#EFA527; color:#0A0B0C; border:none; border-radius:30px; padding:13px 30px; font-size:12px; letter-spacing:.18em; font-weight:600; margin-top:4px; font-family:inherit; cursor:pointer;">
+            SHARE
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
           </button>
         </div>
       </div>
 
-      <!-- Success state -->
-      <div id="form-success">
+      <div id="share-success">
         <div style="padding:34px 8px; display:flex; flex-direction:column; align-items:flex-start; gap:14px;">
           <div style="width:54px; height:54px; border-radius:50%; background:#EFA527; display:flex; align-items:center; justify-content:center; color:#0A0B0C;">
             <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
           </div>
-          <div id="success-name" style="font-family:'Ogg','Cormorant Garamond',Georgia,serif; font-size:30px; color:#0A0B0C; line-height:1.1;">Thank you.</div>
-          <p style="font-size:14px; line-height:1.7; color:#4C4C4B; margin:0; max-width:380px;">Your message is on its way to the clouds. We'll raise a glass and get back to you shortly.</p>
-          <button id="btn-reset" class="muse-pill muse-ghost" style="display:inline-block; border:1.5px solid #0A0B0C; color:#0A0B0C; border-radius:30px; padding:11px 26px; font-size:11px; letter-spacing:.18em; font-weight:600; background:transparent; font-family:inherit; cursor:pointer; margin-top:6px;">SEND ANOTHER</button>
+          <div id="share-success-name" style="font-family:'Ogg','Cormorant Garamond',Georgia,serif; font-size:30px; color:#0A0B0C; line-height:1.1;">Thank you.</div>
+          <p style="font-size:14px; line-height:1.7; color:#4C4C4B; margin:0; max-width:380px;">Your Muse is on their way to the clouds. We'll celebrate them soon — keep an eye on the gallery.</p>
+          <button id="btn-share-reset" class="muse-pill muse-ghost" style="display:inline-block; border:1.5px solid #0A0B0C; color:#0A0B0C; border-radius:30px; padding:11px 26px; font-size:11px; letter-spacing:.18em; font-weight:600; background:transparent; font-family:inherit; cursor:pointer; margin-top:6px;">SHARE ANOTHER</button>
         </div>
       </div>
     </div>
 
-    <!-- INFO -->
+    <!-- PHOTO + SOCIAL -->
     <div style="flex:1; min-width:300px; padding:clamp(32px,3.6vw,48px); display:flex; flex-direction:column; gap:26px;">
-      <div style="font-size:11px; letter-spacing:.22em; font-weight:600; color:#9A917F;">FIND MUSE</div>
+      <div style="font-size:11px; letter-spacing:.22em; font-weight:600; color:#9A917F;">ADD A PHOTO</div>
 
-      <div style="display:flex; flex-direction:column; gap:20px;">
-        <div style="display:flex; align-items:flex-start; gap:14px;">
-          <span style="flex:none; width:38px; height:38px; border-radius:50%; border:1px solid #E7DAC4; display:flex; align-items:center; justify-content:center; color:#C9851A;">
-            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
-          </span>
-          <div>
-            <div style="font-size:10px; letter-spacing:.16em; color:#9A917F; margin-bottom:4px;">GENERAL</div>
-            <a href="mailto:hello@mt-muse.com" class="muse-link" style="font-size:15px; color:#0A0B0C; text-decoration:none;">hello@mt-muse.com</a>
-          </div>
-        </div>
-        <div style="display:flex; align-items:flex-start; gap:14px;">
-          <span style="flex:none; width:38px; height:38px; border-radius:50%; border:1px solid #E7DAC4; display:flex; align-items:center; justify-content:center; color:#C9851A;">
-            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M8 2v4"/><path d="M16 2v4"/><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M3 10h18"/></svg>
-          </span>
-          <div>
-            <div style="font-size:10px; letter-spacing:.16em; color:#9A917F; margin-bottom:4px;">EVENTS &amp; CATERING</div>
-            <a href="mailto:events@mt-muse.com" class="muse-link" style="font-size:15px; color:#0A0B0C; text-decoration:none;">events@mt-muse.com</a>
-          </div>
-        </div>
-        <div style="display:flex; align-items:flex-start; gap:14px;">
-          <span style="flex:none; width:38px; height:38px; border-radius:50%; border:1px solid #E7DAC4; display:flex; align-items:center; justify-content:center; color:#C9851A;">
-            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
-          </span>
-          <div>
-            <div style="font-size:10px; letter-spacing:.16em; color:#9A917F; margin-bottom:4px;">STOCKISTS</div>
-            <span class="muse-link" style="font-size:15px; color:#0A0B0C; border-bottom:1px solid #EFA527; padding-bottom:1px; cursor:pointer;">Find MUSE near you →</span>
-          </div>
-        </div>
+      <div style="display:flex; flex-direction:column; gap:14px;">
+        <label class="upload-area" id="upload-label">
+          <input type="file" id="photo-upload" accept="image/*" onchange="handlePhotoPreview(this)">
+          <svg id="upload-icon" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" x2="12" y1="3" y2="15"/></svg>
+          <span id="upload-label-text" style="font-size:11px; letter-spacing:.14em; color:#BCAE90; text-align:center;">Drag a photo of your Muse here<br>JPG / PNG</span>
+          <img id="photo-preview" src="" alt="" style="display:none; width:100%; height:100%; object-fit:cover; position:absolute; inset:0;">
+        </label>
+        <div style="font-size:13px; font-weight:300; color:#7A7468; line-height:1.65;">Optional, but lovely — a portrait or a moment that shows why they inspire you. We may feature it amongst the clouds.</div>
       </div>
 
       <div style="border-top:1px solid #EFE6D5; padding-top:22px; margin-top:2px;">

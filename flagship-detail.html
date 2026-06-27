@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>The Flagship Muses — MUSE RTD Cocktails</title>
+  <link rel="preconnect" href="https://p.typekit.net">
+  <link rel="stylesheet" href="assets/fonts/font.css">
+</head>
+<body>
+
+  <!-- ════ FIXED NAV ════════════════════════════════════════════════════════ -->
+  <nav id="site-nav" style="position:fixed;top:0;left:0;right:0;z-index:50;">
+
+    <!-- STATE 1 · solid cream (no hero image beneath) -->
+    <div id="nav-state1" style="align-items:center;justify-content:space-between;padding:20px 48px;background:#FBF6EE;border-bottom:1px solid #E7DAC4;">
+      <div style="display:flex;flex:1;align-items:center;justify-content:space-evenly;padding-left:104px;">
+        <div class="muse-dropdown" style="position:relative;align-self:center;padding-bottom:16px;margin-bottom:-16px;display:flex;align-items:center;">
+          <a href="about.html" class="muse-link" style="font-size:12px;letter-spacing:.18em;font-weight:500;color:#0A0B0C;text-decoration:none;display:inline-flex;align-items:center;gap:5px;">ABOUT<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" style="opacity:.5;flex:none;"><path d="m6 9 6 6 6-6"/></svg></a>
+          <div class="muse-dropdown-menu" style="position:absolute;top:100%;left:0;width:240px;background:#FDFCFA;border:1px solid #E7DAC4;box-shadow:0 18px 44px -20px rgba(10,11,12,.5);padding:7px;z-index:60;">
+            <a href="about.html" class="muse-sub" style="display:block;padding:11px 13px;font-size:11px;letter-spacing:.14em;font-weight:500;color:#0A0B0C;text-decoration:none;">ABOUT US</a>
+            <a href="flagship-detail.html" class="muse-sub" style="display:block;padding:11px 13px;font-size:11px;letter-spacing:.14em;font-weight:500;color:#0A0B0C;text-decoration:none;">THE FLAGSHIP MUSES</a>
+            <div style="display:flex;align-items:center;justify-content:space-between;padding:11px 13px;font-size:11px;letter-spacing:.14em;font-weight:500;color:#B0A892;cursor:default;">LORE<span style="font-size:8px;letter-spacing:.1em;font-weight:600;color:#C9851A;border:1px solid #E7C98A;border-radius:30px;padding:2px 7px;white-space:nowrap;">COMING SOON</span></div>
+          </div>
+        </div>
+        <a href="gallery.html" class="muse-link" style="font-size:12px;letter-spacing:.18em;font-weight:500;color:#0A0B0C;text-decoration:none;">GALLERY</a>
+        <div class="muse-dropdown" style="position:relative;align-self:center;padding-bottom:16px;margin-bottom:-16px;display:flex;align-items:center;">
+          <a href="contact.html" class="muse-link" style="font-size:12px;letter-spacing:.18em;font-weight:500;color:#0A0B0C;text-decoration:none;display:inline-flex;align-items:center;gap:5px;">CONTACT<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" style="opacity:.5;flex:none;"><path d="m6 9 6 6 6-6"/></svg></a>
+          <div class="muse-dropdown-menu" style="position:absolute;top:100%;left:0;width:220px;background:#FDFCFA;border:1px solid #E7DAC4;box-shadow:0 18px 44px -20px rgba(10,11,12,.5);padding:7px;z-index:60;">
+            <a href="contact.html" class="muse-sub" style="display:block;padding:11px 13px;font-size:11px;letter-spacing:.14em;font-weight:500;color:#0A0B0C;text-decoration:none;">CONTACT US</a>
+            <a href="share-a-muse.html" class="muse-sub" style="display:block;padding:11px 13px;font-size:11px;letter-spacing:.14em;font-weight:500;color:#0A0B0C;text-decoration:none;">SHARE YOUR MUSE</a>
+          </div>
+        </div>
+      </div>
+      <a href="index.html" aria-label="MUSE home" style="display:inline-flex;align-items:center;flex:none;"><img src="assets/monogram-gold.png" alt="MUSE" style="height:56px;width:auto;flex:none;"></a>
+      <div style="display:flex;flex:1;align-items:center;justify-content:space-evenly;padding-right:104px;">
+        <a href="login.html" class="muse-link" style="font-size:12px;letter-spacing:.18em;font-weight:500;color:#0A0B0C;text-decoration:none;">LOG IN</a>
+        <a href="products.html" style="font-size:12px;letter-spacing:.18em;font-weight:600;color:#0A0B0C;text-decoration:none;border-bottom:2px solid #EFA527;padding-bottom:4px;">PRODUCTS</a>
+        <a href="shop.html" class="muse-link" style="font-size:12px;letter-spacing:.18em;font-weight:500;color:#0A0B0C;text-decoration:none;">SHOP</a>
+      </div>
+    </div>
+
+    <!-- STATE 2 · frosted cream with SKU switcher center -->
+    <div id="nav-state2" style="align-items:center;justify-content:space-between;padding:9px 40px;background:rgba(253,252,250,.8);backdrop-filter:blur(12px) saturate(1.1);-webkit-backdrop-filter:blur(12px) saturate(1.1);border-bottom:1px solid rgba(231,218,196,.7);">
+      <a href="index.html" aria-label="MUSE home" style="display:inline-flex;align-items:center;flex:none;"><img src="assets/monogram-gold.png" alt="MUSE" style="height:38px;width:auto;"></a>
+      <!-- Left links -->
+      <div style="display:flex;flex:1;align-items:center;justify-content:space-evenly;">
+        <div class="muse-dropdown" style="position:relative;align-self:center;padding-bottom:16px;margin-bottom:-16px;display:flex;align-items:center;">
+          <a href="about.html" class="muse-link" style="font-size:11px;letter-spacing:.2em;font-weight:500;color:#0A0B0C;text-decoration:none;display:inline-flex;align-items:center;gap:5px;">ABOUT<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" style="opacity:.5;flex:none;"><path d="m6 9 6 6 6-6"/></svg></a>
+          <div class="muse-dropdown-menu" style="position:absolute;top:100%;left:0;width:240px;background:#FDFCFA;border:1px solid #E7DAC4;box-shadow:0 18px 44px -20px rgba(10,11,12,.5);padding:7px;z-index:60;">
+            <a href="about.html" class="muse-sub" style="display:block;padding:11px 13px;font-size:11px;letter-spacing:.14em;font-weight:500;color:#0A0B0C;text-decoration:none;">ABOUT US</a>
+            <a href="flagship-detail.html" class="muse-sub" style="display:block;padding:11px 13px;font-size:11px;letter-spacing:.14em;font-weight:500;color:#0A0B0C;text-decoration:none;">THE FLAGSHIP MUSES</a>
+            <div style="display:flex;align-items:center;justify-content:space-between;padding:11px 13px;font-size:11px;letter-spacing:.14em;font-weight:500;color:#B0A892;cursor:default;">LORE<span style="font-size:8px;letter-spacing:.1em;font-weight:600;color:#C9851A;border:1px solid #E7C98A;border-radius:30px;padding:2px 7px;white-space:nowrap;">COMING SOON</span></div>
+          </div>
+        </div>
+        <a href="gallery.html" class="muse-link" style="font-size:11px;letter-spacing:.2em;font-weight:500;color:#0A0B0C;text-decoration:none;">GALLERY</a>
+      </div>
+      <!-- SKU Switcher (center) -->
+      <div style="position:relative;flex:none;display:flex;align-items:center;gap:12px;">
+        <button id="sku-prev" class="muse-arrow" style="width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#0A0B0C;border:1px solid rgba(10,11,12,.22);background:none;">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+        </button>
+        <button id="sku-label-btn" style="cursor:pointer;display:flex;align-items:center;gap:7px;min-width:122px;justify-content:center;background:none;border:none;padding:0;">
+          <span id="sku-name" style="font-family:'Ogg','Cormorant Garamond',Georgia,serif;font-weight:500;letter-spacing:.16em;font-size:20px;">THALIA</span>
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#0A0B0C" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" style="opacity:.55;flex:none;"><path d="m6 9 6 6 6-6"/></svg>
+        </button>
+        <button id="sku-next" class="muse-arrow" style="width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#0A0B0C;border:1px solid rgba(10,11,12,.22);background:none;">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+        </button>
+        <!-- SKU dropdown -->
+        <div id="sku-dropdown">
+          <div class="muse-sub sku-opt" data-i="0" style="padding:10px 13px;font-family:'Ogg','Cormorant Garamond',Georgia,serif;letter-spacing:.16em;font-size:17px;color:#EFA527;cursor:pointer;">THALIA</div>
+          <div class="muse-sub sku-opt" data-i="1" style="padding:10px 13px;font-family:'Ogg','Cormorant Garamond',Georgia,serif;letter-spacing:.16em;font-size:17px;color:#CC2200;cursor:pointer;">CLIO</div>
+          <div class="muse-sub sku-opt" data-i="2" style="padding:10px 13px;font-family:'Ogg','Cormorant Garamond',Georgia,serif;letter-spacing:.16em;font-size:17px;color:#8B5CF6;cursor:pointer;">OURANIA</div>
+        </div>
+      </div>
+      <!-- Right links -->
+      <div style="display:flex;flex:1;align-items:center;justify-content:space-evenly;">
+        <div class="muse-dropdown" style="position:relative;align-self:center;padding-bottom:16px;margin-bottom:-16px;display:flex;align-items:center;">
+          <a href="contact.html" class="muse-link" style="font-size:11px;letter-spacing:.2em;font-weight:500;color:#0A0B0C;text-decoration:none;display:inline-flex;align-items:center;gap:5px;">CONTACT<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" style="opacity:.5;flex:none;"><path d="m6 9 6 6 6-6"/></svg></a>
+          <div class="muse-dropdown-menu" style="position:absolute;top:100%;right:0;width:220px;background:#FDFCFA;border:1px solid #E7DAC4;box-shadow:0 18px 44px -20px rgba(10,11,12,.5);padding:7px;z-index:60;">
+            <a href="contact.html" class="muse-sub" style="display:block;padding:11px 13px;font-size:11px;letter-spacing:.14em;font-weight:500;color:#0A0B0C;text-decoration:none;">CONTACT US</a>
+            <a href="share-a-muse.html" class="muse-sub" style="display:block;padding:11px 13px;font-size:11px;letter-spacing:.14em;font-weight:500;color:#0A0B0C;text-decoration:none;">SHARE YOUR MUSE</a>
+          </div>
+        </div>
+        <a href="products.html" style="font-size:11px;letter-spacing:.2em;font-weight:600;color:#0A0B0C;text-decoration:none;border-bottom:2px solid #EFA527;padding-bottom:4px;">PRODUCTS</a>
+        <a href="login.html" class="muse-link" style="font-size:11px;letter-spacing:.2em;font-weight:500;color:#0A0B0C;text-decoration:none;">LOG IN</a>
+      </div>
+      <a href="shop.html" style="text-decoration:none;flex:none;">
+        <div class="muse-cta-hover" style="display:flex;align-items:center;gap:9px;background:#EFA527;color:#0A0B0C;border-radius:30px;padding:9px 20px;font-size:11px;letter-spacing:.16em;font-weight:600;transition:filter .25s ease;">
+          SHOP <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+        </div>
+      </a>
+    </div>
+  </nav>
+  <!-- ════ END NAV ══════════════════════════════════════════════════════════ -->
+
+  <!-- ════ STICKY FLAGSHIP TABS ════════════════════════════════════════════ -->
+  <div id="fd-tabs" style="position:sticky;top:97px;z-index:40;display:flex;justify-content:center;gap:clamp(24px,5vw,64px);padding:15px 24px;background:rgba(251,246,238,.92);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid #E7DAC4;">
+    <button class="fd-tab" data-i="0" style="font-family:'Ogg','Cormorant Garamond',Georgia,serif;letter-spacing:.16em;font-size:18px;padding-bottom:5px;background:none;border:none;border-bottom:2px solid #EFA527;color:#0A0B0C;cursor:pointer;">THALIA</button>
+    <button class="fd-tab" data-i="1" style="font-family:'Ogg','Cormorant Garamond',Georgia,serif;letter-spacing:.16em;font-size:18px;padding-bottom:5px;background:none;border:none;border-bottom:2px solid transparent;color:#A59C8D;cursor:pointer;">CLIO</button>
+    <button class="fd-tab" data-i="2" style="font-family:'Ogg','Cormorant Garamond',Georgia,serif;letter-spacing:.16em;font-size:18px;padding-bottom:5px;background:none;border:none;border-bottom:2px solid transparent;color:#A59C8D;cursor:pointer;">OURANIA</button>
+  </div>
+  <!-- Nav sentinel: sits right after tabs — when tabs scroll past nav, switch to State 2 -->
+  <div data-nav-sentinel style="width:1px;height:1px;display:block;"></div>
+
+  <!-- ════ FIXED EDGE ARROWS ════════════════════════════════════════════════ -->
+  <button id="edge-prev" class="muse-arrow" aria-label="Previous Muse" style="position:fixed;left:18px;top:50%;transform:translateY(-50%);z-index:45;width:52px;height:52px;border:1px solid rgba(10,11,12,.3);border-radius:50%;display:flex;align-items:center;justify-content:center;color:#0A0B0C;background:rgba(253,252,250,.85);box-shadow:0 8px 24px -12px rgba(10,11,12,.4);">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+  </button>
+  <button id="edge-next" class="muse-arrow" aria-label="Next Muse" style="position:fixed;right:18px;top:50%;transform:translateY(-50%);z-index:45;width:52px;height:52px;border:1px solid rgba(10,11,12,.3);border-radius:50%;display:flex;align-items:center;justify-content:center;color:#0A0B0C;background:rgba(253,252,250,.85);box-shadow:0 8px 24px -12px rgba(10,11,12,.4);">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+  </button>
+
+  <!-- ════ PAGE-WIDE FLAGSHIP CAROUSEL ═════════════════════════════════════ -->
+  <div style="overflow:hidden;">
+    <div id="page-track" style="display:flex;align-items:flex-start;width:300%;transition:transform .7s cubic-bezier(.4,0,.2,1);transform:translateX(0);">
+
+      <!-- ══════════════ THALIA ══════════════ -->
+      <div id="panel-thalia" style="flex:0 0 33.333%;min-width:0;background:#FBF6EE;color:#0A0B0C;">
+
+        <!-- Hero -->
+        <div style="display:flex;flex-wrap:wrap;min-height:560px;padding-top:124px;">
+          <div style="position:relative;flex:1;min-width:320px;min-height:380px;overflow:hidden;">
+            <div style="position:absolute;inset:0;overflow:hidden;">
+              <div id="th-hero" style="display:flex;width:300%;height:100%;transition:transform .55s cubic-bezier(.4,0,.2,1);transform:translateX(0);">
+                <div style="flex:0 0 33.333%;min-width:0;height:100%;"><img src="assets/sku-thalia.png" alt="Thalia" style="width:100%;height:100%;object-fit:contain;display:block;"></div>
+                <div style="flex:0 0 33.333%;min-width:0;height:100%;"><img src="assets/event-4.png" alt="Thalia celebration" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
+                <div style="flex:0 0 33.333%;min-width:0;height:100%;"><img src="assets/event-1.png" alt="Thalia gathering" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
+              </div>
+            </div>
+            <div style="position:absolute;bottom:16px;left:50%;transform:translateX(-50%);z-index:6;display:flex;align-items:center;gap:12px;background:rgba(10,11,12,.42);border-radius:30px;padding:7px 12px;backdrop-filter:blur(4px);">
+              <button class="hero-prev muse-arrow" data-panel="th" style="width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;background:none;border:none;cursor:pointer;"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg></button>
+              <div id="th-hero-dots" style="display:flex;gap:7px;align-items:center;"></div>
+              <button class="hero-next muse-arrow" data-panel="th" style="width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;background:none;border:none;cursor:pointer;"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg></button>
+            </div>
+          </div>
+          <div style="flex:1;min-width:340px;padding:clamp(36px,5vw,80px);display:flex;flex-direction:column;justify-content:center;gap:16px;background:linear-gradient(135deg,#FFF6DD 0%,#F2CE73 100%);">
+            <div style="height:4px;width:52px;background:#EFA527;"></div>
+            <div style="font-size:11px;letter-spacing:.28em;font-weight:600;color:#7A4F10;">FLAGSHIP · NO. 02 · NOON</div>
+            <h1 style="font-family:'Ogg','Cormorant Garamond',Georgia,serif;font-weight:500;letter-spacing:.06em;font-size:clamp(58px,8vw,104px);line-height:.92;margin:0;color:#241808;">THALIA</h1>
+            <div style="font-size:13px;letter-spacing:.18em;color:#8A5A12;">ELATIONS AFTER NOON</div>
+            <p style="font-family:'neuehaasdisplaylight','Helvetica Neue',Arial,sans-serif;font-style:italic;font-size:clamp(18px,2.2vw,24px);color:#5C4620;margin:6px 0 0;line-height:1.45;">Made with joy and mixed with drops of sunshine.</p>
+            <div style="display:flex;gap:22px;font-size:11px;letter-spacing:.14em;color:#6E5526;margin-top:8px;"><span>12% ABV</span><span>·</span><span>SPARKLING</span><span>·</span><span>MOSCATO + AGAVE</span></div>
+          </div>
+        </div>
+
+        <!-- Lore + Recipe -->
+        <div style="background:#F2CE73;">
+          <div style="display:flex;flex-wrap:wrap;max-width:1180px;margin:0 auto;padding:clamp(48px,6vw,84px) 48px;">
+            <div style="flex:1;min-width:300px;padding-right:clamp(0px,3vw,48px);">
+              <div style="font-size:11px;letter-spacing:.24em;font-weight:600;color:#C9851A;margin-bottom:16px;">IDENTITY &amp; LORE</div>
+              <h2 style="font-family:'Ogg','Cormorant Garamond',Georgia,serif;font-weight:500;font-size:clamp(26px,3.2vw,40px);line-height:1.1;margin:0 0 18px;color:#0A0B0C;">The Muse of comedy &amp; sunlight</h2>
+              <p style="font-size:15px;font-weight:300;line-height:1.8;color:#4C4C4B;margin:0 0 16px;">Thalia presides over the bright hours — the laughter that spills across a noon table, the spontaneous toast under an open sky. Hers is the first act of the day, golden and generous.</p>
+              <p style="font-size:15px;font-weight:300;line-height:1.8;color:#4C4C4B;margin:0;">We built her from Moscato and blue agave, lifted with passionfruit — a pour that tastes like sunshine caught in a glass.</p>
+            </div>
+            <div style="flex:1;min-width:300px;padding-left:clamp(0px,3vw,48px);border-left:1px solid #E7DAC4;">
+              <div style="font-size:11px;letter-spacing:.24em;font-weight:600;color:#C9851A;margin-bottom:16px;">THE RECIPE</div>
+              <h2 style="font-family:'Ogg','Cormorant Garamond',Georgia,serif;font-weight:500;font-size:clamp(26px,3.2vw,40px);line-height:1.1;margin:0 0 18px;color:#0A0B0C;">Sweet, sunlit, joyful</h2>
+              <div style="display:flex;flex-direction:column;gap:13px;">
+                <div style="display:flex;align-items:center;gap:13px;font-size:14px;color:#4C4C4B;"><span style="width:7px;height:7px;border-radius:50%;background:#EFA527;flex:none;"></span>Moscato wine base</div>
+                <div style="display:flex;align-items:center;gap:13px;font-size:14px;color:#4C4C4B;"><span style="width:7px;height:7px;border-radius:50%;background:#EFA527;flex:none;"></span>Blue agave spirit</div>
+                <div style="display:flex;align-items:center;gap:13px;font-size:14px;color:#4C4C4B;"><span style="width:7px;height:7px;border-radius:50%;background:#EFA527;flex:none;"></span>Passionfruit &amp; citrus</div>
+                <div style="display:flex;align-items:center;gap:13px;font-size:14px;color:#4C4C4B;"><span style="width:7px;height:7px;border-radius:50%;background:#EFA527;flex:none;"></span>Served chilled, garnish of orange peel</div>
+              </div>
+              <a href="#" class="muse-link" style="display:inline-block;margin-top:24px;font-size:11px;letter-spacing:.16em;color:#0A0B0C;text-decoration:none;border-bottom:1px solid #C9851A;padding-bottom:4px;">VIEW NUTRITION TABLE →</a>
+            </div>
+          </div>
+
+          <!-- Format selector + buy -->
+          <div style="max-width:1180px;margin:0 auto;padding:0 48px clamp(48px,6vw,80px);">
+            <div style="background:#FFFDF6;border:1px solid #EAD9A8;padding:clamp(26px,3.4vw,44px);">
+              <div style="text-align:center;font-size:11px;letter-spacing:.24em;font-weight:600;color:#C9851A;margin-bottom:24px;">CHOOSE YOUR FORMAT</div>
+              <div style="display:flex;align-items:center;gap:14px;">
+                <button class="fmt-prev muse-arrow" data-id="th-fmt" style="flex:none;width:40px;height:40px;border:1px solid rgba(36,24,8,.3);border-radius:50%;display:flex;align-items:center;justify-content:center;color:#241808;background:rgba(255,255,255,.6);"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg></button>
+                <div style="flex:1;overflow:hidden;">
+                  <div id="th-fmt" style="display:flex;width:400%;transition:transform .55s cubic-bezier(.4,0,.2,1);transform:translateX(0);">
+                    <div style="width:25%;flex:none;text-align:center;padding:8px;"><div style="font-weight:700;font-size:clamp(28px,4vw,44px);color:#241808;">4-PACK</div><div style="font-size:12px;letter-spacing:.14em;color:#6E5526;margin-top:6px;">FOUR 6 FL OZ CANS · $—</div></div>
+                    <div style="width:25%;flex:none;text-align:center;padding:8px;"><div style="font-weight:700;font-size:clamp(28px,4vw,44px);color:#241808;">12-PACK</div><div style="font-size:12px;letter-spacing:.14em;color:#6E5526;margin-top:6px;">TWELVE 6 FL OZ CANS · $—</div></div>
+                    <div style="width:25%;flex:none;text-align:center;padding:8px;"><div style="font-weight:700;font-size:clamp(28px,4vw,44px);color:#241808;">16-PACK</div><div style="font-size:12px;letter-spacing:.14em;color:#6E5526;margin-top:6px;">SIXTEEN 6 FL OZ CANS · $—</div></div>
+                    <div style="width:25%;flex:none;text-align:center;padding:8px;"><div style="font-weight:700;font-size:clamp(28px,4vw,44px);color:#241808;">CAN BUNDLE</div><div style="font-size:12px;letter-spacing:.14em;color:#6E5526;margin-top:6px;">MIXED CASE · $—</div></div>
+                  </div>
+                </div>
+                <button class="fmt-next muse-arrow" data-id="th-fmt" style="flex:none;width:40px;height:40px;border:1px solid rgba(36,24,8,.3);border-radius:50%;display:flex;align-items:center;justify-content:center;color:#241808;background:rgba(255,255,255,.6);"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg></button>
+              </div>
+              <div id="th-fmt-dots" style="display:flex;justify-content:center;gap:8px;margin-top:18px;"></div>
+              <div style="display:flex;align-items:center;justify-content:center;gap:16px;flex-wrap:wrap;margin-top:24px;border-top:1px solid #EAD9A8;padding-top:24px;">
+                <div style="display:flex;align-items:center;border:1px solid rgba(36,24,8,.35);border-radius:30px;overflow:hidden;">
+                  <button class="qty-btn" data-muse="thalia" data-op="dec" style="background:none;border:none;padding:10px 16px;font-size:16px;color:#241808;cursor:pointer;">−</button>
+                  <span id="qty-thalia" style="padding:10px 18px;font-size:13px;border-left:1px solid rgba(36,24,8,.22);border-right:1px solid rgba(36,24,8,.22);min-width:46px;text-align:center;color:#241808;">1</span>
+                  <button class="qty-btn" data-muse="thalia" data-op="inc" style="background:none;border:none;padding:10px 16px;font-size:16px;color:#241808;cursor:pointer;">+</button>
+                </div>
+                <button class="add-btn muse-cta-hover" data-muse="thalia" style="background:#EFA527;color:#0A0B0C;border:none;border-radius:30px;padding:13px 34px;font-size:11px;letter-spacing:.16em;font-weight:600;cursor:pointer;transition:filter .25s ease;">ADD TO CART</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Moments -->
+        <div style="background:#8A5410;padding:clamp(44px,5vw,72px) 48px;">
+          <div style="max-width:1180px;margin:0 auto;">
+            <div style="text-align:center;font-size:11px;letter-spacing:.26em;font-weight:600;color:#F2DCAC;margin-bottom:24px;">THALIA · MOMENTS &amp; MUSES</div>
+            <div style="position:relative;">
+              <button class="mom-prev muse-arrow" data-id="th-mom" style="position:absolute;left:10px;top:50%;transform:translateY(-50%);z-index:5;width:40px;height:40px;border:1px solid rgba(253,252,250,.45);border-radius:50%;display:flex;align-items:center;justify-content:center;color:#FDFCFA;background:rgba(253,252,250,.12);"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg></button>
+              <button class="mom-next muse-arrow" data-id="th-mom" style="position:absolute;right:10px;top:50%;transform:translateY(-50%);z-index:5;width:40px;height:40px;border:1px solid rgba(253,252,250,.45);border-radius:50%;display:flex;align-items:center;justify-content:center;color:#FDFCFA;background:rgba(253,252,250,.12);"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg></button>
+              <div style="overflow:hidden;margin:0 56px;">
+                <div id="th-mom" style="display:flex;width:400%;transition:transform .55s cubic-bezier(.4,0,.2,1);transform:translateX(0);">
+                  <div style="width:25%;flex:none;padding:4px;"><div style="aspect-ratio:16/7;border:1px solid rgba(253,252,250,.28);background:#9C6417;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;color:#F0D7A6;"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M16 5h6"/><path d="M19 2v6"/><path d="M21 11.5V19a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h7.5"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/><circle cx="9" cy="9" r="2"/></svg><span style="font-size:10px;letter-spacing:.2em;">NOON GATHERING · 01</span></div></div>
+                  <div style="width:25%;flex:none;padding:4px;"><div style="aspect-ratio:16/7;border:1px solid rgba(253,252,250,.28);background:#9C6417;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;color:#F0D7A6;"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M16 5h6"/><path d="M19 2v6"/><path d="M21 11.5V19a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h7.5"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/><circle cx="9" cy="9" r="2"/></svg><span style="font-size:10px;letter-spacing:.2em;">ROOFTOP BRUNCH · 02</span></div></div>
+                  <div style="width:25%;flex:none;padding:4px;"><div style="aspect-ratio:16/7;border:1px solid rgba(253,252,250,.28);background:#9C6417;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;color:#F0D7A6;"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M16 5h6"/><path d="M19 2v6"/><path d="M21 11.5V19a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h7.5"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/><circle cx="9" cy="9" r="2"/></svg><span style="font-size:10px;letter-spacing:.2em;">GARDEN PARTY · 03</span></div></div>
+                  <div style="width:25%;flex:none;padding:4px;"><div style="aspect-ratio:16/7;border:1px solid rgba(253,252,250,.28);background:#9C6417;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;color:#F0D7A6;"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M16 5h6"/><path d="M19 2v6"/><path d="M21 11.5V19a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h7.5"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/><circle cx="9" cy="9" r="2"/></svg><span style="font-size:10px;letter-spacing:.2em;">SUNDAY TOAST · 04</span></div></div>
+                </div>
+              </div>
+            </div>
+            <div id="th-mom-dots" style="display:flex;justify-content:center;gap:8px;margin-top:18px;"></div>
+          </div>
+        </div>
+        <!-- Who's your Muse -->
+        <div style="background:#8A5410;padding:clamp(38px,4.6vw,60px) 48px;text-align:center;border-top:1px solid rgba(253,252,250,.16);">
+          <div style="font-size:11px;letter-spacing:.26em;font-weight:600;color:#F2DCAC;margin-bottom:14px;">CELEBRATING THOSE WHO INSPIRE</div>
+          <h2 style="font-family:'Ogg','Cormorant Garamond',Georgia,serif;font-weight:400;font-size:clamp(27px,3.6vw,44px);line-height:1.06;margin:0;color:#FDFCFA;">Who's your Muse?</h2>
+          <p style="font-size:14px;line-height:1.7;color:#F2E4CA;max-width:480px;margin:13px auto 22px;">Share a short story about someone who inspires you — or nominate them to be celebrated amongst the clouds.</p>
+          <a href="share-a-muse.html" style="display:inline-block;background:#EFA527;color:#0A0B0C;border-radius:30px;padding:13px 34px;font-size:11px;letter-spacing:.18em;font-weight:600;text-decoration:none;">SHARE YOUR MUSE</a>
+        </div>
+        <!-- Thalia footer -->
+        <footer style="background:#8A5410;color:#FDFCFA;padding:clamp(40px,5vw,62px) 48px clamp(30px,4vw,42px);text-align:center;">
+          <img src="assets/monogram-ivory.png" alt="MUSE" style="height:108px;width:auto;margin:0 auto 14px;display:block;">
+          <div style="font-style:italic;font-size:21px;color:#FDFCFA;margin-bottom:26px;">Celebrate amongst the clouds.</div>
+          <div style="display:flex;gap:52px;justify-content:center;flex-wrap:wrap;margin-bottom:28px;">
+            <a href="about.html" class="muse-link" style="font-size:11px;letter-spacing:.18em;font-weight:500;color:#FDFCFA;text-decoration:none;">ABOUT</a>
+            <a href="gallery.html" class="muse-link" style="font-size:11px;letter-spacing:.18em;font-weight:500;color:#FDFCFA;text-decoration:none;">GALLERY</a>
+            <a href="contact.html" class="muse-link" style="font-size:11px;letter-spacing:.18em;font-weight:500;color:#FDFCFA;text-decoration:none;">CONTACT</a>
+            <a href="products.html" class="muse-link" style="font-size:11px;letter-spacing:.18em;font-weight:500;color:#FDFCFA;text-decoration:none;">PRODUCTS</a>
+            <a href="legal.html" class="muse-link" style="font-size:11px;letter-spacing:.18em;font-weight:500;color:#FDFCFA;text-decoration:none;">LEGAL &amp; PRIVACY</a>
+          </div>
+          <div style="border-top:1px solid rgba(253,252,250,.28);padding-top:22px;font-size:10px;letter-spacing:.14em;color:rgba(253,252,250,.7);">© MMXXVI MUSE · ENJOY RESPONSIBLY · 21+</div>
+        </footer>
+      </div>
+      <!-- ════ END THALIA ═══════════════════════════════════════════════════ -->
+
+      <!-- ══════════════ CLIO ════════════════ -->
+      <div id="panel-clio" style="flex:0 0 33.333%;min-width:0;background:#3A070A;color:#FDFCFA;">
+
+        <div style="display:flex;flex-wrap:wrap;min-height:560px;padding-top:124px;">
+          <div style="position:relative;flex:1;min-width:320px;min-height:380px;overflow:hidden;">
+            <div style="position:absolute;inset:0;overflow:hidden;">
+              <div id="cl-hero" style="display:flex;width:300%;height:100%;transition:transform .55s cubic-bezier(.4,0,.2,1);transform:translateX(0);">
+                <div style="flex:0 0 33.333%;min-width:0;height:100%;"><img src="assets/sku-clio.png" alt="Clio" style="width:100%;height:100%;object-fit:contain;display:block;"></div>
+                <div style="flex:0 0 33.333%;min-width:0;height:100%;"><img src="assets/event-3.png" alt="Clio celebration" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
+                <div style="flex:0 0 33.333%;min-width:0;height:100%;"><img src="assets/event-2.png" alt="Clio gathering" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
+              </div>
+            </div>
+            <div style="position:absolute;bottom:16px;left:50%;transform:translateX(-50%);z-index:6;display:flex;align-items:center;gap:12px;background:rgba(10,11,12,.42);border-radius:30px;padding:7px 12px;backdrop-filter:blur(4px);">
+              <button class="hero-prev muse-arrow" data-panel="cl" style="width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;background:none;border:none;cursor:pointer;"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg></button>
+              <div id="cl-hero-dots" style="display:flex;gap:7px;align-items:center;"></div>
+              <button class="hero-next muse-arrow" data-panel="cl" style="width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;background:none;border:none;cursor:pointer;"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg></button>
+            </div>
+          </div>
+          <div style="flex:1;min-width:340px;padding:clamp(36px,5vw,80px);display:flex;flex-direction:column;justify-content:center;gap:16px;background:linear-gradient(135deg,#8E1216 0%,#4E0609 100%);">
+            <div style="height:4px;width:52px;background:#CC2200;"></div>
+            <div style="font-size:11px;letter-spacing:.28em;font-weight:600;color:#FFC4B8;">FLAGSHIP · NO. 01 · SUNSET</div>
+            <h1 style="font-family:'Ogg','Cormorant Garamond',Georgia,serif;font-weight:500;letter-spacing:.06em;font-size:clamp(58px,8vw,104px);line-height:.92;margin:0;color:#FDFCFA;">CLIO</h1>
+            <div style="font-size:13px;letter-spacing:.18em;color:#F0A99E;">SPONTANEITY AT SUNSET</div>
+            <p style="font-family:'neuehaasdisplaylight','Helvetica Neue',Arial,sans-serif;font-style:italic;font-size:clamp(18px,2.2vw,24px);color:#ECC9C2;margin:6px 0 0;line-height:1.45;">Made with fire and mixed with the thrill of the unplanned.</p>
+            <div style="display:flex;gap:22px;font-size:11px;letter-spacing:.14em;color:#D9A79E;margin-top:8px;"><span>12% ABV</span><span>·</span><span>STILL</span><span>·</span><span>RED WINE + BRANDY</span></div>
+          </div>
+        </div>
+
+        <div style="display:flex;flex-wrap:wrap;max-width:1180px;margin:0 auto;padding:clamp(48px,6vw,84px) 48px;">
+          <div style="flex:1;min-width:300px;padding-right:clamp(0px,3vw,48px);">
+            <div style="font-size:11px;letter-spacing:.24em;font-weight:600;color:#FF8A6E;margin-bottom:16px;">IDENTITY &amp; LORE</div>
+            <h2 style="font-family:'Ogg','Cormorant Garamond',Georgia,serif;font-weight:500;font-size:clamp(26px,3.2vw,40px);line-height:1.1;margin:0 0 18px;color:#FDFCFA;">The Muse of history &amp; fire</h2>
+            <p style="font-size:15px;font-weight:300;line-height:1.8;color:#E7C7C0;margin:0 0 16px;">Clio belongs to the hour the sky turns to flame — the spontaneous detour, the story you'll retell for years. She is coy and proud, the keeper of the night's first legend.</p>
+            <p style="font-size:15px;font-weight:300;line-height:1.8;color:#E7C7C0;margin:0;">Red wine and brandy, deepened with cranberry and strawberry — a pour as bold as the moment it marks.</p>
+          </div>
+          <div style="flex:1;min-width:300px;padding-left:clamp(0px,3vw,48px);border-left:1px solid rgba(255,255,255,.18);">
+            <div style="font-size:11px;letter-spacing:.24em;font-weight:600;color:#FF8A6E;margin-bottom:16px;">THE RECIPE</div>
+            <h2 style="font-family:'Ogg','Cormorant Garamond',Georgia,serif;font-weight:500;font-size:clamp(26px,3.2vw,40px);line-height:1.1;margin:0 0 18px;color:#FDFCFA;">Coy, spirited, proud</h2>
+            <div style="display:flex;flex-direction:column;gap:13px;">
+              <div style="display:flex;align-items:center;gap:13px;font-size:14px;color:#E7C7C0;"><span style="width:7px;height:7px;border-radius:50%;background:#CC2200;flex:none;"></span>Red wine base</div>
+              <div style="display:flex;align-items:center;gap:13px;font-size:14px;color:#E7C7C0;"><span style="width:7px;height:7px;border-radius:50%;background:#CC2200;flex:none;"></span>Brandy</div>
+              <div style="display:flex;align-items:center;gap:13px;font-size:14px;color:#E7C7C0;"><span style="width:7px;height:7px;border-radius:50%;background:#CC2200;flex:none;"></span>Cranberry &amp; strawberry</div>
+              <div style="display:flex;align-items:center;gap:13px;font-size:14px;color:#E7C7C0;"><span style="width:7px;height:7px;border-radius:50%;background:#CC2200;flex:none;"></span>Served over ice, garnish of orange</div>
+            </div>
+            <a href="#" class="muse-link" style="display:inline-block;margin-top:24px;font-size:11px;letter-spacing:.16em;color:#FDFCFA;text-decoration:none;border-bottom:1px solid #FF8A6E;padding-bottom:4px;">VIEW NUTRITION TABLE →</a>
+          </div>
+        </div>
+
+        <div style="max-width:1180px;margin:0 auto;padding:0 48px clamp(48px,6vw,80px);">
+          <div style="background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.15);padding:clamp(26px,3.4vw,44px);">
+            <div style="text-align:center;font-size:11px;letter-spacing:.24em;font-weight:600;color:#FF8A6E;margin-bottom:24px;">CHOOSE YOUR FORMAT</div>
+            <div style="display:flex;align-items:center;gap:14px;">
+              <button class="fmt-prev muse-arrow" data-id="cl-fmt" style="flex:none;width:40px;height:40px;border:1px solid rgba(255,255,255,.35);border-radius:50%;display:flex;align-items:center;justify-content:center;color:#FDFCFA;background:rgba(0,0,0,.2);"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg></button>
+              <div style="flex:1;overflow:hidden;">
+                <div id="cl-fmt" style="display:flex;width:400%;transition:transform .55s cubic-bezier(.4,0,.2,1);transform:translateX(0);">
+                  <div style="width:25%;flex:none;text-align:center;padding:8px;"><div style="font-weight:700;font-size:clamp(28px,4vw,44px);color:#FDFCFA;">4-PACK</div><div style="font-size:12px;letter-spacing:.14em;color:#D9A79E;margin-top:6px;">FOUR 6 FL OZ CANS · $—</div></div>
+                  <div style="width:25%;flex:none;text-align:center;padding:8px;"><div style="font-weight:700;font-size:clamp(28px,4vw,44px);color:#FDFCFA;">12-PACK</div><div style="font-size:12px;letter-spacing:.14em;color:#D9A79E;margin-top:6px;">TWELVE 6 FL OZ CANS · $—</div></div>
+                  <div style="width:25%;flex:none;text-align:center;padding:8px;"><div style="font-weight:700;font-size:clamp(28px,4vw,44px);color:#FDFCFA;">16-PACK</div><div style="font-size:12px;letter-spacing:.14em;color:#D9A79E;margin-top:6px;">SIXTEEN 6 FL OZ CANS · $—</div></div>
+                  <div style="width:25%;flex:none;text-align:center;padding:8px;"><div style="font-weight:700;font-size:clamp(28px,4vw,44px);color:#FDFCFA;">CAN BUNDLE</div><div style="font-size:12px;letter-spacing:.14em;color:#D9A79E;margin-top:6px;">MIXED CASE · $—</div></div>
+                </div>
+              </div>
+              <button class="fmt-next muse-arrow" data-id="cl-fmt" style="flex:none;width:40px;height:40px;border:1px solid rgba(255,255,255,.35);border-radius:50%;display:flex;align-items:center;justify-content:center;color:#FDFCFA;background:rgba(0,0,0,.2);"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg></button>
+            </div>
+            <div id="cl-fmt-dots" style="display:flex;justify-content:center;gap:8px;margin-top:18px;"></div>
+            <div style="display:flex;align-items:center;justify-content:center;gap:16px;flex-wrap:wrap;margin-top:24px;border-top:1px solid rgba(255,255,255,.15);padding-top:24px;">
+              <div style="display:flex;align-items:center;border:1px solid rgba(255,255,255,.35);border-radius:30px;overflow:hidden;">
+                <button class="qty-btn" data-muse="clio" data-op="dec" style="background:none;border:none;padding:10px 16px;font-size:16px;color:#FDFCFA;cursor:pointer;">−</button>
+                <span id="qty-clio" style="padding:10px 18px;font-size:13px;border-left:1px solid rgba(255,255,255,.22);border-right:1px solid rgba(255,255,255,.22);min-width:46px;text-align:center;color:#FDFCFA;">1</span>
+                <button class="qty-btn" data-muse="clio" data-op="inc" style="background:none;border:none;padding:10px 16px;font-size:16px;color:#FDFCFA;cursor:pointer;">+</button>
+              </div>
+              <button class="add-btn muse-cta-hover" data-muse="clio" style="background:#EFA527;color:#0A0B0C;border:none;border-radius:30px;padding:13px 34px;font-size:11px;letter-spacing:.16em;font-weight:600;cursor:pointer;">ADD TO CART</button>
+            </div>
+          </div>
+        </div>
+
+        <div style="background:#2C0507;padding:clamp(44px,5vw,72px) 48px;">
+          <div style="max-width:1180px;margin:0 auto;">
+            <div style="text-align:center;font-size:11px;letter-spacing:.26em;font-weight:600;color:#E0654A;margin-bottom:24px;">CLIO · MOMENTS &amp; MUSES</div>
+            <div style="position:relative;">
+              <button class="mom-prev muse-arrow" data-id="cl-mom" style="position:absolute;left:10px;top:50%;transform:translateY(-50%);z-index:5;width:40px;height:40px;border:1px solid rgba(224,101,74,.5);border-radius:50%;display:flex;align-items:center;justify-content:center;color:#FFC4B8;background:rgba(0,0,0,.3);"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg></button>
+              <button class="mom-next muse-arrow" data-id="cl-mom" style="position:absolute;right:10px;top:50%;transform:translateY(-50%);z-index:5;width:40px;height:40px;border:1px solid rgba(224,101,74,.5);border-radius:50%;display:flex;align-items:center;justify-content:center;color:#FFC4B8;background:rgba(0,0,0,.3);"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg></button>
+              <div style="overflow:hidden;margin:0 56px;">
+                <div id="cl-mom" style="display:flex;width:400%;transition:transform .55s cubic-bezier(.4,0,.2,1);transform:translateX(0);">
+                  <div style="width:25%;flex:none;padding:4px;"><div style="aspect-ratio:16/7;border:1px solid #6E1418;background:#5A0E12;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;color:#D98A82;"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M16 5h6"/><path d="M19 2v6"/><path d="M21 11.5V19a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h7.5"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/><circle cx="9" cy="9" r="2"/></svg><span style="font-size:10px;letter-spacing:.2em;">SUNSET ROOFTOP · 01</span></div></div>
+                  <div style="width:25%;flex:none;padding:4px;"><div style="aspect-ratio:16/7;border:1px solid #6E1418;background:#5A0E12;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;color:#D98A82;"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M16 5h6"/><path d="M19 2v6"/><path d="M21 11.5V19a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h7.5"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/><circle cx="9" cy="9" r="2"/></svg><span style="font-size:10px;letter-spacing:.2em;">GOLDEN HOUR · 02</span></div></div>
+                  <div style="width:25%;flex:none;padding:4px;"><div style="aspect-ratio:16/7;border:1px solid #6E1418;background:#5A0E12;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;color:#D98A82;"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M16 5h6"/><path d="M19 2v6"/><path d="M21 11.5V19a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h7.5"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/><circle cx="9" cy="9" r="2"/></svg><span style="font-size:10px;letter-spacing:.2em;">EVENING SOIRÉE · 03</span></div></div>
+                  <div style="width:25%;flex:none;padding:4px;"><div style="aspect-ratio:16/7;border:1px solid #6E1418;background:#5A0E12;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;color:#D98A82;"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M16 5h6"/><path d="M19 2v6"/><path d="M21 11.5V19a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h7.5"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/><circle cx="9" cy="9" r="2"/></svg><span style="font-size:10px;letter-spacing:.2em;">FIRESIDE · 04</span></div></div>
+                </div>
+              </div>
+            </div>
+            <div id="cl-mom-dots" style="display:flex;justify-content:center;gap:8px;margin-top:18px;"></div>
+          </div>
+        </div>
+        <div style="background:#2C0507;padding:clamp(38px,4.6vw,60px) 48px;text-align:center;border-top:1px solid rgba(255,255,255,.12);">
+          <div style="font-size:11px;letter-spacing:.26em;font-weight:600;color:#E0654A;margin-bottom:14px;">CELEBRATING THOSE WHO INSPIRE</div>
+          <h2 style="font-family:'Ogg','Cormorant Garamond',Georgia,serif;font-weight:400;font-size:clamp(27px,3.6vw,44px);line-height:1.06;margin:0;color:#FDFCFA;">Who's your Muse?</h2>
+          <p style="font-size:14px;line-height:1.7;color:#E7C7C0;max-width:480px;margin:13px auto 22px;">Share a short story about someone who inspires you — or nominate them to be celebrated amongst the clouds.</p>
+          <a href="share-a-muse.html" style="display:inline-block;background:#EFA527;color:#0A0B0C;border-radius:30px;padding:13px 34px;font-size:11px;letter-spacing:.18em;font-weight:600;text-decoration:none;">SHARE YOUR MUSE</a>
+        </div>
+        <footer style="background:#2C0507;color:#FDFCFA;padding:clamp(40px,5vw,62px) 48px clamp(30px,4vw,42px);text-align:center;">
+          <img src="assets/monogram-ivory.png" alt="MUSE" style="height:108px;width:auto;margin:0 auto 14px;display:block;">
+          <div style="font-style:italic;font-size:21px;color:#FDFCFA;margin-bottom:26px;">Celebrate amongst the clouds.</div>
+          <div style="display:flex;gap:52px;justify-content:center;flex-wrap:wrap;margin-bottom:28px;">
+            <a href="about.html" class="muse-link" style="font-size:11px;letter-spacing:.18em;font-weight:500;color:#FDFCFA;text-decoration:none;">ABOUT</a>
+            <a href="gallery.html" class="muse-link" style="font-size:11px;letter-spacing:.18em;font-weight:500;color:#FDFCFA;text-decoration:none;">GALLERY</a>
+            <a href="contact.html" class="muse-link" style="font-size:11px;letter-spacing:.18em;font-weight:500;color:#FDFCFA;text-decoration:none;">CONTACT</a>
+            <a href="products.html" class="muse-link" style="font-size:11px;letter-spacing:.18em;font-weight:500;color:#FDFCFA;text-decoration:none;">PRODUCTS</a>
+            <a href="legal.html" class="muse-link" style="font-size:11px;letter-spacing:.18em;font-weight:500;color:#FDFCFA;text-decoration:none;">LEGAL &amp; PRIVACY</a>
+          </div>
+          <div style="border-top:1px solid rgba(253,252,250,.2);padding-top:22px;font-size:10px;letter-spacing:.14em;color:rgba(253,252,250,.7);">© MMXXVI MUSE · ENJOY RESPONSIBLY · 21+</div>
+        </footer>
+      </div>
+      <!-- ════ END CLIO ═════════════════════════════════════════════════════ -->
+
+      <!-- ══════════════ OURANIA ════════════════ -->
+      <div id="panel-ourania" style="flex:0 0 33.333%;min-width:0;background:#1E0F3A;color:#FDFCFA;">
+
+        <div style="display:flex;flex-wrap:wrap;min-height:560px;padding-top:124px;">
+          <div style="position:relative;flex:1;min-width:320px;min-height:380px;overflow:hidden;">
+            <div style="position:absolute;inset:0;overflow:hidden;">
+              <div id="ou-hero" style="display:flex;width:300%;height:100%;transition:transform .55s cubic-bezier(.4,0,.2,1);transform:translateX(0);">
+                <div style="flex:0 0 33.333%;min-width:0;height:100%;"><img src="assets/sku-ourania.png" alt="Ourania" style="width:100%;height:100%;object-fit:contain;display:block;"></div>
+                <div style="flex:0 0 33.333%;min-width:0;height:100%;"><img src="assets/event-2.png" alt="Ourania celebration" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
+                <div style="flex:0 0 33.333%;min-width:0;height:100%;"><img src="assets/event-4.png" alt="Ourania gathering" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
+              </div>
+            </div>
+            <div style="position:absolute;bottom:16px;left:50%;transform:translateX(-50%);z-index:6;display:flex;align-items:center;gap:12px;background:rgba(10,11,12,.42);border-radius:30px;padding:7px 12px;backdrop-filter:blur(4px);">
+              <button class="hero-prev muse-arrow" data-panel="ou" style="width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;background:none;border:none;cursor:pointer;"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg></button>
+              <div id="ou-hero-dots" style="display:flex;gap:7px;align-items:center;"></div>
+              <button class="hero-next muse-arrow" data-panel="ou" style="width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;background:none;border:none;cursor:pointer;"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg></button>
+            </div>
+          </div>
+          <div style="flex:1;min-width:340px;padding:clamp(36px,5vw,80px);display:flex;flex-direction:column;justify-content:center;gap:16px;background:linear-gradient(135deg,#4A2585 0%,#241046 100%);">
+            <div style="height:4px;width:52px;background:#8B5CF6;"></div>
+            <div style="font-size:11px;letter-spacing:.28em;font-weight:600;color:#C9B3F0;">FLAGSHIP · NO. 03 · NIGHT</div>
+            <h1 style="font-family:'Ogg','Cormorant Garamond',Georgia,serif;font-weight:500;letter-spacing:.06em;font-size:clamp(54px,7.4vw,96px);line-height:.92;margin:0;color:#FDFCFA;">OURANIA</h1>
+            <div style="font-size:13px;letter-spacing:.18em;color:#C9B3F0;">ELEGANCE AT EVENTIDE</div>
+            <p style="font-family:'neuehaasdisplaylight','Helvetica Neue',Arial,sans-serif;font-style:italic;font-size:clamp(18px,2.2vw,24px);color:#CFC2E8;margin:6px 0 0;line-height:1.45;">Made with poise and mixed with the hush of evening.</p>
+            <div style="display:flex;gap:22px;font-size:11px;letter-spacing:.14em;color:#A98FD0;margin-top:8px;"><span>12% ABV</span><span>·</span><span>STILL</span><span>·</span><span>GIN + PASSIONFRUIT</span></div>
+          </div>
+        </div>
+
+        <div style="display:flex;flex-wrap:wrap;max-width:1180px;margin:0 auto;padding:clamp(48px,6vw,84px) 48px;">
+          <div style="flex:1;min-width:300px;padding-right:clamp(0px,3vw,48px);">
+            <div style="font-size:11px;letter-spacing:.24em;font-weight:600;color:#A78BFA;margin-bottom:16px;">IDENTITY &amp; LORE</div>
+            <h2 style="font-family:'Ogg','Cormorant Garamond',Georgia,serif;font-weight:500;font-size:clamp(26px,3.2vw,40px);line-height:1.1;margin:0 0 18px;color:#FDFCFA;">The Muse of the heavens</h2>
+            <p style="font-size:15px;font-weight:300;line-height:1.8;color:#D5CAEC;margin:0 0 16px;">Ourania holds the night — the composed glamour of a late table, the conversation that drifts toward the stars. Mature and intentional, she is the evening's most refined hour.</p>
+            <p style="font-size:15px;font-weight:300;line-height:1.8;color:#D5CAEC;margin:0;">Gin and passionfruit, turned celestial by butterfly pea flower — a pour that shifts colour like dusk itself.</p>
+          </div>
+          <div style="flex:1;min-width:300px;padding-left:clamp(0px,3vw,48px);border-left:1px solid rgba(255,255,255,.18);">
+            <div style="font-size:11px;letter-spacing:.24em;font-weight:600;color:#A78BFA;margin-bottom:16px;">THE RECIPE</div>
+            <h2 style="font-family:'Ogg','Cormorant Garamond',Georgia,serif;font-weight:500;font-size:clamp(26px,3.2vw,40px);line-height:1.1;margin:0 0 18px;color:#FDFCFA;">Mature, intentional, refined</h2>
+            <div style="display:flex;flex-direction:column;gap:13px;">
+              <div style="display:flex;align-items:center;gap:13px;font-size:14px;color:#D5CAEC;"><span style="width:7px;height:7px;border-radius:50%;background:#8B5CF6;flex:none;"></span>Gin base</div>
+              <div style="display:flex;align-items:center;gap:13px;font-size:14px;color:#D5CAEC;"><span style="width:7px;height:7px;border-radius:50%;background:#8B5CF6;flex:none;"></span>Passionfruit</div>
+              <div style="display:flex;align-items:center;gap:13px;font-size:14px;color:#D5CAEC;"><span style="width:7px;height:7px;border-radius:50%;background:#8B5CF6;flex:none;"></span>Butterfly pea flower</div>
+              <div style="display:flex;align-items:center;gap:13px;font-size:14px;color:#D5CAEC;"><span style="width:7px;height:7px;border-radius:50%;background:#8B5CF6;flex:none;"></span>Served up, garnish of edible flower</div>
+            </div>
+            <a href="#" class="muse-link" style="display:inline-block;margin-top:24px;font-size:11px;letter-spacing:.16em;color:#FDFCFA;text-decoration:none;border-bottom:1px solid #A78BFA;padding-bottom:4px;">VIEW NUTRITION TABLE →</a>
+          </div>
+        </div>
+
+        <div style="max-width:1180px;margin:0 auto;padding:0 48px clamp(48px,6vw,80px);">
+          <div style="background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.15);padding:clamp(26px,3.4vw,44px);">
+            <div style="text-align:center;font-size:11px;letter-spacing:.24em;font-weight:600;color:#A78BFA;margin-bottom:24px;">CHOOSE YOUR FORMAT</div>
+            <div style="display:flex;align-items:center;gap:14px;">
+              <button class="fmt-prev muse-arrow" data-id="ou-fmt" style="flex:none;width:40px;height:40px;border:1px solid rgba(255,255,255,.35);border-radius:50%;display:flex;align-items:center;justify-content:center;color:#FDFCFA;background:rgba(0,0,0,.2);"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg></button>
+              <div style="flex:1;overflow:hidden;">
+                <div id="ou-fmt" style="display:flex;width:400%;transition:transform .55s cubic-bezier(.4,0,.2,1);transform:translateX(0);">
+                  <div style="width:25%;flex:none;text-align:center;padding:8px;"><div style="font-weight:700;font-size:clamp(28px,4vw,44px);color:#FDFCFA;">4-PACK</div><div style="font-size:12px;letter-spacing:.14em;color:#A98FD0;margin-top:6px;">FOUR 6 FL OZ CANS · $—</div></div>
+                  <div style="width:25%;flex:none;text-align:center;padding:8px;"><div style="font-weight:700;font-size:clamp(28px,4vw,44px);color:#FDFCFA;">12-PACK</div><div style="font-size:12px;letter-spacing:.14em;color:#A98FD0;margin-top:6px;">TWELVE 6 FL OZ CANS · $—</div></div>
+                  <div style="width:25%;flex:none;text-align:center;padding:8px;"><div style="font-weight:700;font-size:clamp(28px,4vw,44px);color:#FDFCFA;">16-PACK</div><div style="font-size:12px;letter-spacing:.14em;color:#A98FD0;margin-top:6px;">SIXTEEN 6 FL OZ CANS · $—</div></div>
+                  <div style="width:25%;flex:none;text-align:center;padding:8px;"><div style="font-weight:700;font-size:clamp(28px,4vw,44px);color:#FDFCFA;">CAN BUNDLE</div><div style="font-size:12px;letter-spacing:.14em;color:#A98FD0;margin-top:6px;">MIXED CASE · $—</div></div>
+                </div>
+              </div>
+              <button class="fmt-next muse-arrow" data-id="ou-fmt" style="flex:none;width:40px;height:40px;border:1px solid rgba(255,255,255,.35);border-radius:50%;display:flex;align-items:center;justify-content:center;color:#FDFCFA;background:rgba(0,0,0,.2);"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg></button>
+            </div>
+            <div id="ou-fmt-dots" style="display:flex;justify-content:center;gap:8px;margin-top:18px;"></div>
+            <div style="display:flex;align-items:center;justify-content:center;gap:16px;flex-wrap:wrap;margin-top:24px;border-top:1px solid rgba(255,255,255,.15);padding-top:24px;">
+              <div style="display:flex;align-items:center;border:1px solid rgba(255,255,255,.35);border-radius:30px;overflow:hidden;">
+                <button class="qty-btn" data-muse="ourania" data-op="dec" style="background:none;border:none;padding:10px 16px;font-size:16px;color:#FDFCFA;cursor:pointer;">−</button>
+                <span id="qty-ourania" style="padding:10px 18px;font-size:13px;border-left:1px solid rgba(255,255,255,.22);border-right:1px solid rgba(255,255,255,.22);min-width:46px;text-align:center;color:#FDFCFA;">1</span>
+                <button class="qty-btn" data-muse="ourania" data-op="inc" style="background:none;border:none;padding:10px 16px;font-size:16px;color:#FDFCFA;cursor:pointer;">+</button>
+              </div>
+              <button class="add-btn" data-muse="ourania" style="background:#8B5CF6;color:#FDFCFA;border:none;border-radius:30px;padding:13px 34px;font-size:11px;letter-spacing:.16em;font-weight:600;cursor:pointer;">ADD TO CART</button>
+            </div>
+          </div>
+        </div>
+
+        <div style="background:#160B2C;padding:clamp(44px,5vw,72px) 48px;">
+          <div style="max-width:1180px;margin:0 auto;">
+            <div style="text-align:center;font-size:11px;letter-spacing:.26em;font-weight:600;color:#A78BFA;margin-bottom:24px;">OURANIA · MOMENTS &amp; MUSES</div>
+            <div style="position:relative;">
+              <button class="mom-prev muse-arrow" data-id="ou-mom" style="position:absolute;left:10px;top:50%;transform:translateY(-50%);z-index:5;width:40px;height:40px;border:1px solid rgba(167,139,250,.5);border-radius:50%;display:flex;align-items:center;justify-content:center;color:#C9B3F0;background:rgba(0,0,0,.3);"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg></button>
+              <button class="mom-next muse-arrow" data-id="ou-mom" style="position:absolute;right:10px;top:50%;transform:translateY(-50%);z-index:5;width:40px;height:40px;border:1px solid rgba(167,139,250,.5);border-radius:50%;display:flex;align-items:center;justify-content:center;color:#C9B3F0;background:rgba(0,0,0,.3);"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg></button>
+              <div style="overflow:hidden;margin:0 56px;">
+                <div id="ou-mom" style="display:flex;width:400%;transition:transform .55s cubic-bezier(.4,0,.2,1);transform:translateX(0);">
+                  <div style="width:25%;flex:none;padding:4px;"><div style="aspect-ratio:16/7;border:1px solid #3A2466;background:#2A1850;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;color:#A98FD0;"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M16 5h6"/><path d="M19 2v6"/><path d="M21 11.5V19a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h7.5"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/><circle cx="9" cy="9" r="2"/></svg><span style="font-size:10px;letter-spacing:.2em;">EVENING TABLE · 01</span></div></div>
+                  <div style="width:25%;flex:none;padding:4px;"><div style="aspect-ratio:16/7;border:1px solid #3A2466;background:#2A1850;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;color:#A98FD0;"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M16 5h6"/><path d="M19 2v6"/><path d="M21 11.5V19a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h7.5"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/><circle cx="9" cy="9" r="2"/></svg><span style="font-size:10px;letter-spacing:.2em;">MOONLIT BALCONY · 02</span></div></div>
+                  <div style="width:25%;flex:none;padding:4px;"><div style="aspect-ratio:16/7;border:1px solid #3A2466;background:#2A1850;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;color:#A98FD0;"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M16 5h6"/><path d="M19 2v6"/><path d="M21 11.5V19a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h7.5"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/><circle cx="9" cy="9" r="2"/></svg><span style="font-size:10px;letter-spacing:.2em;">GALA NIGHT · 03</span></div></div>
+                  <div style="width:25%;flex:none;padding:4px;"><div style="aspect-ratio:16/7;border:1px solid #3A2466;background:#2A1850;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;color:#A98FD0;"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M16 5h6"/><path d="M19 2v6"/><path d="M21 11.5V19a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h7.5"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/><circle cx="9" cy="9" r="2"/></svg><span style="font-size:10px;letter-spacing:.2em;">NIGHTCAP · 04</span></div></div>
+                </div>
+              </div>
+            </div>
+            <div id="ou-mom-dots" style="display:flex;justify-content:center;gap:8px;margin-top:18px;"></div>
+          </div>
+        </div>
+        <div style="background:#160B2C;padding:clamp(38px,4.6vw,60px) 48px;text-align:center;border-top:1px solid rgba(255,255,255,.12);">
+          <div style="font-size:11px;letter-spacing:.26em;font-weight:600;color:#A78BFA;margin-bottom:14px;">CELEBRATING THOSE WHO INSPIRE</div>
+          <h2 style="font-family:'Ogg','Cormorant Garamond',Georgia,serif;font-weight:400;font-size:clamp(27px,3.6vw,44px);line-height:1.06;margin:0;color:#FDFCFA;">Who's your Muse?</h2>
+          <p style="font-size:14px;line-height:1.7;color:#D5CAEC;max-width:480px;margin:13px auto 22px;">Share a short story about someone who inspires you — or nominate them to be celebrated amongst the clouds.</p>
+          <a href="share-a-muse.html" style="display:inline-block;background:#EFA527;color:#0A0B0C;border-radius:30px;padding:13px 34px;font-size:11px;letter-spacing:.18em;font-weight:600;text-decoration:none;">SHARE YOUR MUSE</a>
+        </div>
+        <footer style="background:#160B2C;color:#FDFCFA;padding:clamp(40px,5vw,62px) 48px clamp(30px,4vw,42px);text-align:center;">
+          <img src="assets/monogram-ivory.png" alt="MUSE" style="height:108px;width:auto;margin:0 auto 14px;display:block;">
+          <div style="font-style:italic;font-size:21px;color:#FDFCFA;margin-bottom:26px;">Celebrate amongst the clouds.</div>
+          <div style="display:flex;gap:52px;justify-content:center;flex-wrap:wrap;margin-bottom:28px;">
+            <a href="about.html" class="muse-link" style="font-size:11px;letter-spacing:.18em;font-weight:500;color:#FDFCFA;text-decoration:none;">ABOUT</a>
+            <a href="gallery.html" class="muse-link" style="font-size:11px;letter-spacing:.18em;font-weight:500;color:#FDFCFA;text-decoration:none;">GALLERY</a>
+            <a href="contact.html" class="muse-link" style="font-size:11px;letter-spacing:.18em;font-weight:500;color:#FDFCFA;text-decoration:none;">CONTACT</a>
+            <a href="products.html" class="muse-link" style="font-size:11px;letter-spacing:.18em;font-weight:500;color:#FDFCFA;text-decoration:none;">PRODUCTS</a>
+            <a href="legal.html" class="muse-link" style="font-size:11px;letter-spacing:.18em;font-weight:500;color:#FDFCFA;text-decoration:none;">LEGAL &amp; PRIVACY</a>
+          </div>
+          <div style="border-top:1px solid rgba(253,252,250,.2);padding-top:22px;font-size:10px;letter-spacing:.14em;color:rgba(253,252,250,.7);">© MMXXVI MUSE · ENJOY RESPONSIBLY · 21+</div>
+        </footer>
+      </div>
+      <!-- ════ END OURANIA ══════════════════════════════════════════════════ -->
+
+    </div><!-- /page-track -->
+  </div>
+
+  <script>
+  (function () {
+
+    // ── Constants ────────────────────────────────────────────
+    var NAMES   = ['THALIA','CLIO','OURANIA'];
+    var ACCENTS = ['#EFA527','#CC2200','#8B5CF6'];
+    var TAB_ACC = ['#EFA527','#CC2200','#8B5CF6'];
+
+    // ── State ────────────────────────────────────────────────
+    var cur = 0;
+    var qty = { thalia:1, clio:1, ourania:1 };
+
+    // ── Nav scroll ───────────────────────────────────────────
+    var nav      = document.getElementById('site-nav');
+    var tabs     = document.getElementById('fd-tabs');
+    var sentinel = document.querySelector('[data-nav-sentinel]');
+    function setScrolled(sc) {
+      sc ? nav.classList.add('nav--scrolled') : nav.classList.remove('nav--scrolled');
+      sc ? tabs.classList.add('is-scrolled') : tabs.classList.remove('is-scrolled');
+    }
+    function computeScroll() {
+      if (sentinel) setScrolled(sentinel.getBoundingClientRect().top <= -40);
+    }
+    if (sentinel && 'IntersectionObserver' in window) {
+      new IntersectionObserver(function(e){ computeScroll(); }, {threshold:0}).observe(sentinel);
+    }
+    window.addEventListener('scroll', computeScroll, true);
+    computeScroll();
+
+    // ── Page carousel ────────────────────────────────────────
+    var pageTrack = document.getElementById('page-track');
+    var fdTabBtns = document.querySelectorAll('.fd-tab');
+    var skuName   = document.getElementById('sku-name');
+
+    function goTo(idx) {
+      cur = ((idx % 3) + 3) % 3;
+      pageTrack.style.transform = 'translateX(-' + (cur * 100 / 3) + '%)';
+      // Update sticky tabs
+      fdTabBtns.forEach(function(btn, i) {
+        btn.style.color       = i === cur ? '#0A0B0C' : '#A59C8D';
+        btn.style.borderBottomColor = i === cur ? TAB_ACC[i] : 'transparent';
+      });
+      // Update SKU switcher label
+      skuName.textContent = NAMES[cur];
+      skuName.style.color = ACCENTS[cur];
+      // Close dropdown
+      document.getElementById('sku-dropdown').classList.remove('is-open');
+    }
+
+    goTo(0);
+
+    // Hash routing on load
+    var hash = (location.hash || '').replace('#','').toLowerCase();
+    if (hash === 'thalia') goTo(0);
+    else if (hash === 'clio') goTo(1);
+    else if (hash === 'ourania') goTo(2);
+
+    // Tab clicks
+    fdTabBtns.forEach(function(btn) {
+      btn.addEventListener('click', function(){ goTo(parseInt(this.dataset.i)); });
+    });
+
+    // Edge arrows
+    document.getElementById('edge-prev').addEventListener('click', function(){ goTo(cur - 1); });
+    document.getElementById('edge-next').addEventListener('click', function(){ goTo(cur + 1); });
+
+    // SKU switcher arrows + dropdown
+    document.getElementById('sku-prev').addEventListener('click', function(){ goTo(cur - 1); });
+    document.getElementById('sku-next').addEventListener('click', function(){ goTo(cur + 1); });
+    document.getElementById('sku-label-btn').addEventListener('click', function(e) {
+      e.stopPropagation();
+      document.getElementById('sku-dropdown').classList.toggle('is-open');
+    });
+    document.querySelectorAll('.sku-opt').forEach(function(opt) {
+      opt.addEventListener('click', function(){ goTo(parseInt(this.dataset.i)); });
+    });
+    document.addEventListener('click', function(){ document.getElementById('sku-dropdown').classList.remove('is-open'); });
+
+    // ── Sub-carousel factory ─────────────────────────────────
+    function makeSubCar(cfg) {
+      var track  = document.getElementById(cfg.id);
+      var dotsEl = document.getElementById(cfg.id + '-dots');
+      var total  = cfg.total;
+      var pct    = 100 / total;
+      var c      = 0;
+
+      for (var i = 0; i < total; i++) {
+        var d = document.createElement('span');
+        d.className = 'sub-dot';
+        d.dataset.i = i;
+        dotsEl.appendChild(d);
+      }
+
+      function go(idx) {
+        c = ((idx % total) + total) % total;
+        track.style.transform = 'translateX(-' + (c * pct) + '%)';
+        Array.from(dotsEl.children).forEach(function(d, i) {
+          d.style.width      = i === c ? '20px' : '7px';
+          d.style.background = i === c ? cfg.activeColor : (cfg.inactiveColor || 'rgba(150,150,150,.4)');
+        });
+      }
+
+      go(0);
+      dotsEl.addEventListener('click', function(e) {
+        var d = e.target.closest('[data-i]');
+        if (d) go(parseInt(d.dataset.i));
+      });
+
+      // Wire prev/next by class + data attribute
+      if (cfg.prevClass && cfg.nextClass) {
+        document.querySelectorAll('.' + cfg.prevClass + '[data-' + cfg.dataAttr + '="' + cfg.id + '"]').forEach(function(btn){
+          btn.addEventListener('click', function(){ go(c - 1); });
+        });
+        document.querySelectorAll('.' + cfg.nextClass + '[data-' + cfg.dataAttr + '="' + cfg.id + '"]').forEach(function(btn){
+          btn.addEventListener('click', function(){ go(c + 1); });
+        });
+      }
+    }
+
+    // Hero sub-carousels (3 slides)
+    var heroConfigs = [
+      { id:'th-hero', total:3, activeColor:'#EFA527', inactiveColor:'rgba(255,255,255,.5)', prevClass:'hero-prev', nextClass:'hero-next', dataAttr:'panel', panelId:'th' },
+      { id:'cl-hero', total:3, activeColor:'#FF8A6E', inactiveColor:'rgba(255,255,255,.5)', prevClass:'hero-prev', nextClass:'hero-next', dataAttr:'panel', panelId:'cl' },
+      { id:'ou-hero', total:3, activeColor:'#A78BFA', inactiveColor:'rgba(255,255,255,.5)', prevClass:'hero-prev', nextClass:'hero-next', dataAttr:'panel', panelId:'ou' },
+    ];
+    heroConfigs.forEach(function(cfg) {
+      var track  = document.getElementById(cfg.id);
+      var dotsEl = document.getElementById(cfg.id + '-dots');
+      var c = 0;
+      for (var i = 0; i < cfg.total; i++) {
+        var d = document.createElement('span');
+        d.className = 'sub-dot';
+        d.dataset.i = i;
+        dotsEl.appendChild(d);
+      }
+      function go(idx) {
+        c = ((idx % cfg.total) + cfg.total) % cfg.total;
+        track.style.transform = 'translateX(-' + (c * 100 / cfg.total) + '%)';
+        Array.from(dotsEl.children).forEach(function(d, i) {
+          d.style.width      = i === c ? '20px' : '7px';
+          d.style.background = i === c ? cfg.activeColor : cfg.inactiveColor;
+        });
+      }
+      go(0);
+      dotsEl.addEventListener('click', function(e){ var d = e.target.closest('[data-i]'); if (d) go(parseInt(d.dataset.i)); });
+      (function(localGo, pid) {
+        document.querySelectorAll('.hero-prev[data-panel="' + pid + '"]').forEach(function(btn){ btn.addEventListener('click', function(){ localGo(c - 1); }); });
+        document.querySelectorAll('.hero-next[data-panel="' + pid + '"]').forEach(function(btn){ btn.addEventListener('click', function(){ localGo(c + 1); }); });
+      })(go, cfg.panelId);
+    });
+
+    // Format carousels (4 slides)
+    [
+      { id:'th-fmt', activeColor:'#C9851A' },
+      { id:'cl-fmt', activeColor:'#FF8A6E' },
+      { id:'ou-fmt', activeColor:'#A78BFA' },
+    ].forEach(function(cfg) {
+      makeSubCar({ id:cfg.id, total:4, activeColor:cfg.activeColor, prevClass:'fmt-prev', nextClass:'fmt-next', dataAttr:'id' });
+    });
+
+    // Moments carousels (4 slides)
+    [
+      { id:'th-mom', activeColor:'#FDFCFA', inactiveColor:'rgba(253,252,250,.42)' },
+      { id:'cl-mom', activeColor:'#FF8A6E' },
+      { id:'ou-mom', activeColor:'#A78BFA' },
+    ].forEach(function(cfg) {
+      makeSubCar({ id:cfg.id, total:4, activeColor:cfg.activeColor, inactiveColor:cfg.inactiveColor, prevClass:'mom-prev', nextClass:'mom-next', dataAttr:'id' });
+    });
+
+    // ── Qty steppers ─────────────────────────────────────────
+    document.querySelectorAll('.qty-btn').forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        var muse = this.dataset.muse;
+        var op   = this.dataset.op;
+        qty[muse] = op === 'inc' ? Math.min(99, qty[muse] + 1) : Math.max(1, qty[muse] - 1);
+        document.getElementById('qty-' + muse).textContent = String(qty[muse]);
+      });
+    });
+
+    // ADD TO CART stub
+    document.querySelectorAll('.add-btn').forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        var muse = this.dataset.muse;
+        alert('Added ' + qty[muse] + '× ' + muse.toUpperCase() + ' to cart.');
+      });
+    });
+
+  })();
+  </script>
+</body>
+</html>

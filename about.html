@@ -2,152 +2,252 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>About — MUSE RTD Cocktails</title>
-  <meta name="description" content="The story behind MUSE — premium RTD cocktails crafted to elevate every celebration.">
-  <link rel="stylesheet" href="css/bootstrap.min.css">
-  <link rel="stylesheet" href="css/style.css">
-  <link rel="stylesheet" href="css/responsive.css">
-  <link rel="icon" href="images/fevicon.png" type="image/gif">
-  <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
+  <link rel="preconnect" href="https://p.typekit.net">
+  <link rel="stylesheet" href="assets/fonts/font.css">
 </head>
 <body>
 
-  <!-- ── Navigation ── -->
-  <div class="header_section">
-    <div class="container">
-      <nav class="navbar navbar-expand-lg navbar-dark">
-        <div class="logo">
-          <a href="index.html">
-            <img src="assets/MUSE Web Banner Text 2.png" alt="MUSE" height="44">
-          </a>
-        </div>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-          aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-          <ul class="navbar-nav">
-            <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-            <li class="nav-item active"><a class="nav-link" href="about.html">About</a></li>
-            <li class="nav-item"><a class="nav-link" href="gallery.html">Gallery</a></li>
-            <li class="nav-item"><a class="nav-link" href="services.html">Services</a></li>
-            <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
-          </ul>
-        </div>
-      </nav>
-    </div>
-  </div>
+  <!-- ════ FIXED NAV ════════════════════════════════════════════════════════ -->
+  <nav id="site-nav" style="position:fixed;top:0;left:0;right:0;z-index:50;">
 
-  <!-- ── Page Hero ── -->
-  <div class="page_hero">
-    <div class="container">
-      <p style="font-size:0.85rem;color:#888;text-transform:uppercase;letter-spacing:0.12em;margin-bottom:12px;">
-        <a href="index.html" style="color:#888;"><i class="fa fa-angle-left"></i> Home</a>
-        &nbsp;/&nbsp; About
-      </p>
-      <h1 class="page_hero_title">About <span class="page_hero_accent">MUSE</span></h1>
-      <p style="font-size:1.05rem;color:#999;margin-top:16px;max-width:560px;font-style:italic;">
-        ELEGANCE. EXECUTION. ELEVATION.
-      </p>
-    </div>
-  </div>
-
-  <!-- ── Mission ── -->
-  <div class="about_section layout_padding">
-    <div class="container">
-      <div class="row align-items-center">
-        <div class="col-md-6 mb-4 mb-md-0">
-          <div class="about_taital_main" style="padding:0;">
-            <span class="about_taital">Our Mission</span>
-            <p class="about_text">With a passion for celebration, MUSE seeks to elevate our best moments by
-              enhancing the drinking experience with premium RTD cocktails and beverage catering services.
-              We want to provide beverages that won't take patrons away from the party.</p>
-            <p class="about_text">With a focus on flavor and client relations, it's our desire for all of our
-              clients to celebrate amongst the clouds — as if each cause for celebration will be etched in
-              the stars of eternity.</p>
+    <!-- STATE 1 · transparent gradient over hero, monogram centered -->
+    <div id="nav-state1" style="align-items:center;justify-content:space-between;padding:20px 48px;background:linear-gradient(180deg,rgba(252,249,243,.92) 0%,rgba(252,249,243,.45) 64%,rgba(252,249,243,0) 100%);">
+      <!-- Left links -->
+      <div style="display:flex;flex:1;align-items:center;justify-content:space-evenly;padding-left:104px;">
+        <!-- ABOUT (active) -->
+        <div class="muse-dropdown" style="position:relative;align-self:center;padding-bottom:16px;margin-bottom:-16px;display:flex;align-items:center;">
+          <a href="about.html" style="font-size:12px;letter-spacing:.18em;font-weight:600;color:#0A0B0C;text-decoration:none;border-bottom:2px solid #EFA527;padding-bottom:4px;display:inline-flex;align-items:center;gap:5px;">ABOUT<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" style="opacity:.5;flex:none;"><path d="m6 9 6 6 6-6"/></svg></a>
+          <div class="muse-dropdown-menu" style="position:absolute;top:100%;left:0;width:240px;background:#FDFCFA;border:1px solid #E7DAC4;box-shadow:0 18px 44px -20px rgba(10,11,12,.5);padding:7px;z-index:60;">
+            <a href="about.html" class="muse-sub" style="display:block;padding:11px 13px;font-size:11px;letter-spacing:.14em;font-weight:500;color:#0A0B0C;text-decoration:none;">ABOUT US</a>
+            <a href="flagship-detail.html" class="muse-sub" style="display:block;padding:11px 13px;font-size:11px;letter-spacing:.14em;font-weight:500;color:#0A0B0C;text-decoration:none;">THE FLAGSHIP MUSES</a>
+            <div style="display:flex;align-items:center;justify-content:space-between;padding:11px 13px;font-size:11px;letter-spacing:.14em;font-weight:500;color:#B0A892;cursor:default;">LORE<span style="font-size:8px;letter-spacing:.1em;font-weight:600;color:#C9851A;border:1px solid #E7C98A;border-radius:30px;padding:2px 7px;white-space:nowrap;">COMING SOON</span></div>
           </div>
         </div>
-        <div class="col-md-6">
-          <div class="about_img">
-            <img src="assets/6 About us (M_F).png" alt="MUSE — Our Mission">
+        <a href="gallery.html" class="muse-link" style="font-size:12px;letter-spacing:.18em;font-weight:500;color:#0A0B0C;text-decoration:none;">GALLERY</a>
+        <!-- CONTACT dropdown -->
+        <div class="muse-dropdown" style="position:relative;align-self:center;padding-bottom:16px;margin-bottom:-16px;display:flex;align-items:center;">
+          <a href="contact.html" class="muse-link" style="font-size:12px;letter-spacing:.18em;font-weight:500;color:#0A0B0C;text-decoration:none;display:inline-flex;align-items:center;gap:5px;">CONTACT<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" style="opacity:.5;flex:none;"><path d="m6 9 6 6 6-6"/></svg></a>
+          <div class="muse-dropdown-menu" style="position:absolute;top:100%;left:0;width:220px;background:#FDFCFA;border:1px solid #E7DAC4;box-shadow:0 18px 44px -20px rgba(10,11,12,.5);padding:7px;z-index:60;">
+            <a href="contact.html" class="muse-sub" style="display:block;padding:11px 13px;font-size:11px;letter-spacing:.14em;font-weight:500;color:#0A0B0C;text-decoration:none;">CONTACT US</a>
+            <a href="share-a-muse.html" class="muse-sub" style="display:block;padding:11px 13px;font-size:11px;letter-spacing:.14em;font-weight:500;color:#0A0B0C;text-decoration:none;">SHARE YOUR MUSE</a>
           </div>
         </div>
       </div>
-    </div>
-  </div>
-
-  <!-- ── Values ── -->
-  <div class="values_section">
-    <div class="container">
-      <div class="row mb-5">
-        <div class="col-12 text-center">
-          <h2 class="section-title">What We Stand For</h2>
-          <p class="section-subtitle mt-2">Three pillars that guide every drop we craft.</p>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-md-4 mb-4">
-          <div class="value_card">
-            <div class="value_card_number">01</div>
-            <h3 class="value_card_title">Flavor First</h3>
-            <p class="value_card_text">Every MUSE recipe starts and ends with flavor. We iterate relentlessly
-              until each cocktail earns a personality of its own — one that stands out in a crowded RTD market.</p>
-          </div>
-        </div>
-        <div class="col-md-4 mb-4">
-          <div class="value_card">
-            <div class="value_card_number">02</div>
-            <h3 class="value_card_title">Celebrate Ceaselessly</h3>
-            <p class="value_card_text">MUSE was created to elevate the moments worth remembering. It's not
-              about making memories — it's about living the legends we'll tell for years to come.</p>
-          </div>
-        </div>
-        <div class="col-md-4 mb-4">
-          <div class="value_card">
-            <div class="value_card_number">03</div>
-            <h3 class="value_card_title">Empower Inspiration</h3>
-            <p class="value_card_text">Built from the audacity to pursue passion, MUSE creates a platform
-              where the silent and meaningful individuals who inspire us may be celebrated and inspire others.</p>
-          </div>
-        </div>
+      <!-- Monogram -->
+      <a href="index.html" aria-label="MUSE home" style="display:inline-flex;align-items:center;flex:none;"><img src="assets/monogram-gold.png" alt="MUSE" style="height:56px;width:auto;flex:none;"></a>
+      <!-- Right links -->
+      <div style="display:flex;flex:1;align-items:center;justify-content:space-evenly;padding-right:104px;">
+        <a href="login.html" class="muse-link" style="font-size:12px;letter-spacing:.18em;font-weight:500;color:#0A0B0C;text-decoration:none;">LOG IN</a>
+        <a href="products.html" class="muse-link" style="font-size:12px;letter-spacing:.18em;font-weight:500;color:#0A0B0C;text-decoration:none;">PRODUCTS</a>
+        <a href="shop.html" class="muse-link" style="font-size:12px;letter-spacing:.18em;font-weight:500;color:#0A0B0C;text-decoration:none;">SHOP</a>
       </div>
     </div>
-  </div>
 
-  <!-- ── Products Strip ── -->
-  <div class="products_strip">
-    <div class="container text-center">
-      <h2 class="section-title mb-4">Our Flavors</h2>
-      <a href="index.html" class="product_pill" style="color:#EFA527;">
-        <span>Ambrosia</span>
-      </a>
-      <a href="index.html" class="product_pill" style="color:#cc2200;">
-        <span>Jubilee</span>
-      </a>
-      <a href="index.html" class="product_pill" style="color:#9b59d6;">
-        <span>Odyssey</span>
-      </a>
-      <a href="clio.html" class="product_pill" style="color:#cc2200;">
-        <span>Clio</span>
+    <!-- STATE 2 · frosted cream, logo left, SHOP pill right -->
+    <div id="nav-state2" style="position:relative;align-items:center;justify-content:space-between;padding:11px 48px;background:rgba(253,252,250,.8);backdrop-filter:blur(12px) saturate(1.1);-webkit-backdrop-filter:blur(12px) saturate(1.1);border-bottom:1px solid rgba(231,218,196,.7);">
+      <a href="index.html" aria-label="MUSE home" style="display:inline-flex;align-items:center;flex:none;"><img src="assets/monogram-gold.png" alt="MUSE" style="height:38px;width:auto;"></a>
+      <div style="position:absolute;left:50%;transform:translateX(-50%);display:flex;gap:72px;align-items:center;">
+        <!-- ABOUT (active) -->
+        <div class="muse-dropdown" style="position:relative;align-self:center;padding-bottom:16px;margin-bottom:-16px;display:flex;align-items:center;">
+          <a href="about.html" style="font-size:11px;letter-spacing:.2em;font-weight:600;color:#0A0B0C;text-decoration:none;border-bottom:2px solid #EFA527;padding-bottom:4px;display:inline-flex;align-items:center;gap:5px;">ABOUT<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" style="opacity:.5;flex:none;"><path d="m6 9 6 6 6-6"/></svg></a>
+          <div class="muse-dropdown-menu" style="position:absolute;top:100%;left:0;width:240px;background:#FDFCFA;border:1px solid #E7DAC4;box-shadow:0 18px 44px -20px rgba(10,11,12,.5);padding:7px;z-index:60;">
+            <a href="about.html" class="muse-sub" style="display:block;padding:11px 13px;font-size:11px;letter-spacing:.14em;font-weight:500;color:#0A0B0C;text-decoration:none;">ABOUT US</a>
+            <a href="flagship-detail.html" class="muse-sub" style="display:block;padding:11px 13px;font-size:11px;letter-spacing:.14em;font-weight:500;color:#0A0B0C;text-decoration:none;">THE FLAGSHIP MUSES</a>
+            <div style="display:flex;align-items:center;justify-content:space-between;padding:11px 13px;font-size:11px;letter-spacing:.14em;font-weight:500;color:#B0A892;cursor:default;">LORE<span style="font-size:8px;letter-spacing:.1em;font-weight:600;color:#C9851A;border:1px solid #E7C98A;border-radius:30px;padding:2px 7px;white-space:nowrap;">COMING SOON</span></div>
+          </div>
+        </div>
+        <a href="gallery.html" class="muse-link" style="font-size:11px;letter-spacing:.2em;font-weight:500;color:#0A0B0C;text-decoration:none;">GALLERY</a>
+        <div class="muse-dropdown" style="position:relative;align-self:center;padding-bottom:16px;margin-bottom:-16px;display:flex;align-items:center;">
+          <a href="contact.html" class="muse-link" style="font-size:11px;letter-spacing:.2em;font-weight:500;color:#0A0B0C;text-decoration:none;display:inline-flex;align-items:center;gap:5px;">CONTACT<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" style="opacity:.5;flex:none;"><path d="m6 9 6 6 6-6"/></svg></a>
+          <div class="muse-dropdown-menu" style="position:absolute;top:100%;left:0;width:220px;background:#FDFCFA;border:1px solid #E7DAC4;box-shadow:0 18px 44px -20px rgba(10,11,12,.5);padding:7px;z-index:60;">
+            <a href="contact.html" class="muse-sub" style="display:block;padding:11px 13px;font-size:11px;letter-spacing:.14em;font-weight:500;color:#0A0B0C;text-decoration:none;">CONTACT US</a>
+            <a href="share-a-muse.html" class="muse-sub" style="display:block;padding:11px 13px;font-size:11px;letter-spacing:.14em;font-weight:500;color:#0A0B0C;text-decoration:none;">SHARE YOUR MUSE</a>
+          </div>
+        </div>
+        <a href="products.html" class="muse-link" style="font-size:11px;letter-spacing:.2em;font-weight:500;color:#0A0B0C;text-decoration:none;">PRODUCTS</a>
+        <a href="login.html" class="muse-link" style="font-size:11px;letter-spacing:.2em;font-weight:500;color:#0A0B0C;text-decoration:none;">LOG IN</a>
+      </div>
+      <a href="shop.html" style="text-decoration:none;flex:none;">
+        <div class="muse-cta" style="display:flex;align-items:center;gap:10px;background:#EFA527;color:#0A0B0C;border-radius:30px;padding:9px 22px;font-size:11px;letter-spacing:.16em;font-weight:600;transition:background .25s ease;">
+          SHOP
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+        </div>
       </a>
     </div>
-  </div>
+  </nav>
+  <!-- ════ END NAV ══════════════════════════════════════════════════════════ -->
 
-  <!-- ── Copyright ── -->
-  <div class="copyright_section">
-    <div class="container">
-      <p class="copyright_text">2024 All Rights Reserved — MUSE</p>
+  <!-- ════ HERO ════════════════════════════════════════════════════════════ -->
+  <section data-about-hero style="position:relative;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;padding:0 24px 11vh;background-color:#FBF6EE;background-image:url('assets/clouds-crop.png');background-repeat:no-repeat;background-position:center bottom;background-size:150% auto;text-align:center;">
+    <div style="position:absolute;inset:0;pointer-events:none;z-index:1;background:linear-gradient(180deg,rgba(251,246,238,0) 52%,rgba(251,246,238,.5) 80%,rgba(251,246,238,.9) 100%);"></div>
+    <div style="position:relative;z-index:2;font-size:11px;letter-spacing:.32em;font-weight:600;color:#3A3A3A;margin-bottom:22px;">OUR STORY · CELEBRATE AMONGST THE CLOUDS</div>
+    <h1 style="position:relative;z-index:2;font-family:'Ogg','Cormorant Garamond',Georgia,serif;font-weight:400;font-size:clamp(40px,6vw,82px);line-height:1.04;margin:0;color:#0A0B0C;">Living the legends<br>we'll tell</h1>
+    <p style="position:relative;z-index:2;font-family:'neuehaasdisplaylight','Helvetica Neue',Arial,sans-serif;font-style:italic;font-size:clamp(18px,2.2vw,26px);color:#252525;max-width:620px;margin:20px 0 0;line-height:1.4;">It's not about making memories — it's about the moments worth celebrating, and the people who make them.</p>
+    <!-- Nav sentinel -->
+    <div data-nav-sentinel style="position:absolute;left:0;bottom:26vh;width:1px;height:1px;pointer-events:none;"></div>
+    <!-- Scroll indicator -->
+    <div style="position:absolute;bottom:26px;left:50%;transform:translateX(-50%);font-size:10px;letter-spacing:.26em;color:#4C4C4B;display:flex;flex-direction:column;align-items:center;gap:8px;z-index:2;">
+      <span>SCROLL</span>
+      <span style="width:1px;height:34px;background:linear-gradient(#4C4C4B,transparent);"></span>
     </div>
-  </div>
+  </section>
 
-  <script src="js/jquery.min.js"></script>
-  <script src="js/popper.min.js"></script>
-  <script src="js/bootstrap.bundle.min.js"></script>
-  <script src="js/jquery-3.0.0.min.js"></script>
-  <script src="js/plugin.js"></script>
-  <script src="js/jquery.mCustomScrollbar.concat.min.js"></script>
-  <script src="js/custom.js"></script>
+  <!-- ════ HOW IT STARTED ═══════════════════════════════════════════════════ -->
+  <section style="background:#FBF6EE;padding:clamp(64px,9vw,118px) 48px;scroll-margin-top:96px;">
+    <div style="max-width:1180px;margin:0 auto;display:flex;gap:clamp(36px,5vw,80px);align-items:center;flex-wrap:wrap;">
+      <!-- Text -->
+      <div style="flex:1;min-width:320px;">
+        <div style="display:flex;align-items:center;gap:14px;margin-bottom:20px;">
+          <span style="width:34px;height:2px;background:#EFA527;"></span>
+          <span style="font-size:11px;letter-spacing:.24em;font-weight:600;color:#3F5170;">IT STARTS WITH A VISION</span>
+        </div>
+        <h2 style="font-family:'Ogg','Cormorant Garamond',Georgia,serif;font-weight:300;text-transform:uppercase;letter-spacing:.04em;font-size:clamp(30px,3.6vw,46px);line-height:1.04;margin:0 0 22px;color:#0A0B0C;">One of Many</h2>
+        <p style="font-size:16px;line-height:1.78;color:#33455F;max-width:520px;margin:0 0 18px;">MUSE began with a vision shared amongst friends — that the moments we live together deserve something worthy of the occasion. From a single recipe poured at a rooftop gathering, an idea took flight.</p>
+        <p style="font-size:16px;line-height:1.78;color:#33455F;max-width:520px;margin:0;">What started as one has become one of many — a growing collection of recipes, rituals and reasons to raise a glass amongst the clouds.</p>
+      </div>
+      <!-- Carousel -->
+      <div style="flex:1;min-width:300px;">
+        <div style="position:relative;">
+          <div style="overflow:hidden;border:1px solid #E7DAC4;height:clamp(360px,40vw,500px);">
+            <div id="about-car-track" style="display:flex;width:500%;height:100%;transition:transform .6s cubic-bezier(.4,0,.2,1);transform:translateX(0);">
+              <div style="flex:0 0 20%;min-width:0;height:100%;"><img src="assets/event-1.png" alt="MUSE story" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
+              <div style="flex:0 0 20%;min-width:0;height:100%;"><img src="assets/event-2.png" alt="MUSE story" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
+              <div style="flex:0 0 20%;min-width:0;height:100%;"><img src="assets/event-3.png" alt="MUSE story" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
+              <div style="flex:0 0 20%;min-width:0;height:100%;"><img src="assets/event-4.png" alt="MUSE story" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
+              <div style="flex:0 0 20%;min-width:0;height:100%;"><img src="assets/g-muses.png" alt="MUSE story" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
+            </div>
+          </div>
+          <button id="about-car-prev" aria-label="Previous" class="car-btn" style="position:absolute;top:50%;left:14px;transform:translateY(-50%);width:40px;height:40px;border-radius:50%;background:rgba(253,252,250,.88);border:none;display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 6px 16px -8px rgba(10,11,12,.55);color:#0A0B0C;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+          </button>
+          <button id="about-car-next" aria-label="Next" class="car-btn" style="position:absolute;top:50%;right:14px;transform:translateY(-50%);width:40px;height:40px;border-radius:50%;background:rgba(253,252,250,.88);border:none;display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 6px 16px -8px rgba(10,11,12,.55);color:#0A0B0C;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+          </button>
+        </div>
+        <!-- Dots -->
+        <div id="about-car-dots" style="display:flex;gap:9px;justify-content:center;margin-top:18px;">
+          <span class="car-dot" data-i="0" style="width:9px;height:9px;border-radius:50%;cursor:pointer;background:#EFA527;"></span>
+          <span class="car-dot" data-i="1" style="width:9px;height:9px;border-radius:50%;cursor:pointer;background:rgba(10,11,12,.2);"></span>
+          <span class="car-dot" data-i="2" style="width:9px;height:9px;border-radius:50%;cursor:pointer;background:rgba(10,11,12,.2);"></span>
+          <span class="car-dot" data-i="3" style="width:9px;height:9px;border-radius:50%;cursor:pointer;background:rgba(10,11,12,.2);"></span>
+          <span class="car-dot" data-i="4" style="width:9px;height:9px;border-radius:50%;cursor:pointer;background:rgba(10,11,12,.2);"></span>
+        </div>
+        <!-- Counter -->
+        <div style="text-align:center;font-size:11px;letter-spacing:.18em;color:#9A8F7C;margin-top:10px;"><span id="about-car-num">1</span> / 5</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════ OUR STORY ════════════════════════════════════════════════════════ -->
+  <section style="background:#FBF6EE;padding:clamp(64px,9vw,118px) 48px;">
+    <div style="max-width:1180px;margin:0 auto;display:flex;gap:clamp(36px,5vw,80px);align-items:center;flex-wrap:wrap;">
+      <!-- Image -->
+      <div style="flex:1;min-width:300px;">
+        <div style="position:relative;border:1px solid #E7DAC4;overflow:hidden;">
+          <img src="assets/event-2.png" alt="Celebrating those who inspire" style="display:block;width:100%;height:clamp(360px,40vw,500px);object-fit:cover;">
+        </div>
+      </div>
+      <!-- Text -->
+      <div style="flex:1;min-width:320px;">
+        <div style="display:flex;align-items:center;gap:14px;margin-bottom:20px;">
+          <span style="width:34px;height:2px;background:#EFA527;"></span>
+          <span style="font-size:11px;letter-spacing:.24em;font-weight:600;color:#666;">WITH A PASSION FOR CELEBRATION</span>
+        </div>
+        <h2 style="font-family:'Ogg','Cormorant Garamond',Georgia,serif;font-weight:300;text-transform:uppercase;letter-spacing:.04em;font-size:clamp(30px,3.6vw,46px);line-height:1.04;margin:0 0 22px;color:#0A0B0C;">Celebrating<br>those who inspire</h2>
+        <p style="font-size:16px;line-height:1.78;color:#4C4C4B;max-width:520px;margin:0 0 18px;">MUSE was born from a single belief — that the best moments deserve to be lived, not merely remembered. We craft premium ready-to-drink cocktails to be poured amongst the clouds, where every gathering becomes a legend worth telling.</p>
+        <p style="font-size:16px;line-height:1.78;color:#4C4C4B;max-width:520px;margin:0;">And we save our brightest light for the people who inspire us — the Muses. Theirs are the stories we raise a glass to.</p>
+        <!-- Stats -->
+        <div style="display:flex;gap:38px;margin-top:34px;flex-wrap:wrap;">
+          <div>
+            <div style="font-family:'neuehaasdisplaylight','Helvetica Neue',Arial,sans-serif;font-weight:700;font-size:32px;color:#EFA527;line-height:1;">03</div>
+            <div style="font-size:11px;letter-spacing:.16em;color:#666;margin-top:6px;">FLAGSHIP RECIPES</div>
+          </div>
+          <div>
+            <div style="font-family:'neuehaasdisplaylight','Helvetica Neue',Arial,sans-serif;font-weight:700;font-size:32px;color:#EFA527;line-height:1;">12%</div>
+            <div style="font-size:11px;letter-spacing:.16em;color:#666;margin-top:6px;">ABV · EACH POUR</div>
+          </div>
+          <div>
+            <div style="font-family:'neuehaasdisplaylight','Helvetica Neue',Arial,sans-serif;font-weight:700;font-size:32px;color:#EFA527;line-height:1;">&#8734;</div>
+            <div style="font-size:11px;letter-spacing:.16em;color:#666;margin-top:6px;">REASONS TO CELEBRATE</div>
+          </div>
+        </div>
+        <!-- CTAs -->
+        <div style="display:flex;gap:14px;flex-wrap:wrap;align-items:center;margin-top:36px;">
+          <a href="share-a-muse.html" class="muse-cta" style="display:inline-block;background:#EFA527;color:#0A0B0C;border-radius:30px;padding:13px 30px;font-size:11px;letter-spacing:.18em;font-weight:600;text-decoration:none;transition:background .25s ease;">SHARE YOUR MUSE</a>
+          <a href="contact.html#newsletter" class="muse-ghost" style="display:inline-block;border:1.5px solid #0A0B0C;color:#0A0B0C;border-radius:30px;padding:12px 30px;font-size:11px;letter-spacing:.18em;font-weight:600;text-decoration:none;transition:background .25s ease,color .25s ease;">FOLLOW OUR NEWSLETTER</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════ THE MUSE CREED ═══════════════════════════════════════════════════ -->
+  <section style="background:#FBF6EE;padding:clamp(60px,8vw,104px) 48px;">
+    <div style="max-width:1080px;margin:0 auto;text-align:center;">
+      <img src="assets/monogram-gold.png" alt="MUSE" style="height:58px;width:auto;margin:0 auto 16px;display:block;">
+      <div style="font-size:11px;letter-spacing:.26em;font-weight:600;color:#C9851A;margin-bottom:clamp(34px,4vw,52px);">THE MUSE CREED</div>
+      <div style="display:flex;gap:clamp(28px,5vw,64px);justify-content:center;flex-wrap:wrap;">
+        <div style="flex:1;min-width:200px;max-width:300px;display:flex;flex-direction:column;align-items:center;gap:14px;">
+          <div style="font-family:'Ogg','Cormorant Garamond',Georgia,serif;font-weight:500;font-size:clamp(28px,3vw,38px);color:#C9851A;">Cultivate</div>
+          <p style="font-size:14px;line-height:1.7;color:#4C4C4B;margin:0;">We craft each pour with intention — flavor comes first, always.</p>
+        </div>
+        <div style="width:1px;align-self:stretch;background:rgba(201,133,26,.4);"></div>
+        <div style="flex:1;min-width:200px;max-width:300px;display:flex;flex-direction:column;align-items:center;gap:14px;">
+          <div style="font-family:'Ogg','Cormorant Garamond',Georgia,serif;font-weight:500;font-size:clamp(28px,3vw,38px);color:#C9851A;">Commemorate</div>
+          <p style="font-size:14px;line-height:1.7;color:#4C4C4B;margin:0;">We honor the people and moments that deserve to be etched in the stars.</p>
+        </div>
+        <div style="width:1px;align-self:stretch;background:rgba(201,133,26,.4);"></div>
+        <div style="flex:1;min-width:200px;max-width:300px;display:flex;flex-direction:column;align-items:center;gap:14px;">
+          <div style="font-family:'Ogg','Cormorant Garamond',Georgia,serif;font-weight:500;font-size:clamp(28px,3vw,38px);color:#C9851A;">Celebrate</div>
+          <p style="font-size:14px;line-height:1.7;color:#4C4C4B;margin:0;">We celebrate ceaselessly — amongst the clouds, with those we love.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════ OUR MUSES ════════════════════════════════════════════════════════ -->
+  <section style="background:#FBF6EE;padding:clamp(64px,9vw,118px) 48px;text-align:center;">
+    <div style="max-width:1180px;margin:0 auto;">
+      <div style="text-align:center;margin-bottom:clamp(40px,5vw,60px);">
+        <div style="font-size:11px;letter-spacing:.26em;font-weight:600;color:#C9851A;margin-bottom:12px;">CRAFTING NEW LEGENDS EVERY DAY</div>
+        <h2 style="font-family:'Ogg','Cormorant Garamond',Georgia,serif;font-weight:500;letter-spacing:.12em;text-transform:uppercase;font-size:clamp(30px,4vw,52px);margin:0;color:#0A0B0C;">Who We Are</h2>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-bottom:clamp(40px,5vw,64px);">
+        <!-- 6 portrait placeholders — replace with team/brand photos -->
+        <div style="aspect-ratio:4/5;background:#F4ECDD;border:1px solid #E7DAC4;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;color:#BCAE90;"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M16 5h6"/><path d="M19 2v6"/><path d="M21 11.5V19a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h7.5"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/><circle cx="9" cy="9" r="2"/></svg><span style="font-size:10px;letter-spacing:.2em;">PHOTO 01</span></div>
+        <div style="aspect-ratio:4/5;background:#F4ECDD;border:1px solid #E7DAC4;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;color:#BCAE90;"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M16 5h6"/><path d="M19 2v6"/><path d="M21 11.5V19a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h7.5"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/><circle cx="9" cy="9" r="2"/></svg><span style="font-size:10px;letter-spacing:.2em;">PHOTO 02</span></div>
+        <div style="aspect-ratio:4/5;background:#F4ECDD;border:1px solid #E7DAC4;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;color:#BCAE90;"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M16 5h6"/><path d="M19 2v6"/><path d="M21 11.5V19a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h7.5"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/><circle cx="9" cy="9" r="2"/></svg><span style="font-size:10px;letter-spacing:.2em;">PHOTO 03</span></div>
+        <div style="aspect-ratio:4/5;background:#F4ECDD;border:1px solid #E7DAC4;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;color:#BCAE90;"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M16 5h6"/><path d="M19 2v6"/><path d="M21 11.5V19a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h7.5"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/><circle cx="9" cy="9" r="2"/></svg><span style="font-size:10px;letter-spacing:.2em;">PHOTO 04</span></div>
+        <div style="aspect-ratio:4/5;background:#F4ECDD;border:1px solid #E7DAC4;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;color:#BCAE90;"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M16 5h6"/><path d="M19 2v6"/><path d="M21 11.5V19a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h7.5"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/><circle cx="9" cy="9" r="2"/></svg><span style="font-size:10px;letter-spacing:.2em;">PHOTO 05</span></div>
+        <div style="aspect-ratio:4/5;background:#F4ECDD;border:1px solid #E7DAC4;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;color:#BCAE90;"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M16 5h6"/><path d="M19 2v6"/><path d="M21 11.5V19a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h7.5"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/><circle cx="9" cy="9" r="2"/></svg><span style="font-size:10px;letter-spacing:.2em;">PHOTO 06</span></div>
+      </div>
+      <div style="font-size:11px;letter-spacing:.26em;font-weight:600;color:#666;margin-bottom:14px;">OUR CREATIVE CURATORS IN THE CLOUDS</div>
+      <h2 style="font-family:'Ogg','Cormorant Garamond',Georgia,serif;font-weight:500;letter-spacing:.14em;text-transform:uppercase;font-size:clamp(30px,4vw,52px);margin:0;color:#0A0B0C;">Our Muses</h2>
+    </div>
+  </section>
+
+  <!-- ════ CLOSING CTA ══════════════════════════════════════════════════════ -->
+  <section style="background:#FBF6EE;padding:clamp(72px,10vw,120px) 48px;text-align:center;">
+    <div style="max-width:980px;margin:0 auto;">
+      <img src="assets/monogram-gold.png" alt="MUSE" style="height:64px;width:auto;margin:0 auto 30px;display:block;">
+      <h2 style="font-family:'Ogg','Cormorant Garamond',Georgia,serif;font-weight:400;letter-spacing:.14em;text-transform:uppercase;font-size:clamp(28px,4.4vw,56px);line-height:1.1;margin:0;color:#0A0B0C;">Celebrating<br>those who inspire:</h2>
+      <p style="font-family:'neuehaasdisplaylight','Helvetica Neue',Arial,sans-serif;font-style:italic;font-size:clamp(17px,2vw,23px);color:#C9851A;margin:24px 0 clamp(40px,5vw,58px);">Cultivate. Commemorate. Celebrate.</p>
+      <!-- 3 portrait placeholders -->
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:18px;max-width:760px;margin:0 auto clamp(40px,5vw,56px);">
+        <div style="aspect-ratio:4/5;background:#F4ECDD;border:1px solid #E7DAC4;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;color:#BCAE90;"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M16 5h6"/><path d="M19 2v6"/><path d="M21 11.5V19a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h7.5"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/><circle cx="9" cy="9" r="2"/></svg><span style="font-size:10px;letter-spacing:.2em;">PHOTO 01</span></div>
+        <div style="aspect-ratio:4/5;background:#F4ECDD;border:1px solid #E7DAC4;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;color:#BCAE90;"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M16 5h6"/><path d="M19 2v6"/><path d="M21 11.5V19a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h7.5"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/><circle cx="9" cy="9" r="2"/></svg><span style="font-size:10px;letter-spacing:.2em;">PHOTO 02</span></div>
+        <div style="aspect-ratio:4/5;background:#F4ECDD;border:1px solid #E7DAC4;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;color:#BCAE90;"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M16 5h6"/><path d="M19 2v6"/><path d="M21 11.5V19a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h7.5"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/><circle cx="9" cy="9" r="2"/></svg><span style="font-size:10px;letter-spacing:.2em;">PHOTO 03</span></div>
+      </div>
+      <p style="font-family:'neuehaasdisplaylight','Helvetica Neue',Arial,sans-serif;font-style:italic;font-size:clamp(18px,2.2vw,26px);color:#252525;max-width:620px;margin:0 auto 26px;line-height:1.45;">Everyone has a Muse — someone whose light deserves to be celebrated. Tell their story, or nominate them to be honored amongst the clouds.</p>
+      <a href="share-a-muse.html" class="muse-cta" style="display:inline-block;background:#EFA527;color:#0A0B0C;border-radius:30px;padding:14px 38px;font-size:12px;letter-spacing:.18em;font-weight:600;text-decoration:none;transition:background .25s ease;">SHARE YOUR MUSE</a>
+    </div>
+  </section>
+
+  <!-- ════ FOOTER ═══════════════════════════════════════════════════════════ -->
+  <div id="site-footer"></div>
+<script src="assets/js/footer.js"></script>
+
+  <script src="assets/js/nav.js"></script>
 </body>
 </html>
