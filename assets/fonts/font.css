@@ -1,11 +1,29 @@
+/* Adobe Fonts (Typekit) — supplies: ogg, ogg-text, neue-haas-grotesk-text, neue-haas-grotesk-display */
+@import url("https://use.typekit.net/jyd8pzu.css");
+
+/* Ogg — local woff2 copies (backup / offline fallback to Typekit version) */
 @font-face {
-  font-family: 'neuehaasdisplaylight';
-  src: url('/assets/fonts/neuehassdisplaylight.woff2') format('woff2'),
-       url('/assets/fonts/euehassdisplaylight.woff') format('woff');
-  font-weight: 400;
+  font-family: 'Ogg';
+  src: local('Ogg Light'), local('Ogg-Light'),
+       url('Ogg-Light.woff2') format('woff2');
+  font-weight: 100 900;
   font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Ogg';
+  src: local('Ogg Light Italic'), local('Ogg-LightItalic'),
+       url('Ogg-LightItalic.woff2') format('woff2');
+  font-weight: 100 900;
+  font-style: italic;
+  font-display: swap;
 }
 
-/* fonts.css */
-@import url("https://use.typekit.net/<link rel="stylesheet" href="https://use.typekit.net/jyd8pzu.css">);
-
+/* Neue Haas Display Light — local woff2 (primary body / UI font) */
+@font-face {
+  font-family: 'neuehaasdisplaylight';
+  src: url('neuehaasdisplaylight.woff2') format('woff2');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
