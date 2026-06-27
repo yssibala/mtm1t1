@@ -1,0 +1,33 @@
+/*
+ * MUSE 2.0 — local font declarations
+ * Link this file AFTER the Adobe Fonts (Typekit) <link> tag on every page.
+ * Typekit kit jyd8pzu supplies: ogg, neue-haas-grotesk-text
+ * This file supplies: Ogg (woff2 fallback) + neuehaasdisplaylight (local woff2)
+ */
+
+/* Ogg — woff2 local copies (fallback / augment to Typekit) */
+@font-face {
+  font-family: 'Ogg';
+  src: local('Ogg Light'), local('Ogg-Light'),
+       url('Ogg-Light.woff2') format('woff2');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Ogg';
+  src: local('Ogg Light Italic'), local('Ogg-LightItalic'),
+       url('Ogg-LightItalic.woff2') format('woff2');
+  font-weight: 100 900;
+  font-style: italic;
+  font-display: swap;
+}
+
+/* Neue Haas Display Light — local woff2 */
+@font-face {
+  font-family: 'neuehaasdisplaylight';
+  src: url('neuehaasdisplaylight.woff2') format('woff2');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
