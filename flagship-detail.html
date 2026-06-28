@@ -514,24 +514,80 @@
     window.addEventListener('scroll', computeScroll, true);
     computeScroll();
 
+    // ── Directional-wrap helper ──────────────────────────────
+    // Reorders the flex children so the destination slide is already
+    // on the correct side, plays the CSS transition, then silently
+    // resets to the natural order. This makes wrap-around look like
+    // the carousel continues in the same direction rather than jumping.
+    function wrapSlide(track, fromIdx, toIdx, total, delay) {
+      var pct  = 100 / total;
+      var orig = track.style.transition;
+      var kids = Array.from(track.children);
+      if (fromIdx === 0 && toIdx === total - 1) {
+        // Prev from first → last: destination enters from the LEFT
+        kids[total - 1].style.order = '-1';
+        track.style.transition = 'none';
+        track.style.transform  = 'translateX(-' + pct + '%)';
+        track.offsetHeight;
+        track.style.transition = orig;
+        track.style.transform  = 'translateX(0%)';
+        setTimeout(function () {
+          kids[total - 1].style.order = '';
+          track.style.transition = 'none';
+          track.style.transform  = 'translateX(-' + ((total - 1) * pct) + '%)';
+          track.offsetHeight;
+          track.style.transition = orig;
+        }, delay);
+      } else {
+        // Next from last → first: destination enters from the RIGHT
+        kids[0].style.order = String(total);
+        track.style.transition = 'none';
+        track.style.transform  = 'translateX(-' + ((total - 2) * pct) + '%)';
+        track.offsetHeight;
+        track.style.transition = orig;
+        track.style.transform  = 'translateX(-' + ((total - 1) * pct) + '%)';
+        setTimeout(function () {
+          kids[0].style.order = '';
+          track.style.transition = 'none';
+          track.style.transform  = 'translateX(0%)';
+          track.offsetHeight;
+          track.style.transition = orig;
+        }, delay);
+      }
+    }
+
     // ── Page carousel ────────────────────────────────────────
     var pageTrack = document.getElementById('page-track');
     var fdTabBtns = document.querySelectorAll('.fd-tab');
     var skuName   = document.getElementById('sku-name');
 
+    function updatePageUI(idx) {
+      fdTabBtns.forEach(function(btn, i) {
+        btn.style.color             = i === idx ? '#0A0B0C' : '#A59C8D';
+        btn.style.borderBottomColor = i === idx ? TAB_ACC[i] : 'transparent';
+      });
+      skuName.textContent = NAMES[idx];
+      skuName.style.color = ACCENTS[idx];
+      document.getElementById('sku-dropdown').classList.remove('is-open');
+    }
+
     function goTo(idx) {
       cur = ((idx % 3) + 3) % 3;
       pageTrack.style.transform = 'translateX(-' + (cur * 100 / 3) + '%)';
-      // Update sticky tabs
-      fdTabBtns.forEach(function(btn, i) {
-        btn.style.color       = i === cur ? '#0A0B0C' : '#A59C8D';
-        btn.style.borderBottomColor = i === cur ? TAB_ACC[i] : 'transparent';
-      });
-      // Update SKU switcher label
-      skuName.textContent = NAMES[cur];
-      skuName.style.color = ACCENTS[cur];
-      // Close dropdown
-      document.getElementById('sku-dropdown').classList.remove('is-open');
+      updatePageUI(cur);
+    }
+
+    function goArrow(dir) {
+      var next = ((cur + dir) % 3 + 3) % 3;
+      var isWrap = (cur === 0 && dir === -1) || (cur === 2 && dir === 1);
+      if (isWrap) {
+        var prev = cur;
+        cur = next;
+        updatePageUI(next);
+        wrapSlide(pageTrack, prev, next, 3, 730);
+      } else {
+        goTo(next);
+      }
     }
 
     goTo(0);
@@ -548,12 +604,12 @@
     });
 
     // Edge arrows
-    document.getElementById('edge-prev').addEventListener('click', function(){ goTo(cur - 1); });
-    document.getElementById('edge-next').addEventListener('click', function(){ goTo(cur + 1); });
+    document.getElementById('edge-prev').addEventListener('click', function(){ goArrow(-1); });
+    document.getElementById('edge-next').addEventListener('click', function(){ goArrow(1); });
 
     // SKU switcher arrows + dropdown
-    document.getElementById('sku-prev').addEventListener('click', function(){ goTo(cur - 1); });
-    document.getElementById('sku-next').addEventListener('click', function(){ goTo(cur + 1); });
+    document.getElementById('sku-prev').addEventListener('click', function(){ goArrow(-1); });
+    document.getElementById('sku-next').addEventListener('click', function(){ goArrow(1); });
     document.getElementById('sku-label-btn').addEventListener('click', function(e) {
       e.stopPropagation();
       document.getElementById('sku-dropdown').classList.toggle('is-open');
@@ -578,13 +634,29 @@
         dotsEl.appendChild(d);
       }
 
-      function go(idx) {
-        c = ((idx % total) + total) % total;
-        track.style.transform = 'translateX(-' + (c * pct) + '%)';
+      function updateDots() {
         Array.from(dotsEl.children).forEach(function(d, i) {
           d.style.width      = i === c ? '20px' : '7px';
           d.style.background = i === c ? cfg.activeColor : (cfg.inactiveColor || 'rgba(150,150,150,.4)');
         });
+      }
+
+      function go(idx) {
+        c = ((idx % total) + total) % total;
+        track.style.transform = 'translateX(-' + (c * pct) + '%)';
+        updateDots();
+      }
+
+      function goDir(dir) {
+        var next = ((c + dir) % total + total) % total;
+        var isWrap = (c === 0 && dir === -1) || (c === total - 1 && dir === 1);
+        if (isWrap) {
+          c = next;
+          updateDots();
+          wrapSlide(track, dir === -1 ? 0 : total - 1, next, total, 580);
+        } else {
+          go(next);
+        }
       }
 
       go(0);
@@ -596,10 +668,10 @@
       // Wire prev/next by class + data attribute
       if (cfg.prevClass && cfg.nextClass) {
         document.querySelectorAll('.' + cfg.prevClass + '[data-' + cfg.dataAttr + '="' + cfg.id + '"]').forEach(function(btn){
-          btn.addEventListener('click', function(){ go(c - 1); });
+          btn.addEventListener('click', function(){ goDir(-1); });
         });
         document.querySelectorAll('.' + cfg.nextClass + '[data-' + cfg.dataAttr + '="' + cfg.id + '"]').forEach(function(btn){
-          btn.addEventListener('click', function(){ go(c + 1); });
+          btn.addEventListener('click', function(){ goDir(1); });
         });
       }
     }
@@ -620,20 +692,34 @@
         d.dataset.i = i;
         dotsEl.appendChild(d);
       }
-      function go(idx) {
-        c = ((idx % cfg.total) + cfg.total) % cfg.total;
-        track.style.transform = 'translateX(-' + (c * 100 / cfg.total) + '%)';
+      function updateDots() {
         Array.from(dotsEl.children).forEach(function(d, i) {
           d.style.width      = i === c ? '20px' : '7px';
           d.style.background = i === c ? cfg.activeColor : cfg.inactiveColor;
         });
       }
+      function go(idx) {
+        c = ((idx % cfg.total) + cfg.total) % cfg.total;
+        track.style.transform = 'translateX(-' + (c * 100 / cfg.total) + '%)';
+        updateDots();
+      }
+      function goDir(dir) {
+        var next = ((c + dir) % cfg.total + cfg.total) % cfg.total;
+        var isWrap = (c === 0 && dir === -1) || (c === cfg.total - 1 && dir === 1);
+        if (isWrap) {
+          c = next;
+          updateDots();
+          wrapSlide(track, dir === -1 ? 0 : cfg.total - 1, next, cfg.total, 580);
+        } else {
+          go(next);
+        }
+      }
       go(0);
       dotsEl.addEventListener('click', function(e){ var d = e.target.closest('[data-i]'); if (d) go(parseInt(d.dataset.i)); });
-      (function(localGo, pid) {
-        document.querySelectorAll('.hero-prev[data-panel="' + pid + '"]').forEach(function(btn){ btn.addEventListener('click', function(){ localGo(c - 1); }); });
-        document.querySelectorAll('.hero-next[data-panel="' + pid + '"]').forEach(function(btn){ btn.addEventListener('click', function(){ localGo(c + 1); }); });
-      })(go, cfg.panelId);
+      (function(localGoDir, pid) {
+        document.querySelectorAll('.hero-prev[data-panel="' + pid + '"]').forEach(function(btn){ btn.addEventListener('click', function(){ localGoDir(-1); }); });
+        document.querySelectorAll('.hero-next[data-panel="' + pid + '"]').forEach(function(btn){ btn.addEventListener('click', function(){ localGoDir(1); }); });
+      })(goDir, cfg.panelId);
     });
 
     // Format carousels (4 slides)
