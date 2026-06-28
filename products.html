@@ -15,6 +15,12 @@
   .muse-dropdown:hover .muse-dropdown-menu{display:block;}
   .muse-sub{display:block;padding:11px 13px;font-size:11px;letter-spacing:.14em;font-weight:500;color:#0A0B0C;text-decoration:none;transition:background .25s ease;}
   .muse-sub:hover{background:#F4ECDD;color:#C9851A;}
+  .qty-btn{background:none;border:none;outline:none;padding:10px 14px;cursor:pointer;font-size:15px;line-height:1;font-family:inherit;}
+  .pr-pills{display:flex;align-items:stretch;gap:8px;width:100%;}
+  .pr-pills .pack-wrap{flex:1;min-width:0;}
+  .pr-pills .pack-btn{width:100%;box-sizing:border-box;justify-content:center;}
+  .pr-pills .qty-stepper{flex:1;min-width:0;display:flex;align-items:center;justify-content:space-between;border-radius:30px;overflow:hidden;}
+  .pr-pills .cart-btn{flex:1;min-width:0;}
 </style>
 </head>
 <body>
@@ -51,7 +57,7 @@
     </div>
 
     <!-- STATE 2 · frosted cream -->
-    <div id="nav-state2" style="display:none;position:relative;align-items:center;justify-content:space-between;padding:11px 48px;background:rgba(253,252,250,.8);backdrop-filter:blur(12px) saturate(1.1);-webkit-backdrop-filter:blur(12px) saturate(1.1);border-bottom:1px solid rgba(231,218,196,.7);">
+    <div id="nav-state2" style="display:none;position:relative;align-items:center;justify-content:space-between;padding:11px 48px;background:rgba(253,252,250,.95);backdrop-filter:blur(12px) saturate(1.1);-webkit-backdrop-filter:blur(12px) saturate(1.1);border-bottom:1px solid rgba(231,218,196,.7);">
       <a href="index.html" aria-label="MUSE home" style="display:inline-flex;align-items:center;flex:none;"><img src="images/MUSE%20-%20Monogram%20(Solo%20GLD).png" alt="MUSE" style="height:38px;width:auto;"></a>
       <div style="position:absolute;left:50%;transform:translateX(-50%);display:flex;gap:72px;align-items:center;">
         <div class="muse-dropdown" style="position:relative;align-self:center;padding-bottom:16px;margin-bottom:-16px;display:flex;align-items:center;">
@@ -143,9 +149,9 @@
                   <p style="font-size:14px;font-weight:400;color:#5C4620;line-height:1.7;margin:0;max-width:380px;">Sweet, sunlit and joyful — made with joy and mixed with drops of sunshine.</p>
                   <div style="font-size:11px;letter-spacing:.1em;color:#6E5526;">Moscato wine · blue agave spirit · passionfruit</div>
                   <div style="display:flex;gap:20px;font-size:11px;letter-spacing:.14em;color:#241808;border-top:1px solid rgba(36,24,8,.2);border-bottom:1px solid rgba(36,24,8,.2);padding:12px 0;margin:4px 0;"><span>12% ABV</span><span style="color:#9A7A3A;">·</span><span>SPARKLING</span></div>
-                  <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;">
+                  <div class="pr-pills">
                     <div style="position:relative;" class="pack-wrap">
-                      <button class="pack-btn" data-muse="thalia" style="border:1px solid rgba(36,24,8,.4);color:#241808;background:rgba(255,255,255,.3);border-radius:30px;padding:9px 16px;font-size:11px;letter-spacing:.14em;font-weight:600;cursor:pointer;display:flex;align-items:center;gap:8px;font-family:inherit;">
+                      <button class="pack-btn" data-muse="thalia" style="border:1px solid rgba(36,24,8,.4);color:#241808;background:rgba(255,255,255,.3);border-radius:30px;padding:10px 16px;font-size:11px;letter-spacing:.14em;font-weight:600;cursor:pointer;display:flex;align-items:center;gap:8px;font-family:inherit;">
                         <span class="pack-label">4-Pack</span>
                         <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
                       </button>
@@ -156,12 +162,12 @@
                         <div class="pack-opt" style="padding:10px 16px;font-size:11px;letter-spacing:.14em;color:#0A0B0C;cursor:pointer;">Can Bundle</div>
                       </div>
                     </div>
-                    <div style="display:flex;align-items:center;border:1px solid rgba(36,24,8,.4);border-radius:30px;overflow:hidden;">
+                    <div class="qty-stepper" style="border:1px solid rgba(36,24,8,.4);">
                       <button class="qty-btn" data-muse="thalia" data-op="dec" style="color:#241808;">−</button>
-                      <span id="qty-thalia" style="padding:9px 16px;font-size:13px;border-left:1px solid rgba(36,24,8,.25);border-right:1px solid rgba(36,24,8,.25);min-width:44px;text-align:center;color:#241808;">1</span>
+                      <span id="qty-thalia" style="font-size:13px;border-left:1px solid rgba(36,24,8,.25);border-right:1px solid rgba(36,24,8,.25);flex:1;text-align:center;color:#241808;">1</span>
                       <button class="qty-btn" data-muse="thalia" data-op="inc" style="color:#241808;">+</button>
                     </div>
-                    <button class="muse-dark" data-muse="thalia" style="background:#0A0B0C;color:#FDFCFA;border:none;border-radius:30px;padding:11px 26px;font-size:11px;letter-spacing:.14em;font-weight:600;cursor:pointer;">ADD TO CART</button>
+                    <button class="muse-dark cart-btn" data-muse="thalia" style="background:#0A0B0C;color:#FDFCFA;border:none;border-radius:30px;padding:10px 0;font-size:11px;letter-spacing:.14em;font-weight:600;cursor:pointer;">ADD TO CART</button>
                   </div>
                   <div style="display:flex;gap:22px;margin-top:4px;">
                     <a href="flagship-detail.html#thalia" class="muse-link" style="font-size:11px;letter-spacing:.14em;color:#241808;text-decoration:none;border-bottom:1px solid rgba(36,24,8,.4);padding-bottom:3px;">LEARN MORE →</a>
@@ -191,9 +197,9 @@
                   <p style="font-size:14px;font-weight:300;color:#ECC9C2;line-height:1.7;margin:0;max-width:380px;">Coy, spirited and proud — a flush of colour as the sky turns to fire.</p>
                   <div style="font-size:11px;letter-spacing:.1em;color:#D9A79E;">Red wine · brandy · cranberry &amp; strawberry</div>
                   <div style="display:flex;gap:20px;font-size:11px;letter-spacing:.14em;color:#FDFCFA;border-top:1px solid rgba(255,255,255,.18);border-bottom:1px solid rgba(255,255,255,.18);padding:12px 0;margin:4px 0;"><span>12% ABV</span><span style="color:#C98D85;">·</span><span>STILL</span></div>
-                  <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;">
+                  <div class="pr-pills">
                     <div style="position:relative;" class="pack-wrap">
-                      <button class="pack-btn" data-muse="clio" style="border:1px solid rgba(255,255,255,.4);color:#FDFCFA;background:rgba(0,0,0,.2);border-radius:30px;padding:9px 16px;font-size:11px;letter-spacing:.14em;font-weight:600;cursor:pointer;display:flex;align-items:center;gap:8px;font-family:inherit;">
+                      <button class="pack-btn" data-muse="clio" style="border:1px solid rgba(255,255,255,.4);color:#FDFCFA;background:rgba(0,0,0,.2);border-radius:30px;padding:10px 16px;font-size:11px;letter-spacing:.14em;font-weight:600;cursor:pointer;display:flex;align-items:center;gap:8px;font-family:inherit;">
                         <span class="pack-label">4-Pack</span>
                         <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
                       </button>
@@ -204,12 +210,12 @@
                         <div class="pack-opt" style="padding:10px 16px;font-size:11px;letter-spacing:.14em;color:#0A0B0C;cursor:pointer;">Can Bundle</div>
                       </div>
                     </div>
-                    <div style="display:flex;align-items:center;border:1px solid rgba(255,255,255,.35);border-radius:30px;overflow:hidden;">
+                    <div class="qty-stepper" style="border:1px solid rgba(255,255,255,.35);">
                       <button class="qty-btn" data-muse="clio" data-op="dec" style="color:#FDFCFA;">−</button>
-                      <span id="qty-clio" style="padding:9px 16px;font-size:13px;border-left:1px solid rgba(255,255,255,.25);border-right:1px solid rgba(255,255,255,.25);min-width:44px;text-align:center;color:#FDFCFA;">1</span>
+                      <span id="qty-clio" style="font-size:13px;border-left:1px solid rgba(255,255,255,.25);border-right:1px solid rgba(255,255,255,.25);flex:1;text-align:center;color:#FDFCFA;">1</span>
                       <button class="qty-btn" data-muse="clio" data-op="inc" style="color:#FDFCFA;">+</button>
                     </div>
-                    <button class="muse-cta" data-muse="clio" style="background:#EFA527;color:#0A0B0C;border:none;border-radius:30px;padding:11px 26px;font-size:11px;letter-spacing:.14em;font-weight:600;cursor:pointer;transition:background .25s ease;">ADD TO CART</button>
+                    <button class="muse-cta cart-btn" data-muse="clio" style="background:#EFA527;color:#0A0B0C;border:none;border-radius:30px;padding:10px 0;font-size:11px;letter-spacing:.14em;font-weight:600;cursor:pointer;transition:background .25s ease;">ADD TO CART</button>
                   </div>
                   <div style="display:flex;gap:22px;margin-top:4px;">
                     <a href="flagship-detail.html#clio" class="muse-link" style="font-size:11px;letter-spacing:.14em;color:#FDFCFA;text-decoration:none;border-bottom:1px solid rgba(255,255,255,.4);padding-bottom:3px;">LEARN MORE →</a>
@@ -239,9 +245,9 @@
                   <p style="font-size:14px;font-weight:300;color:#CFC2E8;line-height:1.7;margin:0;max-width:380px;">Mature, intentional and refined — composed for the quiet glamour of evening.</p>
                   <div style="font-size:11px;letter-spacing:.1em;color:#A98FD0;">Gin · passionfruit · butterfly pea flower</div>
                   <div style="display:flex;gap:20px;font-size:11px;letter-spacing:.14em;color:#FDFCFA;border-top:1px solid rgba(255,255,255,.18);border-bottom:1px solid rgba(255,255,255,.18);padding:12px 0;margin:4px 0;"><span>12% ABV</span><span style="color:#9A82C0;">·</span><span>STILL</span></div>
-                  <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;">
+                  <div class="pr-pills">
                     <div style="position:relative;" class="pack-wrap">
-                      <button class="pack-btn" data-muse="ourania" style="border:1px solid rgba(255,255,255,.4);color:#FDFCFA;background:rgba(0,0,0,.2);border-radius:30px;padding:9px 16px;font-size:11px;letter-spacing:.14em;font-weight:600;cursor:pointer;display:flex;align-items:center;gap:8px;font-family:inherit;">
+                      <button class="pack-btn" data-muse="ourania" style="border:1px solid rgba(255,255,255,.4);color:#FDFCFA;background:rgba(0,0,0,.2);border-radius:30px;padding:10px 16px;font-size:11px;letter-spacing:.14em;font-weight:600;cursor:pointer;display:flex;align-items:center;gap:8px;font-family:inherit;">
                         <span class="pack-label">4-Pack</span>
                         <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
                       </button>
@@ -252,12 +258,12 @@
                         <div class="pack-opt" style="padding:10px 16px;font-size:11px;letter-spacing:.14em;color:#0A0B0C;cursor:pointer;">Can Bundle</div>
                       </div>
                     </div>
-                    <div style="display:flex;align-items:center;border:1px solid rgba(255,255,255,.35);border-radius:30px;overflow:hidden;">
+                    <div class="qty-stepper" style="border:1px solid rgba(255,255,255,.35);">
                       <button class="qty-btn" data-muse="ourania" data-op="dec" style="color:#FDFCFA;">−</button>
-                      <span id="qty-ourania" style="padding:9px 16px;font-size:13px;border-left:1px solid rgba(255,255,255,.25);border-right:1px solid rgba(255,255,255,.25);min-width:44px;text-align:center;color:#FDFCFA;">1</span>
+                      <span id="qty-ourania" style="font-size:13px;border-left:1px solid rgba(255,255,255,.25);border-right:1px solid rgba(255,255,255,.25);flex:1;text-align:center;color:#FDFCFA;">1</span>
                       <button class="qty-btn" data-muse="ourania" data-op="inc" style="color:#FDFCFA;">+</button>
                     </div>
-                    <button class="muse-cta" data-muse="ourania" style="background:#EFA527;color:#0A0B0C;border:none;border-radius:30px;padding:11px 26px;font-size:11px;letter-spacing:.14em;font-weight:600;cursor:pointer;transition:background .25s ease;">ADD TO CART</button>
+                    <button class="muse-cta cart-btn" data-muse="ourania" style="background:#EFA527;color:#0A0B0C;border:none;border-radius:30px;padding:10px 0;font-size:11px;letter-spacing:.14em;font-weight:600;cursor:pointer;transition:background .25s ease;">ADD TO CART</button>
                   </div>
                   <div style="display:flex;gap:22px;margin-top:4px;">
                     <a href="flagship-detail.html#ourania" class="muse-link" style="font-size:11px;letter-spacing:.14em;color:#FDFCFA;text-decoration:none;border-bottom:1px solid rgba(255,255,255,.4);padding-bottom:3px;">LEARN MORE →</a>
@@ -550,7 +556,7 @@
       }
 
       function startAuto() {
-        timer = setInterval(function () { goDir(1); }, 3000);
+        timer = setInterval(function () { goDir(1); }, 4500);
       }
 
       goTo(0);
