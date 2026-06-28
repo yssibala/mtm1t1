@@ -6,6 +6,17 @@
   <title>The Flagship Muses — MUSE RTD Cocktails</title>
   <link rel="preconnect" href="https://p.typekit.net">
   <link rel="stylesheet" href="assets/fonts/font.css">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    #nav-state1{display:flex;}
+    #nav-state2{display:none;}
+    #site-nav.nav--scrolled #nav-state1{display:none!important;}
+    #site-nav.nav--scrolled #nav-state2{display:flex!important;}
+    .muse-dropdown-menu{display:none;}
+    .muse-dropdown:hover .muse-dropdown-menu{display:block;}
+    .muse-sub{display:block;padding:11px 13px;font-size:11px;letter-spacing:.14em;font-weight:500;color:#0A0B0C;text-decoration:none;transition:background .25s ease;}
+    .muse-sub:hover{background:#F4ECDD;color:#C9851A;}
+  </style>
 </head>
 <body>
 
@@ -13,7 +24,7 @@
   <nav id="site-nav" style="position:fixed;top:0;left:0;right:0;z-index:50;">
 
     <!-- STATE 1 · solid cream (no hero image beneath) -->
-    <div id="nav-state1" style="align-items:center;justify-content:space-between;padding:20px 48px;background:#FBF6EE;border-bottom:1px solid #E7DAC4;">
+    <div id="nav-state1" style="display:flex;align-items:center;justify-content:space-between;padding:20px 48px;background:#FBF6EE;border-bottom:1px solid #E7DAC4;">
       <div style="display:flex;flex:1;align-items:center;justify-content:space-evenly;padding-left:104px;">
         <div class="muse-dropdown" style="position:relative;align-self:center;padding-bottom:16px;margin-bottom:-16px;display:flex;align-items:center;">
           <a href="about.html" class="muse-link" style="font-size:12px;letter-spacing:.18em;font-weight:500;color:#0A0B0C;text-decoration:none;display:inline-flex;align-items:center;gap:5px;">ABOUT<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" style="opacity:.5;flex:none;"><path d="m6 9 6 6 6-6"/></svg></a>
@@ -41,7 +52,7 @@
     </div>
 
     <!-- STATE 2 · frosted cream with SKU switcher center -->
-    <div id="nav-state2" style="align-items:center;justify-content:space-between;padding:9px 40px;background:rgba(253,252,250,.8);backdrop-filter:blur(12px) saturate(1.1);-webkit-backdrop-filter:blur(12px) saturate(1.1);border-bottom:1px solid rgba(231,218,196,.7);">
+    <div id="nav-state2" style="display:none;align-items:center;justify-content:space-between;padding:9px 40px;background:rgba(253,252,250,.8);backdrop-filter:blur(12px) saturate(1.1);-webkit-backdrop-filter:blur(12px) saturate(1.1);border-bottom:1px solid rgba(231,218,196,.7);">
       <a href="index.html" aria-label="MUSE home" style="display:inline-flex;align-items:center;flex:none;"><img src="assets/monogram-gold.png" alt="MUSE" style="height:38px;width:auto;"></a>
       <!-- Left links -->
       <div style="display:flex;flex:1;align-items:center;justify-content:space-evenly;">
