@@ -123,7 +123,7 @@
                 </div>
                 <h2 style="font-family:'Ogg','Cormorant Garamond',Georgia,serif;font-weight:400;font-size:clamp(34px,5vw,56px);line-height:1.05;margin:0;letter-spacing:.04em;color:#0A0B0C;">Three Muses,<br>One Trio</h2>
                 <p style="font-size:13px;letter-spacing:.06em;color:#6B6358;max-width:440px;line-height:1.7;margin:0;">A toast from noon to nightfall. Swipe through to meet each — presented as equals, in her own light.</p>
-                <button id="pr-stage-next" class="muse-ghost" style="border:1.5px solid #0A0B0C;color:#0A0B0C;border-radius:30px;padding:13px 32px;font-size:11px;letter-spacing:.18em;font-weight:600;cursor:pointer;background:transparent;transition:background .25s ease,color .25s ease;">MEET THE MUSES →</button>
+                <a href="flagship-detail.html" id="pr-stage-next" class="muse-ghost" style="display:inline-block;border:1.5px solid #0A0B0C;color:#0A0B0C;border-radius:30px;padding:13px 32px;font-size:11px;letter-spacing:.18em;font-weight:600;cursor:pointer;background:transparent;text-decoration:none;transition:background .25s ease,color .25s ease;">MEET THE MUSES →</a>
               </div>
             </div>
 
@@ -505,7 +505,7 @@
 
     document.getElementById('pr-prev').addEventListener('click', function () { prGoArrow(-1); });
     document.getElementById('pr-next').addEventListener('click', function () { prGoArrow(1); });
-    document.getElementById('pr-stage-next').addEventListener('click', function () { prGoArrow(1); });
+    // pr-stage-next is now an <a> link to flagship-detail.html
     prGoTo(0);
 
     // ── Mini hero carousels with auto-cycle ──────────────────────────────────
