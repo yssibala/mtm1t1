@@ -144,9 +144,18 @@
                   <div style="font-size:11px;letter-spacing:.1em;color:#6E5526;">Moscato wine · blue agave spirit · passionfruit</div>
                   <div style="display:flex;gap:20px;font-size:11px;letter-spacing:.14em;color:#241808;border-top:1px solid rgba(36,24,8,.2);border-bottom:1px solid rgba(36,24,8,.2);padding:12px 0;margin:4px 0;"><span>12% ABV</span><span style="color:#9A7A3A;">·</span><span>SPARKLING</span></div>
                   <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;">
-                    <select id="fmt-thalia" class="muse-select" style="border:1px solid rgba(36,24,8,.4);color:#241808;background-color:rgba(255,255,255,.3);background-image:url('data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2212%22 height=%2212%22 viewBox=%220 0 24 24%22 fill=%22none%22 stroke=%22%23241808%22 stroke-width=%222%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22><path d=%22m6 9 6 6 6-6%22/></svg>');">
-                      <option>4-Pack</option><option>12-Pack</option><option>16-Pack</option><option>Can Bundle</option>
-                    </select>
+                    <div style="position:relative;" class="pack-wrap">
+                      <button class="pack-btn" data-muse="thalia" style="border:1px solid rgba(36,24,8,.4);color:#241808;background:rgba(255,255,255,.3);border-radius:30px;padding:9px 16px;font-size:11px;letter-spacing:.14em;font-weight:600;cursor:pointer;display:flex;align-items:center;gap:8px;font-family:inherit;">
+                        <span class="pack-label">4-Pack</span>
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+                      </button>
+                      <div class="pack-drop" data-muse="thalia" style="display:none;position:absolute;top:calc(100% + 4px);left:0;background:#FDFCFA;border:1px solid #E7DAC4;box-shadow:0 12px 32px -12px rgba(10,11,12,.4);border-radius:8px;padding:6px 0;z-index:100;min-width:140px;">
+                        <div class="pack-opt" style="padding:10px 16px;font-size:11px;letter-spacing:.14em;color:#0A0B0C;cursor:pointer;">4-Pack</div>
+                        <div class="pack-opt" style="padding:10px 16px;font-size:11px;letter-spacing:.14em;color:#0A0B0C;cursor:pointer;">12-Pack</div>
+                        <div class="pack-opt" style="padding:10px 16px;font-size:11px;letter-spacing:.14em;color:#0A0B0C;cursor:pointer;">16-Pack</div>
+                        <div class="pack-opt" style="padding:10px 16px;font-size:11px;letter-spacing:.14em;color:#0A0B0C;cursor:pointer;">Can Bundle</div>
+                      </div>
+                    </div>
                     <div style="display:flex;align-items:center;border:1px solid rgba(36,24,8,.4);border-radius:30px;overflow:hidden;">
                       <button class="qty-btn" data-muse="thalia" data-op="dec" style="color:#241808;">−</button>
                       <span id="qty-thalia" style="padding:9px 16px;font-size:13px;border-left:1px solid rgba(36,24,8,.25);border-right:1px solid rgba(36,24,8,.25);min-width:44px;text-align:center;color:#241808;">1</span>
@@ -156,7 +165,7 @@
                   </div>
                   <div style="display:flex;gap:22px;margin-top:4px;">
                     <a href="flagship-detail.html#thalia" class="muse-link" style="font-size:11px;letter-spacing:.14em;color:#241808;text-decoration:none;border-bottom:1px solid rgba(36,24,8,.4);padding-bottom:3px;">LEARN MORE →</a>
-                    <a href="#" class="muse-link" style="font-size:11px;letter-spacing:.14em;color:#5C4620;text-decoration:none;">VIEW NUTRITION TABLE</a>
+                    <a href="nutrition-facts.html" class="muse-link" style="font-size:11px;letter-spacing:.14em;color:#5C4620;text-decoration:none;">VIEW NUTRITION TABLE</a>
                   </div>
                 </div>
               </div>
@@ -183,9 +192,18 @@
                   <div style="font-size:11px;letter-spacing:.1em;color:#D9A79E;">Red wine · brandy · cranberry &amp; strawberry</div>
                   <div style="display:flex;gap:20px;font-size:11px;letter-spacing:.14em;color:#FDFCFA;border-top:1px solid rgba(255,255,255,.18);border-bottom:1px solid rgba(255,255,255,.18);padding:12px 0;margin:4px 0;"><span>12% ABV</span><span style="color:#C98D85;">·</span><span>STILL</span></div>
                   <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;">
-                    <select id="fmt-clio" class="muse-select" style="border:1px solid rgba(255,255,255,.4);color:#FDFCFA;background-color:rgba(0,0,0,.2);background-image:url('data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2212%22 height=%2212%22 viewBox=%220 0 24 24%22 fill=%22none%22 stroke=%22%23FDFCFA%22 stroke-width=%222%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22><path d=%22m6 9 6 6 6-6%22/></svg>');">
-                      <option>4-Pack</option><option>12-Pack</option><option>16-Pack</option><option>Can Bundle</option>
-                    </select>
+                    <div style="position:relative;" class="pack-wrap">
+                      <button class="pack-btn" data-muse="clio" style="border:1px solid rgba(255,255,255,.4);color:#FDFCFA;background:rgba(0,0,0,.2);border-radius:30px;padding:9px 16px;font-size:11px;letter-spacing:.14em;font-weight:600;cursor:pointer;display:flex;align-items:center;gap:8px;font-family:inherit;">
+                        <span class="pack-label">4-Pack</span>
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+                      </button>
+                      <div class="pack-drop" data-muse="clio" style="display:none;position:absolute;top:calc(100% + 4px);left:0;background:#FDFCFA;border:1px solid #E7DAC4;box-shadow:0 12px 32px -12px rgba(10,11,12,.4);border-radius:8px;padding:6px 0;z-index:100;min-width:140px;">
+                        <div class="pack-opt" style="padding:10px 16px;font-size:11px;letter-spacing:.14em;color:#0A0B0C;cursor:pointer;">4-Pack</div>
+                        <div class="pack-opt" style="padding:10px 16px;font-size:11px;letter-spacing:.14em;color:#0A0B0C;cursor:pointer;">12-Pack</div>
+                        <div class="pack-opt" style="padding:10px 16px;font-size:11px;letter-spacing:.14em;color:#0A0B0C;cursor:pointer;">16-Pack</div>
+                        <div class="pack-opt" style="padding:10px 16px;font-size:11px;letter-spacing:.14em;color:#0A0B0C;cursor:pointer;">Can Bundle</div>
+                      </div>
+                    </div>
                     <div style="display:flex;align-items:center;border:1px solid rgba(255,255,255,.35);border-radius:30px;overflow:hidden;">
                       <button class="qty-btn" data-muse="clio" data-op="dec" style="color:#FDFCFA;">−</button>
                       <span id="qty-clio" style="padding:9px 16px;font-size:13px;border-left:1px solid rgba(255,255,255,.25);border-right:1px solid rgba(255,255,255,.25);min-width:44px;text-align:center;color:#FDFCFA;">1</span>
@@ -195,7 +213,7 @@
                   </div>
                   <div style="display:flex;gap:22px;margin-top:4px;">
                     <a href="flagship-detail.html#clio" class="muse-link" style="font-size:11px;letter-spacing:.14em;color:#FDFCFA;text-decoration:none;border-bottom:1px solid rgba(255,255,255,.4);padding-bottom:3px;">LEARN MORE →</a>
-                    <a href="#" class="muse-link" style="font-size:11px;letter-spacing:.14em;color:#ECC9C2;text-decoration:none;">VIEW NUTRITION TABLE</a>
+                    <a href="nutrition-facts.html" class="muse-link" style="font-size:11px;letter-spacing:.14em;color:#ECC9C2;text-decoration:none;">VIEW NUTRITION TABLE</a>
                   </div>
                 </div>
               </div>
@@ -222,9 +240,18 @@
                   <div style="font-size:11px;letter-spacing:.1em;color:#A98FD0;">Gin · passionfruit · butterfly pea flower</div>
                   <div style="display:flex;gap:20px;font-size:11px;letter-spacing:.14em;color:#FDFCFA;border-top:1px solid rgba(255,255,255,.18);border-bottom:1px solid rgba(255,255,255,.18);padding:12px 0;margin:4px 0;"><span>12% ABV</span><span style="color:#9A82C0;">·</span><span>STILL</span></div>
                   <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;">
-                    <select id="fmt-ourania" class="muse-select" style="border:1px solid rgba(255,255,255,.4);color:#FDFCFA;background-color:rgba(0,0,0,.2);background-image:url('data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2212%22 height=%2212%22 viewBox=%220 0 24 24%22 fill=%22none%22 stroke=%22%23FDFCFA%22 stroke-width=%222%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22><path d=%22m6 9 6 6 6-6%22/></svg>');">
-                      <option>4-Pack</option><option>12-Pack</option><option>16-Pack</option><option>Can Bundle</option>
-                    </select>
+                    <div style="position:relative;" class="pack-wrap">
+                      <button class="pack-btn" data-muse="ourania" style="border:1px solid rgba(255,255,255,.4);color:#FDFCFA;background:rgba(0,0,0,.2);border-radius:30px;padding:9px 16px;font-size:11px;letter-spacing:.14em;font-weight:600;cursor:pointer;display:flex;align-items:center;gap:8px;font-family:inherit;">
+                        <span class="pack-label">4-Pack</span>
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+                      </button>
+                      <div class="pack-drop" data-muse="ourania" style="display:none;position:absolute;top:calc(100% + 4px);left:0;background:#FDFCFA;border:1px solid #E7DAC4;box-shadow:0 12px 32px -12px rgba(10,11,12,.4);border-radius:8px;padding:6px 0;z-index:100;min-width:140px;">
+                        <div class="pack-opt" style="padding:10px 16px;font-size:11px;letter-spacing:.14em;color:#0A0B0C;cursor:pointer;">4-Pack</div>
+                        <div class="pack-opt" style="padding:10px 16px;font-size:11px;letter-spacing:.14em;color:#0A0B0C;cursor:pointer;">12-Pack</div>
+                        <div class="pack-opt" style="padding:10px 16px;font-size:11px;letter-spacing:.14em;color:#0A0B0C;cursor:pointer;">16-Pack</div>
+                        <div class="pack-opt" style="padding:10px 16px;font-size:11px;letter-spacing:.14em;color:#0A0B0C;cursor:pointer;">Can Bundle</div>
+                      </div>
+                    </div>
                     <div style="display:flex;align-items:center;border:1px solid rgba(255,255,255,.35);border-radius:30px;overflow:hidden;">
                       <button class="qty-btn" data-muse="ourania" data-op="dec" style="color:#FDFCFA;">−</button>
                       <span id="qty-ourania" style="padding:9px 16px;font-size:13px;border-left:1px solid rgba(255,255,255,.25);border-right:1px solid rgba(255,255,255,.25);min-width:44px;text-align:center;color:#FDFCFA;">1</span>
@@ -234,7 +261,7 @@
                   </div>
                   <div style="display:flex;gap:22px;margin-top:4px;">
                     <a href="flagship-detail.html#ourania" class="muse-link" style="font-size:11px;letter-spacing:.14em;color:#FDFCFA;text-decoration:none;border-bottom:1px solid rgba(255,255,255,.4);padding-bottom:3px;">LEARN MORE →</a>
-                    <a href="#" class="muse-link" style="font-size:11px;letter-spacing:.14em;color:#CFC2E8;text-decoration:none;">VIEW NUTRITION TABLE</a>
+                    <a href="nutrition-facts.html" class="muse-link" style="font-size:11px;letter-spacing:.14em;color:#CFC2E8;text-decoration:none;">VIEW NUTRITION TABLE</a>
                   </div>
                 </div>
               </div>
@@ -387,5 +414,216 @@
 <script src="assets/js/footer.js"></script>
 
   <script src="assets/js/nav.js"></script>
+  <script>
+  (function () {
+
+    // ── Directional-wrap carousel helper (same logic as flagship page) ──────
+    function wrapSlide(track, fromIdx, toIdx, total, delay) {
+      var pct  = 100 / total;
+      var orig = track.style.transition;
+      var kids = Array.from(track.children);
+      if (fromIdx === 0 && toIdx === total - 1) {
+        kids[total - 1].style.order = '-1';
+        track.style.transition = 'none';
+        track.style.transform  = 'translateX(-' + pct + '%)';
+        track.offsetHeight;
+        track.style.transition = orig;
+        track.style.transform  = 'translateX(0%)';
+        setTimeout(function () {
+          kids[total - 1].style.order = '';
+          track.style.transition = 'none';
+          track.style.transform  = 'translateX(-' + ((total - 1) * pct) + '%)';
+          track.offsetHeight;
+          track.style.transition = orig;
+        }, delay);
+      } else {
+        kids[0].style.order = String(total);
+        track.style.transition = 'none';
+        track.style.transform  = 'translateX(-' + ((total - 2) * pct) + '%)';
+        track.offsetHeight;
+        track.style.transition = orig;
+        track.style.transform  = 'translateX(-' + ((total - 1) * pct) + '%)';
+        setTimeout(function () {
+          kids[0].style.order = '';
+          track.style.transition = 'none';
+          track.style.transform  = 'translateX(0%)';
+          track.offsetHeight;
+          track.style.transition = orig;
+        }, delay);
+      }
+    }
+
+    // ── Main product carousel (4 panels: Stage, Thalia, Clio, Ourania) ──────
+    var prTrack  = document.getElementById('pr-track');
+    var prDots   = document.getElementById('pr-dots');
+    var prLabel  = document.getElementById('pr-label');
+    var LABELS   = ['STAGE', 'STAGE · THALIA', 'STAGE · CLIO', 'STAGE · OURANIA'];
+    var prCur    = 0;
+
+    // Build dots
+    ['', '#EFA527', '#CC2200', '#8B5CF6'].forEach(function (col, i) {
+      var d = document.createElement('span');
+      d.style.cssText = 'width:9px;height:9px;border-radius:50%;cursor:pointer;background:' + (i === 0 ? '#0A0B0C' : 'rgba(10,11,12,.2)') + ';transition:background .3s,width .3s;display:inline-block;';
+      d.dataset.i = i;
+      d.addEventListener('click', function () { prGoTo(parseInt(this.dataset.i)); });
+      prDots.appendChild(d);
+    });
+
+    function prUpdateDots(idx) {
+      Array.from(prDots.children).forEach(function (d, i) {
+        d.style.background = i === idx ? (['#0A0B0C','#EFA527','#CC2200','#8B5CF6'][i]) : 'rgba(10,11,12,.2)';
+        d.style.width = i === idx ? '22px' : '9px';
+        d.style.borderRadius = '9px';
+      });
+      prLabel.textContent = LABELS[idx];
+    }
+
+    function prGoTo(idx) {
+      prCur = ((idx % 4) + 4) % 4;
+      prTrack.style.transform = 'translateX(-' + (prCur * 25) + '%)';
+      prUpdateDots(prCur);
+    }
+
+    function prGoArrow(dir) {
+      var next = ((prCur + dir) % 4 + 4) % 4;
+      var isWrap = (prCur === 0 && dir === -1) || (prCur === 3 && dir === 1);
+      if (isWrap) {
+        var prev = prCur;
+        prCur = next;
+        prUpdateDots(next);
+        wrapSlide(prTrack, prev, next, 4, 650);
+      } else {
+        prGoTo(next);
+      }
+    }
+
+    document.getElementById('pr-prev').addEventListener('click', function () { prGoArrow(-1); });
+    document.getElementById('pr-next').addEventListener('click', function () { prGoArrow(1); });
+    document.getElementById('pr-stage-next').addEventListener('click', function () { prGoArrow(1); });
+    prGoTo(0);
+
+    // ── Mini hero carousels with auto-cycle ──────────────────────────────────
+    [
+      { trackId:'hero-thalia', dotsId:'thalia-dots', activeColor:'#EFA527' },
+      { trackId:'hero-clio',   dotsId:'clio-dots',   activeColor:'#FF8A6E' },
+      { trackId:'hero-ourania',dotsId:'ourania-dots', activeColor:'#A78BFA' },
+    ].forEach(function (cfg) {
+      var track  = document.getElementById(cfg.trackId);
+      var dotsEl = document.getElementById(cfg.dotsId);
+      var total  = 3;
+      var pct    = 100 / total;
+      var c      = 0;
+      var timer  = null;
+
+      // Build dots
+      for (var i = 0; i < total; i++) {
+        var d = document.createElement('span');
+        d.style.cssText = 'width:7px;height:7px;border-radius:50%;cursor:pointer;display:inline-block;background:rgba(255,255,255,.4);transition:background .3s,width .3s;';
+        d.dataset.i = i;
+        dotsEl.appendChild(d);
+      }
+
+      function updateDots() {
+        Array.from(dotsEl.children).forEach(function (d, i) {
+          d.style.background = i === c ? cfg.activeColor : 'rgba(255,255,255,.4)';
+          d.style.width = i === c ? '18px' : '7px';
+          d.style.borderRadius = '9px';
+        });
+      }
+
+      function goTo(idx) {
+        c = ((idx % total) + total) % total;
+        track.style.transform = 'translateX(-' + (c * pct) + '%)';
+        updateDots();
+      }
+
+      function goDir(dir) {
+        var next = ((c + dir) % total + total) % total;
+        var isWrap = (c === 0 && dir === -1) || (c === total - 1 && dir === 1);
+        if (isWrap) {
+          c = next;
+          updateDots();
+          wrapSlide(track, dir === -1 ? 0 : total - 1, next, total, 730);
+        } else {
+          goTo(next);
+        }
+      }
+
+      function startAuto() {
+        timer = setInterval(function () { goDir(1); }, 3000);
+      }
+
+      goTo(0);
+      startAuto();
+
+      dotsEl.addEventListener('click', function (e) {
+        var d = e.target.closest('[data-i]');
+        if (!d) return;
+        clearInterval(timer);
+        goTo(parseInt(d.dataset.i));
+        startAuto();
+      });
+
+      // Pause auto-cycle on hover
+      var panel = track.closest('[style*="overflow:hidden"]');
+      if (panel) {
+        panel.parentElement.addEventListener('mouseenter', function () { clearInterval(timer); });
+        panel.parentElement.addEventListener('mouseleave', function () { clearInterval(timer); startAuto(); });
+      }
+    });
+
+    // ── Pack-size custom dropdown ────────────────────────────────────────────
+    var packState = { thalia:'4-Pack', clio:'4-Pack', ourania:'4-Pack' };
+
+    document.querySelectorAll('.pack-btn').forEach(function (btn) {
+      btn.addEventListener('click', function (e) {
+        e.stopPropagation();
+        var muse = this.dataset.muse;
+        var drop = document.querySelector('.pack-drop[data-muse="' + muse + '"]');
+        var allDrops = document.querySelectorAll('.pack-drop');
+        allDrops.forEach(function (d) { if (d !== drop) d.style.display = 'none'; });
+        drop.style.display = drop.style.display === 'block' ? 'none' : 'block';
+      });
+    });
+
+    document.querySelectorAll('.pack-opt').forEach(function (opt) {
+      opt.addEventListener('click', function (e) {
+        e.stopPropagation();
+        var drop = this.closest('.pack-drop');
+        var muse = drop.dataset.muse;
+        var val  = this.textContent.trim();
+        packState[muse] = val;
+        var btn = document.querySelector('.pack-btn[data-muse="' + muse + '"]');
+        btn.querySelector('.pack-label').textContent = val;
+        drop.style.display = 'none';
+      });
+    });
+
+    document.addEventListener('click', function () {
+      document.querySelectorAll('.pack-drop').forEach(function (d) { d.style.display = 'none'; });
+    });
+
+    // ── Qty steppers ─────────────────────────────────────────────────────────
+    var qtyState = { thalia:1, clio:1, ourania:1 };
+    document.querySelectorAll('.qty-btn').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var muse = this.dataset.muse;
+        var op   = this.dataset.op;
+        qtyState[muse] = op === 'inc' ? Math.min(99, qtyState[muse] + 1) : Math.max(1, qtyState[muse] - 1);
+        document.getElementById('qty-' + muse).textContent = String(qtyState[muse]);
+      });
+    });
+
+    // ── Add to cart stub ─────────────────────────────────────────────────────
+    document.querySelectorAll('.muse-dark, .muse-cta[data-muse]').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var muse = this.dataset.muse;
+        if (!muse) return;
+        alert('Added ' + qtyState[muse] + '× ' + packState[muse] + ' ' + muse.toUpperCase() + ' to cart.');
+      });
+    });
+
+  })();
+  </script>
 </body>
 </html>
