@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Page Not Found — MUSE RTD Cocktails</title>
+  <link rel="preconnect" href="https://p.typekit.net">
+  <link rel="stylesheet" href="assets/fonts/font.css">
+<style>
+  #nav-state1{display:flex;}
+  #nav-state2{display:none;}
+  #site-nav.nav--scrolled #nav-state1{display:none!important;}
+  #site-nav.nav--scrolled #nav-state2{display:flex!important;}
+  .muse-dropdown-menu{display:none;}
+  .muse-dropdown:hover .muse-dropdown-menu{display:block;}
+  .muse-sub{display:block;padding:11px 13px;font-size:11px;letter-spacing:.14em;font-weight:500;color:#0A0B0C;text-decoration:none;transition:background .25s ease;}
+  .muse-sub:hover{background:#F4ECDD;color:#C9851A;}
+  .muse-link{transition:color .35s ease;}
+  .muse-link:hover{color:#C9851A;}
+  @keyframes museFloat{0%,100%{transform:translateY(0);}50%{transform:translateY(-9px);}}
+  *{box-sizing:border-box;}
+</style>
+</head>
+<body style="margin:0;background:#FBF6EE;font-family:neuehaasdisplaylight,neue-haas-grotesk-text,sans-serif;font-weight:300;color:#0A0B0C;">
+
+  <!-- ════ FIXED NAV ════════════════════════════════════════════════════════ -->
+  <nav id="site-nav" style="position:fixed;top:0;left:0;right:0;z-index:50;">
+
+    <!-- STATE 1 · solid cream -->
+    <div id="nav-state1" style="display:flex;align-items:center;justify-content:space-between;padding:20px 48px;background:#FBF6EE;border-bottom:1px solid rgba(231,218,196,.55);">
+      <div style="display:flex;flex:1;align-items:center;justify-content:space-evenly;padding-left:104px;">
+        <div class="muse-dropdown" style="position:relative;align-self:center;padding-bottom:16px;margin-bottom:-16px;display:flex;align-items:center;">
+          <a href="about.html" class="muse-link" style="font-size:12px;letter-spacing:.18em;font-weight:500;color:#0A0B0C;text-decoration:none;display:inline-flex;align-items:center;gap:5px;">ABOUT<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" style="opacity:.5;flex:none;"><path d="m6 9 6 6 6-6"/></svg></a>
+          <div class="muse-dropdown-menu" style="position:absolute;top:100%;left:0;width:240px;background:#FDFCFA;border:1px solid #E7DAC4;box-shadow:0 18px 44px -20px rgba(10,11,12,.5);padding:7px;z-index:60;">
+            <a href="about.html" class="muse-sub">ABOUT US</a>
+            <a href="flagship-detail.html" class="muse-sub">THE FLAGSHIP MUSES</a>
+            <div style="display:flex;align-items:center;justify-content:space-between;padding:11px 13px;font-size:11px;letter-spacing:.14em;font-weight:500;color:#B0A892;cursor:default;">LORE<span style="font-size:8px;letter-spacing:.1em;font-weight:600;color:#C9851A;border:1px solid #E7C98A;border-radius:30px;padding:2px 7px;white-space:nowrap;">COMING SOON</span></div>
+          </div>
+        </div>
+        <a href="gallery.html" class="muse-link" style="font-size:12px;letter-spacing:.18em;font-weight:500;color:#0A0B0C;text-decoration:none;">GALLERY</a>
+        <div class="muse-dropdown" style="position:relative;align-self:center;padding-bottom:16px;margin-bottom:-16px;display:flex;align-items:center;">
+          <a href="contact.html" class="muse-link" style="font-size:12px;letter-spacing:.18em;font-weight:500;color:#0A0B0C;text-decoration:none;display:inline-flex;align-items:center;gap:5px;">CONTACT<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" style="opacity:.5;flex:none;"><path d="m6 9 6 6 6-6"/></svg></a>
+          <div class="muse-dropdown-menu" style="position:absolute;top:100%;left:0;width:220px;background:#FDFCFA;border:1px solid #E7DAC4;box-shadow:0 18px 44px -20px rgba(10,11,12,.5);padding:7px;z-index:60;">
+            <a href="contact.html" class="muse-sub">CONTACT US</a>
+            <a href="share-a-muse.html" class="muse-sub">SHARE YOUR MUSE</a>
+          </div>
+        </div>
+      </div>
+      <a href="index.html" aria-label="MUSE home" style="display:inline-flex;align-items:center;flex:none;"><img src="images/MUSE%20-%20Monogram%20(Solo%20GLD).png" alt="MUSE" style="height:56px;width:auto;flex:none;"></a>
+      <div style="display:flex;flex:1;align-items:center;justify-content:space-evenly;padding-right:104px;">
+        <a href="products.html" class="muse-link" style="font-size:12px;letter-spacing:.18em;font-weight:500;color:#0A0B0C;text-decoration:none;">PRODUCTS</a>
+        <a href="shop.html" class="muse-link" style="font-size:12px;letter-spacing:.18em;font-weight:500;color:#0A0B0C;text-decoration:none;">SHOP</a>
+        <a href="login.html" class="muse-link" style="font-size:12px;letter-spacing:.18em;font-weight:500;color:#0A0B0C;text-decoration:none;">LOG IN</a>
+        <a href="shop.html" style="text-decoration:none;display:inline-flex;">
+          <div style="display:flex;align-items:center;background:#EFA527;color:#0A0B0C;border-radius:30px;padding:9px 20px;font-size:11px;letter-spacing:.16em;font-weight:600;">SHOP</div>
+        </a>
+      </div>
+    </div>
+
+    <!-- STATE 2 · frosted cream on scroll -->
+    <div id="nav-state2" style="display:none;position:relative;align-items:center;justify-content:space-between;padding:11px 48px;background:rgba(253,252,250,.8);backdrop-filter:blur(12px) saturate(1.1);-webkit-backdrop-filter:blur(12px) saturate(1.1);border-bottom:1px solid rgba(231,218,196,.7);">
+      <a href="index.html" aria-label="MUSE home" style="display:inline-flex;align-items:center;flex:none;"><img src="images/MUSE%20-%20Monogram%20(Solo%20GLD).png" alt="MUSE" style="height:38px;width:auto;"></a>
+      <div style="position:absolute;left:50%;transform:translateX(-50%);display:flex;gap:72px;align-items:center;">
+        <a href="about.html" class="muse-link" style="font-size:11px;letter-spacing:.2em;font-weight:500;color:#0A0B0C;text-decoration:none;">ABOUT</a>
+        <a href="gallery.html" class="muse-link" style="font-size:11px;letter-spacing:.2em;font-weight:500;color:#0A0B0C;text-decoration:none;">GALLERY</a>
+        <a href="contact.html" class="muse-link" style="font-size:11px;letter-spacing:.2em;font-weight:500;color:#0A0B0C;text-decoration:none;">CONTACT</a>
+        <a href="products.html" class="muse-link" style="font-size:11px;letter-spacing:.2em;font-weight:500;color:#0A0B0C;text-decoration:none;">PRODUCTS</a>
+      </div>
+      <a href="shop.html" style="text-decoration:none;display:inline-flex;flex:none;">
+        <div style="display:flex;align-items:center;background:#EFA527;color:#0A0B0C;border-radius:30px;padding:8px 18px;font-size:11px;letter-spacing:.16em;font-weight:600;">SHOP</div>
+      </a>
+    </div>
+  </nav>
+
+  <!-- ════ HERO ════════════════════════════════════════════════════════════ -->
+  <main style="min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:88px 32px 80px;position:relative;overflow:hidden;">
+
+    <img src="images/MUSE%20-%20Monogram%20(Solo%20GLD).png" alt="MUSE" style="height:clamp(108px,14vw,150px);width:auto;margin-bottom:30px;animation:museFloat 6s ease-in-out infinite;">
+
+    <div style="font-size:12px;letter-spacing:.32em;font-weight:600;color:#C9851A;margin-bottom:22px;">LOST IN THE CLOUDS</div>
+
+    <h1 style="font-family:'Ogg','Cormorant Garamond',Georgia,serif;font-weight:400;font-size:clamp(46px,7.5vw,104px);line-height:1.06;letter-spacing:.01em;margin:0;color:#0A0B0C;max-width:860px;">Something Went Awry</h1>
+
+    <p style="font-size:clamp(15px,1.5vw,18px);font-weight:300;line-height:1.75;color:#5A5345;max-width:520px;margin:26px 0 0;">We couldn&rsquo;t pour this page just now. The skies should clear shortly &mdash; give it another moment, or head back to firmer ground.</p>
+
+    <div style="display:flex;gap:16px;flex-wrap:wrap;justify-content:center;margin-top:40px;">
+      <a href="index.html" style="text-decoration:none;display:inline-block;background:#EFA527;color:#0A0B0C;border-radius:30px;padding:15px 40px;font-size:12px;letter-spacing:.18em;font-weight:600;font-family:inherit;transition:background .3s ease;">BACK TO HOMEPAGE</a>
+      <button onclick="window.location.reload();" style="background:none;border:1.5px solid #0A0B0C;color:#0A0B0C;border-radius:30px;padding:15px 40px;font-size:12px;letter-spacing:.18em;font-weight:600;cursor:pointer;font-family:inherit;transition:background .3s ease,color .3s ease;" onmouseover="this.style.background='#0A0B0C';this.style.color='#FDFCFA';" onmouseout="this.style.background='none';this.style.color='#0A0B0C';">TRY AGAIN</button>
+    </div>
+
+    <!-- 404 watermark -->
+    <div aria-hidden="true" style="font-family:'Ogg','Cormorant Garamond',Georgia,serif;font-weight:400;font-size:clamp(120px,24vw,300px);line-height:.86;letter-spacing:.05em;color:#EFA527;opacity:.16;margin-top:clamp(34px,6vw,70px);user-select:none;pointer-events:none;">404</div>
+
+  </main>
+
+  <!-- ════ FOOTER ═══════════════════════════════════════════════════════════ -->
+  <div id="site-footer"></div>
+
+  <script src="assets/js/nav.js"></script>
+  <script src="assets/js/footer.js"></script>
+</body>
+</html>
