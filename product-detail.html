@@ -1,0 +1,887 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MUSE — Product</title>
+  <link rel="stylesheet" href="assets/fonts/font.css">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background: #FBF6EE; color: #0A0B0C; font-family: neuehaasdisplaylight, neue-haas-grotesk-text, sans-serif; }
+
+    /* ── NAV ── */
+    #site-nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      height: 72px; display: flex; align-items: center; justify-content: space-between;
+      padding: 0 40px;
+      background: transparent;
+      transition: background 0.3s ease, backdrop-filter 0.3s ease;
+    }
+    #site-nav.nav--scrolled {
+      background: rgba(251,246,238,0.92);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(231,218,196,0.6);
+    }
+    .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+    .nav-logo img { height: 36px; width: auto; }
+    .nav-logo span { font-family: Ogg, serif; font-size: 1.1rem; color: #0A0B0C; letter-spacing: .04em; }
+    .nav-links { display: flex; align-items: center; gap: 28px; }
+    .nav-links a { text-decoration: none; color: #0A0B0C; font-size: 0.82rem; letter-spacing: .1em; text-transform: uppercase; }
+    .nav-links a:hover { color: #EFA527; }
+    .nav-links a.active { border-bottom: 2px solid #EFA527; font-weight: 600; }
+    .nav-right { display: flex; align-items: center; gap: 16px; }
+    .cart-link { position: relative; text-decoration: none; color: #0A0B0C; }
+    .cart-link svg { display: block; }
+    .cart-badge {
+      position: absolute; top: -6px; right: -8px;
+      background: #EFA527; color: #fff; border-radius: 50%;
+      width: 16px; height: 16px; font-size: 0.6rem; font-weight: 700;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .cart-badge.hidden { display: none; }
+
+    /* state 2 extras (shop pill + cart pill) */
+    #nav-shop-pill {
+      display: none;
+      padding: 6px 18px; border: 1.5px solid #0A0B0C; border-radius: 40px;
+      text-decoration: none; color: #0A0B0C; font-size: 0.78rem; letter-spacing: .1em; text-transform: uppercase;
+    }
+    #nav-cart-pill {
+      display: none;
+      padding: 6px 18px; background: #EFA527; border-radius: 40px;
+      text-decoration: none; color: #fff; font-size: 0.78rem; letter-spacing: .1em; text-transform: uppercase;
+    }
+    .nav--scrolled #nav-shop-pill,
+    .nav--scrolled #nav-cart-pill { display: inline-flex; align-items: center; gap: 6px; }
+    .nav--scrolled .nav-links,
+    .nav--scrolled .cart-link { display: none; }
+
+    /* ── BREADCRUMB ── */
+    .breadcrumb {
+      padding: 96px 48px 0;
+      font-size: 0.75rem; letter-spacing: .08em; text-transform: uppercase; color: #6B6156;
+    }
+    .breadcrumb a { color: #6B6156; text-decoration: none; }
+    .breadcrumb a:hover { color: #EFA527; }
+    .breadcrumb span { margin: 0 6px; }
+
+    /* ── PRODUCT LAYOUT ── */
+    .product-wrap {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 64px;
+      max-width: 1200px; margin: 0 auto; padding: 32px 48px 80px;
+    }
+    @media (max-width: 900px) { .product-wrap { grid-template-columns: 1fr; gap: 40px; padding: 24px 24px 60px; } }
+
+    /* Gallery */
+    .gallery-col {}
+    .gallery-main {
+      position: relative; overflow: hidden; border-radius: 8px;
+      background: #F4ECDD; aspect-ratio: 1/1;
+    }
+    .gallery-track {
+      display: flex; height: 100%;
+      transition: transform 0.4s ease;
+    }
+    .gallery-slide { min-width: 100%; height: 100%; }
+    .gallery-slide img { width: 100%; height: 100%; object-fit: cover; }
+    .gallery-thumbs { display: flex; gap: 10px; margin-top: 12px; }
+    .gallery-thumb {
+      width: 72px; height: 72px; border-radius: 6px; overflow: hidden;
+      cursor: pointer; border: 2px solid transparent; transition: border-color 0.2s;
+    }
+    .gallery-thumb img { width: 100%; height: 100%; object-fit: cover; }
+    .gallery-thumb.active { border-color: var(--accent-med, #EFA527); }
+
+    /* Buy panel */
+    .buy-col {}
+    .accent-bar { height: 5px; background: var(--accent-med, #EFA527); border-radius: 3px; margin-bottom: 20px; }
+    .product-kicker { font-size: 0.72rem; letter-spacing: .18em; text-transform: uppercase; color: #6B6156; margin-bottom: 8px; }
+    .product-title { font-family: Ogg, serif; font-size: 2.4rem; line-height: 1.1; color: #0A0B0C; margin-bottom: 8px; }
+    .product-tagline { font-family: Ogg, serif; font-style: italic; font-size: 1.05rem; color: var(--accent-med, #EFA527); margin-bottom: 16px; }
+    .stars-row { display: flex; align-items: center; gap: 8px; margin-bottom: 20px; }
+    .stars { color: #EFA527; font-size: 1rem; letter-spacing: 2px; }
+    .rating-label { font-size: 0.8rem; color: #6B6156; }
+    .product-price { font-size: 2rem; font-family: Ogg, serif; margin-bottom: 24px; }
+
+    .section-label { font-size: 0.7rem; letter-spacing: .15em; text-transform: uppercase; color: #6B6156; margin-bottom: 10px; }
+    .variants { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 24px; }
+    .variant-btn {
+      padding: 8px 18px; border-radius: 40px; border: 1.5px solid #E7DAC4;
+      font-size: 0.82rem; background: transparent; cursor: pointer; transition: all 0.2s;
+      color: #0A0B0C; font-family: neuehaasdisplaylight, sans-serif;
+    }
+    .variant-btn.active { background: var(--accent-dark, #C9851A); border-color: var(--accent-dark, #C9851A); color: #fff; }
+
+    .purchase-opts { display: flex; gap: 0; margin-bottom: 24px; border: 1.5px solid #E7DAC4; border-radius: 8px; overflow: hidden; }
+    .purchase-opt { flex: 1; padding: 12px; cursor: pointer; text-align: center; font-size: 0.82rem; transition: background 0.2s; border: none; background: transparent; font-family: neuehaasdisplaylight, sans-serif; }
+    .purchase-opt + .purchase-opt { border-left: 1.5px solid #E7DAC4; }
+    .purchase-opt.active { background: #FBF6EE; font-weight: 600; }
+    .subscribe-note { font-size: 0.72rem; color: #6B6156; margin-top: 4px; }
+
+    .add-row { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; }
+    .qty-stepper { display: flex; align-items: center; border: 1.5px solid #E7DAC4; border-radius: 8px; overflow: hidden; }
+    .qty-btn { width: 38px; height: 48px; background: transparent; border: none; cursor: pointer; font-size: 1.1rem; color: #0A0B0C; }
+    .qty-btn:hover { background: #F4ECDD; }
+    .qty-val { width: 40px; text-align: center; font-size: 0.9rem; }
+    #add-to-cart {
+      flex: 1; height: 48px; background: var(--accent-med, #EFA527); color: #fff; border: none;
+      border-radius: 8px; font-size: 0.88rem; letter-spacing: .12em; text-transform: uppercase;
+      cursor: pointer; transition: background 0.2s; font-family: neuehaasdisplaylight, sans-serif;
+    }
+    #add-to-cart:hover { background: var(--accent-dark, #C9851A); }
+    #add-to-cart.added { background: #2A7F4F; }
+    #wishlist-btn {
+      width: 48px; height: 48px; border: 1.5px solid #E7DAC4; border-radius: 8px; background: transparent;
+      cursor: pointer; display: flex; align-items: center; justify-content: center;
+      font-size: 1.2rem; transition: border-color 0.2s;
+    }
+    #wishlist-btn:hover { border-color: #EFA527; }
+    #wishlist-btn.wishlisted { color: #CC2200; }
+
+    .promo-toggle { font-size: 0.8rem; color: var(--accent-med, #EFA527); cursor: pointer; margin-bottom: 16px; text-decoration: underline; }
+    .promo-row { display: none; align-items: center; gap: 8px; margin-bottom: 16px; }
+    .promo-row.open { display: flex; }
+    .promo-input { flex: 1; height: 40px; border: 1.5px solid #E7DAC4; border-radius: 6px; padding: 0 12px; font-size: 0.85rem; background: transparent; font-family: neuehaasdisplaylight, sans-serif; }
+    .promo-apply { height: 40px; padding: 0 18px; background: #0A0B0C; color: #fff; border: none; border-radius: 6px; font-size: 0.8rem; cursor: pointer; }
+
+    .specs-table { width: 100%; border-collapse: collapse; margin-bottom: 20px; }
+    .specs-table td { padding: 8px 0; font-size: 0.82rem; border-bottom: 1px solid #E7DAC4; }
+    .specs-table td:first-child { color: #6B6156; width: 40%; }
+    .shipping-strip { display: flex; gap: 24px; font-size: 0.78rem; color: #6B6156; padding-top: 16px; border-top: 1px solid #E7DAC4; }
+    .shipping-strip span::before { content: '✓ '; color: #2A7F4F; }
+
+    /* ── STORY ── */
+    .story-section { background: #F4ECDD; padding: 80px 48px; }
+    .story-inner { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 64px; }
+    @media (max-width: 800px) { .story-inner { grid-template-columns: 1fr; gap: 40px; } }
+    .story-kicker { font-size: 0.7rem; letter-spacing: .18em; text-transform: uppercase; color: #6B6156; margin-bottom: 12px; }
+    .story-heading { font-family: Ogg, serif; font-size: 1.9rem; color: #0A0B0C; margin-bottom: 20px; }
+    .story-body p { font-size: 0.92rem; line-height: 1.75; color: #3A3530; margin-bottom: 14px; }
+    .recipe-title { font-family: Ogg, serif; font-size: 1.2rem; margin-bottom: 16px; color: #0A0B0C; }
+    .recipe-list { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .recipe-list li { padding-left: 20px; position: relative; font-size: 0.88rem; color: #3A3530; line-height: 1.5; }
+    .recipe-list li::before { content: '●'; position: absolute; left: 0; color: var(--accent-med, #EFA527); font-size: 0.6rem; top: 4px; }
+
+    /* ── REVIEWS ── */
+    .reviews-section { padding: 80px 48px; background: #FBF6EE; }
+    .reviews-inner { max-width: 1200px; margin: 0 auto; }
+    .reviews-header { display: grid; grid-template-columns: auto 1fr; gap: 48px; align-items: start; margin-bottom: 48px; }
+    @media (max-width: 700px) { .reviews-header { grid-template-columns: 1fr; gap: 24px; } }
+    .avg-rating { text-align: center; }
+    .avg-num { font-family: Ogg, serif; font-size: 4rem; line-height: 1; }
+    .avg-stars { color: #EFA527; font-size: 1.2rem; letter-spacing: 3px; margin: 6px 0; }
+    .avg-count { font-size: 0.78rem; color: #6B6156; }
+    .rating-bars { display: flex; flex-direction: column; gap: 8px; }
+    .bar-row { display: flex; align-items: center; gap: 10px; font-size: 0.78rem; color: #6B6156; }
+    .bar-track { flex: 1; height: 6px; background: #E7DAC4; border-radius: 3px; }
+    .bar-fill { height: 6px; background: #EFA527; border-radius: 3px; }
+    .review-cards { display: grid; grid-template-columns: repeat(3,1fr); gap: 24px; }
+    @media (max-width: 700px) { .review-cards { grid-template-columns: 1fr; } }
+    .review-card { background: #FDFCFA; border: 1px solid #E7DAC4; border-radius: 12px; padding: 24px; }
+    .review-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
+    .reviewer-name { font-size: 0.88rem; font-weight: 600; }
+    .reviewer-stars { color: #EFA527; font-size: 0.85rem; }
+    .review-title { font-family: Ogg, serif; font-size: 1rem; margin-bottom: 8px; }
+    .review-body { font-size: 0.82rem; color: #6B6156; line-height: 1.6; }
+
+    /* ── RELATED ── */
+    .related-section { padding: 80px 48px; background: #F4ECDD; }
+    .related-inner { max-width: 1200px; margin: 0 auto; }
+    .section-heading { font-family: Ogg, serif; font-size: 1.8rem; margin-bottom: 36px; }
+    .related-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 20px; }
+    @media (max-width: 800px) { .related-grid { grid-template-columns: repeat(2,1fr); } }
+    .related-card {
+      background: #FDFCFA; border: 1px solid #E7DAC4; border-radius: 12px; overflow: hidden;
+      text-decoration: none; color: #0A0B0C; transition: transform 0.2s, box-shadow 0.2s;
+      display: block;
+    }
+    .related-card:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(0,0,0,0.08); }
+    .related-img { aspect-ratio: 1/1; background: #F4ECDD; overflow: hidden; }
+    .related-img img { width: 100%; height: 100%; object-fit: cover; }
+    .related-info { padding: 14px; }
+    .related-cat { font-size: 0.65rem; letter-spacing: .15em; text-transform: uppercase; color: #6B6156; margin-bottom: 4px; }
+    .related-name { font-family: Ogg, serif; font-size: 0.95rem; margin-bottom: 4px; }
+    .related-price { font-size: 0.82rem; color: #6B6156; }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="site-nav">
+  <a class="nav-logo" href="index.html">
+    <img src="assets/monogram.png" alt="MUSE">
+    <span>MUSE</span>
+  </a>
+  <div class="nav-links">
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="shop.html" class="active">Shop</a>
+    <a href="gallery.html">Gallery</a>
+    <a href="contact.html">Contact</a>
+  </div>
+  <div class="nav-right">
+    <a href="shop.html" id="nav-shop-pill">Shop</a>
+    <a href="cart.html" id="nav-cart-pill">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+      Cart (<span id="cart-count-pill">0</span>)
+    </a>
+    <a href="cart.html" class="cart-link">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+      <span class="cart-badge hidden" id="cart-badge">0</span>
+    </a>
+  </div>
+</nav>
+
+<!-- BREADCRUMB -->
+<div class="breadcrumb" id="breadcrumb">
+  <a href="shop.html">Shop</a>
+  <span>/</span>
+  <a href="#" id="bc-cat">—</a>
+  <span>/</span>
+  <span id="bc-name">—</span>
+</div>
+
+<!-- PRODUCT WRAP -->
+<div class="product-wrap">
+  <!-- Gallery -->
+  <div class="gallery-col">
+    <div class="gallery-main">
+      <div class="gallery-track" id="gallery-track">
+        <div class="gallery-slide"><img id="gimg-0" src="" alt=""></div>
+        <div class="gallery-slide"><img id="gimg-1" src="" alt=""></div>
+        <div class="gallery-slide"><img id="gimg-2" src="" alt=""></div>
+      </div>
+    </div>
+    <div class="gallery-thumbs" id="gallery-thumbs">
+      <div class="gallery-thumb active" data-idx="0"><img id="timg-0" src="" alt=""></div>
+      <div class="gallery-thumb" data-idx="1"><img id="timg-1" src="" alt=""></div>
+      <div class="gallery-thumb" data-idx="2"><img id="timg-2" src="" alt=""></div>
+    </div>
+  </div>
+
+  <!-- Buy panel -->
+  <div class="buy-col">
+    <div class="accent-bar" id="accent-bar" data-nav-trigger></div>
+    <p class="product-kicker" id="product-kicker"></p>
+    <h1 class="product-title" id="product-title"></h1>
+    <p class="product-tagline" id="product-tagline"></p>
+    <div class="stars-row">
+      <span class="stars" id="product-stars"></span>
+      <span class="rating-label" id="product-rating-label"></span>
+    </div>
+    <p class="product-price" id="product-price"></p>
+
+    <div id="variant-section" style="margin-bottom:24px;">
+      <p class="section-label">Option</p>
+      <div class="variants" id="variant-btns"></div>
+    </div>
+
+    <div class="purchase-opts" style="margin-bottom:6px;">
+      <button class="purchase-opt active" id="opt-onetime" onclick="setPurchaseOpt('onetime')">One-Time Purchase</button>
+      <button class="purchase-opt" id="opt-subscribe" onclick="setPurchaseOpt('subscribe')">Subscribe &amp; Save 10%</button>
+    </div>
+    <p class="subscribe-note" id="subscribe-note" style="visibility:hidden; margin-bottom:18px;">Ships monthly · Cancel anytime</p>
+
+    <div class="add-row">
+      <div class="qty-stepper">
+        <button class="qty-btn" onclick="changeQty(-1)">−</button>
+        <span class="qty-val" id="qty-val">1</span>
+        <button class="qty-btn" onclick="changeQty(1)">+</button>
+      </div>
+      <button id="add-to-cart" onclick="addToCart()">Add to Cart</button>
+      <button id="wishlist-btn" onclick="toggleWishlist()" title="Save to wishlist">♡</button>
+    </div>
+
+    <p class="promo-toggle" onclick="togglePromo()">Have a promo code?</p>
+    <div class="promo-row" id="promo-row">
+      <input class="promo-input" placeholder="Enter code" id="promo-input">
+      <button class="promo-apply" onclick="applyPromo()">Apply</button>
+    </div>
+
+    <p class="section-label" style="margin-bottom:8px;">Details</p>
+    <table class="specs-table" id="specs-table"></table>
+
+    <div class="shipping-strip">
+      <span>Free shipping over $75</span>
+      <span>Easy returns</span>
+      <span>Age verified at delivery</span>
+    </div>
+  </div>
+</div>
+
+<!-- STORY -->
+<section class="story-section">
+  <div class="story-inner">
+    <div class="story-body">
+      <p class="story-kicker" id="story-kicker"></p>
+      <h2 class="story-heading" id="story-heading"></h2>
+      <div id="story-text"></div>
+    </div>
+    <div>
+      <p class="recipe-title" id="recipe-title"></p>
+      <ul class="recipe-list" id="recipe-list"></ul>
+    </div>
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section class="reviews-section">
+  <div class="reviews-inner">
+    <div class="reviews-header">
+      <div class="avg-rating">
+        <div class="avg-num" id="avg-num">4.8</div>
+        <div class="avg-stars">★★★★★</div>
+        <div class="avg-count" id="avg-count">214 reviews</div>
+      </div>
+      <div class="rating-bars">
+        <div class="bar-row"><span>5★</span><div class="bar-track"><div class="bar-fill" style="width:82%"></div></div><span>82%</span></div>
+        <div class="bar-row"><span>4★</span><div class="bar-track"><div class="bar-fill" style="width:12%"></div></div><span>12%</span></div>
+        <div class="bar-row"><span>3★</span><div class="bar-track"><div class="bar-fill" style="width:4%"></div></div><span>4%</span></div>
+        <div class="bar-row"><span>2★</span><div class="bar-track"><div class="bar-fill" style="width:1%"></div></div><span>1%</span></div>
+        <div class="bar-row"><span>1★</span><div class="bar-track"><div class="bar-fill" style="width:1%"></div></div><span>1%</span></div>
+      </div>
+    </div>
+    <div class="review-cards">
+      <div class="review-card">
+        <div class="review-top"><span class="reviewer-name">Maya R.</span><span class="reviewer-stars">★★★★★</span></div>
+        <p class="review-title">My new house pour</p>
+        <p class="review-body">Beautiful balance — not too sweet, genuinely elegant.</p>
+      </div>
+      <div class="review-card">
+        <div class="review-top"><span class="reviewer-name">Daniel K.</span><span class="reviewer-stars">★★★★★</span></div>
+        <p class="review-title">Gifted it, became a regular</p>
+        <p class="review-body">Bought the trio as a gift and ended up ordering my own the same week.</p>
+      </div>
+      <div class="review-card">
+        <div class="review-top"><span class="reviewer-name">Priya S.</span><span class="reviewer-stars">★★★★☆</span></div>
+        <p class="review-title">Lovely, would buy again</p>
+        <p class="review-body">Gorgeous over a big ice cube. Knocked one star only because I wanted a larger format.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RELATED -->
+<section class="related-section">
+  <div class="related-inner">
+    <h2 class="section-heading">You Might Also Like</h2>
+    <div class="related-grid" id="related-grid"></div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<div id="site-footer"></div>
+
+<script src="assets/js/cart.js"></script>
+<script src="assets/js/footer.js"></script>
+<script>
+// ── PRODUCT DATA ──────────────────────────────────────────────────────────────
+var PRODUCTS = {
+  thalia: {
+    id: 'thalia', name: 'Thalia', kicker: 'The Noon Collection',
+    tagline: 'A cocktail for the golden hour.', category: 'noon',
+    price: 24, collection: 'noon',
+    accent: { dark: '#C9851A', med: '#EFA527', light: '#F2CE73' },
+    rating: 4.8, reviewCount: 214,
+    images: ['assets/images/thalia-1.jpg', 'assets/images/thalia-2.jpg', 'assets/images/thalia-3.jpg'],
+    variants: ['Single Can', '4-Pack', '12-Pack'],
+    specs: [['Volume','200 ml'],['ABV','6.5%'],['Calories','130 kcal'],['Format','Ready-to-Drink Can']],
+    storyKicker: 'The Noon Collection',
+    storyHeading: 'Crafted for the bright moment',
+    storyText: [
+      'Thalia was born from a single obsession: what does noon taste like? Not the harsh midday glare, but that fleeting instant when light turns everything golden.',
+      'We spent two years sourcing the perfect citrus notes — a blend of Valencia orange, yuzu, and white grapefruit — before landing on a balance that feels both refreshing and considered.',
+      'Each can is made with real fruit juice, lightly carbonated, with a gentle elderflower finish that lingers just long enough.'
+    ],
+    recipeTitle: 'Best Served As',
+    recipeNotes: ['Pour over a single large ice cube', 'Garnish with a thin orange wheel', 'Best at 38°F — chill in fridge, not freezer', 'Pairs well with soft cheeses and afternoon light'],
+  },
+  clio: {
+    id: 'clio', name: 'Clio', kicker: 'The Sunset Collection',
+    tagline: 'Bold as dusk, smooth as the turn.', category: 'sunset',
+    price: 24, collection: 'sunset',
+    accent: { dark: '#7E1707', med: '#CC2200', light: '#FF5247' },
+    rating: 4.7, reviewCount: 168,
+    images: ['assets/images/clio-1.jpg', 'assets/images/clio-2.jpg', 'assets/images/clio-3.jpg'],
+    variants: ['Single Can', '4-Pack', '12-Pack'],
+    specs: [['Volume','200 ml'],['ABV','7.2%'],['Calories','145 kcal'],['Format','Ready-to-Drink Can']],
+    storyKicker: 'The Sunset Collection',
+    storyHeading: 'The hour between day and night',
+    storyText: [
+      'Clio captures the tension of dusk — that charged moment when the day hasn\'t quite given way to evening and the sky burns at both ends.',
+      'Hibiscus and blood orange form the backbone, warmed by a touch of chili and finished with aged barrel notes that round out every sip.',
+      'Rich without being heavy. Complex without demanding concentration. Clio rewards you whether you\'re winding down or just getting started.'
+    ],
+    recipeTitle: 'Best Served As',
+    recipeNotes: ['Serve in a lowball glass, ice optional', 'Garnish with a blood orange slice or dried hibiscus', 'Pairs beautifully with charcuterie boards', 'The 7.2% ABV makes it a proper aperitif'],
+  },
+  ourania: {
+    id: 'ourania', name: 'Ourania', kicker: 'The Night Collection',
+    tagline: 'Midnight in a can.', category: 'night',
+    price: 24, collection: 'night',
+    accent: { dark: '#5B3CB0', med: '#8B5CF6', light: '#B6A1ED' },
+    rating: 4.9, reviewCount: 192,
+    images: ['assets/images/ourania-1.jpg', 'assets/images/ourania-2.jpg', 'assets/images/ourania-3.jpg'],
+    variants: ['Single Can', '4-Pack', '12-Pack'],
+    specs: [['Volume','200 ml'],['ABV','6.8%'],['Calories','138 kcal'],['Format','Ready-to-Drink Can']],
+    storyKicker: 'The Night Collection',
+    storyHeading: 'Made for the slow hours',
+    storyText: [
+      'Ourania is named for the muse of astronomy — and like stargazing, it rewards patience. Best sipped slowly, ideally somewhere dark and quiet.',
+      'Black currant, violet, and a whisper of lavender form a flavor that\'s genuinely nocturnal. There\'s depth here that reveals itself over time.',
+      'The finish is long and slightly smoky — a nod to the campfire conversations this cocktail was made for.'
+    ],
+    recipeTitle: 'Best Served As',
+    recipeNotes: ['Chill deeply — ideally 36°F', 'No ice needed; the can is the vessel', 'Garnish with a single violet or lavender sprig', 'Perfect for unwinding, reflecting, or celebrating quietly'],
+  },
+  trio: {
+    id: 'trio', name: 'The Muse Trio', kicker: 'Gift Sets',
+    tagline: 'All three, all day.', category: 'gift-sets',
+    price: 65, collection: 'gift-sets',
+    accent: { dark: '#C9851A', med: '#EFA527', light: '#F2CE73' },
+    rating: 4.9, reviewCount: 97,
+    images: ['assets/images/trio-1.jpg', 'assets/images/trio-2.jpg', 'assets/images/trio-3.jpg'],
+    variants: ['Trio (1 of each)'],
+    specs: [['Contents','3 × 200 ml cans'],['ABV','Varies (6.5–7.2%)'],['Format','Gift Box'],['Occasion','Perfect for gifting']],
+    storyKicker: 'Gift Sets',
+    storyHeading: 'The full arc of the day',
+    storyText: [
+      'Three muses. Three moments. One beautifully packaged introduction to the MUSE world.',
+      'The Trio includes one can each of Thalia (noon), Clio (sunset), and Ourania (night) — the ideal way to experience the full collection.',
+      'Arrives in our signature cream gift box with a handwritten card slot and a tasting guide insert.'
+    ],
+    recipeTitle: 'Tasting Notes',
+    recipeNotes: ['Start with Thalia — citrus and light', 'Move to Clio as evening approaches — hibiscus and depth', 'End with Ourania — dark berry and smoke', 'Serve each at its ideal temperature (see individual product pages)'],
+  },
+  giftbox: {
+    id: 'giftbox', name: 'MUSE Gift Box', kicker: 'Gift Sets',
+    tagline: 'The whole story, beautifully wrapped.', category: 'gift-sets',
+    price: 85, collection: 'gift-sets',
+    accent: { dark: '#C9851A', med: '#EFA527', light: '#F2CE73' },
+    rating: 4.8, reviewCount: 54,
+    images: ['assets/images/giftbox-1.jpg', 'assets/images/giftbox-2.jpg', 'assets/images/giftbox-3.jpg'],
+    variants: ['Standard (6 cans)'],
+    specs: [['Contents','6 cans + extras'],['Format','Luxury Gift Box'],['Includes','Tasting guide + coaster'],['Occasion','Birthdays, holidays, celebrations']],
+    storyKicker: 'Gift Sets',
+    storyHeading: 'A gift worth remembering',
+    storyText: [
+      'The MUSE Gift Box is our most complete offering — six cans (two of each variety), a illustrated tasting guide, a ceramic coaster, and a handwritten note card.',
+      'Wrapped in our signature gold-foil box with a ribbon closure, it arrives ready to give.',
+      'No assembly required. No explanation needed. Just give it, and let MUSE speak for itself.'
+    ],
+    recipeTitle: 'What\'s Inside',
+    recipeNotes: ['2 × Thalia (noon)', '2 × Clio (sunset)', '2 × Ourania (night)', 'MUSE ceramic coaster', 'Illustrated tasting guide', 'Handwritten note card'],
+  },
+  tasting: {
+    id: 'tasting', name: 'Tasting Flight', kicker: 'Gift Sets',
+    tagline: 'For the curious palate.', category: 'gift-sets',
+    price: 45, collection: 'gift-sets',
+    accent: { dark: '#C9851A', med: '#EFA527', light: '#F2CE73' },
+    rating: 4.8, reviewCount: 38,
+    images: ['assets/images/tasting-1.jpg', 'assets/images/tasting-2.jpg', 'assets/images/tasting-3.jpg'],
+    variants: ['Flight (3 cans + card)'],
+    specs: [['Contents','3 × 200 ml cans'],['Includes','Tasting card'],['Format','Slim Gift Box'],['Best for','First-time MUSE drinkers']],
+    storyKicker: 'Gift Sets',
+    storyHeading: 'The perfect introduction',
+    storyText: [
+      'Not sure where to start? The Tasting Flight is designed for exactly that moment — one of each, plus a guided tasting card to walk you through the flavors.',
+      'It\'s the lowest-commitment way to experience the full MUSE arc, and the most gifted item in our lineup for a reason.',
+    ],
+    recipeTitle: 'Tasting Card Includes',
+    recipeNotes: ['Tasting notes for each cocktail', 'Recommended serve temperature', 'Suggested pairings', 'Space to write your own notes'],
+  },
+  thaliaTote: {
+    id: 'thaliaTote', name: 'Thalia Tote', kicker: 'Merch',
+    tagline: 'Carry the noon.', category: 'merch',
+    price: 28, collection: 'merch',
+    accent: { dark: '#C9851A', med: '#EFA527', light: '#F2CE73' },
+    rating: 4.8, reviewCount: 38,
+    images: ['assets/images/thalia-tote-1.jpg', 'assets/images/thalia-tote-2.jpg', 'assets/images/thalia-tote-3.jpg'],
+    variants: ['One Size'],
+    specs: [['Material','Canvas'],['Dimensions','15" × 16"'],['Print','Screen printed'],['Care','Machine wash cold']],
+    storyKicker: 'MUSE Merch',
+    storyHeading: 'The Thalia Tote',
+    storyText: ['Heavy-duty canvas tote in cream with the Thalia sun-mark in gold. Built for farmers markets, beach days, and everything between.'],
+    recipeTitle: 'Details',
+    recipeNotes: ['100% cotton canvas', 'Reinforced handles', 'Interior pocket', 'Screen printed in-house'],
+  },
+  clioTote: {
+    id: 'clioTote', name: 'Clio Tote', kicker: 'Merch',
+    tagline: 'Carry the dusk.', category: 'merch',
+    price: 28, collection: 'merch',
+    accent: { dark: '#7E1707', med: '#CC2200', light: '#FF5247' },
+    rating: 4.8, reviewCount: 38,
+    images: ['assets/images/clio-tote-1.jpg', 'assets/images/clio-tote-2.jpg', 'assets/images/clio-tote-3.jpg'],
+    variants: ['One Size'],
+    specs: [['Material','Canvas'],['Dimensions','15" × 16"'],['Print','Screen printed'],['Care','Machine wash cold']],
+    storyKicker: 'MUSE Merch',
+    storyHeading: 'The Clio Tote',
+    storyText: ['Heavy-duty canvas tote in cream with the Clio ember-mark in red. A bag that knows what time it is.'],
+    recipeTitle: 'Details',
+    recipeNotes: ['100% cotton canvas', 'Reinforced handles', 'Interior pocket', 'Screen printed in-house'],
+  },
+  ouraniaTote: {
+    id: 'ouraniaTote', name: 'Ourania Tote', kicker: 'Merch',
+    tagline: 'Carry the night.', category: 'merch',
+    price: 28, collection: 'merch',
+    accent: { dark: '#5B3CB0', med: '#8B5CF6', light: '#B6A1ED' },
+    rating: 4.8, reviewCount: 38,
+    images: ['assets/images/ourania-tote-1.jpg', 'assets/images/ourania-tote-2.jpg', 'assets/images/ourania-tote-3.jpg'],
+    variants: ['One Size'],
+    specs: [['Material','Canvas'],['Dimensions','15" × 16"'],['Print','Screen printed'],['Care','Machine wash cold']],
+    storyKicker: 'MUSE Merch',
+    storyHeading: 'The Ourania Tote',
+    storyText: ['Heavy-duty canvas tote in cream with the Ourania moon-mark in violet. For nights that go long.'],
+    recipeTitle: 'Details',
+    recipeNotes: ['100% cotton canvas', 'Reinforced handles', 'Interior pocket', 'Screen printed in-house'],
+  },
+  houseTote: {
+    id: 'houseTote', name: 'House Tote', kicker: 'Merch',
+    tagline: 'The MUSE original.', category: 'merch',
+    price: 28, collection: 'merch',
+    accent: { dark: '#C9851A', med: '#EFA527', light: '#F2CE73' },
+    rating: 4.8, reviewCount: 38,
+    images: ['assets/images/house-tote-1.jpg', 'assets/images/house-tote-2.jpg', 'assets/images/house-tote-3.jpg'],
+    variants: ['One Size'],
+    specs: [['Material','Canvas'],['Dimensions','15" × 16"'],['Print','Screen printed'],['Care','Machine wash cold']],
+    storyKicker: 'MUSE Merch',
+    storyHeading: 'The House Tote',
+    storyText: ['The original MUSE tote — monogram in gold on cream. Simple, timeless, and somehow always the right bag.'],
+    recipeTitle: 'Details',
+    recipeNotes: ['100% cotton canvas', 'Reinforced handles', 'Interior pocket', 'Screen printed in-house'],
+  },
+  coasters: {
+    id: 'coasters', name: 'Ceramic Coaster Set', kicker: 'Accessories',
+    tagline: 'Protect the table. Elevate the moment.', category: 'accessories',
+    price: 32, collection: 'accessories',
+    accent: { dark: '#C9851A', med: '#EFA527', light: '#F2CE73' },
+    rating: 4.8, reviewCount: 38,
+    images: ['assets/images/coasters-1.jpg', 'assets/images/coasters-2.jpg', 'assets/images/coasters-3.jpg'],
+    variants: ['Set of 4'],
+    specs: [['Material','Ceramic'],['Diameter','3.75"'],['Base','Cork backing'],['Set','4 coasters']],
+    storyKicker: 'MUSE Accessories',
+    storyHeading: 'The finishing touch',
+    storyText: ['Four ceramic coasters, each printed with one of the MUSE muse illustrations — Thalia, Clio, Ourania, and the House monogram. Cork-backed, gloss-sealed, and ready to impress.'],
+    recipeTitle: 'What\'s Included',
+    recipeNotes: ['1 × Thalia coaster', '1 × Clio coaster', '1 × Ourania coaster', '1 × Monogram coaster', 'Cork backing on all four'],
+  },
+  glassware: {
+    id: 'glassware', name: 'MUSE Glassware', kicker: 'Accessories',
+    tagline: 'The right glass changes everything.', category: 'accessories',
+    price: 38, collection: 'accessories',
+    accent: { dark: '#C9851A', med: '#EFA527', light: '#F2CE73' },
+    rating: 4.8, reviewCount: 38,
+    images: ['assets/images/glassware-1.jpg', 'assets/images/glassware-2.jpg', 'assets/images/glassware-3.jpg'],
+    variants: ['Set of 2'],
+    specs: [['Material','Crystal glass'],['Volume','10 oz'],['Style','Lowball / rocks'],['Etching','MUSE monogram']],
+    storyKicker: 'MUSE Accessories',
+    storyHeading: 'Crystal, etched with intention',
+    storyText: ['Two lowball glasses, crystal-clear and heavy in the hand, with the MUSE monogram etched into the base. The same glass we use for every tasting.'],
+    recipeTitle: 'Details',
+    recipeNotes: ['Lead-free crystal', 'Dishwasher safe (top rack)', 'Monogram etched, not printed', 'Pairs perfectly with the MUSE Trio'],
+  },
+  bartools: {
+    id: 'bartools', name: 'Bar Tool Set', kicker: 'Accessories',
+    tagline: 'Every bar deserves good tools.', category: 'accessories',
+    price: 55, collection: 'accessories',
+    accent: { dark: '#C9851A', med: '#EFA527', light: '#F2CE73' },
+    rating: 4.8, reviewCount: 38,
+    images: ['assets/images/bartools-1.jpg', 'assets/images/bartools-2.jpg', 'assets/images/bartools-3.jpg'],
+    variants: ['5-Piece Set'],
+    specs: [['Pieces','5'],['Material','Brushed brass'],['Includes','Shaker, strainer, jigger, bar spoon, muddler'],['Care','Hand wash only']],
+    storyKicker: 'MUSE Accessories',
+    storyHeading: 'The well-equipped bar',
+    storyText: ['Five essential bar tools in brushed brass, designed to complement the MUSE aesthetic. Because even ready-to-drink deserves a proper setup.'],
+    recipeTitle: 'What\'s Included',
+    recipeNotes: ['Cocktail shaker (18 oz)', 'Hawthorne strainer', 'Double jigger (1 oz / 2 oz)', 'Bar spoon', 'Hardwood muddler'],
+  },
+  napkins: {
+    id: 'napkins', name: 'MUSE Napkins', kicker: 'Accessories',
+    tagline: 'Even napkins can have a mood.', category: 'accessories',
+    price: 24, collection: 'accessories',
+    accent: { dark: '#C9851A', med: '#EFA527', light: '#F2CE73' },
+    rating: 4.8, reviewCount: 38,
+    images: ['assets/images/napkins-1.jpg', 'assets/images/napkins-2.jpg', 'assets/images/napkins-3.jpg'],
+    variants: ['Set of 6'],
+    specs: [['Material','100% linen'],['Count','6 napkins'],['Print','Block printed'],['Care','Machine wash, line dry']],
+    storyKicker: 'MUSE Accessories',
+    storyHeading: 'The table deserves this',
+    storyText: ['Six linen cocktail napkins, block-printed with the three MUSE muse illustrations (two of each). The kind of detail that makes a gathering feel considered.'],
+    recipeTitle: 'Details',
+    recipeNotes: ['100% stonewashed linen', 'Block printed, not stamped', 'Softens with each wash', 'Packaged in a cotton drawstring bag'],
+  },
+  pins: {
+    id: 'pins', name: 'Enamel Pin Set', kicker: 'Collectibles',
+    tagline: 'Small art for your lapel.', category: 'merch',
+    price: 14, collection: 'merch',
+    accent: { dark: '#C9851A', med: '#EFA527', light: '#F2CE73' },
+    rating: 4.8, reviewCount: 38,
+    images: ['assets/images/pins-1.jpg', 'assets/images/pins-2.jpg', 'assets/images/pins-3.jpg'],
+    variants: ['Set of 3'],
+    specs: [['Pieces','3 pins'],['Material','Hard enamel'],['Size','1.25" each'],['Clasp','Butterfly clutch']],
+    storyKicker: 'MUSE Collectibles',
+    storyHeading: 'Wearable muses',
+    storyText: ['Three hard enamel pins — Thalia, Clio, and Ourania — each rendered in the collection\'s signature colors. Small, precise, and entirely unnecessary in the best way.'],
+    recipeTitle: 'Details',
+    recipeNotes: ['Hard enamel with polished metal', 'Gold or silver plating (varies by design)', 'Butterfly clutch backing', 'Arrives on a branded card'],
+  },
+  cards: {
+    id: 'cards', name: 'MUSE Note Cards', kicker: 'Collectibles',
+    tagline: 'A note worth keeping.', category: 'merch',
+    price: 18, collection: 'merch',
+    accent: { dark: '#C9851A', med: '#EFA527', light: '#F2CE73' },
+    rating: 4.8, reviewCount: 38,
+    images: ['assets/images/cards-1.jpg', 'assets/images/cards-2.jpg', 'assets/images/cards-3.jpg'],
+    variants: ['Set of 8'],
+    specs: [['Count','8 cards + envelopes'],['Paper','120 lb card stock'],['Print','Foil + letterpress'],['Blank inside','Yes']],
+    storyKicker: 'MUSE Collectibles',
+    storyHeading: 'Because some things deserve a note',
+    storyText: ['Eight blank note cards — two each of four MUSE muse illustrations — printed on heavyweight card stock with gold foil accents. Comes with envelopes.'],
+    recipeTitle: 'Details',
+    recipeNotes: ['120 lb cream card stock', 'Gold foil illustration border', 'A2 size with matching envelopes', 'Packaged in a kraft sleeve'],
+  },
+};
+
+// ── STATE ─────────────────────────────────────────────────────────────────────
+var currentProduct = null;
+var currentVariantIdx = 0;
+var currentQty = 1;
+var purchaseMode = 'onetime';
+var galleryIdx = 0;
+var promoOpen = false;
+
+// ── INIT ──────────────────────────────────────────────────────────────────────
+(function init() {
+  var params = new URLSearchParams(window.location.search);
+  var handle = params.get('handle') || 'thalia';
+  currentProduct = PRODUCTS[handle] || PRODUCTS['thalia'];
+
+  // Apply CSS vars for accent
+  var r = document.documentElement;
+  r.style.setProperty('--accent-dark', currentProduct.accent.dark);
+  r.style.setProperty('--accent-med', currentProduct.accent.med);
+  r.style.setProperty('--accent-light', currentProduct.accent.light);
+
+  document.title = 'MUSE — ' + currentProduct.name;
+
+  renderBreadcrumb();
+  renderGallery();
+  renderBuyPanel();
+  renderStory();
+  renderRelated();
+  updateCartBadge();
+  checkWishlist();
+
+  // Nav scroll
+  var accentBar = document.getElementById('accent-bar');
+  var nav = document.getElementById('site-nav');
+  if (accentBar && nav) {
+    function updateNav() {
+      var rect = accentBar.getBoundingClientRect();
+      if (rect.top <= 86) {
+        nav.classList.add('nav--scrolled');
+      } else {
+        nav.classList.remove('nav--scrolled');
+      }
+    }
+    window.addEventListener('scroll', updateNav, { passive: true });
+    updateNav();
+  }
+
+  window.addEventListener('muse-cart-change', updateCartBadge);
+})();
+
+function renderBreadcrumb() {
+  var p = currentProduct;
+  var catLabels = { noon: 'Noon Collection', sunset: 'Sunset Collection', night: 'Night Collection', 'gift-sets': 'Gift Sets', accessories: 'Accessories', merch: 'Merch' };
+  document.getElementById('bc-cat').textContent = catLabels[p.category] || p.category;
+  document.getElementById('bc-cat').href = 'shop.html?cat=' + p.category;
+  document.getElementById('bc-name').textContent = p.name;
+}
+
+function renderGallery() {
+  var p = currentProduct;
+  var fallback = 'assets/images/placeholder.jpg';
+  for (var i = 0; i < 3; i++) {
+    var src = (p.images && p.images[i]) ? p.images[i] : fallback;
+    document.getElementById('gimg-' + i).src = src;
+    document.getElementById('gimg-' + i).alt = p.name + ' image ' + (i+1);
+    document.getElementById('timg-' + i).src = src;
+    document.getElementById('timg-' + i).alt = '';
+  }
+  document.querySelectorAll('.gallery-thumb').forEach(function(t) {
+    t.addEventListener('click', function() { goGallery(parseInt(t.dataset.idx)); });
+  });
+}
+
+function goGallery(idx) {
+  galleryIdx = idx;
+  document.getElementById('gallery-track').style.transform = 'translateX(-' + idx * 100 + '%)';
+  document.querySelectorAll('.gallery-thumb').forEach(function(t) {
+    t.classList.toggle('active', parseInt(t.dataset.idx) === idx);
+  });
+}
+
+function renderBuyPanel() {
+  var p = currentProduct;
+  document.getElementById('product-kicker').textContent = p.kicker;
+  document.getElementById('product-title').textContent = p.name;
+  document.getElementById('product-tagline').textContent = p.tagline;
+
+  var stars = Math.round(p.rating);
+  document.getElementById('product-stars').textContent = '★'.repeat(stars) + '☆'.repeat(5 - stars);
+  document.getElementById('product-rating-label').textContent = p.rating.toFixed(1) + ' (' + p.reviewCount + ' reviews)';
+  document.getElementById('avg-num').textContent = p.rating.toFixed(1);
+  document.getElementById('avg-count').textContent = p.reviewCount + ' reviews';
+
+  document.getElementById('product-price').textContent = MuseCart.format(p.price);
+
+  // Variants
+  var vContainer = document.getElementById('variant-btns');
+  vContainer.innerHTML = '';
+  if (p.variants && p.variants.length > 0) {
+    p.variants.forEach(function(v, i) {
+      var btn = document.createElement('button');
+      btn.className = 'variant-btn' + (i === 0 ? ' active' : '');
+      btn.textContent = v;
+      btn.onclick = function() { selectVariant(i); };
+      vContainer.appendChild(btn);
+    });
+    document.getElementById('variant-section').style.display = '';
+  } else {
+    document.getElementById('variant-section').style.display = 'none';
+  }
+
+  // Specs
+  var table = document.getElementById('specs-table');
+  table.innerHTML = '';
+  (p.specs || []).forEach(function(row) {
+    var tr = document.createElement('tr');
+    tr.innerHTML = '<td>' + row[0] + '</td><td>' + row[1] + '</td>';
+    table.appendChild(tr);
+  });
+}
+
+function selectVariant(idx) {
+  currentVariantIdx = idx;
+  document.querySelectorAll('.variant-btn').forEach(function(b, i) {
+    b.classList.toggle('active', i === idx);
+  });
+}
+
+function changeQty(delta) {
+  currentQty = Math.max(1, Math.min(99, currentQty + delta));
+  document.getElementById('qty-val').textContent = currentQty;
+}
+
+function setPurchaseOpt(mode) {
+  purchaseMode = mode;
+  document.getElementById('opt-onetime').classList.toggle('active', mode === 'onetime');
+  document.getElementById('opt-subscribe').classList.toggle('active', mode === 'subscribe');
+  document.getElementById('subscribe-note').style.visibility = mode === 'subscribe' ? 'visible' : 'hidden';
+}
+
+function addToCart() {
+  var p = currentProduct;
+  var variant = p.variants ? (p.variants[currentVariantIdx] || '') : '';
+  MuseCart.add({ id: p.id, name: p.name, variant: variant, img: p.images ? p.images[0] : '', accent: p.accent.med }, currentQty);
+  var btn = document.getElementById('add-to-cart');
+  btn.textContent = 'Added to Cart ✓';
+  btn.classList.add('added');
+  setTimeout(function() {
+    btn.textContent = 'Add to Cart';
+    btn.classList.remove('added');
+  }, 2000);
+}
+
+function toggleWishlist() {
+  var key = 'muse-wishlist-' + currentProduct.id;
+  var btn = document.getElementById('wishlist-btn');
+  var wishlisted = localStorage.getItem(key) === '1';
+  if (wishlisted) {
+    localStorage.removeItem(key);
+    btn.textContent = '♡';
+    btn.classList.remove('wishlisted');
+  } else {
+    localStorage.setItem(key, '1');
+    btn.textContent = '♥';
+    btn.classList.add('wishlisted');
+  }
+}
+
+function checkWishlist() {
+  var key = 'muse-wishlist-' + currentProduct.id;
+  if (localStorage.getItem(key) === '1') {
+    var btn = document.getElementById('wishlist-btn');
+    btn.textContent = '♥';
+    btn.classList.add('wishlisted');
+  }
+}
+
+function togglePromo() {
+  promoOpen = !promoOpen;
+  document.getElementById('promo-row').classList.toggle('open', promoOpen);
+}
+
+function applyPromo() {
+  var code = document.getElementById('promo-input').value.trim().toUpperCase();
+  alert(code ? 'Code "' + code + '" — checkout will apply any valid discounts.' : 'Please enter a promo code.');
+}
+
+function renderStory() {
+  var p = currentProduct;
+  document.getElementById('story-kicker').textContent = p.storyKicker || '';
+  document.getElementById('story-heading').textContent = p.storyHeading || '';
+  var textEl = document.getElementById('story-text');
+  textEl.innerHTML = '';
+  (p.storyText || []).forEach(function(para) {
+    var el = document.createElement('p');
+    el.textContent = para;
+    textEl.appendChild(el);
+  });
+  document.getElementById('recipe-title').textContent = p.recipeTitle || '';
+  var listEl = document.getElementById('recipe-list');
+  listEl.innerHTML = '';
+  (p.recipeNotes || []).forEach(function(note) {
+    var li = document.createElement('li');
+    li.textContent = note;
+    listEl.appendChild(li);
+  });
+}
+
+function renderRelated() {
+  var p = currentProduct;
+  var others = Object.values(PRODUCTS).filter(function(q) { return q.id !== p.id; });
+  // Same category first
+  var sameCol = others.filter(function(q) { return q.collection === p.collection; });
+  var diff = others.filter(function(q) { return q.collection !== p.collection; });
+  var picks = sameCol.concat(diff).slice(0, 4);
+
+  var grid = document.getElementById('related-grid');
+  grid.innerHTML = '';
+  picks.forEach(function(q) {
+    var card = document.createElement('a');
+    card.href = 'product-detail.html?handle=' + q.id;
+    card.className = 'related-card';
+    var img = (q.images && q.images[0]) ? q.images[0] : 'assets/images/placeholder.jpg';
+    card.innerHTML = '<div class="related-img"><img src="' + img + '" alt="' + q.name + '" loading="lazy"></div>' +
+      '<div class="related-info">' +
+        '<p class="related-cat">' + q.kicker + '</p>' +
+        '<p class="related-name">' + q.name + '</p>' +
+        '<p class="related-price">' + MuseCart.format(q.price) + '</p>' +
+      '</div>';
+    grid.appendChild(card);
+  });
+}
+
+function updateCartBadge() {
+  var count = MuseCart.count();
+  var badge = document.getElementById('cart-badge');
+  var pill = document.getElementById('cart-count-pill');
+  if (badge) { badge.textContent = count; badge.classList.toggle('hidden', count === 0); }
+  if (pill) { pill.textContent = count; }
+}
+</script>
+</body>
+</html>
