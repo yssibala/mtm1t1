@@ -13,10 +13,14 @@
     html { scroll-behavior: smooth; }
     body { background: var(--cream); color: var(--ink); font-family: neuehaasdisplaylight, neue-haas-grotesk-text, sans-serif; font-weight: 300; }
     #site-nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; transition: background .35s, backdrop-filter .35s, border-color .35s; }
-    #nav-state1 { display: flex; }
-    #nav-state2 { display: none; }
-    .nav--scrolled #nav-state1 { display: none; }
-    .nav--scrolled #nav-state2 { display: flex; }
+    #nav-state1{display:flex;}
+    #nav-state2{display:none;}
+    #site-nav.nav--scrolled #nav-state1{display:none!important;}
+    #site-nav.nav--scrolled #nav-state2{display:flex!important;}
+    .muse-dropdown-menu{display:none;}
+    .muse-dropdown:hover .muse-dropdown-menu{display:block;}
+    .muse-sub{display:block;padding:11px 13px;font-size:11px;letter-spacing:.14em;font-weight:500;color:#0A0B0C;text-decoration:none;transition:background .25s ease;}
+    .muse-sub:hover{background:#F4ECDD;color:#C9851A;}
     .nav--scrolled { background: var(--nav-scrolled-bg); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); border-bottom: 1px solid var(--border); }
     .muse-link { transition: color .3s; }
     .muse-link:hover { color: var(--amber); }
@@ -45,7 +49,7 @@
 <!-- ══ NAV ══ -->
 <nav id="site-nav">
   <!-- State 1 -->
-  <div id="nav-state1" style="width:100%;align-items:center;justify-content:space-between;padding:20px 40px;background:linear-gradient(180deg,rgba(252,249,243,.92) 0%,rgba(252,249,243,.45) 64%,rgba(252,249,243,0) 100%);">
+  <div id="nav-state1" style="display:flex;width:100%;align-items:center;justify-content:space-between;padding:20px 40px;background:linear-gradient(180deg,rgba(252,249,243,.92) 0%,rgba(252,249,243,.45) 64%,rgba(252,249,243,0) 100%);">
     <div style="display:flex;align-items:center;gap:32px;flex:1;padding-left:80px;">
       <div class="muse-dd" style="display:flex;align-items:center;gap:5px;font-size:12px;letter-spacing:.18em;font-weight:500;color:var(--ink);cursor:pointer;">
         ABOUT<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="m6 9 6 6 6-6"/></svg>
@@ -78,7 +82,7 @@
     </div>
   </div>
   <!-- State 2 -->
-  <div id="nav-state2" style="width:100%;align-items:center;justify-content:space-between;padding:12px 36px;">
+  <div id="nav-state2" style="display:none;width:100%;align-items:center;justify-content:space-between;padding:12px 36px;">
     <a href="index.html"><img src="assets/monogram.png" alt="MUSE" style="height:34px;width:auto;"></a>
     <div style="display:flex;align-items:center;gap:28px;">
       <div class="muse-dd" style="display:flex;align-items:center;gap:4px;font-size:11px;letter-spacing:.2em;font-weight:500;color:var(--ink);cursor:pointer;">

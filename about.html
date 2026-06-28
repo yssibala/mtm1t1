@@ -6,6 +6,16 @@
   <title>About — MUSE RTD Cocktails</title>
   <link rel="preconnect" href="https://p.typekit.net">
   <link rel="stylesheet" href="assets/fonts/font.css">
+<style>
+  #nav-state1{display:flex;}
+  #nav-state2{display:none;}
+  #site-nav.nav--scrolled #nav-state1{display:none!important;}
+  #site-nav.nav--scrolled #nav-state2{display:flex!important;}
+  .muse-dropdown-menu{display:none;}
+  .muse-dropdown:hover .muse-dropdown-menu{display:block;}
+  .muse-sub{display:block;padding:11px 13px;font-size:11px;letter-spacing:.14em;font-weight:500;color:#0A0B0C;text-decoration:none;transition:background .25s ease;}
+  .muse-sub:hover{background:#F4ECDD;color:#C9851A;}
+</style>
 </head>
 <body>
 
@@ -13,7 +23,7 @@
   <nav id="site-nav" style="position:fixed;top:0;left:0;right:0;z-index:50;">
 
     <!-- STATE 1 · transparent gradient over hero, monogram centered -->
-    <div id="nav-state1" style="align-items:center;justify-content:space-between;padding:20px 48px;background:linear-gradient(180deg,rgba(252,249,243,.92) 0%,rgba(252,249,243,.45) 64%,rgba(252,249,243,0) 100%);">
+    <div id="nav-state1" style="display:flex;align-items:center;justify-content:space-between;padding:20px 48px;background:linear-gradient(180deg,rgba(252,249,243,.92) 0%,rgba(252,249,243,.45) 64%,rgba(252,249,243,0) 100%);">
       <!-- Left links -->
       <div style="display:flex;flex:1;align-items:center;justify-content:space-evenly;padding-left:104px;">
         <!-- ABOUT (active) -->
@@ -46,7 +56,7 @@
     </div>
 
     <!-- STATE 2 · frosted cream, logo left, SHOP pill right -->
-    <div id="nav-state2" style="position:relative;align-items:center;justify-content:space-between;padding:11px 48px;background:rgba(253,252,250,.8);backdrop-filter:blur(12px) saturate(1.1);-webkit-backdrop-filter:blur(12px) saturate(1.1);border-bottom:1px solid rgba(231,218,196,.7);">
+    <div id="nav-state2" style="display:none;position:relative;align-items:center;justify-content:space-between;padding:11px 48px;background:rgba(253,252,250,.8);backdrop-filter:blur(12px) saturate(1.1);-webkit-backdrop-filter:blur(12px) saturate(1.1);border-bottom:1px solid rgba(231,218,196,.7);">
       <a href="index.html" aria-label="MUSE home" style="display:inline-flex;align-items:center;flex:none;"><img src="assets/monogram-gold.png" alt="MUSE" style="height:38px;width:auto;"></a>
       <div style="position:absolute;left:50%;transform:translateX(-50%);display:flex;gap:72px;align-items:center;">
         <!-- ABOUT (active) -->

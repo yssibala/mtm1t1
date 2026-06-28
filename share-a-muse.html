@@ -9,6 +9,16 @@
   <link rel="preconnect" href="https://use.typekit.net" crossorigin>
   <link rel="icon" href="images/fevicon.png" type="image/png">
   <link rel="stylesheet" href="assets/fonts/font.css">
+<style>
+  #nav-state1{display:flex;}
+  #nav-state2{display:none;}
+  #site-nav.nav--scrolled #nav-state1{display:none!important;}
+  #site-nav.nav--scrolled #nav-state2{display:flex!important;}
+  .muse-dropdown-menu{display:none;}
+  .muse-dropdown:hover .muse-dropdown-menu{display:block;}
+  .muse-sub{display:block;padding:11px 13px;font-size:11px;letter-spacing:.14em;font-weight:500;color:#0A0B0C;text-decoration:none;transition:background .25s ease;}
+  .muse-sub:hover{background:#F4ECDD;color:#C9851A;}
+</style>
 </head>
 <body>
 
@@ -16,7 +26,7 @@
 <div id="site-nav" style="position:fixed; top:0; left:0; right:0; z-index:50;">
 
   <!-- STATE 1 -->
-  <div id="nav-state1" style="align-items:center; justify-content:space-between; padding:20px 48px; background:linear-gradient(180deg,rgba(252,249,243,.92) 0%,rgba(252,249,243,.45) 64%,rgba(252,249,243,0) 100%);">
+  <div id="nav-state1" style="display:flex;align-items:center; justify-content:space-between; padding:20px 48px; background:linear-gradient(180deg,rgba(252,249,243,.92) 0%,rgba(252,249,243,.45) 64%,rgba(252,249,243,0) 100%);">
     <div class="nav-desktop" style="display:flex; flex:1; align-items:center; justify-content:space-evenly; padding-left:104px;">
       <div class="muse-dropdown" style="position:relative; align-self:center; padding-bottom:16px; margin-bottom:-16px; display:flex; align-items:center;">
         <a href="about.html" class="muse-link" style="font-size:12px; letter-spacing:.18em; font-weight:500; color:#0A0B0C; text-decoration:none; display:inline-flex; align-items:center; gap:5px;">ABOUT<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" style="opacity:.5; flex:none;"><path d="m6 9 6 6 6-6"/></svg></a>
@@ -54,7 +64,7 @@
   </div><!-- /STATE 1 -->
 
   <!-- STATE 2 -->
-  <div id="nav-state2" style="position:relative; align-items:center; justify-content:space-between; padding:11px 48px; background:rgba(253,252,250,.8); backdrop-filter:blur(12px) saturate(1.1); -webkit-backdrop-filter:blur(12px) saturate(1.1); border-bottom:1px solid rgba(231,218,196,.7);">
+  <div id="nav-state2" style="display:none;position:relative; align-items:center; justify-content:space-between; padding:11px 48px; background:rgba(253,252,250,.8); backdrop-filter:blur(12px) saturate(1.1); -webkit-backdrop-filter:blur(12px) saturate(1.1); border-bottom:1px solid rgba(231,218,196,.7);">
     <a href="index.html" aria-label="MUSE home" style="display:inline-flex; align-items:center; flex:none;"><img src="assets/monogram-gold.png" alt="MUSE" style="height:38px; width:auto;"></a>
     <div class="nav-desktop" style="position:absolute; left:50%; transform:translateX(-50%); display:flex; gap:64px; align-items:center;">
       <div class="muse-dropdown" style="position:relative; align-self:center; padding-bottom:16px; margin-bottom:-16px; display:flex; align-items:center;">
