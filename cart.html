@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Cart — MUSE RTD Cocktails</title>
+  <link rel="preconnect" href="https://use.typekit.net" crossorigin>
+  <link rel="stylesheet" href="assets/fonts/font.css">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root { --cream:#FBF6EE; --ink:#0A0B0C; --gold:#EFA527; --amber:#C9851A; --border:#E7DAC4; --card:#FDFCFA; }
+    html { scroll-behavior: smooth; }
+    body { background: var(--cream); color: var(--ink); font-family: neuehaasdisplaylight, neue-haas-grotesk-text, sans-serif; font-weight: 300; min-height: 100vh; display: flex; flex-direction: column; padding-top: 88px; }
+    .muse-link { transition: color .3s; text-decoration: none; }
+    .muse-link:hover { color: var(--amber); }
+    .muse-dd { position: relative; }
+    .muse-drop { display: none; position: absolute; top: 100%; left: 0; min-width: 210px; background: var(--card); border: 1px solid var(--border); box-shadow: 0 18px 44px -20px rgba(10,11,12,.5); padding: 7px; z-index: 200; }
+    .muse-dd:hover .muse-drop { display: block; }
+    .muse-sub { display: block; padding: 11px 13px; font-size: 11px; letter-spacing: .14em; font-weight: 500; color: var(--ink); text-decoration: none; transition: background .2s, color .2s; }
+    .muse-sub:hover { background: #F4ECDD; color: var(--amber); }
+    .muse-step { cursor: pointer; transition: background .2s, color .2s; padding: 8px 14px; font-size: 15px; color: var(--ink); background: none; border: none; font-family: inherit; }
+    .muse-step:hover { background: var(--ink); color: #fff; }
+    .muse-x { cursor: pointer; transition: color .25s; font-size: 10px; letter-spacing: .16em; font-weight: 600; color: #9A8F7C; background: none; border: none; font-family: inherit; }
+    .muse-x:hover { color: #CC2200; }
+    main { flex: 1; width: 100%; max-width: 1180px; margin: 0 auto; padding: clamp(40px,5vw,64px) clamp(24px,4vw,48px) 90px; }
+  </style>
+</head>
+<body>
+
+<!-- ══ NAV (solid cream, single state) ══ -->
+<nav style="position:fixed;top:0;left:0;right:0;z-index:100;background:var(--cream);border-bottom:1px solid rgba(231,218,196,.55);">
+  <div style="display:flex;align-items:center;justify-content:space-between;padding:18px 40px;">
+    <div style="display:flex;align-items:center;gap:32px;flex:1;padding-left:80px;">
+      <div class="muse-dd" style="display:flex;align-items:center;gap:5px;font-size:12px;letter-spacing:.18em;font-weight:500;color:var(--ink);cursor:pointer;">
+        ABOUT<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="m6 9 6 6 6-6"/></svg>
+        <div class="muse-drop">
+          <a href="about.html" class="muse-sub">ABOUT US</a>
+          <a href="flagship-detail.html" class="muse-sub">THE FLAGSHIP MUSES</a>
+          <span class="muse-sub" style="color:#9CA3AF;cursor:default;">LORE — coming soon</span>
+        </div>
+      </div>
+      <a href="gallery.html" class="muse-link" style="font-size:12px;letter-spacing:.18em;font-weight:500;color:var(--ink);">GALLERY</a>
+      <div class="muse-dd" style="display:flex;align-items:center;gap:5px;font-size:12px;letter-spacing:.18em;font-weight:500;color:var(--ink);cursor:pointer;">
+        CONTACT<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="m6 9 6 6 6-6"/></svg>
+        <div class="muse-drop">
+          <a href="contact.html" class="muse-sub">CONTACT US</a>
+          <a href="share-a-muse.html" class="muse-sub">SHARE YOUR MUSE</a>
+        </div>
+      </div>
+    </div>
+    <a href="index.html" style="position:absolute;left:50%;transform:translateX(-50%);"><img src="assets/monogram.png" alt="MUSE" style="height:44px;width:auto;"></a>
+    <div style="display:flex;align-items:center;gap:32px;flex:1;justify-content:flex-end;padding-right:80px;">
+      <a href="login.html" class="muse-link" style="font-size:12px;letter-spacing:.18em;font-weight:500;color:var(--ink);">LOG IN</a>
+      <a href="products.html" class="muse-link" style="font-size:12px;letter-spacing:.18em;font-weight:500;color:var(--ink);">PRODUCTS</a>
+      <a href="shop.html" class="muse-link" style="font-size:12px;letter-spacing:.18em;font-weight:500;color:var(--ink);">SHOP</a>
+    </div>
+    <div style="position:absolute;right:24px;top:50%;transform:translateY(-50%);">
+      <a href="cart.html" style="position:relative;display:inline-flex;align-items:center;">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="var(--ink)" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z" fill="var(--gold)"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+        <span id="cart-badge" style="position:absolute;top:-5px;right:-7px;min-width:15px;height:15px;padding:0 3px;border-radius:9px;background:#FF3B30;color:#fff;font-size:9px;font-weight:700;display:none;align-items:center;justify-content:center;line-height:1;">0</span>
+      </a>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <div style="margin-bottom:clamp(28px,3.4vw,42px);">
+    <div id="cart-count-lbl" style="font-size:11px;letter-spacing:.3em;font-weight:600;color:var(--amber);margin-bottom:12px;"></div>
+    <h1 style="font-family:'Ogg',serif;font-weight:400;font-size:clamp(38px,5.5vw,72px);line-height:1;color:var(--ink);">The Cart</h1>
+  </div>
+
+  <!-- empty state -->
+  <div id="cart-empty" style="display:none;border:1px solid var(--border);background:var(--card);padding:clamp(48px,7vw,90px) 24px;text-align:center;">
+    <img src="assets/monogram.png" alt="" style="height:70px;width:auto;margin:0 auto 22px;display:block;opacity:.9;">
+    <div style="font-family:'Ogg',serif;font-weight:400;font-size:clamp(26px,3.4vw,38px);margin-bottom:10px;">Your cart is empty</div>
+    <p style="font-size:14px;font-weight:300;color:#7A7468;margin:0 0 26px;">Nothing to celebrate with yet — let's fix that.</p>
+    <a href="shop.html" style="display:inline-block;background:var(--gold);color:var(--ink);border-radius:30px;padding:14px 34px;font-size:12px;letter-spacing:.18em;font-weight:600;text-decoration:none;">BROWSE THE SHOP</a>
+  </div>
+
+  <!-- filled state -->
+  <div id="cart-filled" style="display:none;flex;gap:clamp(28px,4vw,56px);align-items:flex-start;flex-wrap:wrap;">
+    <!-- line items -->
+    <div style="flex:1 1 520px;min-width:300px;">
+      <div style="display:flex;justify-content:space-between;padding:0 0 12px;border-bottom:1px solid var(--ink);font-size:10px;letter-spacing:.2em;font-weight:600;color:#9A8F7C;">
+        <span>ITEM</span><span>TOTAL</span>
+      </div>
+      <div id="line-items"></div>
+      <a href="shop.html" class="muse-link" style="display:inline-flex;align-items:center;gap:8px;margin-top:24px;font-size:11px;letter-spacing:.16em;font-weight:600;color:var(--ink);">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>CONTINUE SHOPPING
+      </a>
+    </div>
+    <!-- summary -->
+    <div style="flex:0 1 360px;min-width:280px;position:sticky;top:24px;">
+      <div style="border:1px solid var(--border);background:var(--card);padding:28px 26px;">
+        <div style="font-family:'Ogg',serif;font-weight:500;font-size:24px;margin:0 0 20px;">Order Summary</div>
+        <div style="display:flex;justify-content:space-between;padding:9px 0;font-size:13px;color:#4C4C4B;"><span>Subtotal</span><span id="summary-sub" style="color:var(--ink);"></span></div>
+        <div style="display:flex;justify-content:space-between;padding:9px 0;font-size:13px;color:#4C4C4B;"><span>Estimated shipping</span><span id="summary-ship" style="color:var(--ink);"></span></div>
+        <div style="display:flex;justify-content:space-between;padding:9px 0;font-size:13px;color:#4C4C4B;border-bottom:1px solid #EFE7D7;"><span>Estimated tax</span><span id="summary-tax" style="color:var(--ink);"></span></div>
+        <div style="display:flex;justify-content:space-between;align-items:baseline;padding:16px 0 6px;">
+          <span style="font-size:11px;letter-spacing:.16em;font-weight:600;">TOTAL</span>
+          <span id="summary-total" style="font-weight:700;font-size:24px;"></span>
+        </div>
+        <div style="font-size:11px;color:#9A8F7C;margin:4px 0 18px;">Free shipping on orders over $75. Final tax &amp; shipping calculated at checkout.</div>
+        <a href="checkout.html" style="display:block;text-align:center;background:var(--gold);color:var(--ink);border-radius:30px;padding:15px;font-size:12px;letter-spacing:.18em;font-weight:600;text-decoration:none;transition:background .2s;" onmouseover="this.style.background='#C9851A'" onmouseout="this.style.background='var(--gold)'">CHECKOUT</a>
+        <div style="display:flex;align-items:center;justify-content:center;gap:8px;margin-top:16px;font-size:10px;letter-spacing:.12em;color:#9A8F7C;">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>SECURE CHECKOUT · 21+ AT DELIVERY
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<div id="site-footer"></div>
+
+<script src="assets/js/cart.js"></script>
+<script src="assets/js/footer.js"></script>
+<script>
+(function () {
+  function fmt(n) { return window.MuseCart ? window.MuseCart.format(n) : '$' + n; }
+
+  function render() {
+    var MC = window.MuseCart;
+    if (!MC) return;
+    var items = MC.items();
+    var cnt = MC.count();
+    var sub  = MC.subtotal();
+    var ship = sub > 0 ? (sub >= 75 ? 0 : 9) : 0;
+    var tax  = Math.round(sub * 0.085 * 100) / 100;
+    var total = Math.round((sub + ship + tax) * 100) / 100;
+
+    document.getElementById('cart-count-lbl').textContent = 'YOUR CART · ' + cnt + (cnt === 1 ? ' ITEM' : ' ITEMS');
+
+    var badge = document.getElementById('cart-badge');
+    badge.textContent = cnt; badge.style.display = cnt > 0 ? 'flex' : 'none';
+
+    if (items.length === 0) {
+      document.getElementById('cart-empty').style.display  = 'block';
+      document.getElementById('cart-filled').style.display = 'none';
+      return;
+    }
+    document.getElementById('cart-empty').style.display  = 'none';
+    document.getElementById('cart-filled').style.display = 'flex';
+
+    document.getElementById('summary-sub').textContent  = fmt(sub);
+    document.getElementById('summary-ship').textContent = sub > 0 ? (ship === 0 ? 'FREE' : fmt(ship)) : '—';
+    document.getElementById('summary-tax').textContent  = fmt(tax);
+    document.getElementById('summary-total').textContent = fmt(total);
+
+    var price = MC.priceFor;
+    document.getElementById('line-items').innerHTML = items.map(function (it) {
+      var unit = price(it.id);
+      return [
+        '<div style="display:flex;gap:18px;align-items:center;padding:22px 0;border-bottom:1px solid #EFE7D7;">',
+        '  <div style="position:relative;flex:none;width:84px;height:104px;overflow:hidden;background:#F4ECDD;border:1px solid var(--border);">',
+        '    <div style="position:absolute;left:0;top:0;bottom:0;width:4px;background:' + it.accent + ';z-index:2;"></div>',
+             it.img ? '<img src="' + it.img + '" alt="" style="width:100%;height:100%;object-fit:cover;object-position:center top;">' : '<div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;color:#BCAE90;"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M16 5h6"/><path d="M19 2v6"/><path d="M21 11.5V19a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h7.5"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/><circle cx="9" cy="9" r="2"/></svg></div>',
+        '  </div>',
+        '  <div style="flex:1;min-width:0;">',
+        '    <div style="font-family:Ogg,serif;letter-spacing:.1em;font-size:22px;color:var(--ink);line-height:1;">' + it.name + '</div>',
+        '    <div style="font-size:10px;letter-spacing:.14em;color:#9A8F7C;margin:6px 0 14px;">' + (it.variant||'').toUpperCase() + ' · ' + fmt(unit) + ' EACH</div>',
+        '    <div style="display:flex;align-items:center;gap:16px;">',
+        '      <div style="display:flex;align-items:center;border:1px solid rgba(10,11,12,.28);border-radius:30px;overflow:hidden;">',
+        '        <button class="muse-step" onclick="cartQty(\'' + it.id + '\',\'' + (it.variant||'') + '\',-1)">−</button>',
+        '        <span style="padding:8px 14px;font-size:12px;border-left:1px solid var(--border);border-right:1px solid var(--border);min-width:40px;text-align:center;">' + it.qty + '</span>',
+        '        <button class="muse-step" onclick="cartQty(\'' + it.id + '\',\'' + (it.variant||'') + '\',1)">+</button>',
+        '      </div>',
+        '      <button class="muse-x" onclick="cartRemove(\'' + it.id + '\',\'' + (it.variant||'') + '\')">REMOVE</button>',
+        '    </div>',
+        '  </div>',
+        '  <div style="flex:none;font-weight:600;font-size:16px;">' + fmt(unit * it.qty) + '</div>',
+        '</div>'
+      ].join('');
+    }).join('');
+  }
+
+  window.cartQty    = function (id, v, d) { if (window.MuseCart) { window.MuseCart.changeQty(id, v, d); render(); } };
+  window.cartRemove = function (id, v)    { if (window.MuseCart) { window.MuseCart.removeLine(id, v); render(); } };
+
+  window.addEventListener('muse-cart-change', render);
+  render();
+})();
+</script>
+</body>
+</html>
