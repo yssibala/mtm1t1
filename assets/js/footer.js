@@ -1,55 +1,25 @@
 /**
  * MUSE 2.0 — shared standard footer
  * Injects footer HTML into <div id="site-footer"></div>.
- * Gradient: #FBF6EE → #DDE3E4 (gallery / standard variant).
+ * Cream palette — mirrors the flagship-detail footer structure:
+ * monogram → italic tagline → nav links → divider → copyright.
  */
 (function () {
   var el = document.getElementById('site-footer');
   if (!el) return;
 
   el.innerHTML = [
-    '<footer style="background:linear-gradient(180deg,#FBF6EE 0%,#DDE3E4 100%);padding:72px 48px 40px;font-family:neuehaasdisplaylight,neue-haas-grotesk-text,sans-serif;">',
-    '  <div style="max-width:1200px;margin:0 auto;">',
-    '    <div style="display:flex;flex-direction:column;align-items:center;margin-bottom:56px;">',
-    '      <img src="images/MUSE%20-%20Monogram%20(Solo%20GLD).png" alt="MUSE monogram" style="height:64px;width:auto;margin-bottom:20px;">',
-    '      <p style="font-family:Ogg,serif;font-size:1.35rem;color:#0A0B0C;margin:0 0 6px;">Raise a Glass to the Moment</p>',
-    '      <p style="font-size:0.82rem;letter-spacing:.12em;color:#6B6156;margin:0;text-transform:uppercase;">Ready-to-drink cocktails crafted for every occasion</p>',
-    '    </div>',
-    '    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:32px;margin-bottom:48px;border-top:1px solid #E7DAC4;padding-top:40px;">',
-    '      <div>',
-    '        <p style="font-size:0.7rem;letter-spacing:.15em;text-transform:uppercase;color:#6B6156;margin:0 0 16px;">Explore</p>',
-    '        <div style="display:flex;flex-direction:column;gap:10px;">',
-    '          <a href="index.html"   style="color:#0A0B0C;text-decoration:none;font-size:0.9rem;">Home</a>',
-    '          <a href="about.html"   style="color:#0A0B0C;text-decoration:none;font-size:0.9rem;">About</a>',
-    '          <a href="products.html" style="color:#0A0B0C;text-decoration:none;font-size:0.9rem;">Products</a>',
-    '          <a href="gallery.html" style="color:#0A0B0C;text-decoration:none;font-size:0.9rem;">Gallery</a>',
-    '        </div>',
-    '      </div>',
-    '      <div>',
-    '        <p style="font-size:0.7rem;letter-spacing:.15em;text-transform:uppercase;color:#6B6156;margin:0 0 16px;">Connect</p>',
-    '        <div style="display:flex;flex-direction:column;gap:10px;">',
-    '          <a href="contact.html"     style="color:#0A0B0C;text-decoration:none;font-size:0.9rem;">Contact</a>',
-    '          <a href="share-a-muse.html" style="color:#0A0B0C;text-decoration:none;font-size:0.9rem;">Share a Muse</a>',
-    '          <a href="services.html"    style="color:#0A0B0C;text-decoration:none;font-size:0.9rem;">Services</a>',
-    '        </div>',
-    '      </div>',
-    '      <div>',
-    '        <p style="font-size:0.7rem;letter-spacing:.15em;text-transform:uppercase;color:#6B6156;margin:0 0 16px;">Legal</p>',
-    '        <div style="display:flex;flex-direction:column;gap:10px;">',
-    '          <a href="legal.html#privacy"  style="color:#0A0B0C;text-decoration:none;font-size:0.9rem;">Privacy Policy</a>',
-    '          <a href="legal.html#terms"    style="color:#0A0B0C;text-decoration:none;font-size:0.9rem;">Terms of Use</a>',
-    '          <a href="legal.html#shipping" style="color:#0A0B0C;text-decoration:none;font-size:0.9rem;">Shipping &amp; Returns</a>',
-    '        </div>',
-    '      </div>',
-    '    </div>',
-    '    <div style="display:flex;justify-content:space-between;align-items:center;border-top:1px solid #E7DAC4;padding-top:24px;flex-wrap:wrap;gap:16px;">',
-    '      <p style="font-size:0.78rem;color:#6B6156;margin:0;">&copy; ' + new Date().getFullYear() + ' MT Muse Beverage Co. All rights reserved.</p>',
-    '      <div style="display:flex;gap:20px;">',
-    '        <a href="https://www.instagram.com/mt.muse.rtd/" target="_blank" rel="noopener" style="color:#6B6156;text-decoration:none;font-size:0.78rem;">Instagram</a>',
-    '        <a href="mailto:hello@mt-muse.com" style="color:#6B6156;text-decoration:none;font-size:0.78rem;">hello@mt-muse.com</a>',
-    '      </div>',
-    '    </div>',
+    '<footer style="background:linear-gradient(180deg,#FBF6EE 0%,#DDE3E4 100%);padding:clamp(40px,5vw,62px) 48px clamp(30px,4vw,42px);font-family:neuehaasdisplaylight,neue-haas-grotesk-text,sans-serif;text-align:center;">',
+    '  <img src="images/MUSE%20-%20Monogram%20(Solo%20GLD).png" alt="MUSE" style="height:108px;width:auto;margin:0 auto 14px;display:block;">',
+    '  <div style="font-family:Ogg,serif;font-style:italic;font-size:21px;color:#0A0B0C;margin-bottom:26px;">Celebrate amongst the clouds.</div>',
+    '  <div style="display:flex;gap:52px;justify-content:center;flex-wrap:wrap;margin-bottom:28px;">',
+    '    <a href="about.html"   style="font-size:11px;letter-spacing:.18em;font-weight:500;color:#0A0B0C;text-decoration:none;">ABOUT</a>',
+    '    <a href="gallery.html" style="font-size:11px;letter-spacing:.18em;font-weight:500;color:#0A0B0C;text-decoration:none;">GALLERY</a>',
+    '    <a href="contact.html" style="font-size:11px;letter-spacing:.18em;font-weight:500;color:#0A0B0C;text-decoration:none;">CONTACT</a>',
+    '    <a href="products.html" style="font-size:11px;letter-spacing:.18em;font-weight:500;color:#0A0B0C;text-decoration:none;">PRODUCTS</a>',
+    '    <a href="legal.html"   style="font-size:11px;letter-spacing:.18em;font-weight:500;color:#0A0B0C;text-decoration:none;">LEGAL &amp; PRIVACY</a>',
     '  </div>',
+    '  <div style="border-top:1px solid rgba(10,11,12,.14);padding-top:22px;font-size:10px;letter-spacing:.14em;color:#6B6156;">&copy; MMXXVI MUSE &middot; ENJOY RESPONSIBLY &middot; 21+</div>',
     '</footer>'
   ].join('\n');
 })();
