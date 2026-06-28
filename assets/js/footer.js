@@ -11,7 +11,7 @@
     '<footer style="background:linear-gradient(180deg,#FBF6EE 0%,#DDE3E4 100%);padding:72px 48px 40px;font-family:neuehaasdisplaylight,neue-haas-grotesk-text,sans-serif;">',
     '  <div style="max-width:1200px;margin:0 auto;">',
     '    <div style="display:flex;flex-direction:column;align-items:center;margin-bottom:56px;">',
-    '      <img src="assets/monogram.png" alt="MUSE monogram" style="height:64px;width:auto;margin-bottom:20px;">',
+    '      <img src="images/MUSE%20-%20Monogram%20(Solo%20GLD).png" alt="MUSE monogram" style="height:64px;width:auto;margin-bottom:20px;">',
     '      <p style="font-family:Ogg,serif;font-size:1.35rem;color:#0A0B0C;margin:0 0 6px;">Raise a Glass to the Moment</p>',
     '      <p style="font-size:0.82rem;letter-spacing:.12em;color:#6B6156;margin:0;text-transform:uppercase;">Ready-to-drink cocktails crafted for every occasion</p>',
     '    </div>',

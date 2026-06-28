@@ -259,5 +259,73 @@
 <script src="assets/js/footer.js"></script>
 
   <script src="assets/js/nav.js"></script>
+  <script>
+  (function () {
+    var track  = document.getElementById('about-car-track');
+    var dots   = document.querySelectorAll('#about-car-dots .car-dot');
+    var numEl  = document.getElementById('about-car-num');
+    var total  = 5;
+    var pct    = 100 / total;
+    var c      = 0;
+
+    function goTo(idx) {
+      c = ((idx % total) + total) % total;
+      track.style.transform = 'translateX(-' + (c * pct) + '%)';
+      dots.forEach(function (d, i) {
+        d.style.background = i === c ? '#EFA527' : 'rgba(10,11,12,.2)';
+      });
+      numEl.textContent = String(c + 1);
+    }
+
+    function goDir(dir) {
+      var next = ((c + dir) % total + total) % total;
+      var isWrap = (c === 0 && dir === -1) || (c === total - 1 && dir === 1);
+      if (!isWrap) { goTo(next); return; }
+
+      var orig = track.style.transition;
+      var kids = Array.from(track.children);
+      if (dir === -1) {
+        kids[total - 1].style.order = '-1';
+        track.style.transition = 'none';
+        track.style.transform  = 'translateX(-' + pct + '%)';
+        track.offsetHeight;
+        track.style.transition = orig;
+        track.style.transform  = 'translateX(0%)';
+        setTimeout(function () {
+          kids[total - 1].style.order = '';
+          track.style.transition = 'none';
+          track.style.transform  = 'translateX(-' + ((total - 1) * pct) + '%)';
+          track.offsetHeight;
+          track.style.transition = orig;
+        }, 640);
+      } else {
+        kids[0].style.order = String(total);
+        track.style.transition = 'none';
+        track.style.transform  = 'translateX(-' + ((total - 2) * pct) + '%)';
+        track.offsetHeight;
+        track.style.transition = orig;
+        track.style.transform  = 'translateX(-' + ((total - 1) * pct) + '%)';
+        setTimeout(function () {
+          kids[0].style.order = '';
+          track.style.transition = 'none';
+          track.style.transform  = 'translateX(0%)';
+          track.offsetHeight;
+          track.style.transition = orig;
+        }, 640);
+      }
+      c = next;
+      dots.forEach(function (d, i) { d.style.background = i === c ? '#EFA527' : 'rgba(10,11,12,.2)'; });
+      numEl.textContent = String(c + 1);
+    }
+
+    document.getElementById('about-car-prev').addEventListener('click', function () { goDir(-1); });
+    document.getElementById('about-car-next').addEventListener('click', function () { goDir(1); });
+    dots.forEach(function (d) {
+      d.addEventListener('click', function () { goTo(parseInt(this.dataset.i)); });
+    });
+
+    goTo(0);
+  })();
+  </script>
 </body>
 </html>
