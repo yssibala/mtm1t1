@@ -133,10 +133,10 @@
       <div style="display:flex;flex-wrap:wrap;gap:10px;align-items:center;">
         <button class="muse-chip active" data-cat="all">ALL</button>
         <button class="muse-chip" data-cat="cocktails">COCKTAILS</button>
-        <button class="muse-chip" data-cat="bundles">BUNDLES &amp; GIFTS</button>
-        <button class="muse-chip" data-cat="totes">TOTES</button>
-        <button class="muse-chip" data-cat="table">GLASSWARE &amp; TABLE</button>
-        <button class="muse-chip" data-cat="accessories">ACCESSORIES</button>
+        <button class="muse-chip" data-cat="bundles" data-muse-state="inactive">BUNDLES &amp; GIFTS</button>
+        <button class="muse-chip" data-cat="totes" data-muse-state="inactive">TOTES</button>
+        <button class="muse-chip" data-cat="table" data-muse-state="inactive">GLASSWARE &amp; TABLE</button>
+        <button class="muse-chip" data-cat="accessories" data-muse-state="inactive">ACCESSORIES</button>
         <!-- collection dropdown -->
         <div class="muse-dd" style="position:relative;">
           <button id="coll-btn" class="muse-chip" style="display:inline-flex;align-items:center;gap:6px;">
@@ -172,19 +172,19 @@
     { id:'thalia',     name:'THALIA',         cat:'cocktails',    theme:'thalia',   tag:'4-Pack · 12% ABV',       accent:'#EFA527', img:'assets/g-thalia.png' },
     { id:'clio',       name:'CLIO',           cat:'cocktails',    theme:'clio',     tag:'4-Pack · 12% ABV',       accent:'#CC2200', img:'assets/g-clio.png' },
     { id:'ourania',    name:'OURANIA',         cat:'cocktails',    theme:'ourania',  tag:'4-Pack · 12% ABV',       accent:'#8B5CF6', img:'assets/g-ourania.png' },
-    { id:'trio',       name:'THE TRIO',        cat:'bundles',      theme:'classic',  tag:'All three Muses',        accent:'#0A0B0C', img:'' },
-    { id:'giftbox',    name:'TRIO GIFT BOX',   cat:'bundles',      theme:'classic',  tag:'Boxed with glassware',   accent:'#C9851A', img:'' },
-    { id:'tasting',    name:'TASTING SET',     cat:'bundles',      theme:'classic',  tag:'Six minis',              accent:'#C9851A', img:'' },
-    { id:'thaliaTote', name:'THALIA TOTE',     cat:'totes',        theme:'thalia',   tag:'Heavyweight canvas',     accent:'#EFA527', img:'' },
-    { id:'clioTote',   name:'CLIO TOTE',       cat:'totes',        theme:'clio',     tag:'Heavyweight canvas',     accent:'#CC2200', img:'' },
-    { id:'ouraniaTote',name:'OURANIA TOTE',    cat:'totes',        theme:'ourania',  tag:'Heavyweight canvas',     accent:'#8B5CF6', img:'' },
-    { id:'houseTote',  name:'HOUSE TOTE',      cat:'totes',        theme:'classic',  tag:'Laurel monogram',        accent:'#C9851A', img:'' },
-    { id:'coasters',   name:'STONE COASTERS',  cat:'table',        theme:'classic',  tag:'Marbled, set of 4',      accent:'#C9851A', img:'' },
-    { id:'glassware',  name:'COUPE GLASSWARE', cat:'table',        theme:'classic',  tag:'Set of 2',               accent:'#C9851A', img:'' },
-    { id:'bartools',   name:'GOLD BAR TOOLS',  cat:'table',        theme:'classic',  tag:'Five-piece kit',         accent:'#C9851A', img:'' },
-    { id:'napkins',    name:'LINEN NAPKINS',   cat:'table',        theme:'classic',  tag:'Set of 4',               accent:'#C9851A', img:'' },
-    { id:'pins',       name:'STICKERS & PINS', cat:'accessories',  theme:'classic',  tag:'Enamel + vinyl',         accent:'#C9851A', img:'' },
-    { id:'cards',      name:'GREETING CARDS',  cat:'accessories',  theme:'classic',  tag:'Set of 6',               accent:'#C9851A', img:'' },
+    { id:'trio',       name:'THE TRIO',        cat:'bundles',      theme:'classic',  tag:'All three Muses',        accent:'#0A0B0C', img:'', state:'inactive' },
+    { id:'giftbox',    name:'TRIO GIFT BOX',   cat:'bundles',      theme:'classic',  tag:'Boxed with glassware',   accent:'#C9851A', img:'', state:'inactive' },
+    { id:'tasting',    name:'TASTING SET',     cat:'bundles',      theme:'classic',  tag:'Six minis',              accent:'#C9851A', img:'', state:'inactive' },
+    { id:'thaliaTote', name:'THALIA TOTE',     cat:'totes',        theme:'thalia',   tag:'Heavyweight canvas',     accent:'#EFA527', img:'', state:'inactive' },
+    { id:'clioTote',   name:'CLIO TOTE',       cat:'totes',        theme:'clio',     tag:'Heavyweight canvas',     accent:'#CC2200', img:'', state:'inactive' },
+    { id:'ouraniaTote',name:'OURANIA TOTE',    cat:'totes',        theme:'ourania',  tag:'Heavyweight canvas',     accent:'#8B5CF6', img:'', state:'inactive' },
+    { id:'houseTote',  name:'HOUSE TOTE',      cat:'totes',        theme:'classic',  tag:'Laurel monogram',        accent:'#C9851A', img:'', state:'inactive' },
+    { id:'coasters',   name:'STONE COASTERS',  cat:'table',        theme:'classic',  tag:'Marbled, set of 4',      accent:'#C9851A', img:'', state:'inactive' },
+    { id:'glassware',  name:'COUPE GLASSWARE', cat:'table',        theme:'classic',  tag:'Set of 2',               accent:'#C9851A', img:'', state:'inactive' },
+    { id:'bartools',   name:'GOLD BAR TOOLS',  cat:'table',        theme:'classic',  tag:'Five-piece kit',         accent:'#C9851A', img:'', state:'inactive' },
+    { id:'napkins',    name:'LINEN NAPKINS',   cat:'table',        theme:'classic',  tag:'Set of 4',               accent:'#C9851A', img:'', state:'inactive' },
+    { id:'pins',       name:'STICKERS & PINS', cat:'accessories',  theme:'classic',  tag:'Enamel + vinyl',         accent:'#C9851A', img:'', state:'inactive' },
+    { id:'cards',      name:'GREETING CARDS',  cat:'accessories',  theme:'classic',  tag:'Set of 6',               accent:'#C9851A', img:'', state:'inactive' },
   ];
 
   var CAT_LABELS = { cocktails:'COCKTAILS', bundles:'BUNDLES & GIFTS', totes:'TOTES', table:'GLASSWARE & TABLE', accessories:'ACCESSORIES' };
@@ -212,8 +212,11 @@
     return 'Each';
   }
 
+  var monocle = location.search.indexOf('monocle') !== -1;
+
   function visible(cat) {
     return PRODUCTS.filter(function (p) {
+      if (!monocle && p.state && p.state !== 'active') return false;
       if (cat === 'all') return true;
       if (THEME_IDS.indexOf(cat) >= 0) return p.theme === cat;
       return p.cat === cat;
@@ -232,8 +235,9 @@
     document.getElementById('count-label').textContent = items.length + (items.length === 1 ? ' PIECE' : ' PIECES');
     grid.innerHTML = items.map(function (p) {
       var price = window.MuseCart ? window.MuseCart.format(window.MuseCart.priceFor(p.id)) : '$—';
+      var stateAttr = p.state && p.state !== 'active' ? ' data-muse-state="' + p.state + '"' : '';
       return [
-        '<div class="muse-merch">',
+        '<div class="muse-merch"' + stateAttr + '>',
         '  <a href="product-detail.html?handle=' + p.id + '" style="text-decoration:none;color:inherit;display:flex;flex-direction:column;flex:1;">',
         '    <div style="position:relative;aspect-ratio:4/5;overflow:hidden;background:#F4ECDD;">',
         '      <div style="position:absolute;left:0;top:0;bottom:0;width:4px;background:' + p.accent + ';z-index:3;pointer-events:none;"></div>',
