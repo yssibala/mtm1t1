@@ -18,6 +18,8 @@
   .muse-dropdown:hover .muse-dropdown-menu{display:block;}
   .muse-sub{display:block;padding:11px 13px;font-size:11px;letter-spacing:.14em;font-weight:500;color:#0A0B0C;text-decoration:none;transition:background .25s ease;}
   .muse-sub:hover{background:#F4ECDD;color:#C9851A;}
+  .gallery-cell{overflow:hidden;}
+  .gallery-cell img{width:100%;display:block;height:clamp(160px,18vw,240px);object-fit:cover;}
 </style>
 </head>
 <body>
@@ -143,14 +145,17 @@
 
 
 <!-- ========== HERO ========== -->
-<section id="hero-section" style="position:relative; min-height:100vh; display:flex; flex-direction:column; align-items:center; justify-content:flex-end; padding:0 24px 11vh; background-color:#FBF6EE; background-image:url('images/00%20Cloud%20BG%20(B).png'); background-repeat:no-repeat; background-position:center bottom; background-size:150% auto; text-align:center;">
+<section id="hero-section" style="position:relative; min-height:100vh; background-color:#FBF6EE; background-image:url('images/00%20Cloud%20BG%20(B).png'); background-repeat:no-repeat; background-position:center bottom; background-size:150% auto;">
   <div style="position:absolute; inset:0; pointer-events:none; z-index:1; background:linear-gradient(180deg,rgba(251,246,238,0) 52%,rgba(251,246,238,.5) 80%,rgba(251,246,238,.9) 100%);"></div>
-  <div style="font-size:11px; letter-spacing:.32em; font-weight:600; color:#3A3A3A; margin-bottom:22px; position:relative; z-index:2;">THE FLAGSHIP COLLECTION · MMXXVI</div>
-  <h1 style="font-family:'Ogg','Cormorant Garamond',Georgia,serif; font-weight:300; text-transform:uppercase; letter-spacing:.06em; line-height:.98; font-size:clamp(44px,7vw,92px); margin:0; color:#0A0B0C; position:relative; z-index:2;">Celebrate Amongst<br>the Clouds</h1>
-  <p style="font-style:italic; font-size:clamp(18px,2.2vw,26px); color:#252525; max-width:620px; margin:20px 0 30px; line-height:1.4; position:relative; z-index:2;">It's not about making memories — it's about living the legends we'll tell.</p>
-  <div style="display:flex; gap:16px; flex-wrap:wrap; justify-content:center; position:relative; z-index:2;">
-    <a href="flagship-detail.html" style="text-decoration:none;"><div class="muse-pill muse-cta" style="background:#EFA527; color:#0A0B0C; border-radius:30px; padding:14px 34px; font-size:12px; letter-spacing:.18em; font-weight:600;">DISCOVER THE TRIO</div></a>
-    <a href="about.html#our-story" style="text-decoration:none;"><div class="muse-pill muse-ghost" style="border:1.5px solid #0A0B0C; color:#0A0B0C; border-radius:30px; padding:14px 34px; font-size:12px; letter-spacing:.18em; font-weight:600;">OUR STORY</div></a>
+  <!-- Hero text block: pre-text top at vertical center of hero -->
+  <div style="position:absolute; top:50%; left:50%; transform:translateX(-50%); z-index:2; text-align:center; width:min(90%,700px);">
+    <div style="font-size:11px; letter-spacing:.32em; font-weight:600; color:#3A3A3A; margin-bottom:22px;">THE FLAGSHIP COLLECTION · MMXXVI</div>
+    <h1 style="font-family:'Ogg','Cormorant Garamond',Georgia,serif; font-weight:300; text-transform:uppercase; letter-spacing:.06em; line-height:.98; font-size:clamp(44px,7vw,92px); margin:0; color:#0A0B0C;">Celebrate Amongst<br>the Clouds</h1>
+    <p style="font-style:italic; font-size:clamp(18px,2.2vw,26px); color:#252525; max-width:620px; margin:20px auto 30px; line-height:1.4;">It's not about making memories — it's about living the legends we'll tell.</p>
+    <div style="display:flex; gap:16px; flex-wrap:wrap; justify-content:center;">
+      <a href="flagship-detail.html" style="text-decoration:none;"><div class="muse-pill muse-cta" style="background:#EFA527; color:#0A0B0C; border-radius:30px; padding:14px 34px; font-size:12px; letter-spacing:.18em; font-weight:600;">DISCOVER THE TRIO</div></a>
+      <a href="about.html#our-story" style="text-decoration:none;"><div class="muse-pill muse-ghost" style="border:1.5px solid #0A0B0C; color:#0A0B0C; border-radius:30px; padding:14px 34px; font-size:12px; letter-spacing:.18em; font-weight:600;">OUR STORY</div></a>
+    </div>
   </div>
   <!-- Sentinel fires nav state change when it scrolls out of view at 26vh from hero bottom -->
   <div data-nav-sentinel style="position:absolute; left:0; bottom:26vh; width:1px; height:1px; pointer-events:none;"></div>
@@ -184,7 +189,7 @@
 
     <div style="flex:1; min-width:300px;">
       <div style="position:relative; border:1px solid #E7DAC4;">
-        <img src="images/10%20MUSE%201A.png" alt="MUSE — Our Story" style="display:block; width:100%; height:clamp(340px,38vw,480px); object-fit:cover;">
+        <img src="images/10%20MUSE%201C.png" alt="MUSE — Our Story" style="display:block; width:100%; height:clamp(340px,38vw,480px); object-fit:cover;">
       </div>
     </div>
 
