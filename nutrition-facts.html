@@ -193,79 +193,25 @@
 <body>
 
 <!-- ═══════════ NAV ═══════════ -->
-<div id="site-nav-host" data-nav-variant="sku" data-nav-active="products">
-<div id="nav-state2">
-    <!-- Left cell: logo pinned left · ABOUT GALLERY CONTACT space-evenly between logo and SKU -->
-    <div style="display:flex;align-items:center;">
-      <a href="index.html" aria-label="MUSE home" style="display:inline-flex;align-items:center;flex:none;">
-        <img src="images/MUSE%20-%20Monogram%20(Solo%20GLD).png" alt="MUSE" style="height:38px;width:auto;">
-      </a>
-      <div style="flex:1;display:flex;align-items:center;justify-content:space-evenly;">
-        <div class="muse-dropdown" style="position:relative;align-self:center;padding-bottom:16px;margin-bottom:-16px;display:flex;align-items:center;">
-          <a href="about.html" style="font-size:11px;letter-spacing:.2em;font-weight:500;color:#0A0B0C;text-decoration:none;display:inline-flex;align-items:center;gap:5px;">ABOUT<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" style="opacity:.5;flex:none;"><path d="m6 9 6 6 6-6"/></svg></a>
-          <div class="muse-dropdown-menu" style="position:absolute;top:100%;left:0;width:240px;background:#FDFCFA;border:1px solid #E7DAC4;box-shadow:0 18px 44px -20px rgba(10,11,12,.5);padding:7px;z-index:60;">
-            <a href="about.html" class="muse-sub">OUR STORY</a>
-            <a href="flagship-detail.html" class="muse-sub">THE FLAGSHIP MUSES</a>
-          </div>
-        </div>
-        <a href="gallery.html" style="font-size:11px;letter-spacing:.2em;font-weight:500;color:#0A0B0C;text-decoration:none;">GALLERY</a>
-        <div class="muse-dropdown" style="position:relative;align-self:center;padding-bottom:16px;margin-bottom:-16px;display:flex;align-items:center;">
-          <a href="contact.html" style="font-size:11px;letter-spacing:.2em;font-weight:500;color:#0A0B0C;text-decoration:none;display:inline-flex;align-items:center;gap:5px;">CONTACT<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" style="opacity:.5;flex:none;"><path d="m6 9 6 6 6-6"/></svg></a>
-          <div class="muse-dropdown-menu" style="position:absolute;top:100%;left:0;width:220px;background:#FDFCFA;border:1px solid #E7DAC4;box-shadow:0 18px 44px -20px rgba(10,11,12,.5);padding:7px;z-index:60;">
-            <a href="contact.html" class="muse-sub">CONTACT US</a>
-            <a href="share-a-muse.html" class="muse-sub">SHARE YOUR MUSE</a>
-          </div>
-        </div>
-      </div>
+<div id="site-nav-host" data-nav-active="products" data-nav-threshold="-40">
+  <!-- Center column: SKU switcher -->
+  <div id="sku-switcher">
+    <div class="sku-arrow" id="btn-prev">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m15 18-6-6 6-6"/></svg>
     </div>
-
-    <!-- Center column: SKU switcher -->
-    <div id="sku-switcher">
-      <div class="sku-arrow" id="btn-prev">
-        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m15 18-6-6 6-6"/></svg>
-      </div>
-      <div id="sku-name-btn">
-        <span id="sku-name-text"></span>
-        <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#0A0B0C" stroke-width="2.4" style="opacity:.55;flex:none;"><path d="m6 9 6 6 6-6"/></svg>
-      </div>
-      <div class="sku-arrow" id="btn-next">
-        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 18 6-6-6-6"/></svg>
-      </div>
-      <div id="sku-dropdown">
-        <div class="sku-opt" data-idx="0" style="color:#EFA527;">THALIA</div>
-        <div class="sku-opt" data-idx="1" style="color:#CC2200;">CLIO</div>
-        <div class="sku-opt" data-idx="2" style="color:#8B5CF6;">OURANIA</div>
-      </div>
+    <div id="sku-name-btn">
+      <span id="sku-name-text"></span>
+      <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#0A0B0C" stroke-width="2.4" style="opacity:.55;flex:none;"><path d="m6 9 6 6 6-6"/></svg>
     </div>
-
-    <!-- Right cell: LOG IN PRODUCTS SHOP space-evenly between SKU and search · search pinned right -->
-    <div style="display:flex;align-items:center;">
-      <div style="flex:1;display:flex;align-items:center;justify-content:space-evenly;">
-        <a href="login.html" style="font-size:11px;letter-spacing:.2em;font-weight:500;color:#0A0B0C;text-decoration:none;">LOG IN</a>
-        <a href="products.html" style="font-size:11px;letter-spacing:.2em;font-weight:500;color:#0A0B0C;text-decoration:none;">PRODUCTS</a>
-        <div class="muse-dropdown" style="position:relative;padding-bottom:14px;margin-bottom:-14px;flex:none;">
-          <div style="display:flex;align-items:center;gap:10px;background:#EFA527;color:#0A0B0C;border-radius:30px;padding:9px 20px;font-size:11px;letter-spacing:.16em;font-weight:600;cursor:pointer;">
-            <a href="shop.html" style="color:inherit;text-decoration:none;letter-spacing:inherit;font-size:inherit;font-weight:inherit;">SHOP</a>
-            <span style="width:1px;height:15px;background:rgba(10,11,12,.3);flex:none;"></span>
-            <a href="cart.html" style="position:relative;display:flex;align-items:center;text-decoration:none;color:inherit;">
-              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
-              <span class="cart-badge" style="position:absolute;top:-7px;right:-8px;min-width:15px;height:15px;padding:0 3px;border-radius:9px;background:#FF3B30;color:#FDFCFA;font-size:9px;font-weight:700;display:none;align-items:center;justify-content:center;line-height:1;">0</span>
-            </a>
-          </div>
-          <div class="muse-dropdown-menu" style="position:absolute;top:100%;right:0;width:312px;background:#FDFCFA;border:1px solid #E7DAC4;box-shadow:0 18px 44px -20px rgba(10,11,12,.5);padding:18px;text-align:left;z-index:200;">
-            <div data-cart-body></div>
-            <div style="display:flex;gap:10px;margin-top:14px;">
-              <a href="cart.html" style="flex:1;text-align:center;border:1.5px solid #0A0B0C;color:#0A0B0C;border-radius:30px;padding:9px;font-size:10px;letter-spacing:.16em;font-weight:600;text-decoration:none;display:block;">VIEW CART</a>
-              <a href="checkout.html" style="flex:1;text-align:center;background:#EFA527;color:#0A0B0C;border-radius:30px;padding:9px;font-size:10px;letter-spacing:.16em;font-weight:600;text-decoration:none;display:block;">CHECKOUT</a>
-            </div>
-          </div>
-        </div>
-      </div>
-      <span style="cursor:pointer;display:inline-flex;align-items:center;color:#0A0B0C;flex:none;" onclick="openMuseSearch()">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
-      </span>
+    <div class="sku-arrow" id="btn-next">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 18 6-6-6-6"/></svg>
     </div>
-  </div><!-- /STATE 2 -->
+    <div id="sku-dropdown">
+      <div class="sku-opt" data-idx="0" style="color:#EFA527;">THALIA</div>
+      <div class="sku-opt" data-idx="1" style="color:#CC2200;">CLIO</div>
+      <div class="sku-opt" data-idx="2" style="color:#8B5CF6;">OURANIA</div>
+    </div>
+  </div>
 </div>
 
 <!-- STICKY SKU TABS -->
@@ -664,7 +610,7 @@
 <script src="assets/js/cart-ui.js"></script>
 <script src="assets/js/cart.js"></script>
 <script src="assets/js/footer.js"></script>
-<script src="assets/js/nav.js"></script>
+<script src="assets/js/nav-spc.js"></script>
 <script>
 var SKUS = [
   { name: 'THALIA', accent: '#EFA527' },
@@ -706,22 +652,19 @@ function updateSkuSwitcher() {
   });
 }
 
-// ── nav scroll ──
-var nav = document.getElementById('site-nav');
+// ── tabs visibility (nav scroll handled by nav-spc.js) ──
 var sentinel = document.querySelector('[data-nav-sentinel]');
 var tabs = document.getElementById('sku-tabs');
 
-function computeScroll() {
+function computeTabsVisibility() {
   if (!sentinel) return;
-  var sc = sentinel.getBoundingClientRect().top <= -40;
-  sc ? nav.classList.add('nav--scrolled') : nav.classList.remove('nav--scrolled');
-  tabs.classList.toggle('tabs-hidden', sc);
+  tabs.classList.toggle('tabs-hidden', sentinel.getBoundingClientRect().top <= -40);
 }
 if (sentinel && 'IntersectionObserver' in window) {
-  new IntersectionObserver(function() { computeScroll(); }, { threshold: 0 }).observe(sentinel);
+  new IntersectionObserver(function() { computeTabsVisibility(); }, { threshold: 0 }).observe(sentinel);
 }
-window.addEventListener('scroll', computeScroll, { passive: true });
-computeScroll();
+window.addEventListener('scroll', computeTabsVisibility, { passive: true });
+computeTabsVisibility();
 
 // ── wire up controls ──
 document.getElementById('arrow-prev').addEventListener('click', function() { go(current - 1); });
