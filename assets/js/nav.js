@@ -32,11 +32,13 @@
     var style = document.createElement('style');
     style.id = 'muse-nav-css';
     style.textContent = [
-      /* nav state switching */
-      '#nav-state1{display:flex;}',
-      '#nav-state2{display:none;}',
-      '#site-nav.nav--scrolled #nav-state1{display:none!important;}',
-      '#site-nav.nav--scrolled #nav-state2{display:flex!important;}',
+      /* nav state switching — opacity crossfade */
+      '#site-nav{position:relative;}',
+      '#nav-state1,#nav-state2{position:absolute;top:0;left:0;right:0;display:flex;align-items:center;transition:opacity .18s ease,visibility .18s ease;}',
+      '#nav-state1{opacity:1;visibility:visible;}',
+      '#nav-state2{opacity:0;visibility:hidden;pointer-events:none;}',
+      '#site-nav.nav--scrolled #nav-state1{opacity:0;visibility:hidden;pointer-events:none;}',
+      '#site-nav.nav--scrolled #nav-state2{opacity:1;visibility:visible;pointer-events:auto;}',
       /* SKU State-2 grid override (nav-variant=sku) */
       '#site-nav.nav--scrolled [data-sku-state2]{display:grid!important;grid-template-columns:1fr auto 1fr;}',
       /* dropdowns */
@@ -52,7 +54,7 @@
       '.mob-item{display:block;padding:15px 24px;font-size:11px;letter-spacing:.2em;font-weight:500;color:#0A0B0C;text-decoration:none;border-bottom:1px solid rgba(231,218,196,.5);}',
       '.mob-sub{display:block;padding:11px 38px;font-size:10px;letter-spacing:.14em;font-weight:500;color:#5A5040;text-decoration:none;background:rgba(247,241,232,.6);border-bottom:1px solid rgba(231,218,196,.3);}',
       '@media(max-width:960px){',
-        '#nav-state1,#nav-state2,#site-nav.nav--scrolled #nav-state2{display:none!important;}',
+        '#nav-state1,#nav-state2{opacity:0!important;visibility:hidden!important;pointer-events:none!important;}',
         '#nav-mobile{display:flex!important;}',
         '#fd-tabs,#sku-tabs{display:none!important;}',
       '}',
@@ -118,7 +120,7 @@
 
   // ─── 4. STATE 1 HTML ───────────────────────────────────────────────────────
 
-  var S1 = '<div id="nav-state1" style="display:flex;align-items:center;justify-content:space-between;padding:11px 48px;background:#FBF6EE;border-bottom:1px solid #E7DAC4;">'
+  var S1 = '<div id="nav-state1" style="height:100%;align-items:center;justify-content:space-between;padding:0 48px;background:#FBF6EE;border-bottom:1px solid #E7DAC4;">'
     // Left: ABOUT GALLERY CONTACT
     + '<div style="display:flex;flex:1;align-items:center;justify-content:space-evenly;padding-left:104px;">'
       + '<div class="muse-dropdown" style="position:relative;align-self:center;padding-bottom:16px;margin-bottom:-16px;display:flex;align-items:center;">'
@@ -153,7 +155,7 @@
 
   // ─── 5a. STATE 2 · Standard ───────────────────────────────────────────────
 
-  var S2_STANDARD = '<div id="nav-state2" style="display:none;position:relative;align-items:center;justify-content:space-between;padding:11px 48px;background:rgba(253,252,250,.8);backdrop-filter:blur(12px) saturate(1.1);-webkit-backdrop-filter:blur(12px) saturate(1.1);border-bottom:1px solid rgba(231,218,196,.7);">'
+  var S2_STANDARD = '<div id="nav-state2" style="height:100%;position:relative;align-items:center;justify-content:space-between;padding:0 48px;background:rgba(253,252,250,.8);backdrop-filter:blur(12px) saturate(1.1);-webkit-backdrop-filter:blur(12px) saturate(1.1);border-bottom:1px solid rgba(231,218,196,.7);">'
     + '<a href="index.html" aria-label="MUSE home" style="display:inline-flex;align-items:center;flex:none;">' + MONOGRAM + '</a>'
     + '<div style="position:absolute;left:50%;transform:translateX(-50%);display:flex;gap:72px;align-items:center;">'
       + '<div class="muse-dropdown" style="position:relative;align-self:center;padding-bottom:16px;margin-bottom:-16px;display:flex;align-items:center;">'
@@ -210,7 +212,7 @@
   var state2 = (variant === 'sku' && slot) ? slot : S2_STANDARD;
   var mobile  = variant === 'sku' ? MOB_SKU : MOB_STANDARD;
 
-  host.innerHTML = '<nav id="site-nav" style="position:fixed;top:0;left:0;right:0;z-index:50;">'
+  host.innerHTML = '<nav id="site-nav" style="position:fixed;top:0;left:0;right:0;z-index:50;height:56px;">'
     + S1
     + state2
     + mobile
@@ -239,6 +241,7 @@
   }
 
   window.addEventListener('scroll', compute, { passive: true });
+  window.addEventListener('pageshow', compute);
   compute();
 
 })();

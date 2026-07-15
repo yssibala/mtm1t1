@@ -33,10 +33,12 @@
     style.id = 'muse-nav-css';
     style.textContent = [
       'body{font-family:\'neuehaasdisplaylight\',\'neue-haas-grotesk-text\',\'Helvetica Neue\',Arial,sans-serif;}',
-      '#nav-state1{display:flex;}',
-      '#nav-state2{display:none;}',
-      '#site-nav.nav--scrolled #nav-state1{display:none!important;}',
-      '#site-nav.nav--scrolled #nav-state2{display:flex!important;}',
+      '#site-nav{position:relative;}',
+      '#nav-state1,#nav-state2{position:absolute;top:0;left:0;right:0;display:flex;align-items:center;transition:opacity .18s ease,visibility .18s ease;}',
+      '#nav-state1{opacity:1;visibility:visible;}',
+      '#nav-state2{opacity:0;visibility:hidden;pointer-events:none;}',
+      '#site-nav.nav--scrolled #nav-state1{opacity:0;visibility:hidden;pointer-events:none;}',
+      '#site-nav.nav--scrolled #nav-state2{opacity:1;visibility:visible;pointer-events:auto;}',
       '.muse-dropdown-menu{display:none;}',
       '.muse-dropdown:hover .muse-dropdown-menu{display:block;}',
       '.muse-sub{display:block;padding:11px 13px;font-size:11px;letter-spacing:.14em;font-weight:500;color:#0A0B0C;text-decoration:none;transition:background .25s ease;}',
@@ -48,7 +50,7 @@
       '.mob-item{display:block;padding:15px 24px;font-size:11px;letter-spacing:.2em;font-weight:500;color:#0A0B0C;text-decoration:none;border-bottom:1px solid rgba(231,218,196,.5);}',
       '.mob-sub{display:block;padding:11px 38px;font-size:10px;letter-spacing:.14em;font-weight:500;color:#5A5040;text-decoration:none;background:rgba(247,241,232,.6);border-bottom:1px solid rgba(231,218,196,.3);}',
       '@media(max-width:960px){',
-        '#nav-state1,#nav-state2,#site-nav.nav--scrolled #nav-state2{display:none!important;}',
+        '#nav-state1,#nav-state2{opacity:0!important;visibility:hidden!important;pointer-events:none!important;}',
         '#nav-mobile{display:flex!important;}',
         '#fd-tabs,#sku-tabs{display:none!important;}',
       '}'
@@ -60,7 +62,7 @@
   if (!document.getElementById('muse-nav-spc-css')) {
     var spcStyle = document.createElement('style');
     spcStyle.id = 'muse-nav-spc-css';
-    spcStyle.textContent = '#site-nav.nav--scrolled #nav-state2{display:grid!important;grid-template-columns:1fr auto 1fr;}';
+    spcStyle.textContent = '#site-nav.nav--scrolled #nav-state2{display:grid!important;grid-template-columns:1fr auto 1fr;opacity:1;visibility:visible;pointer-events:auto;}';
     document.head.appendChild(spcStyle);
   }
 
@@ -115,7 +117,7 @@
 
   // ─── 4. STATE 1 (identical to nav.js) ─────────────────────────────────────
 
-  var S1 = '<div id="nav-state1" style="display:flex;align-items:center;justify-content:space-between;padding:11px 48px;background:#FBF6EE;border-bottom:1px solid #E7DAC4;">'
+  var S1 = '<div id="nav-state1" style="height:100%;align-items:center;justify-content:space-between;padding:0 48px;background:#FBF6EE;border-bottom:1px solid #E7DAC4;">'
     + '<div style="display:flex;flex:1;align-items:center;justify-content:space-evenly;padding-left:104px;">'
       + '<div class="muse-dropdown" style="position:relative;align-self:center;padding-bottom:16px;margin-bottom:-16px;display:flex;align-items:center;">'
         + '<a href="about.html" style="' + linkStyle('about','s1') + 'display:inline-flex;align-items:center;gap:5px;">ABOUT' + CHEVRON + '</a>'
@@ -168,7 +170,7 @@
     + '<span onclick="openMuseSearch()" style="cursor:pointer;display:inline-flex;align-items:center;color:#0A0B0C;flex:none;">' + SEARCH_SVG + '</span>'
   + '</div>';
 
-  var S2 = '<div id="nav-state2" style="display:none;align-items:center;padding:9px 48px;background:rgba(253,252,250,.8);backdrop-filter:blur(12px) saturate(1.1);-webkit-backdrop-filter:blur(12px) saturate(1.1);border-bottom:1px solid rgba(231,218,196,.7);">'
+  var S2 = '<div id="nav-state2" style="height:100%;align-items:center;padding:0 48px;background:rgba(253,252,250,.8);backdrop-filter:blur(12px) saturate(1.1);-webkit-backdrop-filter:blur(12px) saturate(1.1);border-bottom:1px solid rgba(231,218,196,.7);">'
     + S2_LEFT
     + slot      // center column injected by the page
     + S2_RIGHT
@@ -194,7 +196,7 @@
 
   // ─── 7. Assemble & inject ─────────────────────────────────────────────────
 
-  host.innerHTML = '<nav id="site-nav" style="position:fixed;top:0;left:0;right:0;z-index:50;">'
+  host.innerHTML = '<nav id="site-nav" style="position:fixed;top:0;left:0;right:0;z-index:50;height:56px;">'
     + S1 + S2 + MOB
   + '</nav>';
 
@@ -225,6 +227,7 @@
   }
 
   window.addEventListener('scroll', compute, { passive: true });
+  window.addEventListener('pageshow', compute);
   compute();
 
 })();
