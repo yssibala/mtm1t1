@@ -1,237 +1,291 @@
 <!DOCTYPE html>
 <html lang="en">
-   <head>
-      <!-- basic -->
-      <meta charset="utf-8">
-      <meta http-equiv="X-UA-Compatible" content="IE=edge">
-      <meta name="viewport" content="width=device-width, initial-scale=1">
-      <!-- mobile metas -->
-      <meta name="viewport" content="width=device-width, initial-scale=1">
-      <meta name="viewport" content="initial-scale=1, maximum-scale=1">
-      <!-- site metas -->
-      <title>Gallery</title>
-      <meta name="keywords" content="">
-      <meta name="description" content="">
-      <meta name="author" content="">
-      <!-- bootstrap css -->
-      <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
-      <!-- style css -->
-      <link rel="stylesheet" type="text/css" href="css/style.css">
-      <!-- Responsive-->
-      <link rel="stylesheet" href="css/responsive.css">
-      <!-- fevicon -->
-      <link rel="icon" href="images/fevicon.png" type="image/gif" />
-      <!-- Scrollbar Custom CSS -->
-      <link rel="stylesheet" href="css/jquery.mCustomScrollbar.min.css">
-      <!-- Tweaks for older IEs-->
-      <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
-      <!-- owl stylesheets --> 
-      <link rel="stylesheet" href="css/owl.carousel.min.css">
-      <link rel="stylesheet" href="css/owl.theme.default.min.css">
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" media="screen">
-   </head>
-   <body>
-      <!--header section start -->
-      <div class="header_section">
-         <div class="container-fluid">
-            <nav class="navbar navbar-expand-lg navbar-light bg-light">
-               <div class="logo"><a href="index.html"><img src="images/logo.png"></a></div>
-               <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav"aria-expanded="false" aria-label="Toggle navigation">
-               <span class="navbar-toggler-icon"></span>
-               </button>
-               <div class="collapse navbar-collapse" id="navbarNav">
-                  <ul class="navbar-nav ml-auto">
-                     <li class="nav-item active">
-                        <a class="nav-link" href="index.html">Home</a>
-                     </li>
-                     <li class="nav-item">
-                        <a class="nav-link" href="about.html">About Us</a>
-                     </li>
-                     <li class="nav-item">
-                        <a class="nav-link" href="gallery.html">Gallery</a>
-                     </li>
-                     <li class="nav-item">
-                        <a class="nav-link" href="services.html">Services</a>
-                     </li>
-                     <li class="nav-item">
-                        <a class="nav-link" href="contact.html">Contact Us</a>
-                     </li>
-                     <li class="nav-item">
-                        <a class="nav-link" href="#"><i class="fa fa-search" aria-hidden="true"></i></a>
-                     </li>
-                  </ul>
-               </div>
-            </nav>
-         </div>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Gallery — MUSE RTD Cocktails</title>
+  <meta name="description" content="Moments lived amongst the clouds — and the Muses who light them.">
+  <link rel="preconnect" href="https://use.typekit.net" crossorigin>
+  <link rel="stylesheet" href="assets/fonts/font.css">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --cream: #FBF6EE; --ink: #0A0B0C; --gold: #EFA527; --amber: #C9851A;
+      --border: #E7DAC4; --card: #FDFCFA; --nav-scrolled-bg: rgba(251,246,238,0.92);
+    }
+    html { scroll-behavior: smooth; }
+    body { background: var(--cream); color: var(--ink); font-family: neuehaasdisplaylight, neue-haas-grotesk-text, sans-serif; }
+    #site-nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; transition: background .35s ease, backdrop-filter .35s ease, border-color .35s ease; }
+    #nav-state1{display:flex;}
+    #nav-state2{display:none;}
+    #site-nav.nav--scrolled #nav-state1{display:none!important;}
+    #site-nav.nav--scrolled #nav-state2{display:flex!important;}
+    .muse-dropdown-menu{display:none;}
+    .muse-dropdown:hover .muse-dropdown-menu{display:block;}
+    .muse-sub{display:block;padding:11px 13px;font-size:11px;letter-spacing:.14em;font-weight:500;color:#0A0B0C;text-decoration:none;transition:background .25s ease;}
+    .muse-sub:hover{background:#F4ECDD;color:#C9851A;}
+    .nav--scrolled { background: var(--nav-scrolled-bg); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); border-bottom: 1px solid var(--border); }
+    .muse-link { position: relative; }
+    .g-tabs { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; padding: 32px 24px 24px; }
+    .g-tab { padding: 9px 20px; border-radius: 100px; border: 1px solid var(--border); background: transparent; font-family: neuehaasdisplaylight, sans-serif; font-size: 11px; letter-spacing: .16em; text-transform: uppercase; color: var(--ink); cursor: pointer; transition: all .2s; }
+    .g-tab:hover { border-color: var(--gold); color: var(--gold); }
+    .g-tab.active { background: var(--ink); color: #fff; border-color: var(--ink); }
+    .g-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; padding: 0 48px 48px; max-width: 1280px; margin: 0 auto; }
+    .g-tile { position: relative; aspect-ratio: 4/5; overflow: hidden; cursor: pointer; background: #E7DAC4; }
+    .g-tile[data-hidden="true"] { display: none; }
+    .g-tile img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .5s ease; }
+    .g-tile:hover img { transform: scale(1.04); }
+    .g-tile-ov { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(10,11,12,0) 38%, rgba(10,11,12,.72) 100%); opacity: 0; transition: opacity .3s ease; display: flex; flex-direction: column; justify-content: flex-end; padding: 20px; }
+    .g-tile:hover .g-tile-ov { opacity: 1; }
+    .g-tile-submit { border: 2px dashed var(--border); cursor: pointer; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; background: var(--card); transition: border-color .2s; }
+    .g-tile-submit:hover { border-color: var(--gold); }
+    .g-cta { padding: 80px 48px; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 20px; background: linear-gradient(180deg, var(--cream) 0%, #EDE5D8 100%); }
+    #lb { display: none; position: fixed; inset: 0; z-index: 300; background: rgba(10,11,12,.92); backdrop-filter: blur(6px); align-items: center; justify-content: center; }
+    #lb.open { display: flex; }
+    #lb-img { max-width: 88vw; max-height: 80vh; object-fit: contain; border-radius: 4px; }
+    #lb-caption { position: absolute; bottom: 10vh; left: 50%; transform: translateX(-50%); color: #fff; font-size: 13px; letter-spacing: .1em; text-align: center; white-space: nowrap; }
+    #lb-close { position: absolute; top: 24px; right: 28px; background: none; border: none; color: #fff; font-size: 28px; cursor: pointer; line-height: 1; }
+    #lb-prev, #lb-next { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(255,255,255,.12); border: none; color: #fff; width: 48px; height: 48px; border-radius: 50%; font-size: 20px; cursor: pointer; display: flex; align-items: center; justify-content: center; }
+    #lb-prev { left: 24px; }
+    #lb-next { right: 24px; }
+    @media (max-width: 768px) { .g-grid { grid-template-columns: repeat(2, 1fr); } }
+  </style>
+</head>
+<body>
+
+<nav id="site-nav">
+  <div id="nav-state1" style="display:flex;width:100%;align-items:center;justify-content:space-between;padding:20px 48px;background:#FBF6EE;border-bottom:1px solid #E7DAC4;">
+    <!-- Left nav links -->
+    <div class="nav-desktop" style="display:flex;flex:1;align-items:center;justify-content:space-evenly;padding-left:104px;">
+      <div class="muse-dropdown" style="position:relative;align-self:center;padding-bottom:16px;margin-bottom:-16px;display:flex;align-items:center;">
+        <a href="about.html" class="muse-link" style="font-size:12px;letter-spacing:.18em;font-weight:500;color:#0A0B0C;text-decoration:none;display:inline-flex;align-items:center;gap:5px;">ABOUT<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" style="opacity:.5;flex:none;"><path d="m6 9 6 6 6-6"/></svg></a>
+        <div class="muse-dropdown-menu" style="position:absolute;top:100%;left:0;width:240px;background:#FDFCFA;border:1px solid #E7DAC4;box-shadow:0 18px 44px -20px rgba(10,11,12,.5);padding:7px;text-align:left;z-index:60;">
+          <a href="about.html" class="muse-sub" style="display:block;padding:11px 13px;font-size:11px;letter-spacing:.14em;font-weight:500;color:#0A0B0C;text-decoration:none;">ABOUT US</a>
+          <a href="flagship-detail.html" class="muse-sub" style="display:block;padding:11px 13px;font-size:11px;letter-spacing:.14em;font-weight:500;color:#0A0B0C;text-decoration:none;">THE FLAGSHIP MUSES</a>
+          <div style="display:flex;align-items:center;justify-content:space-between;padding:11px 13px;font-size:11px;letter-spacing:.14em;font-weight:500;color:#B0A892;cursor:default;">LORE<span style="font-size:8px;letter-spacing:.1em;font-weight:600;color:#C9851A;border:1px solid #E7C98A;border-radius:30px;padding:2px 7px;white-space:nowrap;">COMING SOON</span></div>
+        </div>
       </div>
-      <!--header section end -->
-      <!-- gallery section start -->
-      <div class="gallery_section layout_padding">
-         <div class="container">
-            <div class="row">
-               <div class="col-sm-12">
-                  <h1 class="gallery_taital">Our Gallery</h1>
-                  <p class="gallery_text">Lorem Ipsum is simply dummy text of printing typesetting ststry lorem Ipsum the industry'ndard dummy text ever since of the 1500s, when an unknown printer took a galley of type and scra make a type specimen book. It has</p>
-               </div>
-            </div>
-            <div class="">
-               <div class="gallery_section_2">
-                  <div class="row">
-                     <div class="col-md-4">
-                        <div class="container_main">
-                           <img src="images/img-1.png" alt="Avatar" class="image">
-                           <div class="overlay">
-                              <div class="text"><a href="#"><i class="fa fa-search" aria-hidden="true"></i></a></div>
-                           </div>
-                        </div>
-                     </div>
-                     <div class="col-md-4">
-                        <div class="container_main">
-                           <img src="images/img-2.png" alt="Avatar" class="image">
-                           <div class="overlay">
-                              <div class="text"><a href="#"><i class="fa fa-search" aria-hidden="true"></i></a></div>
-                           </div>
-                        </div>
-                     </div>
-                     <div class="col-md-4">
-                        <div class="container_main">
-                           <img src="images/img-3.png" alt="Avatar" class="image">
-                           <div class="overlay">
-                              <div class="text"><a href="#"><i class="fa fa-search" aria-hidden="true"></i></a></div>
-                           </div>
-                        </div>
-                     </div>
-                  </div>
-               </div>
-               <div class="gallery_section_2">
-                  <div class="row">
-                     <div class="col-md-4">
-                        <div class="container_main">
-                           <img src="images/img-4.png" alt="Avatar" class="image">
-                           <div class="overlay">
-                              <div class="text"><a href="#"><i class="fa fa-search" aria-hidden="true"></i></a></div>
-                           </div>
-                        </div>
-                     </div>
-                     <div class="col-md-4">
-                        <div class="container_main">
-                           <img src="images/img-5.png" alt="Avatar" class="image">
-                           <div class="overlay">
-                              <div class="overlay">
-                                 <div class="text"><a href="#"><i class="fa fa-search" aria-hidden="true"></i></a></div>
-                              </div>
-                           </div>
-                        </div>
-                     </div>
-                     <div class="col-md-4">
-                        <div class="container_main">
-                           <img src="images/img-6.png" alt="Avatar" class="image">
-                           <div class="overlay">
-                              <div class="overlay">
-                                 <div class="text"><a href="#"><i class="fa fa-search" aria-hidden="true"></i></a></div>
-                              </div>
-                           </div>
-                        </div>
-                     </div>
-                  </div>
-               </div>
-               <div class="gallery_section_2">
-                  <div class="row">
-                     <div class="col-md-4">
-                        <div class="container_main">
-                           <img src="images/img-7.png" alt="Avatar" class="image">
-                           <div class="overlay">
-                              <div class="text"><a href="#"><i class="fa fa-search" aria-hidden="true"></i></a></div>
-                           </div>
-                        </div>
-                     </div>
-                     <div class="col-md-4">
-                        <div class="container_main">
-                           <img src="images/img-8.png" alt="Avatar" class="image">
-                           <div class="overlay">
-                              <div class="text"><a href="#"><i class="fa fa-search" aria-hidden="true"></i></a></div>
-                           </div>
-                        </div>
-                     </div>
-                     <div class="col-md-4">
-                        <div class="container_main">
-                           <img src="images/img-9.png" alt="Avatar" class="image">
-                           <div class="overlay">
-                              <div class="text"><a href="#"><i class="fa fa-search" aria-hidden="true"></i></a></div>
-                           </div>
-                        </div>
-                     </div>
-                  </div>
-               </div>
-            </div>
-            <div class="seemore_bt"><a href="#">See More</a></div>
-         </div>
+      <a href="gallery.html" class="muse-link" style="font-size:12px;letter-spacing:.18em;font-weight:600;color:#0A0B0C;text-decoration:none;border-bottom:2px solid #EFA527;padding-bottom:2px;">GALLERY</a>
+      <div class="muse-dropdown" style="position:relative;align-self:center;padding-bottom:16px;margin-bottom:-16px;display:flex;align-items:center;">
+        <a href="contact.html" class="muse-link" style="font-size:12px;letter-spacing:.18em;font-weight:500;color:#0A0B0C;text-decoration:none;display:inline-flex;align-items:center;gap:5px;">CONTACT<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" style="opacity:.5;flex:none;"><path d="m6 9 6 6 6-6"/></svg></a>
+        <div class="muse-dropdown-menu" style="position:absolute;top:100%;left:0;width:220px;background:#FDFCFA;border:1px solid #E7DAC4;box-shadow:0 18px 44px -20px rgba(10,11,12,.5);padding:7px;text-align:left;z-index:60;">
+          <a href="contact.html" class="muse-sub" style="display:block;padding:11px 13px;font-size:11px;letter-spacing:.14em;font-weight:500;color:#0A0B0C;text-decoration:none;">CONTACT US</a>
+          <a href="share-a-muse.html" class="muse-sub" style="display:block;padding:11px 13px;font-size:11px;letter-spacing:.14em;font-weight:500;color:#0A0B0C;text-decoration:none;">SHARE YOUR MUSE</a>
+        </div>
       </div>
-      <!-- gallery section end -->
-      <div class="footer_section layout_padding">
-         <div class="container">
-            <div class="row">
-               <div class="col-lg-3 col-sm-6">
-                  <h3 class="useful_text">About</h3>
-                  <p class="footer_text">consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation u</p>
-               </div>
-               <div class="col-lg-3 col-sm-6">
-                  <h3 class="useful_text">Menu</h3>
-                  <div class="footer_menu">
-                     <ul>
-                        <li><a href="index.html">Home</a></li>
-                        <li><a href="about.html">About Us</a></li>
-                        <li><a href="gallery.html">Gallery</a></li>
-                        <li><a href="services.html">Services</a></li>
-                        <li><a href="contact.html">Contact Us</a></li>
-                     </ul>
-                  </div>
-               </div>
-               <div class="col-lg-3 col-sm-6">
-                  <h1 class="useful_text">Useful Link</h1>
-                  <p class="dummy_text">Adipiscing Elit, sed do Eiusmod Tempor incididunt </p>
-               </div>
-               <div class="col-lg-3 col-sm-6">
-                  <h1 class="useful_text">Contact Us</h1>
-                  <div class="location_text">
-                     <ul>
-                        <li>
-                           <a href="#">
-                           <i class="fa fa-map-marker" aria-hidden="true"></i><span class="padding_left_10">Address : Loram Ipusm</span>
-                           </a>
-                        </li>
-                        <li>
-                           <a href="#">
-                           <i class="fa fa-phone" aria-hidden="true"></i><span class="padding_left_10">Call : +01 1234567890</span>
-                           </a>
-                        </li>
-                        <li>
-                           <a href="#">
-                           <i class="fa fa-envelope" aria-hidden="true"></i><span class="padding_left_10">Email : demo@gmail.com</span>
-                           </a>
-                        </li>
-                     </ul>
-                  </div>
-               </div>
-            </div>
-         </div>
+    </div>
+    <!-- Center monogram -->
+    <a href="index.html" aria-label="MUSE home" style="display:inline-flex;align-items:center;flex:none;">
+      <img src="images/MUSE%20-%20Monogram%20(Solo%20GLD).png" alt="MUSE" style="height:38px;width:auto;flex:none;">
+    </a>
+    <!-- Right nav links -->
+    <div class="nav-desktop" style="display:flex;flex:1;align-items:center;justify-content:space-evenly;padding-right:104px;">
+      <a href="login.html" class="muse-link" style="font-size:12px;letter-spacing:.18em;font-weight:500;color:#0A0B0C;text-decoration:none;">LOG IN</a>
+      <a href="products.html" class="muse-link" style="font-size:12px;letter-spacing:.18em;font-weight:500;color:#0A0B0C;text-decoration:none;">PRODUCTS</a>
+      <a href="shop.html" class="muse-link" style="font-size:12px;letter-spacing:.18em;font-weight:500;color:#0A0B0C;text-decoration:none;">SHOP</a>
+    </div>
+  </div>
+  <div id="nav-state2" style="display:none;position:relative;width:100%;align-items:center;justify-content:space-between;padding:11px 48px;background:rgba(253,252,250,.8);backdrop-filter:blur(12px) saturate(1.1);-webkit-backdrop-filter:blur(12px) saturate(1.1);border-bottom:1px solid rgba(231,218,196,.7);">
+    <a href="index.html" aria-label="MUSE home" style="display:inline-flex;align-items:center;flex:none;">
+      <img src="images/MUSE%20-%20Monogram%20(Solo%20GLD).png" alt="MUSE" style="height:38px;width:auto;">
+    </a>
+    <div class="nav-desktop" style="position:absolute;left:50%;transform:translateX(-50%);display:flex;gap:64px;align-items:center;">
+      <div class="muse-dropdown" style="position:relative;align-self:center;padding-bottom:16px;margin-bottom:-16px;display:flex;align-items:center;">
+        <a href="about.html" class="muse-link" style="font-size:11px;letter-spacing:.2em;font-weight:500;color:#0A0B0C;text-decoration:none;display:inline-flex;align-items:center;gap:5px;">ABOUT<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" style="opacity:.5;flex:none;"><path d="m6 9 6 6 6-6"/></svg></a>
+        <div class="muse-dropdown-menu" style="position:absolute;top:100%;left:0;width:240px;background:#FDFCFA;border:1px solid #E7DAC4;box-shadow:0 18px 44px -20px rgba(10,11,12,.5);padding:7px;text-align:left;z-index:60;">
+          <a href="about.html" class="muse-sub" style="display:block;padding:11px 13px;font-size:11px;letter-spacing:.14em;font-weight:500;color:#0A0B0C;text-decoration:none;">ABOUT US</a>
+          <a href="flagship-detail.html" class="muse-sub" style="display:block;padding:11px 13px;font-size:11px;letter-spacing:.14em;font-weight:500;color:#0A0B0C;text-decoration:none;">THE FLAGSHIP MUSES</a>
+          <div style="display:flex;align-items:center;justify-content:space-between;padding:11px 13px;font-size:11px;letter-spacing:.14em;font-weight:500;color:#B0A892;cursor:default;">LORE<span style="font-size:8px;letter-spacing:.1em;font-weight:600;color:#C9851A;border:1px solid #E7C98A;border-radius:30px;padding:2px 7px;white-space:nowrap;">COMING SOON</span></div>
+        </div>
       </div>
-      <!-- footer section end -->
-      <!-- copyright section start -->
-      <div class="copyright_section">
-         <div class="container">
-            <p class="copyright_text">2020 All Rights Reserved. Design by <a href="https://html.design">Free html  Templates</a></p>
-         </div>
+      <a href="gallery.html" class="muse-link" style="font-size:11px;letter-spacing:.2em;font-weight:600;color:#0A0B0C;text-decoration:none;border-bottom:2px solid #EFA527;padding-bottom:2px;">GALLERY</a>
+      <div class="muse-dropdown" style="position:relative;align-self:center;padding-bottom:16px;margin-bottom:-16px;display:flex;align-items:center;">
+        <a href="contact.html" class="muse-link" style="font-size:11px;letter-spacing:.2em;font-weight:500;color:#0A0B0C;text-decoration:none;display:inline-flex;align-items:center;gap:5px;">CONTACT<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" style="opacity:.5;flex:none;"><path d="m6 9 6 6 6-6"/></svg></a>
+        <div class="muse-dropdown-menu" style="position:absolute;top:100%;right:0;width:220px;background:#FDFCFA;border:1px solid #E7DAC4;box-shadow:0 18px 44px -20px rgba(10,11,12,.5);padding:7px;text-align:left;z-index:60;">
+          <a href="contact.html" class="muse-sub" style="display:block;padding:11px 13px;font-size:11px;letter-spacing:.14em;font-weight:500;color:#0A0B0C;text-decoration:none;">CONTACT US</a>
+          <a href="share-a-muse.html" class="muse-sub" style="display:block;padding:11px 13px;font-size:11px;letter-spacing:.14em;font-weight:500;color:#0A0B0C;text-decoration:none;">SHARE YOUR MUSE</a>
+        </div>
       </div>
-      <!-- copyright section end -->
-      <!-- Javascript files-->
-      <script src="js/jquery.min.js"></script>
-      <script src="js/popper.min.js"></script>
-      <script src="js/bootstrap.bundle.min.js"></script>
-      <script src="js/jquery-3.0.0.min.js"></script>
-      <script src="js/plugin.js"></script>
-      <!-- sidebar -->
-      <script src="js/jquery.mCustomScrollbar.concat.min.js"></script>
-      <script src="js/custom.js"></script>     
-   </body>
+      <a href="products.html" class="muse-link" style="font-size:11px;letter-spacing:.2em;font-weight:500;color:#0A0B0C;text-decoration:none;">PRODUCTS</a>
+      <a href="login.html" class="muse-link" style="font-size:11px;letter-spacing:.2em;font-weight:500;color:#0A0B0C;text-decoration:none;">LOG IN</a>
+    </div>
+    <div style="display:flex;align-items:center;gap:18px;flex:none;">
+      <div class="muse-dropdown" style="position:relative;padding-bottom:14px;margin-bottom:-14px;">
+        <a href="shop.html" style="text-decoration:none;display:inline-flex;">
+          <div class="muse-pill muse-cta" style="display:flex;align-items:center;gap:10px;background:#EFA527;color:#0A0B0C;border-radius:30px;padding:9px 20px;font-size:11px;letter-spacing:.16em;font-weight:600;">SHOP</div>
+        </a>
+      </div>
+      <span style="cursor:pointer;display:inline-flex;align-items:center;color:#0A0B0C;">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+      </span>
+    </div>
+  </div>
+</nav>
+
+<section style="position:relative; overflow:hidden; min-height:64vh; display:flex; flex-direction:column; align-items:center; justify-content:flex-end; padding:150px 24px 13vh; background-color:#FBF6EE; background-image:url('images/00%20Cloud%20BG%20(B).png'); background-repeat:no-repeat; background-position:center bottom; background-size:150% auto; text-align:center;">
+  <div style="position:absolute; inset:0; pointer-events:none; z-index:1; background:linear-gradient(180deg,rgba(251,246,238,0) 46%,rgba(251,246,238,.55) 76%,rgba(251,246,238,.96) 100%);"></div>
+  <div style="position:relative; z-index:2; font-size:10px; letter-spacing:.22em; text-transform:uppercase; color:#6B6156; margin-bottom:12px;">The MUSE Community</div>
+  <h1 style="position:relative; z-index:2; font-family:Ogg,serif; font-size:clamp(2.4rem,5vw,4rem); font-weight:400; color:var(--ink); line-height:1.1; margin:0;">Moments Worth Raising a Glass To</h1>
+  <p style="position:relative; z-index:2; font-size:0.95rem; color:#6B6156; max-width:520px; margin:16px auto 0; line-height:1.65;">Every sip tells a story. Browse the moments our community has raised a glass to — and add yours.</p>
+  <div data-nav-sentinel style="position:absolute; left:0; bottom:9vh; width:1px; height:1px; pointer-events:none;"></div>
+</section>
+
+<div class="g-tabs" role="tablist">
+  <button class="g-tab active" data-filter="ALL" role="tab" aria-selected="true">ALL</button>
+  <button class="g-tab" data-filter="CELEBRATIONS" role="tab">CELEBRATIONS</button>
+  <button class="g-tab" data-filter="MUSES IN ACTION" role="tab">MUSES IN ACTION</button>
+  <button class="g-tab" data-filter="GOLDEN HOUR" role="tab">GOLDEN HOUR</button>
+  <button class="g-tab" data-filter="BEHIND THE MUSE" role="tab">BEHIND THE MUSE</button>
+</div>
+
+<div class="g-grid" id="g-grid">
+
+  <div class="g-tile" data-cat="MUSES IN ACTION" data-caption="Clio — spontaneity at sunset">
+    <img src="images/11%20Clio%201B.png" alt="Clio — spontaneity at sunset">
+    <div class="g-tile-ov"><div style="font-size:9px;letter-spacing:.22em;font-weight:600;color:#EFA527;margin-bottom:7px;">MUSES IN ACTION</div><div style="font-family:'Ogg',serif;font-size:21px;color:#FDFCFA;line-height:1.25;">Clio — spontaneity at sunset</div></div>
+  </div>
+
+  <div class="g-tile" data-cat="MUSES IN ACTION" data-caption="Thalia — elations after noon">
+    <img src="images/11%20Thalia%201B.png" alt="Thalia — elations after noon">
+    <div class="g-tile-ov"><div style="font-size:9px;letter-spacing:.22em;font-weight:600;color:#EFA527;margin-bottom:7px;">MUSES IN ACTION</div><div style="font-family:'Ogg',serif;font-size:21px;color:#FDFCFA;line-height:1.25;">Thalia — elations after noon</div></div>
+  </div>
+
+  <div class="g-tile" data-cat="MUSES IN ACTION" data-caption="Ourania — elegance at eventide">
+    <img src="images/11%20Ourania%201B.png" alt="Ourania — elegance at eventide">
+    <div class="g-tile-ov"><div style="font-size:9px;letter-spacing:.22em;font-weight:600;color:#EFA527;margin-bottom:7px;">MUSES IN ACTION</div><div style="font-family:'Ogg',serif;font-size:21px;color:#FDFCFA;line-height:1.25;">Ourania — elegance at eventide</div></div>
+  </div>
+
+  <div class="g-tile" data-cat="GOLDEN HOUR" data-caption="Raised amongst the clouds">
+    <img src="images/Gallery%2005B.png" alt="Raised amongst the clouds">
+    <div class="g-tile-ov"><div style="font-size:9px;letter-spacing:.22em;font-weight:600;color:#EFA527;margin-bottom:7px;">GOLDEN HOUR</div><div style="font-family:'Ogg',serif;font-size:21px;color:#FDFCFA;line-height:1.25;">Raised amongst the clouds</div></div>
+  </div>
+
+  <div class="g-tile" data-cat="GOLDEN HOUR" data-caption="Last light, best light">
+    <img src="images/Gallery%2014B.png" alt="Last light, best light">
+    <div class="g-tile-ov"><div style="font-size:9px;letter-spacing:.22em;font-weight:600;color:#EFA527;margin-bottom:7px;">GOLDEN HOUR</div><div style="font-family:'Ogg',serif;font-size:21px;color:#FDFCFA;line-height:1.25;">Last light, best light</div></div>
+  </div>
+
+  <div class="g-tile" data-cat="GOLDEN HOUR" data-caption="The golden hour calls">
+    <img src="images/Gallery%2006B.png" alt="The golden hour calls">
+    <div class="g-tile-ov"><div style="font-size:9px;letter-spacing:.22em;font-weight:600;color:#EFA527;margin-bottom:7px;">GOLDEN HOUR</div><div style="font-family:'Ogg',serif;font-size:21px;color:#FDFCFA;line-height:1.25;">The golden hour calls</div></div>
+  </div>
+
+  <div class="g-tile" data-cat="CELEBRATIONS" data-caption="A toast amongst the clouds">
+    <img src="images/Gallery%2010B.png" alt="A toast amongst the clouds">
+    <div class="g-tile-ov"><div style="font-size:9px;letter-spacing:.22em;font-weight:600;color:#EFA527;margin-bottom:7px;">CELEBRATIONS</div><div style="font-family:'Ogg',serif;font-size:21px;color:#FDFCFA;line-height:1.25;">A toast amongst the clouds</div></div>
+  </div>
+
+  <div class="g-tile" data-cat="CELEBRATIONS" data-caption="Every table deserves a Muse">
+    <img src="images/Gallery%2012B-2.png" alt="Every table deserves a Muse">
+    <div class="g-tile-ov"><div style="font-size:9px;letter-spacing:.22em;font-weight:600;color:#EFA527;margin-bottom:7px;">CELEBRATIONS</div><div style="font-family:'Ogg',serif;font-size:21px;color:#FDFCFA;line-height:1.25;">Every table deserves a Muse</div></div>
+  </div>
+
+  <div class="g-tile" data-cat="CELEBRATIONS" data-caption="The legend continues">
+    <img src="images/Gallery%2013B.png" alt="The legend continues">
+    <div class="g-tile-ov"><div style="font-size:9px;letter-spacing:.22em;font-weight:600;color:#EFA527;margin-bottom:7px;">CELEBRATIONS</div><div style="font-family:'Ogg',serif;font-size:21px;color:#FDFCFA;line-height:1.25;">The legend continues</div></div>
+  </div>
+
+  <div class="g-tile g-tile-submit" onclick="window.location.href='share-a-muse.html'" style="aspect-ratio:1/1;">
+    <svg width="36" height="36" fill="none" stroke="#EFA527" stroke-width="1.5" viewBox="0 0 24 24"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
+    <div style="text-align:center;"><div style="font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:#0A0B0C;font-weight:600;margin-bottom:4px;">#MyMUSE</div><div style="font-size:12px;color:#6B6156;">Share your moment</div></div>
+  </div>
+
+</div>
+
+<section class="g-cta">
+  <p style="font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:#6B6156;">Community</p>
+  <h2 style="font-family:Ogg,serif;font-size:clamp(1.8rem,4vw,3rem);font-weight:400;color:var(--ink);max-width:580px;line-height:1.2;">Who's Your Muse?</h2>
+  <p style="font-size:15px;line-height:1.7;color:#4C4C4B;max-width:480px;">Every moment has a Muse behind it. Tag us in yours — the best ones earn a spot in the gallery.</p>
+  <div style="display:flex;gap:14px;flex-wrap:wrap;justify-content:center;">
+    <a href="share-a-muse.html" style="padding:13px 30px;background:#EFA527;color:#fff;text-decoration:none;border-radius:100px;font-size:12px;letter-spacing:.16em;font-weight:600;" onmouseover="this.style.background='#C9851A'" onmouseout="this.style.background='#EFA527'">SHARE YOUR MUSE</a>
+    <a href="https://www.instagram.com/mt.muse.rtd/" target="_blank" rel="noopener" style="padding:13px 30px;background:transparent;color:var(--ink);text-decoration:none;border-radius:100px;border:1px solid var(--border);font-size:12px;letter-spacing:.16em;font-weight:600;" onmouseover="this.style.borderColor='#EFA527'" onmouseout="this.style.borderColor='#E7DAC4'">FOLLOW ON INSTAGRAM</a>
+  </div>
+</section>
+
+<div id="site-footer"></div>
+
+<div id="lb" role="dialog" aria-modal="true" aria-label="Photo lightbox">
+  <button id="lb-close" aria-label="Close">&times;</button>
+  <button id="lb-prev" aria-label="Previous">&#8592;</button>
+  <img id="lb-img" src="" alt="">
+  <div id="lb-caption"></div>
+  <button id="lb-next" aria-label="Next">&#8594;</button>
+</div>
+
+<script src="assets/js/footer.js"></script>
+<script src="assets/js/nav.js"></script>
+  <script src="assets/js/visibility.js"></script>
+<script>
+(function () {
+  var tabs  = document.querySelectorAll('.g-tab');
+  var tiles = document.querySelectorAll('.g-tile:not(.g-tile-submit)');
+
+  tabs.forEach(function (tab) {
+    tab.addEventListener('click', function () {
+      tabs.forEach(function (t) { t.classList.remove('active'); t.setAttribute('aria-selected','false'); });
+      tab.classList.add('active'); tab.setAttribute('aria-selected','true');
+      var filter = tab.getAttribute('data-filter');
+      tiles.forEach(function (tile) {
+        tile.setAttribute('data-hidden', filter !== 'ALL' && tile.getAttribute('data-cat') !== filter ? 'true' : 'false');
+      });
+    });
+  });
+
+  var visibleTiles = [];
+  var lbIndex = 0;
+  var lb    = document.getElementById('lb');
+  var lbImg = document.getElementById('lb-img');
+  var lbCap = document.getElementById('lb-caption');
+
+  function showSlide(i) {
+    var t = visibleTiles[i];
+    if (!t) return;
+    lbImg.src = t.querySelector('img').src;
+    lbImg.alt = t.getAttribute('data-caption') || '';
+    lbCap.textContent = t.getAttribute('data-caption') || '';
+  }
+
+  function openLb(idx) {
+    visibleTiles = Array.from(document.querySelectorAll('.g-tile:not(.g-tile-submit):not([data-hidden="true"])'));
+    lbIndex = idx;
+    showSlide(lbIndex);
+    lb.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeLb() {
+    lb.classList.remove('open');
+    document.body.style.overflow = '';
+    lbImg.src = '';
+  }
+
+  tiles.forEach(function (tile) {
+    tile.addEventListener('click', function () {
+      var allVisible = Array.from(document.querySelectorAll('.g-tile:not(.g-tile-submit):not([data-hidden="true"])'));
+      openLb(allVisible.indexOf(tile));
+    });
+  });
+
+  document.getElementById('lb-close').addEventListener('click', closeLb);
+  lb.addEventListener('click', function (e) { if (e.target === lb) closeLb(); });
+  document.getElementById('lb-prev').addEventListener('click', function (e) {
+    e.stopPropagation();
+    lbIndex = (lbIndex - 1 + visibleTiles.length) % visibleTiles.length;
+    showSlide(lbIndex);
+  });
+  document.getElementById('lb-next').addEventListener('click', function (e) {
+    e.stopPropagation();
+    lbIndex = (lbIndex + 1) % visibleTiles.length;
+    showSlide(lbIndex);
+  });
+  document.addEventListener('keydown', function (e) {
+    if (!lb.classList.contains('open')) return;
+    if (e.key === 'ArrowLeft')  { lbIndex = (lbIndex - 1 + visibleTiles.length) % visibleTiles.length; showSlide(lbIndex); }
+    if (e.key === 'ArrowRight') { lbIndex = (lbIndex + 1) % visibleTiles.length; showSlide(lbIndex); }
+    if (e.key === 'Escape') closeLb();
+  });
+})();
+</script>
+</body>
 </html>
