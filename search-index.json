@@ -1,0 +1,98 @@
+[
+  {
+    "title": "Home",
+    "url": "index.html",
+    "description": "MUSE RTD Cocktails — The Flagship Collection",
+    "content": "muse rtd cocktails flagship collection ready to drink cocktails thalia clio ourania muse monogram home"
+  },
+  {
+    "title": "About — Our Story",
+    "url": "about.html",
+    "description": "The story behind MUSE RTD Cocktails",
+    "content": "about our story muse brand history inspiration the flagship muses lore gallery"
+  },
+  {
+    "title": "The Flagship Muses",
+    "url": "flagship-detail.html",
+    "description": "Explore THALIA, CLIO, and OURANIA — the three Flagship Muses",
+    "content": "flagship muses thalia clio ourania detail ingredients flavor profile rtd cocktail sku"
+  },
+  {
+    "title": "Nutrition Facts",
+    "url": "nutrition-facts.html",
+    "description": "Nutrition facts and ingredients for the Flagship Muses",
+    "content": "nutrition facts calories ingredients thalia clio ourania rtd cocktail alcohol abv carbs sugar"
+  },
+  {
+    "title": "THALIA",
+    "url": "thalia.html",
+    "description": "THALIA — one of the Flagship Muses by MUSE RTD Cocktails",
+    "content": "thalia flagship muse rtd cocktail flavor ingredients"
+  },
+  {
+    "title": "CLIO",
+    "url": "clio.html",
+    "description": "CLIO — one of the Flagship Muses by MUSE RTD Cocktails",
+    "content": "clio flagship muse rtd cocktail flavor ingredients"
+  },
+  {
+    "title": "OURANIA",
+    "url": "ourania.html",
+    "description": "OURANIA — one of the Flagship Muses by MUSE RTD Cocktails",
+    "content": "ourania flagship muse rtd cocktail flavor ingredients"
+  },
+  {
+    "title": "Shop",
+    "url": "shop.html",
+    "description": "Shop MUSE RTD Cocktails",
+    "content": "shop buy purchase muse rtd cocktails thalia clio ourania flagship collection order"
+  },
+  {
+    "title": "Products",
+    "url": "products.html",
+    "description": "All MUSE products",
+    "content": "products all muse rtd cocktails lineup collection flagship thalia clio ourania"
+  },
+  {
+    "title": "Product Detail",
+    "url": "product-detail.html",
+    "description": "Product detail — MUSE RTD Cocktails",
+    "content": "product detail muse rtd cocktail buy add to cart"
+  },
+  {
+    "title": "Gallery",
+    "url": "gallery.html",
+    "description": "Gallery — MUSE RTD Cocktails",
+    "content": "gallery photos images muse rtd cocktails lifestyle photography"
+  },
+  {
+    "title": "Contact Us",
+    "url": "contact.html",
+    "description": "Get in touch with MUSE RTD Cocktails",
+    "content": "contact us get in touch muse rtd cocktails email support"
+  },
+  {
+    "title": "Share Your Muse",
+    "url": "share-a-muse.html",
+    "description": "Share your MUSE moment with us",
+    "content": "share your muse community ugc user generated content social submit photo"
+  },
+  {
+    "title": "Log In",
+    "url": "login.html",
+    "description": "Log in to your MUSE account",
+    "content": "log in sign in account muse member login"
+  },
+  {
+    "title": "Cart",
+    "url": "cart.html",
+    "description": "Your shopping cart",
+    "content": "cart shopping bag checkout order muse rtd cocktails"
+  },
+  {
+    "title": "Legal",
+    "url": "legal.html",
+    "description": "Legal — Terms, Privacy Policy",
+    "content": "legal terms privacy policy age verification alcohol muse rtd cocktails"
+  }
+]

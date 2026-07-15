@@ -82,7 +82,7 @@
           </div>
         </div>
       </div>
-      <span style="cursor:pointer;display:inline-flex;align-items:center;color:#0A0B0C;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg></span>
+      <span style="cursor:pointer;display:inline-flex;align-items:center;color:#0A0B0C;" onclick="openMuseSearch()"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg></span>
     </div>
     </div>
 
@@ -128,7 +128,7 @@
           </div>
         </div>
       </div>
-      <span style="cursor:pointer;display:inline-flex;align-items:center;color:#0A0B0C;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg></span>
+      <span style="cursor:pointer;display:inline-flex;align-items:center;color:#0A0B0C;" onclick="openMuseSearch()"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg></span>
       </div>
     </div>
   <!-- ── MOBILE NAV ≤960px ──────────────────────────────────────────────── -->
@@ -159,7 +159,7 @@
     <a href="share-a-muse.html" class="mob-sub" style="border-bottom:1px solid rgba(231,218,196,.5);">SHARE YOUR MUSE</a>
     <a href="login.html" class="mob-item">LOG IN</a>
     <a href="products.html" class="mob-item">PRODUCTS</a>
-    <div class="mob-item" style="display:flex;align-items:center;gap:12px;cursor:pointer;">
+    <div class="mob-item" style="display:flex;align-items:center;gap:12px;cursor:pointer;" onclick="openMuseSearch()">
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
       SEARCH
     </div>
@@ -405,5 +405,6 @@
     goTo(0);
   })();
   </script>
+<script src="search-ui.js"></script>
 </body>
 </html>
