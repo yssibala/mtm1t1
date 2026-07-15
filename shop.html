@@ -261,7 +261,7 @@
       var stateAttr = p.state && p.state !== 'active' ? ' data-muse-state="' + p.state + '"' : '';
       return [
         '<div class="muse-merch"' + stateAttr + '>',
-        '  <a href="product-detail.html?handle=' + p.id + '" style="text-decoration:none;color:inherit;display:flex;flex-direction:column;flex:1;">',
+        '  <a href="' + (p.state && p.state !== 'active' ? 'coming-soon.html' : 'product-detail.html?handle=' + p.id) + '" style="text-decoration:none;color:inherit;display:flex;flex-direction:column;flex:1;">',
         '    <div style="position:relative;aspect-ratio:4/5;overflow:hidden;background:#F4ECDD;">',
         '      <div style="position:absolute;left:0;top:0;bottom:0;width:4px;background:' + p.accent + ';z-index:3;pointer-events:none;"></div>',
                p.img
