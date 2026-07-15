@@ -9,53 +9,15 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     body { background: #FBF6EE; color: #0A0B0C; font-family: neuehaasdisplaylight, neue-haas-grotesk-text, sans-serif; }
 
-    /* ── NAV ── */
-    #site-nav {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-      height: 72px; display: flex; align-items: center; justify-content: space-between;
-      padding: 0 40px;
-      background: transparent;
-      transition: background 0.3s ease, backdrop-filter 0.3s ease;
-    }
-    #site-nav.nav--scrolled {
-      background: rgba(251,246,238,0.92);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      border-bottom: 1px solid rgba(231,218,196,0.6);
-    }
-    .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
-    .nav-logo img { height: 36px; width: auto; }
-    .nav-logo span { font-family: Ogg, serif; font-size: 1.1rem; color: #0A0B0C; letter-spacing: .04em; }
-    .nav-links { display: flex; align-items: center; gap: 28px; }
-    .nav-links a { text-decoration: none; color: #0A0B0C; font-size: 0.82rem; letter-spacing: .1em; text-transform: uppercase; }
-    .nav-links a:hover { color: #EFA527; }
-    .nav-links a.active { border-bottom: 2px solid #EFA527; font-weight: 600; }
-    .nav-right { display: flex; align-items: center; gap: 16px; }
-    .cart-link { position: relative; text-decoration: none; color: #0A0B0C; }
-    .cart-link svg { display: block; }
-    .cart-badge {
-      position: absolute; top: -6px; right: -8px;
-      background: #EFA527; color: #fff; border-radius: 50%;
-      width: 16px; height: 16px; font-size: 0.6rem; font-weight: 700;
-      display: flex; align-items: center; justify-content: center;
-    }
-    .cart-badge.hidden { display: none; }
-
-    /* state 2 extras (shop pill + cart pill) */
-    #nav-shop-pill {
-      display: none;
-      padding: 6px 18px; border: 1.5px solid #0A0B0C; border-radius: 40px;
-      text-decoration: none; color: #0A0B0C; font-size: 0.78rem; letter-spacing: .1em; text-transform: uppercase;
-    }
-    #nav-cart-pill {
-      display: none;
-      padding: 6px 18px; background: #EFA527; border-radius: 40px;
-      text-decoration: none; color: #fff; font-size: 0.78rem; letter-spacing: .1em; text-transform: uppercase;
-    }
-    .nav--scrolled #nav-shop-pill,
-    .nav--scrolled #nav-cart-pill { display: inline-flex; align-items: center; gap: 6px; }
-    .nav--scrolled .nav-links,
-    .nav--scrolled .cart-link { display: none; }
+    /* ── TWO-STATE NAV ── */
+    #nav-state1{display:flex;}
+    #nav-state2{display:none;}
+    #site-nav.nav--scrolled #nav-state1{display:none!important;}
+    #site-nav.nav--scrolled #nav-state2{display:flex!important;}
+    .muse-dropdown-menu{display:none;}
+    .muse-dropdown:hover .muse-dropdown-menu{display:block;}
+    .muse-sub{display:block;padding:11px 13px;font-size:11px;letter-spacing:.14em;font-weight:500;color:#0A0B0C;text-decoration:none;transition:background .25s ease;}
+    .muse-sub:hover{background:#F4ECDD;color:#C9851A;}
 
     /* ── BREADCRUMB ── */
     .breadcrumb {
@@ -207,31 +169,103 @@
 </head>
 <body>
 
-<!-- NAV -->
-<nav id="site-nav">
-  <a class="nav-logo" href="index.html">
-    <img src="images/MUSE%20-%20Monogram%20(Solo%20GLD).png" alt="MUSE">
-    <span>MUSE</span>
-  </a>
-  <div class="nav-links">
-    <a href="index.html">Home</a>
-    <a href="about.html">About</a>
-    <a href="shop.html" class="active">Shop</a>
-    <a href="gallery.html">Gallery</a>
-    <a href="contact.html">Contact</a>
-  </div>
-  <div class="nav-right">
-    <a href="shop.html" id="nav-shop-pill">Shop</a>
-    <a href="cart.html" id="nav-cart-pill">
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
-      Cart (<span id="cart-count-pill">0</span>)
+<!-- ========== FIXED NAV ========== -->
+<div id="site-nav" style="position:fixed;top:0;left:0;right:0;z-index:50;">
+
+  <!-- STATE 1 -->
+  <div id="nav-state1" style="display:flex;align-items:center;justify-content:space-between;padding:20px 48px;background:#FBF6EE;border-bottom:1px solid #E7DAC4;">
+    <div class="nav-desktop" style="display:flex;flex:1;align-items:center;justify-content:space-evenly;padding-left:104px;">
+      <div class="muse-dropdown" style="position:relative;align-self:center;padding-bottom:16px;margin-bottom:-16px;display:flex;align-items:center;">
+        <a href="about.html" class="muse-link" style="font-size:12px;letter-spacing:.18em;font-weight:500;color:#0A0B0C;text-decoration:none;display:inline-flex;align-items:center;gap:5px;">ABOUT<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" style="opacity:.5;flex:none;"><path d="m6 9 6 6 6-6"/></svg></a>
+        <div class="muse-dropdown-menu" style="position:absolute;top:100%;left:0;width:240px;background:#FDFCFA;border:1px solid #E7DAC4;box-shadow:0 18px 44px -20px rgba(10,11,12,.5);padding:7px;text-align:left;z-index:60;">
+          <a href="about.html" class="muse-sub">OUR STORY</a>
+          <a href="flagship-detail.html" class="muse-sub">THE FLAGSHIP MUSES</a>
+          <div style="display:flex;align-items:center;justify-content:space-between;padding:11px 13px;font-size:11px;letter-spacing:.14em;font-weight:500;color:#B0A892;cursor:default;">LORE<span style="font-size:8px;letter-spacing:.1em;font-weight:600;color:#C9851A;border:1px solid #E7C98A;border-radius:30px;padding:2px 7px;white-space:nowrap;">COMING SOON</span></div>
+        </div>
+      </div>
+      <a href="gallery.html" class="muse-link" style="font-size:12px;letter-spacing:.18em;font-weight:500;color:#0A0B0C;text-decoration:none;">GALLERY</a>
+      <div class="muse-dropdown" style="position:relative;align-self:center;padding-bottom:16px;margin-bottom:-16px;display:flex;align-items:center;">
+        <a href="contact.html" class="muse-link" style="font-size:12px;letter-spacing:.18em;font-weight:500;color:#0A0B0C;text-decoration:none;display:inline-flex;align-items:center;gap:5px;">CONTACT<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" style="opacity:.5;flex:none;"><path d="m6 9 6 6 6-6"/></svg></a>
+        <div class="muse-dropdown-menu" style="position:absolute;top:100%;left:0;width:220px;background:#FDFCFA;border:1px solid #E7DAC4;box-shadow:0 18px 44px -20px rgba(10,11,12,.5);padding:7px;text-align:left;z-index:60;">
+          <a href="contact.html" class="muse-sub">CONTACT US</a>
+          <a href="share-a-muse.html" class="muse-sub">SHARE YOUR MUSE</a>
+        </div>
+      </div>
+    </div>
+    <a href="index.html" aria-label="MUSE home" style="display:inline-flex;align-items:center;flex:none;">
+      <img src="images/MUSE%20-%20Monogram%20(Solo%20GLD).png" alt="MUSE" style="height:38px;width:auto;flex:none;">
     </a>
-    <a href="cart.html" class="cart-link">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
-      <span class="cart-badge hidden" id="cart-badge">0</span>
+    <div class="nav-desktop" style="display:flex;flex:1;align-items:center;justify-content:space-evenly;padding-right:104px;">
+      <a href="login.html" class="muse-link" style="font-size:12px;letter-spacing:.18em;font-weight:500;color:#0A0B0C;text-decoration:none;">LOG IN</a>
+      <a href="products.html" class="muse-link" style="font-size:12px;letter-spacing:.18em;font-weight:500;color:#0A0B0C;text-decoration:none;">PRODUCTS</a>
+      <a href="shop.html" class="muse-link" style="font-size:12px;letter-spacing:.18em;font-weight:500;color:#0A0B0C;text-decoration:none;">SHOP</a>
+    </div>
+    <div style="position:absolute;right:48px;top:50%;transform:translateY(-50%);display:flex;align-items:center;gap:18px;">
+      <div class="muse-dropdown" style="position:relative;padding-bottom:14px;margin-bottom:-14px;display:flex;align-items:center;">
+        <span aria-label="Cart" style="cursor:pointer;display:inline-flex;align-items:center;position:relative;">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#0A0B0C" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z" fill="#EFA527"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+          <span class="cart-badge" style="position:absolute;top:-5px;right:-7px;min-width:15px;height:15px;padding:0 3px;border-radius:9px;background:#FF3B30;color:#FDFCFA;font-size:9px;font-weight:700;display:none;align-items:center;justify-content:center;line-height:1;">0</span>
+        </span>
+        <div class="muse-dropdown-menu" style="position:absolute;top:100%;right:0;width:312px;background:#FDFCFA;border:1px solid #E7DAC4;box-shadow:0 18px 44px -20px rgba(10,11,12,.5);padding:18px;text-align:left;z-index:200;">
+          <div data-cart-body></div>
+          <div style="display:flex;gap:10px;margin-top:14px;">
+            <a href="cart.html" style="flex:1;text-align:center;border:1.5px solid #0A0B0C;color:#0A0B0C;border-radius:30px;padding:9px;font-size:10px;letter-spacing:.16em;font-weight:600;text-decoration:none;display:block;">VIEW CART</a>
+            <a href="checkout.html" style="flex:1;text-align:center;background:#EFA527;color:#0A0B0C;border-radius:30px;padding:9px;font-size:10px;letter-spacing:.16em;font-weight:600;text-decoration:none;display:block;">CHECKOUT</a>
+          </div>
+        </div>
+      </div>
+      <span style="cursor:pointer;display:inline-flex;align-items:center;color:#0A0B0C;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg></span>
+    </div>
+  </div><!-- /STATE 1 -->
+
+  <!-- STATE 2 -->
+  <div id="nav-state2" style="display:none;position:relative;align-items:center;justify-content:space-between;padding:11px 48px;background:rgba(253,252,250,.8);backdrop-filter:blur(12px) saturate(1.1);-webkit-backdrop-filter:blur(12px) saturate(1.1);border-bottom:1px solid rgba(231,218,196,.7);">
+    <a href="index.html" aria-label="MUSE home" style="display:inline-flex;align-items:center;flex:none;">
+      <img src="images/MUSE%20-%20Monogram%20(Solo%20GLD).png" alt="MUSE" style="height:38px;width:auto;">
     </a>
-  </div>
-</nav>
+    <div class="nav-desktop" style="position:absolute;left:50%;transform:translateX(-50%);display:flex;gap:64px;align-items:center;">
+      <div class="muse-dropdown" style="position:relative;align-self:center;padding-bottom:16px;margin-bottom:-16px;display:flex;align-items:center;">
+        <a href="about.html" class="muse-link" style="font-size:11px;letter-spacing:.2em;font-weight:500;color:#0A0B0C;text-decoration:none;display:inline-flex;align-items:center;gap:5px;">ABOUT<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" style="opacity:.5;flex:none;"><path d="m6 9 6 6 6-6"/></svg></a>
+        <div class="muse-dropdown-menu" style="position:absolute;top:100%;left:0;width:240px;background:#FDFCFA;border:1px solid #E7DAC4;box-shadow:0 18px 44px -20px rgba(10,11,12,.5);padding:7px;text-align:left;z-index:60;">
+          <a href="about.html" class="muse-sub">OUR STORY</a>
+          <a href="flagship-detail.html" class="muse-sub">THE FLAGSHIP MUSES</a>
+          <div style="display:flex;align-items:center;justify-content:space-between;padding:11px 13px;font-size:11px;letter-spacing:.14em;font-weight:500;color:#B0A892;cursor:default;">LORE<span style="font-size:8px;letter-spacing:.1em;font-weight:600;color:#C9851A;border:1px solid #E7C98A;border-radius:30px;padding:2px 7px;white-space:nowrap;">COMING SOON</span></div>
+        </div>
+      </div>
+      <a href="gallery.html" class="muse-link" style="font-size:11px;letter-spacing:.2em;font-weight:500;color:#0A0B0C;text-decoration:none;">GALLERY</a>
+      <div class="muse-dropdown" style="position:relative;align-self:center;padding-bottom:16px;margin-bottom:-16px;display:flex;align-items:center;">
+        <a href="contact.html" class="muse-link" style="font-size:11px;letter-spacing:.2em;font-weight:500;color:#0A0B0C;text-decoration:none;display:inline-flex;align-items:center;gap:5px;">CONTACT<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" style="opacity:.5;flex:none;"><path d="m6 9 6 6 6-6"/></svg></a>
+        <div class="muse-dropdown-menu" style="position:absolute;top:100%;right:0;width:220px;background:#FDFCFA;border:1px solid #E7DAC4;box-shadow:0 18px 44px -20px rgba(10,11,12,.5);padding:7px;text-align:left;z-index:60;">
+          <a href="contact.html" class="muse-sub">CONTACT US</a>
+          <a href="share-a-muse.html" class="muse-sub">SHARE YOUR MUSE</a>
+        </div>
+      </div>
+      <a href="products.html" class="muse-link" style="font-size:11px;letter-spacing:.2em;font-weight:500;color:#0A0B0C;text-decoration:none;">PRODUCTS</a>
+      <a href="login.html" class="muse-link" style="font-size:11px;letter-spacing:.2em;font-weight:500;color:#0A0B0C;text-decoration:none;">LOG IN</a>
+    </div>
+    <div style="display:flex;align-items:center;gap:18px;flex:none;margin-right:48px;">
+      <div class="muse-dropdown" style="position:relative;padding-bottom:14px;margin-bottom:-14px;flex:none;">
+        <div style="display:flex;align-items:center;gap:10px;background:#EFA527;color:#0A0B0C;border-radius:30px;padding:9px 20px;font-size:11px;letter-spacing:.16em;font-weight:600;cursor:pointer;">
+          <a href="shop.html" style="color:inherit;text-decoration:none;letter-spacing:inherit;font-size:inherit;font-weight:inherit;">SHOP</a>
+          <span style="width:1px;height:15px;background:rgba(10,11,12,.3);flex:none;"></span>
+          <span style="position:relative;display:flex;align-items:center;">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+            <span class="cart-badge" style="position:absolute;top:-7px;right:-8px;min-width:15px;height:15px;padding:0 3px;border-radius:9px;background:#FF3B30;color:#FDFCFA;font-size:9px;font-weight:700;display:none;align-items:center;justify-content:center;line-height:1;">0</span>
+          </span>
+        </div>
+        <div class="muse-dropdown-menu" style="position:absolute;top:100%;right:0;width:312px;background:#FDFCFA;border:1px solid #E7DAC4;box-shadow:0 18px 44px -20px rgba(10,11,12,.5);padding:18px;text-align:left;z-index:200;">
+          <div data-cart-body></div>
+          <div style="display:flex;gap:10px;margin-top:14px;">
+            <a href="cart.html" style="flex:1;text-align:center;border:1.5px solid #0A0B0C;color:#0A0B0C;border-radius:30px;padding:9px;font-size:10px;letter-spacing:.16em;font-weight:600;text-decoration:none;display:block;">VIEW CART</a>
+            <a href="checkout.html" style="flex:1;text-align:center;background:#EFA527;color:#0A0B0C;border-radius:30px;padding:9px;font-size:10px;letter-spacing:.16em;font-weight:600;text-decoration:none;display:block;">CHECKOUT</a>
+          </div>
+        </div>
+      </div>
+      <span style="cursor:pointer;display:inline-flex;align-items:center;color:#0A0B0C;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg></span>
+    </div>
+  </div><!-- /STATE 2 -->
+
+</div><!-- /site-nav -->
 
 <!-- BREADCRUMB -->
 <div class="breadcrumb" id="breadcrumb">
