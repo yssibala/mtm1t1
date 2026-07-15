@@ -335,6 +335,7 @@
 
     <p class="section-label" style="margin-bottom:8px;">Details</p>
     <table class="specs-table" id="specs-table"></table>
+    <a id="nutrition-table-link" href="#" style="display:none;margin-top:16px;margin-bottom:4px;font-size:11px;letter-spacing:.16em;color:#0A0B0C;text-decoration:none;border-bottom:1px solid #C9851A;padding-bottom:4px;">VIEW NUTRITION TABLE →</a>
 
     <div class="shipping-strip">
       <span>Free shipping over $75</span>
@@ -805,6 +806,12 @@ function renderBuyPanel() {
     tr.innerHTML = '<td>' + row[0] + '</td><td>' + row[1] + '</td>';
     table.appendChild(tr);
   });
+  var nutLink = document.getElementById('nutrition-table-link');
+  if (nutLink) {
+    var isRTD = ['thalia', 'clio', 'ourania'].indexOf(p.id) >= 0;
+    nutLink.style.display = isRTD ? 'inline-block' : 'none';
+    if (isRTD) nutLink.href = 'nutrition-facts.html#' + p.id;
+  }
 }
 
 function selectVariant(idx) {
