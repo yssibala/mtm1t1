@@ -3,67 +3,44 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>MUSE — Nutrition Facts</title>
+  <title>MUSE — Nutrition &amp; Ingredients</title>
   <link rel="stylesheet" href="assets/fonts/font.css">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
     body { background: #FBF6EE; color: #0A0B0C; font-family: neuehaasdisplaylight, neue-haas-grotesk-text, sans-serif; overflow-x: hidden; }
 
-    /* ── NAV STATE 1 (not scrolled) ── */
-    #site-nav {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 50;
-      transition: background 0.3s ease, backdrop-filter 0.3s ease;
-    }
-    #nav-state1 {
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 20px 48px; background: #FBF6EE;
-    }
-    #nav-state2 {
-      display: none;
-      align-items: center; justify-content: space-between;
-      padding: 9px 40px;
-      background: rgba(253,252,250,0.85);
-      backdrop-filter: blur(12px) saturate(1.1);
-      -webkit-backdrop-filter: blur(12px) saturate(1.1);
-      border-bottom: 1px solid rgba(231,218,196,0.7);
-    }
-    .nav--scrolled #nav-state1 { display: none; }
-    .nav--scrolled #nav-state2 { display: flex; }
+    /* ── NAV ── */
+    #site-nav { position: fixed; top: 0; left: 0; right: 0; z-index: 50; }
+    #nav-state1 { display: flex; align-items: center; justify-content: space-between; padding: 20px 48px; background: #FBF6EE; border-bottom: 1px solid #E7DAC4; }
+    #nav-state2 { display: none; position: relative; align-items: center; justify-content: space-between; padding: 11px 48px; background: rgba(253,252,250,.8); backdrop-filter: blur(12px) saturate(1.1); -webkit-backdrop-filter: blur(12px) saturate(1.1); border-bottom: 1px solid rgba(231,218,196,.7); }
+    .nav--scrolled #nav-state1 { display: none !important; }
+    .nav--scrolled #nav-state2 { display: flex !important; }
+    .muse-dropdown-menu { display: none; }
+    .muse-dropdown:hover .muse-dropdown-menu { display: block; }
+    .muse-sub { display: block; padding: 11px 13px; font-size: 11px; letter-spacing: .14em; font-weight: 500; color: #0A0B0C; text-decoration: none; transition: background .25s ease; }
+    .muse-sub:hover { background: #F4ECDD; color: #C9851A; }
 
-    /* shared nav styles */
-    .nav-logo { display: inline-flex; align-items: center; flex: none; }
-    .nav-logo img { height: 56px; width: auto; }
-    .nav-logo-sm img { height: 38px; width: auto; }
-    .nav-links-center { display: flex; flex: 1; align-items: center; justify-content: space-evenly; }
-    .nav-links-center a, .nav-link {
-      font-size: 12px; letter-spacing: .18em; font-weight: 500;
-      color: #0A0B0C; text-decoration: none;
-      transition: color 0.35s ease;
+    /* ── STICKY TABS ── */
+    #sku-tabs {
+      position: sticky; top: 62px; z-index: 40;
+      display: flex; justify-content: center; gap: clamp(24px,5vw,64px);
+      padding: 15px 24px;
+      background: rgba(251,246,238,0.96);
+      backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+      border-bottom: 1px solid #E7DAC4;
+      transition: opacity .3s ease;
     }
-    .nav-link:hover { color: #C9851A; }
-    .nav-link-active { border-bottom: 2px solid #EFA527; padding-bottom: 4px; font-weight: 600; }
+    #sku-tabs.tabs-hidden { opacity: 0; visibility: hidden; pointer-events: none; }
+    .sku-tab {
+      font-family: Ogg, serif; letter-spacing: .16em; font-size: 17px;
+      padding-bottom: 5px; cursor: pointer;
+      transition: color .3s ease, border-color .3s ease;
+      border-bottom: 2px solid transparent;
+    }
 
-    /* dropdown */
-    .nav-drop { position: relative; align-self: center; padding-bottom: 16px; margin-bottom: -16px; display: flex; align-items: center; }
-    .nav-drop-menu {
-      opacity: 0; visibility: hidden; transform: translateY(8px);
-      transition: opacity .3s ease, transform .3s ease, visibility .3s;
-      position: absolute; top: 100%; left: 0; width: 240px;
-      background: #FDFCFA; border: 1px solid #E7DAC4;
-      box-shadow: 0 18px 44px -20px rgba(10,11,12,.5); padding: 7px; z-index: 60;
-    }
-    .nav-drop:hover .nav-drop-menu { opacity: 1; visibility: visible; transform: translateY(0); }
-    .nav-drop-item {
-      display: block; padding: 11px 13px; font-size: 11px; letter-spacing: .14em;
-      font-weight: 500; color: #0A0B0C; text-decoration: none;
-      transition: background .25s ease, color .25s ease;
-    }
-    .nav-drop-item:hover { background: #F4ECDD; color: #C9851A; }
-    .nav-caret { opacity: .5; flex: none; }
-
-    /* SKU switcher (state 2) */
-    #sku-switcher { position: relative; flex: none; display: flex; align-items: center; gap: 12px; }
+    /* ── SKU SWITCHER (state 2) ── */
+    #sku-switcher { position: absolute; left: 50%; transform: translateX(-50%); display: flex; align-items: center; gap: 12px; }
     .sku-arrow {
       width: 26px; height: 26px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
       cursor: pointer; color: #0A0B0C; border: 1px solid rgba(10,11,12,.22);
@@ -78,37 +55,16 @@
       box-shadow: 0 18px 44px -20px rgba(10,11,12,.5); padding: 7px; text-align: center; z-index: 60;
     }
     #sku-dropdown.open { display: block; }
-    .sku-opt {
-      padding: 10px 13px; font-family: Ogg, serif; letter-spacing: .16em; font-size: 17px;
-      cursor: pointer; transition: background .25s ease;
-    }
+    .sku-opt { padding: 10px 13px; font-family: Ogg, serif; letter-spacing: .16em; font-size: 17px; cursor: pointer; transition: background .25s ease; }
     .sku-opt:hover { background: #F4ECDD; }
-
-    /* ── STICKY TABS ── */
-    #sku-tabs {
-      position: sticky; top: 96px; z-index: 40;
-      display: flex; justify-content: center; gap: clamp(24px,5vw,64px);
-      padding: 15px 24px;
-      background: rgba(251,246,238,0.92);
-      backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
-      border-bottom: 1px solid #E7DAC4;
-      transition: opacity .3s ease;
-    }
-    #sku-tabs.tabs-hidden { opacity: 0; visibility: hidden; pointer-events: none; }
-    .sku-tab {
-      font-family: Ogg, serif; letter-spacing: .16em; font-size: 18px;
-      padding-bottom: 5px; cursor: pointer;
-      transition: color .3s ease, border-color .3s ease;
-      border-bottom: 2px solid transparent;
-    }
 
     /* ── EDGE ARROWS ── */
     .edge-arrow {
       position: fixed; top: 50%; transform: translateY(-50%); z-index: 45;
-      width: 52px; height: 52px; border: 1px solid rgba(10,11,12,.3); border-radius: 50%;
+      width: 52px; height: 52px; border: 1px solid rgba(10,11,12,.18); border-radius: 50%;
       display: flex; align-items: center; justify-content: center;
-      color: #0A0B0C; background: rgba(253,252,250,.85);
-      box-shadow: 0 8px 24px -12px rgba(10,11,12,.4);
+      color: #0A0B0C; background: rgba(251,246,238,.9);
+      box-shadow: 0 8px 24px -12px rgba(10,11,12,.2);
       cursor: pointer; transition: background .3s ease, border-color .3s ease;
     }
     .edge-arrow:hover { background: #EFA527; border-color: #EFA527; }
@@ -122,14 +78,78 @@
       width: 300%;
       transition: transform .7s cubic-bezier(.4,0,.2,1);
     }
-    .panel { flex: 0 0 calc(100%/3); min-width: 0; }
+    .panel { flex: 0 0 calc(100%/3); min-width: 0; background: #FBF6EE; color: #0A0B0C; }
 
-    /* ── NUTRITION LABEL ── */
+    /* ── HERO ── */
+    .panel-hero {
+      padding: 140px 48px 56px;
+      text-align: center;
+    }
+    .panel-thalia .panel-hero { background: linear-gradient(160deg, #FFFDF6 0%, #FDF3D4 100%); }
+    .panel-clio   .panel-hero { background: linear-gradient(160deg, #FBF6EE 0%, #F9E6E4 100%); }
+    .panel-ourania .panel-hero { background: linear-gradient(160deg, #F8F5FF 0%, #EAE3FB 100%); }
+
+    .panel-back-link {
+      display: inline-flex; align-items: center; gap: 7px;
+      font-size: 11px; letter-spacing: .18em; font-weight: 600;
+      text-decoration: none; margin-bottom: 28px;
+      transition: opacity .25s;
+    }
+    .panel-back-link:hover { opacity: .7; }
+    .panel-thalia  .panel-back-link { color: #C9851A; }
+    .panel-clio    .panel-back-link { color: #CC2200; }
+    .panel-ourania .panel-back-link { color: #8B5CF6; }
+
+    .panel-kicker {
+      font-size: 11px; letter-spacing: .28em; font-weight: 600; margin-bottom: 18px;
+    }
+    .panel-thalia  .panel-kicker { color: #C9851A; }
+    .panel-clio    .panel-kicker { color: #CC2200; }
+    .panel-ourania .panel-kicker { color: #8B5CF6; }
+
+    .panel-title {
+      font-family: Ogg, serif; font-weight: 500; letter-spacing: .08em;
+      font-size: clamp(54px,8vw,96px); line-height: .92; color: #0A0B0C; margin-bottom: 16px;
+    }
+    .panel-subtitle {
+      font-size: 13px; letter-spacing: .18em; font-weight: 500; color: #7A7468; margin-bottom: 8px;
+    }
+    .panel-tagline {
+      font-style: italic; font-size: 16px; color: #6B6156; margin-bottom: 16px;
+    }
+    .panel-url {
+      font-size: 10px; letter-spacing: .18em; color: #A89B82; margin-top: 14px;
+    }
+
+    /* ── META STATS ── */
+    .panel-meta {
+      padding: 32px 48px;
+      border-top: 1px solid #E7DAC4;
+      border-bottom: 1px solid #E7DAC4;
+      background: #FBF6EE;
+    }
+    .meta-grid { max-width: 980px; margin: 0 auto; display: grid; grid-template-columns: repeat(4,1fr); gap: 16px; }
+    .meta-stat { text-align: center; }
+    .meta-val-num { font-family: Ogg, serif; font-weight: 500; font-size: 34px; line-height: 1; margin-bottom: 6px; }
+    .meta-lbl-text { font-size: 10px; letter-spacing: .16em; color: #7A7468; }
+    .panel-thalia  .meta-val-num { color: #C9851A; }
+    .panel-clio    .meta-val-num { color: #CC2200; }
+    .panel-ourania .meta-val-num { color: #8B5CF6; }
+
+    /* ── NUTRITION FACTS LABEL (FDA format — must stay black & white) ── */
+    .panel-nf { padding: clamp(48px,6vw,76px) 48px; background: #FBF6EE; }
+    .nf-kicker { font-size: 11px; letter-spacing: .26em; font-weight: 600; text-align: center; margin-bottom: 8px; }
+    .panel-thalia  .nf-kicker { color: #C9851A; }
+    .panel-clio    .nf-kicker { color: #CC2200; }
+    .panel-ourania .nf-kicker { color: #8B5CF6; }
+    .nf-heading { font-family: Ogg, serif; font-weight: 500; font-size: clamp(28px,3.6vw,42px); text-align: center; margin: 0 0 44px; color: #0A0B0C; }
+    .nf-labels-wrap { display: flex; flex-wrap: wrap; justify-content: center; gap: clamp(28px,5vw,64px); }
+    .nf-label-col { flex: 0 1 340px; }
+    .nf-label-title { font-size: 12px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; text-align: center; margin: 0 0 14px; color: #7A7468; }
     .nf-box {
       border: 2px solid #000; padding: 6px 8px;
       font-family: Arial, Helvetica, sans-serif;
-      background: #fff; color: #000;
-      max-width: 340px;
+      background: #fff; color: #000; max-width: 340px;
     }
     .nf-title { font-size: 32px; font-weight: 900; line-height: 1; margin-bottom: 2px; }
     .nf-servings { font-size: 12px; margin-bottom: 2px; }
@@ -150,110 +170,24 @@
     .nf-vit-item { font-size: 11px; padding: 1px 0; border-bottom: 1px solid #ccc; }
     .nf-vit-item:nth-last-child(-n+2) { border-bottom: none; }
 
-    /* ── THALIA colors ── */
-    .panel-thalia { background: #FBEFC9; color: #0A0B0C; }
-    .panel-thalia .hero { padding: 140px 48px 52px; text-align: center; background: linear-gradient(135deg,#FFFDF6 0%,#FBEFC9 100%); }
-    .panel-thalia .meta-strip { background: #241808; padding: 26px 48px; }
-    .panel-thalia .warn-strip { background: #1A1206; padding: 20px 48px; }
-    .panel-thalia .nf-section { padding: clamp(48px,6vw,76px) 48px; background: #FBEFC9; }
-    .panel-thalia .ingr-section { background: #241808; padding: clamp(46px,5vw,64px) 48px; }
-    .panel-thalia .panel-footer { background: #8A5410; color: #FDFCFA; }
-    .panel-thalia .accent { color: #EFA527; }
-    .panel-thalia .accent-sub { color: #C9A86A; }
-    .panel-thalia .back-link { color: #8A5A12; }
-    .panel-thalia .kicker { color: #7A4F10; }
-    .panel-thalia .hero-title { color: #241808; }
-    .panel-thalia .hero-sub { color: #8A5A12; }
-    .panel-thalia .hero-italic { color: #5C4620; }
-    .panel-thalia .nf-kicker { color: #C9851A; }
-    .panel-thalia .nf-heading { color: #241808; }
-    .panel-thalia .nf-lbl-title { color: #8A5A12; }
-    .panel-thalia .ingr-heading { color: #EFA527; }
-    .panel-thalia .ingr-body { color: #F4E7CC; }
-    .panel-thalia .ingr-allergy { color: #C9A86A; }
-    .panel-thalia .warn-text { color: #C9A86A; }
-    .panel-thalia .meta-val { color: #EFA527; }
-    .panel-thalia .meta-lbl { color: #C9A86A; }
-
-    /* ── CLIO colors ── */
-    .panel-clio { background: #2C0507; color: #FDFCFA; }
-    .panel-clio .hero { padding: 140px 48px 52px; text-align: center; background: linear-gradient(135deg,#8E1216 0%,#4E0609 100%); }
-    .panel-clio .meta-strip { background: #1A0203; padding: 26px 48px; }
-    .panel-clio .warn-strip { background: #120102; padding: 20px 48px; }
-    .panel-clio .nf-section { padding: clamp(48px,6vw,76px) 48px; background: #2C0507; }
-    .panel-clio .ingr-section { background: #1A0203; padding: clamp(46px,5vw,64px) 48px; }
-    .panel-clio .panel-footer { background: #2C0507; color: #FDFCFA; border-top: 1px solid rgba(255,255,255,.1); }
-    .panel-clio .accent { color: #FF8A6E; }
-    .panel-clio .accent-sub { color: #C98579; }
-    .panel-clio .back-link { color: #F0A99E; }
-    .panel-clio .kicker { color: #FFC4B8; }
-    .panel-clio .hero-title { color: #FDFCFA; }
-    .panel-clio .hero-sub { color: #F0A99E; }
-    .panel-clio .hero-italic { color: #ECC9C2; }
-    .panel-clio .nf-kicker { color: #FF8A6E; }
-    .panel-clio .nf-heading { color: #FDFCFA; }
-    .panel-clio .nf-lbl-title { color: #F0A99E; }
-    .panel-clio .ingr-heading { color: #FF8A6E; }
-    .panel-clio .ingr-body { color: #E7C7C0; }
-    .panel-clio .ingr-allergy { color: #C98579; }
-    .panel-clio .warn-text { color: #C98579; }
-    .panel-clio .meta-val { color: #FF8A6E; }
-    .panel-clio .meta-lbl { color: #C98579; }
-
-    /* ── OURANIA colors ── */
-    .panel-ourania { background: #160B2C; color: #FDFCFA; }
-    .panel-ourania .hero { padding: 140px 48px 52px; text-align: center; background: linear-gradient(135deg,#4A2585 0%,#241046 100%); }
-    .panel-ourania .meta-strip { background: #0E0620; padding: 26px 48px; }
-    .panel-ourania .warn-strip { background: #080314; padding: 20px 48px; }
-    .panel-ourania .nf-section { padding: clamp(48px,6vw,76px) 48px; background: #160B2C; }
-    .panel-ourania .ingr-section { background: #0E0620; padding: clamp(46px,5vw,64px) 48px; }
-    .panel-ourania .panel-footer { background: #160B2C; color: #FDFCFA; border-top: 1px solid rgba(255,255,255,.1); }
-    .panel-ourania .accent { color: #A78BFA; }
-    .panel-ourania .accent-sub { color: #9A86C9; }
-    .panel-ourania .back-link { color: #C9B3F0; }
-    .panel-ourania .kicker { color: #C9B3F0; }
-    .panel-ourania .hero-title { color: #FDFCFA; }
-    .panel-ourania .hero-sub { color: #C9B3F0; }
-    .panel-ourania .hero-italic { color: #CFC2E8; }
-    .panel-ourania .nf-kicker { color: #A78BFA; }
-    .panel-ourania .nf-heading { color: #FDFCFA; }
-    .panel-ourania .nf-lbl-title { color: #C9B3F0; }
-    .panel-ourania .ingr-heading { color: #A78BFA; }
-    .panel-ourania .ingr-body { color: #D5CAEC; }
-    .panel-ourania .ingr-allergy { color: #9A86C9; }
-    .panel-ourania .warn-text { color: #9A86C9; }
-    .panel-ourania .meta-val { color: #A78BFA; }
-    .panel-ourania .meta-lbl { color: #9A86C9; }
-
-    /* shared layout */
-    .meta-grid { max-width: 980px; margin: 0 auto; display: grid; grid-template-columns: repeat(4,1fr); gap: 16px; }
-    .meta-stat { text-align: center; }
-    .meta-val-num { font-family: Ogg, serif; font-weight: 500; font-size: 34px; }
-    .meta-lbl-text { font-size: 10px; letter-spacing: .16em; margin-top: 4px; }
-    .warn-inner { max-width: 980px; margin: 0 auto; }
-    .warn-para { font-weight: 300; font-size: 18px; line-height: 1.5; }
-    .nf-labels-wrap { display: flex; flex-wrap: wrap; justify-content: center; gap: clamp(28px,5vw,64px); }
-    .nf-label-col { flex: 0 1 340px; }
-    .nf-label-title { font-size: 12px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; text-align: center; margin: 0 0 14px; }
+    /* ── INGREDIENTS ── */
+    .panel-ingr { background: #F4ECDD; padding: clamp(46px,5vw,64px) 48px; }
     .ingr-inner { max-width: 1180px; margin: 0 auto; }
-    .ingr-heading-el { font-family: Ogg, serif; font-weight: 500; font-size: clamp(24px,3vw,34px); margin: 0 0 16px; }
-    .ingr-para { font-size: 15px; font-weight: 300; line-height: 1.85; max-width: 860px; }
-    .ingr-allergy-p { font-size: 13px; margin: 18px 0 0; }
-    .panel-footer { padding: clamp(40px,5vw,62px) 48px clamp(30px,4vw,42px); text-align: center; }
-    .panel-footer img { height: 96px; width: auto; margin: 0 auto 14px; display: block; }
-    .footer-tagline { font-style: italic; font-size: 20px; margin-bottom: 26px; }
-    .footer-links { display: flex; gap: 52px; justify-content: center; flex-wrap: wrap; margin-bottom: 28px; }
-    .footer-link { font-size: 11px; letter-spacing: .18em; font-weight: 500; color: #FDFCFA; text-decoration: none; transition: color .35s ease; }
-    .footer-link:hover { color: #C9851A; }
-    .footer-copy { border-top: 1px solid rgba(253,252,250,.28); padding-top: 22px; font-size: 10px; letter-spacing: .14em; color: rgba(253,252,250,.7); }
+    .ingr-heading-el {
+      font-family: Ogg, serif; font-weight: 500; font-size: clamp(24px,3vw,34px);
+      margin: 0 0 16px; color: #0A0B0C;
+    }
+    .panel-thalia  .ingr-heading-el { color: #C9851A; }
+    .panel-clio    .ingr-heading-el { color: #CC2200; }
+    .panel-ourania .ingr-heading-el { color: #8B5CF6; }
+    .ingr-para { font-size: 15px; font-weight: 300; line-height: 1.85; max-width: 860px; color: #0A0B0C; }
+    .ingr-allergy-p { font-size: 13px; margin: 18px 0 0; color: #6B6156; }
+    .ingr-warning { font-size: 11px; font-weight: 300; line-height: 1.7; color: #9A8F7C; margin: 28px 0 0; max-width: 860px; border-top: 1px solid rgba(10,11,12,.1); padding-top: 20px; }
 
     @media (max-width: 700px) {
       #nav-state1 { padding: 14px 20px; }
-      .panel-thalia .hero, .panel-clio .hero, .panel-ourania .hero { padding: 120px 24px 40px; }
-      .panel-thalia .nf-section, .panel-clio .nf-section, .panel-ourania .nf-section,
-      .panel-thalia .ingr-section, .panel-clio .ingr-section, .panel-ourania .ingr-section,
-      .panel-thalia .meta-strip, .panel-clio .meta-strip, .panel-ourania .meta-strip,
-      .panel-thalia .warn-strip, .panel-clio .warn-strip, .panel-ourania .warn-strip { padding-left: 20px; padding-right: 20px; }
+      .panel-hero { padding: 120px 24px 40px; }
+      .panel-meta, .panel-nf, .panel-ingr { padding-left: 20px; padding-right: 20px; }
       .meta-grid { grid-template-columns: repeat(2,1fr); }
       #arrow-prev, #arrow-next { display: none; }
     }
@@ -261,42 +195,68 @@
 </head>
 <body>
 
-<!-- NAV -->
-<div id="site-nav">
-  <!-- State 1: not scrolled -->
-  <div id="nav-state1">
-    <div class="nav-links-center" style="padding-left:104px;">
-      <div class="nav-drop">
-        <a href="about.html" class="nav-link" style="display:inline-flex;align-items:center;gap:5px;">ABOUT<svg class="nav-caret" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="m6 9 6 6 6-6"/></svg></a>
-        <div class="nav-drop-menu" style="width:240px;">
-          <a href="about.html" class="nav-drop-item">OUR STORY</a>
-          <a href="flagship-detail.html" class="nav-drop-item">THE FLAGSHIP MUSES</a>
-        </div>
-      </div>
-      <a href="gallery.html" class="nav-link">GALLERY</a>
-      <div class="nav-drop">
-        <a href="contact.html" class="nav-link" style="display:inline-flex;align-items:center;gap:5px;">CONTACT<svg class="nav-caret" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="m6 9 6 6 6-6"/></svg></a>
-        <div class="nav-drop-menu" style="width:220px;">
-          <a href="contact.html" class="nav-drop-item">CONTACT US</a>
-          <a href="share-a-muse.html" class="nav-drop-item">SHARE YOUR MUSE</a>
-        </div>
-      </div>
-    </div>
-    <a href="index.html" class="nav-logo"><img src="images/MUSE%20-%20Monogram%20(Solo%20GLD).png" alt="MUSE"></a>
-    <div class="nav-links-center" style="padding-right:104px;">
-      <a href="login.html" class="nav-link">LOG IN</a>
-      <a href="products.html" class="nav-link nav-link-active">PRODUCTS</a>
-      <a href="shop.html" class="nav-link">SHOP</a>
-    </div>
-  </div>
+<!-- ═══════════ NAV ═══════════ -->
+<div id="site-nav" style="position:fixed;top:0;left:0;right:0;z-index:50;">
 
-  <!-- State 2: scrolled -->
-  <div id="nav-state2">
-    <a href="index.html" class="nav-logo nav-logo-sm"><img src="images/MUSE%20-%20Monogram%20(Solo%20GLD).png" alt="MUSE"></a>
-    <div class="nav-links-center">
-      <a href="about.html" class="nav-link" style="font-size:11px;letter-spacing:.2em;">ABOUT</a>
-      <a href="gallery.html" class="nav-link" style="font-size:11px;letter-spacing:.2em;">GALLERY</a>
+  <!-- STATE 1 -->
+  <div id="nav-state1">
+    <div style="display:flex;flex:1;align-items:center;justify-content:space-evenly;padding-left:104px;">
+      <div class="muse-dropdown" style="position:relative;align-self:center;padding-bottom:16px;margin-bottom:-16px;display:flex;align-items:center;">
+        <a href="about.html" style="font-size:12px;letter-spacing:.18em;font-weight:500;color:#0A0B0C;text-decoration:none;display:inline-flex;align-items:center;gap:5px;">ABOUT<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" style="opacity:.5;flex:none;"><path d="m6 9 6 6 6-6"/></svg></a>
+        <div class="muse-dropdown-menu" style="position:absolute;top:100%;left:0;width:240px;background:#FDFCFA;border:1px solid #E7DAC4;box-shadow:0 18px 44px -20px rgba(10,11,12,.5);padding:7px;z-index:60;">
+          <a href="about.html" class="muse-sub">OUR STORY</a>
+          <a href="flagship-detail.html" class="muse-sub">THE FLAGSHIP MUSES</a>
+          <div style="display:flex;align-items:center;justify-content:space-between;padding:11px 13px;font-size:11px;letter-spacing:.14em;font-weight:500;color:#B0A892;cursor:default;">LORE<span style="font-size:8px;letter-spacing:.1em;font-weight:600;color:#C9851A;border:1px solid #E7C98A;border-radius:30px;padding:2px 7px;white-space:nowrap;">COMING SOON</span></div>
+        </div>
+      </div>
+      <a href="gallery.html" style="font-size:12px;letter-spacing:.18em;font-weight:500;color:#0A0B0C;text-decoration:none;">GALLERY</a>
+      <div class="muse-dropdown" style="position:relative;align-self:center;padding-bottom:16px;margin-bottom:-16px;display:flex;align-items:center;">
+        <a href="contact.html" style="font-size:12px;letter-spacing:.18em;font-weight:500;color:#0A0B0C;text-decoration:none;display:inline-flex;align-items:center;gap:5px;">CONTACT<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" style="opacity:.5;flex:none;"><path d="m6 9 6 6 6-6"/></svg></a>
+        <div class="muse-dropdown-menu" style="position:absolute;top:100%;left:0;width:220px;background:#FDFCFA;border:1px solid #E7DAC4;box-shadow:0 18px 44px -20px rgba(10,11,12,.5);padding:7px;z-index:60;">
+          <a href="contact.html" class="muse-sub">CONTACT US</a>
+          <a href="share-a-muse.html" class="muse-sub">SHARE YOUR MUSE</a>
+        </div>
+      </div>
     </div>
+
+    <a href="index.html" aria-label="MUSE home" style="display:inline-flex;align-items:center;flex:none;">
+      <img src="images/MUSE%20-%20Monogram%20(Solo%20GLD).png" alt="MUSE" style="height:38px;width:auto;flex:none;">
+    </a>
+
+    <div style="display:flex;flex:1;align-items:center;justify-content:space-evenly;padding-right:104px;">
+      <a href="login.html" style="font-size:12px;letter-spacing:.18em;font-weight:500;color:#0A0B0C;text-decoration:none;">LOG IN</a>
+      <a href="products.html" style="font-size:12px;letter-spacing:.18em;font-weight:500;color:#0A0B0C;text-decoration:none;">PRODUCTS</a>
+      <a href="shop.html" style="font-size:12px;letter-spacing:.18em;font-weight:500;color:#0A0B0C;text-decoration:none;">SHOP</a>
+    </div>
+
+    <!-- Cart + Search -->
+    <div style="position:absolute;right:48px;top:50%;transform:translateY(-50%);display:flex;align-items:center;gap:66px;">
+      <div class="muse-dropdown" style="position:relative;padding-bottom:14px;margin-bottom:-14px;display:flex;align-items:center;">
+        <a href="cart.html" aria-label="Cart" style="cursor:pointer;display:inline-flex;align-items:center;position:relative;text-decoration:none;color:inherit;">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#0A0B0C" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z" fill="#EFA527"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+          <span class="cart-badge" style="position:absolute;top:-5px;right:-7px;min-width:15px;height:15px;padding:0 3px;border-radius:9px;background:#FF3B30;color:#FDFCFA;font-size:9px;font-weight:700;display:none;align-items:center;justify-content:center;line-height:1;">0</span>
+        </a>
+        <div class="muse-dropdown-menu" style="position:absolute;top:100%;right:0;width:312px;background:#FDFCFA;border:1px solid #E7DAC4;box-shadow:0 18px 44px -20px rgba(10,11,12,.5);padding:18px;text-align:left;">
+          <div data-cart-body></div>
+          <div style="display:flex;gap:10px;margin-top:14px;">
+            <a href="cart.html" style="flex:1;text-align:center;border:1.5px solid #0A0B0C;color:#0A0B0C;border-radius:30px;padding:9px;font-size:10px;letter-spacing:.16em;font-weight:600;text-decoration:none;display:block;">VIEW CART</a>
+            <a href="checkout.html" style="flex:1;text-align:center;background:#EFA527;color:#0A0B0C;border-radius:30px;padding:9px;font-size:10px;letter-spacing:.16em;font-weight:600;text-decoration:none;display:block;">CHECKOUT</a>
+          </div>
+        </div>
+      </div>
+      <span style="cursor:pointer;display:inline-flex;align-items:center;color:#0A0B0C;">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+      </span>
+    </div>
+  </div><!-- /STATE 1 -->
+
+  <!-- STATE 2 -->
+  <div id="nav-state2">
+    <a href="index.html" aria-label="MUSE home" style="display:inline-flex;align-items:center;flex:none;">
+      <img src="images/MUSE%20-%20Monogram%20(Solo%20GLD).png" alt="MUSE" style="height:38px;width:auto;">
+    </a>
+
+    <!-- SKU switcher (centered absolutely) -->
     <div id="sku-switcher">
       <div class="sku-arrow" id="btn-prev">
         <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m15 18-6-6 6-6"/></svg>
@@ -314,20 +274,33 @@
         <div class="sku-opt" data-idx="2" style="color:#8B5CF6;">OURANIA</div>
       </div>
     </div>
-    <div class="nav-links-center">
-      <a href="contact.html" class="nav-link" style="font-size:11px;letter-spacing:.2em;">CONTACT</a>
-      <a href="products.html" class="nav-link nav-link-active" style="font-size:11px;letter-spacing:.2em;">PRODUCTS</a>
-      <a href="login.html" class="nav-link" style="font-size:11px;letter-spacing:.2em;">LOG IN</a>
-    </div>
-    <a href="shop.html" style="text-decoration:none;flex:none;">
-      <div style="display:flex;align-items:center;gap:9px;background:#EFA527;color:#0A0B0C;border-radius:30px;padding:9px 16px 9px 20px;font-size:11px;letter-spacing:.16em;font-weight:600;">
-        SHOP
-        <span style="width:1px;height:15px;background:rgba(10,11,12,.3);flex:none;"></span>
-        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+
+    <!-- SHOP pill + search -->
+    <div style="display:flex;align-items:center;gap:18px;flex:none;">
+      <div class="muse-dropdown" style="position:relative;padding-bottom:14px;margin-bottom:-14px;flex:none;">
+        <div style="display:flex;align-items:center;gap:10px;background:#EFA527;color:#0A0B0C;border-radius:30px;padding:9px 20px;font-size:11px;letter-spacing:.16em;font-weight:600;cursor:pointer;">
+          <a href="shop.html" style="color:inherit;text-decoration:none;letter-spacing:inherit;font-size:inherit;font-weight:inherit;">SHOP</a>
+          <span style="width:1px;height:15px;background:rgba(10,11,12,.3);flex:none;"></span>
+          <a href="cart.html" style="position:relative;display:flex;align-items:center;text-decoration:none;color:inherit;">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+            <span class="cart-badge" style="position:absolute;top:-7px;right:-8px;min-width:15px;height:15px;padding:0 3px;border-radius:9px;background:#FF3B30;color:#FDFCFA;font-size:9px;font-weight:700;display:none;align-items:center;justify-content:center;line-height:1;">0</span>
+          </a>
+        </div>
+        <div class="muse-dropdown-menu" style="position:absolute;top:100%;right:0;width:312px;background:#FDFCFA;border:1px solid #E7DAC4;box-shadow:0 18px 44px -20px rgba(10,11,12,.5);padding:18px;text-align:left;z-index:200;">
+          <div data-cart-body></div>
+          <div style="display:flex;gap:10px;margin-top:14px;">
+            <a href="cart.html" style="flex:1;text-align:center;border:1.5px solid #0A0B0C;color:#0A0B0C;border-radius:30px;padding:9px;font-size:10px;letter-spacing:.16em;font-weight:600;text-decoration:none;display:block;">VIEW CART</a>
+            <a href="checkout.html" style="flex:1;text-align:center;background:#EFA527;color:#0A0B0C;border-radius:30px;padding:9px;font-size:10px;letter-spacing:.16em;font-weight:600;text-decoration:none;display:block;">CHECKOUT</a>
+          </div>
+        </div>
       </div>
-    </a>
-  </div>
-</div>
+      <span style="cursor:pointer;display:inline-flex;align-items:center;color:#0A0B0C;">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+      </span>
+    </div>
+  </div><!-- /STATE 2 -->
+
+</div><!-- /site-nav -->
 
 <!-- STICKY SKU TABS -->
 <div id="sku-tabs">
@@ -351,35 +324,32 @@
 
     <!-- ══════════ THALIA ══════════ -->
     <div class="panel panel-thalia">
-      <div class="hero">
-        <a href="flagship-detail.html#thalia" class="back-link" style="display:inline-flex;align-items:center;gap:7px;font-size:11px;letter-spacing:.18em;font-weight:600;text-decoration:none;margin-bottom:24px;">
+      <div class="panel-hero">
+        <a href="product-detail.html?handle=thalia" class="panel-back-link">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m15 18-6-6 6-6"/></svg>BACK TO THALIA
         </a>
-        <div class="kicker" style="font-size:11px;letter-spacing:.28em;font-weight:600;margin-bottom:16px;">NUTRITION &amp; INGREDIENTS</div>
-        <h1 style="font-family:Ogg,serif;font-weight:500;letter-spacing:.08em;font-size:clamp(54px,8vw,96px);line-height:.92;" class="hero-title">THALIA</h1>
-        <p class="hero-sub" style="font-size:13px;letter-spacing:.18em;margin:14px 0 0;">ELATIONS AFTER NOON</p>
-        <p class="hero-italic" style="font-style:italic;font-size:16px;margin:6px 0 0;">Made with joy and mixed with drops of sunshine.</p>
-        <p class="back-link" style="font-size:10px;letter-spacing:.18em;margin:18px 0 0;opacity:.65;">www.mt-muse.com/products/Thalia/12oz-can</p>
+        <div class="panel-kicker">NUTRITION &amp; INGREDIENTS</div>
+        <h1 class="panel-title">THALIA</h1>
+        <p class="panel-subtitle">ELATIONS AFTER NOON</p>
+        <p class="panel-tagline">Made with joy and mixed with drops of sunshine.</p>
+        <p class="panel-url">www.mt-muse.com/products/Thalia/12oz-can</p>
       </div>
-      <div class="meta-strip">
+
+      <div class="panel-meta">
         <div class="meta-grid">
-          <div class="meta-stat"><div class="meta-val-num accent">12.1%</div><div class="meta-lbl-text meta-lbl">ABV</div></div>
-          <div class="meta-stat"><div class="meta-val-num accent">24%</div><div class="meta-lbl-text meta-lbl">JUICE CONTENT</div></div>
-          <div class="meta-stat"><div class="meta-val-num accent">6 fl oz</div><div class="meta-lbl-text meta-lbl">SERVING SIZE</div></div>
-          <div class="meta-stat"><div class="meta-val-num accent">~4</div><div class="meta-lbl-text meta-lbl">SERVINGS / BOTTLE</div></div>
+          <div class="meta-stat"><div class="meta-val-num">12.1%</div><div class="meta-lbl-text">ABV</div></div>
+          <div class="meta-stat"><div class="meta-val-num">24%</div><div class="meta-lbl-text">JUICE CONTENT</div></div>
+          <div class="meta-stat"><div class="meta-val-num">6 fl oz</div><div class="meta-lbl-text">SERVING SIZE</div></div>
+          <div class="meta-stat"><div class="meta-val-num">~4</div><div class="meta-lbl-text">SERVINGS / BOTTLE</div></div>
         </div>
       </div>
-      <div class="warn-strip">
-        <div class="warn-inner">
-          <p class="warn-para warn-text"><strong style="color:#FDFCFA;font-weight:700;letter-spacing:.04em;">GOVERNMENT WARNING:</strong> (1) According to the Surgeon General, women should not drink alcoholic beverages during pregnancy because of the risk of birth defects. (2) Consumption of alcoholic beverages impairs your ability to drive a car or operate machinery, and may cause health problems.</p>
-        </div>
-      </div>
-      <div class="nf-section">
-        <div class="nf-kicker" style="text-align:center;font-size:11px;letter-spacing:.26em;font-weight:600;margin-bottom:8px;">THE FINE PRINT</div>
-        <h2 style="font-family:Ogg,serif;font-weight:500;font-size:clamp(28px,3.6vw,42px);text-align:center;margin:0 0 44px;" class="nf-heading">Nutrition Facts</h2>
+
+      <div class="panel-nf">
+        <div class="nf-kicker">THE FINE PRINT</div>
+        <h2 class="nf-heading">Nutrition Facts</h2>
         <div class="nf-labels-wrap">
           <div class="nf-label-col">
-            <p class="nf-label-title nf-lbl-title">Per Serving — 6 fl oz (177mL)</p>
+            <p class="nf-label-title">Per Serving — 6 fl oz (177mL)</p>
             <div class="nf-box">
               <div class="nf-title">Nutrition Facts</div>
               <div class="nf-servings">About 4 servings per container</div>
@@ -421,7 +391,7 @@
             </div>
           </div>
           <div class="nf-label-col">
-            <p class="nf-label-title nf-lbl-title">Per Bottle — 25.4 fl oz (750mL)</p>
+            <p class="nf-label-title">Per Bottle — 25.4 fl oz (750mL)</p>
             <div class="nf-box">
               <div class="nf-title">Nutrition Facts</div>
               <div class="nf-servings">About 4 servings per container</div>
@@ -464,65 +434,52 @@
           </div>
         </div>
       </div>
-      <div class="ingr-section">
+
+      <div class="panel-ingr">
         <div class="ingr-inner">
-          <h3 class="ingr-heading-el ingr-heading">Ingredients</h3>
-          <p class="ingr-para ingr-body">Carbonated Filtered Water, Moscato Wine, Blue Agave Spirit, Cane Sugar, Lemon Juice Concentrate, Lime Juice Concentrate, Passionfruit Juice Concentrate, Natural Flavors, Citric Acid, Sodium Benzoate, Potassium Sorbate, Edetate Calcium Disodium (EDTA).</p>
-          <p class="ingr-allergy-p ingr-allergy"><strong style="color:#FDFCFA;font-weight:600;">Allergens:</strong> None</p>
+          <h3 class="ingr-heading-el">Ingredients</h3>
+          <p class="ingr-para">Carbonated Filtered Water, Moscato Wine, Blue Agave Spirit, Cane Sugar, Lemon Juice Concentrate, Lime Juice Concentrate, Passionfruit Juice Concentrate, Natural Flavors, Citric Acid, Sodium Benzoate, Potassium Sorbate, Edetate Calcium Disodium (EDTA).</p>
+          <p class="ingr-allergy-p"><strong style="font-weight:600;color:#0A0B0C;">Allergens:</strong> None</p>
+          <p class="ingr-warning"><strong style="font-weight:600;color:#0A0B0C;">GOVERNMENT WARNING:</strong> (1) According to the Surgeon General, women should not drink alcoholic beverages during pregnancy because of the risk of birth defects. (2) Consumption of alcoholic beverages impairs your ability to drive a car or operate machinery, and may cause health problems.</p>
         </div>
       </div>
-      <footer class="panel-footer">
-        <img src="assets/monogram-ivory.png" alt="MUSE">
-        <div class="footer-tagline">Celebrate amongst the clouds.</div>
-        <div class="footer-links">
-          <a href="about.html" class="footer-link">ABOUT</a>
-          <a href="gallery.html" class="footer-link">GALLERY</a>
-          <a href="contact.html" class="footer-link">CONTACT</a>
-          <a href="products.html" class="footer-link">PRODUCTS</a>
-          <a href="legal.html" class="footer-link">LEGAL &amp; PRIVACY</a>
-        </div>
-        <div class="footer-copy">&copy; MMXXVI MUSE &middot; ENJOY RESPONSIBLY &middot; 21+</div>
-      </footer>
-    </div>
+    </div><!-- /panel-thalia -->
 
     <!-- ══════════ CLIO ══════════ -->
     <div class="panel panel-clio">
-      <div class="hero">
-        <a href="flagship-detail.html#clio" class="back-link" style="display:inline-flex;align-items:center;gap:7px;font-size:11px;letter-spacing:.18em;font-weight:600;text-decoration:none;margin-bottom:24px;">
+      <div class="panel-hero">
+        <a href="product-detail.html?handle=clio" class="panel-back-link">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m15 18-6-6 6-6"/></svg>BACK TO CLIO
         </a>
-        <div class="kicker" style="font-size:11px;letter-spacing:.28em;font-weight:600;margin-bottom:16px;">NUTRITION &amp; INGREDIENTS</div>
-        <h1 style="font-family:Ogg,serif;font-weight:500;letter-spacing:.08em;font-size:clamp(54px,8vw,96px);line-height:.92;" class="hero-title">CLIO</h1>
-        <p class="hero-sub" style="font-size:13px;letter-spacing:.18em;margin:14px 0 0;">SPONTANEITY AT SUNSET</p>
-        <p class="hero-italic" style="font-style:italic;font-size:16px;margin:6px 0 0;">Made with sincerity and mixed with pride.</p>
-        <p class="hero-italic" style="font-size:10px;letter-spacing:.18em;margin:18px 0 0;opacity:.65;">www.mt-muse.com/products/Clio/12oz-can</p>
+        <div class="panel-kicker">NUTRITION &amp; INGREDIENTS</div>
+        <h1 class="panel-title">CLIO</h1>
+        <p class="panel-subtitle">SPONTANEITY AT SUNSET</p>
+        <p class="panel-tagline">Made with sincerity and mixed with pride.</p>
+        <p class="panel-url">www.mt-muse.com/products/Clio/12oz-can</p>
       </div>
-      <div class="meta-strip">
+
+      <div class="panel-meta">
         <div class="meta-grid">
-          <div class="meta-stat"><div class="meta-val-num accent">12%</div><div class="meta-lbl-text meta-lbl">ABV</div></div>
-          <div class="meta-stat"><div class="meta-val-num accent">25%</div><div class="meta-lbl-text meta-lbl">JUICE CONTENT</div></div>
-          <div class="meta-stat"><div class="meta-val-num accent">6 fl oz</div><div class="meta-lbl-text meta-lbl">SERVING SIZE</div></div>
-          <div class="meta-stat"><div class="meta-val-num accent">~4</div><div class="meta-lbl-text meta-lbl">SERVINGS / BOTTLE</div></div>
+          <div class="meta-stat"><div class="meta-val-num">12%</div><div class="meta-lbl-text">ABV</div></div>
+          <div class="meta-stat"><div class="meta-val-num">18%</div><div class="meta-lbl-text">JUICE CONTENT</div></div>
+          <div class="meta-stat"><div class="meta-val-num">6 fl oz</div><div class="meta-lbl-text">SERVING SIZE</div></div>
+          <div class="meta-stat"><div class="meta-val-num">~4</div><div class="meta-lbl-text">SERVINGS / BOTTLE</div></div>
         </div>
       </div>
-      <div class="warn-strip">
-        <div class="warn-inner">
-          <p class="warn-para warn-text"><strong style="color:#FDFCFA;font-weight:700;letter-spacing:.04em;">GOVERNMENT WARNING:</strong> (1) According to the Surgeon General, women should not drink alcoholic beverages during pregnancy because of the risk of birth defects. (2) Consumption of alcoholic beverages impairs your ability to drive a car or operate machinery, and may cause health problems.</p>
-        </div>
-      </div>
-      <div class="nf-section">
-        <div class="nf-kicker" style="text-align:center;font-size:11px;letter-spacing:.26em;font-weight:600;margin-bottom:8px;">THE FINE PRINT</div>
-        <h2 style="font-family:Ogg,serif;font-weight:500;font-size:clamp(28px,3.6vw,42px);text-align:center;margin:0 0 44px;" class="nf-heading">Nutrition Facts</h2>
+
+      <div class="panel-nf">
+        <div class="nf-kicker">THE FINE PRINT</div>
+        <h2 class="nf-heading">Nutrition Facts</h2>
         <div class="nf-labels-wrap">
           <div class="nf-label-col">
-            <p class="nf-label-title nf-lbl-title">Per Serving — 6 fl oz (177mL)</p>
+            <p class="nf-label-title">Per Serving — 6 fl oz (177mL)</p>
             <div class="nf-box">
               <div class="nf-title">Nutrition Facts</div>
               <div class="nf-servings">About 4 servings per container</div>
               <div class="nf-serving-size">Serving size <span style="float:right;">6 fl oz (177mL)</span></div>
               <div class="nf-bar-thick"></div>
               <div style="font-size:11px;font-weight:700;">Amount per serving</div>
-              <div class="nf-cal-row"><span class="nf-cal-label">Calories</span><span class="nf-cal-val">190</span></div>
+              <div class="nf-cal-row"><span class="nf-cal-label">Calories</span><span class="nf-cal-val">215</span></div>
               <div class="nf-bar-thick"></div>
               <div class="nf-dv-note">% Daily Value*</div>
               <div class="nf-bar-thin"></div>
@@ -536,30 +493,28 @@
               <div class="nf-bar-thin"></div>
               <div class="nf-row"><span><span class="nf-bold">Sodium</span> 20mg</span><span class="nf-bold">1%</span></div>
               <div class="nf-bar-thin"></div>
-              <div class="nf-row"><span><span class="nf-bold">Total Carbohydrate</span> 17g</span><span class="nf-bold">6%</span></div>
+              <div class="nf-row"><span><span class="nf-bold">Total Carbohydrate</span> 19g</span><span class="nf-bold">7%</span></div>
               <div class="nf-bar-thin"></div>
               <div class="nf-row nf-row-indent"><span>Dietary Fiber 0g</span><span>0%</span></div>
               <div class="nf-bar-thin"></div>
-              <div class="nf-row nf-row-indent"><span>Total Sugars 14g</span><span></span></div>
+              <div class="nf-row nf-row-indent"><span>Total Sugars 16g</span><span></span></div>
               <div class="nf-bar-thin"></div>
-              <div class="nf-row nf-row-indent2"><span>Includes 13g Added Sugars</span><span>26%</span></div>
+              <div class="nf-row nf-row-indent2"><span>Includes 12g Added Sugars</span><span>24%</span></div>
               <div class="nf-bar-thin"></div>
               <div class="nf-row"><span><span class="nf-bold">Protein</span> 0g</span><span></span></div>
               <div class="nf-bar-med"></div>
               <div class="nf-vit-grid">
                 <div class="nf-vit-item">Vitamin D 0mcg <strong>0%</strong></div>
                 <div class="nf-vit-item">Calcium 10mg <strong>0%</strong></div>
-                <div class="nf-vit-item">Iron 0.3mg <strong>2%</strong></div>
-                <div class="nf-vit-item">Potassium 130mg <strong>2%</strong></div>
-                <div class="nf-vit-item">Vitamin C 10mg <strong>10%</strong></div>
-                <div class="nf-vit-item">Riboflavin 0.02mg <strong>2%</strong></div>
-                <div class="nf-vit-item" style="border-bottom:none;">Vitamin B6 0.03mg <strong>2%</strong></div>
+                <div class="nf-vit-item">Iron 0.2mg <strong>2%</strong></div>
+                <div class="nf-vit-item">Potassium 200mg <strong>4%</strong></div>
+                <div class="nf-vit-item" style="border-bottom:none;">Vitamin C 8mg <strong>8%</strong></div>
               </div>
               <div class="nf-footer">*The % Daily Value tells you how much a nutrient in a serving of food contributes to a daily diet. 2,000 calories a day is used for general nutrition advice.</div>
             </div>
           </div>
           <div class="nf-label-col">
-            <p class="nf-label-title nf-lbl-title">Per Bottle — 25.4 fl oz (750mL)</p>
+            <p class="nf-label-title">Per Bottle — 25.4 fl oz (750mL)</p>
             <div class="nf-box">
               <div class="nf-title">Nutrition Facts</div>
               <div class="nf-servings">About 4 servings per container</div>
@@ -578,91 +533,76 @@
               <div class="nf-bar-thin"></div>
               <div class="nf-row"><span><span class="nf-bold">Cholesterol</span> 0mg</span><span class="nf-bold">0%</span></div>
               <div class="nf-bar-thin"></div>
-              <div class="nf-row"><span><span class="nf-bold">Sodium</span> 80mg</span><span class="nf-bold">3%</span></div>
+              <div class="nf-row"><span><span class="nf-bold">Sodium</span> 75mg</span><span class="nf-bold">3%</span></div>
               <div class="nf-bar-thin"></div>
-              <div class="nf-row"><span><span class="nf-bold">Total Carbohydrate</span> 74g</span><span class="nf-bold">27%</span></div>
+              <div class="nf-row"><span><span class="nf-bold">Total Carbohydrate</span> 62g</span><span class="nf-bold">23%</span></div>
               <div class="nf-bar-thin"></div>
               <div class="nf-row nf-row-indent"><span>Dietary Fiber 0g</span><span>0%</span></div>
               <div class="nf-bar-thin"></div>
-              <div class="nf-row nf-row-indent"><span>Total Sugars 61g</span><span></span></div>
+              <div class="nf-row nf-row-indent"><span>Total Sugars 56g</span><span></span></div>
               <div class="nf-bar-thin"></div>
-              <div class="nf-row nf-row-indent2"><span>Includes 54g Added Sugars</span><span>108%</span></div>
+              <div class="nf-row nf-row-indent2"><span>Includes 48g Added Sugars</span><span>96%</span></div>
               <div class="nf-bar-thin"></div>
-              <div class="nf-row"><span><span class="nf-bold">Protein</span> 1g</span><span></span></div>
+              <div class="nf-row"><span><span class="nf-bold">Protein</span> 0g</span><span></span></div>
               <div class="nf-bar-med"></div>
               <div class="nf-vit-grid">
                 <div class="nf-vit-item">Vitamin D 0mcg <strong>0%</strong></div>
-                <div class="nf-vit-item">Calcium 30mg <strong>2%</strong></div>
-                <div class="nf-vit-item">Iron 1.3mg <strong>8%</strong></div>
-                <div class="nf-vit-item">Potassium 530mg <strong>10%</strong></div>
-                <div class="nf-vit-item">Vitamin C 41mg <strong>45%</strong></div>
-                <div class="nf-vit-item">Riboflavin 0.07mg <strong>6%</strong></div>
-                <div class="nf-vit-item" style="border-bottom:none;">Vitamin B6 0.12mg <strong>8%</strong></div>
+                <div class="nf-vit-item">Calcium 0mg <strong>0%</strong></div>
+                <div class="nf-vit-item">Iron 0.2mg <strong>2%</strong></div>
+                <div class="nf-vit-item">Potassium 310mg <strong>6%</strong></div>
+                <div class="nf-vit-item" style="border-bottom:none;">Vitamin C 26mg <strong>30%</strong></div>
               </div>
               <div class="nf-footer">*The % Daily Value tells you how much a nutrient in a serving of food contributes to a daily diet. 2,000 calories a day is used for general nutrition advice.</div>
             </div>
           </div>
         </div>
       </div>
-      <div class="ingr-section">
+
+      <div class="panel-ingr">
         <div class="ingr-inner">
-          <h3 class="ingr-heading-el ingr-heading">Ingredients</h3>
-          <p class="ingr-para ingr-body">Carbonated Filtered Water, Red Wine, Brandy, Cane Sugar, Cranberry Juice Concentrate, Strawberry Juice Concentrate, Lemon Juice Concentrate, Natural Flavors, Lime Juice Concentrate, Citric Acid, Malic Acid, Sodium Benzoate, Potassium Sorbate, Edetate Calcium Disodium (EDTA).</p>
-          <p class="ingr-allergy-p ingr-allergy"><strong style="color:#FDFCFA;font-weight:600;">Allergens:</strong> None</p>
+          <h3 class="ingr-heading-el">Ingredients</h3>
+          <p class="ingr-para">Carbonated Filtered Water, Red Wine, Brandy, Cane Sugar, Cranberry Juice Concentrate, Strawberry Juice Concentrate, Lemon Juice Concentrate, Natural Flavors, Lime Juice Concentrate, Citric Acid, Malic Acid, Sodium Benzoate, Potassium Sorbate, Edetate Calcium Disodium (EDTA).</p>
+          <p class="ingr-allergy-p"><strong style="font-weight:600;color:#0A0B0C;">Allergens:</strong> None</p>
+          <p class="ingr-warning"><strong style="font-weight:600;color:#0A0B0C;">GOVERNMENT WARNING:</strong> (1) According to the Surgeon General, women should not drink alcoholic beverages during pregnancy because of the risk of birth defects. (2) Consumption of alcoholic beverages impairs your ability to drive a car or operate machinery, and may cause health problems.</p>
         </div>
       </div>
-      <footer class="panel-footer">
-        <img src="assets/monogram-ivory.png" alt="MUSE">
-        <div class="footer-tagline">Celebrate amongst the clouds.</div>
-        <div class="footer-links">
-          <a href="about.html" class="footer-link">ABOUT</a>
-          <a href="gallery.html" class="footer-link">GALLERY</a>
-          <a href="contact.html" class="footer-link">CONTACT</a>
-          <a href="products.html" class="footer-link">PRODUCTS</a>
-          <a href="legal.html" class="footer-link">LEGAL &amp; PRIVACY</a>
-        </div>
-        <div class="footer-copy">&copy; MMXXVI MUSE &middot; ENJOY RESPONSIBLY &middot; 21+</div>
-      </footer>
-    </div>
+    </div><!-- /panel-clio -->
 
     <!-- ══════════ OURANIA ══════════ -->
     <div class="panel panel-ourania">
-      <div class="hero">
-        <a href="flagship-detail.html#ourania" class="back-link" style="display:inline-flex;align-items:center;gap:7px;font-size:11px;letter-spacing:.18em;font-weight:600;text-decoration:none;margin-bottom:24px;">
+      <div class="panel-hero">
+        <a href="product-detail.html?handle=ourania" class="panel-back-link">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m15 18-6-6 6-6"/></svg>BACK TO OURANIA
         </a>
-        <div class="kicker" style="font-size:11px;letter-spacing:.28em;font-weight:600;margin-bottom:16px;">NUTRITION &amp; INGREDIENTS</div>
-        <h1 style="font-family:Ogg,serif;font-weight:500;letter-spacing:.08em;font-size:clamp(48px,7vw,86px);line-height:.92;" class="hero-title">OURANIA</h1>
-        <p class="hero-sub" style="font-size:13px;letter-spacing:.18em;margin:14px 0 0;">ELEGANCE AT EVENTIDE</p>
-        <p class="hero-italic" style="font-style:italic;font-size:16px;margin:6px 0 0;">Made with purpose and mixed with intention.</p>
-        <p class="hero-italic" style="font-size:10px;letter-spacing:.18em;margin:18px 0 0;opacity:.65;">www.mt-muse.com/products/Ourania/12oz-can</p>
+        <div class="panel-kicker">NUTRITION &amp; INGREDIENTS</div>
+        <h1 class="panel-title">OURANIA</h1>
+        <p class="panel-subtitle">ELEGANCE AT EVENTIDE</p>
+        <p class="panel-tagline">Made with purpose and mixed with intention.</p>
+        <p class="panel-url">www.mt-muse.com/products/Ourania/12oz-can</p>
       </div>
-      <div class="meta-strip">
+
+      <div class="panel-meta">
         <div class="meta-grid">
-          <div class="meta-stat"><div class="meta-val-num accent">12.1%</div><div class="meta-lbl-text meta-lbl">ABV</div></div>
-          <div class="meta-stat"><div class="meta-val-num accent">15%</div><div class="meta-lbl-text meta-lbl">JUICE CONTENT</div></div>
-          <div class="meta-stat"><div class="meta-val-num accent">6 fl oz</div><div class="meta-lbl-text meta-lbl">SERVING SIZE</div></div>
-          <div class="meta-stat"><div class="meta-val-num accent">~4</div><div class="meta-lbl-text meta-lbl">SERVINGS / BOTTLE</div></div>
+          <div class="meta-stat"><div class="meta-val-num">12.1%</div><div class="meta-lbl-text">ABV</div></div>
+          <div class="meta-stat"><div class="meta-val-num">15%</div><div class="meta-lbl-text">JUICE CONTENT</div></div>
+          <div class="meta-stat"><div class="meta-val-num">6 fl oz</div><div class="meta-lbl-text">SERVING SIZE</div></div>
+          <div class="meta-stat"><div class="meta-val-num">~4</div><div class="meta-lbl-text">SERVINGS / BOTTLE</div></div>
         </div>
       </div>
-      <div class="warn-strip">
-        <div class="warn-inner">
-          <p class="warn-para warn-text"><strong style="color:#FDFCFA;font-weight:700;letter-spacing:.04em;">GOVERNMENT WARNING:</strong> (1) According to the Surgeon General, women should not drink alcoholic beverages during pregnancy because of the risk of birth defects. (2) Consumption of alcoholic beverages impairs your ability to drive a car or operate machinery, and may cause health problems.</p>
-        </div>
-      </div>
-      <div class="nf-section">
-        <div class="nf-kicker" style="text-align:center;font-size:11px;letter-spacing:.26em;font-weight:600;margin-bottom:8px;">THE FINE PRINT</div>
-        <h2 style="font-family:Ogg,serif;font-weight:500;font-size:clamp(28px,3.6vw,42px);text-align:center;margin:0 0 44px;" class="nf-heading">Nutrition Facts</h2>
+
+      <div class="panel-nf">
+        <div class="nf-kicker">THE FINE PRINT</div>
+        <h2 class="nf-heading">Nutrition Facts</h2>
         <div class="nf-labels-wrap">
           <div class="nf-label-col">
-            <p class="nf-label-title nf-lbl-title">Per Serving — 6 fl oz (177mL)</p>
+            <p class="nf-label-title">Per Serving — 6 fl oz (177mL)</p>
             <div class="nf-box">
               <div class="nf-title">Nutrition Facts</div>
               <div class="nf-servings">About 4 servings per container</div>
               <div class="nf-serving-size">Serving size <span style="float:right;">6 fl oz (177mL)</span></div>
               <div class="nf-bar-thick"></div>
               <div style="font-size:11px;font-weight:700;">Amount per serving</div>
-              <div class="nf-cal-row"><span class="nf-cal-label">Calories</span><span class="nf-cal-val">190</span></div>
+              <div class="nf-cal-row"><span class="nf-cal-label">Calories</span><span class="nf-cal-val">195</span></div>
               <div class="nf-bar-thick"></div>
               <div class="nf-dv-note">% Daily Value*</div>
               <div class="nf-bar-thin"></div>
@@ -674,31 +614,31 @@
               <div class="nf-bar-thin"></div>
               <div class="nf-row"><span><span class="nf-bold">Cholesterol</span> 0mg</span><span class="nf-bold">0%</span></div>
               <div class="nf-bar-thin"></div>
-              <div class="nf-row"><span><span class="nf-bold">Sodium</span> 20mg</span><span class="nf-bold">1%</span></div>
+              <div class="nf-row"><span><span class="nf-bold">Sodium</span> 15mg</span><span class="nf-bold">1%</span></div>
               <div class="nf-bar-thin"></div>
-              <div class="nf-row"><span><span class="nf-bold">Total Carbohydrate</span> 15g</span><span class="nf-bold">5%</span></div>
+              <div class="nf-row"><span><span class="nf-bold">Total Carbohydrate</span> 18g</span><span class="nf-bold">7%</span></div>
               <div class="nf-bar-thin"></div>
               <div class="nf-row nf-row-indent"><span>Dietary Fiber 0g</span><span>0%</span></div>
               <div class="nf-bar-thin"></div>
-              <div class="nf-row nf-row-indent"><span>Total Sugars 13g</span><span></span></div>
+              <div class="nf-row nf-row-indent"><span>Total Sugars 14g</span><span></span></div>
               <div class="nf-bar-thin"></div>
-              <div class="nf-row nf-row-indent2"><span>Includes 11g Added Sugars</span><span>22%</span></div>
+              <div class="nf-row nf-row-indent2"><span>Includes 12g Added Sugars</span><span>24%</span></div>
               <div class="nf-bar-thin"></div>
               <div class="nf-row"><span><span class="nf-bold">Protein</span> 0g</span><span></span></div>
               <div class="nf-bar-med"></div>
               <div class="nf-vit-grid">
                 <div class="nf-vit-item">Vitamin D 0mcg <strong>0%</strong></div>
                 <div class="nf-vit-item">Calcium 0mg <strong>0%</strong></div>
-                <div class="nf-vit-item">Iron 0.1mg <strong>0%</strong></div>
-                <div class="nf-vit-item">Potassium 70mg <strong>2%</strong></div>
-                <div class="nf-vit-item">Vitamin A 10mcg <strong>2%</strong></div>
-                <div class="nf-vit-item" style="border-bottom:none;">Vitamin C 6mg <strong>6%</strong></div>
+                <div class="nf-vit-item">Iron 0.2mg <strong>2%</strong></div>
+                <div class="nf-vit-item">Potassium 310mg <strong>6%</strong></div>
+                <div class="nf-vit-item">Vitamin A 20mcg <strong>2%</strong></div>
+                <div class="nf-vit-item" style="border-bottom:none;">Vitamin C 26mg <strong>30%</strong></div>
               </div>
               <div class="nf-footer">*The % Daily Value tells you how much a nutrient in a serving of food contributes to a daily diet. 2,000 calories a day is used for general nutrition advice.</div>
             </div>
           </div>
           <div class="nf-label-col">
-            <p class="nf-label-title nf-lbl-title">Per Bottle — 25.4 fl oz (750mL)</p>
+            <p class="nf-label-title">Per Bottle — 25.4 fl oz (750mL)</p>
             <div class="nf-box">
               <div class="nf-title">Nutrition Facts</div>
               <div class="nf-servings">About 4 servings per container</div>
@@ -742,30 +682,26 @@
           </div>
         </div>
       </div>
-      <div class="ingr-section">
+
+      <div class="panel-ingr">
         <div class="ingr-inner">
-          <h3 class="ingr-heading-el ingr-heading">Ingredients</h3>
-          <p class="ingr-para ingr-body">Carbonated Filtered Water, Gin, Cane Sugar, Passionfruit Juice Concentrate, Natural Flavors, Lemon Juice Concentrate, Lime Juice Concentrate, Butterfly Pea Flower Extract (for color), Citric Acid, Sodium Benzoate, Potassium Sorbate, Edetate Calcium Disodium (EDTA).</p>
-          <p class="ingr-allergy-p ingr-allergy"><strong style="color:#FDFCFA;font-weight:600;">Allergens:</strong> None</p>
+          <h3 class="ingr-heading-el">Ingredients</h3>
+          <p class="ingr-para">Carbonated Filtered Water, Gin, Cane Sugar, Passionfruit Juice Concentrate, Natural Flavors, Lemon Juice Concentrate, Lime Juice Concentrate, Butterfly Pea Flower Extract (for color), Citric Acid, Sodium Benzoate, Potassium Sorbate, Edetate Calcium Disodium (EDTA).</p>
+          <p class="ingr-allergy-p"><strong style="font-weight:600;color:#0A0B0C;">Allergens:</strong> None</p>
+          <p class="ingr-warning"><strong style="font-weight:600;color:#0A0B0C;">GOVERNMENT WARNING:</strong> (1) According to the Surgeon General, women should not drink alcoholic beverages during pregnancy because of the risk of birth defects. (2) Consumption of alcoholic beverages impairs your ability to drive a car or operate machinery, and may cause health problems.</p>
         </div>
       </div>
-      <footer class="panel-footer">
-        <img src="assets/monogram-ivory.png" alt="MUSE">
-        <div class="footer-tagline">Celebrate amongst the clouds.</div>
-        <div class="footer-links">
-          <a href="about.html" class="footer-link">ABOUT</a>
-          <a href="gallery.html" class="footer-link">GALLERY</a>
-          <a href="contact.html" class="footer-link">CONTACT</a>
-          <a href="products.html" class="footer-link">PRODUCTS</a>
-          <a href="legal.html" class="footer-link">LEGAL &amp; PRIVACY</a>
-        </div>
-        <div class="footer-copy">&copy; MMXXVI MUSE &middot; ENJOY RESPONSIBLY &middot; 21+</div>
-      </footer>
-    </div>
+    </div><!-- /panel-ourania -->
 
   </div><!-- /carousel-track -->
 </div><!-- /carousel-overflow -->
 
+<div id="site-footer"></div>
+
+<script src="assets/js/cart-ui.js"></script>
+<script src="assets/js/cart.js"></script>
+<script src="assets/js/footer.js"></script>
+<script src="assets/js/nav.js"></script>
 <script>
 var SKUS = [
   { name: 'THALIA', accent: '#EFA527' },
@@ -788,7 +724,6 @@ function go(idx) {
     'translateX(calc(-100% * ' + current + ' / 3))';
   updateTabs();
   updateSkuSwitcher();
-  // close dropdown
   document.getElementById('sku-dropdown').classList.remove('open');
 }
 
@@ -803,7 +738,6 @@ function updateSkuSwitcher() {
   var el = document.getElementById('sku-name-text');
   el.textContent = SKUS[current].name;
   el.style.color = SKUS[current].accent;
-  // also update dropdown option colors
   document.querySelectorAll('.sku-opt').forEach(function(o, i) {
     o.style.color = i === current ? TAB_ACCENTS[i] : '#0A0B0C';
   });
