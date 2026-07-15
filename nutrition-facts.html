@@ -23,9 +23,9 @@
 
     /* ── STICKY TABS ── */
     #sku-tabs {
-      position: sticky; top: 62px; z-index: 40;
+      position: sticky; top: 80px; z-index: 40;
       display: flex; justify-content: center; gap: clamp(24px,5vw,64px);
-      padding: 15px 24px;
+      padding: 18px 24px;
       background: rgba(251,246,238,0.96);
       backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
       border-bottom: 1px solid #E7DAC4;
@@ -33,14 +33,14 @@
     }
     #sku-tabs.tabs-hidden { opacity: 0; visibility: hidden; pointer-events: none; }
     .sku-tab {
-      font-family: Ogg, serif; letter-spacing: .16em; font-size: 17px;
-      padding-bottom: 5px; cursor: pointer;
+      font-family: Ogg, serif; letter-spacing: .16em; font-size: 20px;
+      padding-bottom: 6px; cursor: pointer;
       transition: color .3s ease, border-color .3s ease;
       border-bottom: 2px solid transparent;
     }
 
     /* ── SKU SWITCHER (state 2) ── */
-    #sku-switcher { position: absolute; left: 50%; transform: translateX(-50%); display: flex; align-items: center; gap: 12px; }
+    #sku-switcher { flex: none; display: flex; align-items: center; gap: 12px; position: relative; }
     .sku-arrow {
       width: 26px; height: 26px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
       cursor: pointer; color: #0A0B0C; border: 1px solid rgba(10,11,12,.22);
@@ -252,7 +252,19 @@
       <img src="images/MUSE%20-%20Monogram%20(Solo%20GLD).png" alt="MUSE" style="height:38px;width:auto;">
     </a>
 
-    <!-- SKU switcher (centered absolutely) -->
+    <!-- Left links -->
+    <div style="display:flex;flex:1;align-items:center;justify-content:space-evenly;">
+      <div class="muse-dropdown" style="position:relative;align-self:center;padding-bottom:16px;margin-bottom:-16px;display:flex;align-items:center;">
+        <a href="about.html" style="font-size:11px;letter-spacing:.2em;font-weight:500;color:#0A0B0C;text-decoration:none;display:inline-flex;align-items:center;gap:5px;">ABOUT<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" style="opacity:.5;flex:none;"><path d="m6 9 6 6 6-6"/></svg></a>
+        <div class="muse-dropdown-menu" style="position:absolute;top:100%;left:0;width:240px;background:#FDFCFA;border:1px solid #E7DAC4;box-shadow:0 18px 44px -20px rgba(10,11,12,.5);padding:7px;z-index:60;">
+          <a href="about.html" class="muse-sub">OUR STORY</a>
+          <a href="flagship-detail.html" class="muse-sub">THE FLAGSHIP MUSES</a>
+        </div>
+      </div>
+      <a href="gallery.html" style="font-size:11px;letter-spacing:.2em;font-weight:500;color:#0A0B0C;text-decoration:none;">GALLERY</a>
+    </div>
+
+    <!-- SKU switcher (centered via flex:1 siblings) -->
     <div id="sku-switcher">
       <div class="sku-arrow" id="btn-prev">
         <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m15 18-6-6 6-6"/></svg>
@@ -269,6 +281,19 @@
         <div class="sku-opt" data-idx="1" style="color:#CC2200;">CLIO</div>
         <div class="sku-opt" data-idx="2" style="color:#8B5CF6;">OURANIA</div>
       </div>
+    </div>
+
+    <!-- Right links -->
+    <div style="display:flex;flex:1;align-items:center;justify-content:space-evenly;">
+      <div class="muse-dropdown" style="position:relative;align-self:center;padding-bottom:16px;margin-bottom:-16px;display:flex;align-items:center;">
+        <a href="contact.html" style="font-size:11px;letter-spacing:.2em;font-weight:500;color:#0A0B0C;text-decoration:none;display:inline-flex;align-items:center;gap:5px;">CONTACT<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" style="opacity:.5;flex:none;"><path d="m6 9 6 6 6-6"/></svg></a>
+        <div class="muse-dropdown-menu" style="position:absolute;top:100%;right:0;width:220px;background:#FDFCFA;border:1px solid #E7DAC4;box-shadow:0 18px 44px -20px rgba(10,11,12,.5);padding:7px;z-index:60;">
+          <a href="contact.html" class="muse-sub">CONTACT US</a>
+          <a href="share-a-muse.html" class="muse-sub">SHARE YOUR MUSE</a>
+        </div>
+      </div>
+      <a href="products.html" style="font-size:11px;letter-spacing:.2em;font-weight:500;color:#0A0B0C;text-decoration:none;">PRODUCTS</a>
+      <a href="login.html" style="font-size:11px;letter-spacing:.2em;font-weight:500;color:#0A0B0C;text-decoration:none;">LOG IN</a>
     </div>
 
     <!-- SHOP pill + search -->
