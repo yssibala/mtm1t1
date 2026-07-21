@@ -20,6 +20,12 @@
         "id": "brand_gold",
         "label": "MUSE Gold",
         "default": "#EFA527"
+      },
+      {
+        "type": "image_picker",
+        "id": "share_image",
+        "label": "Default social share image",
+        "info": "Used for Open Graph / Twitter when a page has no image of its own."
       }
     ]
   },

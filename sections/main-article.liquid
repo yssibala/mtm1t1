@@ -1,0 +1,44 @@
+<article class="container article" style="padding:var(--section-pad) 0;max-width:820px;">
+  <a href="{{ blog.url }}" style="font-size:var(--fs-small);">&larr; {{ blog.title }}</a>
+  <div class="article__meta">{{ article.published_at | date: '%B %d, %Y' }}{% if article.author != blank %} &middot; {{ article.author }}{% endif %}</div>
+  <h1>{{ article.title }}</h1>
+  {%- if article.image -%}
+    <img class="article__hero" src="{{ article.image | image_url: width: 1400 }}" alt="{{ article.image.alt | escape }}" width="1400">
+  {%- endif -%}
+  <div class="rte article__body">{{ article.content }}</div>
+
+  <div class="article__share">
+    <span class="kicker">Share</span>
+    <a href="https://www.facebook.com/sharer.php?u={{ shop.url }}{{ article.url }}" target="_blank" rel="noopener">Facebook</a>
+    <a href="https://twitter.com/intent/tweet?url={{ shop.url }}{{ article.url }}&text={{ article.title | url_encode }}" target="_blank" rel="noopener">X</a>
+    <a href="https://pinterest.com/pin/create/button/?url={{ shop.url }}{{ article.url }}" target="_blank" rel="noopener">Pinterest</a>
+  </div>
+
+  {%- if blog.comments_enabled? -%}
+    <div class="article__comments">
+      {%- if article.comments_count > 0 -%}
+        <h2 style="font-size:var(--fs-h3);">{{ article.comments_count }} comment{% if article.comments_count != 1 %}s{% endif %}</h2>
+        {%- for comment in article.comments -%}
+          <div class="comment">
+            <div class="comment__meta">{{ comment.author }} &middot; {{ comment.created_at | date: '%b %d, %Y' }}</div>
+            <div class="rte">{{ comment.content }}</div>
+          </div>
+        {%- endfor -%}
+      {%- endif -%}
+      {%- form 'new_comment', article -%}
+        {{ form.errors | default_errors }}
+        {%- if form.posted_successfully? -%}<p>Thanks — your comment is awaiting moderation.</p>{%- endif -%}
+        <h2 style="font-size:var(--fs-h3);">Leave a comment</h2>
+        <div class="comment-form__row">
+          <input type="text" name="comment[author]" placeholder="Name" required>
+          <input type="email" name="comment[email]" placeholder="Email" required>
+        </div>
+        <textarea name="comment[body]" rows="4" placeholder="Comment" required></textarea>
+        <button type="submit" class="muse-pill muse-cta">Post comment</button>
+      {%- endform -%}
+    </div>
+  {%- endif -%}
+</article>
+{% schema %}
+{ "name": "Article", "settings": [] }
+{% endschema %}

@@ -1,4 +1,5 @@
 {%- liquid
+  assign s = section.settings
   assign cs_tag = settings.coming_soon_tag | default: 'coming-soon'
   assign is_coming_soon = false
   if product.tags contains cs_tag
@@ -9,50 +10,120 @@
   if is_coming_soon and settings.coming_soon_disable_cart
     assign block_cart = true
   endif
+  assign current_variant = product.selected_or_first_available_variant
+  assign sid = section.id
+  assign form_id = 'product-form-' | append: sid
 -%}
 
 <div class="product-page container">
-  <div class="product-media cs-media">
-    {%- if is_coming_soon -%}
-      {%- render 'coming-soon-badge', stamp: true -%}
+  <!-- MEDIA GALLERY -->
+  <div class="product-gallery cs-media">
+    {%- if is_coming_soon -%}{%- render 'coming-soon-badge', stamp: true -%}{%- endif -%}
+    <div class="product-gallery__main">
+      {%- if product.featured_image -%}
+        <img id="pg-main-{{ sid }}" src="{{ product.featured_image | image_url: width: 1200 }}" alt="{{ product.featured_image.alt | escape }}" width="1200">
+      {%- else -%}
+        <div class="fx-placeholder" style="aspect-ratio:1/1;">{{ 'product' | placeholder_svg_tag }}</div>
+      {%- endif -%}
+    </div>
+    {%- if product.images.size > 1 -%}
+      <div class="product-gallery__thumbs">
+        {%- for image in product.images -%}
+          <button type="button" class="pg-thumb{% if forloop.first %} is-active{% endif %}" data-pg-target="pg-main-{{ sid }}" data-pg-src="{{ image | image_url: width: 1200 }}" aria-label="View image {{ forloop.index }}">
+            <img src="{{ image | image_url: width: 160 }}" alt="{{ image.alt | escape }}" loading="lazy" width="80">
+          </button>
+        {%- endfor -%}
+      </div>
     {%- endif -%}
-    {% if product.featured_image %}
-      <img src="{{ product.featured_image | image_url: width: 900 }}"
-           alt="{{ product.featured_image.alt | escape }}" width="900">
-    {% endif %}
   </div>
 
+  <!-- INFO -->
   <div class="product-info">
+    {%- if product.vendor != blank and s.show_vendor -%}<div class="kicker" style="margin-bottom:8px;">{{ product.vendor }}</div>{%- endif -%}
     <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;">
-      <h1 style="font-family: var(--font-display);margin:0;">{{ product.title }}</h1>
+      <h1 style="font-family:var(--font-display);margin:0;">{{ product.title }}</h1>
       {%- if is_coming_soon -%}{%- render 'coming-soon-badge' -%}{%- endif -%}
     </div>
-    <p class="price">
-      {%- if is_coming_soon -%}{{ cs_label }}{%- else -%}{{ product.price | money }}{%- endif -%}
-    </p>
 
-    <div class="product-description">
-      {{ product.description }}
+    <div class="product-price" data-price>
+      {%- if is_coming_soon -%}
+        {{ cs_label }}
+      {%- else -%}
+        {%- if current_variant.compare_at_price > current_variant.price -%}
+          <span class="product-price__sale">{{ current_variant.price | money }}</span>
+          <s class="product-price__was">{{ current_variant.compare_at_price | money }}</s>
+        {%- else -%}
+          {{ current_variant.price | money }}
+        {%- endif -%}
+      {%- endif -%}
     </div>
 
-    {%- if block_cart -%}
-      <button type="button" class="add-to-cart" disabled>{{ cs_label }}</button>
-    {%- else -%}
-      {% form 'product', product %}
-        <select name="id">
-          {% for variant in product.variants %}
-            <option value="{{ variant.id }}"
-              {% unless variant.available %}disabled{% endunless %}>
-              {{ variant.title }} — {{ variant.price | money }}
-            </option>
-          {% endfor %}
-        </select>
+    {%- unless block_cart -%}
+      {%- form 'product', product, id: form_id, class: 'product-form' -%}
+        {%- unless product.has_only_default_variant -%}
+          <div class="product-options">
+            {%- for option in product.options_with_values -%}
+              <div class="product-option">
+                <label for="opt-{{ sid }}-{{ forloop.index0 }}">{{ option.name }}</label>
+                <select id="opt-{{ sid }}-{{ forloop.index0 }}" data-option-index="{{ forloop.index0 }}">
+                  {%- for value in option.values -%}
+                    <option value="{{ value | escape }}"{% if option.selected_value == value %} selected{% endif %}>{{ value }}</option>
+                  {%- endfor -%}
+                </select>
+              </div>
+            {%- endfor -%}
+          </div>
+        {%- endunless -%}
 
-        <button type="submit" name="add" class="add-to-cart"
-          {% unless product.available %}disabled{% endunless %}>
-          {% if product.available %}Add to cart{% else %}Sold out{% endif %}
-        </button>
-      {% endform %}
+        <input type="hidden" name="id" value="{{ current_variant.id }}" data-variant-id>
+
+        <div class="product-purchase">
+          <div class="qty">
+            <button type="button" class="qty__btn" data-qty-down aria-label="Decrease">&minus;</button>
+            <input type="number" name="quantity" value="1" min="1" class="qty__input" data-qty>
+            <button type="button" class="qty__btn" data-qty-up aria-label="Increase">+</button>
+          </div>
+          <button type="submit" name="add" class="add-to-cart" data-add-btn {% unless current_variant.available %}disabled{% endunless %}>
+            <span data-add-label>{% if current_variant.available %}Add to cart{% else %}Sold out{% endif %}</span>
+          </button>
+        </div>
+      {%- endform -%}
+
+      <script>
+        (function () {
+          var form = document.getElementById('product-form-{{ sid }}');
+          if (!form) return;
+          var variants = {{ product.variants | json }};
+          var money = { {% for v in product.variants %}"{{ v.id }}": {{ v.price | money | json }}{% unless forloop.last %},{% endunless %}{% endfor %} };
+          var priceEl = form.parentNode.querySelector('[data-price]');
+          var idInput = form.querySelector('[data-variant-id]');
+          var addBtn = form.querySelector('[data-add-btn]');
+          var addLabel = form.querySelector('[data-add-label]');
+          var selects = form.querySelectorAll('[data-option-index]');
+          function update() {
+            var chosen = [];
+            selects.forEach(function (sel) { chosen[parseInt(sel.dataset.optionIndex, 10)] = sel.value; });
+            var match = variants.find(function (v) {
+              return v.options.every(function (o, i) { return o === chosen[i]; });
+            });
+            if (!match) return;
+            idInput.value = match.id;
+            if (priceEl && money[match.id]) { priceEl.textContent = money[match.id]; }
+            if (match.available) { addBtn.disabled = false; addLabel.textContent = 'Add to cart'; }
+            else { addBtn.disabled = true; addLabel.textContent = 'Sold out'; }
+          }
+          selects.forEach(function (sel) { sel.addEventListener('change', update); });
+          var down = form.querySelector('[data-qty-down]'), up = form.querySelector('[data-qty-up]'), qty = form.querySelector('[data-qty]');
+          if (down) down.addEventListener('click', function () { qty.value = Math.max(1, (parseInt(qty.value, 10) || 1) - 1); });
+          if (up) up.addEventListener('click', function () { qty.value = (parseInt(qty.value, 10) || 1) + 1; });
+        })();
+      </script>
+    {%- else -%}
+      <button type="button" class="add-to-cart" disabled>{{ cs_label }}</button>
+    {%- endunless -%}
+
+    {%- if product.description != blank -%}
+      <div class="product-description rte">{{ product.description }}</div>
     {%- endif -%}
   </div>
 </div>
@@ -60,7 +131,9 @@
 {% schema %}
 {
   "name": "Product",
-  "settings": [],
+  "settings": [
+    { "type": "checkbox", "id": "show_vendor", "label": "Show vendor", "default": false }
+  ],
   "presets": [{ "name": "Product" }]
 }
 {% endschema %}
