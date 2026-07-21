@@ -1,21 +1,95 @@
+{%- liquid
+  assign sort_by = collection.sort_by | default: collection.default_sort_by
+-%}
 <div class="container" style="padding:var(--section-pad) 0;">
   <h1>{{ collection.title }}</h1>
   {%- if collection.description != blank -%}
     <div class="rte" style="color:var(--text-mid);max-width:720px;">{{ collection.description }}</div>
   {%- endif -%}
-  {%- paginate collection.products by 24 -%}
-    {%- if collection.products.size > 0 -%}
-      <div class="grid" style="margin-top:32px;">
-        {%- for product in collection.products -%}
-          {%- render 'product-card', product: product -%}
+
+  <form method="get" class="collection-layout" id="collection-filter-form">
+    <!-- FILTER SIDEBAR -->
+    <aside class="collection-filters">
+      {%- if collection.filters.size > 0 -%}
+        <div class="filters-head">
+          <span class="kicker">Filter</span>
+          <a href="{{ collection.url }}" class="filters-clear">Clear all</a>
+        </div>
+        {%- for filter in collection.filters -%}
+          <details class="filter-group" open>
+            <summary>{{ filter.label }}</summary>
+            {%- case filter.type -%}
+              {%- when 'price_range' -%}
+                <div class="filter-price">
+                  <input type="number" name="{{ filter.min_value.param_name }}" value="{{ filter.min_value.value }}" placeholder="0" min="0" max="{{ filter.range_max | money_without_currency | round }}" inputmode="decimal" aria-label="Minimum price">
+                  <span>&ndash;</span>
+                  <input type="number" name="{{ filter.max_value.param_name }}" value="{{ filter.max_value.value }}" placeholder="{{ filter.range_max | money_without_currency | round }}" min="0" max="{{ filter.range_max | money_without_currency | round }}" inputmode="decimal" aria-label="Maximum price">
+                </div>
+              {%- else -%}
+                <ul class="filter-values">
+                  {%- for value in filter.values -%}
+                    <li>
+                      <label class="filter-value{% if value.count == 0 and value.active == false %} is-disabled{% endif %}">
+                        <input type="checkbox" name="{{ value.param_name }}" value="{{ value.value }}" data-autosubmit
+                          {% if value.active %}checked{% endif %}
+                          {% if value.count == 0 and value.active == false %}disabled{% endif %}>
+                        <span>{{ value.label }}</span>
+                        <span class="filter-count">{{ value.count }}</span>
+                      </label>
+                    </li>
+                  {%- endfor -%}
+                </ul>
+            {%- endcase -%}
+          </details>
         {%- endfor -%}
+        <button type="submit" class="muse-pill muse-cta filters-apply">Apply</button>
+      {%- else -%}
+        <p class="kicker">No filters configured. Add filters in Shopify Admin &rarr; Search &amp; Discovery.</p>
+      {%- endif -%}
+    </aside>
+
+    <!-- PRODUCTS -->
+    <div class="collection-main">
+      <div class="collection-toolbar">
+        <span class="collection-count">{{ collection.products_count }} product{% if collection.products_count != 1 %}s{% endif %}</span>
+        {%- if collection.sort_options.size > 0 -%}
+          <label class="collection-sort">Sort by
+            <select name="sort_by" data-autosubmit>
+              {%- for option in collection.sort_options -%}
+                <option value="{{ option.value }}"{% if option.value == sort_by %} selected{% endif %}>{{ option.name }}</option>
+              {%- endfor -%}
+            </select>
+          </label>
+        {%- endif -%}
       </div>
-      {{ paginate | default_pagination }}
-    {%- else -%}
-      <p>No products in this collection yet.</p>
-    {%- endif -%}
-  {%- endpaginate -%}
+
+      {%- paginate collection.products by 24 -%}
+        {%- if collection.products.size > 0 -%}
+          <div class="grid">
+            {%- for product in collection.products -%}
+              {%- render 'product-card', product: product -%}
+            {%- endfor -%}
+          </div>
+          {{ paginate | default_pagination }}
+        {%- else -%}
+          <p>No products match these filters. <a href="{{ collection.url }}">Clear all</a></p>
+        {%- endif -%}
+      {%- endpaginate -%}
+    </div>
+  </form>
 </div>
+
+<script>
+  (function () {
+    var form = document.getElementById('collection-filter-form');
+    if (!form) return;
+    var els = form.querySelectorAll('[data-autosubmit]');
+    for (var i = 0; i < els.length; i++) {
+      els[i].addEventListener('change', function () { form.submit(); });
+    }
+  })();
+</script>
+
 {% schema %}
 { "name": "Collection", "settings": [] }
 {% endschema %}
