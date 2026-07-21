@@ -773,3 +773,13 @@ section, .section { padding: var(--section-pad) 0; }
 @media (max-width: 768px) {
   .gallery-row__grid { grid-template-columns: repeat(2, 1fr); }
 }
+
+/* =====================================================================
+   FLEXIBLE SECTION (block-based)
+   ===================================================================== */
+.flexible .fx-block { position: relative; }
+.fx-block .rte p { margin: 0 0 var(--space-md); }
+.fx-placeholder { background: var(--light-sand); border-radius: var(--radius-card); }
+.fx-placeholder svg { width: 100%; height: auto; display: block; }
+.fx-shape { will-change: transform; }
+.fx-carousel .spc-name { cursor: pointer; }
