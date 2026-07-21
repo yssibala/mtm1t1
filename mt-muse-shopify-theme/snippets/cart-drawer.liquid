@@ -1,0 +1,25 @@
+{%- comment -%} Slide-out AJAX cart drawer. Controlled by theme.js. {%- endcomment -%}
+<div id="cart-drawer" class="cart-drawer" aria-hidden="true" data-currency="{{ cart.currency.iso_code | default: shop.currency }}">
+  <div class="cart-drawer__overlay" data-cart-close></div>
+  <aside class="cart-drawer__panel" role="dialog" aria-label="Shopping cart" aria-modal="true">
+    <header class="cart-drawer__head">
+      <span class="kicker">Cart</span>
+      <button type="button" class="cart-drawer__close" data-cart-close aria-label="Close cart">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
+      </button>
+    </header>
+    <div class="cart-drawer__items" data-cart-items>
+      <p class="cart-drawer__empty">Your cart is empty.</p>
+    </div>
+    <footer class="cart-drawer__foot">
+      <div class="cart-drawer__subtotal">
+        <span>Subtotal</span>
+        <strong data-cart-subtotal>{{ cart.total_price | money }}</strong>
+      </div>
+      <div class="cart-drawer__actions">
+        <a href="{{ routes.cart_url }}" class="muse-pill muse-ghost">View cart</a>
+        <a href="/checkout" class="muse-pill muse-cta">Checkout</a>
+      </div>
+    </footer>
+  </aside>
+</div>

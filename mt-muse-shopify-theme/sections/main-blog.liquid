@@ -1,0 +1,23 @@
+<div class="container" style="padding:var(--section-pad) 0;">
+  <h1>{{ blog.title }}</h1>
+  {%- paginate blog.articles by 12 -%}
+    <div class="blog-grid">
+      {%- for article in blog.articles -%}
+        <article class="blog-card">
+          <a href="{{ article.url }}">
+            {%- if article.image -%}
+              <div class="blog-card__media"><img src="{{ article.image | image_url: width: 800 }}" alt="{{ article.image.alt | escape }}" loading="lazy"></div>
+            {%- endif -%}
+            <div class="blog-card__meta">{{ article.published_at | date: '%b %d, %Y' }}{% if article.tags.size > 0 %} &middot; {{ article.tags.first }}{% endif %}</div>
+            <h3>{{ article.title }}</h3>
+            {%- if article.excerpt_or_content != blank -%}<p class="blog-card__excerpt">{{ article.excerpt_or_content | strip_html | truncatewords: 24 }}</p>{%- endif -%}
+          </a>
+        </article>
+      {%- endfor -%}
+    </div>
+    {{ paginate | default_pagination }}
+  {%- endpaginate -%}
+</div>
+{% schema %}
+{ "name": "Blog", "settings": [] }
+{% endschema %}

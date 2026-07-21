@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>{{ page_title }}</title>
+    {% render 'meta-tags' %}
 
     <!-- Adobe Fonts (Typekit) — replace the kit ID below with your Adobe Fonts project embed URL -->
     <link rel="preconnect" href="https://use.typekit.net" crossorigin>
@@ -37,6 +38,7 @@
     {{ content_for_header }}
   </head>
   <body class="{{ template | replace: '.', '-' }}">
+    {% section 'announcement-bar' %}
     {%- comment -%} Per-template nav: product pages use the SPC carousel nav, all others use the standard nav. {%- endcomment -%}
     {%- case template.name -%}
       {%- when 'product' -%}
@@ -44,10 +46,11 @@
       {%- else -%}
         {% section 'header' %}
     {%- endcase -%}
-    <main role="main" style="padding-top:56px;">
+    <main role="main" class="main-content">
       {{ content_for_layout }}
     </main>
     {% section 'footer' %}
+    {% render 'cart-drawer' %}
     {{ 'theme.js' | asset_url | script_tag }}
     {{ content_for_footer }}
   </body>
