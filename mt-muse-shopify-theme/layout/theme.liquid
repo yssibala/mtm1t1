@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="{{ request.locale }}">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>{{ page_title }}</title>
+
+    <!-- Adobe Fonts embed (use your Adobe project embed code) -->
+    <!-- Replace the href below with your Adobe Fonts kit URL -->
+    <link rel="stylesheet" href="https://use.typekit.net/jyd8pzu.css">
+    <link rel="stylesheet" href="assets/fonts/font.css">
+
+    <!-- Theme CSS -->
+    <link rel="stylesheet" href="{{ 'theme.css' | asset_url }}">
+
+    {{ content_for_header }}
+  </head>
+  <body class="{{ template | replace: '.', '-' }}">
+    {% section 'header' %}
+    <main role="main">
+      {{ content_for_layout }}
+    </main>
+    {% section 'footer' %}
+    <script src="{{ 'theme.js' | asset_url }}"></script>
+    {{ content_for_footer }}
+  </body>
+</html>
+
