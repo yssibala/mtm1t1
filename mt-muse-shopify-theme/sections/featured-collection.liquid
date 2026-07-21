@@ -1,1 +1,49 @@
-readme.
+{% schema %}
+{
+  "name": "Featured collection",
+  "settings": [
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "Collection"
+    },
+    {
+      "type": "number",
+      "id": "limit",
+      "label": "Products to show",
+      "default": 4
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Featured Products"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Featured collection"
+    }
+  ]
+}
+{% endschema %}
+
+<div class="featured-collection container">
+  {% if section.settings.heading != blank %}
+    <h2 style="font-family: var(--font-display); margin-bottom: var(--space-md);">
+      {{ section.settings.heading }}
+    </h2>
+  {% endif %}
+
+  {% assign collection_handle = section.settings.collection %}
+  {% if collection_handle %}
+    {% assign products = collections[collection_handle].products | slice: 0, section.settings.limit %}
+    <div class="grid">
+      {% for product in products %}
+        {% render 'product-card', product: product %}
+      {% endfor %}
+    </div>
+  {% else %}
+    <p>Select a collection in the section settings.</p>
+  {% endif %}
+</div>
