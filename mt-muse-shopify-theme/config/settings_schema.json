@@ -1,1 +1,18 @@
-readme.
+[
+  {
+    "name": "Brand",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "logo",
+        "label": "Logo"
+      },
+      {
+        "type": "color",
+        "id": "brand_gold",
+        "label": "MUSE Gold",
+        "default": "#EFA527"
+      }
+    ]
+  }
+]
