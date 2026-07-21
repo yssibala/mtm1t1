@@ -2,9 +2,9 @@
   <div class="container header-inner">
     <a class="logo" href="/">
       {% if settings.logo %}
-        <img src="{{ settings.logo | image_url }}" alt="{{ shop.name }}">
+        <img src="{{ settings.logo | image_url: width: 300 }}" alt="{{ shop.name }}" width="150">
       {% else %}
-        <img src="{{ 'logo.svg' | asset_url }}" alt="{{ shop.name }}">
+        <img src="{{ 'muse-name-logo-blk.svg' | asset_url }}" alt="{{ shop.name }}" width="150">
       {% endif %}
     </a>
 

@@ -10,11 +10,10 @@
 {% endschema %}
 
 <div class="product-grid container">
-  {% assign collection_handle = section.settings.collection %}
-  {% if collection_handle %}
-    {% assign products = collections[collection_handle].products | slice: 0, section.settings.limit %}
+  {% assign grid_collection = section.settings.collection %}
+  {% if grid_collection != blank %}
     <div class="grid">
-      {% for product in products %}
+      {% for product in grid_collection.products limit: section.settings.limit %}
         {% render 'product-card', product: product %}
       {% endfor %}
     </div>

@@ -35,11 +35,10 @@
     </h2>
   {% endif %}
 
-  {% assign collection_handle = section.settings.collection %}
-  {% if collection_handle %}
-    {% assign products = collections[collection_handle].products | slice: 0, section.settings.limit %}
+  {% assign featured = section.settings.collection %}
+  {% if featured != blank %}
     <div class="grid">
-      {% for product in products %}
+      {% for product in featured.products limit: section.settings.limit %}
         {% render 'product-card', product: product %}
       {% endfor %}
     </div>
