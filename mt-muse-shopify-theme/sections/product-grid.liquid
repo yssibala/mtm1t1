@@ -1,1 +1,24 @@
-readme
+{% schema %}
+{
+  "name": "Product grid",
+  "settings": [
+    { "type": "collection", "id": "collection", "label": "Collection" },
+    { "type": "number", "id": "limit", "label": "Products to show", "default": 12 }
+  ],
+  "presets": [{ "name": "Product grid" }]
+}
+{% endschema %}
+
+<div class="product-grid container">
+  {% assign collection_handle = section.settings.collection %}
+  {% if collection_handle %}
+    {% assign products = collections[collection_handle].products | slice: 0, section.settings.limit %}
+    <div class="grid">
+      {% for product in products %}
+        {% render 'product-card', product: product %}
+      {% endfor %}
+    </div>
+  {% else %}
+    <p>Select a collection in the section settings.</p>
+  {% endif %}
+</div>
