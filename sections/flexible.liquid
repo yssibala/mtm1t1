@@ -1,0 +1,226 @@
+{%- comment -%}
+  Flexible section — compose freely from blocks (text, image, button, carousel,
+  and decorative background shapes). Blocks stack vertically with per-block
+  alignment controls. Shape blocks are positioned decorative rectangles behind
+  the content. Background / height / padding come from the section settings.
+{%- endcomment -%}
+{%- liquid
+  assign s = section.settings
+-%}
+<div class="section-wrap flexible" style="{%- render 'section-style', st: s -%}position:relative;overflow:hidden;">
+
+  {%- comment -%} Decorative shapes first, positioned behind content {%- endcomment -%}
+  {%- for block in section.blocks -%}
+    {%- if block.type == 'shape' -%}
+      <div class="fx-shape" {{ block.shopify_attributes }} style="position:absolute;left:{{ block.settings.pos_x }}%;top:{{ block.settings.pos_y }}%;width:{{ block.settings.width }}%;height:{{ block.settings.height }}px;background:{{ block.settings.color }};border-radius:{{ block.settings.radius }}px;opacity:{{ block.settings.opacity }};z-index:0;pointer-events:none;"></div>
+    {%- endif -%}
+  {%- endfor -%}
+
+  <div class="container" style="position:relative;z-index:1;">
+    {%- for block in section.blocks -%}
+      {%- assign a = block.settings.align | default: 'left' -%}
+      {%- assign justify = 'flex-start' -%}
+      {%- if a == 'center' -%}{%- assign justify = 'center' -%}{%- elsif a == 'right' -%}{%- assign justify = 'flex-end' -%}{%- endif -%}
+
+      {%- case block.type -%}
+        {%- when 'text' -%}
+          <div class="fx-block" {{ block.shopify_attributes }} style="text-align:{{ a }};max-width:{{ block.settings.max_width }}px;{% if a == 'center' %}margin-left:auto;margin-right:auto;{% elsif a == 'right' %}margin-left:auto;{% endif %}margin-top:{{ block.settings.margin_top }}px;margin-bottom:{{ block.settings.margin_bottom }}px;">
+            {%- if block.settings.preheader != blank -%}<div class="kicker" style="color:{{ block.settings.accent_color | default: '#C9851A' }};margin-bottom:10px;">{{ block.settings.preheader }}</div>{%- endif -%}
+            {%- if block.settings.heading != blank -%}<h2 style="font-family:{{ block.settings.heading_font }};font-size:{{ block.settings.heading_size }}px;color:{{ block.settings.text_color | default: '#0A0B0C' }};margin:0 0 12px;">{{ block.settings.heading }}</h2>{%- endif -%}
+            {%- if block.settings.body != blank -%}<div class="rte" style="font-family:{{ block.settings.body_font }};font-size:{{ block.settings.body_size }}px;color:{{ block.settings.text_color | default: '#4C4C4B' }};">{{ block.settings.body }}</div>{%- endif -%}
+          </div>
+
+        {%- when 'image' -%}
+          <div class="fx-block" {{ block.shopify_attributes }} style="text-align:{{ a }};margin-top:{{ block.settings.margin_top }}px;margin-bottom:{{ block.settings.margin_bottom }}px;">
+            {%- if block.settings.image != blank -%}
+              {%- if block.settings.link != blank -%}<a href="{{ block.settings.link }}">{%- endif -%}
+              <img src="{{ block.settings.image | image_url: width: 1600 }}" alt="{{ block.settings.image.alt | escape }}" loading="lazy" style="display:inline-block;width:{{ block.settings.width }}%;border-radius:{{ block.settings.radius }}px;">
+              {%- if block.settings.link != blank -%}</a>{%- endif -%}
+            {%- else -%}
+              <div class="fx-placeholder" style="width:{{ block.settings.width }}%;display:inline-block;">{{ 'image' | placeholder_svg_tag }}</div>
+            {%- endif -%}
+          </div>
+
+        {%- when 'button' -%}
+          <div class="fx-block" {{ block.shopify_attributes }} style="display:flex;justify-content:{{ justify }};margin-top:{{ block.settings.margin_top }}px;margin-bottom:{{ block.settings.margin_bottom }}px;">
+            {%- render 'pill-button', label: block.settings.label, url: block.settings.url, style: block.settings.style, icon: block.settings.icon, label2: block.settings.label2, url2: block.settings.url2, icon2: block.settings.icon2 -%}
+          </div>
+
+        {%- when 'carousel' -%}
+          {%- assign slides = '' -%}
+          {%- for i in (1..6) -%}
+            {%- assign lk = 'slide_' | append: i | append: '_label' -%}
+            {%- assign lbl = block.settings[lk] -%}
+            {%- if lbl != blank -%}
+              {%- assign uk = 'slide_' | append: i | append: '_link' -%}
+              {%- capture item -%}{"name":{{ lbl | json }},"url":{{ block.settings[uk] | default: '#' | json }}}{%- endcapture -%}
+              {%- if slides == '' -%}{%- assign slides = item -%}{%- else -%}{%- assign slides = slides | append: ',' | append: item -%}{%- endif -%}
+            {%- endif -%}
+          {%- endfor -%}
+          <div class="fx-block fx-carousel" data-fx-carousel="{{ block.id }}" {{ block.shopify_attributes }} style="margin-top:{{ block.settings.margin_top }}px;margin-bottom:{{ block.settings.margin_bottom }}px;">
+            <div class="spc-switcher" style="justify-content:{{ justify }};">
+              <button type="button" class="spc-arrow" data-fx-prev aria-label="Previous"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="m15 18-6-6 6-6"/></svg></button>
+              <a class="spc-name" data-fx-name href="#" style="font-family:{{ block.settings.font }};font-size:{{ block.settings.size }}px;"></a>
+              <button type="button" class="spc-arrow" data-fx-next aria-label="Next"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="m9 18 6-6-6-6"/></svg></button>
+            </div>
+          </div>
+          <script>
+            (function () {
+              var root = document.querySelector('[data-fx-carousel="{{ block.id }}"]');
+              if (!root) return;
+              var items = [{{ slides }}];
+              if (!items.length) return;
+              var name = root.querySelector('[data-fx-name]');
+              var idx = 0, t = null;
+              var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+              function apply() { name.textContent = items[idx].name; name.setAttribute('href', items[idx].url); name.classList.remove('is-swapping'); }
+              function step(d) {
+                idx = (idx + d + items.length) % items.length;
+                if (reduce) { apply(); return; }
+                name.classList.add('is-swapping');
+                if (t) clearTimeout(t);
+                t = setTimeout(apply, 160);
+              }
+              root.querySelector('[data-fx-prev]').addEventListener('click', function () { step(-1); });
+              root.querySelector('[data-fx-next]').addEventListener('click', function () { step(1); });
+              apply();
+            })();
+          </script>
+      {%- endcase -%}
+    {%- endfor -%}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Flexible section",
+  "settings": [
+    { "type": "header", "content": "Background" },
+    { "type": "select", "id": "bg_type", "label": "Background type", "options": [
+        { "value": "none", "label": "None" }, { "value": "solid", "label": "Solid color" }, { "value": "gradient", "label": "Gradient" }, { "value": "image", "label": "Image" } ], "default": "none" },
+    { "type": "color", "id": "bg_color", "label": "Solid color", "default": "#FBF6EE" },
+    { "type": "color", "id": "bg_gradient_start", "label": "Gradient start", "default": "#FBF6EE" },
+    { "type": "color", "id": "bg_gradient_end", "label": "Gradient end", "default": "#E7DAC4" },
+    { "type": "range", "id": "bg_gradient_angle", "label": "Gradient angle", "min": 0, "max": 360, "step": 10, "unit": "deg", "default": 180 },
+    { "type": "image_picker", "id": "bg_image", "label": "Background image" },
+    { "type": "header", "content": "Spacing & height" },
+    { "type": "range", "id": "min_height", "label": "Minimum height", "min": 0, "max": 1000, "step": 20, "unit": "px", "default": 0 },
+    { "type": "range", "id": "padding_top", "label": "Top padding", "min": 0, "max": 240, "step": 4, "unit": "px", "default": 80 },
+    { "type": "range", "id": "padding_bottom", "label": "Bottom padding", "min": 0, "max": 240, "step": 4, "unit": "px", "default": 80 }
+  ],
+  "blocks": [
+    {
+      "type": "text",
+      "name": "Text",
+      "settings": [
+        { "type": "text", "id": "preheader", "label": "Preheader" },
+        { "type": "color", "id": "accent_color", "label": "Preheader color", "default": "#C9851A" },
+        { "type": "text", "id": "heading", "label": "Heading" },
+        { "type": "richtext", "id": "body", "label": "Body text" },
+        { "type": "color", "id": "text_color", "label": "Text color", "default": "#0A0B0C" },
+        { "type": "select", "id": "align", "label": "Alignment", "options": [
+            { "value": "left", "label": "Left" }, { "value": "center", "label": "Center" }, { "value": "right", "label": "Right" } ], "default": "left" },
+        { "type": "range", "id": "max_width", "label": "Max width", "min": 200, "max": 1180, "step": 20, "unit": "px", "default": 640 },
+        { "type": "select", "id": "heading_font", "label": "Heading font", "options": [
+            { "value": "'neuehaasdisplaylight','Helvetica Neue',Arial,sans-serif", "label": "Neue Haas Display Light" },
+            { "value": "'neue-haas-grotesk-display','Helvetica Neue',Arial,sans-serif", "label": "Neue Haas Grotesk Display (Adobe)" },
+            { "value": "'ogg-text',Georgia,serif", "label": "Ogg Text (Adobe serif)" } ], "default": "'neuehaasdisplaylight','Helvetica Neue',Arial,sans-serif" },
+        { "type": "range", "id": "heading_size", "label": "Heading size", "min": 16, "max": 80, "step": 2, "unit": "px", "default": 36 },
+        { "type": "select", "id": "body_font", "label": "Body font", "options": [
+            { "value": "'neuehaasdisplaylight','Helvetica Neue',Arial,sans-serif", "label": "Neue Haas Display Light" },
+            { "value": "'neue-haas-grotesk-text','Helvetica Neue',Arial,sans-serif", "label": "Neue Haas Grotesk Text (Adobe)" },
+            { "value": "'ogg-text',Georgia,serif", "label": "Ogg Text (Adobe serif)" } ], "default": "'neuehaasdisplaylight','Helvetica Neue',Arial,sans-serif" },
+        { "type": "range", "id": "body_size", "label": "Body text size", "min": 12, "max": 28, "step": 1, "unit": "px", "default": 16 },
+        { "type": "range", "id": "margin_top", "label": "Space above", "min": 0, "max": 120, "step": 4, "unit": "px", "default": 0 },
+        { "type": "range", "id": "margin_bottom", "label": "Space below", "min": 0, "max": 120, "step": 4, "unit": "px", "default": 24 }
+      ]
+    },
+    {
+      "type": "image",
+      "name": "Image",
+      "settings": [
+        { "type": "image_picker", "id": "image", "label": "Image" },
+        { "type": "url", "id": "link", "label": "Link (optional)" },
+        { "type": "select", "id": "align", "label": "Alignment", "options": [
+            { "value": "left", "label": "Left" }, { "value": "center", "label": "Center" }, { "value": "right", "label": "Right" } ], "default": "center" },
+        { "type": "range", "id": "width", "label": "Width", "min": 20, "max": 100, "step": 5, "unit": "%", "default": 100 },
+        { "type": "range", "id": "radius", "label": "Corner radius", "min": 0, "max": 40, "step": 2, "unit": "px", "default": 4 },
+        { "type": "range", "id": "margin_top", "label": "Space above", "min": 0, "max": 120, "step": 4, "unit": "px", "default": 0 },
+        { "type": "range", "id": "margin_bottom", "label": "Space below", "min": 0, "max": 120, "step": 4, "unit": "px", "default": 24 }
+      ]
+    },
+    {
+      "type": "button",
+      "name": "Button",
+      "settings": [
+        { "type": "text", "id": "label", "label": "Label", "default": "Discover" },
+        { "type": "url", "id": "url", "label": "Link" },
+        { "type": "select", "id": "icon", "label": "Icon", "options": [
+            { "value": "none", "label": "None" }, { "value": "arrow", "label": "Arrow" }, { "value": "cart", "label": "Cart" }, { "value": "search", "label": "Search" }, { "value": "account", "label": "Account" } ], "default": "none" },
+        { "type": "select", "id": "style", "label": "Style", "options": [
+            { "value": "primary", "label": "Gold (filled)" }, { "value": "ghost", "label": "Outline" } ], "default": "primary" },
+        { "type": "text", "id": "label2", "label": "Second label (dual pill)" },
+        { "type": "url", "id": "url2", "label": "Second link" },
+        { "type": "select", "id": "icon2", "label": "Second icon", "options": [
+            { "value": "none", "label": "None" }, { "value": "arrow", "label": "Arrow" }, { "value": "cart", "label": "Cart" }, { "value": "search", "label": "Search" }, { "value": "account", "label": "Account" } ], "default": "none" },
+        { "type": "select", "id": "align", "label": "Alignment", "options": [
+            { "value": "left", "label": "Left" }, { "value": "center", "label": "Center" }, { "value": "right", "label": "Right" } ], "default": "left" },
+        { "type": "range", "id": "margin_top", "label": "Space above", "min": 0, "max": 120, "step": 4, "unit": "px", "default": 0 },
+        { "type": "range", "id": "margin_bottom", "label": "Space below", "min": 0, "max": 120, "step": 4, "unit": "px", "default": 24 }
+      ]
+    },
+    {
+      "type": "carousel",
+      "name": "Carousel",
+      "settings": [
+        { "type": "paragraph", "content": "Cycles the labels below with prev/next arrows (like the product-page muse carousel)." },
+        { "type": "select", "id": "align", "label": "Alignment", "options": [
+            { "value": "left", "label": "Left" }, { "value": "center", "label": "Center" }, { "value": "right", "label": "Right" } ], "default": "center" },
+        { "type": "select", "id": "font", "label": "Font", "options": [
+            { "value": "'ogg-text',Georgia,serif", "label": "Ogg Text (Adobe serif)" },
+            { "value": "'neuehaasdisplaylight','Helvetica Neue',Arial,sans-serif", "label": "Neue Haas Display Light" },
+            { "value": "'neue-haas-grotesk-display','Helvetica Neue',Arial,sans-serif", "label": "Neue Haas Grotesk Display (Adobe)" } ], "default": "'ogg-text',Georgia,serif" },
+        { "type": "range", "id": "size", "label": "Label size", "min": 12, "max": 48, "step": 1, "unit": "px", "default": 18 },
+        { "type": "text", "id": "slide_1_label", "label": "Slide 1 label", "default": "Thalia" },
+        { "type": "url", "id": "slide_1_link", "label": "Slide 1 link" },
+        { "type": "text", "id": "slide_2_label", "label": "Slide 2 label", "default": "Clio" },
+        { "type": "url", "id": "slide_2_link", "label": "Slide 2 link" },
+        { "type": "text", "id": "slide_3_label", "label": "Slide 3 label", "default": "Ourania" },
+        { "type": "url", "id": "slide_3_link", "label": "Slide 3 link" },
+        { "type": "text", "id": "slide_4_label", "label": "Slide 4 label" },
+        { "type": "url", "id": "slide_4_link", "label": "Slide 4 link" },
+        { "type": "text", "id": "slide_5_label", "label": "Slide 5 label" },
+        { "type": "url", "id": "slide_5_link", "label": "Slide 5 link" },
+        { "type": "text", "id": "slide_6_label", "label": "Slide 6 label" },
+        { "type": "url", "id": "slide_6_link", "label": "Slide 6 link" },
+        { "type": "range", "id": "margin_top", "label": "Space above", "min": 0, "max": 120, "step": 4, "unit": "px", "default": 0 },
+        { "type": "range", "id": "margin_bottom", "label": "Space below", "min": 0, "max": 120, "step": 4, "unit": "px", "default": 24 }
+      ]
+    },
+    {
+      "type": "shape",
+      "name": "Background shape",
+      "settings": [
+        { "type": "paragraph", "content": "A decorative rectangle placed behind the content. Position/size are % / px relative to the section." },
+        { "type": "color", "id": "color", "label": "Color", "default": "#F4ECDD" },
+        { "type": "range", "id": "pos_x", "label": "Horizontal position", "min": -20, "max": 100, "step": 1, "unit": "%", "default": 0 },
+        { "type": "range", "id": "pos_y", "label": "Vertical position", "min": -20, "max": 100, "step": 1, "unit": "%", "default": 0 },
+        { "type": "range", "id": "width", "label": "Width", "min": 5, "max": 120, "step": 1, "unit": "%", "default": 40 },
+        { "type": "range", "id": "height", "label": "Height", "min": 20, "max": 900, "step": 10, "unit": "px", "default": 200 },
+        { "type": "range", "id": "radius", "label": "Corner radius", "min": 0, "max": 200, "step": 2, "unit": "px", "default": 0 },
+        { "type": "range", "id": "opacity", "label": "Opacity", "min": 0, "max": 1, "step": 0.05, "default": 1 }
+      ]
+    }
+  ],
+  "max_blocks": 24,
+  "presets": [
+    {
+      "name": "Flexible section",
+      "blocks": [
+        { "type": "text" },
+        { "type": "button" }
+      ]
+    }
+  ]
+}
+{% endschema %}
