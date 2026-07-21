@@ -1,0 +1,13 @@
+{%- comment -%}
+  Inline style for a section wrapper. Param: st (pass section.settings).
+  Reads: bg_type, bg_color, bg_gradient_start/_end/_angle, bg_image,
+         min_height, padding_top, padding_bottom.
+{%- endcomment -%}
+{%- liquid
+  assign bg = st.bg_type | default: 'none'
+-%}
+{%- if bg == 'solid' -%}background:{{ st.bg_color }};{%- endif -%}
+{%- if bg == 'gradient' -%}background:linear-gradient({{ st.bg_gradient_angle | default: 180 }}deg, {{ st.bg_gradient_start }}, {{ st.bg_gradient_end }});{%- endif -%}
+{%- if bg == 'image' and st.bg_image != blank -%}background-image:url({{ st.bg_image | image_url: width: 2200 }});background-size:cover;background-position:center;{%- endif -%}
+{%- if st.min_height and st.min_height > 0 -%}min-height:{{ st.min_height }}px;{%- endif -%}
+padding-top:{{ st.padding_top | default: 64 }}px;padding-bottom:{{ st.padding_bottom | default: 64 }}px;
