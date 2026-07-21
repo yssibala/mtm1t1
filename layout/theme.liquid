@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="{{ request.locale }}">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>{{ page_title }}</title>
+
+    <!-- Adobe Fonts (Typekit) — replace the kit ID below with your Adobe Fonts project embed URL -->
+    <link rel="preconnect" href="https://use.typekit.net" crossorigin>
+    <link rel="stylesheet" href="https://use.typekit.net/jyd8pzu.css">
+
+    <!-- Local font: NeueHaasDisplayLight (served from assets/) -->
+    <link rel="preload" href="{{ 'neuehaasdisplaylight.woff2' | asset_url }}" as="font" type="font/woff2" crossorigin>
+    {% style %}
+      @font-face {
+        font-family: 'neuehaasdisplaylight';
+        src: url({{ 'neuehaasdisplaylight.woff2' | asset_url }}) format('woff2');
+        font-weight: normal;
+        font-style: normal;
+        font-display: swap;
+      }
+    {% endstyle %}
+
+    <!-- Theme CSS -->
+    {{ 'theme.css' | asset_url | stylesheet_tag }}
+
+    <!-- Merchant-configurable overrides (Settings > Typography / Brand).
+         Placed after theme.css so editor choices win over the defaults. -->
+    {% style %}
+      :root {
+        {% if settings.body_font != blank %}--font-text: {{ settings.body_font }};{% endif %}
+        {% if settings.heading_font != blank %}--font-display: {{ settings.heading_font }};{% endif %}
+        {% if settings.brand_gold != blank %}--muse-gold-1: {{ settings.brand_gold }};{% endif %}
+      }
+    {% endstyle %}
+
+    {{ content_for_header }}
+  </head>
+  <body class="{{ template | replace: '.', '-' }}">
+    {%- comment -%} Per-template nav: product pages use the SPC carousel nav, all others use the standard nav. {%- endcomment -%}
+    {%- case template.name -%}
+      {%- when 'product' -%}
+        {% section 'header-spc' %}
+      {%- else -%}
+        {% section 'header' %}
+    {%- endcase -%}
+    <main role="main" style="padding-top:56px;">
+      {{ content_for_layout }}
+    </main>
+    {% section 'footer' %}
+    {{ 'theme.js' | asset_url | script_tag }}
+    {{ content_for_footer }}
+  </body>
+</html>

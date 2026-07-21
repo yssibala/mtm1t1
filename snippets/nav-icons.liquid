@@ -1,0 +1,24 @@
+{%- comment -%}
+  Account (person), cart (bag with live count badge), and optional search icons.
+  Params:
+    show_account - boolean
+    show_search  - boolean
+{%- endcomment -%}
+<div class="nav-icons">
+  {%- if show_search -%}
+    <a href="{{ routes.search_url }}" class="nav-icon" aria-label="Search">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+    </a>
+  {%- endif -%}
+
+  {%- if show_account -%}
+    <a href="{{ routes.account_url }}" class="nav-icon" aria-label="Account">
+      <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg>
+    </a>
+  {%- endif -%}
+
+  <a href="{{ routes.cart_url }}" class="nav-icon" aria-label="Cart ({{ cart.item_count }} items)">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0A0B0C" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z" fill="#EFA527"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+    <span class="cart-badge" data-cart-count{% if cart.item_count == 0 %} style="display:none;"{% endif %}>{{ cart.item_count }}</span>
+  </a>
+</div>

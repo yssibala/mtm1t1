@@ -1,0 +1,23 @@
+{%- liquid
+  assign cs_tag = settings.coming_soon_tag | default: 'coming-soon'
+  assign is_coming_soon = false
+  if product.tags contains cs_tag
+    assign is_coming_soon = true
+  endif
+-%}
+<article class="product-card">
+  <a href="{{ product.url }}">
+    <div class="cs-media">
+      {%- if is_coming_soon -%}
+        {%- render 'coming-soon-badge', stamp: true -%}
+      {%- endif -%}
+      {% if product.featured_image %}
+        <img src="{{ product.featured_image | image_url: width: 600 }}" alt="{{ product.title | escape }}" width="600" loading="lazy">
+      {% endif %}
+    </div>
+    <h3>{{ product.title }}</h3>
+    <p class="price">
+      {%- if is_coming_soon -%}{{ settings.badge_text | default: 'Coming Soon' }}{%- else -%}{{ product.price | money }}{%- endif -%}
+    </p>
+  </a>
+</article>

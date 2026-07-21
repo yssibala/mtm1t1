@@ -1,0 +1,30 @@
+<div class="container" style="padding:var(--section-pad) 0;max-width:460px;">
+  <h1 style="text-align:center;">Log in</h1>
+  {%- form 'customer_login' -%}
+    {{ form.errors | default_errors }}
+    <label for="ci-email">Email</label>
+    <input type="email" name="customer[email]" id="ci-email" autocomplete="email" required>
+    {%- if form.password_needed -%}
+      <label for="ci-pass">Password</label>
+      <input type="password" name="customer[password]" id="ci-pass" autocomplete="current-password">
+      <a href="#recover" onclick="document.getElementById('recover').style.display='block';return false;" style="display:inline-block;margin:8px 0;font-size:var(--fs-small);">Forgot your password?</a>
+    {%- endif -%}
+    <button type="submit" class="muse-pill muse-cta" style="width:100%;margin-top:12px;">Sign in</button>
+  {%- endform -%}
+
+  <div id="recover" style="display:none;margin-top:24px;">
+    <h2 style="font-size:var(--fs-h3);">Reset your password</h2>
+    {%- form 'recover_customer_password' -%}
+      {{ form.errors | default_errors }}
+      {%- if form.posted_successfully? -%}<p>We&rsquo;ve sent you an email with a link to reset your password.</p>{%- endif -%}
+      <label for="rc-email">Email</label>
+      <input type="email" name="email" id="rc-email" autocomplete="email" required>
+      <button type="submit" class="muse-pill muse-ghost" style="margin-top:12px;">Send reset link</button>
+    {%- endform -%}
+  </div>
+
+  <p style="text-align:center;margin-top:24px;">New here? <a href="{{ routes.account_register_url }}">Create an account</a></p>
+</div>
+{% schema %}
+{ "name": "Login", "settings": [] }
+{% endschema %}

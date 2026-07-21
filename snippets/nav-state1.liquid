@@ -1,0 +1,16 @@
+{%- comment -%}
+  Shared State-1 bar (full-width, top-of-page) used by both nav bars.
+  Params: menu_left, menu_right (linklists), section_logo, show_account, show_search.
+{%- endcomment -%}
+<div id="nav-state1" class="nav-bar nav-bar--1">
+  <div class="nav-links" style="flex:1;justify-content:flex-start;">
+    {%- render 'nav-links', menu: menu_left, fallback: 'left' -%}
+  </div>
+  {%- render 'nav-logo', section_logo: section_logo -%}
+  <div style="flex:1;display:flex;align-items:center;justify-content:flex-end;gap:28px;">
+    <div class="nav-links">
+      {%- render 'nav-links', menu: menu_right, fallback: 'right' -%}
+    </div>
+    {%- render 'nav-icons', show_account: show_account, show_search: show_search -%}
+  </div>
+</div>

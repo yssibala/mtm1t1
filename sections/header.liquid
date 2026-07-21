@@ -1,0 +1,130 @@
+{%- comment -%}
+  STANDARD nav bar (theme default). Two-state opacity crossfade:
+    State 1 (top)     : menu-left | centered logo | menu-right + icons
+    State 2 (scrolled): logo | centered links | icons  (translucent, blurred)
+  Toggled by scroll position via the .nav--scrolled class. Links come from
+  Shopify navigation menus (Admin > Navigation); icons: account + cart (+ search).
+{%- endcomment -%}
+
+{%- liquid
+  assign menu_left = linklists[section.settings.menu_left]
+  assign menu_right = linklists[section.settings.menu_right]
+  assign threshold = section.settings.scroll_threshold
+-%}
+
+<nav id="site-nav">
+
+  {%- render 'nav-state1',
+    menu_left: menu_left, menu_right: menu_right,
+    section_logo: section.settings.logo,
+    show_account: section.settings.show_account,
+    show_search: section.settings.show_search -%}
+
+  <!-- STATE 2 (compact, centered links) -->
+  <div id="nav-state2" class="nav-bar nav-bar--2">
+    {%- render 'nav-logo', section_logo: section.settings.logo -%}
+    <div class="nav-links" style="position:absolute;left:50%;transform:translateX(-50%);">
+      {%- render 'nav-links', menu: menu_left, fallback: 'left' -%}
+      {%- render 'nav-links', menu: menu_right, fallback: 'right' -%}
+    </div>
+    {%- render 'nav-icons', show_account: section.settings.show_account, show_search: section.settings.show_search -%}
+  </div>
+
+  <!-- MOBILE -->
+  <div id="nav-mobile">
+    <button id="mob-hamburger" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
+    {%- render 'nav-logo', section_logo: section.settings.logo -%}
+    <a href="{{ routes.cart_url }}" class="nav-icon" aria-label="Cart">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+      <span class="cart-badge" data-cart-count{% if cart.item_count == 0 %} style="display:none;"{% endif %}>{{ cart.item_count }}</span>
+    </a>
+  </div>
+  {%- render 'nav-mobile-menu', menu_left: menu_left, menu_right: menu_right -%}
+
+</nav>
+
+<script>
+  (function () {
+    var nav = document.getElementById('site-nav');
+    if (!nav) return;
+    var threshold = {{ threshold | default: 40 | json }};
+    function compute() {
+      if (window.scrollY > threshold) { nav.classList.add('nav--scrolled'); }
+      else { nav.classList.remove('nav--scrolled'); }
+    }
+    window.addEventListener('scroll', compute, { passive: true });
+    window.addEventListener('pageshow', compute);
+    compute();
+
+    var burger = document.getElementById('mob-hamburger');
+    var menu = document.getElementById('nav-mobile-menu');
+    if (burger && menu) {
+      burger.addEventListener('click', function () {
+        var open = menu.classList.toggle('is-open');
+        burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+      });
+    }
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Header (Standard)",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Menus"
+    },
+    {
+      "type": "link_list",
+      "id": "menu_left",
+      "label": "Left menu",
+      "info": "Shown on the left in State 1. Falls back to About / Gallery / Contact."
+    },
+    {
+      "type": "link_list",
+      "id": "menu_right",
+      "label": "Right menu",
+      "info": "Shown on the right. Falls back to Products / Shop / Log in."
+    },
+    {
+      "type": "header",
+      "content": "Logo"
+    },
+    {
+      "type": "image_picker",
+      "id": "logo",
+      "label": "Logo (overrides theme logo)"
+    },
+    {
+      "type": "header",
+      "content": "Icons"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_account",
+      "label": "Show account icon",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_search",
+      "label": "Show search icon",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Behavior"
+    },
+    {
+      "type": "range",
+      "id": "scroll_threshold",
+      "label": "Scroll distance before compact state (px)",
+      "min": 0,
+      "max": 400,
+      "step": 10,
+      "default": 40
+    }
+  ]
+}
+{% endschema %}
