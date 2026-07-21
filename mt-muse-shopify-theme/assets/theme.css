@@ -918,3 +918,61 @@ body.has-announcement #site-nav { top: 40px; }
 .comment__meta { font-size: var(--fs-small); color: var(--text-meta); margin-bottom: 6px; }
 .comment-form__row { display: flex; gap: 12px; margin-bottom: 12px; }
 .comment-form__row input, .article__comments textarea { width: 100%; padding: 12px 14px; border: 1px solid var(--sand-border); border-radius: var(--radius-card); font-family: var(--font-text); margin-bottom: 12px; }
+
+/* =====================================================================
+   CLOUD PAGES (404 + password / coming soon)
+   ===================================================================== */
+@keyframes museFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
+}
+.cloud-page {
+  position: relative;
+  min-height: 82vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 60px 24px;
+  overflow: hidden;
+}
+.cloud-monogram { width: auto; margin-bottom: 24px; position: relative; z-index: 1; animation: museFloat 6s ease-in-out infinite; }
+@media (prefers-reduced-motion: reduce) { .cloud-monogram { animation: none; } }
+.cloud-kicker {
+  font-size: 11px; letter-spacing: .32em; font-weight: var(--fw-semibold);
+  text-transform: uppercase; color: var(--muse-gold-dark);
+  margin-bottom: 16px; position: relative; z-index: 1;
+}
+.cloud-title {
+  font-family: var(--font-ogg);
+  font-weight: var(--fw-regular);
+  font-size: clamp(40px, 6.5vw, 96px);
+  line-height: 1.06; letter-spacing: .01em;
+  margin: 0; color: var(--near-black);
+  max-width: 860px; position: relative; z-index: 1;
+}
+.cloud-text {
+  font-size: clamp(14px, 1.4vw, 18px);
+  font-weight: var(--fw-light); line-height: 1.75;
+  color: #5A5345; max-width: 520px;
+  margin: 20px auto 0; position: relative; z-index: 1;
+}
+.cloud-actions { display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; margin-top: 32px; position: relative; z-index: 1; }
+.cloud-links { display: flex; gap: 26px; flex-wrap: wrap; justify-content: center; margin-top: 40px; position: relative; z-index: 1; }
+.cloud-links a { font-size: 11px; letter-spacing: .18em; font-weight: var(--fw-medium); text-transform: uppercase; color: var(--near-black); }
+.cloud-links a:hover { color: var(--muse-gold-dark); }
+.cloud-foot { font-size: 10px; letter-spacing: .14em; color: var(--text-meta); margin-top: 40px; position: relative; z-index: 1; text-transform: uppercase; }
+.cloud-watermark {
+  position: absolute; bottom: -0.12em; left: 50%; transform: translateX(-50%);
+  font-family: var(--font-ogg); font-weight: var(--fw-regular);
+  font-size: clamp(100px, 20vw, 240px); line-height: 1; letter-spacing: .05em;
+  color: var(--muse-gold-1); opacity: .16;
+  user-select: none; pointer-events: none; white-space: nowrap;
+}
+.cloud-password { display: flex; gap: 8px; justify-content: center; margin-top: 28px; position: relative; z-index: 1; }
+.cloud-password input {
+  padding: 13px 18px; border: 1px solid var(--sand-border);
+  border-radius: var(--radius-pill); font-family: var(--font-text);
+  background: var(--near-white); min-width: 220px;
+}

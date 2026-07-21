@@ -1,8 +1,21 @@
-<div class="container" style="padding:var(--section-pad) 0;text-align:center;">
-  <h1>Page not found</h1>
-  <p>The page you were looking for doesn&rsquo;t exist or has moved.</p>
-  <a href="{{ routes.root_url }}" class="muse-pill muse-cta">Back to home</a>
+<div class="cloud-page">
+  <div class="cloud-watermark" aria-hidden="true">404</div>
+  <img class="cloud-monogram" src="{{ 'muse-monogram-solo-gld.png' | asset_url }}" alt="{{ shop.name | escape }}" style="height:clamp(64px,8vw,88px);">
+  <div class="cloud-kicker">{{ section.settings.kicker | default: 'Lost in the Clouds' }}</div>
+  <h1 class="cloud-title">{{ section.settings.heading | default: 'Something Went Awry' }}</h1>
+  <p class="cloud-text">{{ section.settings.text | default: "We couldn’t pour this page just now. The skies should clear shortly — give it another moment, or head back to firmer ground." }}</p>
+  <div class="cloud-actions">
+    <a href="{{ routes.root_url }}" class="muse-pill muse-cta">Back to homepage</a>
+    <a href="{{ routes.all_products_collection_url }}" class="muse-pill muse-ghost">Shop all</a>
+  </div>
 </div>
 {% schema %}
-{ "name": "404", "settings": [] }
+{
+  "name": "404",
+  "settings": [
+    { "type": "text", "id": "kicker", "label": "Kicker", "default": "Lost in the Clouds" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Something Went Awry" },
+    { "type": "textarea", "id": "text", "label": "Text", "default": "We couldn’t pour this page just now. The skies should clear shortly — give it another moment, or head back to firmer ground." }
+  ]
+}
 {% endschema %}
