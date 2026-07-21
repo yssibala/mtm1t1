@@ -1,1 +1,93 @@
-readme.
+/* ===========================
+   FONT VARIABLES
+=========================== */
+:root {
+  --font-display: "Neue Haas Grotesk Display", sans-serif;
+  --font-text: "Neue Haas Grotesk Text", sans-serif;
+  --font-ogg: "Ogg Light", serif;
+
+  /* ===========================
+     COLOR PALETTE
+  =========================== */
+  --bg-main: #FBF6EE;
+  --footer-cloud: #DDE3E4;
+
+  --muse-gold-1: #EFA527;
+  --muse-gold-2: #EFA527;
+  --muse-gold-dark: #C9851A;
+  --muse-gold-light: #F2CE73;
+
+  --near-white: #FDFCFA;
+  --sand-border: #E7DAC4;
+  --light-sand: #F4ECDD;
+
+  --clio-red: #CC2200;
+  --ourania-purple: #8B5CF6;
+  --cart-badge-gold: #FF3B30;
+
+  /* ===========================
+     SPACING
+  =========================== */
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 16px;
+  --space-lg: 32px;
+  --space-xl: 64px;
+
+  /* ===========================
+     CONTAINER WIDTH
+  =========================== */
+  --container-width: 1200px;
+}
+
+/* ===========================
+   BASE STYLES
+=========================== */
+html, body {
+  margin: 0;
+  padding: 0;
+  background: var(--bg-main);
+  font-family: var(--font-text);
+  color: #111;
+}
+
+.container {
+  max-width: var(--container-width);
+  margin: 0 auto;
+  padding: 0 var(--space-md);
+}
+
+a {
+  color: var(--muse-gold-1);
+  text-decoration: none;
+}
+
+.site-footer {
+  background: linear-gradient(180deg, var(--bg-main) 0%, var(--footer-cloud) 100%);
+  padding: var(--space-lg) 0;
+}
+
+/* ===========================
+   PRODUCT GRID
+=========================== */
+.product-grid .grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: var(--space-lg);
+}
+
+.product-card img {
+  width: 100%;
+  border-radius: 4px;
+}
+
+.product-card h3 {
+  font-family: var(--font-display);
+  margin-top: var(--space-sm);
+}
+
+.product-card .price {
+  color: var(--muse-gold-dark);
+  font-weight: bold;
+}
+
