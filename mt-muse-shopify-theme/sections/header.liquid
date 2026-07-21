@@ -1,2 +1,21 @@
-readme.
-  
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="logo" href="/">
+      {% if settings.logo %}
+        <img src="{{ settings.logo | image_url }}" alt="{{ shop.name }}">
+      {% else %}
+        <img src="{{ 'logo.svg' | asset_url }}" alt="{{ shop.name }}">
+      {% endif %}
+    </a>
+
+    <nav class="main-nav">
+      <a href="/">Home</a>
+      <a href="/collections/all">Shop</a>
+      <a href="/pages/about">About</a>
+    </nav>
+
+    <a href="/cart" class="cart-link">
+      {% render 'icon-cart' %}
+    </a>
+  </div>
+</header>
