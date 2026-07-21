@@ -1,0 +1,7 @@
+{%- comment -%}
+  Renders the "Coming Soon" pill. Params:
+    stamp - boolean : if true, render as an image overlay stamp (larger, positioned)
+    text  - optional override for the label (defaults to theme setting)
+{%- endcomment -%}
+{%- assign cs_label = text | default: settings.badge_text | default: 'Coming Soon' -%}
+<span class="coming-soon-badge{% if stamp %} coming-soon-stamp{% endif %}">{{ cs_label }}</span>

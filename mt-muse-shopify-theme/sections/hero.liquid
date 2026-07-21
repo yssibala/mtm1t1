@@ -1,16 +1,28 @@
 <div class="hero container">
+  {%- if section.settings.show_coming_soon -%}
+    <div style="margin-bottom:16px;">{%- render 'coming-soon-badge' -%}</div>
+  {%- endif -%}
   <h1 style="font-family: var(--font-display);">
-    Welcome to MT-MUSE
+    {{ section.settings.heading | default: 'Welcome to MT-MUSE' }}
   </h1>
   <p style="max-width:600px;">
-    Explore our curated selection of products crafted with intention.
+    {{ section.settings.subheading | default: 'Explore our curated selection of products crafted with intention.' }}
   </p>
-  <a href="/collections/all" class="hero-cta">Shop Now</a>
+  {%- if section.settings.button_label != blank -%}
+    <a href="{{ section.settings.button_link | default: routes.all_products_collection_url }}" class="hero-cta">{{ section.settings.button_label }}</a>
+  {%- endif -%}
 </div>
 
 {% schema %}
 {
   "name": "Hero",
-  "settings": []
+  "settings": [
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Welcome to MT-MUSE" },
+    { "type": "text", "id": "subheading", "label": "Subheading", "default": "Explore our curated selection of products crafted with intention." },
+    { "type": "text", "id": "button_label", "label": "Button label", "default": "Shop Now" },
+    { "type": "url", "id": "button_link", "label": "Button link" },
+    { "type": "checkbox", "id": "show_coming_soon", "label": "Show coming soon badge", "default": false }
+  ],
+  "presets": [{ "name": "Hero" }]
 }
 {% endschema %}

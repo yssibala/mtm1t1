@@ -1,13 +1,21 @@
-{% schema %}
-{
-  "name": "Product",
-  "settings": [],
-  "presets": [{ "name": "Product" }]
-}
-{% endschema %}
+{%- liquid
+  assign cs_tag = settings.coming_soon_tag | default: 'coming-soon'
+  assign is_coming_soon = false
+  if product.tags contains cs_tag
+    assign is_coming_soon = true
+  endif
+  assign cs_label = settings.badge_text | default: 'Coming Soon'
+  assign block_cart = false
+  if is_coming_soon and settings.coming_soon_disable_cart
+    assign block_cart = true
+  endif
+-%}
 
 <div class="product-page container">
-  <div class="product-media">
+  <div class="product-media cs-media">
+    {%- if is_coming_soon -%}
+      {%- render 'coming-soon-badge', stamp: true -%}
+    {%- endif -%}
     {% if product.featured_image %}
       <img src="{{ product.featured_image | image_url: width: 900 }}"
            alt="{{ product.featured_image.alt | escape }}" width="900">
@@ -15,27 +23,44 @@
   </div>
 
   <div class="product-info">
-    <h1 style="font-family: var(--font-display);">{{ product.title }}</h1>
-    <p class="price">{{ product.price | money }}</p>
+    <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;">
+      <h1 style="font-family: var(--font-display);margin:0;">{{ product.title }}</h1>
+      {%- if is_coming_soon -%}{%- render 'coming-soon-badge' -%}{%- endif -%}
+    </div>
+    <p class="price">
+      {%- if is_coming_soon -%}{{ cs_label }}{%- else -%}{{ product.price | money }}{%- endif -%}
+    </p>
 
     <div class="product-description">
       {{ product.description }}
     </div>
 
-    {% form 'product', product %}
-      <select name="id">
-        {% for variant in product.variants %}
-          <option value="{{ variant.id }}"
-            {% unless variant.available %}disabled{% endunless %}>
-            {{ variant.title }} — {{ variant.price | money }}
-          </option>
-        {% endfor %}
-      </select>
+    {%- if block_cart -%}
+      <button type="button" class="add-to-cart" disabled>{{ cs_label }}</button>
+    {%- else -%}
+      {% form 'product', product %}
+        <select name="id">
+          {% for variant in product.variants %}
+            <option value="{{ variant.id }}"
+              {% unless variant.available %}disabled{% endunless %}>
+              {{ variant.title }} — {{ variant.price | money }}
+            </option>
+          {% endfor %}
+        </select>
 
-      <button type="submit" name="add" class="add-to-cart"
-        {% unless product.available %}disabled{% endunless %}>
-        {% if product.available %}Add to cart{% else %}Sold out{% endif %}
-      </button>
-    {% endform %}
+        <button type="submit" name="add" class="add-to-cart"
+          {% unless product.available %}disabled{% endunless %}>
+          {% if product.available %}Add to cart{% else %}Sold out{% endif %}
+        </button>
+      {% endform %}
+    {%- endif -%}
   </div>
 </div>
+
+{% schema %}
+{
+  "name": "Product",
+  "settings": [],
+  "presets": [{ "name": "Product" }]
+}
+{% endschema %}

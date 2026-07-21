@@ -196,7 +196,36 @@ section, .section { padding: var(--section-pad) 0; }
 }
 
 /* =====================================================================
-   HEADER (placeholder — replaced in the nav-bar pass)
+   COMING SOON badge / stamp
+   ===================================================================== */
+.coming-soon-badge {
+  display: inline-block;
+  font-family: var(--font-text);
+  font-size: 9px;
+  letter-spacing: .1em;
+  font-weight: var(--fw-semibold);
+  text-transform: uppercase;
+  color: var(--muse-gold-dark);
+  background: var(--near-white);
+  border: 1px solid var(--gold-border);
+  border-radius: var(--radius-pill);
+  padding: 3px 9px;
+  white-space: nowrap;
+  line-height: 1.2;
+}
+.cs-media { position: relative; }
+.coming-soon-stamp {
+  position: absolute;
+  top: 12px; left: 12px;
+  z-index: 2;
+  font-size: 10px;
+  padding: 5px 12px;
+  background: rgba(253, 252, 250, .92);
+  box-shadow: 0 2px 10px -4px rgba(10, 11, 12, .3);
+}
+
+/* =====================================================================
+   NAV BARS (standard + SPC)
    ===================================================================== */
 /* Two standardized nav bars: standard (#site-nav) + SPC (adds .nav--spc).
    Both use a two-state opacity crossfade toggled by the .nav--scrolled class. */

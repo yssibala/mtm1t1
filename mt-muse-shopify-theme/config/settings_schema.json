@@ -56,5 +56,32 @@
         "default": "'neuehaasdisplaylight', 'Helvetica Neue', Arial, sans-serif"
       }
     ]
+  },
+  {
+    "name": "Coming soon",
+    "settings": [
+      {
+        "type": "paragraph",
+        "content": "Tag any product with the tag below to mark it 'coming soon' — a badge appears on its cards and product page, and (optionally) its Add-to-cart button is disabled. Individual sections also have their own 'Show coming soon badge' toggle."
+      },
+      {
+        "type": "text",
+        "id": "coming_soon_tag",
+        "label": "Product tag that marks 'coming soon'",
+        "default": "coming-soon"
+      },
+      {
+        "type": "text",
+        "id": "badge_text",
+        "label": "Badge text",
+        "default": "Coming Soon"
+      },
+      {
+        "type": "checkbox",
+        "id": "coming_soon_disable_cart",
+        "label": "Disable Add-to-cart for coming-soon products",
+        "default": true
+      }
+    ]
   }
 ]
