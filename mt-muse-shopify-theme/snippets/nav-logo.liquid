@@ -1,0 +1,13 @@
+{%- comment -%}
+  Centered monogram logo. Uses the section logo, then the theme logo,
+  then the bundled MUSE monogram asset. Param: section_logo (image or blank).
+{%- endcomment -%}
+<a href="{{ routes.root_url }}" class="nav-logo" aria-label="{{ shop.name | escape }}">
+  {%- if section_logo != blank -%}
+    <img src="{{ section_logo | image_url: width: 220 }}" alt="{{ shop.name | escape }}" width="110">
+  {%- elsif settings.logo != blank -%}
+    <img src="{{ settings.logo | image_url: width: 220 }}" alt="{{ shop.name | escape }}" width="110">
+  {%- else -%}
+    <img src="{{ 'muse-monogram-solo-gld.png' | asset_url }}" alt="{{ shop.name | escape }}">
+  {%- endif -%}
+</a>

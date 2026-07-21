@@ -1,0 +1,189 @@
+{%- comment -%}
+  SPC (Special Product Carousel) nav bar — used on product / carousel pages.
+  State 1 is identical to the standard nav. State 2 becomes a 1fr | auto | 1fr
+  grid: logo + left menu | product carousel | right menu + icons.
+  The carousel cycles through the chosen collection's products (prev/next),
+  starting on the current product when viewed on a product page.
+{%- endcomment -%}
+
+{%- liquid
+  assign menu_left = linklists[section.settings.menu_left]
+  assign menu_right = linklists[section.settings.menu_right]
+  assign threshold = section.settings.scroll_threshold
+  assign spc_collection = collections[section.settings.carousel_collection]
+-%}
+
+{%- capture spc_json -%}[{%- for p in spc_collection.products limit: 24 -%}{"name":{{ p.title | json }},"url":{{ p.url | json }},"handle":{{ p.handle | json }}}{%- unless forloop.last -%},{%- endunless -%}{%- endfor -%}]{%- endcapture -%}
+
+<nav id="site-nav" class="nav--spc">
+
+  {%- render 'nav-state1',
+    menu_left: menu_left, menu_right: menu_right,
+    section_logo: section.settings.logo,
+    show_account: section.settings.show_account,
+    show_search: section.settings.show_search -%}
+
+  <!-- STATE 2 (SPC grid: left | carousel | right) -->
+  <div id="nav-state2" class="nav-bar nav-bar--2">
+    <div style="display:flex;align-items:center;gap:24px;justify-self:start;">
+      {%- render 'nav-logo', section_logo: section.settings.logo -%}
+      <div class="nav-links">
+        {%- render 'nav-links', menu: menu_left, fallback: 'left' -%}
+      </div>
+    </div>
+
+    <div class="spc-switcher" style="justify-self:center;">
+      <button class="spc-arrow js-spc-prev" aria-label="Previous product"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="m15 18-6-6 6-6"/></svg></button>
+      <a class="spc-name js-spc-name" href="{{ spc_collection.url | default: routes.all_products_collection_url }}">{{ spc_collection.products.first.title | default: 'PRODUCTS' }}</a>
+      <button class="spc-arrow js-spc-next" aria-label="Next product"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="m9 18 6-6-6-6"/></svg></button>
+    </div>
+
+    <div style="display:flex;align-items:center;justify-content:flex-end;gap:24px;justify-self:end;">
+      <div class="nav-links">
+        {%- render 'nav-links', menu: menu_right, fallback: 'right' -%}
+      </div>
+      {%- render 'nav-icons', show_account: section.settings.show_account, show_search: section.settings.show_search -%}
+    </div>
+  </div>
+
+  <!-- MOBILE (hamburger | logo + carousel | cart) -->
+  <div id="nav-mobile">
+    <button id="mob-hamburger" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
+    <div style="position:absolute;left:50%;transform:translateX(-50%);display:flex;align-items:center;gap:10px;">
+      {%- render 'nav-logo', section_logo: section.settings.logo -%}
+      <div class="spc-switcher">
+        <button class="spc-arrow js-spc-prev" aria-label="Previous product"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="m15 18-6-6 6-6"/></svg></button>
+        <a class="spc-name js-spc-name" style="font-size:14px;min-width:80px;" href="{{ spc_collection.url | default: routes.all_products_collection_url }}">{{ spc_collection.products.first.title | default: 'PRODUCTS' }}</a>
+        <button class="spc-arrow js-spc-next" aria-label="Next product"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="m9 18 6-6-6-6"/></svg></button>
+      </div>
+    </div>
+    <a href="{{ routes.cart_url }}" class="nav-icon" aria-label="Cart">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+      <span class="cart-badge" data-cart-count{% if cart.item_count == 0 %} style="display:none;"{% endif %}>{{ cart.item_count }}</span>
+    </a>
+  </div>
+  {%- render 'nav-mobile-menu', menu_left: menu_left, menu_right: menu_right -%}
+
+</nav>
+
+<script>
+  (function () {
+    var nav = document.getElementById('site-nav');
+    if (!nav) return;
+    var threshold = {{ threshold | default: 40 | json }};
+    function compute() {
+      if (window.scrollY > threshold) { nav.classList.add('nav--scrolled'); }
+      else { nav.classList.remove('nav--scrolled'); }
+    }
+    window.addEventListener('scroll', compute, { passive: true });
+    window.addEventListener('pageshow', compute);
+    compute();
+
+    var burger = document.getElementById('mob-hamburger');
+    var menu = document.getElementById('nav-mobile-menu');
+    if (burger && menu) {
+      burger.addEventListener('click', function () {
+        var open = menu.classList.toggle('is-open');
+        burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+      });
+    }
+
+    // ---- Product carousel ----
+    var items = {{ spc_json }};
+    var current = {{ product.handle | default: '' | json }};
+    if (!items.length) return;
+    var idx = 0;
+    for (var i = 0; i < items.length; i++) { if (items[i].handle === current) { idx = i; break; } }
+
+    var names = nav.querySelectorAll('.js-spc-name');
+    function paint() {
+      var it = items[idx];
+      for (var n = 0; n < names.length; n++) {
+        names[n].textContent = it.name;
+        names[n].setAttribute('href', it.url);
+      }
+    }
+    function step(d) { idx = (idx + d + items.length) % items.length; paint(); }
+    var prevs = nav.querySelectorAll('.js-spc-prev');
+    var nexts = nav.querySelectorAll('.js-spc-next');
+    for (var a = 0; a < prevs.length; a++) { prevs[a].addEventListener('click', function () { step(-1); }); }
+    for (var b = 0; b < nexts.length; b++) { nexts[b].addEventListener('click', function () { step(1); }); }
+    paint();
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Header (SPC Carousel)",
+  "settings": [
+    {
+      "type": "paragraph",
+      "content": "Special Product Carousel nav. Use on product / flagship pages. State 2 shows a product carousel in the center."
+    },
+    {
+      "type": "header",
+      "content": "Menus"
+    },
+    {
+      "type": "link_list",
+      "id": "menu_left",
+      "label": "Left menu",
+      "info": "Falls back to About / Gallery / Contact."
+    },
+    {
+      "type": "link_list",
+      "id": "menu_right",
+      "label": "Right menu",
+      "info": "Falls back to Products / Shop / Log in."
+    },
+    {
+      "type": "header",
+      "content": "Carousel"
+    },
+    {
+      "type": "collection",
+      "id": "carousel_collection",
+      "label": "Carousel collection",
+      "info": "Products cycled by the center carousel. On a product page it starts on the current product."
+    },
+    {
+      "type": "header",
+      "content": "Logo"
+    },
+    {
+      "type": "image_picker",
+      "id": "logo",
+      "label": "Logo (overrides theme logo)"
+    },
+    {
+      "type": "header",
+      "content": "Icons"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_account",
+      "label": "Show account icon",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_search",
+      "label": "Show search icon",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Behavior"
+    },
+    {
+      "type": "range",
+      "id": "scroll_threshold",
+      "label": "Scroll distance before compact state (px)",
+      "min": 0,
+      "max": 400,
+      "step": 10,
+      "default": 40
+    }
+  ]
+}
+{% endschema %}

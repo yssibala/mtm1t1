@@ -1,0 +1,33 @@
+{%- comment -%}
+  Renders a set of nav links from a Shopify navigation menu (Admin > Navigation),
+  falling back to sensible defaults when the menu is empty/unset.
+
+  Params:
+    menu     - a linklist object, e.g. linklists[section.settings.menu_left]
+    fallback - 'left' or 'right' : which hardcoded default set to show if menu empty
+  Supports one level of dropdown (menu links that have child links).
+{%- endcomment -%}
+{%- if menu != blank and menu.links.size > 0 -%}
+  {%- for link in menu.links -%}
+    {%- if link.links.size > 0 -%}
+      <div class="muse-dropdown">
+        <a href="{{ link.url }}" class="nav-link{% if link.active or link.child_active %} is-active{% endif %}">{{ link.title }}</a>
+        <div class="muse-dropdown-menu">
+          {%- for child in link.links -%}
+            <a href="{{ child.url }}" class="muse-sub">{{ child.title }}</a>
+          {%- endfor -%}
+        </div>
+      </div>
+    {%- else -%}
+      <a href="{{ link.url }}" class="nav-link{% if link.active %} is-active{% endif %}">{{ link.title }}</a>
+    {%- endif -%}
+  {%- endfor -%}
+{%- elsif fallback == 'left' -%}
+  <a href="{{ routes.root_url }}pages/about" class="nav-link">About</a>
+  <a href="{{ routes.root_url }}pages/gallery" class="nav-link">Gallery</a>
+  <a href="{{ routes.root_url }}pages/contact" class="nav-link">Contact</a>
+{%- elsif fallback == 'right' -%}
+  <a href="{{ routes.all_products_collection_url }}" class="nav-link">Products</a>
+  <a href="{{ routes.all_products_collection_url }}" class="nav-link">Shop</a>
+  <a href="{{ routes.account_login_url }}" class="nav-link">Log in</a>
+{%- endif -%}

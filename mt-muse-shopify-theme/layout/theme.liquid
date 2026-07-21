@@ -37,8 +37,14 @@
     {{ content_for_header }}
   </head>
   <body class="{{ template | replace: '.', '-' }}">
-    {% section 'header' %}
-    <main role="main">
+    {%- comment -%} Per-template nav: product pages use the SPC carousel nav, all others use the standard nav. {%- endcomment -%}
+    {%- case template.name -%}
+      {%- when 'product' -%}
+        {% section 'header-spc' %}
+      {%- else -%}
+        {% section 'header' %}
+    {%- endcase -%}
+    <main role="main" style="padding-top:56px;">
       {{ content_for_layout }}
     </main>
     {% section 'footer' %}

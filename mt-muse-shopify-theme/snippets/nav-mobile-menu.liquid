@@ -1,0 +1,31 @@
+{%- comment -%}
+  Mobile dropdown list built from the two header menus (Admin > Navigation),
+  with fallbacks. Params: menu_left, menu_right (linklist objects).
+{%- endcomment -%}
+<div id="nav-mobile-menu">
+  {%- if menu_left != blank and menu_left.links.size > 0 -%}
+    {%- for link in menu_left.links -%}
+      <a href="{{ link.url }}" class="mob-item">{{ link.title }}</a>
+      {%- for child in link.links -%}
+        <a href="{{ child.url }}" class="mob-sub">{{ child.title }}</a>
+      {%- endfor -%}
+    {%- endfor -%}
+  {%- else -%}
+    <a href="{{ routes.root_url }}pages/about" class="mob-item">About</a>
+    <a href="{{ routes.root_url }}pages/gallery" class="mob-item">Gallery</a>
+    <a href="{{ routes.root_url }}pages/contact" class="mob-item">Contact</a>
+  {%- endif -%}
+
+  {%- if menu_right != blank and menu_right.links.size > 0 -%}
+    {%- for link in menu_right.links -%}
+      <a href="{{ link.url }}" class="mob-item">{{ link.title }}</a>
+      {%- for child in link.links -%}
+        <a href="{{ child.url }}" class="mob-sub">{{ child.title }}</a>
+      {%- endfor -%}
+    {%- endfor -%}
+  {%- else -%}
+    <a href="{{ routes.all_products_collection_url }}" class="mob-item">Products</a>
+    <a href="{{ routes.all_products_collection_url }}" class="mob-item">Shop</a>
+    <a href="{{ routes.account_login_url }}" class="mob-item">Log in</a>
+  {%- endif -%}
+</div>
