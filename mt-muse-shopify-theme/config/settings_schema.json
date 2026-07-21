@@ -33,7 +33,7 @@
         "options": [
           { "value": "'neuehaasdisplaylight', 'Helvetica Neue', Arial, sans-serif", "label": "Neue Haas Display Light — site default" },
           { "value": "'neue-haas-grotesk-display', 'Helvetica Neue', Arial, sans-serif", "label": "Neue Haas Grotesk Display — Adobe" },
-          { "value": "'ogg', Georgia, 'Times New Roman', serif", "label": "Ogg Light — Adobe (serif)" }
+          { "value": "'ogg-text', Georgia, 'Times New Roman', serif", "label": "Ogg Text — Adobe (serif)" }
         ],
         "default": "'neuehaasdisplaylight', 'Helvetica Neue', Arial, sans-serif"
       },

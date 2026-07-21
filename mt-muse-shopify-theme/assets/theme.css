@@ -1,96 +1,382 @@
-/* ===========================
-   FONT VARIABLES
-=========================== */
+/* =====================================================================
+   MT-MUSE — Shopify Theme Stylesheet
+   ---------------------------------------------------------------------
+   Design system ported from the live MUSE RTD Cocktails site.
+   Full colour reference: /COLORS.md (repo root). The variables below
+   ARE the working palette — COLORS.md is the human-readable master.
+
+   Fonts (Adobe kit + local fallback) are declared in layout/theme.liquid.
+   --font-display / --font-text / --muse-gold-1 can be overridden by the
+   merchant via Settings > Typography and Settings > Brand.
+   ===================================================================== */
+
 :root {
-  /* Site default matches the live MUSE site (local NeueHaasDisplayLight).
-     Adobe families can be selected in Settings > Typography, which override
-     --font-display / --font-text via the layout's {% style %} block. */
+  /* ---------- Type families ---------------------------------------- */
+  /* Site default = local NeueHaasDisplayLight (matches live site).
+     Adobe families (neue-haas-grotesk-display / -text, ogg-text) are
+     selectable in the theme editor and override these at runtime. */
   --font-display: 'neuehaasdisplaylight', 'Helvetica Neue', Arial, sans-serif;
-  --font-text: 'neuehaasdisplaylight', 'Helvetica Neue', Arial, sans-serif;
-  --font-ogg: 'ogg', Georgia, 'Times New Roman', serif;
+  --font-text:    'neuehaasdisplaylight', 'Helvetica Neue', Arial, sans-serif;
+  --font-ogg:     'ogg-text', Georgia, 'Times New Roman', serif;
 
-  /* ===========================
-     COLOR PALETTE
-  =========================== */
-  --bg-main: #FBF6EE;
+  /* Adobe weight map (available when an Adobe family is selected):
+     display 200/300/400/500 · text 400 · ogg-text 300–800 + italics */
+  --fw-thin: 200;
+  --fw-light: 300;
+  --fw-regular: 400;
+  --fw-medium: 500;
+  --fw-semibold: 600;
+  --fw-bold: 700;
+
+  /* ---------- Brand core ------------------------------------------- */
+  --muse-gold-1:      #EFA527;  /* primary accent / CTA */
+  --muse-gold-dark:   #C9851A;  /* hover, active link, price */
+  --muse-gold-light:  #F2CE73;
+  --gold-border:      #E7C98A;
+
+  --near-black:       #0A0B0C;  /* primary text, borders */
+  --bg-main:          #FBF6EE;  /* page background */
+  --near-white:       #FDFCFA;  /* elevated surfaces, cards */
+  --sand-border:      #E7DAC4;  /* borders, dividers, rules */
+  --light-sand:       #F4ECDD;  /* hover backgrounds */
+  --deep-brown-black: #241808;
+
+  /* ---------- Muse accents ----------------------------------------- */
+  --thalia:   #EFA527;  /* Muse 01 — gold/amber */
+  --clio:     #CC2200;  /* Muse 02 — red */
+  --ourania:  #8B5CF6;  /* Muse 03 — purple */
+
+  /* ---------- Neutral UI text -------------------------------------- */
+  --text-dark:  #4C4C4B;  /* secondary paragraphs */
+  --text-mid:   #6B6156;  /* card / story body */
+  --text-meta:  #9A8F7C;  /* kicker labels, meta */
+  --text-muted: #8A8378;  /* inactive / sub-labels */
+
+  /* ---------- System / functional ---------------------------------- */
   --footer-cloud: #DDE3E4;
+  --alert-red:    #FF3B30;
+  --success:      #2A7F4F;
+  --disabled:     #9CA3AF;
 
-  --muse-gold-1: #EFA527;
-  --muse-gold-2: #EFA527;
-  --muse-gold-dark: #C9851A;
-  --muse-gold-light: #F2CE73;
-
-  --near-white: #FDFCFA;
-  --sand-border: #E7DAC4;
-  --light-sand: #F4ECDD;
-
-  --clio-red: #CC2200;
-  --ourania-purple: #8B5CF6;
-  --cart-badge-gold: #FF3B30;
-
-  /* ===========================
-     SPACING
-  =========================== */
+  /* ---------- Spacing scale ---------------------------------------- */
   --space-xs: 4px;
   --space-sm: 8px;
   --space-md: 16px;
   --space-lg: 32px;
   --space-xl: 64px;
+  --section-pad: clamp(56px, 7vw, 96px);
 
-  /* ===========================
-     CONTAINER WIDTH
-  =========================== */
-  --container-width: 1200px;
+  /* ---------- Type scale (from live site) -------------------------- */
+  --fs-hero:    clamp(44px, 7vw, 92px);
+  --fs-h1:      clamp(30px, 4vw, 52px);
+  --fs-h2:      clamp(30px, 3.6vw, 46px);
+  --fs-h3:      clamp(18px, 2.2vw, 26px);
+  --fs-body:    16px;
+  --fs-small:   13px;
+  --fs-label:   11px;  /* uppercase kickers */
+
+  --ls-label:   .18em; /* wide tracking on uppercase labels */
+  --ls-tight:   .04em;
+
+  /* ---------- Layout ----------------------------------------------- */
+  --container-width: 1180px;
+  --radius-pill: 30px;
+  --radius-card: 4px;
 }
 
-/* ===========================
-   BASE STYLES
-=========================== */
+/* =====================================================================
+   BASE
+   ===================================================================== */
+*, *::before, *::after { box-sizing: border-box; }
+
 html, body {
   margin: 0;
   padding: 0;
   background: var(--bg-main);
+  color: var(--near-black);
   font-family: var(--font-text);
-  color: #111;
+  font-size: var(--fs-body);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
 }
 
-.container {
-  max-width: var(--container-width);
-  margin: 0 auto;
-  padding: 0 var(--space-md);
-}
+img { max-width: 100%; height: auto; display: block; }
 
 a {
   color: var(--muse-gold-1);
   text-decoration: none;
+  transition: color .18s ease;
+}
+a:hover { color: var(--muse-gold-dark); }
+
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  font-weight: var(--fw-medium);
+  line-height: 1.1;
+  margin: 0 0 var(--space-md);
+  color: var(--near-black);
+}
+h1 { font-size: var(--fs-h1); }
+h2 { font-size: var(--fs-h2); }
+h3 { font-size: var(--fs-h3); }
+
+p { margin: 0 0 var(--space-md); color: var(--text-dark); }
+
+/* Serif pull-quote / editorial italic — uses Ogg Text */
+.serif, blockquote, .pull-quote {
+  font-family: var(--font-ogg);
+  font-style: italic;
+  font-weight: var(--fw-light);
+  color: #252525;
 }
 
+/* =====================================================================
+   LAYOUT UTILITIES
+   ===================================================================== */
+.container {
+  max-width: var(--container-width);
+  margin: 0 auto;
+  padding: 0 var(--space-lg);
+}
+
+.kicker {
+  font-family: var(--font-text);
+  font-size: var(--fs-label);
+  letter-spacing: var(--ls-label);
+  text-transform: uppercase;
+  font-weight: var(--fw-semibold);
+  color: var(--text-meta);
+}
+
+section, .section { padding: var(--section-pad) 0; }
+
+/* =====================================================================
+   PILL BUTTONS (.muse-pill / .muse-cta / .muse-ghost)
+   ===================================================================== */
+.muse-pill,
+.btn {
+  display: inline-block;
+  border-radius: var(--radius-pill);
+  padding: 14px 34px;
+  font-family: var(--font-text);
+  font-size: var(--fs-label);
+  letter-spacing: var(--ls-label);
+  font-weight: var(--fw-semibold);
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background .18s ease, color .18s ease, border-color .18s ease, transform .18s ease;
+}
+.muse-pill:active,
+.btn:active { transform: translateY(1px); }
+
+.muse-cta,
+.btn--primary {
+  background: var(--muse-gold-1);
+  color: var(--near-black);
+  border: 1.5px solid var(--muse-gold-1);
+}
+.muse-cta:hover,
+.btn--primary:hover {
+  background: var(--muse-gold-dark);
+  border-color: var(--muse-gold-dark);
+  color: var(--near-black);
+}
+
+.muse-ghost,
+.btn--ghost {
+  background: transparent;
+  color: var(--near-black);
+  border: 1.5px solid var(--near-black);
+}
+.muse-ghost:hover,
+.btn--ghost:hover {
+  background: var(--near-black);
+  color: var(--bg-main);
+}
+
+/* =====================================================================
+   HEADER (placeholder — replaced in the nav-bar pass)
+   ===================================================================== */
+.site-header {
+  background: var(--bg-main);
+  border-bottom: 1px solid var(--sand-border);
+}
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-md) var(--space-lg);
+}
+.site-header .logo img { height: 38px; width: auto; }
+.main-nav {
+  display: flex;
+  gap: var(--space-lg);
+}
+.main-nav a {
+  color: var(--near-black);
+  font-size: var(--fs-small);
+  letter-spacing: var(--ls-label);
+  text-transform: uppercase;
+  font-weight: var(--fw-medium);
+}
+.main-nav a:hover { color: var(--muse-gold-dark); }
+.cart-link { color: var(--near-black); display: inline-flex; }
+.cart-link:hover { color: var(--muse-gold-dark); }
+
+/* =====================================================================
+   FOOTER
+   ===================================================================== */
 .site-footer {
   background: linear-gradient(180deg, var(--bg-main) 0%, var(--footer-cloud) 100%);
-  padding: var(--space-lg) 0;
+  padding: var(--space-xl) 0 var(--space-lg);
+  border-top: 1px solid var(--sand-border);
+}
+.site-footer p {
+  text-align: center;
+  color: var(--text-muted);
+  font-size: var(--fs-small);
+  letter-spacing: var(--ls-tight);
+  margin: 0;
 }
 
-/* ===========================
-   PRODUCT GRID
-=========================== */
-.product-grid .grid {
+/* =====================================================================
+   HERO
+   ===================================================================== */
+.hero {
+  text-align: center;
+  padding: var(--section-pad) var(--space-lg);
+}
+.hero h1 {
+  font-size: var(--fs-hero);
+  font-weight: var(--fw-thin);
+  letter-spacing: var(--ls-tight);
+  margin-bottom: var(--space-md);
+}
+.hero p {
+  max-width: 620px;
+  margin: 0 auto var(--space-lg);
+  color: #252525;
+  font-size: var(--fs-h3);
+  line-height: 1.4;
+}
+.hero-cta {
+  display: inline-block;
+  background: var(--muse-gold-1);
+  color: var(--near-black);
+  border-radius: var(--radius-pill);
+  padding: 14px 34px;
+  font-size: 12px;
+  letter-spacing: var(--ls-label);
+  font-weight: var(--fw-semibold);
+  text-transform: uppercase;
+}
+.hero-cta:hover { background: var(--muse-gold-dark); color: var(--near-black); }
+
+/* =====================================================================
+   PRODUCT GRID + CARD
+   ===================================================================== */
+.featured-collection,
+.product-grid { padding: var(--section-pad) 0; }
+
+.featured-collection h2 { text-align: center; margin-bottom: var(--space-xl); }
+
+.grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
   gap: var(--space-lg);
 }
 
+.product-card {
+  background: var(--near-white);
+  border: 1px solid var(--sand-border);
+  border-radius: var(--radius-card);
+  overflow: hidden;
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+.product-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(10, 11, 12, .08);
+}
 .product-card img {
   width: 100%;
-  border-radius: 4px;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-radius: 0;
 }
-
 .product-card h3 {
-  font-family: var(--font-display);
-  margin-top: var(--space-sm);
+  font-size: var(--fs-h3);
+  margin: var(--space-md) var(--space-md) var(--space-xs);
 }
-
 .product-card .price {
   color: var(--muse-gold-dark);
-  font-weight: bold;
+  font-weight: var(--fw-semibold);
+  margin: 0 var(--space-md) var(--space-md);
 }
 
+/* =====================================================================
+   PRODUCT PAGE
+   ===================================================================== */
+.product-page {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-xl);
+  padding: var(--section-pad) var(--space-lg);
+  align-items: start;
+}
+.product-media img {
+  width: 100%;
+  border-radius: var(--radius-card);
+  border: 1px solid var(--sand-border);
+}
+.product-info h1 { font-size: var(--fs-h1); }
+.product-info .price {
+  color: var(--muse-gold-dark);
+  font-size: var(--fs-h3);
+  font-weight: var(--fw-semibold);
+  margin-bottom: var(--space-lg);
+}
+.product-description { color: var(--text-mid); margin-bottom: var(--space-lg); }
+
+.product-info select {
+  width: 100%;
+  padding: 12px 16px;
+  margin-bottom: var(--space-md);
+  background: var(--near-white);
+  border: 1px solid var(--sand-border);
+  border-radius: var(--radius-card);
+  font-family: var(--font-text);
+  font-size: var(--fs-body);
+  color: var(--near-black);
+}
+.add-to-cart {
+  width: 100%;
+  background: var(--muse-gold-1);
+  color: var(--near-black);
+  border: 1.5px solid var(--muse-gold-1);
+  border-radius: var(--radius-pill);
+  padding: 15px 34px;
+  font-family: var(--font-text);
+  font-size: 12px;
+  letter-spacing: var(--ls-label);
+  font-weight: var(--fw-semibold);
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background .18s ease;
+}
+.add-to-cart:hover { background: var(--muse-gold-dark); }
+.add-to-cart:disabled {
+  background: var(--disabled);
+  border-color: var(--disabled);
+  cursor: not-allowed;
+}
+
+/* =====================================================================
+   RESPONSIVE
+   ===================================================================== */
+@media (max-width: 768px) {
+  .product-page { grid-template-columns: 1fr; gap: var(--space-lg); }
+  .container { padding: 0 var(--space-md); }
+  .header-inner { padding: var(--space-md); }
+  .main-nav { gap: var(--space-md); }
+}
