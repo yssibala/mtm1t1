@@ -341,6 +341,15 @@ section, .section { padding: var(--section-pad) 0; }
   text-transform: uppercase;
   text-decoration: none;
   color: var(--near-black);
+  opacity: 1;
+  transition: opacity .16s ease;
+  will-change: opacity;
+}
+.spc-name.is-swapping { opacity: 0; }
+.spc-arrow { transition: border-color .18s ease, color .18s ease, transform .12s ease; }
+.spc-arrow:active { transform: scale(.9); }
+@media (prefers-reduced-motion: reduce) {
+  .spc-name { transition: none; }
 }
 
 /* Mobile nav */

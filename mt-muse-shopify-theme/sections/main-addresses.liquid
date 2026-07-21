@@ -1,0 +1,29 @@
+<div class="container" style="padding:var(--section-pad) 0;max-width:640px;">
+  <a href="{{ routes.account_url }}" style="font-size:var(--fs-small);">&larr; Back to account</a>
+  <h1>Your addresses</h1>
+
+  {%- paginate customer.addresses by 5 -%}
+    {%- for address in customer.addresses -%}
+      <div style="border:1px solid var(--sand-border);border-radius:var(--radius-card);padding:16px;margin-bottom:16px;">
+        {%- if address == customer.default_address -%}<div class="kicker">Default</div>{%- endif -%}
+        <p style="margin:8px 0;">{{ address | format_address }}</p>
+      </div>
+    {%- endfor -%}
+    {{ paginate | default_pagination }}
+  {%- endpaginate -%}
+
+  <h2 style="font-size:var(--fs-h3);margin-top:24px;">Add a new address</h2>
+  {%- form 'customer_address', customer.new_address -%}
+    {{ form.errors | default_errors }}
+    <label>First name<input type="text" name="address[first_name]"></label>
+    <label>Last name<input type="text" name="address[last_name]"></label>
+    <label>Address<input type="text" name="address[address1]"></label>
+    <label>City<input type="text" name="address[city]"></label>
+    <label>Country<input type="text" name="address[country]"></label>
+    <label>ZIP / Postal code<input type="text" name="address[zip]"></label>
+    <button type="submit" class="muse-pill muse-cta" style="margin-top:12px;">Save address</button>
+  {%- endform -%}
+</div>
+{% schema %}
+{ "name": "Addresses", "settings": [] }
+{% endschema %}

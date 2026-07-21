@@ -1,0 +1,14 @@
+{
+  "general": {
+    "meta": { "tags": "Tagged \"{{ tags }}\"", "page": "Page {{ page }}" },
+    "search": { "title": "Search", "placeholder": "Search", "submit": "Search", "no_results": "No results found." },
+    "404": { "title": "Page not found", "subtext": "The page you were looking for does not exist." }
+  },
+  "cart": { "title": "Your cart", "empty": "Your cart is empty.", "subtotal": "Subtotal", "checkout": "Checkout", "update": "Update" },
+  "customer": {
+    "login": { "title": "Log in", "email": "Email", "password": "Password", "submit": "Sign in" },
+    "register": { "title": "Create account", "submit": "Create" },
+    "account": { "title": "My account", "logout": "Log out" }
+  },
+  "products": { "product": { "add_to_cart": "Add to cart", "sold_out": "Sold out", "price": "Price" } }
+}

@@ -1,0 +1,27 @@
+<div class="container" style="padding:var(--section-pad) 0;">
+  <a href="{{ routes.account_url }}" style="font-size:var(--fs-small);">&larr; Back to account</a>
+  <h1>Order {{ order.name }}</h1>
+  <p style="color:var(--text-meta);">Placed {{ order.created_at | date: '%B %d, %Y' }}</p>
+  <table style="width:100%;border-collapse:collapse;margin-top:20px;">
+    <thead><tr style="text-align:left;border-bottom:1px solid var(--sand-border);">
+      <th style="padding:10px 8px;">Product</th><th>Qty</th><th>Total</th>
+    </tr></thead>
+    <tbody>
+      {%- for line in order.line_items -%}
+        <tr style="border-bottom:1px solid var(--sand-border);">
+          <td style="padding:10px 8px;">{{ line.title }}</td>
+          <td>{{ line.quantity }}</td>
+          <td>{{ line.final_line_price | money }}</td>
+        </tr>
+      {%- endfor -%}
+    </tbody>
+  </table>
+  <div style="text-align:right;margin-top:16px;">
+    <div>Subtotal: {{ order.line_items_subtotal_price | money }}</div>
+    <div>Shipping: {{ order.shipping_price | money }}</div>
+    <strong>Total: {{ order.total_price | money }}</strong>
+  </div>
+</div>
+{% schema %}
+{ "name": "Order", "settings": [] }
+{% endschema %}

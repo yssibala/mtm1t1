@@ -1,0 +1,19 @@
+<div class="container" style="padding:var(--section-pad) 0;max-width:460px;">
+  <h1 style="text-align:center;">Create account</h1>
+  {%- form 'create_customer' -%}
+    {{ form.errors | default_errors }}
+    <label for="rg-fn">First name</label>
+    <input type="text" name="customer[first_name]" id="rg-fn" autocomplete="given-name">
+    <label for="rg-ln">Last name</label>
+    <input type="text" name="customer[last_name]" id="rg-ln" autocomplete="family-name">
+    <label for="rg-email">Email</label>
+    <input type="email" name="customer[email]" id="rg-email" autocomplete="email" required>
+    <label for="rg-pass">Password</label>
+    <input type="password" name="customer[password]" id="rg-pass" autocomplete="new-password" required>
+    <button type="submit" class="muse-pill muse-cta" style="width:100%;margin-top:12px;">Create</button>
+  {%- endform -%}
+  <p style="text-align:center;margin-top:24px;">Already have an account? <a href="{{ routes.account_login_url }}">Log in</a></p>
+</div>
+{% schema %}
+{ "name": "Register", "settings": [] }
+{% endschema %}
