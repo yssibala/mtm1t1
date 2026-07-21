@@ -2,9 +2,12 @@
    FONT VARIABLES
 =========================== */
 :root {
-  --font-display: "Neue Haas Grotesk Display", sans-serif;
-  --font-text: "Neue Haas Grotesk Text", sans-serif;
-  --font-ogg: "Ogg Light", serif;
+  /* Site default matches the live MUSE site (local NeueHaasDisplayLight).
+     Adobe families can be selected in Settings > Typography, which override
+     --font-display / --font-text via the layout's {% style %} block. */
+  --font-display: 'neuehaasdisplaylight', 'Helvetica Neue', Arial, sans-serif;
+  --font-text: 'neuehaasdisplaylight', 'Helvetica Neue', Arial, sans-serif;
+  --font-ogg: 'ogg', Georgia, 'Times New Roman', serif;
 
   /* ===========================
      COLOR PALETTE

@@ -14,5 +14,39 @@
         "default": "#EFA527"
       }
     ]
+  },
+  {
+    "name": "Typography",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Fonts"
+      },
+      {
+        "type": "paragraph",
+        "content": "The site default is Neue Haas Display Light (local file). The Adobe options require the matching families in your Adobe Fonts kit."
+      },
+      {
+        "type": "select",
+        "id": "heading_font",
+        "label": "Heading font",
+        "options": [
+          { "value": "'neuehaasdisplaylight', 'Helvetica Neue', Arial, sans-serif", "label": "Neue Haas Display Light — site default" },
+          { "value": "'neue-haas-grotesk-display', 'Helvetica Neue', Arial, sans-serif", "label": "Neue Haas Grotesk Display — Adobe" },
+          { "value": "'ogg', Georgia, 'Times New Roman', serif", "label": "Ogg Light — Adobe (serif)" }
+        ],
+        "default": "'neuehaasdisplaylight', 'Helvetica Neue', Arial, sans-serif"
+      },
+      {
+        "type": "select",
+        "id": "body_font",
+        "label": "Body font",
+        "options": [
+          { "value": "'neuehaasdisplaylight', 'Helvetica Neue', Arial, sans-serif", "label": "Neue Haas Display Light — site default" },
+          { "value": "'neue-haas-grotesk-text', 'Helvetica Neue', Arial, sans-serif", "label": "Neue Haas Grotesk Text — Adobe" }
+        ],
+        "default": "'neuehaasdisplaylight', 'Helvetica Neue', Arial, sans-serif"
+      }
+    ]
   }
 ]
