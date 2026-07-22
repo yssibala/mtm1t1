@@ -9,12 +9,259 @@
  */
 {
   "sections": {
-    "main": {
-      "type": "main-page",
-      "settings": {}
+    "hero_LPHctL": {
+      "type": "hero",
+      "name": "Hero",
+      "settings": {
+        "heading": "Welcome to MT-MUSE",
+        "subheading": "Explore our curated selection of products crafted with intention.",
+        "text_align": "center",
+        "show_coming_soon": false,
+        "button_label": "Shop Now",
+        "button_link": "",
+        "button_icon": "none",
+        "button_style": "primary",
+        "button2_label": "",
+        "button2_link": "",
+        "button2_icon": "none",
+        "button_size": "11",
+        "image_position": "below",
+        "image_focal": "center",
+        "image_height": 0,
+        "image_radius": 0,
+        "image_opacity": 100,
+        "heading_font": "site",
+        "heading_size": 56,
+        "body_font": "site",
+        "body_size": 20,
+        "bg_type": "none",
+        "bg_color": "#FBF6EE",
+        "bg_gradient_start": "#FBF6EE",
+        "bg_gradient_end": "#E7DAC4",
+        "bg_gradient_angle": 180,
+        "content_valign": "top",
+        "min_height": 0,
+        "padding_top": 96,
+        "padding_bottom": 96
+      }
+    },
+    "body_section_gthfUc": {
+      "type": "body-section",
+      "name": "Body section",
+      "settings": {
+        "preheader": "OUR STORY",
+        "heading": "Celebrating Those Who Inspire",
+        "body": "<p>Share the story behind your brand here.</p>",
+        "image_position": "right",
+        "text_align": "left",
+        "accent_color": "#C9851A",
+        "button_label": "",
+        "button_link": "",
+        "button_style": "primary",
+        "button_size": "11",
+        "button_icon": "none",
+        "heading_font": "site",
+        "heading_size": 40,
+        "body_font": "site",
+        "body_size": 16,
+        "space_preheader": 12,
+        "space_heading": 16,
+        "bg_type": "none",
+        "bg_color": "#FBF6EE",
+        "bg_gradient_start": "#FBF6EE",
+        "bg_gradient_end": "#E7DAC4",
+        "bg_gradient_angle": 180,
+        "content_valign": "top",
+        "min_height": 0,
+        "padding_top": 80,
+        "padding_bottom": 80
+      }
+    },
+    "body_section_FbXAkj": {
+      "type": "body-section",
+      "name": "Body section",
+      "settings": {
+        "preheader": "OUR STORY",
+        "heading": "Celebrating Those Who Inspire",
+        "body": "<p>Share the story behind your brand here.</p>",
+        "image_position": "right",
+        "text_align": "left",
+        "accent_color": "#C9851A",
+        "button_label": "",
+        "button_link": "",
+        "button_style": "primary",
+        "button_size": "11",
+        "button_icon": "none",
+        "heading_font": "site",
+        "heading_size": 40,
+        "body_font": "site",
+        "body_size": 16,
+        "space_preheader": 12,
+        "space_heading": 16,
+        "bg_type": "none",
+        "bg_color": "#FBF6EE",
+        "bg_gradient_start": "#FBF6EE",
+        "bg_gradient_end": "#E7DAC4",
+        "bg_gradient_angle": 180,
+        "content_valign": "top",
+        "min_height": 0,
+        "padding_top": 80,
+        "padding_bottom": 80
+      }
+    },
+    "body_section_E9peeN": {
+      "type": "body-section",
+      "name": "Body section",
+      "settings": {
+        "preheader": "OUR STORY",
+        "heading": "Celebrating Those Who Inspire",
+        "body": "<p>Share the story behind your brand here.</p>",
+        "image_position": "right",
+        "text_align": "left",
+        "accent_color": "#C9851A",
+        "button_label": "",
+        "button_link": "",
+        "button_style": "primary",
+        "button_size": "11",
+        "button_icon": "none",
+        "heading_font": "site",
+        "heading_size": 40,
+        "body_font": "site",
+        "body_size": 16,
+        "space_preheader": 12,
+        "space_heading": 16,
+        "bg_type": "none",
+        "bg_color": "#FBF6EE",
+        "bg_gradient_start": "#FBF6EE",
+        "bg_gradient_end": "#E7DAC4",
+        "bg_gradient_angle": 180,
+        "content_valign": "top",
+        "min_height": 0,
+        "padding_top": 80,
+        "padding_bottom": 80
+      }
+    },
+    "page_gallery_xWLRMR": {
+      "type": "page-gallery",
+      "blocks": {
+        "image_XAXDja": {
+          "type": "image",
+          "settings": {
+            "caption": "",
+            "link": ""
+          }
+        },
+        "image_3YJ4rd": {
+          "type": "image",
+          "settings": {
+            "caption": "",
+            "link": ""
+          }
+        },
+        "image_kkHfCN": {
+          "type": "image",
+          "settings": {
+            "caption": "",
+            "link": ""
+          }
+        },
+        "image_pidYjw": {
+          "type": "image",
+          "settings": {
+            "caption": "",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "image_XAXDja",
+        "image_3YJ4rd",
+        "image_kkHfCN",
+        "image_pidYjw"
+      ],
+      "name": "Gallery page",
+      "settings": {
+        "kicker": "The Gallery",
+        "text_align": "left",
+        "columns": 3,
+        "aspect_ratio": "1/1",
+        "heading_font": "site",
+        "heading_size": 44,
+        "bg_type": "none",
+        "bg_color": "#FBF6EE",
+        "bg_gradient_start": "#FBF6EE",
+        "bg_gradient_end": "#E7DAC4",
+        "bg_gradient_angle": 180,
+        "content_valign": "top",
+        "min_height": 0,
+        "padding_top": 80,
+        "padding_bottom": 80
+      }
+    },
+    "flexible_HeD3q3": {
+      "type": "flexible",
+      "blocks": {
+        "text_TFzYMH": {
+          "type": "text",
+          "settings": {
+            "preheader": "",
+            "accent_color": "#C9851A",
+            "heading": "",
+            "body": "",
+            "text_color": "#0A0B0C",
+            "align": "left",
+            "max_width": 640,
+            "heading_font": "site",
+            "heading_size": 36,
+            "body_font": "site",
+            "body_size": 16,
+            "space_preheader": 10,
+            "space_heading": 12,
+            "margin_top": 0,
+            "margin_bottom": 24
+          }
+        },
+        "button_pR4AEC": {
+          "type": "button",
+          "settings": {
+            "label": "Discover",
+            "url": "",
+            "icon": "none",
+            "style": "primary",
+            "label2": "",
+            "url2": "",
+            "icon2": "none",
+            "btn_size": "11",
+            "align": "left",
+            "margin_top": 0,
+            "margin_bottom": 24
+          }
+        }
+      },
+      "block_order": [
+        "text_TFzYMH",
+        "button_pR4AEC"
+      ],
+      "name": "Flexible section",
+      "settings": {
+        "bg_type": "none",
+        "bg_color": "#FBF6EE",
+        "bg_gradient_start": "#FBF6EE",
+        "bg_gradient_end": "#E7DAC4",
+        "bg_gradient_angle": 180,
+        "content_valign": "top",
+        "min_height": 0,
+        "padding_top": 80,
+        "padding_bottom": 80
+      }
     }
   },
   "order": [
-    "main"
+    "hero_LPHctL",
+    "body_section_gthfUc",
+    "body_section_FbXAkj",
+    "body_section_E9peeN",
+    "page_gallery_xWLRMR",
+    "flexible_HeD3q3"
   ]
 }
