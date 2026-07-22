@@ -33,18 +33,18 @@
   },
   "customer": {
     "login": {
-      "title": "Log in",
+      "title": "Log In",
       "email": "Email",
       "password": "Password",
-      "submit": "Sign in"
+      "submit": "Sign In"
     },
     "register": {
-      "title": "Create account",
+      "title": "Create Account",
       "submit": "Create"
     },
     "account": {
-      "title": "My account",
-      "logout": "Log out"
+      "title": "My Account",
+      "logout": "Log Out"
     }
   },
   "products": {
@@ -52,6 +52,11 @@
       "add_to_cart": "Add to cart",
       "sold_out": "Sold out",
       "price": "Price"
+    }
+  },
+  "customer_accounts": {
+    "callback": {
+      "try_again": "Try Again"
     }
   }
 }
