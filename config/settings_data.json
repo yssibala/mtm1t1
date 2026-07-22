@@ -22,6 +22,7 @@
         "settings": {
           "menu_left": "nav-bar-menu-l",
           "menu_right": "main-menu",
+          "logo": "shopify://shop_images/MUSE_-_Monogram_Solo_GLD.png",
           "show_account": true,
           "show_search": true,
           "scroll_threshold": 40

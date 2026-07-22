@@ -11,12 +11,20 @@
   "sections": {
     "hero": {
       "type": "hero",
-      "settings": {}
+      "settings": {
+        "heading": "MUSE",
+        "subheading": "For Those Who Inspire",
+        "button_label": "Shop Now",
+        "button_link": "",
+        "show_coming_soon": false
+      }
     },
     "featured_collection": {
       "type": "featured-collection",
       "settings": {
-        "collection": "frontpage"
+        "collection": "frontpage",
+        "limit": 4,
+        "heading": "Featured Products"
       }
     },
     "product_grid": {
@@ -25,11 +33,21 @@
         "collection": "all",
         "limit": 12
       }
+    },
+    "featured_collection_tDKKNV": {
+      "type": "featured-collection",
+      "name": "Featured collection",
+      "settings": {
+        "collection": "",
+        "limit": 4,
+        "heading": "Featured Products"
+      }
     }
   },
   "order": [
     "hero",
     "featured_collection",
-    "product_grid"
+    "product_grid",
+    "featured_collection_tDKKNV"
   ]
 }
