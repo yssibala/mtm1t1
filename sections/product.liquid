@@ -23,7 +23,7 @@
       {%- if product.featured_image -%}
         <img id="pg-main-{{ sid }}" src="{{ product.featured_image | image_url: width: 1200 }}" alt="{{ product.featured_image.alt | escape }}" width="1200">
       {%- else -%}
-        <div class="fx-placeholder" style="aspect-ratio:1/1;">{{ 'product' | placeholder_svg_tag }}</div>
+        <div class="fx-placeholder" style="aspect-ratio:1/1;">{{ 'product-1' | placeholder_svg_tag }}</div>
       {%- endif -%}
     </div>
     {%- if product.images.size > 1 -%}
