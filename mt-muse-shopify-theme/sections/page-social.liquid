@@ -1,46 +1,62 @@
-{%- liquid
-  assign s = section.settings
--%}
-<div class="container page-contact page-social" style="padding:var(--section-pad) 0;">
-  <div class="page-contact__head">
-    {%- if s.kicker != blank -%}<div class="kicker" style="margin-bottom:10px;">{{ s.kicker }}</div>{%- endif -%}
-    <h1>{{ page.title }}</h1>
-    {%- if page.content != blank -%}<div class="rte page-contact__intro">{{ page.content }}</div>{%- endif -%}
-  </div>
-
-  <div class="social-grid">
-    {%- for block in section.blocks -%}
-      <a class="social-card" href="{{ block.settings.url }}" target="_blank" rel="noopener" {{ block.shopify_attributes }}>
-        <span class="social-card__icon">
-          {%- case block.settings.network -%}
-            {%- when 'instagram' -%}<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
-            {%- when 'tiktok' -%}<svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M16 3c.3 2.2 1.7 3.7 3.8 4v2.7c-1.4.1-2.7-.3-3.8-1v5.6a5.6 5.6 0 1 1-5.6-5.6c.3 0 .6 0 .9.1v2.8a2.8 2.8 0 1 0 2 2.7V3H16Z"/></svg>
-            {%- when 'facebook' -%}<svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M14 9h3V6h-3c-1.9 0-3 1.4-3 3.2V11H9v3h2v6h3v-6h2.5l.5-3H14V9.5c0-.3.2-.5.6-.5Z"/></svg>
-            {%- when 'twitter' -%}<svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M18 3h3l-7 8 8 10h-6l-5-6-5 6H3l8-9L3 3h6l4 5 5-5Z"/></svg>
-            {%- when 'youtube' -%}<svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M22 12s0-3-.4-4.4a2.5 2.5 0 0 0-1.8-1.8C18.4 5.5 12 5.5 12 5.5s-6.4 0-7.8.3A2.5 2.5 0 0 0 2.4 7.6C2 9 2 12 2 12s0 3 .4 4.4a2.5 2.5 0 0 0 1.8 1.8c1.4.3 7.8.3 7.8.3s6.4 0 7.8-.3a2.5 2.5 0 0 0 1.8-1.8C22 15 22 12 22 12Zm-12 3V9l5 3-5 3Z"/></svg>
-            {%- else -%}<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M10 13a5 5 0 0 0 7 0l3-3a5 5 0 0 0-7-7l-1 1"/><path d="M14 11a5 5 0 0 0-7 0l-3 3a5 5 0 0 0 7 7l1-1"/></svg>
-          {%- endcase -%}
-        </span>
-        <span class="social-card__label">{{ block.settings.label }}</span>
-        {%- if block.settings.handle != blank -%}<span class="social-card__handle">{{ block.settings.handle }}</span>{%- endif -%}
-      </a>
-    {%- endfor -%}
+{%- liquid assign s = section.settings -%}
+<div class="section-wrap page-contact page-social" style="{%- render 'section-style', st: s -%}">
+  <div class="container">
+    <div class="page-contact__head" style="text-align:{{ s.text_align | default: 'left' }};">
+      {%- if s.kicker != blank -%}<div class="kicker" style="margin-bottom:10px;">{{ s.kicker }}</div>{%- endif -%}
+      <h1 style="font-family:{{ s.heading_font }};font-size:{{ s.heading_size }}px;">{{ page.title }}</h1>
+      {%- if page.content != blank -%}<div class="rte page-contact__intro">{{ page.content }}</div>{%- endif -%}
+    </div>
+    <div class="social-grid">
+      {%- for block in section.blocks -%}
+        <a class="social-card" href="{{ block.settings.url }}" target="_blank" rel="noopener" {{ block.shopify_attributes }}>
+          <span class="social-card__icon">
+            {%- case block.settings.network -%}
+              {%- when 'instagram' -%}<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+              {%- when 'tiktok' -%}<svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M16 3c.3 2.2 1.7 3.7 3.8 4v2.7c-1.4.1-2.7-.3-3.8-1v5.6a5.6 5.6 0 1 1-5.6-5.6c.3 0 .6 0 .9.1v2.8a2.8 2.8 0 1 0 2 2.7V3H16Z"/></svg>
+              {%- when 'facebook' -%}<svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M14 9h3V6h-3c-1.9 0-3 1.4-3 3.2V11H9v3h2v6h3v-6h2.5l.5-3H14V9.5c0-.3.2-.5.6-.5Z"/></svg>
+              {%- when 'twitter' -%}<svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M18 3h3l-7 8 8 10h-6l-5-6-5 6H3l8-9L3 3h6l4 5 5-5Z"/></svg>
+              {%- when 'youtube' -%}<svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M22 12s0-3-.4-4.4a2.5 2.5 0 0 0-1.8-1.8C18.4 5.5 12 5.5 12 5.5s-6.4 0-7.8.3A2.5 2.5 0 0 0 2.4 7.6C2 9 2 12 2 12s0 3 .4 4.4a2.5 2.5 0 0 0 1.8 1.8c1.4.3 7.8.3 7.8.3s6.4 0 7.8-.3a2.5 2.5 0 0 0 1.8-1.8C22 15 22 12 22 12Zm-12 3V9l5 3-5 3Z"/></svg>
+              {%- else -%}<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M10 13a5 5 0 0 0 7 0l3-3a5 5 0 0 0-7-7l-1 1"/><path d="M14 11a5 5 0 0 0-7 0l-3 3a5 5 0 0 0 7 7l1-1"/></svg>
+            {%- endcase -%}
+          </span>
+          <span class="social-card__label">{{ block.settings.label }}</span>
+          {%- if block.settings.handle != blank -%}<span class="social-card__handle">{{ block.settings.handle }}</span>{%- endif -%}
+        </a>
+      {%- endfor -%}
+    </div>
   </div>
 </div>
 {% schema %}
 {
   "name": "Social page",
   "settings": [
-    { "type": "text", "id": "kicker", "label": "Kicker", "default": "Follow along" }
+    { "type": "text", "id": "kicker", "label": "Kicker", "default": "Follow along" },
+    { "type": "select", "id": "text_align", "label": "Heading alignment", "options": [ { "value": "left", "label": "Left" }, { "value": "center", "label": "Center" } ], "default": "left" },
+    { "type": "header", "content": "Typography" },
+    { "type": "select", "id": "heading_font", "label": "Heading font", "options": [
+        { "value": "'neuehaasdisplaylight','Helvetica Neue',Arial,sans-serif", "label": "Neue Haas Display Light" },
+        { "value": "'neue-haas-grotesk-display','Helvetica Neue',Arial,sans-serif", "label": "Neue Haas Grotesk Display (Adobe)" },
+        { "value": "'ogg-text',Georgia,serif", "label": "Ogg Text (Adobe serif)" } ], "default": "'neuehaasdisplaylight','Helvetica Neue',Arial,sans-serif" },
+    { "type": "range", "id": "heading_size", "label": "Heading size", "min": 24, "max": 80, "step": 2, "unit": "px", "default": 44 },
+    { "type": "header", "content": "Background" },
+    { "type": "select", "id": "bg_type", "label": "Background type", "options": [ { "value": "none", "label": "None" }, { "value": "solid", "label": "Solid color" }, { "value": "gradient", "label": "Gradient" }, { "value": "image", "label": "Image" } ], "default": "none" },
+    { "type": "color", "id": "bg_color", "label": "Solid color", "default": "#FBF6EE" },
+    { "type": "color", "id": "bg_gradient_start", "label": "Gradient start", "default": "#FBF6EE" },
+    { "type": "color", "id": "bg_gradient_end", "label": "Gradient end", "default": "#E7DAC4" },
+    { "type": "range", "id": "bg_gradient_angle", "label": "Gradient angle", "min": 0, "max": 360, "step": 10, "unit": "deg", "default": 180 },
+    { "type": "image_picker", "id": "bg_image", "label": "Background image" },
+    { "type": "header", "content": "Spacing & height" },
+    { "type": "select", "id": "content_valign", "label": "Vertical content position", "info": "Applies when a minimum height is set.", "options": [ { "value": "top", "label": "Top" }, { "value": "center", "label": "Center" }, { "value": "bottom", "label": "Bottom" } ], "default": "top" },
+    { "type": "range", "id": "min_height", "label": "Minimum height", "min": 0, "max": 1000, "step": 20, "unit": "px", "default": 0 },
+    { "type": "range", "id": "padding_top", "label": "Top padding", "min": 0, "max": 200, "step": 4, "unit": "px", "default": 80 },
+    { "type": "range", "id": "padding_bottom", "label": "Bottom padding", "min": 0, "max": 200, "step": 4, "unit": "px", "default": 80 }
   ],
   "blocks": [
     { "type": "channel", "name": "Channel", "settings": [
-      { "type": "select", "id": "network", "label": "Network", "options": [
-        { "value": "instagram", "label": "Instagram" }, { "value": "tiktok", "label": "TikTok" }, { "value": "facebook", "label": "Facebook" }, { "value": "twitter", "label": "X / Twitter" }, { "value": "youtube", "label": "YouTube" }, { "value": "other", "label": "Other" } ], "default": "instagram" },
+      { "type": "select", "id": "network", "label": "Network", "options": [ { "value": "instagram", "label": "Instagram" }, { "value": "tiktok", "label": "TikTok" }, { "value": "facebook", "label": "Facebook" }, { "value": "twitter", "label": "X / Twitter" }, { "value": "youtube", "label": "YouTube" }, { "value": "other", "label": "Other" } ], "default": "instagram" },
       { "type": "text", "id": "label", "label": "Label", "default": "Instagram" },
       { "type": "text", "id": "handle", "label": "Handle / subtitle", "default": "@muse" },
-      { "type": "url", "id": "url", "label": "Link" }
-    ] }
+      { "type": "url", "id": "url", "label": "Link" } ] }
   ],
   "max_blocks": 8,
   "presets": [{ "name": "Social page", "blocks": [ { "type": "channel" }, { "type": "channel" } ] }]
