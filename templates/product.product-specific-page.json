@@ -11,10 +11,186 @@
   "sections": {
     "main": {
       "type": "product",
-      "settings": {}
+      "settings": {
+        "show_vendor": false
+      }
+    },
+    "flexible_FjLYip": {
+      "type": "flexible",
+      "blocks": {
+        "text_ikgLDx": {
+          "type": "text",
+          "settings": {
+            "preheader": "",
+            "accent_color": "#C9851A",
+            "heading": "",
+            "body": "",
+            "text_color": "#0A0B0C",
+            "align": "left",
+            "max_width": 640,
+            "heading_font": "site",
+            "heading_size": 36,
+            "body_font": "site",
+            "body_size": 16,
+            "space_preheader": 10,
+            "space_heading": 12,
+            "margin_top": 0,
+            "margin_bottom": 24
+          }
+        },
+        "button_WcP6DR": {
+          "type": "button",
+          "settings": {
+            "label": "Discover",
+            "url": "",
+            "icon": "none",
+            "style": "primary",
+            "label2": "",
+            "url2": "",
+            "icon2": "none",
+            "btn_size": "11",
+            "align": "left",
+            "margin_top": 0,
+            "margin_bottom": 24
+          }
+        }
+      },
+      "block_order": [
+        "text_ikgLDx",
+        "button_WcP6DR"
+      ],
+      "name": "Flexible section",
+      "settings": {
+        "bg_type": "none",
+        "bg_color": "#FBF6EE",
+        "bg_gradient_start": "#FBF6EE",
+        "bg_gradient_end": "#E7DAC4",
+        "bg_gradient_angle": 180,
+        "content_valign": "top",
+        "min_height": 0,
+        "padding_top": 80,
+        "padding_bottom": 80
+      }
+    },
+    "page_gallery_BbXqxg": {
+      "type": "page-gallery",
+      "blocks": {
+        "image_cmyRFW": {
+          "type": "image",
+          "settings": {
+            "caption": "",
+            "link": ""
+          }
+        },
+        "image_iAAz43": {
+          "type": "image",
+          "settings": {
+            "caption": "",
+            "link": ""
+          }
+        },
+        "image_xdp9pe": {
+          "type": "image",
+          "settings": {
+            "caption": "",
+            "link": ""
+          }
+        },
+        "image_aYmyfh": {
+          "type": "image",
+          "settings": {
+            "caption": "",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "image_cmyRFW",
+        "image_iAAz43",
+        "image_xdp9pe",
+        "image_aYmyfh"
+      ],
+      "name": "Gallery page",
+      "settings": {
+        "kicker": "The Gallery",
+        "text_align": "left",
+        "columns": 3,
+        "aspect_ratio": "1/1",
+        "heading_font": "site",
+        "heading_size": 44,
+        "bg_type": "none",
+        "bg_color": "#FBF6EE",
+        "bg_gradient_start": "#FBF6EE",
+        "bg_gradient_end": "#E7DAC4",
+        "bg_gradient_angle": 180,
+        "content_valign": "top",
+        "min_height": 0,
+        "padding_top": 80,
+        "padding_bottom": 80
+      }
+    },
+    "flexible_bLeLVc": {
+      "type": "flexible",
+      "blocks": {
+        "text_khj4Gg": {
+          "type": "text",
+          "settings": {
+            "preheader": "",
+            "accent_color": "#C9851A",
+            "heading": "",
+            "body": "",
+            "text_color": "#0A0B0C",
+            "align": "left",
+            "max_width": 640,
+            "heading_font": "site",
+            "heading_size": 36,
+            "body_font": "site",
+            "body_size": 16,
+            "space_preheader": 10,
+            "space_heading": 12,
+            "margin_top": 0,
+            "margin_bottom": 24
+          }
+        },
+        "button_DWWiYQ": {
+          "type": "button",
+          "settings": {
+            "label": "Discover",
+            "url": "",
+            "icon": "none",
+            "style": "primary",
+            "label2": "",
+            "url2": "",
+            "icon2": "none",
+            "btn_size": "11",
+            "align": "left",
+            "margin_top": 0,
+            "margin_bottom": 24
+          }
+        }
+      },
+      "block_order": [
+        "text_khj4Gg",
+        "button_DWWiYQ"
+      ],
+      "name": "Flexible section",
+      "settings": {
+        "bg_type": "none",
+        "bg_color": "#FBF6EE",
+        "bg_gradient_start": "#FBF6EE",
+        "bg_gradient_end": "#E7DAC4",
+        "bg_gradient_angle": 180,
+        "content_valign": "top",
+        "min_height": 0,
+        "padding_top": 80,
+        "padding_bottom": 80
+      }
     }
   },
   "order": [
-    "main"
+    "main",
+    "flexible_FjLYip",
+    "page_gallery_BbXqxg",
+    "flexible_bLeLVc"
   ]
 }
