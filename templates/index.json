@@ -98,26 +98,6 @@
         "padding_bottom": 80
       }
     },
-    "product_grid": {
-      "type": "product-grid",
-      "settings": {
-        "collection": "all",
-        "limit": 12,
-        "heading": "",
-        "text_align": "left",
-        "heading_font": "site",
-        "heading_size": 36,
-        "bg_type": "none",
-        "bg_color": "#fbf6ee",
-        "bg_gradient_start": "#fbf6ee",
-        "bg_gradient_end": "#e7dac4",
-        "bg_gradient_angle": 180,
-        "content_valign": "top",
-        "min_height": 0,
-        "padding_top": 64,
-        "padding_bottom": 64
-      }
-    },
     "gallery_row_Erm6kG": {
       "type": "gallery-row",
       "name": "Gallery row",
@@ -231,12 +211,12 @@
       "type": "featured-collection",
       "name": "Featured collection",
       "settings": {
-        "collection": "",
+        "collection": "flagship-flight",
         "limit": 4,
-        "heading": "Featured Products",
+        "heading": "The Flagship Collection",
         "text_align": "center",
-        "heading_font": "site",
-        "heading_size": 40,
+        "heading_font": "ogg",
+        "heading_size": 28,
         "bg_type": "none",
         "bg_color": "#fbf6ee",
         "bg_gradient_start": "#fbf6ee",
@@ -253,9 +233,8 @@
     "hero",
     "featured_collection",
     "body_section_jqnP6n",
-    "product_grid",
-    "gallery_row_Erm6kG",
     "flexible_xgVpKe",
+    "gallery_row_Erm6kG",
     "featured_collection_JnDFyn"
   ]
 }
