@@ -2,11 +2,14 @@
   Pill button. Params:
     label, url, style ('primary'|'ghost'), icon (arrow|cart|search|account|none)
     label2, url2, icon2  -> if any provided, renders a DUAL pill (two segments)
+    size  -> font-size in px (default 11); padding is em-based so the whole
+             button scales with it. Icon appears to the RIGHT of the label.
 {%- endcomment -%}
 {%- liquid
   assign bstyle = style | default: 'primary'
   assign icon = icon | default: 'none'
   assign icon2 = icon2 | default: 'none'
+  assign fs = size | default: 11
   assign is_dual = false
   if label2 != blank
     assign is_dual = true
@@ -16,16 +19,16 @@
   endif
 -%}
 {%- if label != blank or icon != 'none' -%}
-<span class="pill pill--{{ bstyle }}{% if is_dual %} pill--dual{% endif %}">
+<span class="pill pill--{{ bstyle }}{% if is_dual %} pill--dual{% endif %}" style="font-size:{{ fs }}px;">
   <a class="pill__seg" href="{{ url | default: '#' }}">
-    {%- if icon != 'none' and icon != blank -%}<span class="pill__icon">{%- render 'ui-icon', name: icon -%}</span>{%- endif -%}
     {%- if label != blank -%}<span>{{ label }}</span>{%- endif -%}
+    {%- if icon != 'none' and icon != blank -%}<span class="pill__icon">{%- render 'ui-icon', name: icon -%}</span>{%- endif -%}
   </a>
   {%- if is_dual -%}
     <span class="pill__divider"></span>
     <a class="pill__seg" href="{{ url2 | default: '#' }}">
-      {%- if icon2 != 'none' and icon2 != blank -%}<span class="pill__icon">{%- render 'ui-icon', name: icon2 -%}</span>{%- endif -%}
       {%- if label2 != blank -%}<span>{{ label2 }}</span>{%- endif -%}
+      {%- if icon2 != 'none' and icon2 != blank -%}<span class="pill__icon">{%- render 'ui-icon', name: icon2 -%}</span>{%- endif -%}
     </a>
   {%- endif -%}
 </span>

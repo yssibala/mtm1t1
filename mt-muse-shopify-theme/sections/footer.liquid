@@ -4,7 +4,7 @@
 <footer class="site-footer">
   <div class="container">
     <div class="footer-top">
-      <div class="footer-brand">
+      <div class="footer-brand footer-brand--{{ s.brand_align | default: 'left' }}">
         {%- if settings.logo != blank -%}
           <img src="{{ settings.logo | image_url: width: 240 }}" alt="{{ shop.name | escape }}" width="120">
         {%- else -%}
@@ -60,6 +60,12 @@
       </div>
     </div>
 
+    {%- if s.show_nav and s.nav_menu != blank -%}
+      <nav class="footer-nav" style="text-align:{{ s.nav_align | default: 'center' }};">
+        {%- for link in linklists[s.nav_menu].links -%}<a href="{{ link.url }}">{{ link.title }}</a>{%- endfor -%}
+      </nav>
+    {%- endif -%}
+
     <div class="footer-bottom">
       <p>&copy; {{ 'now' | date: '%Y' }} {{ shop.name }}. {{ s.copyright_extra }}</p>
       {%- if s.show_payment_icons -%}
@@ -76,6 +82,13 @@
   "name": "Footer",
   "settings": [
     { "type": "text", "id": "tagline", "label": "Tagline", "default": "Live the legends we'll tell." },
+    { "type": "select", "id": "brand_align", "label": "Brand alignment (logo + tagline)", "options": [
+        { "value": "left", "label": "Left" }, { "value": "center", "label": "Center" }, { "value": "right", "label": "Right" } ], "default": "left" },
+    { "type": "header", "content": "Navigation bar (optional)" },
+    { "type": "checkbox", "id": "show_nav", "label": "Show navigation bar", "default": false },
+    { "type": "link_list", "id": "nav_menu", "label": "Navigation menu", "info": "A horizontal row of links (Home, Terms, Privacy, Contact, FAQs...)." },
+    { "type": "select", "id": "nav_align", "label": "Navigation alignment", "options": [
+        { "value": "left", "label": "Left" }, { "value": "center", "label": "Center" }, { "value": "right", "label": "Right" } ], "default": "center" },
     { "type": "header", "content": "Newsletter" },
     { "type": "checkbox", "id": "show_newsletter", "label": "Show newsletter signup", "default": true },
     { "type": "text", "id": "newsletter_heading", "label": "Newsletter heading", "default": "Join the muse list" },

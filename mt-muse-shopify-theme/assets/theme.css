@@ -712,12 +712,13 @@ section, .section { padding: var(--section-pad) 0; }
 .pill__seg {
   display: inline-flex;
   align-items: center;
-  gap: 9px;
-  padding: 14px 26px;
+  gap: 0.8em;
+  padding: 1.27em 2.36em;
   color: inherit;
   text-decoration: none;
 }
 .pill__icon { display: inline-flex; align-items: center; }
+.pill__icon svg { width: 1.5em; height: 1.5em; }
 .pill__divider { width: 1px; align-self: stretch; background: rgba(10, 11, 12, .28); }
 .pill--primary { background: var(--muse-gold-1); color: var(--near-black); border: 1.5px solid var(--muse-gold-1); }
 .pill--primary:hover { background: var(--muse-gold-dark); border-color: var(--muse-gold-dark); }
@@ -1026,3 +1027,27 @@ body.has-announcement #site-nav { top: 40px; }
   .page-contact__grid { grid-template-columns: 1fr; gap: var(--space-lg); }
   .page-gallery__grid { grid-template-columns: repeat(2, 1fr); }
 }
+
+/* Hero image layouts */
+.hero__grid--split { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(24px, 4vw, 64px); align-items: center; max-width: var(--container-width); margin: 0 auto; padding: 0 clamp(20px, 5vw, 48px); }
+.hero__grid--split .hero__text.container { max-width: none; padding: 0; }
+.hero--img-left .hero__media { order: 0; } .hero--img-left .hero__text { order: 1; }
+.hero--img-right .hero__media { order: 1; } .hero--img-right .hero__text { order: 0; }
+.hero__media img { display: block; width: 100%; }
+.hero--img-below .hero__media { max-width: var(--container-width); margin-left: auto; margin-right: auto; }
+@media (max-width: 768px) { .hero__grid--split { grid-template-columns: 1fr; } }
+
+/* Footer brand alignment + nav bar */
+.footer-brand--center { text-align: center; }
+.footer-brand--center img { margin-left: auto; margin-right: auto; }
+.footer-brand--center .footer-tagline { margin-left: auto; margin-right: auto; }
+.footer-brand--center .footer-social { justify-content: center; }
+.footer-brand--right { text-align: right; }
+.footer-brand--right img { margin-left: auto; }
+.footer-brand--right .footer-tagline { margin-left: auto; }
+.footer-brand--right .footer-social { justify-content: flex-end; }
+.footer-nav { padding: 18px 0; border-top: 1px solid var(--sand-border); display: flex; flex-wrap: wrap; gap: clamp(16px, 3vw, 40px); }
+.footer-nav[style*="center"] { justify-content: center; }
+.footer-nav[style*="right"] { justify-content: flex-end; }
+.footer-nav a { color: var(--text-mid); font-size: var(--fs-small); letter-spacing: .12em; text-transform: uppercase; }
+.footer-nav a:hover { color: var(--muse-gold-dark); }
