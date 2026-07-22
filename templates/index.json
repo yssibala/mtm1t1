@@ -27,11 +27,6 @@
         "heading": "Featured Products"
       }
     },
-    "main_page_EiqDQj": {
-      "type": "main-page",
-      "name": "Page",
-      "settings": {}
-    },
     "page_gallery_YqfTNi": {
       "type": "page-gallery",
       "blocks": {
@@ -80,12 +75,25 @@
         "columns": 4,
         "aspect_ratio": "1/1"
       }
+    },
+    "page_contact_DzaHNV": {
+      "type": "page-contact",
+      "name": "Contact page",
+      "settings": {
+        "kicker": "Get in touch",
+        "show_details": true,
+        "detail_heading": "Reach us",
+        "email": "",
+        "phone": "",
+        "address": "",
+        "hours": ""
+      }
     }
   },
   "order": [
     "hero",
     "featured_collection",
-    "main_page_EiqDQj",
-    "page_gallery_YqfTNi"
+    "page_gallery_YqfTNi",
+    "page_contact_DzaHNV"
   ]
 }
