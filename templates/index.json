@@ -15,12 +15,77 @@
         "heading": "CELEBRATE CEASELESSLY",
         "subheading": "Explore our curated selection of products crafted with intention.",
         "button_label": "Shop Now",
-        "button_link": "",
+        "button_link": "shopify://collections/all",
         "show_coming_soon": false
+      }
+    },
+    "featured_collection": {
+      "type": "featured-collection",
+      "settings": {
+        "collection": "frontpage",
+        "limit": 4,
+        "heading": "Featured Products"
+      }
+    },
+    "main_page_EiqDQj": {
+      "type": "main-page",
+      "name": "Page",
+      "settings": {}
+    },
+    "page_gallery_YqfTNi": {
+      "type": "page-gallery",
+      "blocks": {
+        "image_dQMcgf": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/Event_Collage_04.png",
+            "caption": "",
+            "link": ""
+          }
+        },
+        "image_fqmFca": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/Event_Collage_03.png",
+            "caption": "",
+            "link": ""
+          }
+        },
+        "image_kjwfdk": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/Event_Collage_04.png",
+            "caption": "",
+            "link": ""
+          }
+        },
+        "image_qdn8dj": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/Event_Collage_02.png",
+            "caption": "",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "image_dQMcgf",
+        "image_fqmFca",
+        "image_kjwfdk",
+        "image_qdn8dj"
+      ],
+      "name": "Gallery page",
+      "settings": {
+        "kicker": "The Gallery",
+        "columns": 4,
+        "aspect_ratio": "1/1"
       }
     }
   },
   "order": [
-    "hero"
+    "hero",
+    "featured_collection",
+    "main_page_EiqDQj",
+    "page_gallery_YqfTNi"
   ]
 }
