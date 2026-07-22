@@ -12,7 +12,7 @@
   {%- comment -%} Decorative shapes first, positioned behind content {%- endcomment -%}
   {%- for block in section.blocks -%}
     {%- if block.type == 'shape' -%}
-      <div class="fx-shape" {{ block.shopify_attributes }} style="position:absolute;left:{{ block.settings.pos_x }}%;top:{{ block.settings.pos_y }}%;width:{{ block.settings.width }}%;height:{{ block.settings.height }}px;background:{{ block.settings.color }};border-radius:{{ block.settings.radius }}px;opacity:{{ block.settings.opacity }};z-index:0;pointer-events:none;"></div>
+      <div class="fx-shape" {{ block.shopify_attributes }} style="position:absolute;left:{{ block.settings.pos_x }}%;top:{{ block.settings.pos_y }}%;width:{{ block.settings.width }}%;height:{{ block.settings.height }}px;background:{{ block.settings.color }};border-radius:{{ block.settings.radius }}px;opacity:{{ block.settings.opacity | divided_by: 100.0 }};z-index:0;pointer-events:none;"></div>
     {%- endif -%}
   {%- endfor -%}
 
@@ -60,7 +60,7 @@
           <div class="fx-block fx-carousel" data-fx-carousel="{{ block.id }}" {{ block.shopify_attributes }} style="margin-top:{{ block.settings.margin_top }}px;margin-bottom:{{ block.settings.margin_bottom }}px;">
             <div class="spc-switcher" style="justify-content:{{ justify }};">
               <button type="button" class="spc-arrow" data-fx-prev aria-label="Previous"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="m15 18-6-6 6-6"/></svg></button>
-              <a class="spc-name" data-fx-name href="#" style="font-family:{{ block.settings.font }};font-size:{{ block.settings.size }}px;"></a>
+              <a class="spc-name" data-fx-name href="#" style="font-family:{%- render 'font-stack', key: block.settings.font -%};font-size:{{ block.settings.size }}px;"></a>
               <button type="button" class="spc-arrow" data-fx-next aria-label="Next"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="m9 18 6-6-6-6"/></svg></button>
             </div>
           </div>
@@ -209,7 +209,7 @@
         { "type": "range", "id": "width", "label": "Width", "min": 5, "max": 120, "step": 1, "unit": "%", "default": 40 },
         { "type": "range", "id": "height", "label": "Height", "min": 20, "max": 900, "step": 10, "unit": "px", "default": 200 },
         { "type": "range", "id": "radius", "label": "Corner radius", "min": 0, "max": 200, "step": 2, "unit": "px", "default": 0 },
-        { "type": "range", "id": "opacity", "label": "Opacity", "min": 0, "max": 1, "step": 0.05, "default": 1 }
+        { "type": "range", "id": "opacity", "label": "Opacity", "min": 0, "max": 100, "step": 5, "unit": "%", "default": 100 }
       ]
     }
   ],
