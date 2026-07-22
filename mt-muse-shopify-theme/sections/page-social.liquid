@@ -1,0 +1,48 @@
+{%- liquid
+  assign s = section.settings
+-%}
+<div class="container page-contact page-social" style="padding:var(--section-pad) 0;">
+  <div class="page-contact__head">
+    {%- if s.kicker != blank -%}<div class="kicker" style="margin-bottom:10px;">{{ s.kicker }}</div>{%- endif -%}
+    <h1>{{ page.title }}</h1>
+    {%- if page.content != blank -%}<div class="rte page-contact__intro">{{ page.content }}</div>{%- endif -%}
+  </div>
+
+  <div class="social-grid">
+    {%- for block in section.blocks -%}
+      <a class="social-card" href="{{ block.settings.url }}" target="_blank" rel="noopener" {{ block.shopify_attributes }}>
+        <span class="social-card__icon">
+          {%- case block.settings.network -%}
+            {%- when 'instagram' -%}<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+            {%- when 'tiktok' -%}<svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M16 3c.3 2.2 1.7 3.7 3.8 4v2.7c-1.4.1-2.7-.3-3.8-1v5.6a5.6 5.6 0 1 1-5.6-5.6c.3 0 .6 0 .9.1v2.8a2.8 2.8 0 1 0 2 2.7V3H16Z"/></svg>
+            {%- when 'facebook' -%}<svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M14 9h3V6h-3c-1.9 0-3 1.4-3 3.2V11H9v3h2v6h3v-6h2.5l.5-3H14V9.5c0-.3.2-.5.6-.5Z"/></svg>
+            {%- when 'twitter' -%}<svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M18 3h3l-7 8 8 10h-6l-5-6-5 6H3l8-9L3 3h6l4 5 5-5Z"/></svg>
+            {%- when 'youtube' -%}<svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M22 12s0-3-.4-4.4a2.5 2.5 0 0 0-1.8-1.8C18.4 5.5 12 5.5 12 5.5s-6.4 0-7.8.3A2.5 2.5 0 0 0 2.4 7.6C2 9 2 12 2 12s0 3 .4 4.4a2.5 2.5 0 0 0 1.8 1.8c1.4.3 7.8.3 7.8.3s6.4 0 7.8-.3a2.5 2.5 0 0 0 1.8-1.8C22 15 22 12 22 12Zm-12 3V9l5 3-5 3Z"/></svg>
+            {%- else -%}<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M10 13a5 5 0 0 0 7 0l3-3a5 5 0 0 0-7-7l-1 1"/><path d="M14 11a5 5 0 0 0-7 0l-3 3a5 5 0 0 0 7 7l1-1"/></svg>
+          {%- endcase -%}
+        </span>
+        <span class="social-card__label">{{ block.settings.label }}</span>
+        {%- if block.settings.handle != blank -%}<span class="social-card__handle">{{ block.settings.handle }}</span>{%- endif -%}
+      </a>
+    {%- endfor -%}
+  </div>
+</div>
+{% schema %}
+{
+  "name": "Social page",
+  "settings": [
+    { "type": "text", "id": "kicker", "label": "Kicker", "default": "Follow along" }
+  ],
+  "blocks": [
+    { "type": "channel", "name": "Channel", "settings": [
+      { "type": "select", "id": "network", "label": "Network", "options": [
+        { "value": "instagram", "label": "Instagram" }, { "value": "tiktok", "label": "TikTok" }, { "value": "facebook", "label": "Facebook" }, { "value": "twitter", "label": "X / Twitter" }, { "value": "youtube", "label": "YouTube" }, { "value": "other", "label": "Other" } ], "default": "instagram" },
+      { "type": "text", "id": "label", "label": "Label", "default": "Instagram" },
+      { "type": "text", "id": "handle", "label": "Handle / subtitle", "default": "@muse" },
+      { "type": "url", "id": "url", "label": "Link" }
+    ] }
+  ],
+  "max_blocks": 8,
+  "presets": [{ "name": "Social page", "blocks": [ { "type": "channel" }, { "type": "channel" } ] }]
+}
+{% endschema %}

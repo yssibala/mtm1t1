@@ -1,0 +1,17 @@
+{%- liquid
+  assign s = section.settings
+-%}
+<div class="container page-legal" style="padding:var(--section-pad) 0;max-width:820px;">
+  <h1>{{ page.title }}</h1>
+  {%- if s.updated != blank -%}<div class="kicker" style="margin:12px 0 24px;">Last updated {{ s.updated }}</div>{%- endif -%}
+  <div class="rte page-legal__body">{{ page.content }}</div>
+</div>
+{% schema %}
+{
+  "name": "Terms / legal page",
+  "settings": [
+    { "type": "text", "id": "updated", "label": "Last updated", "default": "" }
+  ],
+  "presets": [{ "name": "Terms / legal page" }]
+}
+{% endschema %}
