@@ -9,10 +9,10 @@
   <div class="container body-section__inner{% if img_right %} body-section--img-right{% endif %}">
     <div class="body-section__text" style="text-align:{{ s.text_align | default: 'left' }};">
       {%- if s.preheader != blank -%}
-        <div class="kicker" style="color:{{ s.accent_color | default: '#C9851A' }};margin-bottom:12px;">{{ s.preheader }}</div>
+        <div class="kicker" style="color:{{ s.accent_color | default: '#C9851A' }};margin-bottom:{{ s.space_preheader | default: 12 }}px;">{{ s.preheader }}</div>
       {%- endif -%}
       {%- if s.heading != blank -%}
-        <h2 style="font-family:{%- render 'font-stack', key: s.heading_font -%};font-size:{{ s.heading_size }}px;margin-bottom:16px;">{{ s.heading }}</h2>
+        <h2 style="font-family:{%- render 'font-stack', key: s.heading_font -%};font-size:{{ s.heading_size }}px;margin-bottom:{{ s.space_heading | default: 16 }}px;">{{ s.heading }}</h2>
       {%- endif -%}
       {%- if s.body != blank -%}
         <div class="rte body-section__body" style="font-family:{%- render 'font-stack', key: s.body_font -%};font-size:{{ s.body_size }}px;color:var(--text-mid);">{{ s.body }}</div>
@@ -66,6 +66,9 @@
         { "value": "text", "label": "Neue Haas Grotesk Text (Adobe)" },
         { "value": "ogg", "label": "Ogg Text (Adobe serif)" } ], "default": "site" },
     { "type": "range", "id": "body_size", "label": "Body text size", "min": 13, "max": 24, "step": 1, "unit": "px", "default": 16 },
+    { "type": "header", "content": "Text spacing" },
+    { "type": "range", "id": "space_preheader", "label": "Space after preheader", "min": 0, "max": 80, "step": 2, "unit": "px", "default": 12 },
+    { "type": "range", "id": "space_heading", "label": "Space after heading", "min": 0, "max": 80, "step": 2, "unit": "px", "default": 16 },
     { "type": "header", "content": "Background" },
     { "type": "select", "id": "bg_type", "label": "Background type", "options": [
         { "value": "none", "label": "None" }, { "value": "solid", "label": "Solid color" }, { "value": "gradient", "label": "Gradient" }, { "value": "image", "label": "Image" } ], "default": "none" },
