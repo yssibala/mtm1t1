@@ -7,10 +7,10 @@
       <div style="margin-bottom:16px;">{%- render 'coming-soon-badge' -%}</div>
     {%- endif -%}
     {%- if s.heading != blank -%}
-      <h1 style="font-family:{{ s.heading_font }};font-size:{{ s.heading_size }}px;">{{ s.heading }}</h1>
+      <h1 style="font-family:{%- render 'font-stack', key: s.heading_font -%};font-size:{{ s.heading_size }}px;">{{ s.heading }}</h1>
     {%- endif -%}
     {%- if s.subheading != blank -%}
-      <p style="max-width:620px;{% if s.text_align == 'center' %}margin-left:auto;margin-right:auto;{% endif %}font-family:{{ s.body_font }};font-size:{{ s.body_size }}px;">{{ s.subheading }}</p>
+      <p style="max-width:620px;{% if s.text_align == 'center' %}margin-left:auto;margin-right:auto;{% endif %}font-family:{%- render 'font-stack', key: s.body_font -%};font-size:{{ s.body_size }}px;">{{ s.subheading }}</p>
     {%- endif -%}
     {%- if s.button_label != blank or s.button2_label != blank -%}
       <div style="margin-top:24px;display:flex;gap:16px;flex-wrap:wrap;{% if s.text_align == 'center' %}justify-content:center;{% elsif s.text_align == 'right' %}justify-content:flex-end;{% endif %}">
@@ -42,14 +42,14 @@
         { "value": "none", "label": "None" }, { "value": "arrow", "label": "Arrow" }, { "value": "cart", "label": "Cart" }, { "value": "search", "label": "Search" }, { "value": "account", "label": "Account" } ], "default": "none" },
     { "type": "header", "content": "Typography" },
     { "type": "select", "id": "heading_font", "label": "Heading font", "options": [
-        { "value": "'neuehaasdisplaylight','Helvetica Neue',Arial,sans-serif", "label": "Neue Haas Display Light" },
-        { "value": "'neue-haas-grotesk-display','Helvetica Neue',Arial,sans-serif", "label": "Neue Haas Grotesk Display (Adobe)" },
-        { "value": "'ogg-text',Georgia,serif", "label": "Ogg Text (Adobe serif)" } ], "default": "'neuehaasdisplaylight','Helvetica Neue',Arial,sans-serif" },
+        { "value": "site", "label": "Neue Haas Display Light" },
+        { "value": "display", "label": "Neue Haas Grotesk Display (Adobe)" },
+        { "value": "ogg", "label": "Ogg Text (Adobe serif)" } ], "default": "site" },
     { "type": "range", "id": "heading_size", "label": "Heading size", "min": 28, "max": 96, "step": 2, "unit": "px", "default": 56 },
     { "type": "select", "id": "body_font", "label": "Body font", "options": [
-        { "value": "'neuehaasdisplaylight','Helvetica Neue',Arial,sans-serif", "label": "Neue Haas Display Light" },
-        { "value": "'neue-haas-grotesk-text','Helvetica Neue',Arial,sans-serif", "label": "Neue Haas Grotesk Text (Adobe)" },
-        { "value": "'ogg-text',Georgia,serif", "label": "Ogg Text (Adobe serif)" } ], "default": "'neuehaasdisplaylight','Helvetica Neue',Arial,sans-serif" },
+        { "value": "site", "label": "Neue Haas Display Light" },
+        { "value": "text", "label": "Neue Haas Grotesk Text (Adobe)" },
+        { "value": "ogg", "label": "Ogg Text (Adobe serif)" } ], "default": "site" },
     { "type": "range", "id": "body_size", "label": "Body text size", "min": 14, "max": 28, "step": 1, "unit": "px", "default": 20 },
     { "type": "header", "content": "Background" },
     { "type": "select", "id": "bg_type", "label": "Background type", "options": [
