@@ -137,8 +137,16 @@ p { margin: 0 0 var(--space-md); color: var(--text-dark); }
 .container {
   max-width: var(--container-width);
   margin: 0 auto;
-  padding: 0 var(--space-lg);
+  /* Guaranteed side gutters on every page so content never touches / is cut
+     off at the viewport edge. Scales 20px (mobile) -> 48px (desktop). */
+  padding: 0 clamp(20px, 5vw, 48px);
 }
+
+/* Global safety: keep media from forcing horizontal overflow that would
+   clip content at the screen edge. */
+.main-content img,
+.main-content video,
+.main-content iframe { max-width: 100%; }
 
 .kicker {
   font-family: var(--font-text);
@@ -681,7 +689,6 @@ section, .section { padding: var(--section-pad) 0; }
    ===================================================================== */
 @media (max-width: 768px) {
   .product-page { grid-template-columns: 1fr; gap: var(--space-lg); }
-  .container { padding: 0 var(--space-md); }
   .header-inner { padding: var(--space-md); }
   .main-nav { gap: var(--space-md); }
 }
