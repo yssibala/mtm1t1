@@ -43,7 +43,7 @@
 
         {%- when 'button' -%}
           <div class="fx-block" {{ block.shopify_attributes }} style="display:flex;justify-content:{{ justify }};margin-top:{{ block.settings.margin_top }}px;margin-bottom:{{ block.settings.margin_bottom }}px;">
-            {%- render 'pill-button', label: block.settings.label, url: block.settings.url, style: block.settings.style, icon: block.settings.icon, label2: block.settings.label2, url2: block.settings.url2, icon2: block.settings.icon2 -%}
+            {%- render 'pill-button', label: block.settings.label, url: block.settings.url, style: block.settings.style, icon: block.settings.icon, size: block.settings.btn_size, label2: block.settings.label2, url2: block.settings.url2, icon2: block.settings.icon2 -%}
           </div>
 
         {%- when 'carousel' -%}
@@ -164,6 +164,8 @@
         { "type": "url", "id": "url2", "label": "Second link" },
         { "type": "select", "id": "icon2", "label": "Second icon", "options": [
             { "value": "none", "label": "None" }, { "value": "arrow", "label": "Arrow" }, { "value": "cart", "label": "Cart" }, { "value": "search", "label": "Search" }, { "value": "account", "label": "Account" } ], "default": "none" },
+        { "type": "select", "id": "btn_size", "label": "Button size", "options": [
+            { "value": "11", "label": "Standard" }, { "value": "10", "label": "10% smaller" }, { "value": "9", "label": "20% smaller" }, { "value": "8", "label": "30% smaller" }, { "value": "7", "label": "40% smaller" }, { "value": "6", "label": "50% smaller" } ], "default": "11" },
         { "type": "select", "id": "align", "label": "Alignment", "options": [
             { "value": "left", "label": "Left" }, { "value": "center", "label": "Center" }, { "value": "right", "label": "Right" } ], "default": "left" },
         { "type": "range", "id": "margin_top", "label": "Space above", "min": 0, "max": 120, "step": 4, "unit": "px", "default": 0 },

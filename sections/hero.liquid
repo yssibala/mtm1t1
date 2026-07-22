@@ -1,20 +1,44 @@
 {%- liquid
   assign s = section.settings
 -%}
-<div class="section-wrap hero" style="{%- render 'section-style', st: s -%}text-align:{{ s.text_align | default: 'center' }};">
-  <div class="container">
-    {%- if s.show_coming_soon -%}
-      <div style="margin-bottom:16px;">{%- render 'coming-soon-badge' -%}</div>
+{%- liquid
+  assign img_pos = s.image_position | default: 'below'
+  assign has_image = false
+  if s.image != blank
+    assign has_image = true
+  endif
+-%}
+<div class="section-wrap hero{% if has_image %} hero--img-{{ img_pos }}{% endif %}" style="{%- render 'section-style', st: s -%}text-align:{{ s.text_align | default: 'center' }};{% if has_image and img_pos == 'background' %}position:relative;{% endif %}">
+  {%- if has_image and img_pos == 'background' -%}
+    <div class="hero__bg" style="position:absolute;inset:0;z-index:0;overflow:hidden;">
+      <img src="{{ s.image | image_url: width: 2200 }}" alt="{{ s.image.alt | escape }}" style="width:100%;height:100%;object-fit:cover;object-position:{{ s.image_focal | default: 'center' }};opacity:{{ s.image_opacity | default: 100 | divided_by: 100.0 }};">
+    </div>
+  {%- endif -%}
+  <div class="hero__grid{% if has_image and img_pos != 'background' %} hero__grid--split{% endif %}" style="position:relative;z-index:1;">
+    {%- if has_image and img_pos != 'below' and img_pos != 'background' -%}
+      <div class="hero__media">
+        <img src="{{ s.image | image_url: width: 1400 }}" alt="{{ s.image.alt | escape }}" style="width:100%;height:{% if s.image_height > 0 %}{{ s.image_height }}px{% else %}auto{% endif %};object-fit:cover;object-position:{{ s.image_focal | default: 'center' }};border-radius:{{ s.image_radius | default: 0 }}px;">
+      </div>
     {%- endif -%}
-    {%- if s.heading != blank -%}
-      <h1 style="font-family:{%- render 'font-stack', key: s.heading_font -%};font-size:{{ s.heading_size }}px;">{{ s.heading }}</h1>
-    {%- endif -%}
-    {%- if s.subheading != blank -%}
-      <p style="max-width:620px;{% if s.text_align == 'center' %}margin-left:auto;margin-right:auto;{% endif %}font-family:{%- render 'font-stack', key: s.body_font -%};font-size:{{ s.body_size }}px;">{{ s.subheading }}</p>
-    {%- endif -%}
-    {%- if s.button_label != blank or s.button2_label != blank -%}
-      <div style="margin-top:24px;display:flex;gap:16px;flex-wrap:wrap;{% if s.text_align == 'center' %}justify-content:center;{% elsif s.text_align == 'right' %}justify-content:flex-end;{% endif %}">
-        {%- render 'pill-button', label: s.button_label, url: s.button_link, style: s.button_style, icon: s.button_icon, label2: s.button2_label, url2: s.button2_link, icon2: s.button2_icon -%}
+    <div class="hero__text container">
+      {%- if s.show_coming_soon -%}
+        <div style="margin-bottom:16px;">{%- render 'coming-soon-badge' -%}</div>
+      {%- endif -%}
+      {%- if s.heading != blank -%}
+        <h1 style="font-family:{%- render 'font-stack', key: s.heading_font -%};font-size:{{ s.heading_size }}px;">{{ s.heading }}</h1>
+      {%- endif -%}
+      {%- if s.subheading != blank -%}
+        <p style="max-width:620px;{% if s.text_align == 'center' %}margin-left:auto;margin-right:auto;{% endif %}font-family:{%- render 'font-stack', key: s.body_font -%};font-size:{{ s.body_size }}px;">{{ s.subheading }}</p>
+      {%- endif -%}
+      {%- if s.button_label != blank or s.button2_label != blank -%}
+        <div style="margin-top:24px;display:flex;gap:16px;flex-wrap:wrap;{% if s.text_align == 'center' %}justify-content:center;{% elsif s.text_align == 'right' %}justify-content:flex-end;{% endif %}">
+          {%- render 'pill-button', label: s.button_label, url: s.button_link, style: s.button_style, icon: s.button_icon, size: s.button_size, label2: s.button2_label, url2: s.button2_link, icon2: s.button2_icon -%}
+        </div>
+      {%- endif -%}
+    </div>
+    {%- if has_image and img_pos == 'below' -%}
+      <div class="hero__media" style="margin-top:32px;">
+        <img src="{{ s.image | image_url: width: 1600 }}" alt="{{ s.image.alt | escape }}" style="width:100%;height:{% if s.image_height > 0 %}{{ s.image_height }}px{% else %}auto{% endif %};object-fit:cover;object-position:{{ s.image_focal | default: 'center' }};border-radius:{{ s.image_radius | default: 0 }}px;">
       </div>
     {%- endif -%}
   </div>
@@ -40,6 +64,17 @@
     { "type": "url", "id": "button2_link", "label": "Second button link" },
     { "type": "select", "id": "button2_icon", "label": "Second button icon", "options": [
         { "value": "none", "label": "None" }, { "value": "arrow", "label": "Arrow" }, { "value": "cart", "label": "Cart" }, { "value": "search", "label": "Search" }, { "value": "account", "label": "Account" } ], "default": "none" },
+    { "type": "select", "id": "button_size", "label": "Button size", "options": [
+        { "value": "11", "label": "Standard" }, { "value": "10", "label": "10% smaller" }, { "value": "9", "label": "20% smaller" }, { "value": "8", "label": "30% smaller" }, { "value": "7", "label": "40% smaller" }, { "value": "6", "label": "50% smaller" } ], "default": "11" },
+    { "type": "header", "content": "Image" },
+    { "type": "image_picker", "id": "image", "label": "Image" },
+    { "type": "select", "id": "image_position", "label": "Image position", "options": [
+        { "value": "below", "label": "Below text" }, { "value": "left", "label": "Left of text" }, { "value": "right", "label": "Right of text" }, { "value": "background", "label": "Background (full-bleed)" } ], "default": "below" },
+    { "type": "select", "id": "image_focal", "label": "Focal point (crop)", "options": [
+        { "value": "center", "label": "Center" }, { "value": "top", "label": "Top" }, { "value": "bottom", "label": "Bottom" }, { "value": "left", "label": "Left" }, { "value": "right", "label": "Right" } ], "default": "center" },
+    { "type": "range", "id": "image_height", "label": "Image height (0 = auto)", "min": 0, "max": 900, "step": 20, "unit": "px", "default": 0 },
+    { "type": "range", "id": "image_radius", "label": "Image corner radius", "min": 0, "max": 40, "step": 2, "unit": "px", "default": 0 },
+    { "type": "range", "id": "image_opacity", "label": "Background image opacity", "min": 10, "max": 100, "step": 5, "unit": "%", "default": 100 },
     { "type": "header", "content": "Typography" },
     { "type": "select", "id": "heading_font", "label": "Heading font", "options": [
         { "value": "site", "label": "Neue Haas Display Light" },

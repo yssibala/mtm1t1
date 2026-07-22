@@ -19,7 +19,7 @@
       {%- endif -%}
       {%- if s.button_label != blank -%}
         <div style="margin-top:24px;">
-          {%- render 'pill-button', label: s.button_label, url: s.button_link, style: s.button_style, icon: s.button_icon -%}
+          {%- render 'pill-button', label: s.button_label, url: s.button_link, style: s.button_style, icon: s.button_icon, size: s.button_size -%}
         </div>
       {%- endif -%}
     </div>
@@ -51,6 +51,8 @@
     { "type": "url", "id": "button_link", "label": "Button link" },
     { "type": "select", "id": "button_style", "label": "Button style", "options": [
         { "value": "primary", "label": "Gold (filled)" }, { "value": "ghost", "label": "Outline" } ], "default": "primary" },
+    { "type": "select", "id": "button_size", "label": "Button size", "options": [
+        { "value": "11", "label": "Standard" }, { "value": "10", "label": "10% smaller" }, { "value": "9", "label": "20% smaller" }, { "value": "8", "label": "30% smaller" }, { "value": "7", "label": "40% smaller" }, { "value": "6", "label": "50% smaller" } ], "default": "11" },
     { "type": "select", "id": "button_icon", "label": "Button icon", "options": [
         { "value": "none", "label": "None" }, { "value": "arrow", "label": "Arrow" }, { "value": "cart", "label": "Cart" }, { "value": "search", "label": "Search" }, { "value": "account", "label": "Account" } ], "default": "none" },
     { "type": "header", "content": "Typography" },
