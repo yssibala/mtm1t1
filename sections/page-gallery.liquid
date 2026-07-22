@@ -1,0 +1,45 @@
+{%- liquid
+  assign s = section.settings
+-%}
+<div class="container page-gallery" style="padding:var(--section-pad) 0;">
+  <div class="page-gallery__head">
+    {%- if s.kicker != blank -%}<div class="kicker" style="margin-bottom:10px;">{{ s.kicker }}</div>{%- endif -%}
+    <h1>{{ page.title }}</h1>
+    {%- if page.content != blank -%}<div class="rte page-gallery__intro">{{ page.content }}</div>{%- endif -%}
+  </div>
+
+  <div class="page-gallery__grid" style="--cols:{{ s.columns }};--ratio:{{ s.aspect_ratio }};">
+    {%- for block in section.blocks -%}
+      <figure class="gallery-cell" {{ block.shopify_attributes }}>
+        {%- if block.settings.link != blank -%}<a href="{{ block.settings.link }}">{%- endif -%}
+          {%- if block.settings.image != blank -%}
+            <img src="{{ block.settings.image | image_url: width: 900 }}" alt="{{ block.settings.caption | escape }}" loading="lazy">
+          {%- else -%}
+            <div class="gallery-cell__placeholder">{{ 'image' | placeholder_svg_tag }}</div>
+          {%- endif -%}
+        {%- if block.settings.link != blank -%}</a>{%- endif -%}
+        {%- if block.settings.caption != blank -%}<figcaption>{{ block.settings.caption }}</figcaption>{%- endif -%}
+      </figure>
+    {%- endfor -%}
+  </div>
+</div>
+{% schema %}
+{
+  "name": "Gallery page",
+  "settings": [
+    { "type": "text", "id": "kicker", "label": "Kicker", "default": "The Gallery" },
+    { "type": "range", "id": "columns", "label": "Columns", "min": 2, "max": 5, "step": 1, "default": 3 },
+    { "type": "select", "id": "aspect_ratio", "label": "Image aspect ratio", "options": [
+      { "value": "1/1", "label": "Square (1:1)" }, { "value": "4/5", "label": "Portrait (4:5)" }, { "value": "3/4", "label": "Portrait (3:4)" }, { "value": "16/9", "label": "Landscape (16:9)" } ], "default": "1/1" }
+  ],
+  "blocks": [
+    { "type": "image", "name": "Image", "settings": [
+      { "type": "image_picker", "id": "image", "label": "Image" },
+      { "type": "text", "id": "caption", "label": "Caption (optional)" },
+      { "type": "url", "id": "link", "label": "Link (optional)" }
+    ] }
+  ],
+  "max_blocks": 40,
+  "presets": [{ "name": "Gallery page", "blocks": [ { "type": "image" }, { "type": "image" }, { "type": "image" } ] }]
+}
+{% endschema %}

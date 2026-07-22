@@ -1,0 +1,54 @@
+{%- liquid
+  assign s = section.settings
+-%}
+<div class="container page-contact" style="padding:var(--section-pad) 0;">
+  <div class="page-contact__head">
+    {%- if s.kicker != blank -%}<div class="kicker" style="margin-bottom:10px;">{{ s.kicker }}</div>{%- endif -%}
+    <h1>{{ page.title }}</h1>
+    {%- if page.content != blank -%}<div class="rte page-contact__intro">{{ page.content }}</div>{%- endif -%}
+  </div>
+
+  <div class="page-contact__grid">
+    <div class="page-contact__form">
+      {%- form 'contact' -%}
+        {{ form.errors | default_errors }}
+        {%- if form.posted_successfully? -%}
+          <p class="page-contact__ok">Thank you — we’ll be in touch soon.</p>
+        {%- endif -%}
+        <div class="field-row">
+          <input type="text" name="contact[name]" placeholder="Name" value="{% if form.name %}{{ form.name }}{% elsif customer %}{{ customer.name }}{% endif %}" aria-label="Name" required>
+          <input type="email" name="contact[email]" placeholder="Email" value="{% if form.email %}{{ form.email }}{% elsif customer %}{{ customer.email }}{% endif %}" aria-label="Email" required>
+        </div>
+        <input type="tel" name="contact[phone]" placeholder="Phone (optional)" aria-label="Phone">
+        <textarea name="contact[body]" rows="5" placeholder="How can we help?" aria-label="Message" required>{% if form.body %}{{ form.body }}{% endif %}</textarea>
+        <button type="submit" class="muse-pill muse-cta">Send message</button>
+      {%- endform -%}
+    </div>
+
+    {%- if s.show_details -%}
+      <aside class="page-contact__details">
+        {%- if s.detail_heading != blank -%}<h3 class="page-contact__dhead">{{ s.detail_heading }}</h3>{%- endif -%}
+        {%- if s.email != blank -%}<p><span class="kicker">Email</span><br><a href="mailto:{{ s.email }}">{{ s.email }}</a></p>{%- endif -%}
+        {%- if s.phone != blank -%}<p><span class="kicker">Phone</span><br><a href="tel:{{ s.phone }}">{{ s.phone }}</a></p>{%- endif -%}
+        {%- if s.address != blank -%}<p><span class="kicker">Address</span><br>{{ s.address }}</p>{%- endif -%}
+        {%- if s.hours != blank -%}<p><span class="kicker">Hours</span><br>{{ s.hours }}</p>{%- endif -%}
+      </aside>
+    {%- endif -%}
+  </div>
+</div>
+{% schema %}
+{
+  "name": "Contact page",
+  "settings": [
+    { "type": "text", "id": "kicker", "label": "Kicker", "default": "Get in touch" },
+    { "type": "header", "content": "Details column" },
+    { "type": "checkbox", "id": "show_details", "label": "Show details column", "default": true },
+    { "type": "text", "id": "detail_heading", "label": "Details heading", "default": "Reach us" },
+    { "type": "text", "id": "email", "label": "Email" },
+    { "type": "text", "id": "phone", "label": "Phone" },
+    { "type": "textarea", "id": "address", "label": "Address" },
+    { "type": "textarea", "id": "hours", "label": "Hours" }
+  ],
+  "presets": [{ "name": "Contact page" }]
+}
+{% endschema %}
