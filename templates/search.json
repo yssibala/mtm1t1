@@ -1,1 +1,57 @@
-{ "sections": { "main": { "type": "main-search" } }, "order": ["main"] }
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-search",
+      "settings": {}
+    },
+    "hero_WLwhwe": {
+      "type": "hero",
+      "name": "Hero",
+      "settings": {
+        "heading": "Welcome to MT-MUSE",
+        "subheading": "Explore our curated selection of products crafted with intention.",
+        "text_align": "center",
+        "show_coming_soon": false,
+        "button_label": "Shop Now",
+        "button_link": "",
+        "button_icon": "none",
+        "button_style": "primary",
+        "button2_label": "",
+        "button2_link": "",
+        "button2_icon": "none",
+        "button_size": "11",
+        "image_position": "below",
+        "image_focal": "center",
+        "image_height": 0,
+        "image_radius": 0,
+        "image_opacity": 100,
+        "heading_font": "site",
+        "heading_size": 56,
+        "body_font": "site",
+        "body_size": 20,
+        "bg_type": "none",
+        "bg_color": "#FBF6EE",
+        "bg_gradient_start": "#FBF6EE",
+        "bg_gradient_end": "#E7DAC4",
+        "bg_gradient_angle": 180,
+        "content_valign": "top",
+        "min_height": 0,
+        "padding_top": 96,
+        "padding_bottom": 96
+      }
+    }
+  },
+  "order": [
+    "hero_WLwhwe",
+    "main"
+  ]
+}
