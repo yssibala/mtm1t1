@@ -1,62 +1,14 @@
-/*
- * ------------------------------------------------------------
- * IMPORTANT: The contents of this file are auto-generated.
- *
- * This file may be updated by the Shopify admin language editor
- * or related systems. Please exercise caution as any changes
- * made to this file may be overwritten.
- * ------------------------------------------------------------
- */
 {
   "general": {
-    "meta": {
-      "tags": "Tagged \"{{ tags }}\"",
-      "page": "Page {{ page }}"
-    },
-    "search": {
-      "title": "Search",
-      "placeholder": "Search",
-      "submit": "Search",
-      "no_results": "No results found."
-    },
-    "404": {
-      "title": "Lost Amongst The Clouds",
-      "subtext": "The page you were looking for does not exist or is under maintenance."
-    }
+    "meta": { "tags": "Tagged \"{{ tags }}\"", "page": "Page {{ page }}" },
+    "search": { "title": "Search", "placeholder": "Search", "submit": "Search", "no_results": "No results found." },
+    "404": { "title": "Page not found", "subtext": "The page you were looking for does not exist." }
   },
-  "cart": {
-    "title": "Your cart",
-    "empty": "Your cart is empty.",
-    "subtotal": "Subtotal",
-    "checkout": "Checkout",
-    "update": "Update"
-  },
+  "cart": { "title": "Your cart", "empty": "Your cart is empty.", "subtotal": "Subtotal", "checkout": "Checkout", "update": "Update" },
   "customer": {
-    "login": {
-      "title": "Log In",
-      "email": "Email",
-      "password": "Password",
-      "submit": "Sign In"
-    },
-    "register": {
-      "title": "Create Account",
-      "submit": "Create"
-    },
-    "account": {
-      "title": "My Account",
-      "logout": "Log Out"
-    }
+    "login": { "title": "Log in", "email": "Email", "password": "Password", "submit": "Sign in" },
+    "register": { "title": "Create account", "submit": "Create" },
+    "account": { "title": "My account", "logout": "Log out" }
   },
-  "products": {
-    "product": {
-      "add_to_cart": "Add to Cart",
-      "sold_out": "Sold Out",
-      "price": "Price"
-    }
-  },
-  "customer_accounts": {
-    "callback": {
-      "try_again": "Try Again"
-    }
-  }
+  "products": { "product": { "add_to_cart": "Add to cart", "sold_out": "Sold out", "price": "Price" } }
 }

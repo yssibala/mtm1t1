@@ -1,62 +1,40 @@
-/*
- * ------------------------------------------------------------
- * IMPORTANT: The contents of this file are auto-generated.
- *
- * This file may be updated by the Shopify admin theme editor
- * or related systems. Please exercise caution as any changes
- * made to this file may be overwritten.
- * ------------------------------------------------------------
- */
 {
   "current": {
+    "sections": {
+      "header": {
+        "type": "header",
+        "settings": {}
+      },
+      "footer": {
+        "type": "footer",
+        "settings": {}
+      },
+      "hero": {
+        "type": "hero",
+        "settings": {}
+      },
+      "featured_collection": {
+        "type": "featured-collection",
+        "settings": {
+          "collection": "frontpage",
+          "limit": 4,
+          "heading": "Featured Products"
+        }
+      },
+      "product_grid": {
+        "type": "product-grid",
+        "settings": {
+          "collection": "all",
+          "limit": 12
+        }
+      }
+    },
     "order": [
       "header",
       "hero",
       "featured_collection",
       "product_grid",
       "footer"
-    ],
-    "sections": {
-      "header": {
-        "type": "header",
-        "settings": {
-          "menu_left": "",
-          "menu_right": "",
-          "show_account": true,
-          "show_search": true,
-          "scroll_threshold": 40
-        }
-      },
-      "footer": {
-        "type": "footer",
-        "settings": {
-          "tagline": "Immortalize The Moment",
-          "show_newsletter": true,
-          "newsletter_heading": "Join the Email List",
-          "show_social": true,
-          "instagram": "",
-          "tiktok": "",
-          "facebook": "",
-          "twitter": "",
-          "youtube": "",
-          "copyright_extra": "",
-          "show_payment_icons": true
-        }
-      },
-      "hero": {
-        "type": "hero",
-        "settings": {}
-      },
-      "announcement-bar": {
-        "type": "announcement-bar",
-        "settings": {
-          "bg_color": "#0a0b0c",
-          "text_color": "#fbf6ee",
-          "rotate_seconds": 4,
-          "dismissible": true
-        }
-      }
-    },
-    "content_for_index": []
+    ]
   }
 }

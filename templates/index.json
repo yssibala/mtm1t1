@@ -1,99 +1,14 @@
-/*
- * ------------------------------------------------------------
- * IMPORTANT: The contents of this file are auto-generated.
- *
- * This file may be updated by the Shopify admin theme editor
- * or related systems. Please exercise caution as any changes
- * made to this file may be overwritten.
- * ------------------------------------------------------------
- */
 {
   "sections": {
-    "hero": {
-      "type": "hero",
-      "settings": {
-        "heading": "CELEBRATE CEASELESSLY",
-        "subheading": "Explore our curated selection of products crafted with intention.",
-        "button_label": "Shop Now",
-        "button_link": "shopify://collections/all",
-        "show_coming_soon": false
-      }
-    },
+    "hero": { "type": "hero" },
     "featured_collection": {
       "type": "featured-collection",
-      "settings": {
-        "collection": "frontpage",
-        "limit": 4,
-        "heading": "Featured Products"
-      }
+      "settings": { "collection": "frontpage" }
     },
-    "page_gallery_YqfTNi": {
-      "type": "page-gallery",
-      "blocks": {
-        "image_dQMcgf": {
-          "type": "image",
-          "settings": {
-            "image": "shopify://shop_images/Event_Collage_04.png",
-            "caption": "",
-            "link": ""
-          }
-        },
-        "image_fqmFca": {
-          "type": "image",
-          "settings": {
-            "image": "shopify://shop_images/Event_Collage_03.png",
-            "caption": "",
-            "link": ""
-          }
-        },
-        "image_kjwfdk": {
-          "type": "image",
-          "settings": {
-            "image": "shopify://shop_images/Event_Collage_04.png",
-            "caption": "",
-            "link": ""
-          }
-        },
-        "image_qdn8dj": {
-          "type": "image",
-          "settings": {
-            "image": "shopify://shop_images/Event_Collage_02.png",
-            "caption": "",
-            "link": ""
-          }
-        }
-      },
-      "block_order": [
-        "image_dQMcgf",
-        "image_fqmFca",
-        "image_kjwfdk",
-        "image_qdn8dj"
-      ],
-      "name": "Gallery page",
-      "settings": {
-        "kicker": "The Gallery",
-        "columns": 4,
-        "aspect_ratio": "1/1"
-      }
-    },
-    "page_contact_DzaHNV": {
-      "type": "page-contact",
-      "name": "Contact page",
-      "settings": {
-        "kicker": "Get in touch",
-        "show_details": true,
-        "detail_heading": "Reach us",
-        "email": "",
-        "phone": "",
-        "address": "",
-        "hours": ""
-      }
+    "product_grid": {
+      "type": "product-grid",
+      "settings": { "collection": "all", "limit": 12 }
     }
   },
-  "order": [
-    "hero",
-    "featured_collection",
-    "page_gallery_YqfTNi",
-    "page_contact_DzaHNV"
-  ]
+  "order": ["hero", "featured_collection", "product_grid"]
 }

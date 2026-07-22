@@ -1,39 +1,35 @@
-{%- liquid
-  assign s = section.settings
--%}
-<div class="container page-contact" style="padding:var(--section-pad) 0;">
-  <div class="page-contact__head">
-    {%- if s.kicker != blank -%}<div class="kicker" style="margin-bottom:10px;">{{ s.kicker }}</div>{%- endif -%}
-    <h1>{{ page.title }}</h1>
-    {%- if page.content != blank -%}<div class="rte page-contact__intro">{{ page.content }}</div>{%- endif -%}
-  </div>
-
-  <div class="page-contact__grid">
-    <div class="page-contact__form">
-      {%- form 'contact' -%}
-        {{ form.errors | default_errors }}
-        {%- if form.posted_successfully? -%}
-          <p class="page-contact__ok">Thank you — we’ll be in touch soon.</p>
-        {%- endif -%}
-        <div class="field-row">
-          <input type="text" name="contact[name]" placeholder="Name" value="{% if form.name %}{{ form.name }}{% elsif customer %}{{ customer.name }}{% endif %}" aria-label="Name" required>
-          <input type="email" name="contact[email]" placeholder="Email" value="{% if form.email %}{{ form.email }}{% elsif customer %}{{ customer.email }}{% endif %}" aria-label="Email" required>
-        </div>
-        <input type="tel" name="contact[phone]" placeholder="Phone (optional)" aria-label="Phone">
-        <textarea name="contact[body]" rows="5" placeholder="How can we help?" aria-label="Message" required>{% if form.body %}{{ form.body }}{% endif %}</textarea>
-        <button type="submit" class="muse-pill muse-cta">Send message</button>
-      {%- endform -%}
+{%- liquid assign s = section.settings -%}
+<div class="section-wrap page-contact" style="{%- render 'section-style', st: s -%}">
+  <div class="container">
+    <div class="page-contact__head" style="text-align:{{ s.text_align | default: 'left' }};">
+      {%- if s.kicker != blank -%}<div class="kicker" style="margin-bottom:10px;">{{ s.kicker }}</div>{%- endif -%}
+      <h1 style="font-family:{{ s.heading_font }};font-size:{{ s.heading_size }}px;">{{ page.title }}</h1>
+      {%- if page.content != blank -%}<div class="rte page-contact__intro">{{ page.content }}</div>{%- endif -%}
     </div>
-
-    {%- if s.show_details -%}
-      <aside class="page-contact__details">
-        {%- if s.detail_heading != blank -%}<h3 class="page-contact__dhead">{{ s.detail_heading }}</h3>{%- endif -%}
-        {%- if s.email != blank -%}<p><span class="kicker">Email</span><br><a href="mailto:{{ s.email }}">{{ s.email }}</a></p>{%- endif -%}
-        {%- if s.phone != blank -%}<p><span class="kicker">Phone</span><br><a href="tel:{{ s.phone }}">{{ s.phone }}</a></p>{%- endif -%}
-        {%- if s.address != blank -%}<p><span class="kicker">Address</span><br>{{ s.address }}</p>{%- endif -%}
-        {%- if s.hours != blank -%}<p><span class="kicker">Hours</span><br>{{ s.hours }}</p>{%- endif -%}
-      </aside>
-    {%- endif -%}
+    <div class="page-contact__grid">
+      <div class="page-contact__form">
+        {%- form 'contact' -%}
+          {{ form.errors | default_errors }}
+          {%- if form.posted_successfully? -%}<p class="page-contact__ok">Thank you — we’ll be in touch soon.</p>{%- endif -%}
+          <div class="field-row">
+            <input type="text" name="contact[name]" placeholder="Name" value="{% if form.name %}{{ form.name }}{% elsif customer %}{{ customer.name }}{% endif %}" aria-label="Name" required>
+            <input type="email" name="contact[email]" placeholder="Email" value="{% if form.email %}{{ form.email }}{% elsif customer %}{{ customer.email }}{% endif %}" aria-label="Email" required>
+          </div>
+          <input type="tel" name="contact[phone]" placeholder="Phone (optional)" aria-label="Phone">
+          <textarea name="contact[body]" rows="5" placeholder="How can we help?" aria-label="Message" required>{% if form.body %}{{ form.body }}{% endif %}</textarea>
+          <button type="submit" class="muse-pill muse-cta">Send message</button>
+        {%- endform -%}
+      </div>
+      {%- if s.show_details -%}
+        <aside class="page-contact__details">
+          {%- if s.detail_heading != blank -%}<h3 class="page-contact__dhead">{{ s.detail_heading }}</h3>{%- endif -%}
+          {%- if s.email != blank -%}<p><span class="kicker">Email</span><br><a href="mailto:{{ s.email }}">{{ s.email }}</a></p>{%- endif -%}
+          {%- if s.phone != blank -%}<p><span class="kicker">Phone</span><br><a href="tel:{{ s.phone }}">{{ s.phone }}</a></p>{%- endif -%}
+          {%- if s.address != blank -%}<p><span class="kicker">Address</span><br>{{ s.address }}</p>{%- endif -%}
+          {%- if s.hours != blank -%}<p><span class="kicker">Hours</span><br>{{ s.hours }}</p>{%- endif -%}
+        </aside>
+      {%- endif -%}
+    </div>
   </div>
 </div>
 {% schema %}
@@ -41,13 +37,32 @@
   "name": "Contact page",
   "settings": [
     { "type": "text", "id": "kicker", "label": "Kicker", "default": "Get in touch" },
+    { "type": "select", "id": "text_align", "label": "Heading alignment", "options": [ { "value": "left", "label": "Left" }, { "value": "center", "label": "Center" } ], "default": "left" },
     { "type": "header", "content": "Details column" },
     { "type": "checkbox", "id": "show_details", "label": "Show details column", "default": true },
     { "type": "text", "id": "detail_heading", "label": "Details heading", "default": "Reach us" },
     { "type": "text", "id": "email", "label": "Email" },
     { "type": "text", "id": "phone", "label": "Phone" },
     { "type": "textarea", "id": "address", "label": "Address" },
-    { "type": "textarea", "id": "hours", "label": "Hours" }
+    { "type": "textarea", "id": "hours", "label": "Hours" },
+    { "type": "header", "content": "Typography" },
+    { "type": "select", "id": "heading_font", "label": "Heading font", "options": [
+        { "value": "'neuehaasdisplaylight','Helvetica Neue',Arial,sans-serif", "label": "Neue Haas Display Light" },
+        { "value": "'neue-haas-grotesk-display','Helvetica Neue',Arial,sans-serif", "label": "Neue Haas Grotesk Display (Adobe)" },
+        { "value": "'ogg-text',Georgia,serif", "label": "Ogg Text (Adobe serif)" } ], "default": "'neuehaasdisplaylight','Helvetica Neue',Arial,sans-serif" },
+    { "type": "range", "id": "heading_size", "label": "Heading size", "min": 24, "max": 80, "step": 2, "unit": "px", "default": 44 },
+    { "type": "header", "content": "Background" },
+    { "type": "select", "id": "bg_type", "label": "Background type", "options": [ { "value": "none", "label": "None" }, { "value": "solid", "label": "Solid color" }, { "value": "gradient", "label": "Gradient" }, { "value": "image", "label": "Image" } ], "default": "none" },
+    { "type": "color", "id": "bg_color", "label": "Solid color", "default": "#FBF6EE" },
+    { "type": "color", "id": "bg_gradient_start", "label": "Gradient start", "default": "#FBF6EE" },
+    { "type": "color", "id": "bg_gradient_end", "label": "Gradient end", "default": "#E7DAC4" },
+    { "type": "range", "id": "bg_gradient_angle", "label": "Gradient angle", "min": 0, "max": 360, "step": 10, "unit": "deg", "default": 180 },
+    { "type": "image_picker", "id": "bg_image", "label": "Background image" },
+    { "type": "header", "content": "Spacing & height" },
+    { "type": "select", "id": "content_valign", "label": "Vertical content position", "info": "Applies when a minimum height is set.", "options": [ { "value": "top", "label": "Top" }, { "value": "center", "label": "Center" }, { "value": "bottom", "label": "Bottom" } ], "default": "top" },
+    { "type": "range", "id": "min_height", "label": "Minimum height", "min": 0, "max": 1000, "step": 20, "unit": "px", "default": 0 },
+    { "type": "range", "id": "padding_top", "label": "Top padding", "min": 0, "max": 200, "step": 4, "unit": "px", "default": 80 },
+    { "type": "range", "id": "padding_bottom", "label": "Bottom padding", "min": 0, "max": 200, "step": 4, "unit": "px", "default": 80 }
   ],
   "presets": [{ "name": "Contact page" }]
 }

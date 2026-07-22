@@ -1,11 +1,22 @@
 {%- comment -%}
   Inline style for a section wrapper. Param: st (pass section.settings).
   Reads: bg_type, bg_color, bg_gradient_start/_end/_angle, bg_image,
-         min_height, padding_top, padding_bottom.
+         min_height, padding_top, padding_bottom, content_valign.
+  The wrapper is a flex column so content can be vertically positioned
+  (top / center / bottom) when a minimum height is set. align-items:stretch
+  keeps normal full-width block flow, so existing layouts are unaffected.
 {%- endcomment -%}
 {%- liquid
   assign bg = st.bg_type | default: 'none'
+  assign valign = st.content_valign | default: 'top'
+  assign jc = 'flex-start'
+  if valign == 'center'
+    assign jc = 'center'
+  elsif valign == 'bottom'
+    assign jc = 'flex-end'
+  endif
 -%}
+display:flex;flex-direction:column;justify-content:{{ jc }};
 {%- if bg == 'solid' -%}background:{{ st.bg_color }};{%- endif -%}
 {%- if bg == 'gradient' -%}background:linear-gradient({{ st.bg_gradient_angle | default: 180 }}deg, {{ st.bg_gradient_start }}, {{ st.bg_gradient_end }});{%- endif -%}
 {%- if bg == 'image' and st.bg_image != blank -%}background-image:url({{ st.bg_image | image_url: width: 2200 }});background-size:cover;background-position:center;{%- endif -%}
