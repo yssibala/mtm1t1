@@ -15,29 +15,12 @@
         "heading": "CELEBRATE CEASELESSLY",
         "subheading": "Explore our curated selection of products crafted with intention.",
         "button_label": "Shop Now",
-        "button_link": "shopify://collections/all",
+        "button_link": "",
         "show_coming_soon": false
-      }
-    },
-    "featured_collection": {
-      "type": "featured-collection",
-      "settings": {
-        "collection": "frontpage",
-        "limit": 4,
-        "heading": "Featured Products"
-      }
-    },
-    "product_grid": {
-      "type": "product-grid",
-      "settings": {
-        "collection": "all",
-        "limit": 12
       }
     }
   },
   "order": [
-    "hero",
-    "featured_collection",
-    "product_grid"
+    "hero"
   ]
 }
