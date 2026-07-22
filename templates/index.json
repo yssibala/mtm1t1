@@ -15,7 +15,7 @@
         "heading": "CELEBRATE CEASELESSLY",
         "subheading": "Explore our curated selection of products crafted with intention.",
         "button_label": "Shop Now",
-        "button_link": "",
+        "button_link": "shopify://collections/all",
         "show_coming_soon": false
       }
     },
