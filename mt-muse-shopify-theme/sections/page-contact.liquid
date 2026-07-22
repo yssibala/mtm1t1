@@ -3,7 +3,7 @@
   <div class="container">
     <div class="page-contact__head" style="text-align:{{ s.text_align | default: 'left' }};">
       {%- if s.kicker != blank -%}<div class="kicker" style="margin-bottom:10px;">{{ s.kicker }}</div>{%- endif -%}
-      <h1 style="font-family:{{ s.heading_font }};font-size:{{ s.heading_size }}px;">{{ page.title }}</h1>
+      <h1 style="font-family:{%- render 'font-stack', key: s.heading_font -%};font-size:{{ s.heading_size }}px;">{{ page.title }}</h1>
       {%- if page.content != blank -%}<div class="rte page-contact__intro">{{ page.content }}</div>{%- endif -%}
     </div>
     <div class="page-contact__grid">
@@ -47,9 +47,9 @@
     { "type": "textarea", "id": "hours", "label": "Hours" },
     { "type": "header", "content": "Typography" },
     { "type": "select", "id": "heading_font", "label": "Heading font", "options": [
-        { "value": "'neuehaasdisplaylight','Helvetica Neue',Arial,sans-serif", "label": "Neue Haas Display Light" },
-        { "value": "'neue-haas-grotesk-display','Helvetica Neue',Arial,sans-serif", "label": "Neue Haas Grotesk Display (Adobe)" },
-        { "value": "'ogg-text',Georgia,serif", "label": "Ogg Text (Adobe serif)" } ], "default": "'neuehaasdisplaylight','Helvetica Neue',Arial,sans-serif" },
+        { "value": "site", "label": "Neue Haas Display Light" },
+        { "value": "display", "label": "Neue Haas Grotesk Display (Adobe)" },
+        { "value": "ogg", "label": "Ogg Text (Adobe serif)" } ], "default": "site" },
     { "type": "range", "id": "heading_size", "label": "Heading size", "min": 24, "max": 80, "step": 2, "unit": "px", "default": 44 },
     { "type": "header", "content": "Background" },
     { "type": "select", "id": "bg_type", "label": "Background type", "options": [ { "value": "none", "label": "None" }, { "value": "solid", "label": "Solid color" }, { "value": "gradient", "label": "Gradient" }, { "value": "image", "label": "Image" } ], "default": "none" },

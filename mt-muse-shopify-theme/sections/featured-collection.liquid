@@ -4,7 +4,7 @@
 <div class="section-wrap featured-collection" style="{%- render 'section-style', st: s -%}">
   <div class="container">
     {% if s.heading != blank %}
-      <h2 style="font-family:{{ s.heading_font }};font-size:{{ s.heading_size }}px;text-align:{{ s.text_align | default: 'center' }};margin-bottom:var(--space-xl);">
+      <h2 style="font-family:{%- render 'font-stack', key: s.heading_font -%};font-size:{{ s.heading_size }}px;text-align:{{ s.text_align | default: 'center' }};margin-bottom:var(--space-xl);">
         {{ s.heading }}
       </h2>
     {% endif %}
@@ -33,9 +33,9 @@
         { "value": "left", "label": "Left" }, { "value": "center", "label": "Center" } ], "default": "center" },
     { "type": "header", "content": "Typography" },
     { "type": "select", "id": "heading_font", "label": "Heading font", "options": [
-        { "value": "'neuehaasdisplaylight','Helvetica Neue',Arial,sans-serif", "label": "Neue Haas Display Light" },
-        { "value": "'neue-haas-grotesk-display','Helvetica Neue',Arial,sans-serif", "label": "Neue Haas Grotesk Display (Adobe)" },
-        { "value": "'ogg-text',Georgia,serif", "label": "Ogg Text (Adobe serif)" } ], "default": "'neuehaasdisplaylight','Helvetica Neue',Arial,sans-serif" },
+        { "value": "site", "label": "Neue Haas Display Light" },
+        { "value": "display", "label": "Neue Haas Grotesk Display (Adobe)" },
+        { "value": "ogg", "label": "Ogg Text (Adobe serif)" } ], "default": "site" },
     { "type": "range", "id": "heading_size", "label": "Heading size", "min": 20, "max": 80, "step": 2, "unit": "px", "default": 40 },
     { "type": "header", "content": "Background" },
     { "type": "select", "id": "bg_type", "label": "Background type", "options": [

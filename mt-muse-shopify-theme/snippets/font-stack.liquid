@@ -1,0 +1,7 @@
+{%- comment -%}Maps a font key to a CSS font-family stack. Param: key (site|display|text|ogg).{%- endcomment -%}
+{%- case key -%}
+  {%- when 'display' -%}'neue-haas-grotesk-display', 'Helvetica Neue', Arial, sans-serif
+  {%- when 'text' -%}'neue-haas-grotesk-text', 'Helvetica Neue', Arial, sans-serif
+  {%- when 'ogg' -%}'ogg-text', Georgia, 'Times New Roman', serif
+  {%- else -%}'neuehaasdisplaylight', 'Helvetica Neue', Arial, sans-serif
+{%- endcase -%}

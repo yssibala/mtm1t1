@@ -45,21 +45,21 @@
         "id": "heading_font",
         "label": "Heading font",
         "options": [
-          { "value": "'neuehaasdisplaylight', 'Helvetica Neue', Arial, sans-serif", "label": "Neue Haas Display Light — site default" },
-          { "value": "'neue-haas-grotesk-display', 'Helvetica Neue', Arial, sans-serif", "label": "Neue Haas Grotesk Display — Adobe" },
-          { "value": "'ogg-text', Georgia, 'Times New Roman', serif", "label": "Ogg Text — Adobe (serif)" }
+          { "value": "site", "label": "Neue Haas Display Light — site default" },
+          { "value": "display", "label": "Neue Haas Grotesk Display — Adobe" },
+          { "value": "ogg", "label": "Ogg Text — Adobe (serif)" }
         ],
-        "default": "'neuehaasdisplaylight', 'Helvetica Neue', Arial, sans-serif"
+        "default": "site"
       },
       {
         "type": "select",
         "id": "body_font",
         "label": "Body font",
         "options": [
-          { "value": "'neuehaasdisplaylight', 'Helvetica Neue', Arial, sans-serif", "label": "Neue Haas Display Light — site default" },
-          { "value": "'neue-haas-grotesk-text', 'Helvetica Neue', Arial, sans-serif", "label": "Neue Haas Grotesk Text — Adobe" }
+          { "value": "site", "label": "Neue Haas Display Light — site default" },
+          { "value": "text", "label": "Neue Haas Grotesk Text — Adobe" }
         ],
-        "default": "'neuehaasdisplaylight', 'Helvetica Neue', Arial, sans-serif"
+        "default": "site"
       }
     ]
   },
