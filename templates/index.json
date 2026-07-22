@@ -14,40 +14,214 @@
       "settings": {
         "heading": "MUSE",
         "subheading": "For Those Who Inspire",
+        "text_align": "center",
+        "show_coming_soon": false,
         "button_label": "Shop Now",
         "button_link": "",
-        "show_coming_soon": false
+        "button_icon": "none",
+        "button_style": "ghost",
+        "button2_label": "",
+        "button2_link": "",
+        "button2_icon": "none",
+        "heading_font": "ogg",
+        "heading_size": 60,
+        "body_font": "site",
+        "body_size": 20,
+        "bg_type": "image",
+        "bg_color": "#fbf6ee",
+        "bg_gradient_start": "#fbf6ee",
+        "bg_gradient_end": "#e7dac4",
+        "bg_gradient_angle": 180,
+        "bg_image": "shopify://shop_images/00_Cloud_BG_C.png",
+        "content_valign": "center",
+        "min_height": 0,
+        "padding_top": 152,
+        "padding_bottom": 100
       }
     },
     "featured_collection": {
       "type": "featured-collection",
       "settings": {
         "collection": "frontpage",
-        "limit": 4,
-        "heading": "Featured Products"
+        "limit": 0,
+        "heading": "Featured Products",
+        "text_align": "center",
+        "heading_font": "site",
+        "heading_size": 40,
+        "bg_type": "none",
+        "bg_color": "#fbf6ee",
+        "bg_gradient_start": "#fbf6ee",
+        "bg_gradient_end": "#e7dac4",
+        "bg_gradient_angle": 180,
+        "content_valign": "top",
+        "min_height": 0,
+        "padding_top": 80,
+        "padding_bottom": 80
+      }
+    },
+    "body_section_jqnP6n": {
+      "type": "body-section",
+      "name": "Body section",
+      "settings": {
+        "preheader": "OUR STORY",
+        "heading": "Celebrating Those Who Inspire",
+        "body": "<p>Share the story behind your brand here.</p>",
+        "image_position": "right",
+        "text_align": "left",
+        "image": "shopify://shop_images/10_MUSE_1C.png",
+        "accent_color": "#C9851A",
+        "button_label": "",
+        "button_link": "",
+        "button_style": "primary",
+        "button_icon": "none",
+        "heading_font": "site",
+        "heading_size": 40,
+        "body_font": "site",
+        "body_size": 16,
+        "bg_type": "none",
+        "bg_color": "#FBF6EE",
+        "bg_gradient_start": "#FBF6EE",
+        "bg_gradient_end": "#E7DAC4",
+        "bg_gradient_angle": 180,
+        "content_valign": "top",
+        "min_height": 0,
+        "padding_top": 80,
+        "padding_bottom": 80
       }
     },
     "product_grid": {
       "type": "product-grid",
       "settings": {
         "collection": "all",
-        "limit": 12
+        "limit": 12,
+        "heading": "",
+        "text_align": "left",
+        "heading_font": "site",
+        "heading_size": 36,
+        "bg_type": "none",
+        "bg_color": "#fbf6ee",
+        "bg_gradient_start": "#fbf6ee",
+        "bg_gradient_end": "#e7dac4",
+        "bg_gradient_angle": 180,
+        "content_valign": "top",
+        "min_height": 0,
+        "padding_top": 64,
+        "padding_bottom": 64
       }
     },
-    "featured_collection_tDKKNV": {
+    "gallery_row_Erm6kG": {
+      "type": "gallery-row",
+      "name": "Gallery row",
+      "settings": {
+        "preheader": "THE GALLERY",
+        "heading": "Moments Worth Toasting",
+        "accent_color": "#C9851A",
+        "text_align": "left",
+        "aspect_ratio": "1/1",
+        "image_1": "shopify://shop_images/Event_Collage_03.png",
+        "link_1": "",
+        "image_2": "shopify://shop_images/Event_Collage_01.png",
+        "link_2": "",
+        "image_3": "shopify://shop_images/Event_Collage_02.png",
+        "link_3": "",
+        "image_4": "shopify://shop_images/Event_Collage_04.png",
+        "link_4": "",
+        "button_label": "View all",
+        "button_link": "",
+        "button_style": "ghost",
+        "heading_font": "site",
+        "heading_size": 40,
+        "bg_type": "none",
+        "bg_color": "#FBF6EE",
+        "bg_gradient_start": "#FBF6EE",
+        "bg_gradient_end": "#E7DAC4",
+        "bg_gradient_angle": 180,
+        "content_valign": "top",
+        "min_height": 0,
+        "padding_top": 80,
+        "padding_bottom": 80
+      }
+    },
+    "flexible_xgVpKe": {
+      "type": "flexible",
+      "blocks": {
+        "image_MHCUDk": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/MUSE_-_Name_LOGO_BLK_2.png",
+            "link": "",
+            "align": "center",
+            "width": 20,
+            "radius": 4,
+            "margin_top": 8,
+            "margin_bottom": 8
+          }
+        },
+        "text_Q8KHEx": {
+          "type": "text",
+          "settings": {
+            "preheader": "For Those Who Inspire",
+            "accent_color": "#C9851A",
+            "heading": "",
+            "body": "",
+            "text_color": "#0A0B0C",
+            "align": "center",
+            "max_width": 260,
+            "heading_font": "display",
+            "heading_size": 28,
+            "body_font": "site",
+            "body_size": 14,
+            "margin_top": 0,
+            "margin_bottom": 24
+          }
+        }
+      },
+      "block_order": [
+        "image_MHCUDk",
+        "text_Q8KHEx"
+      ],
+      "name": "Flexible section",
+      "settings": {
+        "bg_type": "none",
+        "bg_color": "#FBF6EE",
+        "bg_gradient_start": "#FBF6EE",
+        "bg_gradient_end": "#E7DAC4",
+        "bg_gradient_angle": 180,
+        "content_valign": "top",
+        "min_height": 0,
+        "padding_top": 80,
+        "padding_bottom": 80
+      }
+    },
+    "featured_collection_JnDFyn": {
       "type": "featured-collection",
       "name": "Featured collection",
       "settings": {
         "collection": "",
         "limit": 4,
-        "heading": "Featured Products"
+        "heading": "Featured Products",
+        "text_align": "center",
+        "heading_font": "site",
+        "heading_size": 40,
+        "bg_type": "none",
+        "bg_color": "#FBF6EE",
+        "bg_gradient_start": "#FBF6EE",
+        "bg_gradient_end": "#E7DAC4",
+        "bg_gradient_angle": 180,
+        "content_valign": "top",
+        "min_height": 0,
+        "padding_top": 80,
+        "padding_bottom": 80
       }
     }
   },
   "order": [
     "hero",
     "featured_collection",
+    "body_section_jqnP6n",
     "product_grid",
-    "featured_collection_tDKKNV"
+    "gallery_row_Erm6kG",
+    "flexible_xgVpKe",
+    "featured_collection_JnDFyn"
   ]
 }
