@@ -45,9 +45,9 @@
         "id": "heading_font",
         "label": "Heading font",
         "options": [
-          { "value": "site", "label": "Neue Haas Display Light — site default" },
-          { "value": "display", "label": "Neue Haas Grotesk Display — Adobe" },
-          { "value": "ogg", "label": "Ogg Text — Adobe (serif)" }
+          { "value": "site", "label": "Neue Haas Display Light - site default" },
+          { "value": "display", "label": "Neue Haas Grotesk Display - Adobe" },
+          { "value": "ogg", "label": "Ogg Text - Adobe (serif)" }
         ],
         "default": "site"
       },
@@ -56,8 +56,8 @@
         "id": "body_font",
         "label": "Body font",
         "options": [
-          { "value": "site", "label": "Neue Haas Display Light — site default" },
-          { "value": "text", "label": "Neue Haas Grotesk Text — Adobe" }
+          { "value": "site", "label": "Neue Haas Display Light - site default" },
+          { "value": "text", "label": "Neue Haas Grotesk Text - Adobe" }
         ],
         "default": "site"
       }
@@ -68,7 +68,7 @@
     "settings": [
       {
         "type": "paragraph",
-        "content": "Tag any product with the tag below to mark it 'coming soon' — a badge appears on its cards and product page, and (optionally) its Add-to-cart button is disabled. Individual sections also have their own 'Show coming soon badge' toggle."
+        "content": "Tag any product with the tag below to mark it 'coming soon' - a badge appears on its cards and product page, and (optionally) its Add-to-cart button is disabled. Individual sections also have their own 'Show coming soon badge' toggle."
       },
       {
         "type": "text",
