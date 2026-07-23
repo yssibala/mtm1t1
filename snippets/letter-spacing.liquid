@@ -1,0 +1,13 @@
+{%- comment -%}
+  Emits a letter-spacing declaration as a multiple of a base em value.
+  Params:
+    mult — multiplier (number). 1 (or blank) emits NOTHING so the theme's own
+           default letter-spacing is preserved. 2 = double, up to 10.
+    base — the em value that "1x" represents, as a string like '0.18em'.
+           Pass the role's natural tracking: preheader/label 0.18em (--ls-label),
+           headings ~0.05em, body ~0.03em.
+
+  Rendered inside an element's inline style, so it wins over the stylesheet only
+  when the merchant actually moves the slider off 1x.
+{%- endcomment -%}
+{%- if mult and mult != 1 and mult != blank -%}letter-spacing:calc({{ base | default: '0.05em' }} * {{ mult }});{%- endif -%}
