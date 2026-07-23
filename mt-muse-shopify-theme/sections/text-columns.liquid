@@ -15,13 +15,13 @@
     {%- if s.preheader != blank or s.heading != blank or s.subheading != blank -%}
       <div class="text-columns__head" style="text-align:{{ s.head_align | default: 'center' }};margin-bottom:{{ s.space_head | default: 48 }}px;">
         {%- if s.preheader != blank -%}
-          <div class="kicker" style="color:{{ s.accent_color | default: '#C9851A' }};margin-bottom:{{ s.space_preheader | default: 10 }}px;">{{ s.preheader }}</div>
+          <div class="kicker" style="font-family:{%- render 'font-stack', key: s.preheader_font -%};color:{{ s.accent_color | default: '#C9851A' }};margin-bottom:{{ s.space_preheader | default: 10 }}px;{%- render 'letter-spacing', mult: s.ls_preheader, base: '0.18em' -%}">{{ s.preheader }}</div>
         {%- endif -%}
         {%- if s.heading != blank -%}
-          <h2 style="font-family:{%- render 'font-stack', key: s.heading_font -%};{%- render 'font-variant', key: s.heading_weight, font: s.heading_font -%}font-size:{{ s.heading_size }}px;margin:0 0 {{ s.space_heading | default: 12 }}px;">{{ s.heading }}</h2>
+          <h2 style="font-family:{%- render 'font-stack', key: s.heading_font -%};{%- render 'font-variant', key: s.heading_weight, font: s.heading_font -%}{%- render 'letter-spacing', mult: s.ls_heading, base: '0.05em' -%}font-size:{{ s.heading_size }}px;margin:0 0 {{ s.space_heading | default: 12 }}px;">{{ s.heading }}</h2>
         {%- endif -%}
         {%- if s.subheading != blank -%}
-          <div class="rte" style="max-width:620px;{% if s.head_align == 'center' %}margin-left:auto;margin-right:auto;{% elsif s.head_align == 'right' %}margin-left:auto;{% endif %}font-family:{%- render 'font-stack', key: s.body_font -%};{%- render 'font-variant', font: s.body_font -%}font-size:{{ s.subheading_size }}px;color:var(--text-mid);">{{ s.subheading }}</div>
+          <div class="rte" style="max-width:620px;{% if s.head_align == 'center' %}margin-left:auto;margin-right:auto;{% elsif s.head_align == 'right' %}margin-left:auto;{% endif %}font-family:{%- render 'font-stack', key: s.body_font -%};{%- render 'font-variant', font: s.body_font -%}{%- render 'letter-spacing', mult: s.ls_body, base: '0.03em' -%}font-size:{{ s.subheading_size }}px;color:var(--text-mid);">{{ s.subheading }}</div>
         {%- endif -%}
       </div>
     {%- endif -%}
@@ -36,13 +36,13 @@
             <div class="text-columns__num" style="font-family:{%- render 'font-stack', key: block.settings.heading_font -%};{%- render 'font-variant', font: block.settings.heading_font -%}color:{{ block.settings.accent_color | default: '#C9851A' }};font-size:{{ block.settings.number_size | default: 40 }}px;line-height:1;margin-bottom:12px;">{{ block.settings.number }}</div>
           {%- endif -%}
           {%- if block.settings.eyebrow != blank -%}
-            <div class="kicker" style="color:{{ block.settings.accent_color | default: '#C9851A' }};margin-bottom:8px;">{{ block.settings.eyebrow }}</div>
+            <div class="kicker" style="font-family:{%- render 'font-stack', key: block.settings.eyebrow_font -%};color:{{ block.settings.accent_color | default: '#C9851A' }};margin-bottom:8px;{%- render 'letter-spacing', mult: block.settings.ls_eyebrow, base: '0.18em' -%}">{{ block.settings.eyebrow }}</div>
           {%- endif -%}
           {%- if block.settings.heading != blank -%}
-            <h3 style="font-family:{%- render 'font-stack', key: block.settings.heading_font -%};{%- render 'font-variant', key: block.settings.heading_weight, font: block.settings.heading_font -%}font-size:{{ block.settings.heading_size }}px;color:{{ block.settings.text_color | default: '#0A0B0C' }};margin:0 0 {{ block.settings.space_heading | default: 12 }}px;">{{ block.settings.heading }}</h3>
+            <h3 style="font-family:{%- render 'font-stack', key: block.settings.heading_font -%};{%- render 'font-variant', key: block.settings.heading_weight, font: block.settings.heading_font -%}{%- render 'letter-spacing', mult: block.settings.ls_heading, base: '0.05em' -%}font-size:{{ block.settings.heading_size }}px;color:{{ block.settings.text_color | default: '#0A0B0C' }};margin:0 0 {{ block.settings.space_heading | default: 12 }}px;">{{ block.settings.heading }}</h3>
           {%- endif -%}
           {%- if block.settings.body != blank -%}
-            <div class="rte" style="font-family:{%- render 'font-stack', key: block.settings.body_font -%};{%- render 'font-variant', key: block.settings.body_weight, font: block.settings.body_font -%}font-size:{{ block.settings.body_size }}px;color:{{ block.settings.body_color | default: '#4C4C4B' }};">{{ block.settings.body }}</div>
+            <div class="rte" style="font-family:{%- render 'font-stack', key: block.settings.body_font -%};{%- render 'font-variant', key: block.settings.body_weight, font: block.settings.body_font -%}{%- render 'letter-spacing', mult: block.settings.ls_body, base: '0.03em' -%}font-size:{{ block.settings.body_size }}px;color:{{ block.settings.body_color | default: '#4C4C4B' }};">{{ block.settings.body }}</div>
           {%- endif -%}
           {%- if block.settings.button_label != blank -%}
             <div style="display:flex;justify-content:{{ justify }};margin-top:{{ block.settings.space_button | default: 20 }}px;">
@@ -71,6 +71,11 @@
     { "type": "range", "id": "columns", "label": "Columns (desktop)", "min": 1, "max": 5, "step": 1, "default": 3 },
     { "type": "range", "id": "gap", "label": "Gap between columns", "min": 0, "max": 96, "step": 4, "unit": "px", "default": 32 },
     { "type": "header", "content": "Typography" },
+    { "type": "select", "id": "preheader_font", "label": "Preheader font", "options": [
+        { "value": "site", "label": "Neue Haas Display Light" },
+        { "value": "display", "label": "Neue Haas Grotesk Display (Adobe)" },
+        { "value": "text", "label": "Neue Haas Grotesk Text (Adobe)" },
+        { "value": "ogg", "label": "Ogg Text (Adobe serif)" } ], "default": "site" },
     { "type": "select", "id": "heading_font", "label": "Section heading font", "options": [
         { "value": "site", "label": "Neue Haas Display Light" },
         { "value": "display", "label": "Neue Haas Grotesk Display (Adobe)" },
@@ -96,6 +101,10 @@
     { "type": "range", "id": "space_preheader", "label": "Space after preheader", "min": 0, "max": 80, "step": 2, "unit": "px", "default": 10 },
     { "type": "range", "id": "space_heading", "label": "Space after heading", "min": 0, "max": 80, "step": 2, "unit": "px", "default": 12 },
     { "type": "range", "id": "space_head", "label": "Space below section heading", "min": 0, "max": 120, "step": 4, "unit": "px", "default": 48 },
+    { "type": "header", "content": "Letter spacing" },
+    { "type": "range", "id": "ls_preheader", "label": "Preheader letter spacing", "info": "1 = theme default, up to 10x wider.", "min": 1, "max": 10, "step": 1, "unit": "x", "default": 1 },
+    { "type": "range", "id": "ls_heading", "label": "Heading letter spacing", "min": 1, "max": 10, "step": 1, "unit": "x", "default": 1 },
+    { "type": "range", "id": "ls_body", "label": "Subheading letter spacing", "min": 1, "max": 10, "step": 1, "unit": "x", "default": 1 },
     { "type": "header", "content": "Background" },
     { "type": "select", "id": "bg_type", "label": "Background type", "options": [
         { "value": "none", "label": "None" }, { "value": "solid", "label": "Solid color" }, { "value": "gradient", "label": "Gradient" }, { "value": "image", "label": "Image" } ], "default": "none" },
@@ -129,6 +138,11 @@
         { "type": "color", "id": "text_color", "label": "Heading color", "default": "#0A0B0C" },
         { "type": "color", "id": "body_color", "label": "Body color", "default": "#4C4C4B" },
         { "type": "header", "content": "Typography" },
+        { "type": "select", "id": "eyebrow_font", "label": "Eyebrow font", "options": [
+            { "value": "site", "label": "Neue Haas Display Light" },
+            { "value": "display", "label": "Neue Haas Grotesk Display (Adobe)" },
+            { "value": "text", "label": "Neue Haas Grotesk Text (Adobe)" },
+            { "value": "ogg", "label": "Ogg Text (Adobe serif)" } ], "default": "site" },
         { "type": "select", "id": "heading_font", "label": "Heading font", "options": [
             { "value": "site", "label": "Neue Haas Display Light" },
             { "value": "display", "label": "Neue Haas Grotesk Display (Adobe)" },
@@ -162,6 +176,9 @@
             { "value": "black", "label": "Black (800)" } ], "default": "inherit" },
         { "type": "range", "id": "body_size", "label": "Body text size", "min": 12, "max": 24, "step": 1, "unit": "px", "default": 16 },
         { "type": "range", "id": "space_heading", "label": "Space after heading", "min": 0, "max": 60, "step": 2, "unit": "px", "default": 12 },
+        { "type": "range", "id": "ls_eyebrow", "label": "Eyebrow letter spacing", "info": "1 = theme default, up to 10x wider.", "min": 1, "max": 10, "step": 1, "unit": "x", "default": 1 },
+        { "type": "range", "id": "ls_heading", "label": "Heading letter spacing", "min": 1, "max": 10, "step": 1, "unit": "x", "default": 1 },
+        { "type": "range", "id": "ls_body", "label": "Body letter spacing", "min": 1, "max": 10, "step": 1, "unit": "x", "default": 1 },
         { "type": "header", "content": "Button (optional)" },
         { "type": "text", "id": "button_label", "label": "Button label" },
         { "type": "url", "id": "button_link", "label": "Button link" },

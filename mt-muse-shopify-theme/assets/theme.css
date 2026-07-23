@@ -284,6 +284,11 @@ section, .section { padding: var(--section-pad) 0; }
   align-items: center;
   gap: clamp(20px, 3vw, 48px);
 }
+/* State-1: keep icons clear of the right-hand links region */
+.nav-bar--1 .nav-right { gap: clamp(16px, 2vw, 28px); }
+/* Spread links evenly across their half so 1-2 items don't crunch at the edge.
+   space-evenly already distributes free space, so the fixed gap is only a floor. */
+.nav-links--spread { gap: clamp(12px, 2vw, 32px); }
 .nav-link {
   font-family: var(--font-text);
   font-size: 12px;

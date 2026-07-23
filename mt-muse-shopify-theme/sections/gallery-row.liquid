@@ -7,10 +7,10 @@
     <div class="gallery-row__head" style="text-align:{{ s.text_align | default: 'left' }};">
       <div>
         {%- if s.preheader != blank -%}
-          <div class="kicker" style="color:{{ s.accent_color | default: '#C9851A' }};margin-bottom:{{ s.space_preheader | default: 10 }}px;">{{ s.preheader }}</div>
+          <div class="kicker" style="font-family:{%- render 'font-stack', key: s.preheader_font -%};color:{{ s.accent_color | default: '#C9851A' }};margin-bottom:{{ s.space_preheader | default: 10 }}px;{%- render 'letter-spacing', mult: s.ls_preheader, base: '0.18em' -%}">{{ s.preheader }}</div>
         {%- endif -%}
         {%- if s.heading != blank -%}
-          <h2 style="font-family:{%- render 'font-stack', key: s.heading_font -%};{%- render 'font-variant', key: s.heading_weight, font: s.heading_font -%}font-size:{{ s.heading_size }}px;margin:0;">{{ s.heading }}</h2>
+          <h2 style="font-family:{%- render 'font-stack', key: s.heading_font -%};{%- render 'font-variant', key: s.heading_weight, font: s.heading_font -%}{%- render 'letter-spacing', mult: s.ls_heading, base: '0.05em' -%}font-size:{{ s.heading_size }}px;margin:0;">{{ s.heading }}</h2>
         {%- endif -%}
       </div>
       {%- if s.button_label != blank -%}
@@ -66,6 +66,11 @@
     { "type": "select", "id": "button_style", "label": "Button style", "options": [
         { "value": "primary", "label": "Gold (filled)" }, { "value": "ghost", "label": "Outline" } ], "default": "ghost" },
     { "type": "header", "content": "Typography" },
+    { "type": "select", "id": "preheader_font", "label": "Preheader font", "options": [
+        { "value": "site", "label": "Neue Haas Display Light" },
+        { "value": "display", "label": "Neue Haas Grotesk Display (Adobe)" },
+        { "value": "text", "label": "Neue Haas Grotesk Text (Adobe)" },
+        { "value": "ogg", "label": "Ogg Text (Adobe serif)" } ], "default": "site" },
     { "type": "select", "id": "heading_font", "label": "Heading font", "options": [
         { "value": "site", "label": "Neue Haas Display Light" },
         { "value": "display", "label": "Neue Haas Grotesk Display (Adobe)" },
@@ -84,6 +89,9 @@
         { "value": "black", "label": "Black (800)" } ], "default": "inherit" },
     { "type": "header", "content": "Text spacing" },
     { "type": "range", "id": "space_preheader", "label": "Space after preheader", "min": 0, "max": 80, "step": 2, "unit": "px", "default": 10 },
+    { "type": "header", "content": "Letter spacing" },
+    { "type": "range", "id": "ls_preheader", "label": "Preheader letter spacing", "info": "1 = theme default, up to 10x wider.", "min": 1, "max": 10, "step": 1, "unit": "x", "default": 1 },
+    { "type": "range", "id": "ls_heading", "label": "Heading letter spacing", "min": 1, "max": 10, "step": 1, "unit": "x", "default": 1 },
     { "type": "header", "content": "Background" },
     { "type": "select", "id": "bg_type", "label": "Background type", "options": [
         { "value": "none", "label": "None" }, { "value": "solid", "label": "Solid color" }, { "value": "gradient", "label": "Gradient" }, { "value": "image", "label": "Image" } ], "default": "none" },

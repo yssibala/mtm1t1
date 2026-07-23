@@ -4,7 +4,7 @@
 <div class="section-wrap product-grid" style="{%- render 'section-style', st: s -%}">
   <div class="container">
     {% if s.heading != blank %}
-      <h2 style="font-family:{%- render 'font-stack', key: s.heading_font -%};{%- render 'font-variant', key: s.heading_weight, font: s.heading_font -%}font-size:{{ s.heading_size }}px;text-align:{{ s.text_align | default: 'left' }};margin-bottom:var(--space-lg);">{{ s.heading }}</h2>
+      <h2 style="font-family:{%- render 'font-stack', key: s.heading_font -%};{%- render 'font-variant', key: s.heading_weight, font: s.heading_font -%}{%- render 'letter-spacing', mult: s.ls_heading, base: '0.05em' -%}font-size:{{ s.heading_size }}px;text-align:{{ s.text_align | default: 'left' }};margin-bottom:var(--space-lg);">{{ s.heading }}</h2>
     {% endif %}
     {% assign grid_collection = s.collection %}
     {% if grid_collection != blank %}
@@ -34,6 +34,7 @@
         { "value": "display", "label": "Neue Haas Grotesk Display (Adobe)" },
         { "value": "ogg", "label": "Ogg Text (Adobe serif)" } ], "default": "site" },
     { "type": "range", "id": "heading_size", "label": "Heading size", "min": 20, "max": 80, "step": 2, "unit": "px", "default": 36 },
+    { "type": "range", "id": "ls_heading", "label": "Heading letter spacing", "info": "1 = theme default, up to 10x wider.", "min": 1, "max": 10, "step": 1, "unit": "x", "default": 1 },
     { "type": "select", "id": "heading_weight", "label": "Heading weight & style", "info": "Ogg Text has every option. Neue Haas Display has Thin/Book/Roman/Medium; Neue Haas Text has Roman only. Other picks get faked by the browser.", "options": [
         { "value": "inherit", "label": "Theme default" },
         { "value": "thin", "label": "Thin (200)" },
