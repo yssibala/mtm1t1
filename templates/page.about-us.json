@@ -34,6 +34,7 @@
         "image_height": 0,
         "image_radius": 0,
         "image_opacity": 100,
+        "preheader_font": "site",
         "heading_font": "ogg",
         "heading_size": 56,
         "heading_weight": "thin",
@@ -44,6 +45,9 @@
         "space_heading": 20,
         "space_buttons": 40,
         "space_image": 40,
+        "ls_preheader": 1,
+        "ls_heading": 1,
+        "ls_body": 1,
         "bg_type": "image",
         "bg_color": "#fbf6ee",
         "bg_gradient_start": "#fbf6ee",
@@ -65,12 +69,14 @@
         "body": "<p>When one finds themself inspired, they strive. One who strives for long enough is bound to achieve. Achievement leads to celebration, celebration leads to inspiration, and from there we start again.<br/><br/>In those beautiful moments where fresh ideas come to life in our hands and minds, legends are born should we find the strength to hold onto them. To strive.<br/><br/>Like many endeavors, MUSE started off as a dream that became a vision. That vision became a plan and now that plan is a business seeking to enhance the moments and empower the people who inspire. Why? Because it is through inspiration that we create more moments worth celebrating.<br/><br/>And here at MUSE, we LOVE to party.</p>",
         "image_position": "right",
         "text_align": "center",
+        "image": "shopify://shop_images/Gallery_11_-_Rooftop_Bar_CC_Tagline_2.png",
         "accent_color": "#c9851a",
         "button_label": "",
         "button_link": "",
         "button_style": "primary",
         "button_size": "11",
         "button_icon": "none",
+        "preheader_font": "site",
         "heading_font": "ogg",
         "heading_size": 30,
         "heading_weight": "thin",
@@ -79,6 +85,9 @@
         "body_weight": "inherit",
         "space_preheader": 12,
         "space_heading": 20,
+        "ls_preheader": 1,
+        "ls_heading": 1,
+        "ls_body": 1,
         "bg_type": "solid",
         "bg_color": "#fbf6ee",
         "bg_gradient_start": "#fbf6ee",
@@ -99,12 +108,14 @@
         "body": "<p>The greatest moments life has to offer are meant to be lived, not merely remembered. That is how moments become memories, how memories becomes monuments, and how monuments become myths.<br/><br/>In this way, MUSE seeks to elevate the occasion, providing a beverage fit for the moments we'll all continue to retell. Our premium ready-to-drink cocktails were crafted to be poured amongst the clouds, where every gathering becomes a legend worth retelling.</p>",
         "image_position": "left",
         "text_align": "center",
+        "image": "shopify://shop_images/Gallery_9.png",
         "accent_color": "#c9851a",
         "button_label": "",
         "button_link": "",
         "button_style": "primary",
         "button_size": "11",
         "button_icon": "none",
+        "preheader_font": "site",
         "heading_font": "site",
         "heading_size": 40,
         "heading_weight": "inherit",
@@ -113,6 +124,9 @@
         "body_weight": "inherit",
         "space_preheader": 12,
         "space_heading": 16,
+        "ls_preheader": 1,
+        "ls_heading": 1,
+        "ls_body": 1,
         "bg_type": "none",
         "bg_color": "#fbf6ee",
         "bg_gradient_start": "#fbf6ee",
@@ -124,98 +138,139 @@
         "padding_bottom": 80
       }
     },
-    "body_section_E9peeN": {
-      "type": "body-section",
-      "name": "Body section",
-      "settings": {
-        "preheader": "OUR STORY",
-        "heading": "Celebrating Those Who Inspire",
-        "body": "<p>Share the story behind your brand here.</p>",
-        "image_position": "right",
-        "text_align": "left",
-        "accent_color": "#c9851a",
-        "button_label": "",
-        "button_link": "",
-        "button_style": "primary",
-        "button_size": "11",
-        "button_icon": "none",
-        "heading_font": "site",
-        "heading_size": 40,
-        "heading_weight": "inherit",
-        "body_font": "site",
-        "body_size": 16,
-        "body_weight": "inherit",
-        "space_preheader": 12,
-        "space_heading": 16,
-        "bg_type": "none",
-        "bg_color": "#fbf6ee",
-        "bg_gradient_start": "#fbf6ee",
-        "bg_gradient_end": "#e7dac4",
-        "bg_gradient_angle": 180,
-        "content_valign": "top",
-        "min_height": 0,
-        "padding_top": 80,
-        "padding_bottom": 80
-      }
-    },
-    "page_gallery_xWLRMR": {
-      "type": "page-gallery",
+    "text_columns_zMX3xJ": {
+      "type": "text-columns",
       "blocks": {
-        "image_XAXDja": {
-          "type": "image",
+        "column_4WNe34": {
+          "type": "column",
           "settings": {
-            "caption": "",
-            "link": ""
+            "number": "",
+            "number_size": 40,
+            "eyebrow": "",
+            "heading": "Cultivate",
+            "body": "<p>Leading every instance with intention. Flavor comes First.</p>",
+            "align": "left",
+            "divider": false,
+            "divider_color": "#E7DAC4",
+            "accent_color": "#C9851A",
+            "text_color": "#C9851A",
+            "body_color": "#4C4C4B",
+            "eyebrow_font": "site",
+            "heading_font": "ogg",
+            "heading_weight": "inherit",
+            "heading_size": 26,
+            "body_font": "site",
+            "body_weight": "inherit",
+            "body_size": 16,
+            "space_heading": 12,
+            "ls_eyebrow": 1,
+            "ls_heading": 1,
+            "ls_body": 1,
+            "button_label": "",
+            "button_link": "",
+            "button_style": "ghost",
+            "button_icon": "none",
+            "button_size": "11",
+            "space_button": 20
           }
         },
-        "image_3YJ4rd": {
-          "type": "image",
+        "column_gFt3aQ": {
+          "type": "column",
           "settings": {
-            "caption": "",
-            "link": ""
+            "number": "",
+            "number_size": 40,
+            "eyebrow": "",
+            "heading": "Commemorate",
+            "body": "<p>Honoring the people and moments that bring value to everything we do.</p>",
+            "align": "left",
+            "divider": false,
+            "divider_color": "#E7DAC4",
+            "accent_color": "#C9851A",
+            "text_color": "#C9851A",
+            "body_color": "#4C4C4B",
+            "eyebrow_font": "site",
+            "heading_font": "ogg",
+            "heading_weight": "inherit",
+            "heading_size": 26,
+            "body_font": "site",
+            "body_weight": "inherit",
+            "body_size": 16,
+            "space_heading": 12,
+            "ls_eyebrow": 1,
+            "ls_heading": 1,
+            "ls_body": 1,
+            "button_label": "",
+            "button_link": "",
+            "button_style": "ghost",
+            "button_icon": "none",
+            "button_size": "11",
+            "space_button": 20
           }
         },
-        "image_HeANKr": {
-          "type": "image",
+        "column_CVtJ8n": {
+          "type": "column",
           "settings": {
-            "caption": "",
-            "link": ""
-          }
-        },
-        "image_kkHfCN": {
-          "type": "image",
-          "settings": {
-            "caption": "",
-            "link": ""
-          }
-        },
-        "image_pidYjw": {
-          "type": "image",
-          "settings": {
-            "caption": "",
-            "link": ""
+            "number": "",
+            "number_size": 40,
+            "eyebrow": "",
+            "heading": "Celebrate",
+            "body": "<p>How we show our gratitude, even for the little things.</p>",
+            "align": "left",
+            "divider": false,
+            "divider_color": "#E7DAC4",
+            "accent_color": "#C9851A",
+            "text_color": "#C9851A",
+            "body_color": "#4C4C4B",
+            "eyebrow_font": "site",
+            "heading_font": "ogg",
+            "heading_weight": "inherit",
+            "heading_size": 26,
+            "body_font": "site",
+            "body_weight": "inherit",
+            "body_size": 16,
+            "space_heading": 12,
+            "ls_eyebrow": 1,
+            "ls_heading": 1,
+            "ls_body": 1,
+            "button_label": "",
+            "button_link": "",
+            "button_style": "ghost",
+            "button_icon": "none",
+            "button_size": "11",
+            "space_button": 20
           }
         }
       },
       "block_order": [
-        "image_XAXDja",
-        "image_3YJ4rd",
-        "image_HeANKr",
-        "image_kkHfCN",
-        "image_pidYjw"
+        "column_4WNe34",
+        "column_gFt3aQ",
+        "column_CVtJ8n"
       ],
-      "name": "Gallery page",
+      "name": "Text columns",
       "settings": {
-        "kicker": "The Gallery",
-        "text_align": "left",
+        "preheader": "The MUSE CREED",
+        "heading": "WHO WE ARE",
+        "subheading": "",
+        "accent_color": "#C9851A",
+        "head_align": "center",
         "columns": 3,
-        "aspect_ratio": "1/1",
-        "heading_font": "site",
-        "heading_size": 44,
+        "gap": 32,
+        "preheader_font": "site",
+        "heading_font": "ogg",
+        "heading_weight": "inherit",
+        "heading_size": 40,
+        "body_font": "site",
+        "subheading_size": 17,
+        "space_preheader": 10,
+        "space_heading": 12,
+        "space_head": 48,
+        "ls_preheader": 1,
+        "ls_heading": 1,
+        "ls_body": 1,
         "bg_type": "none",
-        "bg_color": "#fbf6ee",
-        "bg_gradient_start": "#fbf6ee",
-        "bg_gradient_end": "#e7dac4",
+        "bg_color": "#FBF6EE",
+        "bg_gradient_start": "#FBF6EE",
+        "bg_gradient_end": "#E7DAC4",
         "bg_gradient_angle": 180,
         "content_valign": "top",
         "min_height": 0,
@@ -226,6 +281,32 @@
     "flexible_HeD3q3": {
       "type": "flexible",
       "blocks": {
+        "text_9MTCjV": {
+          "type": "text",
+          "settings": {
+            "preheader": "",
+            "accent_color": "#c9851a",
+            "heading": "",
+            "body": "<p>jlkhlkj</p>",
+            "text_color": "#0a0b0c",
+            "align": "left",
+            "max_width": 640,
+            "preheader_font": "site",
+            "heading_font": "site",
+            "heading_size": 36,
+            "heading_weight": "inherit",
+            "body_font": "site",
+            "body_size": 16,
+            "body_weight": "inherit",
+            "space_preheader": 10,
+            "space_heading": 12,
+            "ls_preheader": 1,
+            "ls_heading": 1,
+            "ls_body": 1,
+            "margin_top": 0,
+            "margin_bottom": 24
+          }
+        },
         "text_TFzYMH": {
           "type": "text",
           "settings": {
@@ -236,6 +317,7 @@
             "text_color": "#0a0b0c",
             "align": "left",
             "max_width": 640,
+            "preheader_font": "site",
             "heading_font": "site",
             "heading_size": 36,
             "heading_weight": "inherit",
@@ -244,6 +326,9 @@
             "body_weight": "inherit",
             "space_preheader": 10,
             "space_heading": 12,
+            "ls_preheader": 1,
+            "ls_heading": 1,
+            "ls_body": 1,
             "margin_top": 0,
             "margin_bottom": 24
           }
@@ -266,6 +351,7 @@
         }
       },
       "block_order": [
+        "text_9MTCjV",
         "text_TFzYMH",
         "button_pR4AEC"
       ],
@@ -281,14 +367,63 @@
         "padding_top": 80,
         "padding_bottom": 80
       }
+    },
+    "page_gallery_QcamKU": {
+      "type": "page-gallery",
+      "blocks": {
+        "image_L6Qabc": {
+          "type": "image",
+          "settings": {
+            "caption": "",
+            "link": ""
+          }
+        },
+        "image_EgVXJT": {
+          "type": "image",
+          "settings": {
+            "caption": "",
+            "link": ""
+          }
+        },
+        "image_8kaVxj": {
+          "type": "image",
+          "settings": {
+            "caption": "",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "image_L6Qabc",
+        "image_EgVXJT",
+        "image_8kaVxj"
+      ],
+      "name": "Gallery page",
+      "settings": {
+        "kicker": "The Gallery",
+        "text_align": "left",
+        "columns": 3,
+        "aspect_ratio": "1/1",
+        "heading_font": "site",
+        "heading_size": 44,
+        "bg_type": "none",
+        "bg_color": "#FBF6EE",
+        "bg_gradient_start": "#FBF6EE",
+        "bg_gradient_end": "#E7DAC4",
+        "bg_gradient_angle": 180,
+        "content_valign": "top",
+        "min_height": 0,
+        "padding_top": 80,
+        "padding_bottom": 80
+      }
     }
   },
   "order": [
     "hero_LPHctL",
     "body_section_gthfUc",
     "body_section_FbXAkj",
-    "body_section_E9peeN",
-    "page_gallery_xWLRMR",
+    "text_columns_zMX3xJ",
+    "page_gallery_QcamKU",
     "flexible_HeD3q3"
   ]
 }
