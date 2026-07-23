@@ -39,7 +39,7 @@
         <div class="kicker" style="font-family:{%- render 'font-stack', key: s.preheader_font -%};color:{{ s.accent_color | default: '#C9851A' }};margin-bottom:{{ s.space_preheader | default: 12 }}px;{%- render 'letter-spacing', mult: s.ls_preheader, base: '0.18em' -%}{% if s.text_align == 'center' %}text-align:center;{% endif %}">{{ s.preheader }}</div>
       {%- endif -%}
       {%- if s.heading != blank -%}
-        <h1 style="font-family:{%- render 'font-stack', key: s.heading_font -%};{%- render 'font-variant', key: s.heading_weight, font: s.heading_font -%}{%- render 'letter-spacing', mult: s.ls_heading, base: '0.05em' -%}font-size:{{ s.heading_size }}px;margin-bottom:{{ s.space_heading | default: 16 }}px;">{{ s.heading }}</h1>
+        <h1 style="font-family:{%- render 'font-stack', key: s.heading_font -%};{%- render 'font-variant', key: s.heading_weight, font: s.heading_font -%}{%- render 'letter-spacing', mult: s.ls_heading, base: '0.05em' -%}font-size:{{ s.heading_size }}px;margin-bottom:{{ s.space_heading | default: 16 }}px;">{{ s.heading | newline_to_br }}</h1>
       {%- endif -%}
       {%- if s.subheading != blank -%}
         <p style="max-width:620px;{% if s.text_align == 'center' %}margin-left:auto;margin-right:auto;{% endif %}font-family:{%- render 'font-stack', key: s.body_font -%};{%- render 'font-variant', key: s.body_weight, font: s.body_font -%}{%- render 'letter-spacing', mult: s.ls_body, base: '0.03em' -%}font-size:{{ s.body_size }}px;margin-bottom:0;">{{ s.subheading }}</p>
@@ -64,7 +64,7 @@
   "settings": [
     { "type": "text", "id": "preheader", "label": "Preheader (eyebrow)" },
     { "type": "color", "id": "accent_color", "label": "Preheader color", "default": "#C9851A" },
-    { "type": "text", "id": "heading", "label": "Heading", "default": "Welcome to MT-MUSE" },
+    { "type": "textarea", "id": "heading", "label": "Heading", "info": "Press Enter for a line break.", "default": "Welcome to MT-MUSE" },
     { "type": "text", "id": "subheading", "label": "Subheading", "default": "Explore our curated selection of products crafted with intention." },
     { "type": "select", "id": "text_align", "label": "Alignment", "options": [
         { "value": "left", "label": "Left" }, { "value": "center", "label": "Center" }, { "value": "right", "label": "Right" } ], "default": "center" },

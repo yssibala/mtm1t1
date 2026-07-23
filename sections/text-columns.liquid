@@ -18,7 +18,7 @@
           <div class="kicker" style="font-family:{%- render 'font-stack', key: s.preheader_font -%};color:{{ s.accent_color | default: '#C9851A' }};margin-bottom:{{ s.space_preheader | default: 10 }}px;{%- render 'letter-spacing', mult: s.ls_preheader, base: '0.18em' -%}">{{ s.preheader }}</div>
         {%- endif -%}
         {%- if s.heading != blank -%}
-          <h2 style="font-family:{%- render 'font-stack', key: s.heading_font -%};{%- render 'font-variant', key: s.heading_weight, font: s.heading_font -%}{%- render 'letter-spacing', mult: s.ls_heading, base: '0.05em' -%}font-size:{{ s.heading_size }}px;margin:0 0 {{ s.space_heading | default: 12 }}px;">{{ s.heading }}</h2>
+          <h2 style="font-family:{%- render 'font-stack', key: s.heading_font -%};{%- render 'font-variant', key: s.heading_weight, font: s.heading_font -%}{%- render 'letter-spacing', mult: s.ls_heading, base: '0.05em' -%}font-size:{{ s.heading_size }}px;margin:0 0 {{ s.space_heading | default: 12 }}px;">{{ s.heading | newline_to_br }}</h2>
         {%- endif -%}
         {%- if s.subheading != blank -%}
           <div class="rte" style="max-width:620px;{% if s.head_align == 'center' %}margin-left:auto;margin-right:auto;{% elsif s.head_align == 'right' %}margin-left:auto;{% endif %}font-family:{%- render 'font-stack', key: s.body_font -%};{%- render 'font-variant', font: s.body_font -%}{%- render 'letter-spacing', mult: s.ls_body, base: '0.03em' -%}font-size:{{ s.subheading_size }}px;color:var(--text-mid);">{{ s.subheading }}</div>
@@ -39,7 +39,7 @@
             <div class="kicker" style="font-family:{%- render 'font-stack', key: block.settings.eyebrow_font -%};color:{{ block.settings.accent_color | default: '#C9851A' }};margin-bottom:8px;{%- render 'letter-spacing', mult: block.settings.ls_eyebrow, base: '0.18em' -%}">{{ block.settings.eyebrow }}</div>
           {%- endif -%}
           {%- if block.settings.heading != blank -%}
-            <h3 style="font-family:{%- render 'font-stack', key: block.settings.heading_font -%};{%- render 'font-variant', key: block.settings.heading_weight, font: block.settings.heading_font -%}{%- render 'letter-spacing', mult: block.settings.ls_heading, base: '0.05em' -%}font-size:{{ block.settings.heading_size }}px;color:{{ block.settings.text_color | default: '#0A0B0C' }};margin:0 0 {{ block.settings.space_heading | default: 12 }}px;">{{ block.settings.heading }}</h3>
+            <h3 style="font-family:{%- render 'font-stack', key: block.settings.heading_font -%};{%- render 'font-variant', key: block.settings.heading_weight, font: block.settings.heading_font -%}{%- render 'letter-spacing', mult: block.settings.ls_heading, base: '0.05em' -%}font-size:{{ block.settings.heading_size }}px;color:{{ block.settings.text_color | default: '#0A0B0C' }};margin:0 0 {{ block.settings.space_heading | default: 12 }}px;">{{ block.settings.heading | newline_to_br }}</h3>
           {%- endif -%}
           {%- if block.settings.body != blank -%}
             <div class="rte" style="font-family:{%- render 'font-stack', key: block.settings.body_font -%};{%- render 'font-variant', key: block.settings.body_weight, font: block.settings.body_font -%}{%- render 'letter-spacing', mult: block.settings.ls_body, base: '0.03em' -%}font-size:{{ block.settings.body_size }}px;color:{{ block.settings.body_color | default: '#4C4C4B' }};">{{ block.settings.body }}</div>
@@ -62,7 +62,7 @@
   "settings": [
     { "type": "header", "content": "Section heading (optional)" },
     { "type": "text", "id": "preheader", "label": "Preheader" },
-    { "type": "text", "id": "heading", "label": "Heading" },
+    { "type": "textarea", "id": "heading", "label": "Heading", "info": "Press Enter for a line break." },
     { "type": "richtext", "id": "subheading", "label": "Subheading" },
     { "type": "color", "id": "accent_color", "label": "Preheader color", "default": "#C9851A" },
     { "type": "select", "id": "head_align", "label": "Heading alignment", "options": [
@@ -127,7 +127,7 @@
         { "type": "text", "id": "number", "label": "Number / lead-in (optional)", "info": "A big number or word above the heading, e.g. 01." },
         { "type": "range", "id": "number_size", "label": "Number size", "min": 20, "max": 96, "step": 2, "unit": "px", "default": 40 },
         { "type": "text", "id": "eyebrow", "label": "Eyebrow (small label)" },
-        { "type": "text", "id": "heading", "label": "Heading", "default": "Cultivate" },
+        { "type": "textarea", "id": "heading", "label": "Heading", "info": "Press Enter for a line break.", "default": "Cultivate" },
         { "type": "richtext", "id": "body", "label": "Body text", "default": "<p>Describe this column here.</p>" },
         { "type": "select", "id": "align", "label": "Alignment", "options": [
             { "value": "left", "label": "Left" }, { "value": "center", "label": "Center" }, { "value": "right", "label": "Right" } ], "default": "left" },
