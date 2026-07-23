@@ -1,1 +1,24 @@
-{ "sections": { "main": { "type": "main-404" } }, "order": ["main"] }
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-404",
+      "settings": {
+        "kicker": "Lost in the Clouds",
+        "heading": "Something Went Awry",
+        "text": "We couldn’t refill this page just now. The skies should clear shortly — give it another moment, or head back to firmer ground."
+      }
+    }
+  },
+  "order": [
+    "main"
+  ]
+}
