@@ -1,7 +1,7 @@
 {%- liquid assign s = section.settings -%}
 <div class="section-wrap page-legal" style="{%- render 'section-style', st: s -%}">
   <div class="container" style="max-width:{{ s.max_width | default: 820 }}px;">
-    <h1 style="font-family:{%- render 'font-stack', key: s.heading_font -%};font-size:{{ s.heading_size }}px;">{{ page.title }}</h1>
+    <h1 style="font-family:{%- render 'font-stack', key: s.heading_font -%};{%- render 'font-variant', font: s.heading_font -%}font-size:{{ s.heading_size }}px;">{{ page.title }}</h1>
     {%- if s.updated != blank -%}<div class="kicker" style="margin:12px 0 24px;">Last updated {{ s.updated }}</div>{%- endif -%}
     <div class="rte page-legal__body">{{ page.content }}</div>
   </div>

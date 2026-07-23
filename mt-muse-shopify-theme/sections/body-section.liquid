@@ -12,10 +12,10 @@
         <div class="kicker" style="color:{{ s.accent_color | default: '#C9851A' }};margin-bottom:{{ s.space_preheader | default: 12 }}px;">{{ s.preheader }}</div>
       {%- endif -%}
       {%- if s.heading != blank -%}
-        <h2 style="font-family:{%- render 'font-stack', key: s.heading_font -%};{%- render 'font-variant', key: s.heading_weight -%}font-size:{{ s.heading_size }}px;margin-bottom:{{ s.space_heading | default: 16 }}px;">{{ s.heading }}</h2>
+        <h2 style="font-family:{%- render 'font-stack', key: s.heading_font -%};{%- render 'font-variant', key: s.heading_weight, font: s.heading_font -%}font-size:{{ s.heading_size }}px;margin-bottom:{{ s.space_heading | default: 16 }}px;">{{ s.heading }}</h2>
       {%- endif -%}
       {%- if s.body != blank -%}
-        <div class="rte body-section__body" style="font-family:{%- render 'font-stack', key: s.body_font -%};{%- render 'font-variant', key: s.body_weight -%}font-size:{{ s.body_size }}px;color:var(--text-mid);">{{ s.body }}</div>
+        <div class="rte body-section__body" style="font-family:{%- render 'font-stack', key: s.body_font -%};{%- render 'font-variant', key: s.body_weight, font: s.body_font -%}font-size:{{ s.body_size }}px;color:var(--text-mid);">{{ s.body }}</div>
       {%- endif -%}
       {%- if s.button_label != blank -%}
         <div style="margin-top:24px;">

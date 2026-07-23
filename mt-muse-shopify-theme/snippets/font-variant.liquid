@@ -1,8 +1,16 @@
 {%- comment -%}
-  Maps a weight/style key to font-weight + font-style CSS. Param: key.
+  Emits font-weight + font-style CSS for a text element.
+  Params:
+    key  — chosen weight/style (optional). Plain hyphenated words only, because
+           Shopify select `value`s can't contain quotes/commas (see font-stack.liquid).
+    font — the font key in use (site|display|text|ogg). Used to pick a sensible
+           DEFAULT weight when the merchant hasn't overridden `key`.
 
-  Values are plain hyphenated words on purpose — Shopify select `value`s must not
-  contain quotes or commas (same reason font-stack.liquid exists).
+  Why the font-aware default exists: theme.css sets headings to font-weight 500
+  (--fw-medium) and .hero h1 to 200. Ogg ships a real 500 face, so an Ogg heading
+  left on "Theme default" renders heavy. Emitting an explicit default here (Ogg
+  -> 300 Book) overrides that. This snippet is always rendered AFTER `font-family`
+  in the style attribute, so whatever it emits wins over the stylesheet.
 
   Faces actually published by the Typekit kit (jyd8pzu):
     ogg-text .................. 300 / 400 / 500 / 700 / 800 normal, 300 / 400 / 500 italic
@@ -10,10 +18,7 @@
     neue-haas-grotesk-text .... 400 normal only
     neuehaasdisplaylight ...... single local face (400 normal)
   Asking for a face the kit doesn't ship makes the browser synthesize it (faux
-  bold / slanted oblique). Add the weight in Adobe Fonts to get the real cut —
-  no code change needed here.
-
-  'inherit' emits nothing so the element keeps whatever theme.css sets.
+  bold / slanted oblique). Add the weight in Adobe Fonts to get the real cut.
 {%- endcomment -%}
 {%- case key -%}
   {%- when 'thin' -%}font-weight:200;font-style:normal;
@@ -25,4 +30,9 @@
   {%- when 'medium-italic' -%}font-weight:500;font-style:italic;
   {%- when 'bold' -%}font-weight:700;font-style:normal;
   {%- when 'black' -%}font-weight:800;font-style:normal;
+  {%- else -%}
+    {%- comment -%} 'inherit' / blank: fall back to the font's natural default. {%- endcomment -%}
+    {%- case font -%}
+      {%- when 'ogg' -%}font-weight:300;font-style:normal;
+    {%- endcase -%}
 {%- endcase -%}

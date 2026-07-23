@@ -10,7 +10,7 @@
           <div class="kicker" style="color:{{ s.accent_color | default: '#C9851A' }};margin-bottom:{{ s.space_preheader | default: 10 }}px;">{{ s.preheader }}</div>
         {%- endif -%}
         {%- if s.heading != blank -%}
-          <h2 style="font-family:{%- render 'font-stack', key: s.heading_font -%};{%- render 'font-variant', key: s.heading_weight -%}font-size:{{ s.heading_size }}px;margin:0;">{{ s.heading }}</h2>
+          <h2 style="font-family:{%- render 'font-stack', key: s.heading_font -%};{%- render 'font-variant', key: s.heading_weight, font: s.heading_font -%}font-size:{{ s.heading_size }}px;margin:0;">{{ s.heading }}</h2>
         {%- endif -%}
       </div>
       {%- if s.button_label != blank -%}
