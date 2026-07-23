@@ -51,7 +51,6 @@
     </main>
     {% section 'footer' %}
     {% render 'cart-drawer' %}
-    {{ 'theme.js' | asset_url | script_tag }}
-    {{ content_for_footer }}
+    <script src="{{ 'theme.js' | asset_url }}" defer></script>
   </body>
 </html>

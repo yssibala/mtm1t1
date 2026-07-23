@@ -783,6 +783,18 @@ section, .section { padding: var(--section-pad) 0; }
 }
 
 /* =====================================================================
+   TEXT COLUMNS SECTION
+   ===================================================================== */
+.text-columns__col .rte > :last-child { margin-bottom: 0; }
+@media (max-width: 900px) {
+  /* Never more than 2 across on tablet, whatever the desktop count. */
+  .text-columns__grid { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
+}
+@media (max-width: 600px) {
+  .text-columns__grid { grid-template-columns: 1fr !important; }
+}
+
+/* =====================================================================
    FLEXIBLE SECTION (block-based)
    ===================================================================== */
 .flexible .fx-block { position: relative; }

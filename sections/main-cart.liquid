@@ -8,7 +8,7 @@
       {%- for item in cart.items -%}
         <div style="display:flex;align-items:center;gap:16px;padding:16px 0;border-bottom:1px solid var(--sand-border);">
           {%- if item.image -%}
-            <img src="{{ item.image | image_url: width: 120 }}" alt="{{ item.title | escape }}" width="60" style="width:60px;height:60px;object-fit:cover;border-radius:var(--radius-card);">
+            <img src="{{ item.image | image_url: width: 120 }}" alt="{{ item.title | escape }}" width="60" height="60" style="width:60px;height:60px;object-fit:cover;border-radius:var(--radius-card);">
           {%- endif -%}
           <div style="flex:1;">
             <a href="{{ item.url }}" style="color:var(--near-black);font-weight:var(--fw-medium);">{{ item.product.title }}</a>

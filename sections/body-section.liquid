@@ -12,10 +12,10 @@
         <div class="kicker" style="color:{{ s.accent_color | default: '#C9851A' }};margin-bottom:{{ s.space_preheader | default: 12 }}px;">{{ s.preheader }}</div>
       {%- endif -%}
       {%- if s.heading != blank -%}
-        <h2 style="font-family:{%- render 'font-stack', key: s.heading_font -%};font-size:{{ s.heading_size }}px;margin-bottom:{{ s.space_heading | default: 16 }}px;">{{ s.heading }}</h2>
+        <h2 style="font-family:{%- render 'font-stack', key: s.heading_font -%};{%- render 'font-variant', key: s.heading_weight -%}font-size:{{ s.heading_size }}px;margin-bottom:{{ s.space_heading | default: 16 }}px;">{{ s.heading }}</h2>
       {%- endif -%}
       {%- if s.body != blank -%}
-        <div class="rte body-section__body" style="font-family:{%- render 'font-stack', key: s.body_font -%};font-size:{{ s.body_size }}px;color:var(--text-mid);">{{ s.body }}</div>
+        <div class="rte body-section__body" style="font-family:{%- render 'font-stack', key: s.body_font -%};{%- render 'font-variant', key: s.body_weight -%}font-size:{{ s.body_size }}px;color:var(--text-mid);">{{ s.body }}</div>
       {%- endif -%}
       {%- if s.button_label != blank -%}
         <div style="margin-top:24px;">
@@ -25,7 +25,7 @@
     </div>
     <div class="body-section__media">
       {%- if s.image != blank -%}
-        <img src="{{ s.image | image_url: width: 1200 }}" alt="{{ s.image.alt | default: s.heading | escape }}" width="1200" loading="lazy">
+        <img src="{{ s.image | image_url: width: 1200 }}" alt="{{ s.image.alt | default: s.heading | escape }}" width="{{ s.image.width }}" height="{{ s.image.height }}" loading="lazy">
       {%- else -%}
         <div class="body-section__placeholder">{{ 'image' | placeholder_svg_tag }}</div>
       {%- endif -%}
@@ -61,11 +61,33 @@
         { "value": "display", "label": "Neue Haas Grotesk Display (Adobe)" },
         { "value": "ogg", "label": "Ogg Text (Adobe serif)" } ], "default": "site" },
     { "type": "range", "id": "heading_size", "label": "Heading size", "min": 20, "max": 80, "step": 2, "unit": "px", "default": 40 },
+    { "type": "select", "id": "heading_weight", "label": "Heading weight & style", "info": "Ogg Text has every option. Neue Haas Display has Thin/Book/Roman/Medium; Neue Haas Text has Roman only. Other picks get faked by the browser.", "options": [
+        { "value": "inherit", "label": "Theme default" },
+        { "value": "thin", "label": "Thin (200)" },
+        { "value": "book", "label": "Book / Light (300)" },
+        { "value": "book-italic", "label": "Book Italic (300)" },
+        { "value": "roman", "label": "Roman / Regular (400)" },
+        { "value": "roman-italic", "label": "Roman Italic (400)" },
+        { "value": "medium", "label": "Medium (500)" },
+        { "value": "medium-italic", "label": "Medium Italic (500)" },
+        { "value": "bold", "label": "Bold (700)" },
+        { "value": "black", "label": "Black (800)" } ], "default": "inherit" },
     { "type": "select", "id": "body_font", "label": "Body font", "options": [
         { "value": "site", "label": "Neue Haas Display Light" },
         { "value": "text", "label": "Neue Haas Grotesk Text (Adobe)" },
         { "value": "ogg", "label": "Ogg Text (Adobe serif)" } ], "default": "site" },
     { "type": "range", "id": "body_size", "label": "Body text size", "min": 13, "max": 24, "step": 1, "unit": "px", "default": 16 },
+    { "type": "select", "id": "body_weight", "label": "Body weight & style", "options": [
+        { "value": "inherit", "label": "Theme default" },
+        { "value": "thin", "label": "Thin (200)" },
+        { "value": "book", "label": "Book / Light (300)" },
+        { "value": "book-italic", "label": "Book Italic (300)" },
+        { "value": "roman", "label": "Roman / Regular (400)" },
+        { "value": "roman-italic", "label": "Roman Italic (400)" },
+        { "value": "medium", "label": "Medium (500)" },
+        { "value": "medium-italic", "label": "Medium Italic (500)" },
+        { "value": "bold", "label": "Bold (700)" },
+        { "value": "black", "label": "Black (800)" } ], "default": "inherit" },
     { "type": "header", "content": "Text spacing" },
     { "type": "range", "id": "space_preheader", "label": "Space after preheader", "min": 0, "max": 80, "step": 2, "unit": "px", "default": 12 },
     { "type": "range", "id": "space_heading", "label": "Space after heading", "min": 0, "max": 80, "step": 2, "unit": "px", "default": 16 },
