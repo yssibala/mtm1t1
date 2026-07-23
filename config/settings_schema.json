@@ -89,5 +89,61 @@
         "default": true
       }
     ]
+  },
+  {
+    "name": "Header",
+    "settings": [
+      {
+        "type": "paragraph",
+        "content": "Applies site-wide to the standard header (State 1, the top-of-page bar)."
+      },
+      {
+        "type": "range",
+        "id": "nav_bg_opacity",
+        "label": "Nav bar background opacity",
+        "min": 0,
+        "max": 100,
+        "step": 5,
+        "unit": "%",
+        "default": 100,
+        "info": "Lower values let the page show through the top nav bar. 100 = solid."
+      }
+    ]
+  },
+  {
+    "name": "Footer",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Navigation bar"
+      },
+      {
+        "type": "paragraph",
+        "content": "A horizontal row of links shown across the footer on every page. Set here so it stays consistent site-wide."
+      },
+      {
+        "type": "checkbox",
+        "id": "footer_show_nav",
+        "label": "Show footer navigation bar",
+        "default": false
+      },
+      {
+        "type": "link_list",
+        "id": "footer_nav_menu",
+        "label": "Navigation menu",
+        "info": "e.g. Home, Terms, Privacy, Contact, FAQs."
+      },
+      {
+        "type": "select",
+        "id": "footer_nav_align",
+        "label": "Navigation alignment",
+        "options": [
+          { "value": "left", "label": "Left" },
+          { "value": "center", "label": "Center" },
+          { "value": "right", "label": "Right" }
+        ],
+        "default": "center"
+      }
+    ]
   }
 ]

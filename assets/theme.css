@@ -268,7 +268,11 @@ section, .section { padding: var(--section-pad) 0; }
   justify-content: space-between;
   padding: 0 clamp(20px, 4vw, 48px);
 }
-.nav-bar--1 { background: var(--bg-main); border-bottom: 1px solid var(--sand-border); }
+.nav-bar--1 {
+  background: var(--bg-main); /* solid fallback for browsers without relative-color syntax */
+  background: rgb(from var(--bg-main) r g b / var(--nav-alpha, 1));
+  border-bottom: 1px solid var(--sand-border);
+}
 .nav-bar--2 {
   background: rgba(253, 252, 250, .85);
   backdrop-filter: blur(12px) saturate(1.1);

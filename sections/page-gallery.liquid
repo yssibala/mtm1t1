@@ -9,13 +9,14 @@
     <div class="page-gallery__grid" style="--cols:{{ s.columns }};--ratio:{{ s.aspect_ratio }};">
       {%- for block in section.blocks -%}
         <figure class="gallery-cell" {{ block.shopify_attributes }}>
-          {%- if block.settings.link != blank -%}<a href="{{ block.settings.link }}">{%- endif -%}
+          {%- capture cell_media -%}
             {%- if block.settings.image != blank -%}
               <img src="{{ block.settings.image | image_url: width: 900 }}" alt="{{ block.settings.caption | escape }}" width="{{ block.settings.image.width }}" height="{{ block.settings.image.height }}" loading="lazy">
             {%- else -%}
               <div class="gallery-cell__placeholder">{{ 'image' | placeholder_svg_tag }}</div>
             {%- endif -%}
-          {%- if block.settings.link != blank -%}</a>{%- endif -%}
+          {%- endcapture -%}
+          {%- if block.settings.link != blank -%}<a href="{{ block.settings.link }}">{{ cell_media }}</a>{%- else -%}{{ cell_media }}{%- endif -%}
           {%- if block.settings.caption != blank -%}<figcaption>{{ block.settings.caption }}</figcaption>{%- endif -%}
         </figure>
       {%- endfor -%}

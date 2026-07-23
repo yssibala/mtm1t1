@@ -15,7 +15,7 @@
       </div>
       {%- if s.button_label != blank -%}
         <div class="gallery-row__cta">
-          {%- render 'pill-button', label: s.button_label, url: s.button_link, style: s.button_style, icon: 'arrow' -%}
+          {%- render 'pill-button', label: s.button_label, url: s.button_link, style: s.button_style, icon: 'arrow', size: s.button_size -%}
         </div>
       {%- endif -%}
     </div>
@@ -27,13 +27,14 @@
         {%- assign img = s[img_key] -%}
         {%- assign lnk = s[link_key] -%}
         <div class="gallery-cell">
-          {%- if lnk != blank -%}<a href="{{ lnk }}">{%- endif -%}
+          {%- capture cell_media -%}
             {%- if img != blank -%}
               <img src="{{ img | image_url: width: 800 }}" alt="{{ img.alt | escape }}" width="{{ img.width }}" height="{{ img.height }}" loading="lazy">
             {%- else -%}
               <div class="gallery-cell__placeholder">{{ 'image' | placeholder_svg_tag }}</div>
             {%- endif -%}
-          {%- if lnk != blank -%}</a>{%- endif -%}
+          {%- endcapture -%}
+          {%- if lnk != blank -%}<a href="{{ lnk }}">{{ cell_media }}</a>{%- else -%}{{ cell_media }}{%- endif -%}
         </div>
       {%- endfor -%}
     </div>
@@ -65,6 +66,8 @@
     { "type": "url", "id": "button_link", "label": "Button link" },
     { "type": "select", "id": "button_style", "label": "Button style", "options": [
         { "value": "primary", "label": "Gold (filled)" }, { "value": "ghost", "label": "Outline" } ], "default": "ghost" },
+    { "type": "select", "id": "button_size", "label": "Button size", "options": [
+        { "value": "11", "label": "Standard" }, { "value": "10", "label": "10% smaller" }, { "value": "9", "label": "20% smaller" }, { "value": "8", "label": "30% smaller" }, { "value": "7", "label": "40% smaller" }, { "value": "6", "label": "50% smaller" } ], "default": "11" },
     { "type": "header", "content": "Typography" },
     { "type": "select", "id": "preheader_font", "label": "Preheader font", "options": [
         { "value": "site", "label": "Neue Haas Display Light" },
