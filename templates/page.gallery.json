@@ -62,6 +62,91 @@
     },
     "main": {
       "type": "page-gallery",
+      "blocks": {
+        "image_trLjk6": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/11_Clio_1B.png",
+            "caption": "CLIO - SPONTANEITY AT SUNSET",
+            "link": ""
+          }
+        },
+        "image_cHddTa": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/11_Thalia_1B.png",
+            "caption": "Thalia - Elations At High Noon",
+            "link": ""
+          }
+        },
+        "image_ierKTc": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/11_Ourania_1B.png",
+            "caption": "Ourania - Elegance At Eventide",
+            "link": ""
+          }
+        },
+        "image_gf6YQM": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/Gallery_05B.png",
+            "caption": "",
+            "link": ""
+          }
+        },
+        "image_3NpFbb": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/Gallery_14B.png",
+            "caption": "",
+            "link": ""
+          }
+        },
+        "image_CCB93Q": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/Gallery_06B.png",
+            "caption": "",
+            "link": ""
+          }
+        },
+        "image_ianKLt": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/Gallery_10B.png",
+            "caption": "",
+            "link": ""
+          }
+        },
+        "image_MmAaPR": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/Gallery_12B.png",
+            "caption": "",
+            "link": ""
+          }
+        },
+        "image_G3qCDz": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/Gallery_13B.png",
+            "caption": "",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "image_trLjk6",
+        "image_cHddTa",
+        "image_ierKTc",
+        "image_gf6YQM",
+        "image_3NpFbb",
+        "image_CCB93Q",
+        "image_ianKLt",
+        "image_MmAaPR",
+        "image_G3qCDz"
+      ],
       "settings": {
         "kicker": "The Gallery",
         "text_align": "left",

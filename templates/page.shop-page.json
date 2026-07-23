@@ -9,12 +9,142 @@
  */
 {
   "sections": {
-    "main": {
-      "type": "main-page",
-      "settings": {}
+    "hero_zBxeEz": {
+      "type": "hero",
+      "name": "Hero",
+      "settings": {
+        "preheader": "",
+        "accent_color": "#C9851A",
+        "heading": "Shop Our Collections",
+        "subheading": "(More items to come)",
+        "text_align": "center",
+        "show_coming_soon": false,
+        "button_label": "Shop Now",
+        "button_link": "",
+        "button_icon": "none",
+        "button_style": "primary",
+        "button2_label": "",
+        "button2_link": "",
+        "button2_icon": "none",
+        "button_size": "11",
+        "image_position": "below",
+        "image_align": "center",
+        "image_width": 100,
+        "image_focal": "center",
+        "image_height": 0,
+        "image_radius": 0,
+        "image_opacity": 100,
+        "preheader_font": "site",
+        "heading_font": "site",
+        "heading_size": 56,
+        "heading_weight": "inherit",
+        "body_font": "site",
+        "body_size": 20,
+        "body_weight": "inherit",
+        "space_preheader": 12,
+        "space_heading": 16,
+        "space_buttons": 24,
+        "space_image": 32,
+        "ls_preheader": 1,
+        "ls_heading": 1,
+        "ls_body": 1,
+        "bg_type": "none",
+        "bg_color": "#FBF6EE",
+        "bg_gradient_start": "#FBF6EE",
+        "bg_gradient_end": "#E7DAC4",
+        "bg_gradient_angle": 180,
+        "content_valign": "top",
+        "min_height": 0,
+        "padding_top": 96,
+        "padding_bottom": 96
+      }
+    },
+    "product_grid_fRYNCQ": {
+      "type": "product-grid",
+      "name": "Product grid",
+      "settings": {
+        "collection": "flagship-flight",
+        "limit": 12,
+        "heading": "",
+        "text_align": "left",
+        "heading_font": "site",
+        "heading_size": 36,
+        "ls_heading": 1,
+        "heading_weight": "inherit",
+        "bg_type": "none",
+        "bg_color": "#FBF6EE",
+        "bg_gradient_start": "#FBF6EE",
+        "bg_gradient_end": "#E7DAC4",
+        "bg_gradient_angle": 180,
+        "content_valign": "top",
+        "min_height": 0,
+        "padding_top": 64,
+        "padding_bottom": 64
+      }
+    },
+    "flexible_9raGmA": {
+      "type": "flexible",
+      "blocks": {
+        "image_gyDHKf": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/MUSE_-_Monogram_Solo_GLD.png",
+            "link": "",
+            "align": "center",
+            "width": 20,
+            "radius": 4,
+            "margin_top": 0,
+            "margin_bottom": 24
+          }
+        },
+        "text_9C6r8F": {
+          "type": "text",
+          "settings": {
+            "preheader": "DRINK RESPONSIBLY",
+            "accent_color": "#C9851A",
+            "heading": "Celebrate Amongst The Clouds",
+            "body": "",
+            "text_color": "#0A0B0C",
+            "align": "center",
+            "max_width": 640,
+            "preheader_font": "site",
+            "heading_font": "ogg",
+            "heading_size": 36,
+            "heading_weight": "thin",
+            "body_font": "site",
+            "body_size": 16,
+            "body_weight": "thin",
+            "space_preheader": 20,
+            "space_heading": 12,
+            "ls_preheader": 1,
+            "ls_heading": 1,
+            "ls_body": 1,
+            "margin_top": 0,
+            "margin_bottom": 24
+          }
+        }
+      },
+      "block_order": [
+        "image_gyDHKf",
+        "text_9C6r8F"
+      ],
+      "name": "Flexible section",
+      "settings": {
+        "bg_type": "none",
+        "bg_color": "#FBF6EE",
+        "bg_gradient_start": "#FBF6EE",
+        "bg_gradient_end": "#E7DAC4",
+        "bg_gradient_angle": 180,
+        "content_valign": "top",
+        "min_height": 0,
+        "padding_top": 40,
+        "padding_bottom": 40
+      }
     }
   },
   "order": [
-    "main"
+    "hero_zBxeEz",
+    "product_grid_fRYNCQ",
+    "flexible_9raGmA"
   ]
 }

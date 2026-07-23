@@ -10,6 +10,7 @@
 {
   "current": {
     "logo": "shopify://shop_images/MUSE_-_Name_LOGO_BLK_2.png",
+    "heading_font": "ogg",
     "order": [
       "header",
       "hero",
@@ -26,7 +27,7 @@
           "logo": "shopify://shop_images/MUSE_-_Monogram_Solo_GLD.png",
           "show_account": true,
           "show_search": true,
-          "scroll_threshold": 40
+          "scroll_threshold": 400
         }
       },
       "footer": {
@@ -34,9 +35,6 @@
         "settings": {
           "tagline": "FOR THOSE WHO INSPIRE",
           "brand_align": "center",
-          "show_nav": true,
-          "nav_menu": "footer",
-          "nav_align": "center",
           "show_newsletter": true,
           "newsletter_heading": "Join the MUSE newsletter",
           "show_social": true,
