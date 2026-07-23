@@ -26,8 +26,8 @@
         {%- when 'text' -%}
           <div class="fx-block" {{ block.shopify_attributes }} style="text-align:{{ a }};max-width:{{ block.settings.max_width }}px;{% if a == 'center' %}margin-left:auto;margin-right:auto;{% elsif a == 'right' %}margin-left:auto;{% endif %}margin-top:{{ block.settings.margin_top }}px;margin-bottom:{{ block.settings.margin_bottom }}px;">
             {%- if block.settings.preheader != blank -%}<div class="kicker" style="color:{{ block.settings.accent_color | default: '#C9851A' }};margin-bottom:{{ block.settings.space_preheader | default: 10 }}px;">{{ block.settings.preheader }}</div>{%- endif -%}
-            {%- if block.settings.heading != blank -%}<h2 style="font-family:{%- render 'font-stack', key: block.settings.heading_font -%};{%- render 'font-variant', key: block.settings.heading_weight -%}font-size:{{ block.settings.heading_size }}px;color:{{ block.settings.text_color | default: '#0A0B0C' }};margin:0 0 {{ block.settings.space_heading | default: 12 }}px;">{{ block.settings.heading }}</h2>{%- endif -%}
-            {%- if block.settings.body != blank -%}<div class="rte" style="font-family:{%- render 'font-stack', key: block.settings.body_font -%};{%- render 'font-variant', key: block.settings.body_weight -%}font-size:{{ block.settings.body_size }}px;color:{{ block.settings.text_color | default: '#4C4C4B' }};">{{ block.settings.body }}</div>{%- endif -%}
+            {%- if block.settings.heading != blank -%}<h2 style="font-family:{%- render 'font-stack', key: block.settings.heading_font -%};{%- render 'font-variant', key: block.settings.heading_weight, font: block.settings.heading_font -%}font-size:{{ block.settings.heading_size }}px;color:{{ block.settings.text_color | default: '#0A0B0C' }};margin:0 0 {{ block.settings.space_heading | default: 12 }}px;">{{ block.settings.heading }}</h2>{%- endif -%}
+            {%- if block.settings.body != blank -%}<div class="rte" style="font-family:{%- render 'font-stack', key: block.settings.body_font -%};{%- render 'font-variant', key: block.settings.body_weight, font: block.settings.body_font -%}font-size:{{ block.settings.body_size }}px;color:{{ block.settings.text_color | default: '#4C4C4B' }};">{{ block.settings.body }}</div>{%- endif -%}
           </div>
 
         {%- when 'image' -%}
@@ -86,6 +86,79 @@
               apply();
             })();
           </script>
+
+        {%- when 'image_carousel' -%}
+          {%- assign ic_align = block.settings.align | default: 'center' -%}
+          {%- assign slide_count = 0 -%}
+          {%- for i in (1..8) -%}
+            {%- assign ik = 'image_' | append: i -%}
+            {%- if block.settings[ik] != blank -%}{%- assign slide_count = slide_count | plus: 1 -%}{%- endif -%}
+          {%- endfor -%}
+          <div class="fx-block" {{ block.shopify_attributes }} style="text-align:{{ ic_align }};margin-top:{{ block.settings.margin_top }}px;margin-bottom:{{ block.settings.margin_bottom }}px;">
+            {%- if slide_count > 0 -%}
+              <div class="fx-imgcar" data-imgcar="{{ block.id }}" data-autoplay="{{ block.settings.autoplay }}" data-interval="{{ block.settings.interval | default: 5 }}" style="display:inline-block;width:{{ block.settings.width | default: 100 }}%;max-width:100%;--imgcar-ratio:{{ block.settings.aspect_ratio | default: '16/9' }};">
+                <div class="fx-imgcar__viewport" style="border-radius:{{ block.settings.radius | default: 8 }}px;">
+                  <div class="fx-imgcar__track">
+                    {%- for i in (1..8) -%}
+                      {%- assign ik = 'image_' | append: i -%}
+                      {%- assign lk = 'link_' | append: i -%}
+                      {%- assign im = block.settings[ik] -%}
+                      {%- if im != blank -%}
+                        <div class="fx-imgcar__slide">
+                          {%- if block.settings[lk] != blank -%}<a href="{{ block.settings[lk] }}">{%- endif -%}
+                          <img src="{{ im | image_url: width: 1600 }}" alt="{{ im.alt | escape }}" width="{{ im.width }}" height="{{ im.height }}" loading="lazy">
+                          {%- if block.settings[lk] != blank -%}</a>{%- endif -%}
+                        </div>
+                      {%- endif -%}
+                    {%- endfor -%}
+                  </div>
+                  {%- if slide_count > 1 and block.settings.show_arrows -%}
+                    <button type="button" class="fx-imgcar__arrow fx-imgcar__arrow--prev" data-imgcar-prev aria-label="Previous image"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="m15 18-6-6 6-6"/></svg></button>
+                    <button type="button" class="fx-imgcar__arrow fx-imgcar__arrow--next" data-imgcar-next aria-label="Next image"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="m9 18 6-6-6-6"/></svg></button>
+                  {%- endif -%}
+                </div>
+                {%- if slide_count > 1 and block.settings.show_dots -%}
+                  <div class="fx-imgcar__dots">
+                    {%- for i in (1..slide_count) -%}
+                      <button type="button" class="fx-imgcar__dot{% if forloop.first %} is-active{% endif %}" data-imgcar-dot="{{ forloop.index0 }}" aria-label="Go to image {{ forloop.index }}"></button>
+                    {%- endfor -%}
+                  </div>
+                {%- endif -%}
+              </div>
+            {%- else -%}
+              <div class="fx-placeholder" style="display:inline-block;width:{{ block.settings.width | default: 100 }}%;aspect-ratio:{{ block.settings.aspect_ratio | default: '16/9' }};">{{ 'image' | placeholder_svg_tag }}</div>
+            {%- endif -%}
+          </div>
+          {%- if slide_count > 1 -%}
+          <script>
+            (function () {
+              var root = document.querySelector('[data-imgcar="{{ block.id }}"]');
+              if (!root) return;
+              var track = root.querySelector('.fx-imgcar__track');
+              var slides = root.querySelectorAll('.fx-imgcar__slide');
+              var dots = root.querySelectorAll('[data-imgcar-dot]');
+              var n = slides.length, idx = 0, timer = null;
+              var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+              var autoplay = root.getAttribute('data-autoplay') === 'true';
+              var interval = (parseFloat(root.getAttribute('data-interval')) || 5) * 1000;
+              function go(i) {
+                idx = (i + n) % n;
+                track.style.transform = 'translateX(' + (-idx * 100) + '%)';
+                for (var d = 0; d < dots.length; d++) { dots[d].classList.toggle('is-active', d === idx); }
+              }
+              function next() { go(idx + 1); }
+              function prev() { go(idx - 1); }
+              function start() { if (autoplay && !reduce && interval > 0) { timer = setInterval(next, interval); } }
+              function reset() { if (timer) { clearInterval(timer); timer = null; start(); } }
+              var pv = root.querySelector('[data-imgcar-prev]'); if (pv) pv.addEventListener('click', function () { prev(); reset(); });
+              var nx = root.querySelector('[data-imgcar-next]'); if (nx) nx.addEventListener('click', function () { next(); reset(); });
+              for (var d = 0; d < dots.length; d++) { (function (k) { dots[k].addEventListener('click', function () { go(k); reset(); }); })(d); }
+              root.addEventListener('mouseenter', function () { if (timer) { clearInterval(timer); timer = null; } });
+              root.addEventListener('mouseleave', function () { if (autoplay && !reduce && !timer) start(); });
+              go(0); start();
+            })();
+          </script>
+          {%- endif -%}
       {%- endcase -%}
     {%- endfor -%}
   </div>
@@ -220,6 +293,43 @@
         { "type": "url", "id": "slide_5_link", "label": "Slide 5 link" },
         { "type": "text", "id": "slide_6_label", "label": "Slide 6 label" },
         { "type": "url", "id": "slide_6_link", "label": "Slide 6 link" },
+        { "type": "range", "id": "margin_top", "label": "Space above", "min": 0, "max": 120, "step": 4, "unit": "px", "default": 0 },
+        { "type": "range", "id": "margin_bottom", "label": "Space below", "min": 0, "max": 120, "step": 4, "unit": "px", "default": 24 }
+      ]
+    },
+    {
+      "type": "image_carousel",
+      "name": "Image carousel",
+      "settings": [
+        { "type": "paragraph", "content": "A sliding gallery of images with arrows and dots. Add up to 8 images; empty slots are skipped." },
+        { "type": "image_picker", "id": "image_1", "label": "Image 1" },
+        { "type": "url", "id": "link_1", "label": "Image 1 link" },
+        { "type": "image_picker", "id": "image_2", "label": "Image 2" },
+        { "type": "url", "id": "link_2", "label": "Image 2 link" },
+        { "type": "image_picker", "id": "image_3", "label": "Image 3" },
+        { "type": "url", "id": "link_3", "label": "Image 3 link" },
+        { "type": "image_picker", "id": "image_4", "label": "Image 4" },
+        { "type": "url", "id": "link_4", "label": "Image 4 link" },
+        { "type": "image_picker", "id": "image_5", "label": "Image 5" },
+        { "type": "url", "id": "link_5", "label": "Image 5 link" },
+        { "type": "image_picker", "id": "image_6", "label": "Image 6" },
+        { "type": "url", "id": "link_6", "label": "Image 6 link" },
+        { "type": "image_picker", "id": "image_7", "label": "Image 7" },
+        { "type": "url", "id": "link_7", "label": "Image 7 link" },
+        { "type": "image_picker", "id": "image_8", "label": "Image 8" },
+        { "type": "url", "id": "link_8", "label": "Image 8 link" },
+        { "type": "header", "content": "Layout" },
+        { "type": "select", "id": "align", "label": "Alignment", "options": [
+            { "value": "left", "label": "Left" }, { "value": "center", "label": "Center" }, { "value": "right", "label": "Right" } ], "default": "center" },
+        { "type": "range", "id": "width", "label": "Width", "min": 20, "max": 100, "step": 5, "unit": "%", "default": 100 },
+        { "type": "select", "id": "aspect_ratio", "label": "Aspect ratio", "info": "Images are cropped to fill this ratio.", "options": [
+            { "value": "16/9", "label": "Wide (16:9)" }, { "value": "3/2", "label": "Landscape (3:2)" }, { "value": "4/3", "label": "Standard (4:3)" }, { "value": "1/1", "label": "Square (1:1)" }, { "value": "4/5", "label": "Portrait (4:5)" } ], "default": "16/9" },
+        { "type": "range", "id": "radius", "label": "Corner radius", "min": 0, "max": 40, "step": 2, "unit": "px", "default": 8 },
+        { "type": "header", "content": "Controls" },
+        { "type": "checkbox", "id": "show_arrows", "label": "Show arrows", "default": true },
+        { "type": "checkbox", "id": "show_dots", "label": "Show dots", "default": true },
+        { "type": "checkbox", "id": "autoplay", "label": "Auto-advance", "default": false },
+        { "type": "range", "id": "interval", "label": "Auto-advance every", "min": 2, "max": 10, "step": 1, "unit": "s", "default": 5 },
         { "type": "range", "id": "margin_top", "label": "Space above", "min": 0, "max": 120, "step": 4, "unit": "px", "default": 0 },
         { "type": "range", "id": "margin_bottom", "label": "Space below", "min": 0, "max": 120, "step": 4, "unit": "px", "default": 24 }
       ]

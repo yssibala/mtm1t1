@@ -804,6 +804,31 @@ section, .section { padding: var(--section-pad) 0; }
 .fx-shape { will-change: transform; }
 .fx-carousel .spc-name { cursor: pointer; }
 
+/* Image carousel block */
+.fx-imgcar { position: relative; vertical-align: top; }
+.fx-imgcar__viewport { position: relative; overflow: hidden; }
+.fx-imgcar__track { display: flex; transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1); }
+@media (prefers-reduced-motion: reduce) { .fx-imgcar__track { transition: none; } }
+.fx-imgcar__slide { flex: 0 0 100%; aspect-ratio: var(--imgcar-ratio, 16 / 9); }
+.fx-imgcar__slide, .fx-imgcar__slide a { display: block; width: 100%; height: 100%; }
+.fx-imgcar__slide img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.fx-imgcar__arrow {
+  position: absolute; top: 50%; transform: translateY(-50%);
+  width: 40px; height: 40px; border-radius: 50%;
+  display: inline-flex; align-items: center; justify-content: center;
+  background: rgba(255, 255, 255, 0.85); color: var(--near-black);
+  border: none; cursor: pointer; transition: background 0.2s;
+}
+.fx-imgcar__arrow:hover { background: #fff; }
+.fx-imgcar__arrow--prev { left: 14px; }
+.fx-imgcar__arrow--next { right: 14px; }
+.fx-imgcar__dots { display: flex; justify-content: center; gap: 8px; margin-top: 14px; }
+.fx-imgcar__dot {
+  width: 8px; height: 8px; padding: 0; border-radius: 50%; border: none; cursor: pointer;
+  background: var(--muse-sand, #E7DAC4); transition: background 0.2s, transform 0.2s;
+}
+.fx-imgcar__dot.is-active { background: var(--muse-gold-1); transform: scale(1.3); }
+
 /* =====================================================================
    MAIN OFFSET + ANNOUNCEMENT BAR
    ===================================================================== */
@@ -1047,6 +1072,7 @@ body.has-announcement #site-nav { top: 40px; }
 .hero--img-right .hero__media { order: 1; } .hero--img-right .hero__text { order: 0; }
 .hero__media img { display: block; width: 100%; }
 .hero--img-below .hero__media { max-width: var(--container-width); margin-left: auto; margin-right: auto; }
+.hero__media--stack { max-width: var(--container-width); margin-left: auto; margin-right: auto; }
 @media (max-width: 768px) { .hero__grid--split { grid-template-columns: 1fr; } }
 
 /* Footer brand alignment + nav bar */

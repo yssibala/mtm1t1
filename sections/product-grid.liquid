@@ -4,7 +4,7 @@
 <div class="section-wrap product-grid" style="{%- render 'section-style', st: s -%}">
   <div class="container">
     {% if s.heading != blank %}
-      <h2 style="font-family:{%- render 'font-stack', key: s.heading_font -%};font-size:{{ s.heading_size }}px;text-align:{{ s.text_align | default: 'left' }};margin-bottom:var(--space-lg);">{{ s.heading }}</h2>
+      <h2 style="font-family:{%- render 'font-stack', key: s.heading_font -%};{%- render 'font-variant', key: s.heading_weight, font: s.heading_font -%}font-size:{{ s.heading_size }}px;text-align:{{ s.text_align | default: 'left' }};margin-bottom:var(--space-lg);">{{ s.heading }}</h2>
     {% endif %}
     {% assign grid_collection = s.collection %}
     {% if grid_collection != blank %}
@@ -34,6 +34,17 @@
         { "value": "display", "label": "Neue Haas Grotesk Display (Adobe)" },
         { "value": "ogg", "label": "Ogg Text (Adobe serif)" } ], "default": "site" },
     { "type": "range", "id": "heading_size", "label": "Heading size", "min": 20, "max": 80, "step": 2, "unit": "px", "default": 36 },
+    { "type": "select", "id": "heading_weight", "label": "Heading weight & style", "info": "Ogg Text has every option. Neue Haas Display has Thin/Book/Roman/Medium; Neue Haas Text has Roman only. Other picks get faked by the browser.", "options": [
+        { "value": "inherit", "label": "Theme default" },
+        { "value": "thin", "label": "Thin (200)" },
+        { "value": "book", "label": "Book / Light (300)" },
+        { "value": "book-italic", "label": "Book Italic (300)" },
+        { "value": "roman", "label": "Roman / Regular (400)" },
+        { "value": "roman-italic", "label": "Roman Italic (400)" },
+        { "value": "medium", "label": "Medium (500)" },
+        { "value": "medium-italic", "label": "Medium Italic (500)" },
+        { "value": "bold", "label": "Bold (700)" },
+        { "value": "black", "label": "Black (800)" } ], "default": "inherit" },
     { "type": "header", "content": "Background" },
     { "type": "select", "id": "bg_type", "label": "Background type", "options": [
         { "value": "none", "label": "None" }, { "value": "solid", "label": "Solid color" }, { "value": "gradient", "label": "Gradient" }, { "value": "image", "label": "Image" } ], "default": "none" },

@@ -1,12 +1,17 @@
 {%- liquid
   assign s = section.settings
--%}
-{%- liquid
   assign img_pos = s.image_position | default: 'below'
   assign has_image = false
   if s.image != blank
     assign has_image = true
   endif
+  assign is_split = false
+  if has_image
+    if img_pos == 'left' or img_pos == 'right'
+      assign is_split = true
+    endif
+  endif
+  assign img_align = s.image_align | default: 'center'
 -%}
 <div class="section-wrap hero{% if has_image %} hero--img-{{ img_pos }}{% endif %}" style="{%- render 'section-style', st: s -%}text-align:{{ s.text_align | default: 'center' }};{% if has_image and img_pos == 'background' %}position:relative;{% endif %}">
   {%- if has_image and img_pos == 'background' -%}
@@ -14,8 +19,14 @@
       <img src="{{ s.image | image_url: width: 2200 }}" alt="{{ s.image.alt | escape }}" width="{{ s.image.width }}" height="{{ s.image.height }}" style="width:100%;height:100%;object-fit:cover;object-position:{{ s.image_focal | default: 'center' }};opacity:{{ s.image_opacity | default: 100 | divided_by: 100.0 }};">
     </div>
   {%- endif -%}
-  <div class="hero__grid{% if has_image and img_pos != 'background' %} hero__grid--split{% endif %}" style="position:relative;z-index:1;">
-    {%- if has_image and img_pos != 'below' and img_pos != 'background' -%}
+  <div class="hero__grid{% if is_split %} hero__grid--split{% endif %}" style="position:relative;z-index:1;">
+    {%- comment -%} Free-standing image: above the text (centered/aligned) or in the split column {%- endcomment -%}
+    {%- if has_image and img_pos == 'above' -%}
+      <div class="hero__media hero__media--stack" style="text-align:{{ img_align }};margin-bottom:{{ s.space_image | default: 32 }}px;">
+        <img src="{{ s.image | image_url: width: 1600 }}" alt="{{ s.image.alt | escape }}" width="{{ s.image.width }}" height="{{ s.image.height }}" style="display:inline-block;width:{{ s.image_width | default: 100 }}%;max-width:100%;height:{% if s.image_height > 0 %}{{ s.image_height }}px{% else %}auto{% endif %};object-fit:cover;object-position:{{ s.image_focal | default: 'center' }};border-radius:{{ s.image_radius | default: 0 }}px;">
+      </div>
+    {%- endif -%}
+    {%- if is_split -%}
       <div class="hero__media">
         <img src="{{ s.image | image_url: width: 1400 }}" alt="{{ s.image.alt | escape }}" width="{{ s.image.width }}" height="{{ s.image.height }}" style="width:100%;height:{% if s.image_height > 0 %}{{ s.image_height }}px{% else %}auto{% endif %};object-fit:cover;object-position:{{ s.image_focal | default: 'center' }};border-radius:{{ s.image_radius | default: 0 }}px;">
       </div>
@@ -24,11 +35,14 @@
       {%- if s.show_coming_soon -%}
         <div style="margin-bottom:16px;">{%- render 'coming-soon-badge' -%}</div>
       {%- endif -%}
+      {%- if s.preheader != blank -%}
+        <div class="kicker" style="color:{{ s.accent_color | default: '#C9851A' }};margin-bottom:{{ s.space_preheader | default: 12 }}px;{% if s.text_align == 'center' %}text-align:center;{% endif %}">{{ s.preheader }}</div>
+      {%- endif -%}
       {%- if s.heading != blank -%}
-        <h1 style="font-family:{%- render 'font-stack', key: s.heading_font -%};{%- render 'font-variant', key: s.heading_weight -%}font-size:{{ s.heading_size }}px;margin-bottom:{{ s.space_heading | default: 16 }}px;">{{ s.heading }}</h1>
+        <h1 style="font-family:{%- render 'font-stack', key: s.heading_font -%};{%- render 'font-variant', key: s.heading_weight, font: s.heading_font -%}font-size:{{ s.heading_size }}px;margin-bottom:{{ s.space_heading | default: 16 }}px;">{{ s.heading }}</h1>
       {%- endif -%}
       {%- if s.subheading != blank -%}
-        <p style="max-width:620px;{% if s.text_align == 'center' %}margin-left:auto;margin-right:auto;{% endif %}font-family:{%- render 'font-stack', key: s.body_font -%};{%- render 'font-variant', key: s.body_weight -%}font-size:{{ s.body_size }}px;margin-bottom:0;">{{ s.subheading }}</p>
+        <p style="max-width:620px;{% if s.text_align == 'center' %}margin-left:auto;margin-right:auto;{% endif %}font-family:{%- render 'font-stack', key: s.body_font -%};{%- render 'font-variant', key: s.body_weight, font: s.body_font -%}font-size:{{ s.body_size }}px;margin-bottom:0;">{{ s.subheading }}</p>
       {%- endif -%}
       {%- if s.button_label != blank or s.button2_label != blank -%}
         <div style="margin-top:{{ s.space_buttons | default: 24 }}px;display:flex;gap:16px;flex-wrap:wrap;{% if s.text_align == 'center' %}justify-content:center;{% elsif s.text_align == 'right' %}justify-content:flex-end;{% endif %}">
@@ -37,8 +51,8 @@
       {%- endif -%}
     </div>
     {%- if has_image and img_pos == 'below' -%}
-      <div class="hero__media" style="margin-top:32px;">
-        <img src="{{ s.image | image_url: width: 1600 }}" alt="{{ s.image.alt | escape }}" width="{{ s.image.width }}" height="{{ s.image.height }}" style="width:100%;height:{% if s.image_height > 0 %}{{ s.image_height }}px{% else %}auto{% endif %};object-fit:cover;object-position:{{ s.image_focal | default: 'center' }};border-radius:{{ s.image_radius | default: 0 }}px;">
+      <div class="hero__media hero__media--stack" style="text-align:{{ img_align }};margin-top:{{ s.space_image | default: 32 }}px;">
+        <img src="{{ s.image | image_url: width: 1600 }}" alt="{{ s.image.alt | escape }}" width="{{ s.image.width }}" height="{{ s.image.height }}" style="display:inline-block;width:{{ s.image_width | default: 100 }}%;max-width:100%;height:{% if s.image_height > 0 %}{{ s.image_height }}px{% else %}auto{% endif %};object-fit:cover;object-position:{{ s.image_focal | default: 'center' }};border-radius:{{ s.image_radius | default: 0 }}px;">
       </div>
     {%- endif -%}
   </div>
@@ -48,6 +62,8 @@
 {
   "name": "Hero",
   "settings": [
+    { "type": "text", "id": "preheader", "label": "Preheader (eyebrow)" },
+    { "type": "color", "id": "accent_color", "label": "Preheader color", "default": "#C9851A" },
     { "type": "text", "id": "heading", "label": "Heading", "default": "Welcome to MT-MUSE" },
     { "type": "text", "id": "subheading", "label": "Subheading", "default": "Explore our curated selection of products crafted with intention." },
     { "type": "select", "id": "text_align", "label": "Alignment", "options": [
@@ -68,8 +84,11 @@
         { "value": "11", "label": "Standard" }, { "value": "10", "label": "10% smaller" }, { "value": "9", "label": "20% smaller" }, { "value": "8", "label": "30% smaller" }, { "value": "7", "label": "40% smaller" }, { "value": "6", "label": "50% smaller" } ], "default": "11" },
     { "type": "header", "content": "Image" },
     { "type": "image_picker", "id": "image", "label": "Image" },
-    { "type": "select", "id": "image_position", "label": "Image position", "options": [
-        { "value": "below", "label": "Below text" }, { "value": "left", "label": "Left of text" }, { "value": "right", "label": "Right of text" }, { "value": "background", "label": "Background (full-bleed)" } ], "default": "below" },
+    { "type": "select", "id": "image_position", "label": "Image position", "info": "Above / Below let you set the image width and horizontal alignment (e.g. centered above the heading). Left / Right place it beside the text.", "options": [
+        { "value": "above", "label": "Above text" }, { "value": "below", "label": "Below text" }, { "value": "left", "label": "Left of text" }, { "value": "right", "label": "Right of text" }, { "value": "background", "label": "Background (full-bleed)" } ], "default": "below" },
+    { "type": "select", "id": "image_align", "label": "Image alignment (above / below)", "options": [
+        { "value": "left", "label": "Left" }, { "value": "center", "label": "Center" }, { "value": "right", "label": "Right" } ], "default": "center" },
+    { "type": "range", "id": "image_width", "label": "Image width (above / below)", "min": 20, "max": 100, "step": 5, "unit": "%", "default": 100 },
     { "type": "select", "id": "image_focal", "label": "Focal point (crop)", "options": [
         { "value": "center", "label": "Center" }, { "value": "top", "label": "Top" }, { "value": "bottom", "label": "Bottom" }, { "value": "left", "label": "Left" }, { "value": "right", "label": "Right" } ], "default": "center" },
     { "type": "range", "id": "image_height", "label": "Image height (0 = auto)", "min": 0, "max": 900, "step": 20, "unit": "px", "default": 0 },
@@ -109,8 +128,10 @@
         { "value": "bold", "label": "Bold (700)" },
         { "value": "black", "label": "Black (800)" } ], "default": "inherit" },
     { "type": "header", "content": "Text spacing" },
+    { "type": "range", "id": "space_preheader", "label": "Space after preheader", "min": 0, "max": 80, "step": 2, "unit": "px", "default": 12 },
     { "type": "range", "id": "space_heading", "label": "Space after heading", "min": 0, "max": 80, "step": 2, "unit": "px", "default": 16 },
     { "type": "range", "id": "space_buttons", "label": "Space above buttons", "min": 0, "max": 80, "step": 2, "unit": "px", "default": 24 },
+    { "type": "range", "id": "space_image", "label": "Space between image and text (above / below)", "min": 0, "max": 120, "step": 4, "unit": "px", "default": 32 },
     { "type": "header", "content": "Background" },
     { "type": "select", "id": "bg_type", "label": "Background type", "options": [
         { "value": "none", "label": "None" }, { "value": "solid", "label": "Solid color" }, { "value": "gradient", "label": "Gradient" }, { "value": "image", "label": "Image" } ], "default": "none" },
