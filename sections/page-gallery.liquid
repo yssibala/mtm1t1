@@ -2,8 +2,8 @@
 <div class="section-wrap page-gallery" style="{%- render 'section-style', st: s -%}">
   <div class="container">
     <div class="page-gallery__head" style="text-align:{{ s.text_align | default: 'left' }};">
-      {%- if s.kicker != blank -%}<div class="kicker" style="margin-bottom:10px;">{{ s.kicker }}</div>{%- endif -%}
-      <h1 style="font-family:{%- render 'font-stack', key: s.heading_font -%};{%- render 'font-variant', font: s.heading_font -%}font-size:{{ s.heading_size }}px;">{{ page.title }}</h1>
+      {%- if s.kicker != blank -%}<div class="kicker" style="font-family:{%- render 'font-stack', key: s.preheader_font -%};margin-bottom:{{ s.space_preheader | default: 10 }}px;{%- render 'letter-spacing', mult: s.ls_preheader, base: '0.18em' -%}{% if s.accent_color != blank %}color:{{ s.accent_color }};{% endif %}">{{ s.kicker }}</div>{%- endif -%}
+      <h1 style="font-family:{%- render 'font-stack', key: s.heading_font -%};{%- render 'font-variant', key: s.heading_weight, font: s.heading_font -%}{%- render 'letter-spacing', mult: s.ls_heading, base: '0.05em' -%}font-size:{{ s.heading_size }}px;">{{ s.heading | default: page.title }}</h1>
       {%- if page.content != blank -%}<div class="rte page-gallery__intro">{{ page.content }}</div>{%- endif -%}
     </div>
     <div class="page-gallery__grid" style="--cols:{{ s.columns }};--ratio:{{ s.aspect_ratio }};">
@@ -28,15 +28,38 @@
   "name": "Gallery page",
   "settings": [
     { "type": "text", "id": "kicker", "label": "Kicker", "default": "The Gallery" },
+    { "type": "color", "id": "accent_color", "label": "Kicker color", "info": "Leave blank to use the theme default." },
+    { "type": "text", "id": "heading", "label": "Heading", "info": "Leave blank to use the page title." },
     { "type": "select", "id": "text_align", "label": "Heading alignment", "options": [ { "value": "left", "label": "Left" }, { "value": "center", "label": "Center" } ], "default": "left" },
     { "type": "range", "id": "columns", "label": "Columns", "min": 2, "max": 5, "step": 1, "default": 3 },
     { "type": "select", "id": "aspect_ratio", "label": "Image aspect ratio", "options": [ { "value": "1/1", "label": "Square (1:1)" }, { "value": "4/5", "label": "Portrait (4:5)" }, { "value": "3/4", "label": "Portrait (3:4)" }, { "value": "16/9", "label": "Landscape (16:9)" } ], "default": "1/1" },
     { "type": "header", "content": "Typography" },
+    { "type": "select", "id": "preheader_font", "label": "Kicker font", "options": [
+        { "value": "site", "label": "Neue Haas Display Light" },
+        { "value": "display", "label": "Neue Haas Grotesk Display (Adobe)" },
+        { "value": "text", "label": "Neue Haas Grotesk Text (Adobe)" },
+        { "value": "ogg", "label": "Ogg Text (Adobe serif)" } ], "default": "site" },
     { "type": "select", "id": "heading_font", "label": "Heading font", "options": [
         { "value": "site", "label": "Neue Haas Display Light" },
         { "value": "display", "label": "Neue Haas Grotesk Display (Adobe)" },
         { "value": "ogg", "label": "Ogg Text (Adobe serif)" } ], "default": "site" },
+    { "type": "select", "id": "heading_weight", "label": "Heading weight & style", "info": "Ogg Text has every option. Neue Haas Display has Thin/Book/Roman/Medium; Neue Haas Text has Roman only. Other picks get faked by the browser.", "options": [
+        { "value": "inherit", "label": "Theme default" },
+        { "value": "thin", "label": "Thin (200)" },
+        { "value": "book", "label": "Book / Light (300)" },
+        { "value": "book-italic", "label": "Book Italic (300)" },
+        { "value": "roman", "label": "Roman / Regular (400)" },
+        { "value": "roman-italic", "label": "Roman Italic (400)" },
+        { "value": "medium", "label": "Medium (500)" },
+        { "value": "medium-italic", "label": "Medium Italic (500)" },
+        { "value": "bold", "label": "Bold (700)" },
+        { "value": "black", "label": "Black (800)" } ], "default": "inherit" },
     { "type": "range", "id": "heading_size", "label": "Heading size", "min": 24, "max": 80, "step": 2, "unit": "px", "default": 44 },
+    { "type": "header", "content": "Text spacing" },
+    { "type": "range", "id": "space_preheader", "label": "Space after kicker", "min": 0, "max": 80, "step": 2, "unit": "px", "default": 10 },
+    { "type": "header", "content": "Letter spacing" },
+    { "type": "range", "id": "ls_preheader", "label": "Kicker letter spacing", "info": "1 = theme default, up to 10x wider.", "min": 1, "max": 10, "step": 1, "unit": "x", "default": 1 },
+    { "type": "range", "id": "ls_heading", "label": "Heading letter spacing", "min": 1, "max": 10, "step": 1, "unit": "x", "default": 1 },
     { "type": "header", "content": "Background" },
     { "type": "select", "id": "bg_type", "label": "Background type", "options": [ { "value": "none", "label": "None" }, { "value": "solid", "label": "Solid color" }, { "value": "gradient", "label": "Gradient" }, { "value": "image", "label": "Image" } ], "default": "none" },
     { "type": "color", "id": "bg_color", "label": "Solid color", "default": "#FBF6EE" },
