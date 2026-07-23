@@ -148,7 +148,7 @@
             "number_size": 40,
             "eyebrow": "",
             "heading": "Cultivate",
-            "body": "<p>Leading every instance with intention. Flavor comes First.</p>",
+            "body": "<p>Leading every instance with intention.<br/>For every cocktail,  Flavor Comes First.</p>",
             "align": "left",
             "divider": false,
             "divider_color": "#E7DAC4",
@@ -181,7 +181,7 @@
             "number_size": 40,
             "eyebrow": "",
             "heading": "Commemorate",
-            "body": "<p>Honoring the people and moments that bring value to everything we do.</p>",
+            "body": "<p>Honoring the people and moments that bring value and meaning to everything we do.</p>",
             "align": "left",
             "divider": false,
             "divider_color": "#E7DAC4",
@@ -214,7 +214,7 @@
             "number_size": 40,
             "eyebrow": "",
             "heading": "Celebrate",
-            "body": "<p>How we show our gratitude, even for the little things.</p>",
+            "body": "<p>How we show our gratitude and appreciation - <br/>even for the little things.</p>",
             "align": "left",
             "divider": false,
             "divider_color": "#E7DAC4",
@@ -274,98 +274,8 @@
         "bg_gradient_angle": 180,
         "content_valign": "top",
         "min_height": 0,
-        "padding_top": 80,
-        "padding_bottom": 80
-      }
-    },
-    "flexible_HeD3q3": {
-      "type": "flexible",
-      "blocks": {
-        "text_9MTCjV": {
-          "type": "text",
-          "settings": {
-            "preheader": "",
-            "accent_color": "#c9851a",
-            "heading": "",
-            "body": "<p>jlkhlkj</p>",
-            "text_color": "#0a0b0c",
-            "align": "left",
-            "max_width": 640,
-            "preheader_font": "site",
-            "heading_font": "site",
-            "heading_size": 36,
-            "heading_weight": "inherit",
-            "body_font": "site",
-            "body_size": 16,
-            "body_weight": "inherit",
-            "space_preheader": 10,
-            "space_heading": 12,
-            "ls_preheader": 1,
-            "ls_heading": 1,
-            "ls_body": 1,
-            "margin_top": 0,
-            "margin_bottom": 24
-          }
-        },
-        "text_TFzYMH": {
-          "type": "text",
-          "settings": {
-            "preheader": "",
-            "accent_color": "#c9851a",
-            "heading": "",
-            "body": "",
-            "text_color": "#0a0b0c",
-            "align": "left",
-            "max_width": 640,
-            "preheader_font": "site",
-            "heading_font": "site",
-            "heading_size": 36,
-            "heading_weight": "inherit",
-            "body_font": "site",
-            "body_size": 16,
-            "body_weight": "inherit",
-            "space_preheader": 10,
-            "space_heading": 12,
-            "ls_preheader": 1,
-            "ls_heading": 1,
-            "ls_body": 1,
-            "margin_top": 0,
-            "margin_bottom": 24
-          }
-        },
-        "button_pR4AEC": {
-          "type": "button",
-          "settings": {
-            "label": "Discover",
-            "url": "",
-            "icon": "none",
-            "style": "primary",
-            "label2": "",
-            "url2": "",
-            "icon2": "none",
-            "btn_size": "11",
-            "align": "left",
-            "margin_top": 0,
-            "margin_bottom": 24
-          }
-        }
-      },
-      "block_order": [
-        "text_9MTCjV",
-        "text_TFzYMH",
-        "button_pR4AEC"
-      ],
-      "name": "Flexible section",
-      "settings": {
-        "bg_type": "none",
-        "bg_color": "#fbf6ee",
-        "bg_gradient_start": "#fbf6ee",
-        "bg_gradient_end": "#e7dac4",
-        "bg_gradient_angle": 180,
-        "content_valign": "top",
-        "min_height": 0,
-        "padding_top": 80,
-        "padding_bottom": 80
+        "padding_top": 40,
+        "padding_bottom": 40
       }
     },
     "page_gallery_QcamKU": {
@@ -416,6 +326,76 @@
         "padding_top": 80,
         "padding_bottom": 80
       }
+    },
+    "flexible_bDMUXg": {
+      "type": "flexible",
+      "blocks": {
+        "image_qraXdr": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/MUSE_-_Monogram_Solo_GLD.png",
+            "link": "",
+            "align": "center",
+            "width": 20,
+            "radius": 4,
+            "margin_top": 0,
+            "margin_bottom": 24
+          }
+        },
+        "text_A8Wh3H": {
+          "type": "text",
+          "settings": {
+            "preheader": "",
+            "accent_color": "#C9851A",
+            "heading": "CELEBRATING THOSE WHO INSPIRE:",
+            "body": "<p>Everyone has a MUSE - someone whose light deserves to be celebrated. Tell their story or nominate them to be honored amongst the clouds.</p>",
+            "text_color": "#0A0B0C",
+            "align": "center",
+            "max_width": 660,
+            "heading_font": "ogg",
+            "heading_size": 36,
+            "body_font": "text",
+            "body_size": 14,
+            "space_preheader": 12,
+            "space_heading": 20,
+            "margin_top": 20,
+            "margin_bottom": 40
+          }
+        },
+        "button_XPmGzm": {
+          "type": "button",
+          "settings": {
+            "label": "SHARE YOUR MUSE",
+            "url": "shopify://pages/share-your-muse",
+            "icon": "none",
+            "style": "primary",
+            "label2": "",
+            "url2": "",
+            "icon2": "none",
+            "btn_size": "11",
+            "align": "center",
+            "margin_top": 0,
+            "margin_bottom": 24
+          }
+        }
+      },
+      "block_order": [
+        "image_qraXdr",
+        "text_A8Wh3H",
+        "button_XPmGzm"
+      ],
+      "name": "Flexible section",
+      "settings": {
+        "bg_type": "none",
+        "bg_color": "#FBF6EE",
+        "bg_gradient_start": "#FBF6EE",
+        "bg_gradient_end": "#E7DAC4",
+        "bg_gradient_angle": 180,
+        "content_valign": "top",
+        "min_height": 0,
+        "padding_top": 20,
+        "padding_bottom": 20
+      }
     }
   },
   "order": [
@@ -424,6 +404,6 @@
     "body_section_FbXAkj",
     "text_columns_zMX3xJ",
     "page_gallery_QcamKU",
-    "flexible_HeD3q3"
+    "flexible_bDMUXg"
   ]
 }
