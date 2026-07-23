@@ -13,7 +13,7 @@
   endif
   assign img_align = s.image_align | default: 'center'
 -%}
-<div class="section-wrap hero{% if has_image %} hero--img-{{ img_pos }}{% endif %}" style="{%- render 'section-style', st: s -%}text-align:{{ s.text_align | default: 'center' }};{% if has_image and img_pos == 'background' %}position:relative;{% endif %}">
+<div class="section-wrap hero{% if has_image %} hero--img-{{ img_pos }}{% endif %}{% if s.coming_soon %} is-coming-soon{% endif %}"{% if s.coming_soon %} data-cs-label="{{ settings.badge_text | default: 'Coming Soon' | escape }}"{% endif %} style="{%- render 'section-style', st: s -%}text-align:{{ s.text_align | default: 'center' }};{% if has_image and img_pos == 'background' %}position:relative;{% endif %}">
   {%- if has_image and img_pos == 'background' -%}
     <div class="hero__bg" style="position:absolute;inset:0;z-index:0;overflow:hidden;">
       <img src="{{ s.image | image_url: width: 2200 }}" alt="{{ s.image.alt | escape }}" width="{{ s.image.width }}" height="{{ s.image.height }}" style="width:100%;height:100%;object-fit:cover;object-position:{{ s.image_focal | default: 'center' }};opacity:{{ s.image_opacity | default: 100 | divided_by: 100.0 }};">
@@ -62,6 +62,8 @@
 {
   "name": "Hero",
   "settings": [
+    { "type": "header", "content": "Coming soon" },
+    { "type": "checkbox", "id": "coming_soon", "label": "Grey out + show \"coming soon\" badge", "default": false },
     { "type": "text", "id": "preheader", "label": "Preheader (eyebrow)" },
     { "type": "color", "id": "accent_color", "label": "Preheader color", "default": "#C9851A" },
     { "type": "textarea", "id": "heading", "label": "Heading", "info": "Press Enter for a line break.", "default": "Welcome to MT-MUSE" },

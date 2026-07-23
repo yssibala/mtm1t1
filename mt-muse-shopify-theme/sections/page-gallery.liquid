@@ -20,7 +20,7 @@
     assign has_filters = true
   endif
 -%}
-<div class="section-wrap page-gallery" data-gallery="{{ section.id }}" style="{%- render 'section-style', st: s -%}">
+<div class="section-wrap page-gallery{% if s.coming_soon %} is-coming-soon{% endif %}" data-gallery="{{ section.id }}"{% if s.coming_soon %} data-cs-label="{{ settings.badge_text | default: 'Coming Soon' | escape }}"{% endif %} style="{%- render 'section-style', st: s -%}">
   <div class="container">
     <div class="page-gallery__head" style="text-align:{{ s.text_align | default: 'left' }};">
       {%- if s.kicker != blank -%}<div class="kicker" style="font-family:{%- render 'font-stack', key: s.preheader_font -%};margin-bottom:{{ s.space_preheader | default: 10 }}px;{%- render 'letter-spacing', mult: s.ls_preheader, base: '0.18em' -%}{% if s.accent_color != blank %}color:{{ s.accent_color }};{% endif %}">{{ s.kicker }}</div>{%- endif -%}
@@ -94,6 +94,8 @@
 {
   "name": "Gallery page",
   "settings": [
+    { "type": "header", "content": "Coming soon" },
+    { "type": "checkbox", "id": "coming_soon", "label": "Grey out + show \"coming soon\" badge", "default": false },
     { "type": "text", "id": "kicker", "label": "Kicker", "default": "The Gallery" },
     { "type": "color", "id": "accent_color", "label": "Kicker color", "info": "Leave blank to use the theme default." },
     { "type": "textarea", "id": "heading", "label": "Heading", "info": "Leave blank to use the page title. Press Enter for a line break." },

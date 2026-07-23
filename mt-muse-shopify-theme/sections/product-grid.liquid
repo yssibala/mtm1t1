@@ -1,7 +1,7 @@
 {%- liquid
   assign s = section.settings
 -%}
-<div class="section-wrap product-grid" style="{%- render 'section-style', st: s -%}">
+<div class="section-wrap product-grid{% if s.coming_soon %} is-coming-soon{% endif %}"{% if s.coming_soon %} data-cs-label="{{ settings.badge_text | default: 'Coming Soon' | escape }}"{% endif %} style="{%- render 'section-style', st: s -%}">
   <div class="container">
     {% if s.heading != blank %}
       <h2 style="font-family:{%- render 'font-stack', key: s.heading_font -%};{%- render 'font-variant', key: s.heading_weight, font: s.heading_font -%}{%- render 'letter-spacing', mult: s.ls_heading, base: '0.05em' -%}font-size:{{ s.heading_size }}px;text-align:{{ s.text_align | default: 'left' }};margin-bottom:var(--space-lg);">{{ s.heading | newline_to_br }}</h2>
@@ -23,6 +23,8 @@
 {
   "name": "Product grid",
   "settings": [
+    { "type": "header", "content": "Coming soon" },
+    { "type": "checkbox", "id": "coming_soon", "label": "Grey out + show \"coming soon\" badge", "default": false },
     { "type": "collection", "id": "collection", "label": "Collection" },
     { "type": "number", "id": "limit", "label": "Products to show", "default": 12 },
     { "type": "textarea", "id": "heading", "label": "Heading (optional)", "info": "Press Enter for a line break." },

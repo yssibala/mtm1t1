@@ -1,5 +1,5 @@
 {%- liquid assign s = section.settings -%}
-<div class="section-wrap page-contact" style="{%- render 'section-style', st: s -%}">
+<div class="section-wrap page-contact{% if s.coming_soon %} is-coming-soon{% endif %}"{% if s.coming_soon %} data-cs-label="{{ settings.badge_text | default: 'Coming Soon' | escape }}"{% endif %} style="{%- render 'section-style', st: s -%}">
   <div class="container">
     <div class="page-contact__head" style="text-align:{{ s.text_align | default: 'left' }};">
       {%- if s.kicker != blank -%}<div class="kicker" style="margin-bottom:10px;">{{ s.kicker }}</div>{%- endif -%}
@@ -36,6 +36,8 @@
 {
   "name": "Contact page",
   "settings": [
+    { "type": "header", "content": "Coming soon" },
+    { "type": "checkbox", "id": "coming_soon", "label": "Grey out + show \"coming soon\" badge", "default": false },
     { "type": "text", "id": "kicker", "label": "Kicker", "default": "Get in touch" },
     { "type": "select", "id": "text_align", "label": "Heading alignment", "options": [ { "value": "left", "label": "Left" }, { "value": "center", "label": "Center" } ], "default": "left" },
     { "type": "header", "content": "Details column" },

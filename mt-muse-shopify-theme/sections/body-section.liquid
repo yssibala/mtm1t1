@@ -5,7 +5,7 @@
     assign img_right = true
   endif
 -%}
-<div class="section-wrap body-section" style="{%- render 'section-style', st: s -%}">
+<div class="section-wrap body-section{% if s.coming_soon %} is-coming-soon{% endif %}"{% if s.coming_soon %} data-cs-label="{{ settings.badge_text | default: 'Coming Soon' | escape }}"{% endif %} style="{%- render 'section-style', st: s -%}">
   <div class="container body-section__inner{% if img_right %} body-section--img-right{% endif %}">
     <div class="body-section__text" style="text-align:{{ s.text_align | default: 'left' }};">
       {%- if s.preheader != blank -%}
@@ -39,6 +39,8 @@
 {
   "name": "Body section",
   "settings": [
+    { "type": "header", "content": "Coming soon" },
+    { "type": "checkbox", "id": "coming_soon", "label": "Grey out + show \"coming soon\" badge", "default": false },
     { "type": "text", "id": "preheader", "label": "Preheader", "default": "OUR STORY" },
     { "type": "textarea", "id": "heading", "label": "Heading", "info": "Press Enter for a line break.", "default": "Celebrating Those Who Inspire" },
     { "type": "richtext", "id": "body", "label": "Body text", "default": "<p>Share the story behind your brand here.</p>" },

@@ -159,6 +159,22 @@ p { margin: 0 0 var(--space-md); color: var(--text-dark); }
 
 section, .section { padding: var(--section-pad) 0; }
 
+/* Per-section "coming soon": grey veil + badge. Toggled per section in its settings. */
+.is-coming-soon { position: relative; }
+.is-coming-soon::after {
+  content: ""; position: absolute; inset: 0; z-index: 5;
+  background: rgba(228, 223, 212, .5);
+  -webkit-backdrop-filter: grayscale(.9); backdrop-filter: grayscale(.9);
+}
+.is-coming-soon::before {
+  content: attr(data-cs-label); position: absolute; z-index: 6;
+  top: 20px; left: 50%; transform: translateX(-50%);
+  background: var(--near-black); color: var(--near-white);
+  padding: 9px 24px; border-radius: var(--radius-pill);
+  font-size: var(--fs-label); letter-spacing: .16em; text-transform: uppercase; font-weight: var(--fw-semibold);
+  white-space: nowrap;
+}
+
 /* =====================================================================
    PILL BUTTONS (.muse-pill / .muse-cta / .muse-ghost)
    ===================================================================== */
