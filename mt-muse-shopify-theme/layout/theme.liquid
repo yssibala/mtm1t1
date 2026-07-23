@@ -32,6 +32,7 @@
         {% if settings.body_font != blank %}--font-text: {%- render 'font-stack', key: settings.body_font -%};{% endif %}
         {% if settings.heading_font != blank %}--font-display: {%- render 'font-stack', key: settings.heading_font -%};{% endif %}
         {% if settings.brand_gold != blank %}--muse-gold-1: {{ settings.brand_gold }};{% endif %}
+        --nav-alpha: {{ settings.nav_bg_opacity | default: 100 | divided_by: 100.0 }};
       }
     {% endstyle %}
 

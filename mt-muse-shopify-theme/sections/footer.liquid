@@ -60,9 +60,9 @@
       </div>
     </div>
 
-    {%- if s.show_nav and s.nav_menu != blank -%}
-      <nav class="footer-nav" style="text-align:{{ s.nav_align | default: 'center' }};">
-        {%- for link in linklists[s.nav_menu].links -%}<a href="{{ link.url }}">{{ link.title }}</a>{%- endfor -%}
+    {%- if settings.footer_show_nav and settings.footer_nav_menu != blank -%}
+      <nav class="footer-nav" style="text-align:{{ settings.footer_nav_align | default: 'center' }};">
+        {%- for link in linklists[settings.footer_nav_menu].links -%}<a href="{{ link.url }}">{{ link.title }}</a>{%- endfor -%}
       </nav>
     {%- endif -%}
 
@@ -84,11 +84,7 @@
     { "type": "text", "id": "tagline", "label": "Tagline", "default": "Live the legends we'll tell." },
     { "type": "select", "id": "brand_align", "label": "Brand alignment (logo + tagline)", "options": [
         { "value": "left", "label": "Left" }, { "value": "center", "label": "Center" }, { "value": "right", "label": "Right" } ], "default": "left" },
-    { "type": "header", "content": "Navigation bar (optional)" },
-    { "type": "checkbox", "id": "show_nav", "label": "Show navigation bar", "default": false },
-    { "type": "link_list", "id": "nav_menu", "label": "Navigation menu", "info": "A horizontal row of links (Home, Terms, Privacy, Contact, FAQs...)." },
-    { "type": "select", "id": "nav_align", "label": "Navigation alignment", "options": [
-        { "value": "left", "label": "Left" }, { "value": "center", "label": "Center" }, { "value": "right", "label": "Right" } ], "default": "center" },
+    { "type": "paragraph", "content": "The footer navigation bar is now set in Theme settings > Footer, so it stays consistent site-wide." },
     { "type": "header", "content": "Newsletter" },
     { "type": "checkbox", "id": "show_newsletter", "label": "Show newsletter signup", "default": true },
     { "type": "text", "id": "newsletter_heading", "label": "Newsletter heading", "default": "Join the muse list" },

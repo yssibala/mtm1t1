@@ -1,0 +1,74 @@
+{%- comment -%}
+  Reusable image carousel. Uses the .fx-imgcar styles already in theme.css.
+  Params:
+    uid — unique id for the data attribute (pass section.id or block.id)
+    st  — a settings object to read from (section.settings or block.settings)
+  Reads from st: ic_image_1..8, ic_link_1..8, ic_aspect, ic_radius,
+                 ic_arrows, ic_dots, ic_autoplay, ic_interval, ic_width, ic_align.
+{%- endcomment -%}
+{%- assign ic_align = st.ic_align | default: 'center' -%}
+{%- assign slide_count = 0 -%}
+{%- for i in (1..8) -%}
+  {%- assign ik = 'ic_image_' | append: i -%}
+  {%- if st[ik] != blank -%}{%- assign slide_count = slide_count | plus: 1 -%}{%- endif -%}
+{%- endfor -%}
+<div class="fx-imgcar-wrap" style="text-align:{{ ic_align }};">
+  {%- if slide_count > 0 -%}
+    <div class="fx-imgcar" data-imgcar="{{ uid }}" data-autoplay="{{ st.ic_autoplay }}" data-interval="{{ st.ic_interval | default: 5 }}" style="display:inline-block;width:{{ st.ic_width | default: 100 }}%;max-width:100%;--imgcar-ratio:{{ st.ic_aspect | default: '4/3' }};">
+      <div class="fx-imgcar__viewport" style="border-radius:{{ st.ic_radius | default: 8 }}px;">
+        <div class="fx-imgcar__track">
+          {%- for i in (1..8) -%}
+            {%- assign ik = 'ic_image_' | append: i -%}
+            {%- assign lk = 'ic_link_' | append: i -%}
+            {%- assign im = st[ik] -%}
+            {%- if im != blank -%}
+              <div class="fx-imgcar__slide">
+                {%- capture ic_img -%}<img src="{{ im | image_url: width: 1600 }}" alt="{{ im.alt | escape }}" width="{{ im.width }}" height="{{ im.height }}" loading="lazy">{%- endcapture -%}
+                {%- if st[lk] != blank -%}<a href="{{ st[lk] }}">{{ ic_img }}</a>{%- else -%}{{ ic_img }}{%- endif -%}
+              </div>
+            {%- endif -%}
+          {%- endfor -%}
+        </div>
+        {%- if slide_count > 1 and st.ic_arrows -%}
+          <button type="button" class="fx-imgcar__arrow fx-imgcar__arrow--prev" data-imgcar-prev aria-label="Previous image"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="m15 18-6-6 6-6"/></svg></button>
+          <button type="button" class="fx-imgcar__arrow fx-imgcar__arrow--next" data-imgcar-next aria-label="Next image"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="m9 18 6-6-6-6"/></svg></button>
+        {%- endif -%}
+      </div>
+      {%- if slide_count > 1 and st.ic_dots -%}
+        <div class="fx-imgcar__dots">
+          {%- for i in (1..slide_count) -%}
+            <button type="button" class="fx-imgcar__dot{% if forloop.first %} is-active{% endif %}" data-imgcar-dot="{{ forloop.index0 }}" aria-label="Go to image {{ forloop.index }}"></button>
+          {%- endfor -%}
+        </div>
+      {%- endif -%}
+    </div>
+  {%- else -%}
+    <div class="body-section__placeholder">{{ 'image' | placeholder_svg_tag }}</div>
+  {%- endif -%}
+</div>
+{%- if slide_count > 1 -%}
+<script>
+  (function () {
+    var root = document.querySelector('[data-imgcar="{{ uid }}"]');
+    if (!root) return;
+    var track = root.querySelector('.fx-imgcar__track');
+    var slides = root.querySelectorAll('.fx-imgcar__slide');
+    var dots = root.querySelectorAll('[data-imgcar-dot]');
+    var n = slides.length, idx = 0, timer = null;
+    var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var autoplay = root.getAttribute('data-autoplay') === 'true';
+    var interval = (parseFloat(root.getAttribute('data-interval')) || 5) * 1000;
+    function go(i) { idx = (i + n) % n; track.style.transform = 'translateX(' + (-idx * 100) + '%)'; for (var d = 0; d < dots.length; d++) { dots[d].classList.toggle('is-active', d === idx); } }
+    function next() { go(idx + 1); }
+    function prev() { go(idx - 1); }
+    function start() { if (autoplay && !reduce && interval > 0) { timer = setInterval(next, interval); } }
+    function reset() { if (timer) { clearInterval(timer); timer = null; start(); } }
+    var pv = root.querySelector('[data-imgcar-prev]'); if (pv) pv.addEventListener('click', function () { prev(); reset(); });
+    var nx = root.querySelector('[data-imgcar-next]'); if (nx) nx.addEventListener('click', function () { next(); reset(); });
+    for (var d = 0; d < dots.length; d++) { (function (k) { dots[k].addEventListener('click', function () { go(k); reset(); }); })(d); }
+    root.addEventListener('mouseenter', function () { if (timer) { clearInterval(timer); timer = null; } });
+    root.addEventListener('mouseleave', function () { if (autoplay && !reduce && !timer) start(); });
+    go(0); start();
+  })();
+</script>
+{%- endif -%}

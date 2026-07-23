@@ -10,12 +10,12 @@
           <div class="kicker" style="font-family:{%- render 'font-stack', key: s.preheader_font -%};color:{{ s.accent_color | default: '#C9851A' }};margin-bottom:{{ s.space_preheader | default: 10 }}px;{%- render 'letter-spacing', mult: s.ls_preheader, base: '0.18em' -%}">{{ s.preheader }}</div>
         {%- endif -%}
         {%- if s.heading != blank -%}
-          <h2 style="font-family:{%- render 'font-stack', key: s.heading_font -%};{%- render 'font-variant', key: s.heading_weight, font: s.heading_font -%}{%- render 'letter-spacing', mult: s.ls_heading, base: '0.05em' -%}font-size:{{ s.heading_size }}px;margin:0;">{{ s.heading }}</h2>
+          <h2 style="font-family:{%- render 'font-stack', key: s.heading_font -%};{%- render 'font-variant', key: s.heading_weight, font: s.heading_font -%}{%- render 'letter-spacing', mult: s.ls_heading, base: '0.05em' -%}font-size:{{ s.heading_size }}px;margin:0;">{{ s.heading | newline_to_br }}</h2>
         {%- endif -%}
       </div>
       {%- if s.button_label != blank -%}
         <div class="gallery-row__cta">
-          {%- render 'pill-button', label: s.button_label, url: s.button_link, style: s.button_style, icon: 'arrow' -%}
+          {%- render 'pill-button', label: s.button_label, url: s.button_link, style: s.button_style, icon: 'arrow', size: s.button_size -%}
         </div>
       {%- endif -%}
     </div>
@@ -27,13 +27,14 @@
         {%- assign img = s[img_key] -%}
         {%- assign lnk = s[link_key] -%}
         <div class="gallery-cell">
-          {%- if lnk != blank -%}<a href="{{ lnk }}">{%- endif -%}
+          {%- capture cell_media -%}
             {%- if img != blank -%}
               <img src="{{ img | image_url: width: 800 }}" alt="{{ img.alt | escape }}" width="{{ img.width }}" height="{{ img.height }}" loading="lazy">
             {%- else -%}
               <div class="gallery-cell__placeholder">{{ 'image' | placeholder_svg_tag }}</div>
             {%- endif -%}
-          {%- if lnk != blank -%}</a>{%- endif -%}
+          {%- endcapture -%}
+          {%- if lnk != blank -%}<a href="{{ lnk }}">{{ cell_media }}</a>{%- else -%}{{ cell_media }}{%- endif -%}
         </div>
       {%- endfor -%}
     </div>
@@ -45,7 +46,7 @@
   "name": "Gallery row",
   "settings": [
     { "type": "text", "id": "preheader", "label": "Preheader", "default": "THE GALLERY" },
-    { "type": "text", "id": "heading", "label": "Heading", "default": "Moments Worth Toasting" },
+    { "type": "textarea", "id": "heading", "label": "Heading", "info": "Press Enter for a line break.", "default": "Moments Worth Toasting" },
     { "type": "color", "id": "accent_color", "label": "Preheader color", "default": "#C9851A" },
     { "type": "select", "id": "text_align", "label": "Heading alignment", "options": [
         { "value": "left", "label": "Left" }, { "value": "center", "label": "Center" } ], "default": "left" },
@@ -65,6 +66,8 @@
     { "type": "url", "id": "button_link", "label": "Button link" },
     { "type": "select", "id": "button_style", "label": "Button style", "options": [
         { "value": "primary", "label": "Gold (filled)" }, { "value": "ghost", "label": "Outline" } ], "default": "ghost" },
+    { "type": "select", "id": "button_size", "label": "Button size", "options": [
+        { "value": "11", "label": "Standard" }, { "value": "10", "label": "10% smaller" }, { "value": "9", "label": "20% smaller" }, { "value": "8", "label": "30% smaller" }, { "value": "7", "label": "40% smaller" }, { "value": "6", "label": "50% smaller" } ], "default": "11" },
     { "type": "header", "content": "Typography" },
     { "type": "select", "id": "preheader_font", "label": "Preheader font", "options": [
         { "value": "site", "label": "Neue Haas Display Light" },
