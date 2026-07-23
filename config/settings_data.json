@@ -63,9 +63,10 @@
       "header-spc": {
         "type": "header-spc",
         "settings": {
-          "menu_left": "",
-          "menu_right": "",
+          "menu_left": "nav-bar-menu-l",
+          "menu_right": "main-menu",
           "carousel_collection": "",
+          "logo": "shopify://shop_images/MUSE_-_Monogram_Solo_GLD.png",
           "show_account": true,
           "show_search": true,
           "scroll_threshold": 40
