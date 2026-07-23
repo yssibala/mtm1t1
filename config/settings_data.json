@@ -31,9 +31,13 @@
       "footer": {
         "type": "footer",
         "settings": {
-          "tagline": "Live the legends we'll tell.",
+          "tagline": "FOR THOSE WHO INSPIRE",
+          "brand_align": "center",
+          "show_nav": false,
+          "nav_menu": "",
+          "nav_align": "center",
           "show_newsletter": true,
-          "newsletter_heading": "Join the muse list",
+          "newsletter_heading": "Join the MUSE newsletter",
           "show_social": true,
           "instagram": "",
           "tiktok": "",
@@ -55,6 +59,17 @@
           "text_color": "#fbf6ee",
           "rotate_seconds": 4,
           "dismissible": true
+        }
+      },
+      "header-spc": {
+        "type": "header-spc",
+        "settings": {
+          "menu_left": "",
+          "menu_right": "",
+          "carousel_collection": "",
+          "show_account": true,
+          "show_search": true,
+          "scroll_threshold": 40
         }
       }
     },
