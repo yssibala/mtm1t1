@@ -45,6 +45,13 @@
             {%- render 'pill-button', label: block.settings.label, url: block.settings.url, style: block.settings.style, icon: block.settings.icon, size: block.settings.btn_size, label2: block.settings.label2, url2: block.settings.url2, icon2: block.settings.icon2 -%}
           </div>
 
+        {%- when 'buttons' -%}
+          <div class="fx-block" {{ block.shopify_attributes }} style="display:flex;flex-wrap:wrap;align-items:center;gap:{{ block.settings.gap | default: 16 }}px;justify-content:{{ justify }};margin-top:{{ block.settings.margin_top }}px;margin-bottom:{{ block.settings.margin_bottom }}px;">
+            {%- if block.settings.label_1 != blank -%}{%- render 'pill-button', label: block.settings.label_1, url: block.settings.url_1, style: block.settings.style_1, icon: block.settings.icon_1, size: block.settings.btn_size -%}{%- endif -%}
+            {%- if block.settings.label_2 != blank -%}{%- render 'pill-button', label: block.settings.label_2, url: block.settings.url_2, style: block.settings.style_2, icon: block.settings.icon_2, size: block.settings.btn_size -%}{%- endif -%}
+            {%- if block.settings.label_3 != blank -%}{%- render 'pill-button', label: block.settings.label_3, url: block.settings.url_3, style: block.settings.style_3, icon: block.settings.icon_3, size: block.settings.btn_size -%}{%- endif -%}
+          </div>
+
         {%- when 'carousel' -%}
           {%- assign slides = '' -%}
           {%- for i in (1..6) -%}
@@ -247,7 +254,7 @@
         { "type": "url", "id": "link", "label": "Link (optional)" },
         { "type": "select", "id": "align", "label": "Alignment", "options": [
             { "value": "left", "label": "Left" }, { "value": "center", "label": "Center" }, { "value": "right", "label": "Right" } ], "default": "center" },
-        { "type": "range", "id": "width", "label": "Width", "min": 20, "max": 100, "step": 5, "unit": "%", "default": 100 },
+        { "type": "range", "id": "width", "label": "Width", "min": 5, "max": 100, "step": 5, "unit": "%", "default": 100 },
         { "type": "range", "id": "radius", "label": "Corner radius", "min": 0, "max": 40, "step": 2, "unit": "px", "default": 4 },
         { "type": "range", "id": "margin_top", "label": "Space above", "min": 0, "max": 120, "step": 4, "unit": "px", "default": 0 },
         { "type": "range", "id": "margin_bottom", "label": "Space below", "min": 0, "max": 120, "step": 4, "unit": "px", "default": 24 }
@@ -271,6 +278,41 @@
             { "value": "11", "label": "Standard" }, { "value": "10", "label": "10% smaller" }, { "value": "9", "label": "20% smaller" }, { "value": "8", "label": "30% smaller" }, { "value": "7", "label": "40% smaller" }, { "value": "6", "label": "50% smaller" } ], "default": "11" },
         { "type": "select", "id": "align", "label": "Alignment", "options": [
             { "value": "left", "label": "Left" }, { "value": "center", "label": "Center" }, { "value": "right", "label": "Right" } ], "default": "left" },
+        { "type": "range", "id": "margin_top", "label": "Space above", "min": 0, "max": 120, "step": 4, "unit": "px", "default": 0 },
+        { "type": "range", "id": "margin_bottom", "label": "Space below", "min": 0, "max": 120, "step": 4, "unit": "px", "default": 24 }
+      ]
+    },
+    {
+      "type": "buttons",
+      "name": "Button row",
+      "settings": [
+        { "type": "paragraph", "content": "Up to 3 separate buttons in one row. Alignment centers them (evenly spaced) or groups them at the left/right." },
+        { "type": "select", "id": "align", "label": "Alignment", "options": [
+            { "value": "left", "label": "Left" }, { "value": "center", "label": "Center" }, { "value": "right", "label": "Right" } ], "default": "center" },
+        { "type": "range", "id": "gap", "label": "Gap between buttons", "min": 0, "max": 48, "step": 4, "unit": "px", "default": 16 },
+        { "type": "select", "id": "btn_size", "label": "Button size", "options": [
+            { "value": "11", "label": "Standard" }, { "value": "10", "label": "10% smaller" }, { "value": "9", "label": "20% smaller" }, { "value": "8", "label": "30% smaller" }, { "value": "7", "label": "40% smaller" }, { "value": "6", "label": "50% smaller" } ], "default": "11" },
+        { "type": "header", "content": "Button 1" },
+        { "type": "text", "id": "label_1", "label": "Label", "default": "Learn more" },
+        { "type": "url", "id": "url_1", "label": "Link" },
+        { "type": "select", "id": "style_1", "label": "Style", "options": [
+            { "value": "primary", "label": "Gold (filled)" }, { "value": "ghost", "label": "Outline" } ], "default": "primary" },
+        { "type": "select", "id": "icon_1", "label": "Icon", "options": [
+            { "value": "none", "label": "None" }, { "value": "arrow", "label": "Arrow" }, { "value": "cart", "label": "Cart" }, { "value": "search", "label": "Search" }, { "value": "account", "label": "Account" } ], "default": "none" },
+        { "type": "header", "content": "Button 2" },
+        { "type": "text", "id": "label_2", "label": "Label", "default": "Contact us" },
+        { "type": "url", "id": "url_2", "label": "Link" },
+        { "type": "select", "id": "style_2", "label": "Style", "options": [
+            { "value": "primary", "label": "Gold (filled)" }, { "value": "ghost", "label": "Outline" } ], "default": "ghost" },
+        { "type": "select", "id": "icon_2", "label": "Icon", "options": [
+            { "value": "none", "label": "None" }, { "value": "arrow", "label": "Arrow" }, { "value": "cart", "label": "Cart" }, { "value": "search", "label": "Search" }, { "value": "account", "label": "Account" } ], "default": "none" },
+        { "type": "header", "content": "Button 3 (optional)" },
+        { "type": "text", "id": "label_3", "label": "Label" },
+        { "type": "url", "id": "url_3", "label": "Link" },
+        { "type": "select", "id": "style_3", "label": "Style", "options": [
+            { "value": "primary", "label": "Gold (filled)" }, { "value": "ghost", "label": "Outline" } ], "default": "ghost" },
+        { "type": "select", "id": "icon_3", "label": "Icon", "options": [
+            { "value": "none", "label": "None" }, { "value": "arrow", "label": "Arrow" }, { "value": "cart", "label": "Cart" }, { "value": "search", "label": "Search" }, { "value": "account", "label": "Account" } ], "default": "none" },
         { "type": "range", "id": "margin_top", "label": "Space above", "min": 0, "max": 120, "step": 4, "unit": "px", "default": 0 },
         { "type": "range", "id": "margin_bottom", "label": "Space below", "min": 0, "max": 120, "step": 4, "unit": "px", "default": 24 }
       ]
@@ -327,7 +369,7 @@
         { "type": "header", "content": "Layout" },
         { "type": "select", "id": "align", "label": "Alignment", "options": [
             { "value": "left", "label": "Left" }, { "value": "center", "label": "Center" }, { "value": "right", "label": "Right" } ], "default": "center" },
-        { "type": "range", "id": "width", "label": "Width", "min": 20, "max": 100, "step": 5, "unit": "%", "default": 100 },
+        { "type": "range", "id": "width", "label": "Width", "min": 5, "max": 100, "step": 5, "unit": "%", "default": 100 },
         { "type": "select", "id": "aspect_ratio", "label": "Aspect ratio", "info": "Images are cropped to fill this ratio.", "options": [
             { "value": "16/9", "label": "Wide (16:9)" }, { "value": "3/2", "label": "Landscape (3:2)" }, { "value": "4/3", "label": "Standard (4:3)" }, { "value": "1/1", "label": "Square (1:1)" }, { "value": "4/5", "label": "Portrait (4:5)" } ], "default": "16/9" },
         { "type": "range", "id": "radius", "label": "Corner radius", "min": 0, "max": 40, "step": 2, "unit": "px", "default": 8 },

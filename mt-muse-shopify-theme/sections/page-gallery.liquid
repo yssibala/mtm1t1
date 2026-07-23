@@ -1,14 +1,45 @@
-{%- liquid assign s = section.settings -%}
-<div class="section-wrap page-gallery" style="{%- render 'section-style', st: s -%}">
+{%- liquid
+  assign s = section.settings
+  comment
+    Build a unique, order-preserving list of category names from the blocks.
+    Wrapping each in '||' guards makes the `contains` de-dupe exact.
+  endcomment
+  assign cat_list = ''
+  for block in section.blocks
+    assign c = block.settings.category | default: '' | strip
+    if c != blank
+      assign guard = c | prepend: '||' | append: '||'
+      unless cat_list contains guard
+        assign cat_list = cat_list | append: '||' | append: c | append: '||'
+      endunless
+    endif
+  endfor
+  assign cats = cat_list | split: '||'
+  assign has_filters = false
+  if s.show_filters and cats.size > 0
+    assign has_filters = true
+  endif
+-%}
+<div class="section-wrap page-gallery" data-gallery="{{ section.id }}" style="{%- render 'section-style', st: s -%}">
   <div class="container">
     <div class="page-gallery__head" style="text-align:{{ s.text_align | default: 'left' }};">
       {%- if s.kicker != blank -%}<div class="kicker" style="font-family:{%- render 'font-stack', key: s.preheader_font -%};margin-bottom:{{ s.space_preheader | default: 10 }}px;{%- render 'letter-spacing', mult: s.ls_preheader, base: '0.18em' -%}{% if s.accent_color != blank %}color:{{ s.accent_color }};{% endif %}">{{ s.kicker }}</div>{%- endif -%}
       <h1 style="font-family:{%- render 'font-stack', key: s.heading_font -%};{%- render 'font-variant', key: s.heading_weight, font: s.heading_font -%}{%- render 'letter-spacing', mult: s.ls_heading, base: '0.05em' -%}font-size:{{ s.heading_size }}px;">{{ s.heading | default: page.title | newline_to_br }}</h1>
       {%- if page.content != blank -%}<div class="rte page-gallery__intro">{{ page.content }}</div>{%- endif -%}
     </div>
+
+    {%- if has_filters -%}
+      <div class="page-gallery__filters" style="justify-content:{% if s.text_align == 'center' %}center{% else %}flex-start{% endif %};">
+        <button type="button" class="gallery-filter is-active" data-gfilter="all">{{ s.filter_all_label | default: 'All' }}</button>
+        {%- for cat in cats -%}
+          {%- if cat != blank -%}<button type="button" class="gallery-filter" data-gfilter="{{ cat | handleize }}">{{ cat }}</button>{%- endif -%}
+        {%- endfor -%}
+      </div>
+    {%- endif -%}
+
     <div class="page-gallery__grid" style="--cols:{{ s.columns }};--ratio:{{ s.aspect_ratio }};">
       {%- for block in section.blocks -%}
-        <figure class="gallery-cell" {{ block.shopify_attributes }}>
+        <figure class="gallery-cell" data-category="{{ block.settings.category | handleize }}" {{ block.shopify_attributes }}>
           {%- capture cell_media -%}
             {%- if block.settings.image != blank -%}
               <img src="{{ block.settings.image | image_url: width: 900 }}" alt="{{ block.settings.caption | escape }}" width="{{ block.settings.image.width }}" height="{{ block.settings.image.height }}" loading="lazy">
@@ -21,8 +52,44 @@
         </figure>
       {%- endfor -%}
     </div>
+
+    {%- if s.show_share -%}
+      {%- capture share_inner -%}
+        <div class="page-gallery__share-inner">
+          {%- if s.share_heading != blank -%}<div class="page-gallery__share-tag" style="font-family:{%- render 'font-stack', key: s.heading_font -%};">{{ s.share_heading }}</div>{%- endif -%}
+          {%- if s.share_text != blank -%}<div class="page-gallery__share-text">{{ s.share_text }}</div>{%- endif -%}
+          {%- if s.share_button_label != blank -%}<span class="page-gallery__share-cta">{{ s.share_button_label }}</span>{%- endif -%}
+        </div>
+      {%- endcapture -%}
+      <div class="page-gallery__share">
+        {%- if s.share_link != blank -%}<a href="{{ s.share_link }}"{% if s.share_new_tab %} target="_blank" rel="noopener"{% endif %}>{{ share_inner }}</a>{%- else -%}{{ share_inner }}{%- endif -%}
+      </div>
+    {%- endif -%}
   </div>
 </div>
+
+{%- if has_filters -%}
+<script>
+  (function () {
+    var root = document.querySelector('[data-gallery="{{ section.id }}"]');
+    if (!root) return;
+    var btns = root.querySelectorAll('[data-gfilter]');
+    var cells = root.querySelectorAll('.gallery-cell');
+    for (var i = 0; i < btns.length; i++) {
+      (function (btn) {
+        btn.addEventListener('click', function () {
+          var f = btn.getAttribute('data-gfilter');
+          for (var j = 0; j < btns.length; j++) { btns[j].classList.toggle('is-active', btns[j] === btn); }
+          for (var k = 0; k < cells.length; k++) {
+            var show = (f === 'all') || (cells[k].getAttribute('data-category') === f);
+            cells[k].style.display = show ? '' : 'none';
+          }
+        });
+      })(btns[i]);
+    }
+  })();
+</script>
+{%- endif -%}
 {% schema %}
 {
   "name": "Gallery page",
@@ -31,8 +98,12 @@
     { "type": "color", "id": "accent_color", "label": "Kicker color", "info": "Leave blank to use the theme default." },
     { "type": "textarea", "id": "heading", "label": "Heading", "info": "Leave blank to use the page title. Press Enter for a line break." },
     { "type": "select", "id": "text_align", "label": "Heading alignment", "options": [ { "value": "left", "label": "Left" }, { "value": "center", "label": "Center" } ], "default": "left" },
-    { "type": "range", "id": "columns", "label": "Columns", "min": 2, "max": 5, "step": 1, "default": 3 },
+    { "type": "range", "id": "columns", "label": "Columns", "info": "How many photos across on desktop (collapses to 2 on mobile).", "min": 2, "max": 6, "step": 1, "default": 3 },
     { "type": "select", "id": "aspect_ratio", "label": "Image aspect ratio", "options": [ { "value": "1/1", "label": "Square (1:1)" }, { "value": "4/5", "label": "Portrait (4:5)" }, { "value": "3/4", "label": "Portrait (3:4)" }, { "value": "16/9", "label": "Landscape (16:9)" } ], "default": "1/1" },
+    { "type": "header", "content": "Filtering" },
+    { "type": "checkbox", "id": "show_filters", "label": "Show filter buttons", "default": false },
+    { "type": "text", "id": "filter_all_label", "label": "\"Show all\" button label", "default": "All" },
+    { "type": "paragraph", "content": "Give each image a Category (in its block settings) to group it under a filter button." },
     { "type": "header", "content": "Typography" },
     { "type": "select", "id": "preheader_font", "label": "Kicker font", "options": [
         { "value": "site", "label": "Neue Haas Display Light" },
@@ -60,6 +131,13 @@
     { "type": "header", "content": "Letter spacing" },
     { "type": "range", "id": "ls_preheader", "label": "Kicker letter spacing", "info": "1 = theme default, up to 10x wider.", "min": 1, "max": 10, "step": 1, "unit": "x", "default": 1 },
     { "type": "range", "id": "ls_heading", "label": "Heading letter spacing", "min": 1, "max": 10, "step": 1, "unit": "x", "default": 1 },
+    { "type": "header", "content": "Share block (#myMUSE)" },
+    { "type": "checkbox", "id": "show_share", "label": "Show share block", "default": false },
+    { "type": "text", "id": "share_heading", "label": "Heading", "default": "#myMUSE" },
+    { "type": "text", "id": "share_text", "label": "Text", "default": "Share your moment" },
+    { "type": "text", "id": "share_button_label", "label": "Button label", "default": "Tag us" },
+    { "type": "url", "id": "share_link", "label": "Link", "info": "Where the block points (e.g. your Instagram profile)." },
+    { "type": "checkbox", "id": "share_new_tab", "label": "Open link in a new tab", "default": true },
     { "type": "header", "content": "Background" },
     { "type": "select", "id": "bg_type", "label": "Background type", "options": [ { "value": "none", "label": "None" }, { "value": "solid", "label": "Solid color" }, { "value": "gradient", "label": "Gradient" }, { "value": "image", "label": "Image" } ], "default": "none" },
     { "type": "color", "id": "bg_color", "label": "Solid color", "default": "#FBF6EE" },
@@ -77,6 +155,7 @@
     { "type": "image", "name": "Image", "settings": [
       { "type": "image_picker", "id": "image", "label": "Image" },
       { "type": "text", "id": "caption", "label": "Caption (optional)" },
+      { "type": "text", "id": "category", "label": "Category (optional)", "info": "Used for the filter buttons. Same spelling = same group." },
       { "type": "url", "id": "link", "label": "Link (optional)" } ] }
   ],
   "max_blocks": 40,
