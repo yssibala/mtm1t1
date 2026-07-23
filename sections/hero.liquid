@@ -42,7 +42,7 @@
         <h1 style="font-family:{%- render 'font-stack', key: s.heading_font -%};{%- render 'font-variant', key: s.heading_weight, font: s.heading_font -%}{%- render 'letter-spacing', mult: s.ls_heading, base: '0.05em' -%}font-size:{{ s.heading_size }}px;margin-bottom:{{ s.space_heading | default: 16 }}px;">{{ s.heading | newline_to_br }}</h1>
       {%- endif -%}
       {%- if s.subheading != blank -%}
-        <p style="max-width:620px;{% if s.text_align == 'center' %}margin-left:auto;margin-right:auto;{% endif %}font-family:{%- render 'font-stack', key: s.body_font -%};{%- render 'font-variant', key: s.body_weight, font: s.body_font -%}{%- render 'letter-spacing', mult: s.ls_body, base: '0.03em' -%}font-size:{{ s.body_size }}px;margin-bottom:0;">{{ s.subheading }}</p>
+        <p style="max-width:620px;{% if s.text_align == 'center' %}margin-left:auto;margin-right:auto;{% endif %}font-family:{%- render 'font-stack', key: s.body_font -%};{%- render 'font-variant', key: s.body_weight, font: s.body_font -%}{%- render 'letter-spacing', mult: s.ls_body, base: '0.03em' -%}font-size:{{ s.body_size }}px;margin-bottom:0;">{{ s.subheading | newline_to_br }}</p>
       {%- endif -%}
       {%- if s.button_label != blank or s.button2_label != blank -%}
         <div style="margin-top:{{ s.space_buttons | default: 24 }}px;display:flex;gap:16px;flex-wrap:wrap;{% if s.text_align == 'center' %}justify-content:center;{% elsif s.text_align == 'right' %}justify-content:flex-end;{% endif %}">
@@ -65,7 +65,7 @@
     { "type": "text", "id": "preheader", "label": "Preheader (eyebrow)" },
     { "type": "color", "id": "accent_color", "label": "Preheader color", "default": "#C9851A" },
     { "type": "textarea", "id": "heading", "label": "Heading", "info": "Press Enter for a line break.", "default": "Welcome to MT-MUSE" },
-    { "type": "text", "id": "subheading", "label": "Subheading", "default": "Explore our curated selection of products crafted with intention." },
+    { "type": "textarea", "id": "subheading", "label": "Subheading", "info": "Press Enter for a line break.", "default": "Explore our curated selection of products crafted with intention." },
     { "type": "select", "id": "text_align", "label": "Alignment", "options": [
         { "value": "left", "label": "Left" }, { "value": "center", "label": "Center" }, { "value": "right", "label": "Right" } ], "default": "center" },
     { "type": "checkbox", "id": "show_coming_soon", "label": "Show coming soon badge", "default": false },
