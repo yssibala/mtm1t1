@@ -3,7 +3,7 @@
   <div class="article__meta">{{ article.published_at | date: '%B %d, %Y' }}{% if article.author != blank %} &middot; {{ article.author }}{% endif %}</div>
   <h1>{{ article.title }}</h1>
   {%- if article.image -%}
-    <img class="article__hero" src="{{ article.image | image_url: width: 1400 }}" alt="{{ article.image.alt | escape }}" width="1400">
+    <img class="article__hero" src="{{ article.image | image_url: width: 1400 }}" alt="{{ article.image.alt | escape }}" width="{{ article.image.width }}" height="{{ article.image.height }}">
   {%- endif -%}
   <div class="rte article__body">{{ article.content }}</div>
 

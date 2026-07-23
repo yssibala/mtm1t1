@@ -4,10 +4,10 @@
 {%- endcomment -%}
 <a href="{{ routes.root_url }}" class="nav-logo" aria-label="{{ shop.name | escape }}">
   {%- if section_logo != blank -%}
-    <img src="{{ section_logo | image_url: width: 220 }}" alt="{{ shop.name | escape }}" width="110">
+    <img src="{{ section_logo | image_url: width: 220 }}" alt="{{ shop.name | escape }}" width="{{ section_logo.width }}" height="{{ section_logo.height }}">
   {%- elsif settings.logo != blank -%}
-    <img src="{{ settings.logo | image_url: width: 220 }}" alt="{{ shop.name | escape }}" width="110">
+    <img src="{{ settings.logo | image_url: width: 220 }}" alt="{{ shop.name | escape }}" width="{{ settings.logo.width }}" height="{{ settings.logo.height }}">
   {%- else -%}
-    <img src="{{ 'muse-monogram-solo-gld.png' | asset_url }}" alt="{{ shop.name | escape }}">
+    <img src="{{ 'muse-monogram-solo-gld.png' | asset_url }}" alt="{{ shop.name | escape }}" width="497" height="477">
   {%- endif -%}
 </a>

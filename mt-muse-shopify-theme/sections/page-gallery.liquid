@@ -11,7 +11,7 @@
         <figure class="gallery-cell" {{ block.shopify_attributes }}>
           {%- if block.settings.link != blank -%}<a href="{{ block.settings.link }}">{%- endif -%}
             {%- if block.settings.image != blank -%}
-              <img src="{{ block.settings.image | image_url: width: 900 }}" alt="{{ block.settings.caption | escape }}" loading="lazy">
+              <img src="{{ block.settings.image | image_url: width: 900 }}" alt="{{ block.settings.caption | escape }}" width="{{ block.settings.image.width }}" height="{{ block.settings.image.height }}" loading="lazy">
             {%- else -%}
               <div class="gallery-cell__placeholder">{{ 'image' | placeholder_svg_tag }}</div>
             {%- endif -%}

@@ -6,9 +6,9 @@
     <div class="footer-top">
       <div class="footer-brand footer-brand--{{ s.brand_align | default: 'left' }}">
         {%- if settings.logo != blank -%}
-          <img src="{{ settings.logo | image_url: width: 240 }}" alt="{{ shop.name | escape }}" width="120">
+          <img src="{{ settings.logo | image_url: width: 240 }}" alt="{{ shop.name | escape }}" width="120" height="{{ 120 | times: settings.logo.height | divided_by: settings.logo.width }}">
         {%- else -%}
-          <img src="{{ 'muse-name-logo-blk.svg' | asset_url }}" alt="{{ shop.name | escape }}" width="140">
+          <img src="{{ 'muse-name-logo-blk.svg' | asset_url }}" alt="{{ shop.name | escape }}" width="140" height="34">
         {%- endif -%}
         {%- if s.tagline != blank -%}<p class="footer-tagline">{{ s.tagline }}</p>{%- endif -%}
         {%- if s.show_social -%}

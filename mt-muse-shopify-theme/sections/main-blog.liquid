@@ -6,7 +6,7 @@
         <article class="blog-card">
           <a href="{{ article.url }}">
             {%- if article.image -%}
-              <div class="blog-card__media"><img src="{{ article.image | image_url: width: 800 }}" alt="{{ article.image.alt | escape }}" loading="lazy"></div>
+              <div class="blog-card__media"><img src="{{ article.image | image_url: width: 800 }}" alt="{{ article.image.alt | escape }}" width="{{ article.image.width }}" height="{{ article.image.height }}" loading="lazy"></div>
             {%- endif -%}
             <div class="blog-card__meta">{{ article.published_at | date: '%b %d, %Y' }}{% if article.tags.size > 0 %} &middot; {{ article.tags.first }}{% endif %}</div>
             <h3>{{ article.title }}</h3>

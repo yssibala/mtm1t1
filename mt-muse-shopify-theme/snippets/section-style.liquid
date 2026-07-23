@@ -2,5 +2,12 @@
 {%- if st.bg_type == 'solid' -%}background:{{ st.bg_color }};{%- endif -%}
 {%- if st.bg_type == 'gradient' -%}background:linear-gradient({{ st.bg_gradient_angle | default: 180 }}deg, {{ st.bg_gradient_start }}, {{ st.bg_gradient_end }});{%- endif -%}
 {%- if st.bg_type == 'image' and st.bg_image != blank -%}background-image:url({{ st.bg_image | image_url: width: 2200 }});background-size:cover;background-position:center;{%- endif -%}
-{%- if st.min_height and st.min_height > 0 -%}min-height:{{ st.min_height }}px;{%- endif -%}
+{%- if st.min_height and st.min_height > 0 -%}
+  {%- assign valign = st.content_valign | default: 'top' -%}
+  min-height:{{ st.min_height }}px;
+  {%- comment -%}Only switch to flex when centering is actually asked for, so default layouts are untouched.{%- endcomment -%}
+  {%- unless valign == 'top' -%}
+    display:flex;flex-direction:column;justify-content:{% if valign == 'center' %}center{% else %}flex-end{% endif %};
+  {%- endunless -%}
+{%- endif -%}
 padding-top:{{ st.padding_top | default: 64 }}px;padding-bottom:{{ st.padding_bottom | default: 64 }}px;

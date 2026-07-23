@@ -11,13 +11,13 @@
 <div class="section-wrap hero{% if has_image %} hero--img-{{ img_pos }}{% endif %}" style="{%- render 'section-style', st: s -%}text-align:{{ s.text_align | default: 'center' }};{% if has_image and img_pos == 'background' %}position:relative;{% endif %}">
   {%- if has_image and img_pos == 'background' -%}
     <div class="hero__bg" style="position:absolute;inset:0;z-index:0;overflow:hidden;">
-      <img src="{{ s.image | image_url: width: 2200 }}" alt="{{ s.image.alt | escape }}" style="width:100%;height:100%;object-fit:cover;object-position:{{ s.image_focal | default: 'center' }};opacity:{{ s.image_opacity | default: 100 | divided_by: 100.0 }};">
+      <img src="{{ s.image | image_url: width: 2200 }}" alt="{{ s.image.alt | escape }}" width="{{ s.image.width }}" height="{{ s.image.height }}" style="width:100%;height:100%;object-fit:cover;object-position:{{ s.image_focal | default: 'center' }};opacity:{{ s.image_opacity | default: 100 | divided_by: 100.0 }};">
     </div>
   {%- endif -%}
   <div class="hero__grid{% if has_image and img_pos != 'background' %} hero__grid--split{% endif %}" style="position:relative;z-index:1;">
     {%- if has_image and img_pos != 'below' and img_pos != 'background' -%}
       <div class="hero__media">
-        <img src="{{ s.image | image_url: width: 1400 }}" alt="{{ s.image.alt | escape }}" style="width:100%;height:{% if s.image_height > 0 %}{{ s.image_height }}px{% else %}auto{% endif %};object-fit:cover;object-position:{{ s.image_focal | default: 'center' }};border-radius:{{ s.image_radius | default: 0 }}px;">
+        <img src="{{ s.image | image_url: width: 1400 }}" alt="{{ s.image.alt | escape }}" width="{{ s.image.width }}" height="{{ s.image.height }}" style="width:100%;height:{% if s.image_height > 0 %}{{ s.image_height }}px{% else %}auto{% endif %};object-fit:cover;object-position:{{ s.image_focal | default: 'center' }};border-radius:{{ s.image_radius | default: 0 }}px;">
       </div>
     {%- endif -%}
     <div class="hero__text container">
@@ -25,20 +25,20 @@
         <div style="margin-bottom:16px;">{%- render 'coming-soon-badge' -%}</div>
       {%- endif -%}
       {%- if s.heading != blank -%}
-        <h1 style="font-family:{%- render 'font-stack', key: s.heading_font -%};font-size:{{ s.heading_size }}px;">{{ s.heading }}</h1>
+        <h1 style="font-family:{%- render 'font-stack', key: s.heading_font -%};{%- render 'font-variant', key: s.heading_weight -%}font-size:{{ s.heading_size }}px;margin-bottom:{{ s.space_heading | default: 16 }}px;">{{ s.heading }}</h1>
       {%- endif -%}
       {%- if s.subheading != blank -%}
-        <p style="max-width:620px;{% if s.text_align == 'center' %}margin-left:auto;margin-right:auto;{% endif %}font-family:{%- render 'font-stack', key: s.body_font -%};font-size:{{ s.body_size }}px;">{{ s.subheading }}</p>
+        <p style="max-width:620px;{% if s.text_align == 'center' %}margin-left:auto;margin-right:auto;{% endif %}font-family:{%- render 'font-stack', key: s.body_font -%};{%- render 'font-variant', key: s.body_weight -%}font-size:{{ s.body_size }}px;margin-bottom:0;">{{ s.subheading }}</p>
       {%- endif -%}
       {%- if s.button_label != blank or s.button2_label != blank -%}
-        <div style="margin-top:24px;display:flex;gap:16px;flex-wrap:wrap;{% if s.text_align == 'center' %}justify-content:center;{% elsif s.text_align == 'right' %}justify-content:flex-end;{% endif %}">
+        <div style="margin-top:{{ s.space_buttons | default: 24 }}px;display:flex;gap:16px;flex-wrap:wrap;{% if s.text_align == 'center' %}justify-content:center;{% elsif s.text_align == 'right' %}justify-content:flex-end;{% endif %}">
           {%- render 'pill-button', label: s.button_label, url: s.button_link, style: s.button_style, icon: s.button_icon, size: s.button_size, label2: s.button2_label, url2: s.button2_link, icon2: s.button2_icon -%}
         </div>
       {%- endif -%}
     </div>
     {%- if has_image and img_pos == 'below' -%}
       <div class="hero__media" style="margin-top:32px;">
-        <img src="{{ s.image | image_url: width: 1600 }}" alt="{{ s.image.alt | escape }}" style="width:100%;height:{% if s.image_height > 0 %}{{ s.image_height }}px{% else %}auto{% endif %};object-fit:cover;object-position:{{ s.image_focal | default: 'center' }};border-radius:{{ s.image_radius | default: 0 }}px;">
+        <img src="{{ s.image | image_url: width: 1600 }}" alt="{{ s.image.alt | escape }}" width="{{ s.image.width }}" height="{{ s.image.height }}" style="width:100%;height:{% if s.image_height > 0 %}{{ s.image_height }}px{% else %}auto{% endif %};object-fit:cover;object-position:{{ s.image_focal | default: 'center' }};border-radius:{{ s.image_radius | default: 0 }}px;">
       </div>
     {%- endif -%}
   </div>
@@ -81,11 +81,36 @@
         { "value": "display", "label": "Neue Haas Grotesk Display (Adobe)" },
         { "value": "ogg", "label": "Ogg Text (Adobe serif)" } ], "default": "site" },
     { "type": "range", "id": "heading_size", "label": "Heading size", "min": 28, "max": 96, "step": 2, "unit": "px", "default": 56 },
+    { "type": "select", "id": "heading_weight", "label": "Heading weight & style", "info": "Ogg Text has every option. Neue Haas Display has Thin/Book/Roman/Medium; Neue Haas Text has Roman only. Other picks get faked by the browser.", "options": [
+        { "value": "inherit", "label": "Theme default" },
+        { "value": "thin", "label": "Thin (200)" },
+        { "value": "book", "label": "Book / Light (300)" },
+        { "value": "book-italic", "label": "Book Italic (300)" },
+        { "value": "roman", "label": "Roman / Regular (400)" },
+        { "value": "roman-italic", "label": "Roman Italic (400)" },
+        { "value": "medium", "label": "Medium (500)" },
+        { "value": "medium-italic", "label": "Medium Italic (500)" },
+        { "value": "bold", "label": "Bold (700)" },
+        { "value": "black", "label": "Black (800)" } ], "default": "inherit" },
     { "type": "select", "id": "body_font", "label": "Body font", "options": [
         { "value": "site", "label": "Neue Haas Display Light" },
         { "value": "text", "label": "Neue Haas Grotesk Text (Adobe)" },
         { "value": "ogg", "label": "Ogg Text (Adobe serif)" } ], "default": "site" },
     { "type": "range", "id": "body_size", "label": "Body text size", "min": 14, "max": 28, "step": 1, "unit": "px", "default": 20 },
+    { "type": "select", "id": "body_weight", "label": "Body weight & style", "options": [
+        { "value": "inherit", "label": "Theme default" },
+        { "value": "thin", "label": "Thin (200)" },
+        { "value": "book", "label": "Book / Light (300)" },
+        { "value": "book-italic", "label": "Book Italic (300)" },
+        { "value": "roman", "label": "Roman / Regular (400)" },
+        { "value": "roman-italic", "label": "Roman Italic (400)" },
+        { "value": "medium", "label": "Medium (500)" },
+        { "value": "medium-italic", "label": "Medium Italic (500)" },
+        { "value": "bold", "label": "Bold (700)" },
+        { "value": "black", "label": "Black (800)" } ], "default": "inherit" },
+    { "type": "header", "content": "Text spacing" },
+    { "type": "range", "id": "space_heading", "label": "Space after heading", "min": 0, "max": 80, "step": 2, "unit": "px", "default": 16 },
+    { "type": "range", "id": "space_buttons", "label": "Space above buttons", "min": 0, "max": 80, "step": 2, "unit": "px", "default": 24 },
     { "type": "header", "content": "Background" },
     { "type": "select", "id": "bg_type", "label": "Background type", "options": [
         { "value": "none", "label": "None" }, { "value": "solid", "label": "Solid color" }, { "value": "gradient", "label": "Gradient" }, { "value": "image", "label": "Image" } ], "default": "none" },
