@@ -1,5 +1,5 @@
 {%- liquid assign s = section.settings -%}
-<div class="section-wrap page-legal" style="{%- render 'section-style', st: s -%}">
+<div class="section-wrap page-legal{% if s.coming_soon %} is-coming-soon{% endif %}"{% if s.coming_soon %} data-cs-label="{{ settings.badge_text | default: 'Coming Soon' | escape }}"{% endif %} style="{%- render 'section-style', st: s -%}">
   <div class="container" style="max-width:{{ s.max_width | default: 820 }}px;">
     <h1 style="font-family:{%- render 'font-stack', key: s.heading_font -%};{%- render 'font-variant', font: s.heading_font -%}font-size:{{ s.heading_size }}px;">{{ page.title }}</h1>
     {%- if s.updated != blank -%}<div class="kicker" style="margin:12px 0 24px;">Last updated {{ s.updated }}</div>{%- endif -%}
@@ -10,6 +10,8 @@
 {
   "name": "Terms / legal page",
   "settings": [
+    { "type": "header", "content": "Coming soon" },
+    { "type": "checkbox", "id": "coming_soon", "label": "Grey out + show \"coming soon\" badge", "default": false },
     { "type": "text", "id": "updated", "label": "Last updated", "default": "" },
     { "type": "range", "id": "max_width", "label": "Content width", "min": 480, "max": 1180, "step": 20, "unit": "px", "default": 820 },
     { "type": "header", "content": "Typography" },

@@ -2,7 +2,7 @@
   assign s = section.settings
   assign ratio = s.aspect_ratio | default: '1/1'
 -%}
-<div class="section-wrap gallery-row" style="{%- render 'section-style', st: s -%}">
+<div class="section-wrap gallery-row{% if s.coming_soon %} is-coming-soon{% endif %}"{% if s.coming_soon %} data-cs-label="{{ settings.badge_text | default: 'Coming Soon' | escape }}"{% endif %} style="{%- render 'section-style', st: s -%}">
   <div class="container">
     <div class="gallery-row__head" style="text-align:{{ s.text_align | default: 'left' }};">
       <div>
@@ -45,6 +45,8 @@
 {
   "name": "Gallery row",
   "settings": [
+    { "type": "header", "content": "Coming soon" },
+    { "type": "checkbox", "id": "coming_soon", "label": "Grey out + show \"coming soon\" badge", "default": false },
     { "type": "text", "id": "preheader", "label": "Preheader", "default": "THE GALLERY" },
     { "type": "textarea", "id": "heading", "label": "Heading", "info": "Press Enter for a line break.", "default": "Moments Worth Toasting" },
     { "type": "color", "id": "accent_color", "label": "Preheader color", "default": "#C9851A" },

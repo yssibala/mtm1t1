@@ -10,7 +10,7 @@
   assign cols = s.columns | default: 3
   assign gap = s.gap | default: 32
 -%}
-<div class="section-wrap text-columns" style="{%- render 'section-style', st: s -%}">
+<div class="section-wrap text-columns{% if s.coming_soon %} is-coming-soon{% endif %}"{% if s.coming_soon %} data-cs-label="{{ settings.badge_text | default: 'Coming Soon' | escape }}"{% endif %} style="{%- render 'section-style', st: s -%}">
   <div class="container">
     {%- if s.preheader != blank or s.heading != blank or s.subheading != blank -%}
       <div class="text-columns__head" style="text-align:{{ s.head_align | default: 'center' }};margin-bottom:{{ s.space_head | default: 48 }}px;">
@@ -60,6 +60,8 @@
   "name": "Text columns",
   "tag": "section",
   "settings": [
+    { "type": "header", "content": "Coming soon" },
+    { "type": "checkbox", "id": "coming_soon", "label": "Grey out + show \"coming soon\" badge", "default": false },
     { "type": "header", "content": "Section heading (optional)" },
     { "type": "text", "id": "preheader", "label": "Preheader" },
     { "type": "textarea", "id": "heading", "label": "Heading", "info": "Press Enter for a line break." },

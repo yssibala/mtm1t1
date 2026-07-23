@@ -7,7 +7,7 @@
 {%- liquid
   assign s = section.settings
 -%}
-<div class="section-wrap flexible" style="{%- render 'section-style', st: s -%}position:relative;overflow:hidden;">
+<div class="section-wrap flexible{% if s.coming_soon %} is-coming-soon{% endif %}"{% if s.coming_soon %} data-cs-label="{{ settings.badge_text | default: 'Coming Soon' | escape }}"{% endif %} style="{%- render 'section-style', st: s -%}position:relative;overflow:hidden;">
 
   {%- comment -%} Decorative shapes first, positioned behind content {%- endcomment -%}
   {%- for block in section.blocks -%}
@@ -140,27 +140,48 @@
               var root = document.querySelector('[data-imgcar="{{ block.id }}"]');
               if (!root) return;
               var track = root.querySelector('.fx-imgcar__track');
-              var slides = root.querySelectorAll('.fx-imgcar__slide');
+              var slides = Array.prototype.slice.call(root.querySelectorAll('.fx-imgcar__slide'));
               var dots = root.querySelectorAll('[data-imgcar-dot]');
-              var n = slides.length, idx = 0, timer = null;
-              var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+              var n = slides.length;
+              if (n < 2) return;
               var autoplay = root.getAttribute('data-autoplay') === 'true';
+              var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
               var interval = (parseFloat(root.getAttribute('data-interval')) || 5) * 1000;
-              function go(i) {
-                idx = (i + n) % n;
-                track.style.transform = 'translateX(' + (-idx * 100) + '%)';
-                for (var d = 0; d < dots.length; d++) { dots[d].classList.toggle('is-active', d === idx); }
+              var firstClone = slides[0].cloneNode(true);
+              var lastClone = slides[n - 1].cloneNode(true);
+              firstClone.setAttribute('aria-hidden', 'true');
+              lastClone.setAttribute('aria-hidden', 'true');
+              track.appendChild(firstClone);
+              track.insertBefore(lastClone, slides[0]);
+              var pos = 1, animating = false, timer = null;
+              function dur() { return (parseFloat(getComputedStyle(track).transitionDuration) || 0) * 1000; }
+              function paint() {
+                track.style.transform = 'translateX(' + (-pos * 100) + '%)';
+                var ri = (pos - 1 + n) % n;
+                for (var d = 0; d < dots.length; d++) { dots[d].classList.toggle('is-active', d === ri); }
               }
-              function next() { go(idx + 1); }
-              function prev() { go(idx - 1); }
-              function start() { if (autoplay && !reduce && interval > 0) { timer = setInterval(next, interval); } }
-              function reset() { if (timer) { clearInterval(timer); timer = null; start(); } }
-              var pv = root.querySelector('[data-imgcar-prev]'); if (pv) pv.addEventListener('click', function () { prev(); reset(); });
-              var nx = root.querySelector('[data-imgcar-next]'); if (nx) nx.addEventListener('click', function () { next(); reset(); });
-              for (var d = 0; d < dots.length; d++) { (function (k) { dots[k].addEventListener('click', function () { go(k); reset(); }); })(d); }
-              root.addEventListener('mouseenter', function () { if (timer) { clearInterval(timer); timer = null; } });
-              root.addEventListener('mouseleave', function () { if (autoplay && !reduce && !timer) start(); });
-              go(0); start();
+              function snap(p) { track.style.transition = 'none'; pos = p; track.style.transform = 'translateX(' + (-pos * 100) + '%)'; void track.offsetWidth; track.style.transition = ''; }
+              function step(delta) {
+                if (animating) return;
+                animating = true;
+                pos += delta;
+                paint();
+                setTimeout(function () {
+                  if (pos === 0) { snap(n); } else if (pos === n + 1) { snap(1); }
+                  animating = false;
+                }, dur() + 30);
+              }
+              function goDot(k) { if (animating) return; animating = true; pos = k + 1; paint(); setTimeout(function () { animating = false; }, dur() + 30); }
+              function start() { if (autoplay && !reduce && interval > 0 && !timer) { timer = setInterval(function () { step(1); }, interval); } }
+              function stop() { if (timer) { clearInterval(timer); timer = null; } }
+              function restart() { stop(); start(); }
+              snap(1);
+              var pv = root.querySelector('[data-imgcar-prev]'); if (pv) pv.addEventListener('click', function () { step(-1); restart(); });
+              var nx = root.querySelector('[data-imgcar-next]'); if (nx) nx.addEventListener('click', function () { step(1); restart(); });
+              for (var d = 0; d < dots.length; d++) { (function (k) { dots[k].addEventListener('click', function () { goDot(k); restart(); }); })(d); }
+              root.addEventListener('mouseenter', stop);
+              root.addEventListener('mouseleave', start);
+              start();
             })();
           </script>
           {%- endif -%}
@@ -173,6 +194,8 @@
 {
   "name": "Flexible section",
   "settings": [
+    { "type": "header", "content": "Coming soon" },
+    { "type": "checkbox", "id": "coming_soon", "label": "Grey out + show \"coming soon\" badge", "default": false },
     { "type": "header", "content": "Background" },
     { "type": "select", "id": "bg_type", "label": "Background type", "options": [
         { "value": "none", "label": "None" }, { "value": "solid", "label": "Solid color" }, { "value": "gradient", "label": "Gradient" }, { "value": "image", "label": "Image" } ], "default": "none" },
