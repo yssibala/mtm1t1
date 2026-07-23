@@ -9,6 +9,7 @@
  */
 {
   "current": {
+    "logo": "shopify://shop_images/MUSE_-_Name_LOGO_BLK_2.png",
     "order": [
       "header",
       "hero",
@@ -33,8 +34,8 @@
         "settings": {
           "tagline": "FOR THOSE WHO INSPIRE",
           "brand_align": "center",
-          "show_nav": false,
-          "nav_menu": "",
+          "show_nav": true,
+          "nav_menu": "footer",
           "nav_align": "center",
           "show_newsletter": true,
           "newsletter_heading": "Join the MUSE newsletter",
