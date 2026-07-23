@@ -12,10 +12,10 @@
         <div class="kicker" style="font-family:{%- render 'font-stack', key: s.preheader_font -%};color:{{ s.accent_color | default: '#C9851A' }};margin-bottom:{{ s.space_preheader | default: 12 }}px;{%- render 'letter-spacing', mult: s.ls_preheader, base: '0.18em' -%}">{{ s.preheader }}</div>
       {%- endif -%}
       {%- if s.heading != blank -%}
-        <h2 style="font-family:{%- render 'font-stack', key: s.heading_font -%};{%- render 'font-variant', key: s.heading_weight, font: s.heading_font -%}{%- render 'letter-spacing', mult: s.ls_heading, base: '0.05em' -%}font-size:{{ s.heading_size }}px;margin-bottom:{{ s.space_heading | default: 16 }}px;">{{ s.heading | newline_to_br }}</h2>
+        <h2 style="font-family:{%- render 'font-stack', key: s.heading_font -%};{%- render 'font-variant', key: s.heading_weight, font: s.heading_font -%}{%- render 'letter-spacing', mult: s.ls_heading, base: '0.05em' -%}{% if s.heading_color != blank %}color:{{ s.heading_color }};{% endif %}font-size:{{ s.heading_size }}px;margin-bottom:{{ s.space_heading | default: 16 }}px;">{{ s.heading | newline_to_br }}</h2>
       {%- endif -%}
       {%- if s.body != blank -%}
-        <div class="rte body-section__body" style="font-family:{%- render 'font-stack', key: s.body_font -%};{%- render 'font-variant', key: s.body_weight, font: s.body_font -%}{%- render 'letter-spacing', mult: s.ls_body, base: '0.03em' -%}font-size:{{ s.body_size }}px;color:var(--text-mid);">{{ s.body }}</div>
+        <div class="rte body-section__body" style="font-family:{%- render 'font-stack', key: s.body_font -%};{%- render 'font-variant', key: s.body_weight, font: s.body_font -%}{%- render 'letter-spacing', mult: s.ls_body, base: '0.03em' -%}font-size:{{ s.body_size }}px;color:{% if s.body_color != blank %}{{ s.body_color }}{% else %}var(--text-mid){% endif %};">{{ s.body }}</div>
       {%- endif -%}
       {%- if s.button_label != blank -%}
         <div style="margin-top:24px;">
@@ -92,6 +92,7 @@
         { "value": "display", "label": "Neue Haas Grotesk Display (Adobe)" },
         { "value": "ogg", "label": "Ogg Text (Adobe serif)" } ], "default": "site" },
     { "type": "range", "id": "heading_size", "label": "Heading size", "min": 20, "max": 80, "step": 2, "unit": "px", "default": 40 },
+    { "type": "color", "id": "heading_color", "label": "Heading color", "info": "Leave blank to use the theme default." },
     { "type": "select", "id": "heading_weight", "label": "Heading weight & style", "info": "Ogg Text has every option. Neue Haas Display has Thin/Book/Roman/Medium; Neue Haas Text has Roman only. Other picks get faked by the browser.", "options": [
         { "value": "inherit", "label": "Theme default" },
         { "value": "thin", "label": "Thin (200)" },
@@ -108,6 +109,7 @@
         { "value": "text", "label": "Neue Haas Grotesk Text (Adobe)" },
         { "value": "ogg", "label": "Ogg Text (Adobe serif)" } ], "default": "site" },
     { "type": "range", "id": "body_size", "label": "Body text size", "min": 13, "max": 24, "step": 1, "unit": "px", "default": 16 },
+    { "type": "color", "id": "body_color", "label": "Body color", "info": "Leave blank to use the theme default." },
     { "type": "select", "id": "body_weight", "label": "Body weight & style", "options": [
         { "value": "inherit", "label": "Theme default" },
         { "value": "thin", "label": "Thin (200)" },

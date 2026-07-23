@@ -1,7 +1,15 @@
-{%- liquid assign s = section.settings -%}
-<div class="section-wrap page-contact{% if s.coming_soon %} is-coming-soon{% endif %}"{% if s.coming_soon %} data-cs-label="{{ settings.badge_text | default: 'Coming Soon' | escape }}"{% endif %} style="{%- render 'section-style', st: s -%}">
+{%- liquid
+  assign s = section.settings
+  assign has_details = false
+  if s.show_details
+    if s.detail_heading != blank or s.email != blank or s.phone != blank or s.address != blank or s.hours != blank
+      assign has_details = true
+    endif
+  endif
+-%}
+<div class="section-wrap page-contact{% unless has_details %} page-contact--solo{% endunless %}{% if s.coming_soon %} is-coming-soon{% endif %}"{% if s.coming_soon %} data-cs-label="{{ settings.badge_text | default: 'Coming Soon' | escape }}"{% endif %} style="{%- render 'section-style', st: s -%}">
   <div class="container">
-    <div class="page-contact__head" style="text-align:{{ s.text_align | default: 'left' }};">
+    <div class="page-contact__head" style="text-align:{% if has_details %}{{ s.text_align | default: 'left' }}{% else %}center{% endif %};">
       {%- if s.kicker != blank -%}<div class="kicker" style="margin-bottom:10px;">{{ s.kicker }}</div>{%- endif -%}
       <h1 style="font-family:{%- render 'font-stack', key: s.heading_font -%};{%- render 'font-variant', font: s.heading_font -%}font-size:{{ s.heading_size }}px;">{{ page.title }}</h1>
       {%- if page.content != blank -%}<div class="rte page-contact__intro">{{ page.content }}</div>{%- endif -%}
@@ -20,7 +28,7 @@
           <button type="submit" class="muse-pill muse-cta">Send message</button>
         {%- endform -%}
       </div>
-      {%- if s.show_details -%}
+      {%- if has_details -%}
         <aside class="page-contact__details">
           {%- if s.detail_heading != blank -%}<h3 class="page-contact__dhead">{{ s.detail_heading }}</h3>{%- endif -%}
           {%- if s.email != blank -%}<p><span class="kicker">Email</span><br><a href="mailto:{{ s.email }}">{{ s.email }}</a></p>{%- endif -%}
