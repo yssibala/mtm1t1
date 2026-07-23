@@ -14,7 +14,7 @@
       "name": "Hero",
       "settings": {
         "preheader": "Our Community",
-        "accent_color": "#0A0B0C",
+        "accent_color": "#0a0b0c",
         "heading": "Moments Worth Raising A Glass To",
         "subheading": "",
         "text_align": "center",
@@ -49,9 +49,9 @@
         "ls_heading": 1,
         "ls_body": 1,
         "bg_type": "image",
-        "bg_color": "#FBF6EE",
-        "bg_gradient_start": "#FBF6EE",
-        "bg_gradient_end": "#E7DAC4",
+        "bg_color": "#fbf6ee",
+        "bg_gradient_start": "#fbf6ee",
+        "bg_gradient_end": "#e7dac4",
         "bg_gradient_angle": 180,
         "bg_image": "shopify://shop_images/00_Cloud_BG_C.png",
         "content_valign": "center",
@@ -68,6 +68,7 @@
           "settings": {
             "image": "shopify://shop_images/11_Clio_1B.png",
             "caption": "CLIO - SPONTANEITY AT SUNSET",
+            "category": "",
             "link": ""
           }
         },
@@ -76,6 +77,7 @@
           "settings": {
             "image": "shopify://shop_images/11_Thalia_1B.png",
             "caption": "Thalia - Elations At High Noon",
+            "category": "",
             "link": ""
           }
         },
@@ -84,6 +86,7 @@
           "settings": {
             "image": "shopify://shop_images/11_Ourania_1B.png",
             "caption": "Ourania - Elegance At Eventide",
+            "category": "",
             "link": ""
           }
         },
@@ -92,6 +95,7 @@
           "settings": {
             "image": "shopify://shop_images/Gallery_05B.png",
             "caption": "",
+            "category": "",
             "link": ""
           }
         },
@@ -100,6 +104,7 @@
           "settings": {
             "image": "shopify://shop_images/Gallery_14B.png",
             "caption": "",
+            "category": "",
             "link": ""
           }
         },
@@ -108,6 +113,7 @@
           "settings": {
             "image": "shopify://shop_images/Gallery_06B.png",
             "caption": "",
+            "category": "",
             "link": ""
           }
         },
@@ -116,6 +122,7 @@
           "settings": {
             "image": "shopify://shop_images/Gallery_10B.png",
             "caption": "",
+            "category": "",
             "link": ""
           }
         },
@@ -124,6 +131,7 @@
           "settings": {
             "image": "shopify://shop_images/Gallery_12B.png",
             "caption": "",
+            "category": "",
             "link": ""
           }
         },
@@ -132,6 +140,7 @@
           "settings": {
             "image": "shopify://shop_images/Gallery_13B.png",
             "caption": "",
+            "category": "",
             "link": ""
           }
         }
@@ -148,21 +157,36 @@
         "image_G3qCDz"
       ],
       "settings": {
-        "kicker": "The Gallery",
+        "kicker": "",
+        "accent_color": "",
+        "heading": "",
         "text_align": "left",
-        "columns": 3,
+        "columns": 5,
         "aspect_ratio": "1/1",
-        "heading_font": "site",
-        "heading_size": 44,
-        "bg_type": "none",
+        "show_filters": true,
+        "filter_all_label": "All",
+        "preheader_font": "ogg",
+        "heading_font": "ogg",
+        "heading_weight": "inherit",
+        "heading_size": 34,
+        "space_preheader": 0,
+        "ls_preheader": 1,
+        "ls_heading": 1,
+        "show_share": true,
+        "share_heading": "#myMUSE",
+        "share_text": "Share your moment",
+        "share_button_label": "SHARE YOUR MUSE",
+        "share_link": "",
+        "share_new_tab": true,
+        "bg_type": "solid",
         "bg_color": "#fbf6ee",
         "bg_gradient_start": "#fbf6ee",
         "bg_gradient_end": "#e7dac4",
         "bg_gradient_angle": 180,
-        "content_valign": "top",
+        "content_valign": "center",
         "min_height": 0,
-        "padding_top": 80,
-        "padding_bottom": 80
+        "padding_top": 40,
+        "padding_bottom": 40
       }
     }
   },
