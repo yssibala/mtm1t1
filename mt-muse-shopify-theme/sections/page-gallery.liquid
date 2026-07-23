@@ -37,7 +37,7 @@
       </div>
     {%- endif -%}
 
-    <div class="page-gallery__grid" style="--cols:{{ s.columns }};--ratio:{{ s.aspect_ratio }};">
+    <div class="page-gallery__grid" style="--cols:{{ s.columns }};--ratio:{{ s.aspect_ratio }};--gallery-overlay:{{ s.overlay_color | default: '#EFA527' }};--gallery-overlay-opacity:{% if s.overlay_enable == false %}0{% else %}{{ s.overlay_opacity | default: 22 | divided_by: 100.0 }}{% endif %};">
       {%- for block in section.blocks -%}
         <figure class="gallery-cell" data-category="{{ block.settings.category | handleize }}" {{ block.shopify_attributes }}>
           {%- capture cell_media -%}
@@ -51,20 +51,18 @@
           {%- if block.settings.caption != blank -%}<figcaption>{{ block.settings.caption }}</figcaption>{%- endif -%}
         </figure>
       {%- endfor -%}
-    </div>
-
-    {%- if s.show_share -%}
-      {%- capture share_inner -%}
-        <div class="page-gallery__share-inner">
+      {%- comment -%} Fixed #myMUSE card — always the last item in the grid, same size as the others. {%- endcomment -%}
+      {%- if s.show_share -%}
+        {%- capture share_inner -%}
           {%- if s.share_heading != blank -%}<div class="page-gallery__share-tag" style="font-family:{%- render 'font-stack', key: s.heading_font -%};">{{ s.share_heading }}</div>{%- endif -%}
           {%- if s.share_text != blank -%}<div class="page-gallery__share-text">{{ s.share_text }}</div>{%- endif -%}
           {%- if s.share_button_label != blank -%}<span class="page-gallery__share-cta">{{ s.share_button_label }}</span>{%- endif -%}
+        {%- endcapture -%}
+        <div class="gallery-cell gallery-cell--share">
+          {%- if s.share_link != blank -%}<a class="page-gallery__share-inner" href="{{ s.share_link }}"{% if s.share_new_tab %} target="_blank" rel="noopener"{% endif %}>{{ share_inner }}</a>{%- else -%}<div class="page-gallery__share-inner">{{ share_inner }}</div>{%- endif -%}
         </div>
-      {%- endcapture -%}
-      <div class="page-gallery__share">
-        {%- if s.share_link != blank -%}<a href="{{ s.share_link }}"{% if s.share_new_tab %} target="_blank" rel="noopener"{% endif %}>{{ share_inner }}</a>{%- else -%}{{ share_inner }}{%- endif -%}
-      </div>
-    {%- endif -%}
+      {%- endif -%}
+    </div>
   </div>
 </div>
 
@@ -81,7 +79,8 @@
           var f = btn.getAttribute('data-gfilter');
           for (var j = 0; j < btns.length; j++) { btns[j].classList.toggle('is-active', btns[j] === btn); }
           for (var k = 0; k < cells.length; k++) {
-            var show = (f === 'all') || (cells[k].getAttribute('data-category') === f);
+            var isShare = cells[k].classList.contains('gallery-cell--share');
+            var show = isShare || (f === 'all') || (cells[k].getAttribute('data-category') === f);
             cells[k].style.display = show ? '' : 'none';
           }
         });
@@ -106,6 +105,10 @@
     { "type": "checkbox", "id": "show_filters", "label": "Show filter buttons", "default": false },
     { "type": "text", "id": "filter_all_label", "label": "\"Show all\" button label", "default": "All" },
     { "type": "paragraph", "content": "Give each image a Category (in its block settings) to group it under a filter button." },
+    { "type": "header", "content": "Image hover overlay" },
+    { "type": "checkbox", "id": "overlay_enable", "label": "Show hover overlay", "default": true },
+    { "type": "color", "id": "overlay_color", "label": "Overlay color", "default": "#EFA527" },
+    { "type": "range", "id": "overlay_opacity", "label": "Overlay opacity", "min": 0, "max": 100, "step": 5, "unit": "%", "default": 22 },
     { "type": "header", "content": "Typography" },
     { "type": "select", "id": "preheader_font", "label": "Kicker font", "options": [
         { "value": "site", "label": "Neue Haas Display Light" },

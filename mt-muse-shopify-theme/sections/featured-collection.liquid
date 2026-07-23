@@ -4,7 +4,7 @@
 <div class="section-wrap featured-collection{% if s.coming_soon %} is-coming-soon{% endif %}"{% if s.coming_soon %} data-cs-label="{{ settings.badge_text | default: 'Coming Soon' | escape }}"{% endif %} style="{%- render 'section-style', st: s -%}">
   <div class="container">
     {% if s.heading != blank %}
-      <h2 style="font-family:{%- render 'font-stack', key: s.heading_font -%};{%- render 'font-variant', key: s.heading_weight, font: s.heading_font -%}{%- render 'letter-spacing', mult: s.ls_heading, base: '0.05em' -%}font-size:{{ s.heading_size }}px;text-align:{{ s.text_align | default: 'center' }};margin-bottom:var(--space-xl);">
+      <h2 style="font-family:{%- render 'font-stack', key: s.heading_font -%};{%- render 'font-variant', key: s.heading_weight, font: s.heading_font -%}{%- render 'letter-spacing', mult: s.ls_heading, base: '0.05em' -%}{% if s.heading_color != blank %}color:{{ s.heading_color }};{% endif %}font-size:{{ s.heading_size }}px;text-align:{{ s.text_align | default: 'center' }};margin-bottom:var(--space-xl);">
         {{ s.heading | newline_to_br }}
       </h2>
     {% endif %}
@@ -39,6 +39,7 @@
         { "value": "display", "label": "Neue Haas Grotesk Display (Adobe)" },
         { "value": "ogg", "label": "Ogg Text (Adobe serif)" } ], "default": "site" },
     { "type": "range", "id": "heading_size", "label": "Heading size", "min": 20, "max": 80, "step": 2, "unit": "px", "default": 40 },
+    { "type": "color", "id": "heading_color", "label": "Heading color", "info": "Leave blank to use the theme default." },
     { "type": "range", "id": "ls_heading", "label": "Heading letter spacing", "info": "1 = theme default, up to 10x wider.", "min": 1, "max": 10, "step": 1, "unit": "x", "default": 1 },
     { "type": "select", "id": "heading_weight", "label": "Heading weight & style", "info": "Ogg Text has every option. Neue Haas Display has Thin/Book/Roman/Medium; Neue Haas Text has Roman only. Other picks get faked by the browser.", "options": [
         { "value": "inherit", "label": "Theme default" },
