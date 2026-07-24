@@ -1,0 +1,26 @@
+{%- comment -%}
+  A single Product-Showcase pill. Reuses the .pill / .pill__seg styles.
+  Params:
+    mode     — 'product' (link to product), 'url' (custom link), 'cart' (add to cart)
+    label    — button text
+    url      — custom URL (mode 'url')
+    product  — the product (for mode 'product')
+    style    — 'primary' | 'ghost'
+    size     — font-size px (scales the whole pill)
+    disabled — true to disable (coming-soon add-to-cart)
+{%- endcomment -%}
+{%- liquid
+  assign st = style | default: 'primary'
+  assign fs = size | default: 11
+-%}
+{%- if mode == 'cart' -%}
+  <span class="pill pill--{{ st }}" style="font-size:{{ fs }}px;">
+    <button type="submit" name="add" class="pill__seg pill__seg--submit"{% if disabled %} disabled{% endif %}><span>{{ label | default: 'Add to cart' }}</span></button>
+  </span>
+{%- else -%}
+  {%- assign href = product.url -%}
+  {%- if mode == 'url' -%}{%- assign href = url | default: '#' -%}{%- endif -%}
+  <span class="pill pill--{{ st }}" style="font-size:{{ fs }}px;">
+    <a class="pill__seg" href="{{ href }}"><span>{{ label | default: 'View' }}</span></a>
+  </span>
+{%- endif -%}
