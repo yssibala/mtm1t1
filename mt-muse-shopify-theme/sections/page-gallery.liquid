@@ -25,7 +25,7 @@
     <div class="page-gallery__head" style="text-align:{{ s.text_align | default: 'left' }};">
       {%- if s.kicker != blank -%}<div class="kicker" style="font-family:{%- render 'font-stack', key: s.preheader_font -%};margin-bottom:{{ s.space_preheader | default: 10 }}px;{%- render 'letter-spacing', mult: s.ls_preheader, base: '0.18em' -%}{% if s.accent_color != blank %}color:{{ s.accent_color }};{% endif %}">{{ s.kicker }}</div>{%- endif -%}
       <h1 style="font-family:{%- render 'font-stack', key: s.heading_font -%};{%- render 'font-variant', key: s.heading_weight, font: s.heading_font -%}{%- render 'letter-spacing', mult: s.ls_heading, base: '0.05em' -%}font-size:{{ s.heading_size }}px;">{{ s.heading | default: page.title | newline_to_br }}</h1>
-      {%- if page.content != blank -%}<div class="rte page-gallery__intro">{{ page.content }}</div>{%- endif -%}
+      {%- if s.intro_text != blank -%}<div class="rte page-gallery__intro">{{ s.intro_text }}</div>{%- elsif page.content != blank and s.use_page_body -%}<div class="rte page-gallery__intro">{{ page.content }}</div>{%- endif -%}
     </div>
 
     {%- if has_filters -%}
@@ -96,6 +96,8 @@
     { "type": "header", "content": "Coming soon" },
     { "type": "checkbox", "id": "coming_soon", "label": "Grey out + show \"coming soon\" badge", "default": false },
     { "type": "text", "id": "kicker", "label": "Kicker", "default": "The Gallery" },
+    { "type": "richtext", "id": "intro_text", "label": "Intro / body text", "info": "Shows under the heading. Leave empty to hide it." },
+    { "type": "checkbox", "id": "use_page_body", "label": "Fall back to the page body text", "info": "If the Intro field above is empty, show the page's body content instead.", "default": false },
     { "type": "color", "id": "accent_color", "label": "Kicker color", "info": "Leave blank to use the theme default." },
     { "type": "textarea", "id": "heading", "label": "Heading", "info": "Leave blank to use the page title. Press Enter for a line break." },
     { "type": "select", "id": "text_align", "label": "Heading alignment", "options": [ { "value": "left", "label": "Left" }, { "value": "center", "label": "Center" } ], "default": "left" },

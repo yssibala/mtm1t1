@@ -4,7 +4,7 @@
     <div class="page-contact__head" style="text-align:{{ s.text_align | default: 'left' }};">
       {%- if s.kicker != blank -%}<div class="kicker" style="margin-bottom:10px;">{{ s.kicker }}</div>{%- endif -%}
       <h1 style="font-family:{%- render 'font-stack', key: s.heading_font -%};{%- render 'font-variant', font: s.heading_font -%}font-size:{{ s.heading_size }}px;">{{ page.title }}</h1>
-      {%- if page.content != blank -%}<div class="rte page-contact__intro">{{ page.content }}</div>{%- endif -%}
+      {%- if s.intro_text != blank -%}<div class="rte page-contact__intro">{{ s.intro_text }}</div>{%- elsif page.content != blank and s.use_page_body -%}<div class="rte page-contact__intro">{{ page.content }}</div>{%- endif -%}
     </div>
     <div class="social-grid">
       {%- for block in section.blocks -%}
@@ -33,6 +33,8 @@
     { "type": "header", "content": "Coming soon" },
     { "type": "checkbox", "id": "coming_soon", "label": "Grey out + show \"coming soon\" badge", "default": false },
     { "type": "text", "id": "kicker", "label": "Kicker", "default": "Follow along" },
+    { "type": "richtext", "id": "intro_text", "label": "Intro / body text", "info": "Shows under the heading. Leave empty to hide it." },
+    { "type": "checkbox", "id": "use_page_body", "label": "Fall back to the page body text", "info": "If the Intro field above is empty, show the page's body content instead.", "default": false },
     { "type": "select", "id": "text_align", "label": "Heading alignment", "options": [ { "value": "left", "label": "Left" }, { "value": "center", "label": "Center" } ], "default": "left" },
     { "type": "header", "content": "Typography" },
     { "type": "select", "id": "heading_font", "label": "Heading font", "options": [
