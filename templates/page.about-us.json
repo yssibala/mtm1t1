@@ -382,10 +382,10 @@
         "padding_bottom": 80
       }
     },
-    "flexible_bDMUXg": {
+    "flexible_QtyYcB": {
       "type": "flexible",
       "blocks": {
-        "image_qraXdr": {
+        "image_LKKbNr": {
           "type": "image",
           "settings": {
             "image": "shopify://shop_images/MUSE_-_Monogram_Solo_GLD.png",
@@ -397,7 +397,7 @@
             "margin_bottom": 24
           }
         },
-        "text_A8Wh3H": {
+        "text_FTwVcd": {
           "type": "text",
           "settings": {
             "preheader": "",
@@ -423,7 +423,7 @@
             "margin_bottom": 40
           }
         },
-        "button_XPmGzm": {
+        "button_BnxATP": {
           "type": "button",
           "settings": {
             "label": "SHARE YOUR MUSE",
@@ -441,9 +441,86 @@
         }
       },
       "block_order": [
-        "image_qraXdr",
-        "text_A8Wh3H",
-        "button_XPmGzm"
+        "image_LKKbNr",
+        "text_FTwVcd",
+        "button_BnxATP"
+      ],
+      "name": "Flexible section",
+      "settings": {
+        "coming_soon": false,
+        "bg_type": "none",
+        "bg_color": "#fbf6ee",
+        "bg_gradient_start": "#fbf6ee",
+        "bg_gradient_end": "#e7dac4",
+        "bg_gradient_angle": 180,
+        "content_valign": "top",
+        "min_height": 0,
+        "padding_top": 20,
+        "padding_bottom": 20
+      }
+    },
+    "flexible_j47wLB": {
+      "type": "flexible",
+      "blocks": {
+        "image_b6MzWe": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/MUSE_-_Monogram_Solo_GLD.png",
+            "link": "",
+            "align": "center",
+            "width": 10,
+            "radius": 4,
+            "margin_top": 0,
+            "margin_bottom": 24
+          }
+        },
+        "text_7Hc8nr": {
+          "type": "text",
+          "settings": {
+            "preheader": "",
+            "accent_color": "#c9851a",
+            "heading": "CELEBRATING THOSE WHO INSPIRE:",
+            "body": "<p>Everyone has a MUSE - someone whose light deserves to be celebrated. Tell their story or nominate them to be honored amongst the clouds.</p>",
+            "text_color": "#0a0b0c",
+            "align": "center",
+            "max_width": 660,
+            "preheader_font": "site",
+            "heading_font": "ogg",
+            "heading_size": 36,
+            "heading_weight": "inherit",
+            "body_font": "text",
+            "body_size": 14,
+            "body_weight": "inherit",
+            "space_preheader": 12,
+            "space_heading": 20,
+            "ls_preheader": 1,
+            "ls_heading": 1,
+            "ls_body": 1,
+            "margin_top": 20,
+            "margin_bottom": 40
+          }
+        },
+        "button_CzeiXd": {
+          "type": "button",
+          "settings": {
+            "label": "SHARE YOUR MUSE",
+            "url": "shopify://pages/share-your-muse",
+            "icon": "none",
+            "style": "primary",
+            "label2": "",
+            "url2": "",
+            "icon2": "none",
+            "btn_size": "11",
+            "align": "center",
+            "margin_top": 0,
+            "margin_bottom": 24
+          }
+        }
+      },
+      "block_order": [
+        "image_b6MzWe",
+        "text_7Hc8nr",
+        "button_CzeiXd"
       ],
       "name": "Flexible section",
       "settings": {
@@ -466,6 +543,7 @@
     "body_section_FbXAkj",
     "text_columns_zMX3xJ",
     "page_gallery_QcamKU",
-    "flexible_bDMUXg"
+    "flexible_QtyYcB",
+    "flexible_j47wLB"
   ]
 }
