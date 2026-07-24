@@ -1081,12 +1081,14 @@ body.has-announcement #site-nav { top: 40px; }
 .cloud-links a { font-size: 11px; letter-spacing: .18em; font-weight: var(--fw-medium); text-transform: uppercase; color: var(--near-black); }
 .cloud-links a:hover { color: var(--muse-gold-dark); }
 .cloud-foot { font-size: 10px; letter-spacing: .14em; color: var(--text-meta); margin-top: 40px; position: relative; z-index: 1; text-transform: uppercase; }
+/* Centered behind the content so it never bleeds off the bottom edge / under the footer */
 .cloud-watermark {
-  position: absolute; bottom: -0.12em; left: 50%; transform: translateX(-50%);
+  position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
   font-family: var(--font-ogg); font-weight: var(--fw-regular);
   font-size: clamp(100px, 20vw, 240px); line-height: 1; letter-spacing: .05em;
   color: var(--muse-gold-1); opacity: .16;
   user-select: none; pointer-events: none; white-space: nowrap;
+  max-width: 100%;
 }
 .cloud-password { display: flex; gap: 8px; justify-content: center; margin-top: 28px; position: relative; z-index: 1; }
 .cloud-password input {
