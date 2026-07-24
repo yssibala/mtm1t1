@@ -1096,6 +1096,13 @@ body.has-announcement #site-nav { top: 40px; }
   border-radius: var(--radius-pill); font-family: var(--font-text);
   background: var(--near-white); min-width: 220px;
 }
+.cloud-consent {
+  display: flex; align-items: flex-start; gap: 9px;
+  max-width: 380px; margin: 14px auto 0; text-align: left;
+  font-size: 12px; line-height: 1.5; color: var(--text-meta);
+  position: relative; z-index: 1; cursor: pointer;
+}
+.cloud-consent input { flex: none; margin-top: 2px; accent-color: var(--muse-gold-1); }
 
 /* =====================================================================
    CONTENT PAGES (contact / social / gallery / legal)
