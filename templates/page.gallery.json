@@ -13,6 +13,7 @@
       "type": "hero",
       "name": "Hero",
       "settings": {
+        "coming_soon": false,
         "preheader": "Our Community",
         "accent_color": "#0a0b0c",
         "heading": "Moments Worth Raising A Glass To",
@@ -37,9 +38,11 @@
         "preheader_font": "site",
         "heading_font": "ogg",
         "heading_size": 56,
+        "heading_color": "",
         "heading_weight": "thin",
         "body_font": "site",
         "body_size": 20,
+        "body_color": "",
         "body_weight": "inherit",
         "space_preheader": 12,
         "space_heading": 16,
@@ -157,9 +160,10 @@
         "image_G3qCDz"
       ],
       "settings": {
+        "coming_soon": false,
         "kicker": "",
         "accent_color": "",
-        "heading": "",
+        "heading": "GALLERY",
         "text_align": "left",
         "columns": 5,
         "aspect_ratio": "1/1",

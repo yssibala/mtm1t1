@@ -9,34 +9,48 @@
  */
 {
   "sections": {
-    "main": {
-      "type": "main-page",
+    "hero_nBnV6k": {
+      "type": "hero",
+      "name": "Hero",
       "settings": {
         "coming_soon": false,
+        "preheader": "",
+        "accent_color": "#C9851A",
+        "heading": "Welcome to MT-MUSE",
+        "subheading": "Explore our curated selection of products crafted with intention.",
         "text_align": "center",
-        "max_width": 820,
+        "show_coming_soon": false,
+        "button_label": "Shop Now",
+        "button_link": "",
+        "button_icon": "none",
+        "button_style": "primary",
+        "button2_label": "",
+        "button2_link": "",
+        "button2_icon": "none",
+        "button_size": "11",
+        "image_position": "below",
+        "image_align": "center",
+        "image_width": 100,
+        "image_focal": "center",
+        "image_height": 0,
+        "image_radius": 0,
+        "image_opacity": 100,
+        "preheader_font": "site",
         "heading_font": "site",
-        "heading_size": 44,
-        "bg_type": "none",
-        "bg_color": "#fbf6ee",
-        "bg_gradient_start": "#fbf6ee",
-        "bg_gradient_end": "#e7dac4",
-        "bg_gradient_angle": 180,
-        "content_valign": "top",
-        "min_height": 0,
-        "padding_top": 80,
-        "padding_bottom": 80
-      }
-    },
-    "main_page_azEwa8": {
-      "type": "main-page",
-      "name": "Page",
-      "settings": {
-        "coming_soon": false,
-        "text_align": "center",
-        "max_width": 820,
-        "heading_font": "site",
-        "heading_size": 44,
+        "heading_size": 56,
+        "heading_color": "",
+        "heading_weight": "inherit",
+        "body_font": "site",
+        "body_size": 20,
+        "body_color": "",
+        "body_weight": "inherit",
+        "space_preheader": 12,
+        "space_heading": 16,
+        "space_buttons": 24,
+        "space_image": 32,
+        "ls_preheader": 1,
+        "ls_heading": 1,
+        "ls_body": 1,
         "bg_type": "none",
         "bg_color": "#FBF6EE",
         "bg_gradient_start": "#FBF6EE",
@@ -44,13 +58,12 @@
         "bg_gradient_angle": 180,
         "content_valign": "top",
         "min_height": 0,
-        "padding_top": 80,
-        "padding_bottom": 80
+        "padding_top": 96,
+        "padding_bottom": 96
       }
     }
   },
   "order": [
-    "main",
-    "main_page_azEwa8"
+    "hero_nBnV6k"
   ]
 }

@@ -11,6 +11,10 @@
   "current": {
     "logo": "shopify://shop_images/MUSE_-_Name_LOGO_BLK_2.png",
     "heading_font": "ogg",
+    "nav_bg_opacity": 55,
+    "footer_show_nav": true,
+    "footer_nav_menu": "footer",
+    "footer_nav_align": "center",
     "order": [
       "header",
       "hero",
