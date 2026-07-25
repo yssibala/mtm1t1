@@ -16,7 +16,7 @@
         "coming_soon": false,
         "preheader": "Our Community",
         "accent_color": "#0a0b0c",
-        "heading": "Moments Worth Raising A Glass To",
+        "heading": "Moments & MUSES\nWorth Raising A Glass To",
         "subheading": "",
         "text_align": "center",
         "show_coming_soon": false,
@@ -46,7 +46,7 @@
         "body_weight": "inherit",
         "space_preheader": 12,
         "space_heading": 16,
-        "space_buttons": 24,
+        "space_buttons": 50,
         "space_image": 32,
         "ls_preheader": 1,
         "ls_heading": 1,
@@ -57,9 +57,10 @@
         "bg_gradient_end": "#e7dac4",
         "bg_gradient_angle": 180,
         "bg_image": "shopify://shop_images/00_Cloud_BG_C.png",
+        "extend_behind_header": true,
         "content_valign": "center",
         "min_height": 0,
-        "padding_top": 220,
+        "padding_top": 240,
         "padding_bottom": 80
       }
     },
@@ -175,13 +176,13 @@
         "heading_size": 34,
         "space_preheader": 0,
         "ls_preheader": 1,
-        "ls_heading": 1,
+        "ls_heading": 5,
         "show_share": true,
         "share_heading": "#myMUSE",
-        "share_text": "Share your moment",
+        "share_text": "Share Your Muse and how they Inspire",
         "share_button_label": "SHARE YOUR MUSE",
-        "share_link": "",
-        "share_new_tab": true,
+        "share_link": "shopify://pages/share-your-muse",
+        "share_new_tab": false,
         "bg_type": "solid",
         "bg_color": "#fbf6ee",
         "bg_gradient_start": "#fbf6ee",
@@ -192,10 +193,131 @@
         "padding_top": 40,
         "padding_bottom": 40
       }
+    },
+    "gallery_row_ENkdEK": {
+      "type": "gallery-row",
+      "name": "Gallery row",
+      "settings": {
+        "coming_soon": false,
+        "preheader": "THE GALLERY",
+        "heading": "Moments Worth Toasting",
+        "subheading": "",
+        "accent_color": "#C9851A",
+        "text_align": "left",
+        "aspect_ratio": "1/1",
+        "link_1": "",
+        "link_2": "",
+        "link_3": "",
+        "link_4": "",
+        "button_label": "View all",
+        "button_link": "",
+        "button_style": "ghost",
+        "button_size": "11",
+        "preheader_font": "site",
+        "heading_font": "site",
+        "heading_size": 40,
+        "heading_color": "",
+        "body_font": "site",
+        "body_size": 16,
+        "body_color": "",
+        "heading_weight": "inherit",
+        "space_preheader": 10,
+        "ls_preheader": 1,
+        "ls_heading": 1,
+        "ls_body": 1,
+        "bg_type": "none",
+        "bg_color": "#FBF6EE",
+        "bg_gradient_start": "#FBF6EE",
+        "bg_gradient_end": "#E7DAC4",
+        "bg_gradient_angle": 180,
+        "content_valign": "top",
+        "min_height": 0,
+        "padding_top": 80,
+        "padding_bottom": 80
+      }
+    },
+    "flexible_nwKJJt": {
+      "type": "flexible",
+      "blocks": {
+        "image_3GbL47": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/MUSE_-_Monogram_Solo_GLD.png",
+            "link": "",
+            "align": "center",
+            "width": 10,
+            "radius": 4,
+            "margin_top": 0,
+            "margin_bottom": 24
+          }
+        },
+        "text_gnnQTK": {
+          "type": "text",
+          "settings": {
+            "preheader": "",
+            "accent_color": "#c9851a",
+            "heading": "CELEBRATING THOSE WHO INSPIRE:",
+            "body": "<p>Everyone has a MUSE - someone whose light deserves to be celebrated<br/>for how they inspire. Tell their story or nominate them for recognition<br/>on our page and/or newsletter!</p>",
+            "text_color": "#0a0b0c",
+            "align": "center",
+            "max_width": 600,
+            "preheader_font": "site",
+            "heading_font": "ogg",
+            "heading_size": 36,
+            "heading_weight": "inherit",
+            "body_font": "text",
+            "body_size": 14,
+            "body_weight": "inherit",
+            "space_preheader": 12,
+            "space_heading": 20,
+            "ls_preheader": 1,
+            "ls_heading": 1,
+            "ls_body": 1,
+            "margin_top": 20,
+            "margin_bottom": 40
+          }
+        },
+        "button_bBXX3K": {
+          "type": "button",
+          "settings": {
+            "label": "SHARE YOUR MUSE",
+            "url": "shopify://pages/share-your-muse",
+            "icon": "none",
+            "style": "primary",
+            "label2": "",
+            "url2": "",
+            "icon2": "none",
+            "btn_size": "11",
+            "align": "center",
+            "margin_top": 0,
+            "margin_bottom": 24
+          }
+        }
+      },
+      "block_order": [
+        "image_3GbL47",
+        "text_gnnQTK",
+        "button_bBXX3K"
+      ],
+      "name": "Flexible section",
+      "settings": {
+        "coming_soon": false,
+        "bg_type": "none",
+        "bg_color": "#fbf6ee",
+        "bg_gradient_start": "#fbf6ee",
+        "bg_gradient_end": "#e7dac4",
+        "bg_gradient_angle": 180,
+        "content_valign": "top",
+        "min_height": 0,
+        "padding_top": 20,
+        "padding_bottom": 20
+      }
     }
   },
   "order": [
     "hero_WkjrKK",
-    "main"
+    "main",
+    "gallery_row_ENkdEK",
+    "flexible_nwKJJt"
   ]
 }
