@@ -32,6 +32,13 @@
         {%- assign justify = 'flex-start' -%}
         {%- if a == 'center' -%}{%- assign justify = 'center' -%}{%- elsif a == 'right' -%}{%- assign justify = 'flex-end' -%}{%- endif -%}
         <div class="text-columns__col" {{ block.shopify_attributes }} style="text-align:{{ a }};{% if block.settings.divider %}border-top:1px solid {{ block.settings.divider_color | default: '#E7DAC4' }};padding-top:20px;{% endif %}">
+          {%- if block.settings.media_type == 'image' -%}
+            {%- if block.settings.image != blank -%}
+              <img class="text-columns__img" src="{{ block.settings.image | image_url: width: 900 }}" alt="{{ block.settings.image.alt | escape }}" width="{{ block.settings.image.width }}" height="{{ block.settings.image.height }}" loading="lazy" style="width:100%;aspect-ratio:{{ block.settings.image_ratio | default: '1/1' }};object-fit:cover;border-radius:{{ block.settings.image_radius | default: 8 }}px;">
+            {%- else -%}
+              <div class="text-columns__img-ph" style="aspect-ratio:{{ block.settings.image_ratio | default: '1/1' }};border-radius:{{ block.settings.image_radius | default: 8 }}px;overflow:hidden;">{{ 'image' | placeholder_svg_tag }}</div>
+            {%- endif -%}
+          {%- else -%}
           {%- if block.settings.number != blank -%}
             <div class="text-columns__num" style="font-family:{%- render 'font-stack', key: block.settings.heading_font -%};{%- render 'font-variant', font: block.settings.heading_font -%}color:{{ block.settings.accent_color | default: '#C9851A' }};font-size:{{ block.settings.number_size | default: 40 }}px;line-height:1;margin-bottom:12px;">{{ block.settings.number }}</div>
           {%- endif -%}
@@ -49,6 +56,7 @@
               {%- render 'pill-button', label: block.settings.button_label, url: block.settings.button_link, style: block.settings.button_style, icon: block.settings.button_icon, size: block.settings.button_size -%}
             </div>
           {%- endif -%}
+          {%- endif -%}
         </div>
       {%- endfor -%}
     </div>
@@ -58,7 +66,6 @@
 {% schema %}
 {
   "name": "Text columns",
-  "tag": "section",
   "settings": [
     { "type": "header", "content": "Coming soon" },
     { "type": "checkbox", "id": "coming_soon", "label": "Grey out + show \"coming soon\" badge", "default": false },
@@ -126,6 +133,12 @@
       "type": "column",
       "name": "Column",
       "settings": [
+        { "type": "select", "id": "media_type", "label": "Column type", "info": "Swap this column's text for an image.", "options": [
+            { "value": "text", "label": "Text" }, { "value": "image", "label": "Image" } ], "default": "text" },
+        { "type": "image_picker", "id": "image", "label": "Image (when type = Image)" },
+        { "type": "select", "id": "image_ratio", "label": "Image aspect ratio", "options": [
+            { "value": "1/1", "label": "Square (1:1)" }, { "value": "4/5", "label": "Portrait (4:5)" }, { "value": "3/4", "label": "Portrait (3:4)" }, { "value": "16/9", "label": "Landscape (16:9)" } ], "default": "1/1" },
+        { "type": "range", "id": "image_radius", "label": "Image corner radius", "min": 0, "max": 40, "step": 2, "unit": "px", "default": 8 },
         { "type": "text", "id": "number", "label": "Number / lead-in (optional)", "info": "A big number or word above the heading, e.g. 01." },
         { "type": "range", "id": "number_size", "label": "Number size", "min": 20, "max": 96, "step": 2, "unit": "px", "default": 40 },
         { "type": "text", "id": "eyebrow", "label": "Eyebrow (small label)" },
