@@ -4,7 +4,7 @@
 -%}
 <div class="section-wrap gallery-row{% if s.coming_soon %} is-coming-soon{% endif %}"{% if s.coming_soon %} data-cs-label="{{ settings.badge_text | default: 'Coming Soon' | escape }}"{% endif %} style="{%- render 'section-style', st: s -%}">
   <div class="container">
-    <div class="gallery-row__head" style="text-align:{{ s.text_align | default: 'left' }};">
+    <div class="gallery-row__head{% if s.text_align == 'center' %} gallery-row__head--center{% endif %}" style="text-align:{{ s.text_align | default: 'left' }};">
       <div>
         {%- if s.preheader != blank -%}
           <div class="kicker" style="font-family:{%- render 'font-stack', key: s.preheader_font -%};color:{{ s.accent_color | default: '#C9851A' }};margin-bottom:{{ s.space_preheader | default: 10 }}px;{%- render 'letter-spacing', mult: s.ls_preheader, base: '0.18em' -%}">{{ s.preheader }}</div>
