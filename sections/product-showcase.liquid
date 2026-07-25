@@ -40,9 +40,10 @@
             if s.mf_namespace != blank
               assign ns = s.mf_namespace
             endif
-            assign mf = product.metafields[ns]
-            assign tagline = mf.tagline.value | default: s.tagline_fallback
-            assign details = mf.prod_detail_set01.value
+            assign tag_key = s.tagline_key | default: 'tagline'
+            assign det_key = s.details_key | default: 'prod_detail_set01'
+            assign tagline = product.metafields[ns][tag_key].value | default: s.tagline_fallback
+            assign details = product.metafields[ns][det_key].value
             assign cart_disabled = false
             if is_coming_soon and settings.coming_soon_disable_cart
               assign cart_disabled = true
@@ -169,7 +170,11 @@
     { "type": "select", "id": "card_align", "label": "Card text alignment", "options": [
         { "value": "left", "label": "Left" }, { "value": "center", "label": "Center" } ], "default": "left" },
     { "type": "checkbox", "id": "card_border", "label": "Card background + border", "default": true },
-    { "type": "text", "id": "mf_namespace", "label": "Metafield namespace override", "info": "Leave blank to use each product's handle as the namespace (e.g. clio.tagline). Set a value to force one namespace for all products." },
+    { "type": "header", "content": "Card — Metafields (tagline + details)" },
+    { "type": "paragraph", "content": "Tagline and details are read per product from metafields. Recommended: create one shared namespace (e.g. custom) and put its name below, then set each product's own value. Leave the namespace blank to instead read each product's handle as the namespace (clio.tagline, thalia.tagline, ...)." },
+    { "type": "text", "id": "mf_namespace", "label": "Metafield namespace", "info": "e.g. custom. Blank = use each product's handle." },
+    { "type": "text", "id": "tagline_key", "label": "Tagline key", "default": "tagline" },
+    { "type": "text", "id": "details_key", "label": "Details key", "default": "prod_detail_set01" },
     { "type": "header", "content": "Card — Title" },
     { "type": "select", "id": "title_font", "label": "Font", "options": [
         { "value": "site", "label": "Neue Haas Display Light" }, { "value": "display", "label": "Neue Haas Grotesk Display (Adobe)" }, { "value": "text", "label": "Neue Haas Grotesk Text (Adobe)" }, { "value": "ogg", "label": "Ogg Text (Adobe serif)" } ], "default": "site" },
