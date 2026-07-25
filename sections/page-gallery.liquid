@@ -22,7 +22,7 @@
 -%}
 <div class="section-wrap page-gallery{% if s.coming_soon %} is-coming-soon{% endif %}" data-gallery="{{ section.id }}"{% if s.coming_soon %} data-cs-label="{{ settings.badge_text | default: 'Coming Soon' | escape }}"{% endif %} style="{%- render 'section-style', st: s -%}">
   <div class="container">
-    <div class="page-gallery__head" style="text-align:{{ s.text_align | default: 'left' }};">
+    <div class="page-gallery__head" style="text-align:{{ s.text_align | default: 'left' }};{% if s.text_align == 'center' %}margin-left:auto;margin-right:auto;{% endif %}">
       {%- if s.kicker != blank -%}<div class="kicker" style="font-family:{%- render 'font-stack', key: s.preheader_font -%};margin-bottom:{{ s.space_preheader | default: 10 }}px;{%- render 'letter-spacing', mult: s.ls_preheader, base: '0.18em' -%}{% if s.accent_color != blank %}color:{{ s.accent_color }};{% endif %}">{{ s.kicker }}</div>{%- endif -%}
       <h1 style="font-family:{%- render 'font-stack', key: s.heading_font -%};{%- render 'font-variant', key: s.heading_weight, font: s.heading_font -%}{%- render 'letter-spacing', mult: s.ls_heading, base: '0.05em' -%}font-size:{{ s.heading_size }}px;">{{ s.heading | default: page.title | newline_to_br }}</h1>
       {%- if s.intro_text != blank -%}<div class="rte page-gallery__intro">{{ s.intro_text }}</div>{%- elsif page.content != blank and s.use_page_body -%}<div class="rte page-gallery__intro">{{ page.content }}</div>{%- endif -%}
@@ -95,10 +95,10 @@
   "settings": [
     { "type": "header", "content": "Coming soon" },
     { "type": "checkbox", "id": "coming_soon", "label": "Grey out + show \"coming soon\" badge", "default": false },
-    { "type": "text", "id": "kicker", "label": "Kicker", "default": "The Gallery" },
+    { "type": "text", "id": "kicker", "label": "Preheader", "default": "The Gallery" },
     { "type": "richtext", "id": "intro_text", "label": "Intro / body text", "info": "Shows under the heading. Leave empty to hide it." },
     { "type": "checkbox", "id": "use_page_body", "label": "Fall back to the page body text", "info": "If the Intro field above is empty, show the page's body content instead.", "default": false },
-    { "type": "color", "id": "accent_color", "label": "Kicker color", "info": "Leave blank to use the theme default." },
+    { "type": "color", "id": "accent_color", "label": "Preheader color", "info": "Leave blank to use the theme default." },
     { "type": "textarea", "id": "heading", "label": "Heading", "info": "Leave blank to use the page title. Press Enter for a line break." },
     { "type": "select", "id": "text_align", "label": "Heading alignment", "options": [ { "value": "left", "label": "Left" }, { "value": "center", "label": "Center" } ], "default": "left" },
     { "type": "range", "id": "columns", "label": "Columns", "info": "How many photos across on desktop (collapses to 2 on mobile).", "min": 2, "max": 6, "step": 1, "default": 3 },
@@ -112,7 +112,7 @@
     { "type": "color", "id": "overlay_color", "label": "Overlay color", "default": "#EFA527" },
     { "type": "range", "id": "overlay_opacity", "label": "Overlay opacity", "min": 0, "max": 100, "step": 5, "unit": "%", "default": 22 },
     { "type": "header", "content": "Typography" },
-    { "type": "select", "id": "preheader_font", "label": "Kicker font", "options": [
+    { "type": "select", "id": "preheader_font", "label": "Preheader font", "options": [
         { "value": "site", "label": "Neue Haas Display Light" },
         { "value": "display", "label": "Neue Haas Grotesk Display (Adobe)" },
         { "value": "text", "label": "Neue Haas Grotesk Text (Adobe)" },
@@ -134,9 +134,9 @@
         { "value": "black", "label": "Black (800)" } ], "default": "inherit" },
     { "type": "range", "id": "heading_size", "label": "Heading size", "min": 24, "max": 80, "step": 2, "unit": "px", "default": 44 },
     { "type": "header", "content": "Text spacing" },
-    { "type": "range", "id": "space_preheader", "label": "Space after kicker", "min": 0, "max": 80, "step": 2, "unit": "px", "default": 10 },
+    { "type": "range", "id": "space_preheader", "label": "Space after preheader", "min": 0, "max": 80, "step": 2, "unit": "px", "default": 10 },
     { "type": "header", "content": "Letter spacing" },
-    { "type": "range", "id": "ls_preheader", "label": "Kicker letter spacing", "info": "1 = theme default, up to 10x wider.", "min": 1, "max": 10, "step": 1, "unit": "x", "default": 1 },
+    { "type": "range", "id": "ls_preheader", "label": "Preheader letter spacing", "info": "1 = theme default, up to 10x wider.", "min": 1, "max": 10, "step": 1, "unit": "x", "default": 1 },
     { "type": "range", "id": "ls_heading", "label": "Heading letter spacing", "min": 1, "max": 10, "step": 1, "unit": "x", "default": 1 },
     { "type": "header", "content": "Share block (#myMUSE)" },
     { "type": "checkbox", "id": "show_share", "label": "Show share block", "default": false },
