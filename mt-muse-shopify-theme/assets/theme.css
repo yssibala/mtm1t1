@@ -905,9 +905,13 @@ button.pill__seg--submit[disabled] { opacity: .5; cursor: not-allowed; }
 /* =====================================================================
    MAIN OFFSET + ANNOUNCEMENT BAR
    ===================================================================== */
-.main-content { padding-top: 56px; }
-body.has-announcement .main-content { padding-top: 96px; }
+body { --nav-h: 56px; }
+body.has-announcement { --nav-h: 96px; }
+.main-content { padding-top: var(--nav-h); }
 body.has-announcement #site-nav { top: 40px; }
+/* Hero option: pull the section up so its background sits UNDER the fixed header
+   (no beige strip). Add extra Top padding in the hero to keep content clear. */
+.hero.hero--bleed { margin-top: calc(-1 * var(--nav-h)); }
 .announcement-bar {
   position: fixed;
   top: 0; left: 0; right: 0;
