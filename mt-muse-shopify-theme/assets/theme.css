@@ -621,7 +621,7 @@ button.pill__seg--submit[disabled] { opacity: .5; cursor: not-allowed; }
   transition: transform .35s cubic-bezier(.22, 1, .36, 1), box-shadow .35s ease, border-color .35s ease;
   container-type: inline-size;
 }
-.pg-card__media { display: block; }
+.pg-card__media { position: relative; display: block; }
 .pg-card__media img { width: 100%; aspect-ratio: 1 / 1; object-fit: cover; display: block; transition: transform .6s cubic-bezier(.22, 1, .36, 1); }
 .pg-card__overlay {
   position: absolute; inset: 0; z-index: 1; color: var(--near-white);
@@ -632,13 +632,13 @@ button.pill__seg--submit[disabled] { opacity: .5; cursor: not-allowed; }
   opacity: 0; transition: opacity .35s ease; pointer-events: none;
 }
 .pg-card__ov-inner { display: flex; flex-direction: column; gap: 8px; }
-.pg-card__title { margin: 0; line-height: 1.15; }
-.pg-card__tagline { opacity: .92; }
-.pg-card__desc { opacity: .85; line-height: 1.5; }
+.pg-card__tagline { opacity: .95; }
+.pg-card__desc { opacity: .88; line-height: 1.55; }
+/* Always-visible info block below the image */
+.pg-card__info { padding: clamp(12px, 4cqi, 18px); display: flex; flex-direction: column; gap: 8px; }
+.pg-card__title { margin: 0; line-height: 1.2; }
 .pg-card__price { font-weight: var(--fw-semibold); }
-.pg-card__buy { display: flex; align-items: center; justify-content: center; gap: clamp(4px, 1.4cqi, 8px); margin-top: 8px; flex-wrap: nowrap; }
-.pg-card__overlay .pill--ghost { border-color: currentColor; color: inherit; }
-.pg-card__overlay .pill--ghost:hover { background: rgba(255, 255, 255, .14); }
+.pg-card__buy { display: flex; align-items: center; justify-content: center; gap: clamp(4px, 1.4cqi, 8px); margin-top: 4px; flex-wrap: nowrap; }
 .pg-card__buy .pill { min-width: 0; }
 .pg-card__buy .pill__seg { white-space: nowrap; padding: 1.1em 1.2em; }
 .pg-card__buy .ps-qty__b { white-space: nowrap; }
@@ -647,12 +647,17 @@ button.pill__seg--submit[disabled] { opacity: .5; cursor: not-allowed; }
   .pg-card:hover .pg-card__media img { transform: scale(1.14); }
   .pg-card:hover .pg-card__overlay { opacity: 1; pointer-events: auto; }
 }
-/* No hover (touch): show the overlay stacked under the image instead of over it */
-@media (hover: none) {
-  .pg-card__overlay { position: static; opacity: 1; pointer-events: auto; color: var(--near-black); background: none; }
-  .pg-card__overlay .pill--ghost { border-color: var(--near-black); }
-}
+/* No hover (touch): drop the image overlay — the info block already shows title/price/buttons */
+@media (hover: none) { .pg-card__overlay { display: none; } }
 @media (prefers-reduced-motion: reduce) { .pg-card, .pg-card__media img, .pg-card__overlay { transition: none; } }
+
+/* Product-grid filters */
+.pg-filters { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: var(--space-lg); }
+.pg-filters--center { justify-content: center; }
+.pg-filters--right { justify-content: flex-end; }
+.pg-filter { border: 1.5px solid var(--sand-border); background: transparent; border-radius: var(--radius-pill); padding: 8px 18px; font-family: var(--font-text); font-size: var(--fs-small); letter-spacing: .08em; text-transform: uppercase; cursor: pointer; color: var(--near-black); transition: background .2s ease, color .2s ease, border-color .2s ease; }
+.pg-filter:hover { border-color: var(--muse-gold-1); }
+.pg-filter.is-active { background: var(--near-black); color: var(--bg-main); border-color: var(--near-black); }
 
 /* =====================================================================
    COLLECTION PAGE (filter sidebar + toolbar)

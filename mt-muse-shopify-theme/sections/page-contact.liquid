@@ -16,7 +16,7 @@
     assign head_margin = 'margin-left:auto;margin-right:auto;'
   endif
 -%}
-<div class="section-wrap page-contact{% unless has_details %} page-contact--solo{% endunless %}{% if s.coming_soon %} is-coming-soon{% endif %}"{% if s.coming_soon %} data-cs-label="{{ settings.badge_text | default: 'Coming Soon' | escape }}"{% endif %} style="{%- render 'section-style', st: s -%}">
+<div class="section-wrap page-contact{% unless has_details %} page-contact--solo{% endunless %}{% if s.extend_behind_header %} section-wrap--bleed{% endif %}{% if s.coming_soon %} is-coming-soon{% endif %}"{% if s.coming_soon %} data-cs-label="{{ settings.badge_text | default: 'Coming Soon' | escape }}"{% endif %} style="{%- render 'section-style', st: s -%}">
   <div class="container">
     <div class="page-contact__head" style="text-align:{{ align }};{{ head_margin }}">
       {%- if s.kicker != blank -%}<div class="kicker" style="font-family:{%- render 'font-stack', key: s.preheader_font -%};{% if s.accent_color != blank %}color:{{ s.accent_color }};{% endif %}margin-bottom:{{ s.space_preheader | default: 10 }}px;{%- render 'letter-spacing', mult: s.ls_preheader, base: '0.18em' -%}">{{ s.kicker }}</div>{%- endif -%}
@@ -33,8 +33,10 @@
             <input type="email" name="contact[email]" placeholder="Email" value="{% if form.email %}{{ form.email }}{% elsif customer %}{{ customer.email }}{% endif %}" aria-label="Email" required>
           </div>
           <input type="tel" name="contact[phone]" placeholder="Phone (optional)" aria-label="Phone">
-          <textarea name="contact[body]" rows="5" placeholder="How can we help?" aria-label="Message" required>{% if form.body %}{{ form.body }}{% endif %}</textarea>
-          <button type="submit" class="muse-pill muse-cta">Send message</button>
+          <textarea name="contact[body]" rows="5" placeholder="{{ s.ph_message | default: 'How can we help?' }}" aria-label="Message" required>{% if form.body %}{{ form.body }}{% endif %}</textarea>
+          <div class="contact-submit"{% if s.btn_align == 'center' %} style="text-align:center;"{% elsif s.btn_align == 'right' %} style="text-align:right;"{% endif %}>
+            <button type="submit" class="muse-pill {% if s.btn_style == 'ghost' %}muse-ghost{% else %}muse-cta{% endif %}" style="{% if s.btn_full %}width:100%;{% endif %}font-size:{{ s.btn_size | default: 12 }}px;">{{ s.btn_label | default: 'Send message' }}</button>
+          </div>
         {%- endform -%}
       </div>
       {%- if has_details -%}
@@ -67,6 +69,13 @@
     { "type": "text", "id": "phone", "label": "Phone" },
     { "type": "textarea", "id": "address", "label": "Address" },
     { "type": "textarea", "id": "hours", "label": "Hours" },
+    { "type": "header", "content": "Send-message button" },
+    { "type": "text", "id": "btn_label", "label": "Button label", "default": "Send message" },
+    { "type": "select", "id": "btn_style", "label": "Button style", "options": [ { "value": "primary", "label": "Gold (filled)" }, { "value": "ghost", "label": "Outline" } ], "default": "primary" },
+    { "type": "select", "id": "btn_align", "label": "Button alignment", "options": [ { "value": "left", "label": "Left" }, { "value": "center", "label": "Center" }, { "value": "right", "label": "Right" } ], "default": "left" },
+    { "type": "checkbox", "id": "btn_full", "label": "Full width", "default": false },
+    { "type": "range", "id": "btn_size", "label": "Button text size", "min": 10, "max": 20, "step": 1, "unit": "px", "default": 12 },
+    { "type": "text", "id": "ph_message", "label": "Message field placeholder", "default": "How can we help?" },
     { "type": "header", "content": "Typography" },
     { "type": "select", "id": "preheader_font", "label": "Preheader font", "options": [
         { "value": "site", "label": "Neue Haas Display Light" },
@@ -112,6 +121,7 @@
     { "type": "range", "id": "bg_gradient_angle", "label": "Gradient angle", "min": 0, "max": 360, "step": 10, "unit": "deg", "default": 180 },
     { "type": "image_picker", "id": "bg_image", "label": "Background image" },
     { "type": "header", "content": "Spacing & height" },
+    { "type": "checkbox", "id": "extend_behind_header", "label": "Extend background behind header", "info": "Pulls the section up so its background sits under the nav bar. Add Top padding to keep content clear of the nav.", "default": false },
     { "type": "select", "id": "content_valign", "label": "Vertical content position", "info": "Applies when a minimum height is set.", "options": [ { "value": "top", "label": "Top" }, { "value": "center", "label": "Center" }, { "value": "bottom", "label": "Bottom" } ], "default": "top" },
     { "type": "range", "id": "min_height", "label": "Minimum height", "min": 0, "max": 1000, "step": 20, "unit": "px", "default": 0 },
     { "type": "range", "id": "padding_top", "label": "Top padding", "min": 0, "max": 200, "step": 4, "unit": "px", "default": 80 },
