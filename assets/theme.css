@@ -577,14 +577,14 @@ section, .section { padding: var(--section-pad) 0; }
   transition: transform .35s cubic-bezier(.22, 1, .36, 1), box-shadow .35s ease, border-color .35s ease;
 }
 @media (hover: hover) {
-  .ps-card:hover { transform: translateY(-12px); box-shadow: 0 28px 54px rgba(10, 11, 12, .20); border-color: var(--muse-gold-1); }
-  .ps-card:hover .ps-card__media img { transform: scale(1.07); }
+  .ps-card:hover { transform: translateY(-24px); box-shadow: 0 48px 96px rgba(10, 11, 12, .34); border-width: 2px; border-color: var(--muse-gold-1); }
+  .ps-card:hover .ps-card__media img { transform: scale(1.14); }
 }
 @media (prefers-reduced-motion: reduce) { .ps-card, .ps-card__media img { transition: none; } }
 .ps-card__media { position: relative; display: block; overflow: hidden; }
 .ps-card__media img { width: 100%; aspect-ratio: 1 / 1; object-fit: cover; display: block; transition: transform .6s cubic-bezier(.22, 1, .36, 1); }
 .ps-card__placeholder { aspect-ratio: 1 / 1; background: var(--light-sand); }
-.ps-card__body { display: flex; flex-direction: column; gap: 6px; padding: var(--space-md); }
+.ps-card__body { display: flex; flex-direction: column; gap: 6px; padding: var(--space-md); container-type: inline-size; }
 .ps-card__title { margin: 0; line-height: 1.15; }
 .ps-card__tagline { color: var(--text-mid); }
 .ps-card__desc { line-height: 1.5; }
@@ -592,9 +592,13 @@ section, .section { padding: var(--section-pad) 0; }
 .ps-card__details { text-transform: uppercase; letter-spacing: .08em; }
 .ps-card__price { font-weight: var(--fw-semibold); margin-top: 2px; }
 .ps-card__buttons { margin-top: 12px; }
-.ps-btnrow { display: flex; align-items: center; flex-wrap: wrap; gap: 10px; }
+/* Buttons stay on one row; pills shrink to fit via container-query font sizing (see ps-pill / ps-qty) */
+.ps-btnrow { display: flex; align-items: center; flex-wrap: nowrap; gap: clamp(4px, 1.4cqi, 10px); }
 .ps-btnrow--single { justify-content: center; }
 .ps-btnrow--double, .ps-btnrow--triple { justify-content: space-between; }
+.ps-btnrow .pill { min-width: 0; }
+.ps-btnrow .pill__seg { white-space: nowrap; padding: 1.27em 1.5em; }
+.ps-btnrow .ps-qty__b { white-space: nowrap; }
 /* submit-button variant of a pill segment */
 button.pill__seg--submit { border: 0; background: none; cursor: pointer; font: inherit; color: inherit; letter-spacing: inherit; text-transform: inherit; }
 button.pill__seg--submit[disabled] { opacity: .5; cursor: not-allowed; }

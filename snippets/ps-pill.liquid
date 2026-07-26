@@ -14,13 +14,13 @@
   assign fs = size | default: 11
 -%}
 {%- if mode == 'cart' -%}
-  <span class="pill pill--{{ st }}" style="font-size:{{ fs }}px;">
+  <span class="pill pill--{{ st }}" style="font-size:min({{ fs }}px, 4cqi);">
     <button type="submit" name="add" class="pill__seg pill__seg--submit"{% if disabled %} disabled{% endif %}><span>{{ label | default: 'Add to cart' }}</span></button>
   </span>
 {%- else -%}
   {%- assign href = product.url -%}
   {%- if mode == 'url' -%}{%- assign href = url | default: '#' -%}{%- endif -%}
-  <span class="pill pill--{{ st }}" style="font-size:{{ fs }}px;">
+  <span class="pill pill--{{ st }}" style="font-size:min({{ fs }}px, 4cqi);">
     <a class="pill__seg" href="{{ href }}"><span>{{ label | default: 'View' }}</span></a>
   </span>
 {%- endif -%}

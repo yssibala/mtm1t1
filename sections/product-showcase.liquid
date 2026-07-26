@@ -23,7 +23,7 @@
       <div class="product-showcase__head" style="text-align:{{ s.head_align | default: 'center' }};margin-bottom:var(--space-xl);">
         {%- if s.preheader != blank -%}<div class="kicker" style="font-family:{%- render 'font-stack', key: s.preheader_font -%};color:{{ s.accent_color | default: '#C9851A' }};margin-bottom:10px;{%- render 'letter-spacing', mult: s.ls_preheader, base: '0.18em' -%}">{{ s.preheader }}</div>{%- endif -%}
         {%- if s.heading != blank -%}<h2 style="font-family:{%- render 'font-stack', key: s.heading_font -%};{%- render 'font-variant', key: s.heading_weight, font: s.heading_font -%}{%- render 'letter-spacing', mult: s.ls_heading, base: '0.05em' -%}{% if s.heading_color != blank %}color:{{ s.heading_color }};{% endif %}font-size:{{ s.heading_size }}px;margin:0;">{{ s.heading | newline_to_br }}</h2>{%- endif -%}
-        {%- if s.subheading != blank -%}<div class="rte" style="max-width:640px;{% if s.head_align == 'center' %}margin-left:auto;margin-right:auto;{% endif %}font-family:{%- render 'font-stack', key: s.body_font -%};font-size:{{ s.subheading_size | default: 17 }}px;color:var(--text-mid);margin:10px 0 0;">{{ s.subheading | newline_to_br }}</div>{%- endif -%}
+        {%- if s.subheading != blank -%}<div class="rte" style="max-width:640px;margin-top:10px;{% if s.head_align == 'center' %}margin-left:auto;margin-right:auto;{% elsif s.head_align == 'right' %}margin-left:auto;{% endif %}font-family:{%- render 'font-stack', key: s.body_font -%};font-size:{{ s.subheading_size | default: 17 }}px;color:var(--text-mid);">{{ s.subheading | newline_to_br }}</div>{%- endif -%}
       </div>
     {%- endif -%}
 
@@ -66,9 +66,7 @@
               {%- endif -%}
 
               {%- if s.show_desc and product.description != blank -%}
-                <div class="ps-card__desc rte" style="font-family:{%- render 'font-stack', key: s.desc_font -%};{%- render 'letter-spacing', mult: s.desc_ls, base: '0.02em' -%}{% if s.desc_color != blank %}color:{{ s.desc_color }};{% else %}color:var(--text-mid);{% endif %}font-size:{{ s.desc_size }}px;">
-                  {%- if s.desc_words > 0 -%}{{ product.description | strip_html | truncatewords: s.desc_words }}{%- else -%}{{ product.description }}{%- endif -%}
-                </div>
+                <div class="ps-card__desc" style="font-family:{%- render 'font-stack', key: s.desc_font -%};{%- render 'letter-spacing', mult: s.desc_ls, base: '0.02em' -%}{% if s.desc_color != blank %}color:{{ s.desc_color }};{% else %}color:var(--text-mid);{% endif %}font-size:{{ s.desc_size }}px;{% if s.desc_lines > 0 %}display:-webkit-box;-webkit-line-clamp:{{ s.desc_lines }};line-clamp:{{ s.desc_lines }};-webkit-box-orient:vertical;overflow:hidden;{% endif %}">{%- if s.desc_words > 0 -%}{{ product.description | strip_html | truncatewords: s.desc_words }}{%- else -%}{{ product.description | strip_html }}{%- endif -%}</div>
               {%- endif -%}
 
               {%- if s.show_details and details != blank -%}
@@ -81,7 +79,7 @@
 
               {%- comment -%} Button layout {%- endcomment -%}
               {%- capture qty_ctrl -%}
-                <span class="pill pill--ghost ps-qty" style="font-size:{{ s.btn_size | default: 11 }}px;">
+                <span class="pill pill--ghost ps-qty" style="font-size:min({{ s.btn_size | default: 11 }}px, 4cqi);">
                   <button type="button" class="ps-qty__b" data-qty-dec aria-label="Decrease quantity">&minus;</button>
                   <input class="ps-qty__n" type="number" name="quantity" value="1" min="1" inputmode="numeric" aria-label="Quantity">
                   <button type="button" class="ps-qty__b" data-qty-inc aria-label="Increase quantity">+</button>
@@ -193,6 +191,7 @@
     { "type": "header", "content": "Card — Description" },
     { "type": "checkbox", "id": "show_desc", "label": "Show product description", "default": false },
     { "type": "range", "id": "desc_words", "label": "Trim to word count", "info": "0 = show the full description.", "min": 0, "max": 80, "step": 5, "default": 20 },
+    { "type": "range", "id": "desc_lines", "label": "Text height (lines)", "info": "Caps the description to this many lines on every card (equal height, extra text is clipped). 0 = no cap.", "min": 0, "max": 16, "step": 1, "default": 4 },
     { "type": "select", "id": "desc_font", "label": "Font", "options": [
         { "value": "site", "label": "Neue Haas Display Light" }, { "value": "display", "label": "Neue Haas Grotesk Display (Adobe)" }, { "value": "text", "label": "Neue Haas Grotesk Text (Adobe)" }, { "value": "ogg", "label": "Ogg Text (Adobe serif)" } ], "default": "site" },
     { "type": "range", "id": "desc_size", "label": "Size", "min": 11, "max": 22, "step": 1, "unit": "px", "default": 14 },

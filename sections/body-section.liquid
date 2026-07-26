@@ -18,7 +18,7 @@
         <div class="rte body-section__body" style="font-family:{%- render 'font-stack', key: s.body_font -%};{%- render 'font-variant', key: s.body_weight, font: s.body_font -%}{%- render 'letter-spacing', mult: s.ls_body, base: '0.03em' -%}font-size:{{ s.body_size }}px;color:{% if s.body_color != blank %}{{ s.body_color }}{% else %}var(--text-mid){% endif %};">{{ s.body }}</div>
       {%- endif -%}
       {%- if s.button_label != blank -%}
-        <div style="margin-top:24px;">
+        <div style="margin-top:{{ s.space_button | default: 24 }}px;">
           {%- render 'pill-button', label: s.button_label, url: s.button_link, style: s.button_style, icon: s.button_icon, size: s.button_size -%}
         </div>
       {%- endif -%}
@@ -81,6 +81,7 @@
         { "value": "11", "label": "Standard" }, { "value": "10", "label": "10% smaller" }, { "value": "9", "label": "20% smaller" }, { "value": "8", "label": "30% smaller" }, { "value": "7", "label": "40% smaller" }, { "value": "6", "label": "50% smaller" } ], "default": "11" },
     { "type": "select", "id": "button_icon", "label": "Button icon", "options": [
         { "value": "none", "label": "None" }, { "value": "arrow", "label": "Arrow" }, { "value": "cart", "label": "Cart" }, { "value": "search", "label": "Search" }, { "value": "account", "label": "Account" } ], "default": "none" },
+    { "type": "range", "id": "space_button", "label": "Space above button", "min": 0, "max": 80, "step": 2, "unit": "px", "default": 24 },
     { "type": "header", "content": "Typography" },
     { "type": "select", "id": "preheader_font", "label": "Preheader font", "options": [
         { "value": "site", "label": "Neue Haas Display Light" },
