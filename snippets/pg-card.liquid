@@ -36,7 +36,7 @@
     assign buy_justify = 'flex-end'
   endif
 -%}
-<article class="pg-card"{% if s.card_border == false %} style="border:0;"{% endif %} data-tags="{{ product.tags | join: ',' | downcase }}" {{ block_attrs }}>
+<article class="pg-card"{% if s.card_border == false %} style="border:0;"{% endif %} data-tags="{{ product.tags | join: ',' | downcase }}" data-collections="{{ product.collections | map: 'handle' | join: ',' | downcase }}" {{ block_attrs }}>
   <a class="pg-card__media" href="{{ product.url }}" aria-label="{{ product.title | escape }}">
     {%- if is_coming_soon -%}{%- render 'coming-soon-badge', stamp: true -%}{%- endif -%}
     {%- if product.featured_image -%}

@@ -14,11 +14,20 @@
     {%- assign product_blocks = section.blocks | where: 'type', 'product' -%}
     {%- assign filter_blocks = section.blocks | where: 'type', 'filter' -%}
     {%- if product_blocks.size > 0 or grid_collection != blank -%}
+      {%- assign ftype = s.filter_type | default: 'collection' -%}
       {%- if filter_blocks.size > 0 -%}
-        <div class="pg-filters{% if s.filter_align == 'center' %} pg-filters--center{% elsif s.filter_align == 'right' %} pg-filters--right{% endif %}" data-pg-filters>
+        <div class="pg-filters{% if s.filter_align == 'center' %} pg-filters--center{% elsif s.filter_align == 'right' %} pg-filters--right{% endif %}" data-pg-filters data-filter-type="{{ ftype }}">
           <button type="button" class="pg-filter is-active" data-filter="">{{ s.filter_all_label | default: 'All' }}</button>
           {%- for fb in filter_blocks -%}
-            <button type="button" class="pg-filter" data-filter="{{ fb.settings.tag | downcase | strip }}" {{ fb.shopify_attributes }}>{{ fb.settings.label | default: fb.settings.tag }}</button>
+            {%- if ftype == 'tag' -%}
+              {%- assign fval = fb.settings.tag | downcase | strip -%}
+              {%- assign flabel = fb.settings.label | default: fb.settings.tag -%}
+            {%- else -%}
+              {%- assign fc = fb.settings.filter_collection -%}
+              {%- assign fval = fc.handle -%}
+              {%- assign flabel = fb.settings.label | default: fc.title -%}
+            {%- endif -%}
+            {%- if fval != blank -%}<button type="button" class="pg-filter" data-filter="{{ fval }}" {{ fb.shopify_attributes }}>{{ flabel }}</button>{%- endif -%}
           {%- endfor -%}
         </div>
       {%- endif -%}
@@ -57,6 +66,7 @@
     }
     var fbar = root.querySelector('[data-pg-filters]');
     if (fbar) {
+      var attr = (fbar.getAttribute('data-filter-type') === 'tag') ? 'data-tags' : 'data-collections';
       var btns = fbar.querySelectorAll('.pg-filter');
       var cards = root.querySelectorAll('.pg-card');
       fbar.addEventListener('click', function (e) {
@@ -65,8 +75,8 @@
         var f = b.getAttribute('data-filter') || '';
         for (var j = 0; j < btns.length; j++) { btns[j].classList.toggle('is-active', btns[j] === b); }
         for (var k = 0; k < cards.length; k++) {
-          var tags = ',' + (cards[k].getAttribute('data-tags') || '') + ',';
-          cards[k].style.display = (!f || tags.indexOf(',' + f + ',') > -1) ? '' : 'none';
+          var vals = ',' + (cards[k].getAttribute(attr) || '') + ',';
+          cards[k].style.display = (!f || vals.indexOf(',' + f + ',') > -1) ? '' : 'none';
         }
       });
     }
@@ -169,7 +179,8 @@
     { "type": "select", "id": "btn_size", "label": "Button size", "options": [
         { "value": "11", "label": "Standard" }, { "value": "10", "label": "10% smaller" }, { "value": "9", "label": "20% smaller" }, { "value": "8", "label": "30% smaller" }, { "value": "7", "label": "40% smaller" } ], "default": "10" },
     { "type": "header", "content": "Filters" },
-    { "type": "paragraph", "content": "Add \"Filter button\" blocks below and tag your products in Shopify admin. Selecting a filter shows only products carrying that tag." },
+    { "type": "paragraph", "content": "Add \"Filter button\" blocks below. Choose whether filters match a product's collections or its tags, then fill the matching field on each block. Selecting a filter shows only the cards that match." },
+    { "type": "select", "id": "filter_type", "label": "Filter by", "options": [ { "value": "collection", "label": "Collection" }, { "value": "tag", "label": "Product tag" } ], "default": "collection" },
     { "type": "text", "id": "filter_all_label", "label": "\"All\" button label", "default": "All" },
     { "type": "select", "id": "filter_align", "label": "Filter alignment", "options": [ { "value": "left", "label": "Left" }, { "value": "center", "label": "Center" }, { "value": "right", "label": "Right" } ], "default": "center" },
     { "type": "header", "content": "Background" },
@@ -190,8 +201,9 @@
     { "type": "product", "name": "Product", "settings": [
       { "type": "product", "id": "product", "label": "Product" } ] },
     { "type": "filter", "name": "Filter button", "settings": [
-      { "type": "text", "id": "label", "label": "Label", "default": "Filter" },
-      { "type": "text", "id": "tag", "label": "Product tag", "info": "Products tagged with this in Shopify admin show when this filter is selected." } ] }
+      { "type": "text", "id": "label", "label": "Button label", "info": "Blank = collection name (collection mode) or the tag (tag mode)." },
+      { "type": "collection", "id": "filter_collection", "label": "Collection", "info": "Used when \"Filter by\" is Collection." },
+      { "type": "text", "id": "tag", "label": "Product tag", "info": "Used when \"Filter by\" is Product tag." } ] }
   ],
   "max_blocks": 30,
   "presets": [{ "name": "Product grid" }]
