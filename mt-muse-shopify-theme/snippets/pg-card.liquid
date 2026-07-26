@@ -18,6 +18,7 @@
   if is_coming_soon and settings.coming_soon_disable_cart
     assign cart_disabled = true
   endif
+  assign layout = s.button_layout | default: 'triple'
 -%}
 <article class="pg-card"{% if s.card_border == false %} style="border:0;"{% endif %} {{ block_attrs }}>
   <a class="pg-card__media" href="{{ product.url }}" aria-label="{{ product.title | escape }}">
@@ -28,21 +29,29 @@
       <div class="ps-card__placeholder">{{ 'product-1' | placeholder_svg_tag }}</div>
     {%- endif -%}
   </a>
-  <div class="pg-card__overlay" style="--pg-ov:{{ s.overlay_color | default: '#0A0B0C' }};--pg-ov-alpha:{{ s.overlay_opacity | default: 88 | divided_by: 100.0 }};text-align:{{ s.card_align | default: 'center' }};">
+  <div class="pg-card__overlay" style="--pg-ov:{{ s.overlay_color | default: '#0A0B0C' }};--pg-ov-alpha:{{ s.overlay_opacity | default: 88 | divided_by: 100.0 }};text-align:{{ s.card_align | default: 'center' }};font-family:{%- render 'font-stack', key: s.ov_font -%};">
     <div class="pg-card__ov-inner">
-      <h3 class="pg-card__title" style="font-family:{%- render 'font-stack', key: s.title_font -%};{% if s.title_color != blank %}color:{{ s.title_color }};{% endif %}font-size:{{ s.title_size | default: 18 }}px;">{{ product.title }}</h3>
-      {%- if s.show_tagline and tagline != blank -%}<div class="pg-card__tagline" style="{% if s.tagline_color != blank %}color:{{ s.tagline_color }};{% endif %}font-size:{{ s.tagline_size | default: 14 }}px;">{{ tagline }}</div>{%- endif -%}
-      {%- if s.show_desc and product.description != blank -%}<div class="pg-card__desc" style="{% if s.desc_color != blank %}color:{{ s.desc_color }};{% endif %}font-size:{{ s.desc_size | default: 13 }}px;{% if s.desc_lines > 0 %}display:-webkit-box;-webkit-line-clamp:{{ s.desc_lines }};line-clamp:{{ s.desc_lines }};-webkit-box-orient:vertical;overflow:hidden;{% endif %}">{{ product.description | strip_html }}</div>{%- endif -%}
+      <h3 class="pg-card__title" style="font-family:{%- render 'font-stack', key: s.title_font -%};{%- render 'font-variant', key: s.title_weight, font: s.title_font -%}{%- render 'letter-spacing', mult: s.ls_title, base: '0.02em' -%}{% if s.title_color != blank %}color:{{ s.title_color }};{% endif %}font-size:{{ s.title_size | default: 18 }}px;">{{ product.title }}</h3>
+      {%- if s.show_tagline and tagline != blank -%}<div class="pg-card__tagline" style="{%- render 'letter-spacing', mult: s.ls_body, base: '0.03em' -%}{% if s.tagline_color != blank %}color:{{ s.tagline_color }};{% endif %}font-size:{{ s.tagline_size | default: 14 }}px;">{{ tagline }}</div>{%- endif -%}
+      {%- if s.show_desc and product.description != blank -%}<div class="pg-card__desc" style="{%- render 'letter-spacing', mult: s.ls_body, base: '0.02em' -%}{% if s.desc_color != blank %}color:{{ s.desc_color }};{% endif %}font-size:{{ s.desc_size | default: 13 }}px;{% if s.desc_lines > 0 %}display:-webkit-box;-webkit-line-clamp:{{ s.desc_lines }};line-clamp:{{ s.desc_lines }};-webkit-box-orient:vertical;overflow:hidden;{% endif %}">{{ product.description | strip_html }}</div>{%- endif -%}
       <div class="pg-card__price" style="{% if s.price_color != blank %}color:{{ s.price_color }};{% endif %}font-size:{{ s.price_size | default: 15 }}px;">{%- if is_coming_soon -%}{{ settings.badge_text | default: 'Coming Soon' }}{%- else -%}{{ product.price | money }}{%- endif -%}</div>
-      <form class="pg-card__buy" method="post" action="{{ routes.cart_add_url }}" accept-charset="UTF-8">
-        <input type="hidden" name="form_type" value="product">
-        <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+      {%- capture qty_ctrl -%}
         <span class="pill pill--ghost ps-qty" style="font-size:min({{ s.btn_size | default: 10 }}px, 5cqi);">
           <button type="button" class="ps-qty__b" data-qty-dec aria-label="Decrease quantity">&minus;</button>
           <input class="ps-qty__n" type="number" name="quantity" value="1" min="1" inputmode="numeric" aria-label="Quantity">
           <button type="button" class="ps-qty__b" data-qty-inc aria-label="Increase quantity">+</button>
         </span>
-        {%- render 'ps-pill', mode: 'cart', label: s.cart_label, style: s.cart_style, size: s.btn_size, disabled: cart_disabled -%}
+      {%- endcapture -%}
+      {%- capture view_btn -%}{%- render 'ps-pill', mode: 'product', product: product, label: s.view_label, style: 'ghost', size: s.btn_size -%}{%- endcapture -%}
+      {%- capture cart_btn -%}{%- render 'ps-pill', mode: 'cart', label: s.cart_label, style: s.cart_style, size: s.btn_size, disabled: cart_disabled -%}{%- endcapture -%}
+      <form class="pg-card__buy" method="post" action="{{ routes.cart_add_url }}" accept-charset="UTF-8">
+        <input type="hidden" name="form_type" value="product">
+        <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+        {%- if layout == 'triple' -%}{{ view_btn }}{{ qty_ctrl }}{{ cart_btn }}
+        {%- elsif layout == 'cart_qty' -%}{{ qty_ctrl }}{{ cart_btn }}
+        {%- elsif layout == 'view_cart' -%}{{ view_btn }}{{ cart_btn }}
+        {%- else -%}{{ cart_btn }}
+        {%- endif -%}
       </form>
     </div>
   </div>

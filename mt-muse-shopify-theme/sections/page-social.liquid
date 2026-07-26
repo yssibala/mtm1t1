@@ -1,10 +1,14 @@
-{%- liquid assign s = section.settings -%}
+{%- liquid
+  assign s = section.settings
+  assign nl_head = s.newsletter_heading | default: settings.newsletter_name
+  assign nl_consent = s.newsletter_consent | default: settings.newsletter_consent
+-%}
 <div class="section-wrap page-contact page-social{% if s.coming_soon %} is-coming-soon{% endif %}"{% if s.coming_soon %} data-cs-label="{{ settings.badge_text | default: 'Coming Soon' | escape }}"{% endif %} style="{%- render 'section-style', st: s -%}">
   <div class="container">
     <div class="page-contact__head" style="text-align:{{ s.text_align | default: 'center' }};margin-left:auto;margin-right:auto;">
-      {%- if s.kicker != blank -%}<div class="kicker" style="margin-bottom:10px;">{{ s.kicker }}</div>{%- endif -%}
-      <h1 style="font-family:{%- render 'font-stack', key: s.heading_font -%};{%- render 'font-variant', font: s.heading_font -%}font-size:{{ s.heading_size }}px;">{{ page.title }}</h1>
-      {%- if s.intro_text != blank -%}<div class="rte page-contact__intro">{{ s.intro_text }}</div>{%- elsif page.content != blank and s.use_page_body -%}<div class="rte page-contact__intro">{{ page.content }}</div>{%- endif -%}
+      {%- if s.kicker != blank -%}<div class="kicker" style="font-family:{%- render 'font-stack', key: s.preheader_font -%};{% if s.accent_color != blank %}color:{{ s.accent_color }};{% endif %}margin-bottom:{{ s.space_preheader | default: 10 }}px;{%- render 'letter-spacing', mult: s.ls_preheader, base: '0.18em' -%}{% if s.text_align == 'center' %}text-align:center;{% endif %}">{{ s.kicker }}</div>{%- endif -%}
+      <h1 style="font-family:{%- render 'font-stack', key: s.heading_font -%};{%- render 'font-variant', key: s.heading_weight, font: s.heading_font -%}{%- render 'letter-spacing', mult: s.ls_heading, base: '0.05em' -%}{% if s.heading_color != blank %}color:{{ s.heading_color }};{% endif %}font-size:{{ s.heading_size }}px;margin-bottom:{{ s.space_heading | default: 12 }}px;">{{ page.title }}</h1>
+      {%- if s.intro_text != blank -%}<div class="rte page-contact__intro" style="font-family:{%- render 'font-stack', key: s.body_font -%};{%- render 'letter-spacing', mult: s.ls_body, base: '0.03em' -%}{% if s.body_color != blank %}color:{{ s.body_color }};{% endif %}{% if s.body_size > 0 %}font-size:{{ s.body_size }}px;{% endif %}">{{ s.intro_text }}</div>{%- elsif page.content != blank and s.use_page_body -%}<div class="rte page-contact__intro" style="font-family:{%- render 'font-stack', key: s.body_font -%};{% if s.body_size > 0 %}font-size:{{ s.body_size }}px;{% endif %}">{{ page.content }}</div>{%- endif -%}
     </div>
 
     <div class="share-wrap">
@@ -79,7 +83,7 @@
 
             {%- if s.show_newsletter -%}
               <div class="share-news{% if section.blocks.size > 0 or s.aside_image != blank %} share-divider{% endif %}">
-                {%- if s.newsletter_heading != blank -%}<div class="share-news__head">{{ s.newsletter_heading }}</div>{%- endif -%}
+                {%- if nl_head != blank -%}<div class="share-news__head">{{ nl_head }}</div>{%- endif -%}
                 {%- form 'customer', id: 'share-newsletter' -%}
                   <input type="hidden" name="contact[tags]" value="newsletter">
                   {%- if form.posted_successfully? -%}
@@ -87,10 +91,10 @@
                   {%- else -%}
                     <div class="share-news__row">
                       <input type="email" name="contact[email]" placeholder="{{ s.newsletter_ph | default: 'Your email' }}" aria-label="Your email" required>
-                      <button type="submit" class="muse-pill muse-cta">{{ s.newsletter_button | default: 'Subscribe' }}</button>
+                      <button type="submit" class="muse-pill muse-cta">{{ s.newsletter_button | default: settings.newsletter_button | default: 'Subscribe' }}</button>
                     </div>
-                    {%- if s.newsletter_consent != blank -%}
-                      <label class="share-news__consent"><input type="checkbox" checked><span>{{ s.newsletter_consent }}</span></label>
+                    {%- if nl_consent != blank -%}
+                      <label class="share-news__consent"><input type="checkbox" checked><span>{{ nl_consent }}</span></label>
                     {%- endif -%}
                   {%- endif -%}
                 {%- endform -%}
@@ -110,7 +114,7 @@
     { "type": "header", "content": "Coming soon" },
     { "type": "checkbox", "id": "coming_soon", "label": "Grey out + show \"coming soon\" badge", "default": false },
     { "type": "header", "content": "Header" },
-    { "type": "text", "id": "kicker", "label": "Kicker", "default": "Celebrating those who inspire" },
+    { "type": "text", "id": "kicker", "label": "Preheader", "default": "Celebrating those who inspire" },
     { "type": "richtext", "id": "intro_text", "label": "Intro / body text", "info": "Shows under the heading. Leave empty to hide it." },
     { "type": "checkbox", "id": "use_page_body", "label": "Fall back to the page body text", "info": "If the Intro field above is empty, show the page's body content instead.", "default": false },
     { "type": "select", "id": "text_align", "label": "Heading alignment", "options": [ { "value": "left", "label": "Left" }, { "value": "center", "label": "Center" } ], "default": "center" },
@@ -135,20 +139,51 @@
     { "type": "text", "id": "follow_heading", "label": "Follow heading", "default": "Follow the clouds", "info": "Add social links as blocks below." },
     { "type": "header", "content": "Newsletter" },
     { "type": "checkbox", "id": "show_newsletter", "label": "Show newsletter signup", "default": true },
-    { "type": "text", "id": "newsletter_heading", "label": "Heading", "default": "The Cloud Dispatch — our newsletter" },
+    { "type": "text", "id": "newsletter_heading", "label": "Heading", "info": "Leave blank to use the global newsletter name from Theme settings → Wording." },
     { "type": "text", "id": "newsletter_ph", "label": "Email placeholder", "default": "Your email" },
     { "type": "text", "id": "newsletter_button", "label": "Button label", "default": "Subscribe" },
-    { "type": "text", "id": "newsletter_consent", "label": "Consent text", "default": "Yes, send me launches, events & the occasional note from amongst the clouds. 21+ only." },
+    { "type": "text", "id": "newsletter_consent", "label": "Consent text", "info": "Leave blank to use the global consent line from Theme settings → Wording." },
     { "type": "text", "id": "newsletter_success", "label": "Success message", "default": "Thank you for subscribing." },
     { "type": "header", "content": "Card style" },
     { "type": "checkbox", "id": "card_border", "label": "Card border & shadow", "default": true },
     { "type": "color", "id": "card_bg", "label": "Card background", "info": "Blank = theme default." },
     { "type": "header", "content": "Typography" },
+    { "type": "select", "id": "preheader_font", "label": "Preheader font", "options": [
+        { "value": "site", "label": "Neue Haas Display Light" },
+        { "value": "display", "label": "Neue Haas Grotesk Display (Adobe)" },
+        { "value": "text", "label": "Neue Haas Grotesk Text (Adobe)" },
+        { "value": "ogg", "label": "Ogg Text (Adobe serif)" } ], "default": "site" },
+    { "type": "color", "id": "accent_color", "label": "Preheader color", "info": "Blank = theme default." },
     { "type": "select", "id": "heading_font", "label": "Heading font", "options": [
         { "value": "site", "label": "Neue Haas Display Light" },
         { "value": "display", "label": "Neue Haas Grotesk Display (Adobe)" },
         { "value": "ogg", "label": "Ogg Text (Adobe serif)" } ], "default": "ogg" },
     { "type": "range", "id": "heading_size", "label": "Heading size", "min": 24, "max": 80, "step": 2, "unit": "px", "default": 52 },
+    { "type": "color", "id": "heading_color", "label": "Heading color", "info": "Blank = theme default." },
+    { "type": "select", "id": "heading_weight", "label": "Heading weight & style", "options": [
+        { "value": "inherit", "label": "Theme default" },
+        { "value": "thin", "label": "Thin (200)" },
+        { "value": "book", "label": "Book / Light (300)" },
+        { "value": "book-italic", "label": "Book Italic (300)" },
+        { "value": "roman", "label": "Roman / Regular (400)" },
+        { "value": "roman-italic", "label": "Roman Italic (400)" },
+        { "value": "medium", "label": "Medium (500)" },
+        { "value": "medium-italic", "label": "Medium Italic (500)" },
+        { "value": "bold", "label": "Bold (700)" },
+        { "value": "black", "label": "Black (800)" } ], "default": "inherit" },
+    { "type": "select", "id": "body_font", "label": "Body font", "options": [
+        { "value": "site", "label": "Neue Haas Display Light" },
+        { "value": "text", "label": "Neue Haas Grotesk Text (Adobe)" },
+        { "value": "ogg", "label": "Ogg Text (Adobe serif)" } ], "default": "site" },
+    { "type": "range", "id": "body_size", "label": "Intro text size", "info": "0 = theme default.", "min": 0, "max": 28, "step": 1, "unit": "px", "default": 0 },
+    { "type": "color", "id": "body_color", "label": "Intro text color", "info": "Blank = theme default." },
+    { "type": "header", "content": "Text spacing" },
+    { "type": "range", "id": "space_preheader", "label": "Space after preheader", "min": 0, "max": 60, "step": 2, "unit": "px", "default": 10 },
+    { "type": "range", "id": "space_heading", "label": "Space after heading", "min": 0, "max": 60, "step": 2, "unit": "px", "default": 12 },
+    { "type": "header", "content": "Letter spacing" },
+    { "type": "range", "id": "ls_preheader", "label": "Preheader letter spacing", "info": "1 = theme default, up to 10x wider.", "min": 1, "max": 10, "step": 1, "unit": "x", "default": 1 },
+    { "type": "range", "id": "ls_heading", "label": "Heading letter spacing", "min": 1, "max": 10, "step": 1, "unit": "x", "default": 1 },
+    { "type": "range", "id": "ls_body", "label": "Body letter spacing", "min": 1, "max": 10, "step": 1, "unit": "x", "default": 1 },
     { "type": "header", "content": "Background" },
     { "type": "select", "id": "bg_type", "label": "Background type", "options": [ { "value": "none", "label": "None" }, { "value": "solid", "label": "Solid color" }, { "value": "gradient", "label": "Gradient" }, { "value": "image", "label": "Image" } ], "default": "solid" },
     { "type": "color", "id": "bg_color", "label": "Solid color", "default": "#FBF6EE" },
