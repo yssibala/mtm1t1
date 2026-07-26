@@ -66,6 +66,38 @@
     },
     "product_showcase_Qkab8W": {
       "type": "product-showcase",
+      "blocks": {
+        "product_Df3bBH": {
+          "type": "product",
+          "settings": {
+            "product": "muse-clio-4-pack"
+          }
+        },
+        "product_LhNFnt": {
+          "type": "product",
+          "settings": {
+            "product": "muse-4-pack"
+          }
+        },
+        "product_AtKmVh": {
+          "type": "product",
+          "settings": {
+            "product": "muse-ourania-4-pack"
+          }
+        },
+        "product_npwJFk": {
+          "type": "product",
+          "settings": {
+            "product": "muse-flagship-flight-pack"
+          }
+        }
+      },
+      "block_order": [
+        "product_Df3bBH",
+        "product_LhNFnt",
+        "product_AtKmVh",
+        "product_npwJFk"
+      ],
       "name": "Product showcase",
       "settings": {
         "coming_soon": false,
@@ -127,6 +159,8 @@
         "btn_b_mode": "cart",
         "btn_b_url": "",
         "btn_b_style": "primary",
+        "filter_all_label": "All",
+        "filter_align": "center",
         "bg_type": "none",
         "bg_color": "#fbf6ee",
         "bg_gradient_start": "#fbf6ee",
@@ -140,6 +174,38 @@
     },
     "product_grid_fRYNCQ": {
       "type": "product-grid",
+      "blocks": {
+        "product_AG4zdn": {
+          "type": "product",
+          "settings": {
+            "product": "muse-clio-4-pack"
+          }
+        },
+        "product_CRBAgF": {
+          "type": "product",
+          "settings": {
+            "product": "muse-4-pack"
+          }
+        },
+        "product_dDLhHF": {
+          "type": "product",
+          "settings": {
+            "product": "muse-ourania-4-pack"
+          }
+        },
+        "product_y6RkV7": {
+          "type": "product",
+          "settings": {
+            "product": "muse-flagship-flight-pack"
+          }
+        }
+      },
+      "block_order": [
+        "product_AG4zdn",
+        "product_CRBAgF",
+        "product_dDLhHF",
+        "product_y6RkV7"
+      ],
       "name": "Product grid",
       "settings": {
         "coming_soon": false,
