@@ -27,7 +27,7 @@
     assign uses_cart = true
   endif
 -%}
-<article class="ps-card{% if is_coming_soon %} ps-card--cs{% endif %}"{% if s.card_border == false %} style="border:0;background:transparent;"{% endif %} {{ block_attrs }}>
+<article class="ps-card{% if is_coming_soon %} ps-card--cs{% endif %}"{% if s.card_border == false %} style="border:0;background:transparent;"{% endif %} data-collections="{{ product.collections | map: 'handle' | join: ',' | downcase }}" {{ block_attrs }}>
   <a class="ps-card__media" href="{{ product.url }}" aria-label="{{ product.title | escape }}">
     {%- if is_coming_soon -%}{%- render 'coming-soon-badge', stamp: true -%}{%- endif -%}
     {%- if product.featured_image -%}
