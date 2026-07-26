@@ -964,6 +964,8 @@ body.has-announcement #site-nav { top: 40px; }
 /* Hero option: pull the section up so its background sits UNDER the fixed header
    (no beige strip). Add extra Top padding in the hero to keep content clear. */
 .hero.hero--bleed { margin-top: calc(-1 * var(--nav-h)); }
+/* Generic "extend background behind header" for any section-wrap */
+.section-wrap--bleed { margin-top: calc(-1 * var(--nav-h)); }
 .announcement-bar {
   position: fixed;
   top: 0; left: 0; right: 0;
