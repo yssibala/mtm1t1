@@ -1,7 +1,7 @@
 {%- liquid
   assign s = section.settings
 -%}
-<div class="section-wrap product-grid{% if s.coming_soon %} is-coming-soon{% endif %}"{% if s.coming_soon %} data-cs-label="{{ settings.badge_text | default: 'Coming Soon' | escape }}"{% endif %} style="{%- render 'section-style', st: s -%}">
+<div class="section-wrap product-grid{% if s.coming_soon %} is-coming-soon{% endif %}"{% if s.coming_soon %} data-cs-label="{{ settings.badge_text | default: 'Coming Soon' | escape }}"{% endif %} data-pg="{{ section.id }}" style="{%- render 'section-style', st: s -%}">
   <div class="container">
     {%- if s.preheader != blank or s.heading != blank or s.subheading != blank -%}
       <div class="product-grid__head" style="text-align:{{ s.text_align | default: 'left' }};margin-bottom:var(--space-lg);">
@@ -10,18 +10,43 @@
         {%- if s.subheading != blank -%}<div class="rte" style="font-family:{%- render 'font-stack', key: s.body_font -%};{%- render 'letter-spacing', mult: s.ls_body, base: '0.03em' -%}font-size:{{ s.body_size | default: 16 }}px;color:{% if s.body_color != blank %}{{ s.body_color }}{% else %}var(--text-mid){% endif %};margin:10px 0 0;">{{ s.subheading | newline_to_br }}</div>{%- endif -%}
       </div>
     {%- endif -%}
-    {% assign grid_collection = s.collection %}
-    {% if grid_collection != blank %}
-      <div class="grid">
-        {% for product in grid_collection.products limit: s.limit %}
-          {% render 'product-card', product: product %}
-        {% endfor %}
+    {%- assign grid_collection = s.collection -%}
+    {%- if section.blocks.size > 0 or grid_collection != blank -%}
+      <div class="grid pg-grid">
+        {%- if section.blocks.size > 0 -%}
+          {%- for block in section.blocks -%}
+            {%- if block.settings.product != blank -%}
+              {%- render 'pg-card', product: block.settings.product, s: s, block_attrs: block.shopify_attributes -%}
+            {%- endif -%}
+          {%- endfor -%}
+        {%- else -%}
+          {%- for product in grid_collection.products limit: s.limit -%}
+            {%- render 'pg-card', product: product, s: s -%}
+          {%- endfor -%}
+        {%- endif -%}
       </div>
-    {% else %}
-      <p>Select a collection in the section settings.</p>
-    {% endif %}
+    {%- else -%}
+      <p>Select a collection, or add Product blocks to hand-pick and order products.</p>
+    {%- endif -%}
   </div>
 </div>
+
+<script>
+  (function () {
+    var root = document.querySelector('[data-pg="{{ section.id }}"]');
+    if (!root) return;
+    var qtys = root.querySelectorAll('.ps-qty');
+    for (var i = 0; i < qtys.length; i++) {
+      (function (q) {
+        var input = q.querySelector('.ps-qty__n');
+        var dec = q.querySelector('[data-qty-dec]');
+        var inc = q.querySelector('[data-qty-inc]');
+        if (dec) dec.addEventListener('click', function () { input.value = Math.max(1, (parseInt(input.value, 10) || 1) - 1); });
+        if (inc) inc.addEventListener('click', function () { input.value = (parseInt(input.value, 10) || 1) + 1; });
+      })(qtys[i]);
+    }
+  })();
+</script>
 
 {% schema %}
 {
@@ -69,6 +94,32 @@
         { "value": "medium-italic", "label": "Medium Italic (500)" },
         { "value": "bold", "label": "Bold (700)" },
         { "value": "black", "label": "Black (800)" } ], "default": "inherit" },
+    { "type": "header", "content": "Product card — hover overlay" },
+    { "type": "paragraph", "content": "On hover each card lifts and reveals an overlay with the product info + quick add-to-cart. Add Product blocks below to hand-pick and reorder products (overrides the collection)." },
+    { "type": "color", "id": "overlay_color", "label": "Overlay color", "default": "#0A0B0C" },
+    { "type": "range", "id": "overlay_opacity", "label": "Overlay opacity", "min": 0, "max": 100, "step": 4, "unit": "%", "default": 88 },
+    { "type": "select", "id": "card_align", "label": "Overlay text alignment", "options": [ { "value": "left", "label": "Left" }, { "value": "center", "label": "Center" } ], "default": "center" },
+    { "type": "checkbox", "id": "card_border", "label": "Card border", "default": true },
+    { "type": "select", "id": "title_font", "label": "Title font", "options": [
+        { "value": "site", "label": "Neue Haas Display Light" }, { "value": "display", "label": "Neue Haas Grotesk Display (Adobe)" }, { "value": "text", "label": "Neue Haas Grotesk Text (Adobe)" }, { "value": "ogg", "label": "Ogg Text (Adobe serif)" } ], "default": "site" },
+    { "type": "range", "id": "title_size", "label": "Title size", "min": 12, "max": 32, "step": 1, "unit": "px", "default": 18 },
+    { "type": "color", "id": "title_color", "label": "Title color", "info": "Blank = light text on the overlay." },
+    { "type": "checkbox", "id": "show_tagline", "label": "Show tagline", "default": true },
+    { "type": "text", "id": "tagline_fallback", "label": "Fallback tagline", "info": "Shown when a product has no tagline metafield." },
+    { "type": "range", "id": "tagline_size", "label": "Tagline size", "min": 11, "max": 24, "step": 1, "unit": "px", "default": 14 },
+    { "type": "color", "id": "tagline_color", "label": "Tagline color" },
+    { "type": "checkbox", "id": "show_desc", "label": "Show description", "default": true },
+    { "type": "range", "id": "desc_lines", "label": "Description height (lines)", "info": "0 = no cap.", "min": 0, "max": 12, "step": 1, "default": 3 },
+    { "type": "range", "id": "desc_size", "label": "Description size", "min": 10, "max": 20, "step": 1, "unit": "px", "default": 13 },
+    { "type": "color", "id": "desc_color", "label": "Description color" },
+    { "type": "range", "id": "price_size", "label": "Price size", "min": 12, "max": 26, "step": 1, "unit": "px", "default": 15 },
+    { "type": "color", "id": "price_color", "label": "Price color" },
+    { "type": "text", "id": "mf_namespace", "label": "Metafield namespace", "info": "For the tagline. e.g. custom. Blank = each product's handle." },
+    { "type": "text", "id": "tagline_key", "label": "Tagline metafield key", "default": "tagline" },
+    { "type": "text", "id": "cart_label", "label": "Add-to-cart label", "default": "Add to cart" },
+    { "type": "select", "id": "cart_style", "label": "Add-to-cart style", "options": [ { "value": "primary", "label": "Gold (filled)" }, { "value": "ghost", "label": "Outline" } ], "default": "primary" },
+    { "type": "select", "id": "btn_size", "label": "Button size", "options": [
+        { "value": "11", "label": "Standard" }, { "value": "10", "label": "10% smaller" }, { "value": "9", "label": "20% smaller" }, { "value": "8", "label": "30% smaller" }, { "value": "7", "label": "40% smaller" } ], "default": "10" },
     { "type": "header", "content": "Background" },
     { "type": "select", "id": "bg_type", "label": "Background type", "options": [
         { "value": "none", "label": "None" }, { "value": "solid", "label": "Solid color" }, { "value": "gradient", "label": "Gradient" }, { "value": "image", "label": "Image" } ], "default": "none" },
@@ -83,6 +134,11 @@
     { "type": "range", "id": "padding_top", "label": "Top padding", "min": 0, "max": 200, "step": 4, "unit": "px", "default": 64 },
     { "type": "range", "id": "padding_bottom", "label": "Bottom padding", "min": 0, "max": 200, "step": 4, "unit": "px", "default": 64 }
   ],
+  "blocks": [
+    { "type": "product", "name": "Product", "settings": [
+      { "type": "product", "id": "product", "label": "Product" } ] }
+  ],
+  "max_blocks": 24,
   "presets": [{ "name": "Product grid" }]
 }
 {% endschema %}
