@@ -31,7 +31,7 @@
           "logo": "shopify://shop_images/MUSE_-_Monogram_Solo_GLD.png",
           "show_account": true,
           "show_search": true,
-          "scroll_threshold": 400
+          "scroll_threshold": 30
         }
       },
       "footer": {
