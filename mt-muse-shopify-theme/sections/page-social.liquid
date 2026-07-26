@@ -3,7 +3,7 @@
   assign nl_head = s.newsletter_heading | default: settings.newsletter_name
   assign nl_consent = s.newsletter_consent | default: settings.newsletter_consent
 -%}
-<div class="section-wrap page-contact page-social{% if s.coming_soon %} is-coming-soon{% endif %}"{% if s.coming_soon %} data-cs-label="{{ settings.badge_text | default: 'Coming Soon' | escape }}"{% endif %} style="{%- render 'section-style', st: s -%}">
+<div class="section-wrap page-contact page-social{% if s.extend_behind_header %} section-wrap--bleed{% endif %}{% if s.coming_soon %} is-coming-soon{% endif %}"{% if s.coming_soon %} data-cs-label="{{ settings.badge_text | default: 'Coming Soon' | escape }}"{% endif %} style="{%- render 'section-style', st: s -%}">
   <div class="container">
     <div class="page-contact__head" style="text-align:{{ s.text_align | default: 'center' }};margin-left:auto;margin-right:auto;">
       {%- if s.kicker != blank -%}<div class="kicker" style="font-family:{%- render 'font-stack', key: s.preheader_font -%};{% if s.accent_color != blank %}color:{{ s.accent_color }};{% endif %}margin-bottom:{{ s.space_preheader | default: 10 }}px;{%- render 'letter-spacing', mult: s.ls_preheader, base: '0.18em' -%}{% if s.text_align == 'center' %}text-align:center;{% endif %}">{{ s.kicker }}</div>{%- endif -%}
@@ -192,6 +192,7 @@
     { "type": "range", "id": "bg_gradient_angle", "label": "Gradient angle", "min": 0, "max": 360, "step": 10, "unit": "deg", "default": 180 },
     { "type": "image_picker", "id": "bg_image", "label": "Background image" },
     { "type": "header", "content": "Spacing & height" },
+    { "type": "checkbox", "id": "extend_behind_header", "label": "Extend background behind header", "info": "Pulls the section up so its background sits under the nav bar (no gap above it). Add Top padding below to keep content clear of the nav.", "default": false },
     { "type": "select", "id": "content_valign", "label": "Vertical content position", "info": "Applies when a minimum height is set.", "options": [ { "value": "top", "label": "Top" }, { "value": "center", "label": "Center" }, { "value": "bottom", "label": "Bottom" } ], "default": "top" },
     { "type": "range", "id": "min_height", "label": "Minimum height", "min": 0, "max": 1000, "step": 20, "unit": "px", "default": 0 },
     { "type": "range", "id": "padding_top", "label": "Top padding", "min": 0, "max": 200, "step": 4, "unit": "px", "default": 80 },
