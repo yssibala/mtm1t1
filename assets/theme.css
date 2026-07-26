@@ -636,11 +636,12 @@ button.pill__seg--submit[disabled] { opacity: .5; cursor: not-allowed; }
 .pg-card__tagline { opacity: .92; }
 .pg-card__desc { opacity: .85; line-height: 1.5; }
 .pg-card__price { font-weight: var(--fw-semibold); }
-.pg-card__buy { display: flex; align-items: center; justify-content: center; gap: 8px; margin-top: 8px; flex-wrap: nowrap; }
+.pg-card__buy { display: flex; align-items: center; justify-content: center; gap: clamp(4px, 1.4cqi, 8px); margin-top: 8px; flex-wrap: nowrap; }
 .pg-card__overlay .pill--ghost { border-color: currentColor; color: inherit; }
 .pg-card__overlay .pill--ghost:hover { background: rgba(255, 255, 255, .14); }
 .pg-card__buy .pill { min-width: 0; }
-.pg-card__buy .pill__seg { white-space: nowrap; padding: 1.2em 1.4em; }
+.pg-card__buy .pill__seg { white-space: nowrap; padding: 1.1em 1.2em; }
+.pg-card__buy .ps-qty__b { white-space: nowrap; }
 @media (hover: hover) {
   .pg-card:hover { transform: translateY(-24px); box-shadow: 0 48px 96px rgba(10, 11, 12, .34); border-width: 2px; border-color: var(--muse-gold-1); }
   .pg-card:hover .pg-card__media img { transform: scale(1.14); }
@@ -1191,6 +1192,19 @@ body.has-announcement #site-nav { top: 40px; }
 .social-card__icon { color: var(--muse-gold-dark); }
 .social-card__label { font-weight: var(--fw-semibold); letter-spacing: .08em; text-transform: uppercase; font-size: var(--fs-small); }
 .social-card__handle { color: var(--text-meta); font-size: var(--fs-small); }
+
+/* Search section (hero-style) */
+.search-hero__form { display: flex; gap: 12px; flex-wrap: nowrap; }
+.search-hero__form input[type="search"] {
+  flex: 1; min-width: 0; padding: 14px 18px;
+  border: 1px solid var(--sand-border); border-radius: var(--radius-pill);
+  background: var(--near-white); color: var(--near-black); font-size: var(--fs-body);
+}
+.search-hero__form .muse-pill { white-space: nowrap; }
+.search-hero__results { grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: var(--space-lg); }
+.search-hero__link { color: var(--near-black); display: block; padding: 10px 0; border-bottom: 1px solid var(--sand-border); }
+.search-hero__link:hover { color: var(--muse-gold-dark); }
+@media (max-width: 520px) { .search-hero__form { flex-wrap: wrap; } .search-hero__form .muse-pill { width: 100%; text-align: center; } }
 
 /* Share Your Muse — nomination card */
 .share-wrap { max-width: 1080px; margin-left: auto; margin-right: auto; }

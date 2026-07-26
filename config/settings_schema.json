@@ -30,6 +30,55 @@
     ]
   },
   {
+    "name": "Wording & brand voice",
+    "settings": [
+      {
+        "type": "paragraph",
+        "content": "Site-wide text used in more than one place. Change it here once and every section that inherits it updates. Individual sections can still override with their own text."
+      },
+      {
+        "type": "header",
+        "content": "Brand voice"
+      },
+      {
+        "type": "text",
+        "id": "brand_eyebrow",
+        "label": "Brand eyebrow / tagline",
+        "default": "Amongst the Clouds",
+        "info": "Small line used above headings (e.g. on the Coming Soon page)."
+      },
+      {
+        "type": "text",
+        "id": "age_statement",
+        "label": "Responsibility / age line",
+        "default": "Enjoy Responsibly · 21+"
+      },
+      {
+        "type": "header",
+        "content": "Newsletter"
+      },
+      {
+        "type": "text",
+        "id": "newsletter_name",
+        "label": "Newsletter name",
+        "default": "The Cloud Dispatch",
+        "info": "e.g. shown as the signup heading on the Share Your Muse page."
+      },
+      {
+        "type": "text",
+        "id": "newsletter_button",
+        "label": "Default signup button label",
+        "default": "Subscribe"
+      },
+      {
+        "type": "textarea",
+        "id": "newsletter_consent",
+        "label": "Newsletter consent line",
+        "default": "Yes, send me launches, events & the occasional note from amongst the clouds. 21+ only."
+      }
+    ]
+  },
+  {
     "name": "Typography",
     "settings": [
       {
