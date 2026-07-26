@@ -37,7 +37,7 @@
       </div>
     {%- endif -%}
 
-    <div class="page-gallery__grid" style="--cols:{{ s.columns }};--ratio:{{ s.aspect_ratio }};--gallery-overlay:{{ s.overlay_color | default: '#EFA527' }};--gallery-overlay-opacity:{% if s.overlay_enable == false %}0{% else %}{{ s.overlay_opacity | default: 22 | divided_by: 100.0 }}{% endif %};">
+    <div class="page-gallery__grid" style="--cols:{{ s.columns }};--ratio:{{ s.aspect_ratio }};--gallery-overlay:{{ s.overlay_color | default: '#EFA527' }};--gallery-overlay-opacity:{% if s.overlay_enable == false %}0{% else %}{{ s.overlay_opacity | default: 20 | divided_by: 100.0 }}{% endif %};">
       {%- for block in section.blocks -%}
         <figure class="gallery-cell" data-category="{{ block.settings.category | handleize }}" {{ block.shopify_attributes }}>
           {%- capture cell_media -%}
@@ -110,7 +110,7 @@
     { "type": "header", "content": "Image hover overlay" },
     { "type": "checkbox", "id": "overlay_enable", "label": "Show hover overlay", "default": true },
     { "type": "color", "id": "overlay_color", "label": "Overlay color", "default": "#EFA527" },
-    { "type": "range", "id": "overlay_opacity", "label": "Overlay opacity", "min": 0, "max": 100, "step": 5, "unit": "%", "default": 22 },
+    { "type": "range", "id": "overlay_opacity", "label": "Overlay opacity", "min": 0, "max": 100, "step": 5, "unit": "%", "default": 20 },
     { "type": "header", "content": "Typography" },
     { "type": "select", "id": "preheader_font", "label": "Preheader font", "options": [
         { "value": "site", "label": "Neue Haas Display Light" },
