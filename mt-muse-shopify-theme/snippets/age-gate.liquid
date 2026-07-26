@@ -1,0 +1,65 @@
+{%- comment -%}
+  Site-wide age-verification overlay. Rendered from layout/theme.liquid.
+  Shows on first visit until the visitor confirms they meet the minimum age;
+  the result is remembered in localStorage. Controlled from Theme settings >
+  Age verification. Skipped in the theme editor and when disabled.
+{%- endcomment -%}
+{%- if settings.age_gate_enable -%}
+  <div id="age-gate" class="age-gate" hidden role="dialog" aria-modal="true" aria-label="Age verification">
+    <div class="age-gate__inner">
+      {%- if settings.age_show_monogram -%}
+        <img class="cloud-monogram" src="{{ 'muse-monogram-solo-gld.png' | asset_url }}" alt="{{ shop.name | escape }}" width="497" height="477" style="height:clamp(88px,11vw,132px);">
+      {%- endif -%}
+      {%- if settings.age_kicker != blank -%}<div class="cloud-kicker">{{ settings.age_kicker }}</div>{%- endif -%}
+      <h1 class="cloud-title" style="font-size:clamp(30px,4.6vw,60px);">{{ settings.age_heading | default: 'Are you 21 or older?' }}</h1>
+      {%- if settings.age_text != blank -%}<p class="cloud-text">{{ settings.age_text }}</p>{%- endif -%}
+      <form class="cloud-password age-gate__form" id="age-gate-form" novalidate>
+        <input type="text" id="age-gate-input" inputmode="numeric" autocomplete="off" maxlength="10" placeholder="{{ settings.age_placeholder | default: 'MM/DD/YYYY' }}" aria-label="Date of birth (MM/DD/YYYY)">
+        <button type="submit" class="muse-pill muse-cta">{{ settings.age_button | default: 'Enter' }}</button>
+      </form>
+      <p class="age-gate__msg age-gate__err" id="age-gate-error" hidden>{{ settings.age_error | default: 'Please enter a valid date in MM/DD/YYYY format.' }}</p>
+      <p class="age-gate__msg age-gate__deny" id="age-gate-deny" hidden>{{ settings.age_deny | default: 'Sorry — you must be of legal drinking age to enter.' }}</p>
+      <div class="cloud-foot">{{ settings.age_foot | default: 'Please enjoy responsibly.' }}</div>
+    </div>
+  </div>
+  <script>
+    (function () {
+      if (window.Shopify && Shopify.designMode) return;
+      try { if (localStorage.getItem('muse_age_ok') === '1') return; } catch (e) {}
+      var gate = document.getElementById('age-gate');
+      if (!gate) return;
+      var minAge = {{ settings.age_min | default: 21 }};
+      var input = document.getElementById('age-gate-input');
+      var form = document.getElementById('age-gate-form');
+      var err = document.getElementById('age-gate-error');
+      var deny = document.getElementById('age-gate-deny');
+      gate.hidden = false;
+      document.documentElement.classList.add('age-gate-open');
+      input.addEventListener('input', function () {
+        var v = input.value.replace(/[^0-9]/g, '').slice(0, 8);
+        if (v.length > 4) { input.value = v.slice(0, 2) + '/' + v.slice(2, 4) + '/' + v.slice(4); }
+        else if (v.length > 2) { input.value = v.slice(0, 2) + '/' + v.slice(2); }
+        else { input.value = v; }
+      });
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        err.hidden = true; deny.hidden = true;
+        var m = input.value.match(/^(\d{2})\/(\d{2})\/(\d{4})$/);
+        if (!m) { err.hidden = false; return; }
+        var mm = parseInt(m[1], 10), dd = parseInt(m[2], 10), yyyy = parseInt(m[3], 10);
+        var dob = new Date(yyyy, mm - 1, dd);
+        if (dob.getFullYear() !== yyyy || dob.getMonth() !== mm - 1 || dob.getDate() !== dd) { err.hidden = false; return; }
+        var now = new Date();
+        var age = now.getFullYear() - yyyy;
+        if (now.getMonth() < mm - 1 || (now.getMonth() === mm - 1 && now.getDate() < dd)) { age--; }
+        if (age >= minAge) {
+          try { localStorage.setItem('muse_age_ok', '1'); } catch (e) {}
+          gate.hidden = true;
+          document.documentElement.classList.remove('age-gate-open');
+        } else {
+          deny.hidden = false;
+        }
+      });
+    })();
+  </script>
+{%- endif -%}
