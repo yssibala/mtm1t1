@@ -12,7 +12,8 @@
     "main": {
       "type": "page-contact",
       "settings": {
-        "kicker": "Get in touch",
+        "coming_soon": false,
+        "kicker": "",
         "text_align": "left",
         "show_details": true,
         "detail_heading": "",
@@ -22,11 +23,12 @@
         "hours": "",
         "heading_font": "site",
         "heading_size": 44,
-        "bg_type": "none",
+        "bg_type": "image",
         "bg_color": "#fbf6ee",
         "bg_gradient_start": "#fbf6ee",
         "bg_gradient_end": "#e7dac4",
         "bg_gradient_angle": 180,
+        "bg_image": "shopify://shop_images/00_Cloud_BG_C.png",
         "content_valign": "center",
         "min_height": 0,
         "padding_top": 80,

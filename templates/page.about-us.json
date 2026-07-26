@@ -94,6 +94,7 @@
         "button_style": "primary",
         "button_size": "9",
         "button_icon": "none",
+        "space_button": 24,
         "preheader_font": "site",
         "heading_font": "ogg",
         "heading_size": 30,
@@ -115,8 +116,8 @@
         "bg_gradient_angle": 180,
         "content_valign": "center",
         "min_height": 0,
-        "padding_top": 20,
-        "padding_bottom": 20
+        "padding_top": 40,
+        "padding_bottom": 40
       }
     },
     "body_section_FbXAkj": {
@@ -149,6 +150,7 @@
         "button_style": "primary",
         "button_size": "11",
         "button_icon": "none",
+        "space_button": 24,
         "preheader_font": "site",
         "heading_font": "site",
         "heading_size": 40,
@@ -170,8 +172,8 @@
         "bg_gradient_angle": 180,
         "content_valign": "top",
         "min_height": 0,
-        "padding_top": 80,
-        "padding_bottom": 80
+        "padding_top": 40,
+        "padding_bottom": 40
       }
     },
     "text_columns_zMX3xJ": {
@@ -180,6 +182,9 @@
         "column_4WNe34": {
           "type": "column",
           "settings": {
+            "media_type": "text",
+            "image_ratio": "1/1",
+            "image_radius": 8,
             "number": "",
             "number_size": 40,
             "eyebrow": "",
@@ -213,6 +218,9 @@
         "column_gFt3aQ": {
           "type": "column",
           "settings": {
+            "media_type": "text",
+            "image_ratio": "1/1",
+            "image_radius": 8,
             "number": "",
             "number_size": 40,
             "eyebrow": "",
@@ -246,6 +254,9 @@
         "column_CVtJ8n": {
           "type": "column",
           "settings": {
+            "media_type": "text",
+            "image_ratio": "1/1",
+            "image_radius": 8,
             "number": "",
             "number_size": 40,
             "eyebrow": "",
@@ -311,8 +322,8 @@
         "bg_gradient_angle": 180,
         "content_valign": "center",
         "min_height": 0,
-        "padding_top": 0,
-        "padding_bottom": 0
+        "padding_top": 40,
+        "padding_bottom": 40
       }
     },
     "page_gallery_QcamKU": {
@@ -352,13 +363,18 @@
       "settings": {
         "coming_soon": true,
         "kicker": "Creative Curators Amongst The Clouds",
-        "accent_color": "#C9851A",
+        "intro_text": "",
+        "use_page_body": false,
+        "accent_color": "#c9851a",
         "heading": "",
         "text_align": "left",
         "columns": 3,
         "aspect_ratio": "1/1",
         "show_filters": false,
         "filter_all_label": "All",
+        "overlay_enable": true,
+        "overlay_color": "#efa527",
+        "overlay_opacity": 20,
         "preheader_font": "site",
         "heading_font": "site",
         "heading_weight": "inherit",
@@ -456,8 +472,8 @@
         "bg_gradient_angle": 180,
         "content_valign": "top",
         "min_height": 0,
-        "padding_top": 20,
-        "padding_bottom": 20
+        "padding_top": 40,
+        "padding_bottom": 40
       }
     }
   },
