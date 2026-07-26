@@ -11,10 +11,20 @@
       </div>
     {%- endif -%}
     {%- assign grid_collection = s.collection -%}
-    {%- if section.blocks.size > 0 or grid_collection != blank -%}
+    {%- assign product_blocks = section.blocks | where: 'type', 'product' -%}
+    {%- assign filter_blocks = section.blocks | where: 'type', 'filter' -%}
+    {%- if product_blocks.size > 0 or grid_collection != blank -%}
+      {%- if filter_blocks.size > 0 -%}
+        <div class="pg-filters{% if s.filter_align == 'center' %} pg-filters--center{% elsif s.filter_align == 'right' %} pg-filters--right{% endif %}" data-pg-filters>
+          <button type="button" class="pg-filter is-active" data-filter="">{{ s.filter_all_label | default: 'All' }}</button>
+          {%- for fb in filter_blocks -%}
+            <button type="button" class="pg-filter" data-filter="{{ fb.settings.tag | downcase | strip }}" {{ fb.shopify_attributes }}>{{ fb.settings.label | default: fb.settings.tag }}</button>
+          {%- endfor -%}
+        </div>
+      {%- endif -%}
       <div class="grid pg-grid">
-        {%- if section.blocks.size > 0 -%}
-          {%- for block in section.blocks -%}
+        {%- if product_blocks.size > 0 -%}
+          {%- for block in product_blocks -%}
             {%- if block.settings.product != blank -%}
               {%- render 'pg-card', product: block.settings.product, s: s, block_attrs: block.shopify_attributes -%}
             {%- endif -%}
@@ -44,6 +54,21 @@
         if (dec) dec.addEventListener('click', function () { input.value = Math.max(1, (parseInt(input.value, 10) || 1) - 1); });
         if (inc) inc.addEventListener('click', function () { input.value = (parseInt(input.value, 10) || 1) + 1; });
       })(qtys[i]);
+    }
+    var fbar = root.querySelector('[data-pg-filters]');
+    if (fbar) {
+      var btns = fbar.querySelectorAll('.pg-filter');
+      var cards = root.querySelectorAll('.pg-card');
+      fbar.addEventListener('click', function (e) {
+        var b = e.target.closest ? e.target.closest('.pg-filter') : null;
+        if (!b) return;
+        var f = b.getAttribute('data-filter') || '';
+        for (var j = 0; j < btns.length; j++) { btns[j].classList.toggle('is-active', btns[j] === b); }
+        for (var k = 0; k < cards.length; k++) {
+          var tags = ',' + (cards[k].getAttribute('data-tags') || '') + ',';
+          cards[k].style.display = (!f || tags.indexOf(',' + f + ',') > -1) ? '' : 'none';
+        }
+      });
     }
   })();
 </script>
@@ -94,11 +119,11 @@
         { "value": "medium-italic", "label": "Medium Italic (500)" },
         { "value": "bold", "label": "Bold (700)" },
         { "value": "black", "label": "Black (800)" } ], "default": "inherit" },
-    { "type": "header", "content": "Product card — hover overlay" },
-    { "type": "paragraph", "content": "On hover each card lifts and reveals an overlay with the product info + quick add-to-cart. Add Product blocks below to hand-pick and reorder products (overrides the collection)." },
-    { "type": "color", "id": "overlay_color", "label": "Overlay color", "default": "#0A0B0C" },
-    { "type": "range", "id": "overlay_opacity", "label": "Overlay opacity", "min": 0, "max": 100, "step": 4, "unit": "%", "default": 88 },
-    { "type": "select", "id": "card_align", "label": "Overlay text alignment", "options": [ { "value": "left", "label": "Left" }, { "value": "center", "label": "Center" } ], "default": "center" },
+    { "type": "header", "content": "Product card" },
+    { "type": "paragraph", "content": "Title, price and buttons show on the card. The tagline & description appear as an overlay when the image is hovered. Add Product blocks below to hand-pick and drag to reorder (overrides the collection); add Filter blocks for tag-based filter buttons." },
+    { "type": "select", "id": "card_align", "label": "Card text alignment", "options": [ { "value": "left", "label": "Left" }, { "value": "center", "label": "Center" }, { "value": "right", "label": "Right" } ], "default": "center" },
+    { "type": "color", "id": "overlay_color", "label": "Hover overlay color", "default": "#0A0B0C" },
+    { "type": "range", "id": "overlay_opacity", "label": "Hover overlay opacity", "min": 0, "max": 100, "step": 4, "unit": "%", "default": 88 },
     { "type": "checkbox", "id": "card_border", "label": "Card border", "default": true },
     { "type": "select", "id": "ov_font", "label": "Overlay text font", "info": "Base font for tagline, description & price.", "options": [
         { "value": "site", "label": "Neue Haas Display Light" }, { "value": "display", "label": "Neue Haas Grotesk Display (Adobe)" }, { "value": "text", "label": "Neue Haas Grotesk Text (Adobe)" }, { "value": "ogg", "label": "Ogg Text (Adobe serif)" } ], "default": "text" },
@@ -117,8 +142,11 @@
         { "value": "black", "label": "Black (800)" } ], "default": "inherit" },
     { "type": "range", "id": "title_size", "label": "Title size", "min": 12, "max": 32, "step": 1, "unit": "px", "default": 18 },
     { "type": "range", "id": "ls_title", "label": "Title letter spacing", "info": "1 = default, up to 10x wider.", "min": 1, "max": 10, "step": 1, "unit": "x", "default": 1 },
-    { "type": "color", "id": "title_color", "label": "Title color", "info": "Blank = light text on the overlay." },
-    { "type": "checkbox", "id": "show_tagline", "label": "Show tagline", "default": true },
+    { "type": "color", "id": "title_color", "label": "Title color", "info": "Blank = theme default." },
+    { "type": "range", "id": "price_size", "label": "Price size", "min": 12, "max": 26, "step": 1, "unit": "px", "default": 15 },
+    { "type": "color", "id": "price_color", "label": "Price color", "info": "Blank = gold." },
+    { "type": "paragraph", "content": "The tagline & description below are revealed as an overlay when the image is hovered." },
+    { "type": "checkbox", "id": "show_tagline", "label": "Show tagline (on hover)", "default": true },
     { "type": "text", "id": "tagline_fallback", "label": "Fallback tagline", "info": "Shown when a product has no tagline metafield." },
     { "type": "range", "id": "tagline_size", "label": "Tagline size", "min": 11, "max": 24, "step": 1, "unit": "px", "default": 14 },
     { "type": "color", "id": "tagline_color", "label": "Tagline color" },
@@ -127,8 +155,6 @@
     { "type": "range", "id": "desc_size", "label": "Description size", "min": 10, "max": 20, "step": 1, "unit": "px", "default": 13 },
     { "type": "color", "id": "desc_color", "label": "Description color" },
     { "type": "range", "id": "ls_ov_body", "label": "Tagline & description letter spacing", "info": "1 = default, up to 10x wider.", "min": 1, "max": 10, "step": 1, "unit": "x", "default": 1 },
-    { "type": "range", "id": "price_size", "label": "Price size", "min": 12, "max": 26, "step": 1, "unit": "px", "default": 15 },
-    { "type": "color", "id": "price_color", "label": "Price color" },
     { "type": "text", "id": "mf_namespace", "label": "Metafield namespace", "info": "For the tagline. e.g. custom. Blank = each product's handle." },
     { "type": "text", "id": "tagline_key", "label": "Tagline metafield key", "default": "tagline" },
     { "type": "header", "content": "Product card — buttons" },
@@ -142,6 +168,10 @@
     { "type": "select", "id": "cart_style", "label": "Add-to-cart style", "options": [ { "value": "primary", "label": "Gold (filled)" }, { "value": "ghost", "label": "Outline" } ], "default": "primary" },
     { "type": "select", "id": "btn_size", "label": "Button size", "options": [
         { "value": "11", "label": "Standard" }, { "value": "10", "label": "10% smaller" }, { "value": "9", "label": "20% smaller" }, { "value": "8", "label": "30% smaller" }, { "value": "7", "label": "40% smaller" } ], "default": "10" },
+    { "type": "header", "content": "Filters" },
+    { "type": "paragraph", "content": "Add \"Filter button\" blocks below and tag your products in Shopify admin. Selecting a filter shows only products carrying that tag." },
+    { "type": "text", "id": "filter_all_label", "label": "\"All\" button label", "default": "All" },
+    { "type": "select", "id": "filter_align", "label": "Filter alignment", "options": [ { "value": "left", "label": "Left" }, { "value": "center", "label": "Center" }, { "value": "right", "label": "Right" } ], "default": "center" },
     { "type": "header", "content": "Background" },
     { "type": "select", "id": "bg_type", "label": "Background type", "options": [
         { "value": "none", "label": "None" }, { "value": "solid", "label": "Solid color" }, { "value": "gradient", "label": "Gradient" }, { "value": "image", "label": "Image" } ], "default": "none" },
@@ -158,9 +188,12 @@
   ],
   "blocks": [
     { "type": "product", "name": "Product", "settings": [
-      { "type": "product", "id": "product", "label": "Product" } ] }
+      { "type": "product", "id": "product", "label": "Product" } ] },
+    { "type": "filter", "name": "Filter button", "settings": [
+      { "type": "text", "id": "label", "label": "Label", "default": "Filter" },
+      { "type": "text", "id": "tag", "label": "Product tag", "info": "Products tagged with this in Shopify admin show when this filter is selected." } ] }
   ],
-  "max_blocks": 24,
+  "max_blocks": 30,
   "presets": [{ "name": "Product grid" }]
 }
 {% endschema %}
