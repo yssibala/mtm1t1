@@ -1,0 +1,49 @@
+{%- comment -%}
+  Product-grid card: image with a quick-shop overlay that fades in on hover.
+  Params: product, s (section.settings), block_attrs (optional block.shopify_attributes).
+{%- endcomment -%}
+{%- liquid
+  assign cs_tag = settings.coming_soon_tag | default: 'coming-soon'
+  assign is_coming_soon = false
+  if product.tags contains cs_tag
+    assign is_coming_soon = true
+  endif
+  assign ns = product.handle
+  if s.mf_namespace != blank
+    assign ns = s.mf_namespace
+  endif
+  assign tag_key = s.tagline_key | default: 'tagline'
+  assign tagline = product.metafields[ns][tag_key].value | default: s.tagline_fallback
+  assign cart_disabled = false
+  if is_coming_soon and settings.coming_soon_disable_cart
+    assign cart_disabled = true
+  endif
+-%}
+<article class="pg-card"{% if s.card_border == false %} style="border:0;"{% endif %} {{ block_attrs }}>
+  <a class="pg-card__media" href="{{ product.url }}" aria-label="{{ product.title | escape }}">
+    {%- if is_coming_soon -%}{%- render 'coming-soon-badge', stamp: true -%}{%- endif -%}
+    {%- if product.featured_image -%}
+      <img src="{{ product.featured_image | image_url: width: 700 }}" alt="{{ product.title | escape }}" width="{{ product.featured_image.width }}" height="{{ product.featured_image.height }}" loading="lazy">
+    {%- else -%}
+      <div class="ps-card__placeholder">{{ 'product-1' | placeholder_svg_tag }}</div>
+    {%- endif -%}
+  </a>
+  <div class="pg-card__overlay" style="--pg-ov:{{ s.overlay_color | default: '#0A0B0C' }};--pg-ov-alpha:{{ s.overlay_opacity | default: 88 | divided_by: 100.0 }};text-align:{{ s.card_align | default: 'center' }};">
+    <div class="pg-card__ov-inner">
+      <h3 class="pg-card__title" style="font-family:{%- render 'font-stack', key: s.title_font -%};{% if s.title_color != blank %}color:{{ s.title_color }};{% endif %}font-size:{{ s.title_size | default: 18 }}px;">{{ product.title }}</h3>
+      {%- if s.show_tagline and tagline != blank -%}<div class="pg-card__tagline" style="{% if s.tagline_color != blank %}color:{{ s.tagline_color }};{% endif %}font-size:{{ s.tagline_size | default: 14 }}px;">{{ tagline }}</div>{%- endif -%}
+      {%- if s.show_desc and product.description != blank -%}<div class="pg-card__desc" style="{% if s.desc_color != blank %}color:{{ s.desc_color }};{% endif %}font-size:{{ s.desc_size | default: 13 }}px;{% if s.desc_lines > 0 %}display:-webkit-box;-webkit-line-clamp:{{ s.desc_lines }};line-clamp:{{ s.desc_lines }};-webkit-box-orient:vertical;overflow:hidden;{% endif %}">{{ product.description | strip_html }}</div>{%- endif -%}
+      <div class="pg-card__price" style="{% if s.price_color != blank %}color:{{ s.price_color }};{% endif %}font-size:{{ s.price_size | default: 15 }}px;">{%- if is_coming_soon -%}{{ settings.badge_text | default: 'Coming Soon' }}{%- else -%}{{ product.price | money }}{%- endif -%}</div>
+      <form class="pg-card__buy" method="post" action="{{ routes.cart_add_url }}" accept-charset="UTF-8">
+        <input type="hidden" name="form_type" value="product">
+        <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+        <span class="pill pill--ghost ps-qty" style="font-size:min({{ s.btn_size | default: 10 }}px, 5cqi);">
+          <button type="button" class="ps-qty__b" data-qty-dec aria-label="Decrease quantity">&minus;</button>
+          <input class="ps-qty__n" type="number" name="quantity" value="1" min="1" inputmode="numeric" aria-label="Quantity">
+          <button type="button" class="ps-qty__b" data-qty-inc aria-label="Increase quantity">+</button>
+        </span>
+        {%- render 'ps-pill', mode: 'cart', label: s.cart_label, style: s.cart_style, size: s.btn_size, disabled: cart_disabled -%}
+      </form>
+    </div>
+  </div>
+</article>

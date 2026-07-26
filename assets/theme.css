@@ -613,6 +613,47 @@ button.pill__seg--submit[disabled] { opacity: .5; cursor: not-allowed; }
 @media (max-width: 600px) { .product-showcase__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 
 /* =====================================================================
+   PRODUCT GRID — quick-shop overlay card
+   ===================================================================== */
+.pg-card {
+  position: relative; overflow: hidden; border-radius: var(--radius-card);
+  border: 1px solid var(--sand-border); background: var(--near-white);
+  transition: transform .35s cubic-bezier(.22, 1, .36, 1), box-shadow .35s ease, border-color .35s ease;
+  container-type: inline-size;
+}
+.pg-card__media { display: block; }
+.pg-card__media img { width: 100%; aspect-ratio: 1 / 1; object-fit: cover; display: block; transition: transform .6s cubic-bezier(.22, 1, .36, 1); }
+.pg-card__overlay {
+  position: absolute; inset: 0; z-index: 1; color: var(--near-white);
+  display: flex; flex-direction: column; justify-content: center;
+  padding: clamp(14px, 6cqi, 28px);
+  background: var(--pg-ov, #0A0B0C);
+  background: rgb(from var(--pg-ov, #0A0B0C) r g b / var(--pg-ov-alpha, .88));
+  opacity: 0; transition: opacity .35s ease; pointer-events: none;
+}
+.pg-card__ov-inner { display: flex; flex-direction: column; gap: 8px; }
+.pg-card__title { margin: 0; line-height: 1.15; }
+.pg-card__tagline { opacity: .92; }
+.pg-card__desc { opacity: .85; line-height: 1.5; }
+.pg-card__price { font-weight: var(--fw-semibold); }
+.pg-card__buy { display: flex; align-items: center; justify-content: center; gap: 8px; margin-top: 8px; flex-wrap: nowrap; }
+.pg-card__overlay .pill--ghost { border-color: currentColor; color: inherit; }
+.pg-card__overlay .pill--ghost:hover { background: rgba(255, 255, 255, .14); }
+.pg-card__buy .pill { min-width: 0; }
+.pg-card__buy .pill__seg { white-space: nowrap; padding: 1.2em 1.4em; }
+@media (hover: hover) {
+  .pg-card:hover { transform: translateY(-24px); box-shadow: 0 48px 96px rgba(10, 11, 12, .34); border-width: 2px; border-color: var(--muse-gold-1); }
+  .pg-card:hover .pg-card__media img { transform: scale(1.14); }
+  .pg-card:hover .pg-card__overlay { opacity: 1; pointer-events: auto; }
+}
+/* No hover (touch): show the overlay stacked under the image instead of over it */
+@media (hover: none) {
+  .pg-card__overlay { position: static; opacity: 1; pointer-events: auto; color: var(--near-black); background: none; }
+  .pg-card__overlay .pill--ghost { border-color: var(--near-black); }
+}
+@media (prefers-reduced-motion: reduce) { .pg-card, .pg-card__media img, .pg-card__overlay { transition: none; } }
+
+/* =====================================================================
    COLLECTION PAGE (filter sidebar + toolbar)
    ===================================================================== */
 .collection-layout {

@@ -11,11 +11,6 @@
 {%- endcomment -%}
 {%- liquid
   assign s = section.settings
-  assign cs_tag = settings.coming_soon_tag | default: 'coming-soon'
-  assign uses_cart = false
-  if s.btn_a_mode == 'cart' or s.btn_b_mode == 'cart'
-    assign uses_cart = true
-  endif
 -%}
 <div class="section-wrap product-showcase{% if s.coming_soon %} is-coming-soon{% endif %}"{% if s.coming_soon %} data-cs-label="{{ settings.badge_text | default: 'Coming Soon' | escape }}"{% endif %} data-ps="{{ section.id }}" style="{%- render 'section-style', st: s -%}">
   <div class="container">
@@ -28,91 +23,23 @@
     {%- endif -%}
 
     {%- assign showcase_collection = s.collection -%}
-    {%- if showcase_collection != blank -%}
+    {%- if section.blocks.size > 0 or showcase_collection != blank -%}
       <div class="product-showcase__grid" style="--ps-cols:{{ s.columns }};">
-        {%- for product in showcase_collection.products limit: s.limit -%}
-          {%- liquid
-            assign is_coming_soon = false
-            if product.tags contains cs_tag
-              assign is_coming_soon = true
-            endif
-            assign ns = product.handle
-            if s.mf_namespace != blank
-              assign ns = s.mf_namespace
-            endif
-            assign tag_key = s.tagline_key | default: 'tagline'
-            assign det_key = s.details_key | default: 'prod_detail_set01'
-            assign tagline = product.metafields[ns][tag_key].value | default: s.tagline_fallback
-            assign details = product.metafields[ns][det_key].value
-            assign cart_disabled = false
-            if is_coming_soon and settings.coming_soon_disable_cart
-              assign cart_disabled = true
-            endif
-          -%}
-          <article class="ps-card{% if is_coming_soon %} ps-card--cs{% endif %}" {% if s.card_border == false %}style="border:0;background:transparent;"{% endif %}>
-            <a class="ps-card__media" href="{{ product.url }}" aria-label="{{ product.title | escape }}">
-              {%- if is_coming_soon -%}{%- render 'coming-soon-badge', stamp: true -%}{%- endif -%}
-              {%- if product.featured_image -%}
-                <img src="{{ product.featured_image | image_url: width: 700 }}" alt="{{ product.title | escape }}" width="{{ product.featured_image.width }}" height="{{ product.featured_image.height }}" loading="lazy">
-              {%- else -%}
-                <div class="ps-card__placeholder">{{ 'product-1' | placeholder_svg_tag }}</div>
-              {%- endif -%}
-            </a>
-            <div class="ps-card__body" style="text-align:{{ s.card_align | default: 'left' }};">
-              <h3 class="ps-card__title" style="font-family:{%- render 'font-stack', key: s.title_font -%};{%- render 'font-variant', key: s.title_weight, font: s.title_font -%}{%- render 'letter-spacing', mult: s.title_ls, base: '0.02em' -%}{% if s.title_color != blank %}color:{{ s.title_color }};{% endif %}font-size:{{ s.title_size }}px;">{{ product.title }}</h3>
-
-              {%- if s.show_tagline and tagline != blank -%}
-                <div class="ps-card__tagline" style="font-family:{%- render 'font-stack', key: s.tagline_font -%};{%- render 'letter-spacing', mult: s.tagline_ls, base: '0.03em' -%}{% if s.tagline_color != blank %}color:{{ s.tagline_color }};{% endif %}font-size:{{ s.tagline_size }}px;">{{ tagline }}</div>
-              {%- endif -%}
-
-              {%- if s.show_desc and product.description != blank -%}
-                <div class="ps-card__desc" style="font-family:{%- render 'font-stack', key: s.desc_font -%};{%- render 'letter-spacing', mult: s.desc_ls, base: '0.02em' -%}{% if s.desc_color != blank %}color:{{ s.desc_color }};{% else %}color:var(--text-mid);{% endif %}font-size:{{ s.desc_size }}px;{% if s.desc_lines > 0 %}display:-webkit-box;-webkit-line-clamp:{{ s.desc_lines }};line-clamp:{{ s.desc_lines }};-webkit-box-orient:vertical;overflow:hidden;{% endif %}">{%- if s.desc_words > 0 -%}{{ product.description | strip_html | truncatewords: s.desc_words }}{%- else -%}{{ product.description | strip_html }}{%- endif -%}</div>
-              {%- endif -%}
-
-              {%- if s.show_details and details != blank -%}
-                <div class="ps-card__details" style="font-family:{%- render 'font-stack', key: s.details_font -%};{%- render 'letter-spacing', mult: s.details_ls, base: '0.02em' -%}{% if s.details_color != blank %}color:{{ s.details_color }};{% else %}color:var(--text-meta);{% endif %}font-size:{{ s.details_size }}px;">{{ details }}</div>
-              {%- endif -%}
-
-              <div class="ps-card__price" style="font-family:{%- render 'font-stack', key: s.price_font -%};{% if s.price_color != blank %}color:{{ s.price_color }};{% else %}color:var(--muse-gold-dark);{% endif %}font-size:{{ s.price_size }}px;">
-                {%- if is_coming_soon -%}{{ settings.badge_text | default: 'Coming Soon' }}{%- else -%}{{ product.price | money }}{%- endif -%}
-              </div>
-
-              {%- comment -%} Button layout {%- endcomment -%}
-              {%- capture qty_ctrl -%}
-                <span class="pill pill--ghost ps-qty" style="font-size:min({{ s.btn_size | default: 11 }}px, 4cqi);">
-                  <button type="button" class="ps-qty__b" data-qty-dec aria-label="Decrease quantity">&minus;</button>
-                  <input class="ps-qty__n" type="number" name="quantity" value="1" min="1" inputmode="numeric" aria-label="Quantity">
-                  <button type="button" class="ps-qty__b" data-qty-inc aria-label="Increase quantity">+</button>
-                </span>
-              {%- endcapture -%}
-              {%- capture btn_a -%}{%- render 'ps-pill', mode: s.btn_a_mode, label: s.btn_a_label, url: s.btn_a_url, product: product, style: s.btn_a_style, size: s.btn_size, disabled: cart_disabled -%}{%- endcapture -%}
-              {%- capture btn_b -%}{%- render 'ps-pill', mode: s.btn_b_mode, label: s.btn_b_label, url: s.btn_b_url, product: product, style: s.btn_b_style, size: s.btn_size, disabled: cart_disabled -%}{%- endcapture -%}
-              {%- capture btnrow -%}
-                {%- if s.btn_layout == 'single' -%}{{ btn_a }}
-                {%- elsif s.btn_layout == 'double' -%}{{ btn_a }}{{ btn_b }}
-                {%- elsif s.btn_layout == 'triple' -%}{{ btn_a }}{{ qty_ctrl }}{{ btn_b }}
-                {%- endif -%}
-              {%- endcapture -%}
-              {%- if s.btn_layout != 'none' -%}
-                <div class="ps-card__buttons">
-                  {%- if uses_cart -%}
-                    <form class="ps-btnrow ps-btnrow--{{ s.btn_layout }}" method="post" action="{{ routes.cart_add_url }}" accept-charset="UTF-8">
-                      <input type="hidden" name="form_type" value="product">
-                      <input type="hidden" name="utf8" value="✓">
-                      <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
-                      {{ btnrow }}
-                    </form>
-                  {%- else -%}
-                    <div class="ps-btnrow ps-btnrow--{{ s.btn_layout }}">{{ btnrow }}</div>
-                  {%- endif -%}
-                </div>
-              {%- endif -%}
-            </div>
-          </article>
-        {%- endfor -%}
+        {%- if section.blocks.size > 0 -%}
+          {%- comment -%} Manual product list — reorder the blocks to reorder the cards {%- endcomment -%}
+          {%- for block in section.blocks -%}
+            {%- if block.settings.product != blank -%}
+              {%- render 'ps-card', product: block.settings.product, s: s, block_attrs: block.shopify_attributes -%}
+            {%- endif -%}
+          {%- endfor -%}
+        {%- else -%}
+          {%- for product in showcase_collection.products limit: s.limit -%}
+            {%- render 'ps-card', product: product, s: s -%}
+          {%- endfor -%}
+        {%- endif -%}
       </div>
     {%- else -%}
-      <p>Select a collection in the section settings.</p>
+      <p>Select a collection, or add Product blocks to hand-pick and order products.</p>
     {%- endif -%}
   </div>
 </div>
@@ -142,6 +69,7 @@
     { "type": "checkbox", "id": "coming_soon", "label": "Grey out + show \"coming soon\" badge", "default": false },
     { "type": "collection", "id": "collection", "label": "Collection" },
     { "type": "range", "id": "limit", "label": "Products to show", "min": 2, "max": 24, "step": 1, "default": 6 },
+    { "type": "paragraph", "content": "To hand-pick products and set their order, add Product blocks below and drag to reorder — that overrides the collection above." },
     { "type": "range", "id": "columns", "label": "Columns (desktop)", "min": 1, "max": 5, "step": 1, "default": 3 },
     { "type": "header", "content": "Section heading (optional)" },
     { "type": "text", "id": "preheader", "label": "Preheader" },
@@ -244,6 +172,11 @@
     { "type": "range", "id": "padding_top", "label": "Top padding", "min": 0, "max": 200, "step": 4, "unit": "px", "default": 80 },
     { "type": "range", "id": "padding_bottom", "label": "Bottom padding", "min": 0, "max": 200, "step": 4, "unit": "px", "default": 80 }
   ],
+  "blocks": [
+    { "type": "product", "name": "Product", "settings": [
+      { "type": "product", "id": "product", "label": "Product" } ] }
+  ],
+  "max_blocks": 24,
   "presets": [{ "name": "Product showcase" }]
 }
 {% endschema %}
