@@ -1195,6 +1195,18 @@ body.has-announcement #site-nav { top: 40px; }
 .social-card__label { font-weight: var(--fw-semibold); letter-spacing: .08em; text-transform: uppercase; font-size: var(--fs-small); }
 .social-card__handle { color: var(--text-meta); font-size: var(--fs-small); }
 
+/* Account / login card */
+.account-wrap { max-width: 460px; margin-left: auto; margin-right: auto; }
+.account-card { background: var(--near-white); border: 1px solid var(--sand-border); border-radius: var(--radius-card); box-shadow: 0 24px 60px -32px rgba(10, 11, 12, .4); padding: clamp(24px, 3.2vw, 40px); }
+.account-card--noborder { border: 0; box-shadow: none; background: transparent; padding: 0; }
+.account-form label { display: block; font-size: var(--fs-small); margin: 12px 0 6px; color: var(--text-mid); }
+.account-form input { width: 100%; padding: 13px 16px; border: 1px solid var(--sand-border); border-radius: var(--radius-pill); font-family: var(--font-text); background: var(--near-white); color: var(--near-black); }
+
+/* Cart card */
+.cart-wrap { max-width: 820px; margin-left: auto; margin-right: auto; }
+.cart-card { background: var(--near-white); border: 1px solid var(--sand-border); border-radius: var(--radius-card); box-shadow: 0 24px 60px -32px rgba(10, 11, 12, .4); padding: clamp(22px, 3.2vw, 44px); }
+.cart-card--noborder { border: 0; box-shadow: none; background: transparent; padding: 0; }
+
 /* Search section (hero-style) */
 .search-hero__form { display: flex; gap: 12px; flex-wrap: nowrap; }
 .search-hero__form input[type="search"] {
