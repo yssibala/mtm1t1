@@ -2,7 +2,7 @@
   assign s = section.settings
   assign align = s.text_align | default: 'left'
 -%}
-<div class="section-wrap cart-page{% if s.coming_soon %} is-coming-soon{% endif %}"{% if s.coming_soon %} data-cs-label="{{ settings.badge_text | default: 'Coming Soon' | escape }}"{% endif %} style="{%- render 'section-style', st: s -%}">
+<div class="section-wrap cart-page{% if s.extend_behind_header %} section-wrap--bleed{% endif %}{% if s.coming_soon %} is-coming-soon{% endif %}"{% if s.coming_soon %} data-cs-label="{{ settings.badge_text | default: 'Coming Soon' | escape }}"{% endif %} style="{%- render 'section-style', st: s -%}">
   <div class="container">
     <div class="page-contact__head" style="text-align:{{ align }};">
       {%- if s.preheader != blank -%}<div class="kicker" style="font-family:{%- render 'font-stack', key: s.preheader_font -%};{% if s.accent_color != blank %}color:{{ s.accent_color }};{% endif %}margin-bottom:{{ s.space_preheader | default: 10 }}px;{%- render 'letter-spacing', mult: s.ls_preheader, base: '0.18em' -%}">{{ s.preheader }}</div>{%- endif -%}
@@ -10,6 +10,7 @@
       {%- if s.intro_text != blank -%}<div class="rte page-contact__intro" style="font-family:{%- render 'font-stack', key: s.body_font -%};{% if s.body_color != blank %}color:{{ s.body_color }};{% endif %}{% if s.body_size > 0 %}font-size:{{ s.body_size }}px;{% endif %}">{{ s.intro_text }}</div>{%- endif -%}
     </div>
 
+    <div class="cart-wrap"><div class="cart-card{% if s.card_border == false %} cart-card--noborder{% endif %}"{% if s.card_bg != blank %} style="background:{{ s.card_bg }};"{% endif %}>
     {%- if cart.item_count == 0 -%}
       <p style="color:var(--text-mid);">{{ s.empty_text | default: 'Your cart is currently empty.' }}</p>
       <a href="{{ routes.all_products_collection_url }}" class="muse-pill muse-cta" style="margin-top:16px;">{{ s.empty_button | default: 'Continue shopping' }}</a>
@@ -39,6 +40,7 @@
         </div>
       {%- endform -%}
     {%- endif -%}
+    </div></div>
   </div>
 </div>
 {% schema %}
@@ -60,6 +62,9 @@
     { "type": "checkbox", "id": "show_update", "label": "Show \"Update\" button", "default": true },
     { "type": "text", "id": "update_label", "label": "Update button", "default": "Update" },
     { "type": "text", "id": "checkout_label", "label": "Checkout button", "default": "Checkout" },
+    { "type": "header", "content": "Card" },
+    { "type": "checkbox", "id": "card_border", "label": "Card border & shadow", "info": "Sits the cart on a card, so a section background image shows behind it.", "default": true },
+    { "type": "color", "id": "card_bg", "label": "Card background", "info": "Blank = theme default." },
     { "type": "header", "content": "Typography" },
     { "type": "select", "id": "preheader_font", "label": "Preheader font", "options": [
         { "value": "site", "label": "Neue Haas Display Light" },
@@ -104,6 +109,7 @@
     { "type": "range", "id": "bg_gradient_angle", "label": "Gradient angle", "min": 0, "max": 360, "step": 10, "unit": "deg", "default": 180 },
     { "type": "image_picker", "id": "bg_image", "label": "Background image" },
     { "type": "header", "content": "Spacing & height" },
+    { "type": "checkbox", "id": "extend_behind_header", "label": "Extend background behind header", "info": "Pulls the section up so its background sits under the nav bar. Add Top padding to keep content clear of the nav.", "default": false },
     { "type": "select", "id": "content_valign", "label": "Vertical content position", "info": "Applies when a minimum height is set.", "options": [ { "value": "top", "label": "Top" }, { "value": "center", "label": "Center" }, { "value": "bottom", "label": "Bottom" } ], "default": "top" },
     { "type": "range", "id": "min_height", "label": "Minimum height", "min": 0, "max": 1000, "step": 20, "unit": "px", "default": 0 },
     { "type": "range", "id": "padding_top", "label": "Top padding", "min": 0, "max": 200, "step": 4, "unit": "px", "default": 80 },
