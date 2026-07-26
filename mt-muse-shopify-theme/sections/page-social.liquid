@@ -1,28 +1,105 @@
 {%- liquid assign s = section.settings -%}
 <div class="section-wrap page-contact page-social{% if s.coming_soon %} is-coming-soon{% endif %}"{% if s.coming_soon %} data-cs-label="{{ settings.badge_text | default: 'Coming Soon' | escape }}"{% endif %} style="{%- render 'section-style', st: s -%}">
   <div class="container">
-    <div class="page-contact__head" style="text-align:{{ s.text_align | default: 'left' }};">
+    <div class="page-contact__head" style="text-align:{{ s.text_align | default: 'center' }};margin-left:auto;margin-right:auto;">
       {%- if s.kicker != blank -%}<div class="kicker" style="margin-bottom:10px;">{{ s.kicker }}</div>{%- endif -%}
       <h1 style="font-family:{%- render 'font-stack', key: s.heading_font -%};{%- render 'font-variant', font: s.heading_font -%}font-size:{{ s.heading_size }}px;">{{ page.title }}</h1>
       {%- if s.intro_text != blank -%}<div class="rte page-contact__intro">{{ s.intro_text }}</div>{%- elsif page.content != blank and s.use_page_body -%}<div class="rte page-contact__intro">{{ page.content }}</div>{%- endif -%}
     </div>
-    <div class="social-grid">
-      {%- for block in section.blocks -%}
-        <a class="social-card" href="{{ block.settings.url }}" target="_blank" rel="noopener" {{ block.shopify_attributes }}>
-          <span class="social-card__icon">
-            {%- case block.settings.network -%}
-              {%- when 'instagram' -%}<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
-              {%- when 'tiktok' -%}<svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M16 3c.3 2.2 1.7 3.7 3.8 4v2.7c-1.4.1-2.7-.3-3.8-1v5.6a5.6 5.6 0 1 1-5.6-5.6c.3 0 .6 0 .9.1v2.8a2.8 2.8 0 1 0 2 2.7V3H16Z"/></svg>
-              {%- when 'facebook' -%}<svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M14 9h3V6h-3c-1.9 0-3 1.4-3 3.2V11H9v3h2v6h3v-6h2.5l.5-3H14V9.5c0-.3.2-.5.6-.5Z"/></svg>
-              {%- when 'twitter' -%}<svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M18 3h3l-7 8 8 10h-6l-5-6-5 6H3l8-9L3 3h6l4 5 5-5Z"/></svg>
-              {%- when 'youtube' -%}<svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M22 12s0-3-.4-4.4a2.5 2.5 0 0 0-1.8-1.8C18.4 5.5 12 5.5 12 5.5s-6.4 0-7.8.3A2.5 2.5 0 0 0 2.4 7.6C2 9 2 12 2 12s0 3 .4 4.4a2.5 2.5 0 0 0 1.8 1.8c1.4.3 7.8.3 7.8.3s6.4 0 7.8-.3a2.5 2.5 0 0 0 1.8-1.8C22 15 22 12 22 12Zm-12 3V9l5 3-5 3Z"/></svg>
-              {%- else -%}<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M10 13a5 5 0 0 0 7 0l3-3a5 5 0 0 0-7-7l-1 1"/><path d="M14 11a5 5 0 0 0-7 0l-3 3a5 5 0 0 0 7 7l1-1"/></svg>
-            {%- endcase -%}
-          </span>
-          <span class="social-card__label">{{ block.settings.label }}</span>
-          {%- if block.settings.handle != blank -%}<span class="social-card__handle">{{ block.settings.handle }}</span>{%- endif -%}
-        </a>
-      {%- endfor -%}
+
+    <div class="share-wrap">
+      <div class="share-card{% if s.card_border == false %} share-card--noborder{% endif %}"{% if s.card_bg != blank %} style="background:{{ s.card_bg }};"{% endif %}>
+
+        {%- comment -%} ---------- FORM COLUMN ---------- {%- endcomment -%}
+        <div class="share-card__col share-card__col--form">
+          {%- if s.form_eyebrow != blank -%}<div class="share-eyebrow">{{ s.form_eyebrow }}</div>{%- endif -%}
+          {%- form 'contact', id: 'share-your-muse' -%}
+            {%- if form.posted_successfully? -%}
+              <div class="share-success">
+                <span class="share-success__mark">
+                  <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+                </span>
+                <div class="share-success__title" style="font-family:{%- render 'font-stack', key: s.heading_font -%};">{{ s.success_heading | default: 'Thank you.' }}</div>
+                <p class="page-contact__intro" style="margin:0;max-width:380px;">{{ s.success_text | default: "Your Muse is on their way to the clouds. We'll celebrate them soon — keep an eye on the gallery." }}</p>
+                <a href="{{ request.path }}" class="muse-pill muse-ghost">{{ s.reset_label | default: 'Share another' }}</a>
+              </div>
+            {%- else -%}
+              {{ form.errors | default_errors }}
+              <div class="share-form">
+                <div class="share-fieldgrid">
+                  <input type="text" name="contact[name]" placeholder="{{ s.ph_name | default: 'Your name' }}" value="{% if customer %}{{ customer.name }}{% endif %}" aria-label="Your name" required>
+                  <input type="text" name="contact[Social handle]" placeholder="{{ s.ph_handle | default: 'Social handle (@…)' }}" aria-label="Social handle">
+                </div>
+                <div class="share-fieldgrid">
+                  <select name="contact[Platform]" aria-label="Platform" style="background-image:url('data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2212%22 height=%2212%22 viewBox=%220 0 24 24%22 fill=%22none%22 stroke=%22%230A0B0C%22 stroke-width=%222%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22><path d=%22m6 9 6 6 6-6%22/></svg>');background-repeat:no-repeat;background-position:right 16px center;">
+                    <option value="">{{ s.ph_platform | default: 'Platform…' }}</option>
+                    <option>Instagram</option><option>TikTok</option><option>X / Twitter</option><option>Facebook</option><option>Other</option>
+                  </select>
+                  <input type="text" name="contact[Muse's name]" placeholder="{{ s.ph_nominee | default: "Your Muse's name (optional)" }}" aria-label="Your Muse's name">
+                </div>
+                <input type="email" name="contact[email]" placeholder="{{ s.ph_email | default: 'Your email' }}" value="{% if customer %}{{ customer.email }}{% endif %}" aria-label="Your email" required>
+                {%- if s.show_photo_link -%}<input type="url" name="contact[Photo or post link]" placeholder="{{ s.ph_photo | default: 'Link to a photo or post (optional)' }}" aria-label="Photo or post link">{%- endif -%}
+                <textarea name="contact[body]" rows="5" placeholder="{{ s.ph_message | default: 'Why are they your Muse? Tell their story…' }}" aria-label="Why are they your Muse" required></textarea>
+                <button type="submit" class="muse-pill muse-cta" style="display:inline-flex;align-items:center;gap:10px;">
+                  {{ s.share_label | default: 'Share' }}
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+                </button>
+              </div>
+            {%- endif -%}
+          {%- endform -%}
+        </div>
+
+        {%- comment -%} ---------- ASIDE COLUMN ---------- {%- endcomment -%}
+        <div class="share-card__col">
+          <div class="share-aside">
+            {%- if s.aside_image != blank -%}
+              <img class="share-aside__img" src="{{ s.aside_image | image_url: width: 700 }}" alt="" width="{{ s.aside_image.width }}" height="{{ s.aside_image.height }}" loading="lazy">
+            {%- endif -%}
+            {%- if s.aside_text != blank -%}<div class="page-contact__intro rte">{{ s.aside_text }}</div>{%- endif -%}
+
+            {%- if section.blocks.size > 0 -%}
+              <div class="share-follow">
+                {%- if s.follow_heading != blank -%}<div class="share-follow__head">{{ s.follow_heading }}</div>{%- endif -%}
+                <div class="share-follow__row">
+                  {%- for block in section.blocks -%}
+                    <a class="muse-social" href="{{ block.settings.url }}" target="_blank" rel="noopener" aria-label="{{ block.settings.label | escape }}" {{ block.shopify_attributes }}>
+                      {%- case block.settings.network -%}
+                        {%- when 'instagram' -%}<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+                        {%- when 'tiktok' -%}<svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M16 3c.3 2.2 1.7 3.7 3.8 4v2.7c-1.4.1-2.7-.3-3.8-1v5.6a5.6 5.6 0 1 1-5.6-5.6c.3 0 .6 0 .9.1v2.8a2.8 2.8 0 1 0 2 2.7V3H16Z"/></svg>
+                        {%- when 'facebook' -%}<svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M14 9h3V6h-3c-1.9 0-3 1.4-3 3.2V11H9v3h2v6h3v-6h2.5l.5-3H14V9.5c0-.3.2-.5.6-.5Z"/></svg>
+                        {%- when 'twitter' -%}<svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M18 3h3l-7 8 8 10h-6l-5-6-5 6H3l8-9L3 3h6l4 5 5-5Z"/></svg>
+                        {%- when 'youtube' -%}<svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M22 12s0-3-.4-4.4a2.5 2.5 0 0 0-1.8-1.8C18.4 5.5 12 5.5 12 5.5s-6.4 0-7.8.3A2.5 2.5 0 0 0 2.4 7.6C2 9 2 12 2 12s0 3 .4 4.4a2.5 2.5 0 0 0 1.8 1.8c1.4.3 7.8.3 7.8.3s6.4 0 7.8-.3a2.5 2.5 0 0 0 1.8-1.8C22 15 22 12 22 12Zm-12 3V9l5 3-5 3Z"/></svg>
+                        {%- else -%}<svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M10 13a5 5 0 0 0 7 0l3-3a5 5 0 0 0-7-7l-1 1"/><path d="M14 11a5 5 0 0 0-7 0l-3 3a5 5 0 0 0 7 7l1-1"/></svg>
+                      {%- endcase -%}
+                    </a>
+                  {%- endfor -%}
+                </div>
+              </div>
+            {%- endif -%}
+
+            {%- if s.show_newsletter -%}
+              <div class="share-news{% if section.blocks.size > 0 or s.aside_image != blank %} share-divider{% endif %}">
+                {%- if s.newsletter_heading != blank -%}<div class="share-news__head">{{ s.newsletter_heading }}</div>{%- endif -%}
+                {%- form 'customer', id: 'share-newsletter' -%}
+                  <input type="hidden" name="contact[tags]" value="newsletter">
+                  {%- if form.posted_successfully? -%}
+                    <p class="page-contact__ok">{{ s.newsletter_success | default: 'Thank you for subscribing.' }}</p>
+                  {%- else -%}
+                    <div class="share-news__row">
+                      <input type="email" name="contact[email]" placeholder="{{ s.newsletter_ph | default: 'Your email' }}" aria-label="Your email" required>
+                      <button type="submit" class="muse-pill muse-cta">{{ s.newsletter_button | default: 'Subscribe' }}</button>
+                    </div>
+                    {%- if s.newsletter_consent != blank -%}
+                      <label class="share-news__consent"><input type="checkbox" checked><span>{{ s.newsletter_consent }}</span></label>
+                    {%- endif -%}
+                  {%- endif -%}
+                {%- endform -%}
+              </div>
+            {%- endif -%}
+          </div>
+        </div>
+
+      </div>
     </div>
   </div>
 </div>
@@ -32,18 +109,48 @@
   "settings": [
     { "type": "header", "content": "Coming soon" },
     { "type": "checkbox", "id": "coming_soon", "label": "Grey out + show \"coming soon\" badge", "default": false },
-    { "type": "text", "id": "kicker", "label": "Kicker", "default": "Follow along" },
+    { "type": "header", "content": "Header" },
+    { "type": "text", "id": "kicker", "label": "Kicker", "default": "Celebrating those who inspire" },
     { "type": "richtext", "id": "intro_text", "label": "Intro / body text", "info": "Shows under the heading. Leave empty to hide it." },
     { "type": "checkbox", "id": "use_page_body", "label": "Fall back to the page body text", "info": "If the Intro field above is empty, show the page's body content instead.", "default": false },
-    { "type": "select", "id": "text_align", "label": "Heading alignment", "options": [ { "value": "left", "label": "Left" }, { "value": "center", "label": "Center" } ], "default": "left" },
+    { "type": "select", "id": "text_align", "label": "Heading alignment", "options": [ { "value": "left", "label": "Left" }, { "value": "center", "label": "Center" } ], "default": "center" },
+    { "type": "header", "content": "Nomination form" },
+    { "type": "text", "id": "form_eyebrow", "label": "Form eyebrow", "default": "Nominate a Muse" },
+    { "type": "text", "id": "share_label", "label": "Submit button label", "default": "Share" },
+    { "type": "checkbox", "id": "show_photo_link", "label": "Show \"photo or post link\" field", "default": true },
+    { "type": "text", "id": "success_heading", "label": "Success heading", "default": "Thank you." },
+    { "type": "textarea", "id": "success_text", "label": "Success message", "default": "Your Muse is on their way to the clouds. We'll celebrate them soon — keep an eye on the gallery." },
+    { "type": "text", "id": "reset_label", "label": "\"Share another\" label", "default": "Share another" },
+    { "type": "header", "content": "Field placeholders" },
+    { "type": "text", "id": "ph_name", "label": "Name", "default": "Your name" },
+    { "type": "text", "id": "ph_handle", "label": "Social handle", "default": "Social handle (@…)" },
+    { "type": "text", "id": "ph_platform", "label": "Platform (empty option)", "default": "Platform…" },
+    { "type": "text", "id": "ph_nominee", "label": "Muse's name", "default": "Your Muse's name (optional)" },
+    { "type": "text", "id": "ph_email", "label": "Email", "default": "Your email" },
+    { "type": "text", "id": "ph_photo", "label": "Photo or post link", "default": "Link to a photo or post (optional)" },
+    { "type": "text", "id": "ph_message", "label": "Message", "default": "Why are they your Muse? Tell their story…" },
+    { "type": "header", "content": "Aside column" },
+    { "type": "image_picker", "id": "aside_image", "label": "Feature image (optional)" },
+    { "type": "richtext", "id": "aside_text", "label": "Aside text (optional)" },
+    { "type": "text", "id": "follow_heading", "label": "Follow heading", "default": "Follow the clouds", "info": "Add social links as blocks below." },
+    { "type": "header", "content": "Newsletter" },
+    { "type": "checkbox", "id": "show_newsletter", "label": "Show newsletter signup", "default": true },
+    { "type": "text", "id": "newsletter_heading", "label": "Heading", "default": "The Cloud Dispatch — our newsletter" },
+    { "type": "text", "id": "newsletter_ph", "label": "Email placeholder", "default": "Your email" },
+    { "type": "text", "id": "newsletter_button", "label": "Button label", "default": "Subscribe" },
+    { "type": "text", "id": "newsletter_consent", "label": "Consent text", "default": "Yes, send me launches, events & the occasional note from amongst the clouds. 21+ only." },
+    { "type": "text", "id": "newsletter_success", "label": "Success message", "default": "Thank you for subscribing." },
+    { "type": "header", "content": "Card style" },
+    { "type": "checkbox", "id": "card_border", "label": "Card border & shadow", "default": true },
+    { "type": "color", "id": "card_bg", "label": "Card background", "info": "Blank = theme default." },
     { "type": "header", "content": "Typography" },
     { "type": "select", "id": "heading_font", "label": "Heading font", "options": [
         { "value": "site", "label": "Neue Haas Display Light" },
         { "value": "display", "label": "Neue Haas Grotesk Display (Adobe)" },
-        { "value": "ogg", "label": "Ogg Text (Adobe serif)" } ], "default": "site" },
-    { "type": "range", "id": "heading_size", "label": "Heading size", "min": 24, "max": 80, "step": 2, "unit": "px", "default": 44 },
+        { "value": "ogg", "label": "Ogg Text (Adobe serif)" } ], "default": "ogg" },
+    { "type": "range", "id": "heading_size", "label": "Heading size", "min": 24, "max": 80, "step": 2, "unit": "px", "default": 52 },
     { "type": "header", "content": "Background" },
-    { "type": "select", "id": "bg_type", "label": "Background type", "options": [ { "value": "none", "label": "None" }, { "value": "solid", "label": "Solid color" }, { "value": "gradient", "label": "Gradient" }, { "value": "image", "label": "Image" } ], "default": "none" },
+    { "type": "select", "id": "bg_type", "label": "Background type", "options": [ { "value": "none", "label": "None" }, { "value": "solid", "label": "Solid color" }, { "value": "gradient", "label": "Gradient" }, { "value": "image", "label": "Image" } ], "default": "solid" },
     { "type": "color", "id": "bg_color", "label": "Solid color", "default": "#FBF6EE" },
     { "type": "color", "id": "bg_gradient_start", "label": "Gradient start", "default": "#FBF6EE" },
     { "type": "color", "id": "bg_gradient_end", "label": "Gradient end", "default": "#E7DAC4" },
@@ -56,10 +163,9 @@
     { "type": "range", "id": "padding_bottom", "label": "Bottom padding", "min": 0, "max": 200, "step": 4, "unit": "px", "default": 80 }
   ],
   "blocks": [
-    { "type": "channel", "name": "Channel", "settings": [
+    { "type": "channel", "name": "Social link", "settings": [
       { "type": "select", "id": "network", "label": "Network", "options": [ { "value": "instagram", "label": "Instagram" }, { "value": "tiktok", "label": "TikTok" }, { "value": "facebook", "label": "Facebook" }, { "value": "twitter", "label": "X / Twitter" }, { "value": "youtube", "label": "YouTube" }, { "value": "other", "label": "Other" } ], "default": "instagram" },
       { "type": "text", "id": "label", "label": "Label", "default": "Instagram" },
-      { "type": "text", "id": "handle", "label": "Handle / subtitle", "default": "@muse" },
       { "type": "url", "id": "url", "label": "Link" } ] }
   ],
   "max_blocks": 8,
