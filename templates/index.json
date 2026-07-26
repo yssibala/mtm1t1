@@ -130,9 +130,9 @@
       "name": "Product showcase",
       "settings": {
         "coming_soon": false,
-        "collection": "flagship-flight",
-        "limit": 3,
-        "columns": 3,
+        "collection": "frontpage",
+        "limit": 4,
+        "columns": 4,
         "preheader": "The Flagships Take Flight",
         "accent_color": "#c9851a",
         "heading": "Canned Cocktail Products",
@@ -141,7 +141,7 @@
         "preheader_font": "site",
         "heading_font": "ogg",
         "heading_weight": "thin",
-        "heading_size": 40,
+        "heading_size": 30,
         "heading_color": "",
         "ls_preheader": 4,
         "ls_heading": 3,
@@ -194,8 +194,8 @@
         "bg_gradient_angle": 180,
         "content_valign": "top",
         "min_height": 0,
-        "padding_top": 0,
-        "padding_bottom": 0
+        "padding_top": 20,
+        "padding_bottom": 20
       }
     },
     "gallery_row_Erm6kG": {
