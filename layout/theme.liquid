@@ -39,6 +39,7 @@
     {{ content_for_header }}
   </head>
   <body class="{{ template | replace: '.', '-' }}">
+    {% render 'age-gate' %}
     {% section 'announcement-bar' %}
     {%- comment -%} Per-template nav: product pages use the SPC carousel nav, all others use the standard nav. {%- endcomment -%}
     {%- case template.name -%}

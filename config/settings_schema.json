@@ -113,6 +113,85 @@
     ]
   },
   {
+    "name": "Age verification",
+    "settings": [
+      {
+        "type": "paragraph",
+        "content": "A site-wide overlay that asks visitors to confirm their date of birth before entering. Remembered per browser. Does not show in the theme editor or on the password page. Note: a client-side gate is standard for 21+ brands but can be bypassed by clearing browser storage."
+      },
+      {
+        "type": "checkbox",
+        "id": "age_gate_enable",
+        "label": "Enable age verification gate",
+        "default": false
+      },
+      {
+        "type": "range",
+        "id": "age_min",
+        "label": "Minimum age",
+        "min": 18,
+        "max": 25,
+        "step": 1,
+        "unit": "yrs",
+        "default": 21
+      },
+      {
+        "type": "checkbox",
+        "id": "age_show_monogram",
+        "label": "Show floating monogram",
+        "default": true
+      },
+      {
+        "type": "text",
+        "id": "age_kicker",
+        "label": "Preheader",
+        "default": "Amongst the Clouds"
+      },
+      {
+        "type": "text",
+        "id": "age_heading",
+        "label": "Heading",
+        "default": "Are you 21 or older?"
+      },
+      {
+        "type": "textarea",
+        "id": "age_text",
+        "label": "Text",
+        "default": "You must be of legal drinking age to enter."
+      },
+      {
+        "type": "text",
+        "id": "age_placeholder",
+        "label": "Date field placeholder",
+        "default": "MM/DD/YYYY"
+      },
+      {
+        "type": "text",
+        "id": "age_button",
+        "label": "Button label",
+        "default": "Enter"
+      },
+      {
+        "type": "text",
+        "id": "age_error",
+        "label": "Invalid-date message",
+        "default": "Please enter a valid date in MM/DD/YYYY format."
+      },
+      {
+        "type": "textarea",
+        "id": "age_deny",
+        "label": "Under-age message",
+        "default": "Sorry — you must be of legal drinking age to enter."
+      },
+      {
+        "type": "text",
+        "id": "age_foot",
+        "label": "Footer line",
+        "default": "Please enjoy responsibly."
+      }
+    ]
+  },
+  {
     "name": "Coming soon",
     "settings": [
       {

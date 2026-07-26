@@ -1,0 +1,11 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-password",
+      "settings": {
+        "page_mode": "launched"
+      }
+    }
+  },
+  "order": ["main"]
+}
