@@ -23,11 +23,24 @@
     {%- endif -%}
 
     {%- assign showcase_collection = s.collection -%}
-    {%- if section.blocks.size > 0 or showcase_collection != blank -%}
+    {%- assign product_blocks = section.blocks | where: 'type', 'product' -%}
+    {%- assign filter_blocks = section.blocks | where: 'type', 'filter' -%}
+    {%- if product_blocks.size > 0 or showcase_collection != blank -%}
+      {%- if filter_blocks.size > 0 -%}
+        <div class="pg-filters{% if s.filter_align == 'center' %} pg-filters--center{% elsif s.filter_align == 'right' %} pg-filters--right{% endif %}" data-ps-filters>
+          <button type="button" class="pg-filter is-active" data-filter="">{{ s.filter_all_label | default: 'All' }}</button>
+          {%- for fb in filter_blocks -%}
+            {%- assign fc = fb.settings.filter_collection -%}
+            {%- if fc != blank -%}
+              <button type="button" class="pg-filter" data-filter="{{ fc.handle }}" {{ fb.shopify_attributes }}>{{ fb.settings.label | default: fc.title }}</button>
+            {%- endif -%}
+          {%- endfor -%}
+        </div>
+      {%- endif -%}
       <div class="product-showcase__grid" style="--ps-cols:{{ s.columns }};">
-        {%- if section.blocks.size > 0 -%}
-          {%- comment -%} Manual product list — reorder the blocks to reorder the cards {%- endcomment -%}
-          {%- for block in section.blocks -%}
+        {%- if product_blocks.size > 0 -%}
+          {%- comment -%} Manual product list — drag the Product blocks in the sidebar to reorder the cards {%- endcomment -%}
+          {%- for block in product_blocks -%}
             {%- if block.settings.product != blank -%}
               {%- render 'ps-card', product: block.settings.product, s: s, block_attrs: block.shopify_attributes -%}
             {%- endif -%}
@@ -39,7 +52,7 @@
         {%- endif -%}
       </div>
     {%- else -%}
-      <p>Select a collection, or add Product blocks to hand-pick and order products.</p>
+      <p>Add Product blocks to hand-pick and order the cards, or select a collection.</p>
     {%- endif -%}
   </div>
 </div>
@@ -58,6 +71,21 @@
         if (inc) inc.addEventListener('click', function () { input.value = (parseInt(input.value, 10) || 1) + 1; });
       })(qtys[i]);
     }
+    var fbar = root.querySelector('[data-ps-filters]');
+    if (fbar) {
+      var btns = fbar.querySelectorAll('.pg-filter');
+      var cards = root.querySelectorAll('.ps-card');
+      fbar.addEventListener('click', function (e) {
+        var b = e.target.closest ? e.target.closest('.pg-filter') : null;
+        if (!b) return;
+        var f = b.getAttribute('data-filter') || '';
+        for (var j = 0; j < btns.length; j++) { btns[j].classList.toggle('is-active', btns[j] === b); }
+        for (var k = 0; k < cards.length; k++) {
+          var cols = ',' + (cards[k].getAttribute('data-collections') || '') + ',';
+          cards[k].style.display = (!f || cols.indexOf(',' + f + ',') > -1) ? '' : 'none';
+        }
+      });
+    }
   })();
 </script>
 
@@ -67,9 +95,9 @@
   "settings": [
     { "type": "header", "content": "Coming soon" },
     { "type": "checkbox", "id": "coming_soon", "label": "Grey out + show \"coming soon\" badge", "default": false },
-    { "type": "collection", "id": "collection", "label": "Collection" },
-    { "type": "range", "id": "limit", "label": "Products to show", "min": 2, "max": 24, "step": 1, "default": 6 },
-    { "type": "paragraph", "content": "To hand-pick products and set their order, add Product blocks below and drag to reorder — that overrides the collection above." },
+    { "type": "paragraph", "content": "Add a Product block per card (below) and drag the blocks in this sidebar list to set the order. Optionally pick a Collection as a fallback when no Product blocks are added." },
+    { "type": "collection", "id": "collection", "label": "Fallback collection" },
+    { "type": "range", "id": "limit", "label": "Products to show (fallback collection)", "min": 2, "max": 24, "step": 1, "default": 6 },
     { "type": "range", "id": "columns", "label": "Columns (desktop)", "min": 1, "max": 5, "step": 1, "default": 3 },
     { "type": "header", "content": "Section heading (optional)" },
     { "type": "text", "id": "preheader", "label": "Preheader" },
@@ -158,6 +186,10 @@
     { "type": "url", "id": "btn_b_url", "label": "Button B custom link" },
     { "type": "select", "id": "btn_b_style", "label": "Button B style", "options": [
         { "value": "primary", "label": "Gold (filled)" }, { "value": "ghost", "label": "Outline" } ], "default": "primary" },
+    { "type": "header", "content": "Filters (by collection)" },
+    { "type": "paragraph", "content": "Add \"Filter button\" blocks below and pick a collection for each. When a customer selects a filter, only cards whose product is in that collection stay visible. Set collections up in Shopify admin > Products > Collections." },
+    { "type": "text", "id": "filter_all_label", "label": "\"All\" button label", "default": "All" },
+    { "type": "select", "id": "filter_align", "label": "Filter alignment", "options": [ { "value": "left", "label": "Left" }, { "value": "center", "label": "Center" }, { "value": "right", "label": "Right" } ], "default": "center" },
     { "type": "header", "content": "Background" },
     { "type": "select", "id": "bg_type", "label": "Background type", "options": [
         { "value": "none", "label": "None" }, { "value": "solid", "label": "Solid color" }, { "value": "gradient", "label": "Gradient" }, { "value": "image", "label": "Image" } ], "default": "none" },
@@ -174,9 +206,12 @@
   ],
   "blocks": [
     { "type": "product", "name": "Product", "settings": [
-      { "type": "product", "id": "product", "label": "Product" } ] }
+      { "type": "product", "id": "product", "label": "Product" } ] },
+    { "type": "filter", "name": "Filter button", "settings": [
+      { "type": "collection", "id": "filter_collection", "label": "Collection" },
+      { "type": "text", "id": "label", "label": "Button label", "info": "Leave blank to use the collection's name." } ] }
   ],
-  "max_blocks": 24,
+  "max_blocks": 30,
   "presets": [{ "name": "Product showcase" }]
 }
 {% endschema %}
