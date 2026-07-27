@@ -100,6 +100,7 @@
         "button_style": "primary",
         "button_size": "11",
         "button_icon": "arrow",
+        "space_button": 24,
         "preheader_font": "site",
         "heading_font": "ogg",
         "heading_size": 20,
@@ -121,8 +122,8 @@
         "bg_gradient_angle": 180,
         "content_valign": "top",
         "min_height": 300,
-        "padding_top": 20,
-        "padding_bottom": 20
+        "padding_top": 40,
+        "padding_bottom": 40
       }
     },
     "product_showcase_aiPc8Q": {
@@ -165,6 +166,7 @@
         "tagline_ls": 3,
         "show_desc": true,
         "desc_words": 20,
+        "desc_lines": 4,
         "desc_font": "site",
         "desc_size": 14,
         "desc_color": "",
@@ -177,6 +179,19 @@
         "price_font": "text",
         "price_size": 15,
         "price_color": "",
+        "show_hover": false,
+        "hover_key_1": "",
+        "hover_key_2": "",
+        "hover_key_3": "",
+        "hover_show_desc": false,
+        "hover_font": "text",
+        "hover_size": 14,
+        "hover_color": "",
+        "hover_ls": 1,
+        "hover_lines": 0,
+        "hover_align": "center",
+        "hover_overlay_color": "#0a0b0c",
+        "hover_overlay_opacity": 88,
         "btn_layout": "triple",
         "btn_size": "9",
         "btn_a_label": "View",
@@ -187,6 +202,9 @@
         "btn_b_mode": "cart",
         "btn_b_url": "",
         "btn_b_style": "primary",
+        "filter_type": "collection",
+        "filter_all_label": "All",
+        "filter_align": "center",
         "bg_type": "none",
         "bg_color": "#fbf6ee",
         "bg_gradient_start": "#fbf6ee",
@@ -194,8 +212,8 @@
         "bg_gradient_angle": 180,
         "content_valign": "top",
         "min_height": 0,
-        "padding_top": 20,
-        "padding_bottom": 20
+        "padding_top": 40,
+        "padding_bottom": 40
       }
     },
     "gallery_row_Erm6kG": {
@@ -317,8 +335,8 @@
         "bg_gradient_angle": 180,
         "content_valign": "top",
         "min_height": 0,
-        "padding_top": 20,
-        "padding_bottom": 20
+        "padding_top": 40,
+        "padding_bottom": 40
       }
     }
   },
