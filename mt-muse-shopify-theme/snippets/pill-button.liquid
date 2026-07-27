@@ -10,6 +10,7 @@
   assign icon = icon | default: 'none'
   assign icon2 = icon2 | default: 'none'
   assign fs = size | default: 11
+  assign pill_c = color | default: ''
   assign is_dual = false
   if label2 != blank
     assign is_dual = true
@@ -19,7 +20,7 @@
   endif
 -%}
 {%- if label != blank or icon != 'none' -%}
-<span class="pill pill--{{ bstyle }}{% if is_dual %} pill--dual{% endif %}" style="font-size:{{ fs }}px;">
+<span class="pill pill--{{ bstyle }}{% if is_dual %} pill--dual{% endif %}{% if pill_c != blank %} pill--custom{% endif %}" style="font-size:{{ fs }}px;{% if pill_c != blank %}--pill-c:{{ pill_c }};{% endif %}">
   <a class="pill__seg" href="{{ url | default: '#' }}">
     {%- if label != blank -%}<span>{{ label }}</span>{%- endif -%}
     {%- if icon != 'none' and icon != blank -%}<span class="pill__icon">{%- render 'ui-icon', name: icon -%}</span>{%- endif -%}

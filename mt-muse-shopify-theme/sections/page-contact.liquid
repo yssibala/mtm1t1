@@ -23,6 +23,7 @@
       {%- if contact_heading != blank -%}<h1 style="font-family:{%- render 'font-stack', key: s.heading_font -%};{%- render 'font-variant', key: s.heading_weight, font: s.heading_font -%}{%- render 'letter-spacing', mult: s.ls_heading, base: '0.05em' -%}{% if s.heading_color != blank %}color:{{ s.heading_color }};{% endif %}font-size:{{ s.heading_size }}px;margin-bottom:{{ s.space_heading | default: 12 }}px;">{{ contact_heading | newline_to_br }}</h1>{%- endif -%}
       {%- if s.intro_text != blank -%}<div class="rte page-contact__intro" style="font-family:{%- render 'font-stack', key: s.body_font -%};{%- render 'letter-spacing', mult: s.ls_body, base: '0.03em' -%}{% if s.body_color != blank %}color:{{ s.body_color }};{% endif %}{% if s.body_size > 0 %}font-size:{{ s.body_size }}px;{% endif %}">{{ s.intro_text }}</div>{%- elsif page.content != blank -%}<div class="rte page-contact__intro" style="font-family:{%- render 'font-stack', key: s.body_font -%};{% if s.body_size > 0 %}font-size:{{ s.body_size }}px;{% endif %}">{{ page.content }}</div>{%- endif -%}
     </div>
+    {%- if s.show_card -%}<div class="contact-card{% if s.card_border == false %} contact-card--flat{% endif %}"{% if s.card_bg != blank %} style="background:{{ s.card_bg }};"{% endif %}>{%- endif -%}
     <div class="page-contact__grid">
       <div class="page-contact__form">
         {%- form 'contact' -%}
@@ -49,6 +50,7 @@
         </aside>
       {%- endif -%}
     </div>
+    {%- if s.show_card -%}</div>{%- endif -%}
   </div>
 </div>
 {% schema %}
@@ -69,6 +71,11 @@
     { "type": "text", "id": "phone", "label": "Phone" },
     { "type": "textarea", "id": "address", "label": "Address" },
     { "type": "textarea", "id": "hours", "label": "Hours" },
+    { "type": "header", "content": "Form card" },
+    { "type": "paragraph", "content": "Put the form on a solid card so it stays readable over a section background image (set a Background image below)." },
+    { "type": "checkbox", "id": "show_card", "label": "Put form on a card", "default": false },
+    { "type": "checkbox", "id": "card_border", "label": "Card border & shadow", "default": true },
+    { "type": "color", "id": "card_bg", "label": "Card background", "info": "Blank = theme default (near-white)." },
     { "type": "header", "content": "Send-message button" },
     { "type": "text", "id": "btn_label", "label": "Button label", "default": "Send message" },
     { "type": "select", "id": "btn_style", "label": "Button style", "options": [ { "value": "primary", "label": "Gold (filled)" }, { "value": "ghost", "label": "Outline" } ], "default": "primary" },

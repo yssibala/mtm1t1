@@ -19,7 +19,7 @@
       {%- endif -%}
       {%- if s.button_label != blank -%}
         <div style="margin-top:{{ s.space_button | default: 24 }}px;">
-          {%- render 'pill-button', label: s.button_label, url: s.button_link, style: s.button_style, icon: s.button_icon, size: s.button_size -%}
+          {%- render 'pill-button', label: s.button_label, url: s.button_link, style: s.button_style, icon: s.button_icon, size: s.button_size, color: s.pill_color -%}
         </div>
       {%- endif -%}
     </div>
@@ -77,6 +77,7 @@
     { "type": "url", "id": "button_link", "label": "Button link" },
     { "type": "select", "id": "button_style", "label": "Button style", "options": [
         { "value": "primary", "label": "Gold (filled)" }, { "value": "ghost", "label": "Outline" } ], "default": "primary" },
+    { "type": "color", "id": "pill_color", "label": "Button color", "info": "Hex (e.g. #EFA527). Blank = theme gold. On \"Gold (filled)\" this is the fill; on \"Outline\" it's the outline + text color." },
     { "type": "select", "id": "button_size", "label": "Button size", "options": [
         { "value": "11", "label": "Standard" }, { "value": "10", "label": "10% smaller" }, { "value": "9", "label": "20% smaller" }, { "value": "8", "label": "30% smaller" }, { "value": "7", "label": "40% smaller" }, { "value": "6", "label": "50% smaller" } ], "default": "11" },
     { "type": "select", "id": "button_icon", "label": "Button icon", "options": [
