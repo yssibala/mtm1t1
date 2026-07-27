@@ -1,0 +1,41 @@
+{%- comment -%}
+  Renders the configurable metafield rows shown in a product card's hover overlay.
+  Params: product, s (section.settings).
+  Reads up to 3 metafield keys (s.hover_key_1..3) in "namespace.key" form
+  (a bare key uses the section's mf_namespace, or the product handle if blank),
+  plus an optional product-description row. Shared row styling comes from
+  s.hover_size / s.hover_color / s.hover_ls / s.hover_lines.
+{%- endcomment -%}
+{%- liquid
+  assign base_ns = product.handle
+  if s.mf_namespace != blank
+    assign base_ns = s.mf_namespace
+  endif
+  capture row_style
+    render 'letter-spacing', mult: s.hover_ls, base: '0.02em'
+    echo 'font-size:'
+    echo s.hover_size | default: 14
+    echo 'px;'
+    if s.hover_color != blank
+      echo 'color:' | append: s.hover_color | append: ';'
+    endif
+    if s.hover_lines > 0
+      echo 'display:-webkit-box;-webkit-line-clamp:'
+      echo s.hover_lines
+      echo ';line-clamp:'
+      echo s.hover_lines
+      echo ';-webkit-box-orient:vertical;overflow:hidden;'
+    endif
+  endcapture
+-%}
+{%- for n in (1..3) -%}
+  {%- assign hk = 'hover_key_' | append: n -%}
+  {%- assign key = s[hk] -%}
+  {%- if key != blank -%}
+    {%- assign parts = key | split: '.' -%}
+    {%- if parts.size > 1 -%}{%- assign fns = parts[0] -%}{%- assign fkey = parts[1] -%}{%- else -%}{%- assign fns = base_ns -%}{%- assign fkey = key -%}{%- endif -%}
+    {%- assign val = product.metafields[fns][fkey].value -%}
+    {%- if val != blank -%}<div class="card-hover__row" style="{{ row_style }}">{{ val }}</div>{%- endif -%}
+  {%- endif -%}
+{%- endfor -%}
+{%- if s.hover_show_desc and product.description != blank -%}<div class="card-hover__row" style="{{ row_style }}">{{ product.description | strip_html }}</div>{%- endif -%}

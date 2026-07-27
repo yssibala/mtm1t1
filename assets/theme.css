@@ -577,10 +577,16 @@ section, .section { padding: var(--section-pad) 0; }
   transition: transform .35s cubic-bezier(.22, 1, .36, 1), box-shadow .35s ease, border-color .35s ease;
 }
 @media (hover: hover) {
-  .ps-card:hover { transform: translateY(-24px); box-shadow: 0 48px 96px rgba(10, 11, 12, .34); border-width: 2px; border-color: var(--muse-gold-1); }
-  .ps-card:hover .ps-card__media img { transform: scale(1.14); }
+  .ps-card:hover { box-shadow: 0 40px 80px rgba(10, 11, 12, .3); border-width: 2px; border-color: var(--muse-gold-1); }
+  .ps-card__media:hover img { transform: scale(1.12); }
+  .ps-card__media:hover .card-hover { opacity: 1; pointer-events: auto; }
 }
-@media (prefers-reduced-motion: reduce) { .ps-card, .ps-card__media img { transition: none; } }
+@media (prefers-reduced-motion: reduce) { .ps-card, .ps-card__media img, .card-hover { transition: none; } }
+/* Shared image-hover overlay (metafield rows) */
+.card-hover { position: absolute; inset: 0; z-index: 1; color: var(--near-white); display: flex; flex-direction: column; justify-content: center; padding: clamp(16px, 6%, 28px); background: var(--hov, #0A0B0C); background: rgb(from var(--hov, #0A0B0C) r g b / var(--hov-a, .88)); opacity: 0; transition: opacity .35s ease; pointer-events: none; }
+.card-hover__row { line-height: 1.5; }
+.card-hover__row + .card-hover__row { margin-top: 8px; }
+@media (hover: none) { .card-hover { display: none; } }
 .ps-card__media { position: relative; display: block; overflow: hidden; }
 .ps-card__media img { width: 100%; aspect-ratio: 1 / 1; object-fit: cover; display: block; transition: transform .6s cubic-bezier(.22, 1, .36, 1); }
 .ps-card__placeholder { aspect-ratio: 1 / 1; background: var(--light-sand); }
@@ -643,9 +649,9 @@ button.pill__seg--submit[disabled] { opacity: .5; cursor: not-allowed; }
 .pg-card__buy .pill__seg { white-space: nowrap; padding: 1.1em 1.2em; }
 .pg-card__buy .ps-qty__b { white-space: nowrap; }
 @media (hover: hover) {
-  .pg-card:hover { transform: translateY(-24px); box-shadow: 0 48px 96px rgba(10, 11, 12, .34); border-width: 2px; border-color: var(--muse-gold-1); }
-  .pg-card:hover .pg-card__media img { transform: scale(1.14); }
-  .pg-card:hover .pg-card__overlay { opacity: 1; pointer-events: auto; }
+  .pg-card:hover { box-shadow: 0 40px 80px rgba(10, 11, 12, .3); border-width: 2px; border-color: var(--muse-gold-1); }
+  .pg-card__media:hover img { transform: scale(1.12); }
+  .pg-card__media:hover .pg-card__overlay { opacity: 1; pointer-events: auto; }
 }
 /* No hover (touch): drop the image overlay — the info block already shows title/price/buttons */
 @media (hover: none) { .pg-card__overlay { display: none; } }
@@ -1217,6 +1223,10 @@ html.age-gate-open { overflow: hidden; }
 .age-gate__msg[hidden] { display: none; }
 .age-gate__err { color: #B00020; }
 .age-gate__deny { color: var(--near-black); font-weight: var(--fw-medium); }
+
+/* Cart per-item notes */
+.cart-item-note { font-size: var(--fs-small); color: var(--text-meta); margin-top: 6px; line-height: 1.5; max-width: 60ch; }
+.cart-item-note--disclosure { font-style: italic; }
 
 /* Cart card */
 .cart-wrap { max-width: 820px; margin-left: auto; margin-right: auto; }
