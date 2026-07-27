@@ -598,6 +598,16 @@ section, .section { padding: var(--section-pad) 0; }
 .ps-card__details { text-transform: uppercase; letter-spacing: .08em; }
 .ps-card__price { font-weight: var(--fw-semibold); margin-top: 2px; }
 .ps-card__buttons { margin-top: 12px; }
+.ps-card__top { display: flex; flex-direction: column; gap: 6px; }
+.ps-card__bottom { display: flex; flex-direction: column; gap: 6px; }
+.ps-card__mid:empty { display: none; }
+/* Equal-height cards: rows stretch to the tallest card; the middle (description)
+   flexes and centers vertically, so titles/taglines pin to the top and
+   details/price/buttons keep matching elevations across the row. */
+.product-showcase__grid--eq { align-items: stretch; }
+.product-showcase__grid--eq .ps-card { height: 100%; }
+.product-showcase__grid--eq .ps-card__body { flex: 1; }
+.product-showcase__grid--eq .ps-card__mid { flex: 1; display: flex; flex-direction: column; justify-content: center; }
 /* Buttons stay on one row; pills shrink to fit via container-query font sizing (see ps-pill / ps-qty) */
 .ps-btnrow { display: flex; align-items: center; flex-wrap: nowrap; gap: clamp(4px, 1.4cqi, 10px); }
 .ps-btnrow--single { justify-content: center; }

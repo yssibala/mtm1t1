@@ -43,7 +43,7 @@
           {%- endfor -%}
         </div>
       {%- endif -%}
-      <div class="product-showcase__grid" style="--ps-cols:{{ s.columns }};">
+      <div class="product-showcase__grid{% if s.equal_height %} product-showcase__grid--eq{% endif %}" style="--ps-cols:{{ s.columns }};">
         {%- if product_blocks.size > 0 -%}
           {%- comment -%} Manual product list — drag the Product blocks in the sidebar to reorder the cards {%- endcomment -%}
           {%- for block in product_blocks -%}
@@ -130,6 +130,7 @@
     { "type": "select", "id": "card_align", "label": "Card text alignment", "options": [
         { "value": "left", "label": "Left" }, { "value": "center", "label": "Center" } ], "default": "left" },
     { "type": "checkbox", "id": "card_border", "label": "Card background + border", "default": true },
+    { "type": "checkbox", "id": "equal_height", "label": "Equal-height cards", "info": "Match every card in a row to the tallest one; description fills/centers the middle so titles, details, price & buttons line up across the row.", "default": true },
     { "type": "header", "content": "Card — Metafields (tagline + details)" },
     { "type": "paragraph", "content": "Tagline and details are read per product from metafields. Recommended: create one shared namespace (e.g. custom) and put its name below, then set each product's own value. Leave the namespace blank to instead read each product's handle as the namespace (clio.tagline, thalia.tagline, ...)." },
     { "type": "text", "id": "mf_namespace", "label": "Metafield namespace", "info": "e.g. custom. Blank = use each product's handle." },

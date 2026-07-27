@@ -42,13 +42,12 @@
     {%- endif -%}
   </a>
   <div class="ps-card__body" style="text-align:{{ s.card_align | default: 'left' }};">
-    <h3 class="ps-card__title" style="font-family:{%- render 'font-stack', key: s.title_font -%};{%- render 'font-variant', key: s.title_weight, font: s.title_font -%}{%- render 'letter-spacing', mult: s.title_ls, base: '0.02em' -%}{% if s.title_color != blank %}color:{{ s.title_color }};{% endif %}font-size:{{ s.title_size }}px;">{{ product.title }}</h3>
-    {%- if s.show_tagline and tagline != blank -%}
-      <div class="ps-card__tagline" style="font-family:{%- render 'font-stack', key: s.tagline_font -%};{%- render 'letter-spacing', mult: s.tagline_ls, base: '0.03em' -%}{% if s.tagline_color != blank %}color:{{ s.tagline_color }};{% endif %}font-size:{{ s.tagline_size }}px;">{{ tagline }}</div>
-    {%- endif -%}
-    {%- if s.show_desc and product.description != blank -%}
-      <div class="ps-card__desc" style="font-family:{%- render 'font-stack', key: s.desc_font -%};{%- render 'letter-spacing', mult: s.desc_ls, base: '0.02em' -%}{% if s.desc_color != blank %}color:{{ s.desc_color }};{% else %}color:var(--text-mid);{% endif %}font-size:{{ s.desc_size }}px;{% if s.desc_lines > 0 %}display:-webkit-box;-webkit-line-clamp:{{ s.desc_lines }};line-clamp:{{ s.desc_lines }};-webkit-box-orient:vertical;overflow:hidden;{% endif %}">{%- if s.desc_words > 0 -%}{{ product.description | strip_html | truncatewords: s.desc_words }}{%- else -%}{{ product.description | strip_html }}{%- endif -%}</div>
-    {%- endif -%}
+    <div class="ps-card__top">
+      <h3 class="ps-card__title" style="font-family:{%- render 'font-stack', key: s.title_font -%};{%- render 'font-variant', key: s.title_weight, font: s.title_font -%}{%- render 'letter-spacing', mult: s.title_ls, base: '0.02em' -%}{% if s.title_color != blank %}color:{{ s.title_color }};{% endif %}font-size:{{ s.title_size }}px;">{{ product.title }}</h3>
+      {%- if s.show_tagline and tagline != blank -%}<div class="ps-card__tagline" style="font-family:{%- render 'font-stack', key: s.tagline_font -%};{%- render 'letter-spacing', mult: s.tagline_ls, base: '0.03em' -%}{% if s.tagline_color != blank %}color:{{ s.tagline_color }};{% endif %}font-size:{{ s.tagline_size }}px;">{{ tagline }}</div>{%- endif -%}
+    </div>
+    <div class="ps-card__mid">{%- if s.show_desc and product.description != blank -%}<div class="ps-card__desc" style="font-family:{%- render 'font-stack', key: s.desc_font -%};{%- render 'letter-spacing', mult: s.desc_ls, base: '0.02em' -%}{% if s.desc_color != blank %}color:{{ s.desc_color }};{% else %}color:var(--text-mid);{% endif %}font-size:{{ s.desc_size }}px;{% if s.desc_lines > 0 %}display:-webkit-box;-webkit-line-clamp:{{ s.desc_lines }};line-clamp:{{ s.desc_lines }};-webkit-box-orient:vertical;overflow:hidden;{% endif %}">{%- if s.desc_words > 0 -%}{{ product.description | strip_html | truncatewords: s.desc_words }}{%- else -%}{{ product.description | strip_html }}{%- endif -%}</div>{%- endif -%}</div>
+    <div class="ps-card__bottom">
     {%- if s.show_details and details != blank -%}
       <div class="ps-card__details" style="font-family:{%- render 'font-stack', key: s.details_font -%};{%- render 'letter-spacing', mult: s.details_ls, base: '0.02em' -%}{% if s.details_color != blank %}color:{{ s.details_color }};{% else %}color:var(--text-meta);{% endif %}font-size:{{ s.details_size }}px;">{{ details }}</div>
     {%- endif -%}
@@ -84,5 +83,6 @@
         {%- endif -%}
       </div>
     {%- endif -%}
+    </div>
   </div>
 </article>
