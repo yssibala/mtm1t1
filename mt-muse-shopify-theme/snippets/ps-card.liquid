@@ -35,6 +35,11 @@
     {%- else -%}
       <div class="ps-card__placeholder">{{ 'product-1' | placeholder_svg_tag }}</div>
     {%- endif -%}
+    {%- capture hover_rows -%}{%- render 'hover-fields', product: product, s: s -%}{%- endcapture -%}
+    {%- assign hover_rows = hover_rows | strip -%}
+    {%- if s.show_hover and hover_rows != blank -%}
+      <div class="card-hover" style="--hov:{{ s.hover_overlay_color | default: '#0A0B0C' }};--hov-a:{{ s.hover_overlay_opacity | default: 88 | divided_by: 100.0 }};text-align:{{ s.hover_align | default: 'center' }};font-family:{%- render 'font-stack', key: s.hover_font -%};">{{ hover_rows }}</div>
+    {%- endif -%}
   </a>
   <div class="ps-card__body" style="text-align:{{ s.card_align | default: 'left' }};">
     <h3 class="ps-card__title" style="font-family:{%- render 'font-stack', key: s.title_font -%};{%- render 'font-variant', key: s.title_weight, font: s.title_font -%}{%- render 'letter-spacing', mult: s.title_ls, base: '0.02em' -%}{% if s.title_color != blank %}color:{{ s.title_color }};{% endif %}font-size:{{ s.title_size }}px;">{{ product.title }}</h3>

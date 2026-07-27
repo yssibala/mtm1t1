@@ -36,6 +36,8 @@
     assign buy_justify = 'flex-end'
   endif
 -%}
+{%- capture hover_rows -%}{%- render 'hover-fields', product: product, s: s -%}{%- endcapture -%}
+{%- assign hover_rows = hover_rows | strip -%}
 <article class="pg-card"{% if s.card_border == false %} style="border:0;"{% endif %} data-tags="{{ product.tags | join: ',' | downcase }}" data-collections="{{ product.collections | map: 'handle' | join: ',' | downcase }}" {{ block_attrs }}>
   <a class="pg-card__media" href="{{ product.url }}" aria-label="{{ product.title | escape }}">
     {%- if is_coming_soon -%}{%- render 'coming-soon-badge', stamp: true -%}{%- endif -%}
@@ -44,11 +46,13 @@
     {%- else -%}
       <div class="ps-card__placeholder">{{ 'product-1' | placeholder_svg_tag }}</div>
     {%- endif -%}
-    {%- if has_hover -%}
+    {%- if s.show_hover == false -%}{%- assign hover_rows = '' -%}{%- endif -%}
+    {%- if has_hover or hover_rows != blank -%}
       <div class="pg-card__overlay" style="--pg-ov:{{ s.overlay_color | default: '#0A0B0C' }};--pg-ov-alpha:{{ s.overlay_opacity | default: 88 | divided_by: 100.0 }};text-align:{{ align }};font-family:{%- render 'font-stack', key: s.ov_font -%};">
         <div class="pg-card__ov-inner">
           {%- if s.show_tagline and tagline != blank -%}<div class="pg-card__tagline" style="{%- render 'letter-spacing', mult: s.ls_ov_body, base: '0.03em' -%}{% if s.tagline_color != blank %}color:{{ s.tagline_color }};{% endif %}font-size:{{ s.tagline_size | default: 14 }}px;">{{ tagline }}</div>{%- endif -%}
           {%- if s.show_desc and product.description != blank -%}<div class="pg-card__desc" style="{%- render 'letter-spacing', mult: s.ls_ov_body, base: '0.02em' -%}{% if s.desc_color != blank %}color:{{ s.desc_color }};{% endif %}font-size:{{ s.desc_size | default: 13 }}px;{% if s.desc_lines > 0 %}display:-webkit-box;-webkit-line-clamp:{{ s.desc_lines }};line-clamp:{{ s.desc_lines }};-webkit-box-orient:vertical;overflow:hidden;{% endif %}">{{ product.description | strip_html }}</div>{%- endif -%}
+          {{ hover_rows }}
         </div>
       </div>
     {%- endif -%}
