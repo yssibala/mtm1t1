@@ -174,7 +174,7 @@
     { "type": "range", "id": "price_size", "label": "Size", "min": 12, "max": 28, "step": 1, "unit": "px", "default": 15 },
     { "type": "color", "id": "price_color", "label": "Color", "info": "Leave blank to use the theme gold." },
     { "type": "header", "content": "Card — Hover metafields (over image)" },
-    { "type": "paragraph", "content": "Reveal selected metafields over the product image on hover. Enter each as namespace.key (e.g. prod.legal-text); a bare key uses the metafield namespace above, or the product handle if that's blank." },
+    { "type": "paragraph", "content": "Reveal selected fields over the product image on hover, in order. Each box takes a built-in — @title, @tagline, @price, @description — or a metafield as namespace.key (e.g. prod.legal-text). A bare key uses the metafield namespace above, or the product handle if that's blank. Example sequence: @title, @tagline, prod.legal-text." },
     { "type": "checkbox", "id": "show_hover", "label": "Show hover overlay", "default": false },
     { "type": "text", "id": "hover_key_1", "label": "Metafield 1" },
     { "type": "text", "id": "hover_key_2", "label": "Metafield 2" },
