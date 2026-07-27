@@ -60,8 +60,11 @@
         "extend_behind_header": true,
         "content_valign": "top",
         "min_height": 0,
-        "padding_top": 220,
-        "padding_bottom": 40
+        "padding_top": 200,
+        "padding_bottom": 40,
+        "pad_mobile": false,
+        "pt_m": 48,
+        "pb_m": 48
       }
     },
     "body_section_gthfUc": {
@@ -117,7 +120,10 @@
         "content_valign": "center",
         "min_height": 0,
         "padding_top": 40,
-        "padding_bottom": 40
+        "padding_bottom": 40,
+        "pad_mobile": false,
+        "pt_m": 40,
+        "pb_m": 40
       }
     },
     "body_section_FbXAkj": {
@@ -173,7 +179,10 @@
         "content_valign": "top",
         "min_height": 0,
         "padding_top": 40,
-        "padding_bottom": 40
+        "padding_bottom": 40,
+        "pad_mobile": false,
+        "pt_m": 40,
+        "pb_m": 40
       }
     },
     "text_columns_zMX3xJ": {
@@ -323,7 +332,10 @@
         "content_valign": "center",
         "min_height": 0,
         "padding_top": 40,
-        "padding_bottom": 40
+        "padding_bottom": 40,
+        "pad_mobile": false,
+        "pt_m": 40,
+        "pb_m": 40
       }
     },
     "page_gallery_QcamKU": {
@@ -369,6 +381,7 @@
         "heading": "",
         "text_align": "left",
         "columns": 3,
+        "columns_mobile": 2,
         "aspect_ratio": "1/1",
         "show_filters": false,
         "filter_all_label": "All",
@@ -396,7 +409,10 @@
         "content_valign": "top",
         "min_height": 0,
         "padding_top": 40,
-        "padding_bottom": 40
+        "padding_bottom": 40,
+        "pad_mobile": false,
+        "pt_m": 40,
+        "pb_m": 40
       }
     },
     "flexible_j47wLB": {
@@ -473,7 +489,10 @@
         "content_valign": "top",
         "min_height": 0,
         "padding_top": 40,
-        "padding_bottom": 40
+        "padding_bottom": 40,
+        "pad_mobile": false,
+        "pt_m": 40,
+        "pb_m": 40
       }
     }
   },
