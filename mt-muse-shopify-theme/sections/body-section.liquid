@@ -18,7 +18,7 @@
         <div class="rte body-section__body" style="font-family:{%- render 'font-stack', key: s.body_font -%};{%- render 'font-variant', key: s.body_weight, font: s.body_font -%}{%- render 'letter-spacing', mult: s.ls_body, base: '0.03em' -%}font-size:{{ s.body_size }}px;color:{% if s.body_color != blank %}{{ s.body_color }}{% else %}var(--text-mid){% endif %};">{{ s.body }}</div>
       {%- endif -%}
       {%- if s.button_label != blank -%}
-        <div style="margin-top:24px;">
+        <div style="margin-top:{{ s.space_button | default: 24 }}px;">
           {%- render 'pill-button', label: s.button_label, url: s.button_link, style: s.button_style, icon: s.button_icon, size: s.button_size -%}
         </div>
       {%- endif -%}
@@ -81,6 +81,7 @@
         { "value": "11", "label": "Standard" }, { "value": "10", "label": "10% smaller" }, { "value": "9", "label": "20% smaller" }, { "value": "8", "label": "30% smaller" }, { "value": "7", "label": "40% smaller" }, { "value": "6", "label": "50% smaller" } ], "default": "11" },
     { "type": "select", "id": "button_icon", "label": "Button icon", "options": [
         { "value": "none", "label": "None" }, { "value": "arrow", "label": "Arrow" }, { "value": "cart", "label": "Cart" }, { "value": "search", "label": "Search" }, { "value": "account", "label": "Account" } ], "default": "none" },
+    { "type": "range", "id": "space_button", "label": "Space above button", "min": 0, "max": 80, "step": 2, "unit": "px", "default": 24 },
     { "type": "header", "content": "Typography" },
     { "type": "select", "id": "preheader_font", "label": "Preheader font", "options": [
         { "value": "site", "label": "Neue Haas Display Light" },
@@ -140,7 +141,11 @@
     { "type": "select", "id": "content_valign", "label": "Vertical content position", "info": "Applies when a minimum height is set.", "options": [ { "value": "top", "label": "Top" }, { "value": "center", "label": "Center" }, { "value": "bottom", "label": "Bottom" } ], "default": "top" },
     { "type": "range", "id": "min_height", "label": "Minimum height", "min": 0, "max": 1000, "step": 20, "unit": "px", "default": 0 },
     { "type": "range", "id": "padding_top", "label": "Top padding", "min": 0, "max": 200, "step": 4, "unit": "px", "default": 80 },
-    { "type": "range", "id": "padding_bottom", "label": "Bottom padding", "min": 0, "max": 200, "step": 4, "unit": "px", "default": 80 }
+    { "type": "range", "id": "padding_bottom", "label": "Bottom padding", "min": 0, "max": 200, "step": 4, "unit": "px", "default": 80 },
+    { "type": "header", "content": "Mobile padding (≤749px)" },
+    { "type": "checkbox", "id": "pad_mobile", "label": "Use different top/bottom padding on mobile", "default": false },
+    { "type": "range", "id": "pt_m", "label": "Mobile top padding", "min": 0, "max": 200, "step": 4, "unit": "px", "default": 40 },
+    { "type": "range", "id": "pb_m", "label": "Mobile bottom padding", "min": 0, "max": 200, "step": 4, "unit": "px", "default": 40 }
   ],
   "presets": [{ "name": "Body section" }]
 }

@@ -37,7 +37,7 @@
       </div>
     {%- endif -%}
 
-    <div class="page-gallery__grid" style="--cols:{{ s.columns }};--ratio:{{ s.aspect_ratio }};--gallery-overlay:{{ s.overlay_color | default: '#EFA527' }};--gallery-overlay-opacity:{% if s.overlay_enable == false %}0{% else %}{{ s.overlay_opacity | default: 20 | divided_by: 100.0 }}{% endif %};">
+    <div class="page-gallery__grid" style="--cols:{{ s.columns }};--cols-m:{{ s.columns_mobile | default: 2 }};--ratio:{{ s.aspect_ratio }};--gallery-overlay:{{ s.overlay_color | default: '#EFA527' }};--gallery-overlay-opacity:{% if s.overlay_enable == false %}0{% else %}{{ s.overlay_opacity | default: 20 | divided_by: 100.0 }}{% endif %};">
       {%- for block in section.blocks -%}
         <figure class="gallery-cell" data-category="{{ block.settings.category | handleize }}" {{ block.shopify_attributes }}>
           {%- capture cell_media -%}
@@ -101,7 +101,8 @@
     { "type": "color", "id": "accent_color", "label": "Preheader color", "info": "Leave blank to use the theme default." },
     { "type": "textarea", "id": "heading", "label": "Heading", "info": "Leave blank to use the page title. Press Enter for a line break." },
     { "type": "select", "id": "text_align", "label": "Heading alignment", "options": [ { "value": "left", "label": "Left" }, { "value": "center", "label": "Center" } ], "default": "left" },
-    { "type": "range", "id": "columns", "label": "Columns", "info": "How many photos across on desktop (collapses to 2 on mobile).", "min": 2, "max": 6, "step": 1, "default": 3 },
+    { "type": "range", "id": "columns", "label": "Columns", "info": "How many photos across on desktop.", "min": 2, "max": 6, "step": 1, "default": 3 },
+    { "type": "range", "id": "columns_mobile", "label": "Columns (mobile ≤768px)", "min": 1, "max": 3, "step": 1, "default": 2 },
     { "type": "select", "id": "aspect_ratio", "label": "Image aspect ratio", "options": [ { "value": "1/1", "label": "Square (1:1)" }, { "value": "4/5", "label": "Portrait (4:5)" }, { "value": "3/4", "label": "Portrait (3:4)" }, { "value": "16/9", "label": "Landscape (16:9)" } ], "default": "1/1" },
     { "type": "header", "content": "Filtering" },
     { "type": "checkbox", "id": "show_filters", "label": "Show filter buttons", "default": false },
@@ -156,7 +157,11 @@
     { "type": "select", "id": "content_valign", "label": "Vertical content position", "info": "Applies when a minimum height is set.", "options": [ { "value": "top", "label": "Top" }, { "value": "center", "label": "Center" }, { "value": "bottom", "label": "Bottom" } ], "default": "top" },
     { "type": "range", "id": "min_height", "label": "Minimum height", "min": 0, "max": 1000, "step": 20, "unit": "px", "default": 0 },
     { "type": "range", "id": "padding_top", "label": "Top padding", "min": 0, "max": 200, "step": 4, "unit": "px", "default": 80 },
-    { "type": "range", "id": "padding_bottom", "label": "Bottom padding", "min": 0, "max": 200, "step": 4, "unit": "px", "default": 80 }
+    { "type": "range", "id": "padding_bottom", "label": "Bottom padding", "min": 0, "max": 200, "step": 4, "unit": "px", "default": 80 },
+    { "type": "header", "content": "Mobile padding (≤749px)" },
+    { "type": "checkbox", "id": "pad_mobile", "label": "Use different top/bottom padding on mobile", "default": false },
+    { "type": "range", "id": "pt_m", "label": "Mobile top padding", "min": 0, "max": 200, "step": 4, "unit": "px", "default": 40 },
+    { "type": "range", "id": "pb_m", "label": "Mobile bottom padding", "min": 0, "max": 200, "step": 4, "unit": "px", "default": 40 }
   ],
   "blocks": [
     { "type": "image", "name": "Image", "settings": [
