@@ -10,25 +10,12 @@
   if product.tags contains cs_tag
     assign is_coming_soon = true
   endif
-  assign ns = product.handle
-  if s.mf_namespace != blank
-    assign ns = s.mf_namespace
-  endif
-  assign tag_key = s.tagline_key | default: 'tagline'
-  assign tagline = product.metafields[ns][tag_key].value | default: s.tagline_fallback
   assign cart_disabled = false
   if is_coming_soon and settings.coming_soon_disable_cart
     assign cart_disabled = true
   endif
   assign layout = s.button_layout | default: 'triple'
   assign align = s.card_align | default: 'center'
-  assign has_hover = false
-  if s.show_tagline and tagline != blank
-    assign has_hover = true
-  endif
-  if s.show_desc and product.description != blank
-    assign has_hover = true
-  endif
   assign buy_justify = 'center'
   if align == 'left'
     assign buy_justify = 'flex-start'
@@ -46,14 +33,9 @@
     {%- else -%}
       <div class="ps-card__placeholder">{{ 'product-1' | placeholder_svg_tag }}</div>
     {%- endif -%}
-    {%- if s.show_hover == false -%}{%- assign hover_rows = '' -%}{%- endif -%}
-    {%- if has_hover or hover_rows != blank -%}
+    {%- if s.show_hover and hover_rows != blank -%}
       <div class="pg-card__overlay" style="--pg-ov:{{ s.overlay_color | default: '#0A0B0C' }};--pg-ov-alpha:{{ s.overlay_opacity | default: 88 | divided_by: 100.0 }};text-align:{{ align }};font-family:{%- render 'font-stack', key: s.ov_font -%};">
-        <div class="pg-card__ov-inner">
-          {%- if s.show_tagline and tagline != blank -%}<div class="pg-card__tagline" style="{%- render 'letter-spacing', mult: s.ls_ov_body, base: '0.03em' -%}{% if s.tagline_color != blank %}color:{{ s.tagline_color }};{% endif %}font-size:{{ s.tagline_size | default: 14 }}px;">{{ tagline }}</div>{%- endif -%}
-          {%- if s.show_desc and product.description != blank -%}<div class="pg-card__desc" style="{%- render 'letter-spacing', mult: s.ls_ov_body, base: '0.02em' -%}{% if s.desc_color != blank %}color:{{ s.desc_color }};{% endif %}font-size:{{ s.desc_size | default: 13 }}px;{% if s.desc_lines > 0 %}display:-webkit-box;-webkit-line-clamp:{{ s.desc_lines }};line-clamp:{{ s.desc_lines }};-webkit-box-orient:vertical;overflow:hidden;{% endif %}">{{ product.description | strip_html }}</div>{%- endif -%}
-          {{ hover_rows }}
-        </div>
+        <div class="pg-card__ov-inner">{{ hover_rows }}</div>
       </div>
     {%- endif -%}
   </a>
