@@ -14,8 +14,8 @@
       "name": "Hero",
       "settings": {
         "coming_soon": false,
-        "preheader": "",
-        "accent_color": "#c9851a",
+        "preheader": "Elevate The Occasion",
+        "accent_color": "#FBF6EE",
         "heading": "MUSE: Storefront",
         "subheading": "(More items to come!)",
         "text_align": "center",
@@ -45,10 +45,10 @@
         "body_color": "",
         "body_weight": "inherit",
         "space_preheader": 12,
-        "space_heading": 10,
+        "space_heading": 30,
         "space_buttons": 36,
         "space_image": 32,
-        "ls_preheader": 1,
+        "ls_preheader": 4,
         "ls_heading": 5,
         "ls_body": 5,
         "bg_type": "image",
@@ -60,8 +60,11 @@
         "extend_behind_header": true,
         "content_valign": "center",
         "min_height": 0,
-        "padding_top": 220,
-        "padding_bottom": 40
+        "padding_top": 200,
+        "padding_bottom": 40,
+        "pad_mobile": false,
+        "pt_m": 48,
+        "pb_m": 48
       }
     },
     "product_showcase_Qkab8W": {
@@ -183,7 +186,10 @@
         "content_valign": "top",
         "min_height": 0,
         "padding_top": 80,
-        "padding_bottom": 80
+        "padding_bottom": 80,
+        "pad_mobile": false,
+        "pt_m": 40,
+        "pb_m": 40
       }
     },
     "product_grid_fRYNCQ": {
@@ -289,7 +295,10 @@
         "content_valign": "center",
         "min_height": 0,
         "padding_top": 40,
-        "padding_bottom": 40
+        "padding_bottom": 40,
+        "pad_mobile": false,
+        "pt_m": 40,
+        "pb_m": 40
       }
     },
     "flexible_9raGmA": {
@@ -349,7 +358,10 @@
         "content_valign": "top",
         "min_height": 0,
         "padding_top": 40,
-        "padding_bottom": 40
+        "padding_bottom": 40,
+        "pad_mobile": false,
+        "pt_m": 40,
+        "pb_m": 40
       }
     }
   },
