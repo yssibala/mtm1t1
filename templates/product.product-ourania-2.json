@@ -38,7 +38,7 @@
         "preheader_font": "site",
         "heading_font": "ogg",
         "heading_size": 28,
-        "heading_color": "#C9851A",
+        "heading_color": "#c9851a",
         "heading_weight": "inherit",
         "body_font": "site",
         "body_size": 20,
@@ -60,7 +60,10 @@
         "content_valign": "top",
         "min_height": 0,
         "padding_top": 20,
-        "padding_bottom": 20
+        "padding_bottom": 20,
+        "pad_mobile": false,
+        "pt_m": 48,
+        "pb_m": 48
       }
     },
     "main": {
@@ -80,12 +83,12 @@
         "image_position": "right",
         "text_align": "center",
         "media_type": "carousel",
-        "image": "shopify://shop_images/Render_Mockup_3840_2058_2026-07-22.png",
-        "ic_image_1": "shopify://shop_images/Render_Mockup_3840_2058_2026-07-22.png",
+        "image": "shopify://shop_images/MUSE_03_-_OURANIA_4-Can_Render.png",
+        "ic_image_1": "shopify://shop_images/MUSE_03_-_OURANIA_4-Can_Render.png",
         "ic_link_1": "shopify://products/muse-clio-4-pack",
-        "ic_image_2": "shopify://shop_images/Gallery_17A.png",
+        "ic_image_2": "shopify://shop_images/Gallery_10B.png",
         "ic_link_2": "",
-        "ic_image_3": "shopify://shop_images/Gallery_15A.png",
+        "ic_image_3": "shopify://shop_images/Gallery_12B.png",
         "ic_link_3": "",
         "ic_link_4": "",
         "ic_link_5": "",
@@ -96,16 +99,17 @@
         "ic_dots": true,
         "ic_autoplay": false,
         "ic_interval": 4,
-        "accent_color": "#C9851A",
+        "accent_color": "#460084",
         "button_label": "View Nutrition Label",
         "button_link": "https://www.mt-muse.com/clio",
         "button_style": "primary",
         "button_size": "9",
         "button_icon": "arrow",
+        "space_button": 24,
         "preheader_font": "site",
         "heading_font": "ogg",
         "heading_size": 30,
-        "heading_color": "#C9851A",
+        "heading_color": "#460084",
         "heading_weight": "thin",
         "body_font": "site",
         "body_size": 16,
@@ -117,14 +121,17 @@
         "ls_heading": 1,
         "ls_body": 1,
         "bg_type": "solid",
-        "bg_color": "#FFE6B1",
+        "bg_color": "#E8CCFF",
         "bg_gradient_start": "#fbf6ee",
         "bg_gradient_end": "#e7dac4",
         "bg_gradient_angle": 180,
         "content_valign": "center",
         "min_height": 0,
         "padding_top": 40,
-        "padding_bottom": 40
+        "padding_bottom": 40,
+        "pad_mobile": false,
+        "pt_m": 40,
+        "pb_m": 40
       }
     },
     "text_columns_raVc3W": {
@@ -133,6 +140,9 @@
         "column_TwJxUR": {
           "type": "column",
           "settings": {
+            "media_type": "text",
+            "image_ratio": "1/1",
+            "image_radius": 8,
             "number": "",
             "number_size": 40,
             "eyebrow": "Passion and History",
@@ -166,6 +176,9 @@
         "column_WUJnLJ": {
           "type": "column",
           "settings": {
+            "media_type": "text",
+            "image_ratio": "1/1",
+            "image_radius": 8,
             "number": "",
             "number_size": 40,
             "eyebrow": "Product Insights",
@@ -231,7 +244,10 @@
         "content_valign": "center",
         "min_height": 0,
         "padding_top": 0,
-        "padding_bottom": 0
+        "padding_bottom": 0,
+        "pad_mobile": false,
+        "pt_m": 40,
+        "pb_m": 40
       }
     },
     "page_gallery_Dc8Yac": {
@@ -240,7 +256,7 @@
         "image_L6BcHn": {
           "type": "image",
           "settings": {
-            "image": "shopify://shop_images/Gallery_13B.png",
+            "image": "shopify://shop_images/Gallery_10B.png",
             "caption": "",
             "category": "",
             "link": ""
@@ -249,7 +265,7 @@
         "image_zFE43C": {
           "type": "image",
           "settings": {
-            "image": "shopify://shop_images/11_Thalia_1B.png",
+            "image": "shopify://shop_images/11_Ourania_1B.png",
             "caption": "",
             "category": "",
             "link": ""
@@ -258,7 +274,7 @@
         "image_D6c94c": {
           "type": "image",
           "settings": {
-            "image": "shopify://shop_images/Render_Mockup_3840_2058_2026-07-22.png",
+            "image": "shopify://shop_images/MUSE_03_-_OURANIA_4-Can_Render.png",
             "caption": "",
             "category": "",
             "link": ""
@@ -274,13 +290,19 @@
       "settings": {
         "coming_soon": false,
         "kicker": "",
+        "intro_text": "",
+        "use_page_body": false,
         "accent_color": "",
         "heading": "MUSE: Thalia Gallery",
         "text_align": "left",
         "columns": 3,
+        "columns_mobile": 2,
         "aspect_ratio": "1/1",
         "show_filters": false,
         "filter_all_label": "All",
+        "overlay_enable": true,
+        "overlay_color": "#efa527",
+        "overlay_opacity": 20,
         "preheader_font": "site",
         "heading_font": "ogg",
         "heading_weight": "thin",
@@ -302,7 +324,10 @@
         "content_valign": "top",
         "min_height": 0,
         "padding_top": 80,
-        "padding_bottom": 80
+        "padding_bottom": 80,
+        "pad_mobile": false,
+        "pt_m": 40,
+        "pb_m": 40
       }
     },
     "flexible_XNz4Ab": {
@@ -379,7 +404,10 @@
         "content_valign": "top",
         "min_height": 0,
         "padding_top": 20,
-        "padding_bottom": 20
+        "padding_bottom": 20,
+        "pad_mobile": false,
+        "pt_m": 40,
+        "pb_m": 40
       }
     }
   },
