@@ -68,7 +68,126 @@
         "content_valign": "top",
         "min_height": 0,
         "padding_top": 80,
-        "padding_bottom": 80
+        "padding_bottom": 80,
+        "pad_mobile": false,
+        "pt_m": 40,
+        "pb_m": 40
+      }
+    },
+    "text_columns_U9hQRV": {
+      "type": "text-columns",
+      "blocks": {
+        "column_D9fVdj": {
+          "type": "column",
+          "settings": {
+            "media_type": "text",
+            "image_ratio": "1/1",
+            "image_radius": 8,
+            "number": "",
+            "number_size": 40,
+            "eyebrow": "Passion and History",
+            "heading": "Meanings: Behind The Muse",
+            "body": "<p>In the hours where the day starts to end and the sky alights with fire, the spirit of adventure grabs it's pen.</p><p>The name Clio pays homage to the Muse of history. Here at MUSE, its a term of endearment for the friends who blaze the paths forward with passion and excitement. Coy, proud, and as bold as they are sincere, we raise a glass to those who never hesitate to turn fleeting moments into a memorable legends.</p><p></p>",
+            "align": "left",
+            "divider": false,
+            "divider_color": "#8e1216",
+            "accent_color": "#c9851a",
+            "text_color": "#0a0b0c",
+            "body_color": "#4c4c4b",
+            "eyebrow_font": "site",
+            "heading_font": "ogg",
+            "heading_weight": "inherit",
+            "heading_size": 26,
+            "body_font": "site",
+            "body_weight": "inherit",
+            "body_size": 16,
+            "space_heading": 12,
+            "ls_eyebrow": 1,
+            "ls_heading": 1,
+            "ls_body": 1,
+            "button_label": "Read The Lore",
+            "button_link": "shopify://pages/coming-soon",
+            "button_style": "ghost",
+            "button_icon": "none",
+            "button_size": "8",
+            "space_button": 30
+          }
+        },
+        "column_zMt4wf": {
+          "type": "column",
+          "settings": {
+            "media_type": "text",
+            "image_ratio": "1/1",
+            "image_radius": 8,
+            "number": "",
+            "number_size": 40,
+            "eyebrow": "Product Insights",
+            "heading": "Scarlet Sangria Cocktail",
+            "body": "<p>Recipe Finalized: Summer 2022</p><p>Recipe Base: Pinot Noir, Brandy</p><p>Flavor Profile: Strawberry & Citrus - Fruity</p><p>Alcohol Content: 12% ABV<br/><br/>Best Garnishes: Orange Peel</p><p>Status: Flagship - The First</p>",
+            "align": "center",
+            "divider": false,
+            "divider_color": "#e7dac4",
+            "accent_color": "#c9851a",
+            "text_color": "#0a0b0c",
+            "body_color": "#4c4c4b",
+            "eyebrow_font": "site",
+            "heading_font": "ogg",
+            "heading_weight": "inherit",
+            "heading_size": 26,
+            "body_font": "site",
+            "body_weight": "inherit",
+            "body_size": 12,
+            "space_heading": 12,
+            "ls_eyebrow": 1,
+            "ls_heading": 1,
+            "ls_body": 1,
+            "button_label": "View Nutrient Table",
+            "button_link": "https://www.mt-muse.com/clio",
+            "button_style": "ghost",
+            "button_icon": "none",
+            "button_size": "8",
+            "space_button": 20
+          }
+        }
+      },
+      "block_order": [
+        "column_D9fVdj",
+        "column_zMt4wf"
+      ],
+      "name": "Text columns",
+      "settings": {
+        "coming_soon": false,
+        "preheader": "",
+        "heading": "",
+        "subheading": "",
+        "accent_color": "#c9851a",
+        "head_align": "center",
+        "columns": 2,
+        "gap": 32,
+        "preheader_font": "site",
+        "heading_font": "ogg",
+        "heading_weight": "inherit",
+        "heading_size": 40,
+        "body_font": "site",
+        "subheading_size": 17,
+        "space_preheader": 10,
+        "space_heading": 12,
+        "space_head": 32,
+        "ls_preheader": 1,
+        "ls_heading": 1,
+        "ls_body": 1,
+        "bg_type": "solid",
+        "bg_color": "#fbf6ee",
+        "bg_gradient_start": "#fbf6ee",
+        "bg_gradient_end": "#e7dac4",
+        "bg_gradient_angle": 180,
+        "content_valign": "center",
+        "min_height": 0,
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "pad_mobile": false,
+        "pt_m": 40,
+        "pb_m": 40
       }
     },
     "page_gallery_BbXqxg": {
@@ -114,6 +233,7 @@
         "heading": "MUSE: Clio Gallery",
         "text_align": "left",
         "columns": 3,
+        "columns_mobile": 2,
         "aspect_ratio": "1/1",
         "show_filters": false,
         "filter_all_label": "All",
@@ -141,7 +261,10 @@
         "content_valign": "top",
         "min_height": 0,
         "padding_top": 20,
-        "padding_bottom": 20
+        "padding_bottom": 20,
+        "pad_mobile": false,
+        "pt_m": 40,
+        "pb_m": 40
       }
     },
     "flexible_XNz4Ab": {
@@ -218,13 +341,17 @@
         "content_valign": "top",
         "min_height": 0,
         "padding_top": 20,
-        "padding_bottom": 20
+        "padding_bottom": 20,
+        "pad_mobile": false,
+        "pt_m": 40,
+        "pb_m": 40
       }
     }
   },
   "order": [
     "main",
     "body_section_8VPqeD",
+    "text_columns_U9hQRV",
     "page_gallery_BbXqxg",
     "flexible_XNz4Ab"
   ]
