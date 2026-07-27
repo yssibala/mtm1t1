@@ -33,6 +33,8 @@
         {% if settings.heading_font != blank %}--font-display: {%- render 'font-stack', key: settings.heading_font -%};{% endif %}
         {% if settings.brand_gold != blank %}--muse-gold-1: {{ settings.brand_gold }};{% endif %}
         --nav-alpha: {{ settings.nav_bg_opacity | default: 100 | divided_by: 100.0 }};
+        --carousel-arrow-out: {{ settings.carousel_arrow_offset | default: 24 }}px;
+        --carousel-arrow-size: {{ settings.carousel_arrow_size | default: 30 }}px;
       }
     {% endstyle %}
 
