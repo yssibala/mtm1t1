@@ -915,7 +915,7 @@ button.pill__seg--submit[disabled] { opacity: .5; cursor: not-allowed; }
 .gallery-row__grid .gallery-cell img { object-fit: cover; }
 .gallery-cell__placeholder { width: 100%; height: 100%; background: var(--light-sand); }
 @media (max-width: 768px) {
-  .gallery-row__grid { grid-template-columns: repeat(2, 1fr); }
+  .gallery-row__grid { grid-template-columns: repeat(var(--gr-cols-m, 2), 1fr); }
 }
 
 /* =====================================================================
@@ -983,6 +983,11 @@ body.has-announcement #site-nav { top: 40px; }
 .hero.hero--bleed { margin-top: calc(-1 * var(--nav-h)); }
 /* Generic "extend background behind header" for any section-wrap */
 .section-wrap--bleed { margin-top: calc(-1 * var(--nav-h)); }
+/* Section padding via variables so a mobile breakpoint can override cleanly */
+.section-wrap { padding-top: var(--sec-pt, 64px); padding-bottom: var(--sec-pb, 64px); }
+@media (max-width: 749px) {
+  .section-wrap { padding-top: var(--sec-pt-m, var(--sec-pt, 64px)); padding-bottom: var(--sec-pb-m, var(--sec-pb, 64px)); }
+}
 .announcement-bar {
   position: fixed;
   top: 0; left: 0; right: 0;
@@ -1355,7 +1360,7 @@ a.page-gallery__share-inner:hover { border-color: var(--muse-gold-1); background
 
 @media (max-width: 768px) {
   .page-contact__grid { grid-template-columns: 1fr; gap: var(--space-lg); }
-  .page-gallery__grid { grid-template-columns: repeat(2, 1fr); }
+  .page-gallery__grid { grid-template-columns: repeat(var(--cols-m, 2), 1fr); }
 }
 
 /* Hero image layouts */
