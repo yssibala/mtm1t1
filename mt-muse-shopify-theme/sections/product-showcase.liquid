@@ -18,7 +18,7 @@
       <div class="product-showcase__head" style="text-align:{{ s.head_align | default: 'center' }};margin-bottom:var(--space-xl);">
         {%- if s.preheader != blank -%}<div class="kicker" style="font-family:{%- render 'font-stack', key: s.preheader_font -%};color:{{ s.accent_color | default: '#C9851A' }};margin-bottom:10px;{%- render 'letter-spacing', mult: s.ls_preheader, base: '0.18em' -%}">{{ s.preheader }}</div>{%- endif -%}
         {%- if s.heading != blank -%}<h2 style="font-family:{%- render 'font-stack', key: s.heading_font -%};{%- render 'font-variant', key: s.heading_weight, font: s.heading_font -%}{%- render 'letter-spacing', mult: s.ls_heading, base: '0.05em' -%}{% if s.heading_color != blank %}color:{{ s.heading_color }};{% endif %}font-size:{{ s.heading_size }}px;margin:0;">{{ s.heading | newline_to_br }}</h2>{%- endif -%}
-        {%- if s.subheading != blank -%}<div class="rte" style="max-width:640px;margin-top:10px;{% if s.head_align == 'center' %}margin-left:auto;margin-right:auto;{% elsif s.head_align == 'right' %}margin-left:auto;{% endif %}font-family:{%- render 'font-stack', key: s.body_font -%};font-size:{{ s.subheading_size | default: 17 }}px;color:var(--text-mid);">{{ s.subheading | newline_to_br }}</div>{%- endif -%}
+        {%- if s.subheading != blank -%}<div class="rte" style="max-width:640px;margin-top:10px;{% if s.head_align == 'center' %}margin-left:auto;margin-right:auto;{% elsif s.head_align == 'right' %}margin-left:auto;{% endif %}font-family:{%- render 'font-stack', key: s.body_font -%};{%- render 'letter-spacing', mult: s.ls_body, base: '0.03em' -%}font-size:{{ s.subheading_size | default: 17 }}px;color:var(--text-mid);">{{ s.subheading | newline_to_br }}</div>{%- endif -%}
       </div>
     {%- endif -%}
 
@@ -123,6 +123,7 @@
     { "type": "color", "id": "heading_color", "label": "Heading color", "info": "Leave blank to use the theme default." },
     { "type": "range", "id": "ls_preheader", "label": "Preheader letter spacing", "min": 1, "max": 10, "step": 1, "unit": "x", "default": 1 },
     { "type": "range", "id": "ls_heading", "label": "Heading letter spacing", "min": 1, "max": 10, "step": 1, "unit": "x", "default": 1 },
+    { "type": "range", "id": "ls_body", "label": "Subheading letter spacing", "min": 1, "max": 10, "step": 1, "unit": "x", "default": 1 },
     { "type": "select", "id": "body_font", "label": "Subheading font", "options": [
         { "value": "site", "label": "Neue Haas Display Light" }, { "value": "text", "label": "Neue Haas Grotesk Text (Adobe)" }, { "value": "ogg", "label": "Ogg Text (Adobe serif)" } ], "default": "site" },
     { "type": "range", "id": "subheading_size", "label": "Subheading size", "min": 13, "max": 28, "step": 1, "unit": "px", "default": 17 },
@@ -176,9 +177,11 @@
     { "type": "header", "content": "Card — Hover metafields (over image)" },
     { "type": "paragraph", "content": "Reveal selected fields over the product image on hover, in order. Each box takes a built-in — @title, @tagline, @price, @description — or a metafield as namespace.key (e.g. prod.legal-text). A bare key uses the metafield namespace above, or the product handle if that's blank. Example sequence: @title, @tagline, prod.legal-text." },
     { "type": "checkbox", "id": "show_hover", "label": "Show hover overlay", "default": false },
-    { "type": "text", "id": "hover_key_1", "label": "Metafield 1" },
-    { "type": "text", "id": "hover_key_2", "label": "Metafield 2" },
-    { "type": "text", "id": "hover_key_3", "label": "Metafield 3" },
+    { "type": "text", "id": "hover_key_1", "label": "Line 1" },
+    { "type": "text", "id": "hover_key_2", "label": "Line 2" },
+    { "type": "text", "id": "hover_key_3", "label": "Line 3" },
+    { "type": "text", "id": "hover_key_4", "label": "Line 4" },
+    { "type": "text", "id": "hover_key_5", "label": "Line 5" },
     { "type": "checkbox", "id": "hover_show_desc", "label": "Also show product description", "default": false },
     { "type": "select", "id": "hover_font", "label": "Text font", "options": [
         { "value": "site", "label": "Neue Haas Display Light" }, { "value": "display", "label": "Neue Haas Grotesk Display (Adobe)" }, { "value": "text", "label": "Neue Haas Grotesk Text (Adobe)" }, { "value": "ogg", "label": "Ogg Text (Adobe serif)" } ], "default": "text" },
