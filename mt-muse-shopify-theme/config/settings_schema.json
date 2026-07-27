@@ -215,6 +215,57 @@
         "id": "coming_soon_disable_cart",
         "label": "Disable Add-to-cart for coming-soon products",
         "default": true
+      },
+      {
+        "type": "header",
+        "content": "Empty-image placeholder"
+      },
+      {
+        "type": "paragraph",
+        "content": "Shown in gallery cells and gallery-row slots that have no image selected — a filled square with a 'Coming Soon' pill."
+      },
+      {
+        "type": "color",
+        "id": "placeholder_bg",
+        "label": "Placeholder background",
+        "default": "#EFE6D5"
+      },
+      {
+        "type": "text",
+        "id": "placeholder_text",
+        "label": "Placeholder pill text",
+        "info": "Blank = uses the Badge text above.",
+        "default": "Coming Soon"
+      }
+    ]
+  },
+  {
+    "name": "Carousels",
+    "settings": [
+      {
+        "type": "paragraph",
+        "content": "Applies to image carousels (flexible & body sections)."
+      },
+      {
+        "type": "range",
+        "id": "carousel_arrow_offset",
+        "label": "Arrow distance outside the frame",
+        "min": 0,
+        "max": 80,
+        "step": 2,
+        "unit": "px",
+        "default": 24,
+        "info": "0 sits the arrows on the frame edge; higher pushes them further outside."
+      },
+      {
+        "type": "range",
+        "id": "carousel_arrow_size",
+        "label": "Arrow circle size",
+        "min": 20,
+        "max": 48,
+        "step": 2,
+        "unit": "px",
+        "default": 30
       }
     ]
   },

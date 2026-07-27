@@ -34,7 +34,7 @@
             {%- if img != blank -%}
               <img src="{{ img | image_url: width: 800 }}" alt="{{ img.alt | escape }}" width="{{ img.width }}" height="{{ img.height }}" loading="lazy">
             {%- else -%}
-              <div class="gallery-cell__placeholder">{{ 'image' | placeholder_svg_tag }}</div>
+              {%- render 'placeholder-tile' -%}
             {%- endif -%}
           {%- endcapture -%}
           {%- if lnk != blank -%}<a href="{{ lnk }}">{{ cell_media }}</a>{%- else -%}{{ cell_media }}{%- endif -%}

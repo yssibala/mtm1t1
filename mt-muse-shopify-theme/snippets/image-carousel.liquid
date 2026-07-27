@@ -15,19 +15,21 @@
 <div class="fx-imgcar-wrap" style="text-align:{{ ic_align }};">
   {%- if slide_count > 0 -%}
     <div class="fx-imgcar" data-imgcar="{{ uid }}" data-autoplay="{{ st.ic_autoplay }}" data-interval="{{ st.ic_interval | default: 5 }}" style="display:inline-block;width:{{ st.ic_width | default: 100 }}%;max-width:100%;--imgcar-ratio:{{ st.ic_aspect | default: '4/3' }};">
-      <div class="fx-imgcar__viewport" style="border-radius:{{ st.ic_radius | default: 8 }}px;">
-        <div class="fx-imgcar__track">
-          {%- for i in (1..8) -%}
-            {%- assign ik = 'ic_image_' | append: i -%}
-            {%- assign lk = 'ic_link_' | append: i -%}
-            {%- assign im = st[ik] -%}
-            {%- if im != blank -%}
-              <div class="fx-imgcar__slide">
-                {%- capture ic_img -%}<img src="{{ im | image_url: width: 1600 }}" alt="{{ im.alt | escape }}" width="{{ im.width }}" height="{{ im.height }}" loading="lazy">{%- endcapture -%}
-                {%- if st[lk] != blank -%}<a href="{{ st[lk] }}">{{ ic_img }}</a>{%- else -%}{{ ic_img }}{%- endif -%}
-              </div>
-            {%- endif -%}
-          {%- endfor -%}
+      <div class="fx-imgcar__stage">
+        <div class="fx-imgcar__viewport" style="border-radius:{{ st.ic_radius | default: 8 }}px;">
+          <div class="fx-imgcar__track">
+            {%- for i in (1..8) -%}
+              {%- assign ik = 'ic_image_' | append: i -%}
+              {%- assign lk = 'ic_link_' | append: i -%}
+              {%- assign im = st[ik] -%}
+              {%- if im != blank -%}
+                <div class="fx-imgcar__slide">
+                  {%- capture ic_img -%}<img src="{{ im | image_url: width: 1600 }}" alt="{{ im.alt | escape }}" width="{{ im.width }}" height="{{ im.height }}" loading="lazy">{%- endcapture -%}
+                  {%- if st[lk] != blank -%}<a href="{{ st[lk] }}">{{ ic_img }}</a>{%- else -%}{{ ic_img }}{%- endif -%}
+                </div>
+              {%- endif -%}
+            {%- endfor -%}
+          </div>
         </div>
         {%- if slide_count > 1 and st.ic_arrows -%}
           <button type="button" class="fx-imgcar__arrow fx-imgcar__arrow--prev" data-imgcar-prev aria-label="Previous image"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="m15 18-6-6 6-6"/></svg></button>

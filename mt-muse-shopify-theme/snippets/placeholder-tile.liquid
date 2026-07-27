@@ -1,0 +1,8 @@
+{%- comment -%}
+  Global default tile for gallery cells / blocks with no image selected:
+  a filled square with a "Coming Soon" pill. Styled via Theme settings > Coming soon
+  (Placeholder background + text).
+{%- endcomment -%}
+<div class="placeholder-tile"{% if settings.placeholder_bg != blank %} style="background:{{ settings.placeholder_bg }};"{% endif %}>
+  {%- render 'coming-soon-badge', text: settings.placeholder_text -%}
+</div>
