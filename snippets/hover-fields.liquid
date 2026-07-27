@@ -1,16 +1,19 @@
 {%- comment -%}
-  Renders the configurable metafield rows shown in a product card's hover overlay.
+  Renders the configurable rows shown in a product card's hover overlay.
   Params: product, s (section.settings).
-  Reads up to 3 metafield keys (s.hover_key_1..3) in "namespace.key" form
-  (a bare key uses the section's mf_namespace, or the product handle if blank),
-  plus an optional product-description row. Shared row styling comes from
-  s.hover_size / s.hover_color / s.hover_ls / s.hover_lines.
+  Reads up to 3 slots (s.hover_key_1..3). Each slot is either:
+    - a built-in token: @title, @tagline, @price, @description
+    - a metafield in "namespace.key" form (a bare key uses the section's
+      mf_namespace, or the product handle if that's blank)
+  Plus an optional product-description row (s.hover_show_desc). Shared row
+  styling comes from s.hover_size / s.hover_color / s.hover_ls / s.hover_lines.
 {%- endcomment -%}
 {%- liquid
   assign base_ns = product.handle
   if s.mf_namespace != blank
     assign base_ns = s.mf_namespace
   endif
+  assign tkey = s.tagline_key | default: 'tagline'
   capture row_style
     render 'letter-spacing', mult: s.hover_ls, base: '0.02em'
     echo 'font-size:'
@@ -32,9 +35,21 @@
   {%- assign hk = 'hover_key_' | append: n -%}
   {%- assign key = s[hk] -%}
   {%- if key != blank -%}
-    {%- assign parts = key | split: '.' -%}
-    {%- if parts.size > 1 -%}{%- assign fns = parts[0] -%}{%- assign fkey = parts[1] -%}{%- else -%}{%- assign fns = base_ns -%}{%- assign fkey = key -%}{%- endif -%}
-    {%- assign val = product.metafields[fns][fkey].value -%}
+    {%- assign val = '' -%}
+    {%- assign kt = key | downcase | strip -%}
+    {%- if kt == '@title' -%}
+      {%- assign val = product.title -%}
+    {%- elsif kt == '@tagline' -%}
+      {%- assign val = product.metafields[base_ns][tkey].value -%}
+    {%- elsif kt == '@price' -%}
+      {%- assign val = product.price | money -%}
+    {%- elsif kt == '@description' -%}
+      {%- assign val = product.description | strip_html -%}
+    {%- else -%}
+      {%- assign parts = key | split: '.' -%}
+      {%- if parts.size > 1 -%}{%- assign fns = parts[0] -%}{%- assign fkey = parts[1] -%}{%- else -%}{%- assign fns = base_ns -%}{%- assign fkey = key -%}{%- endif -%}
+      {%- assign val = product.metafields[fns][fkey].value -%}
+    {%- endif -%}
     {%- if val != blank -%}<div class="card-hover__row" style="{{ row_style }}">{{ val }}</div>{%- endif -%}
   {%- endif -%}
 {%- endfor -%}
