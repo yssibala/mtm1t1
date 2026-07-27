@@ -15,8 +15,8 @@
       "settings": {
         "coming_soon": false,
         "preheader": "Celebrate Ceaselessy",
-        "accent_color": "#C9851A",
-        "heading": "With CLIO by MUSE",
+        "accent_color": "#c9851a",
+        "heading": "With THALIA by MUSE",
         "subheading": "",
         "text_align": "center",
         "show_coming_soon": false,
@@ -38,7 +38,7 @@
         "preheader_font": "site",
         "heading_font": "ogg",
         "heading_size": 28,
-        "heading_color": "#8E1216",
+        "heading_color": "#8e1216",
         "heading_weight": "inherit",
         "body_font": "site",
         "body_size": 20,
@@ -52,15 +52,18 @@
         "ls_heading": 5,
         "ls_body": 5,
         "bg_type": "none",
-        "bg_color": "#FBF6EE",
-        "bg_gradient_start": "#FBF6EE",
-        "bg_gradient_end": "#E7DAC4",
+        "bg_color": "#fbf6ee",
+        "bg_gradient_start": "#fbf6ee",
+        "bg_gradient_end": "#e7dac4",
         "bg_gradient_angle": 180,
         "extend_behind_header": false,
         "content_valign": "top",
         "min_height": 0,
         "padding_top": 20,
-        "padding_bottom": 20
+        "padding_bottom": 20,
+        "pad_mobile": false,
+        "pt_m": 48,
+        "pb_m": 48
       }
     },
     "main": {
@@ -75,17 +78,17 @@
       "settings": {
         "coming_soon": false,
         "preheader": "SPONTANEITY AT SUNSET",
-        "heading": "Made with Sincerity,\nMixed With Pride",
-        "body": "<p>As if stoking the embers of a setting sun, the party ignites with a second wind. The life of the party, Clio, has arrived.<br/><br/>To create something others would enjoy and look forward to at everything gathering - this labor of love is what led to our Scarlet Sangria recipe.<br/><br/>A classy red wine, a bold brandy, a robust blend of fruits, the eccentric tang of citrus, all behind the blushing taste of strawberry...<br/><br/>Blended and mixed, from our angels to your lips.<br/>Keep the party going with Clio.</p>",
+        "heading": "Made with Joy,\nMixed With Drops of Sunshine",
+        "body": "<p>As the sun approaches its apex above, the festivities continue to reach new peaks in the presence of Thalia. The good times seem endless and only get better as laughter continues to erupt and permeate room.<br/><br/>To create something others would choose when making their most fond memories under the sun - the joy of iterating on a personal favorite is what led to this Margarita Inspired recipe.<br/><br/>An uplifting white wine, a festive agave liqueur, and a brilliant blend that features lemon, lime, and a little sunshine - everything coming together and led by the heartwarming addition of passionfruit...<br/><br/>Blended and mixed, from our angels to your lips.<br/>Bask in good vibes with Thalia.</p>",
         "image_position": "right",
         "text_align": "center",
         "media_type": "carousel",
-        "image": "shopify://shop_images/Render_Mockup_3840_2058_2026-07-22_1.png",
-        "ic_image_1": "shopify://shop_images/Render_Mockup_3840_2058_2026-07-22_1.png",
+        "image": "shopify://shop_images/Render_Mockup_3840_2058_2026-07-22.png",
+        "ic_image_1": "shopify://shop_images/Render_Mockup_3840_2058_2026-07-22.png",
         "ic_link_1": "shopify://products/muse-clio-4-pack",
-        "ic_image_2": "shopify://shop_images/Gallery_18C.png",
+        "ic_image_2": "shopify://shop_images/Gallery_05B.png",
         "ic_link_2": "",
-        "ic_image_3": "shopify://shop_images/Gallery_06B.png",
+        "ic_image_3": "shopify://shop_images/Gallery_13B.png",
         "ic_link_3": "",
         "ic_link_4": "",
         "ic_link_5": "",
@@ -100,8 +103,10 @@
         "button_label": "View Nutrition Label",
         "button_link": "https://www.mt-muse.com/clio",
         "button_style": "primary",
+        "pill_color": "",
         "button_size": "9",
         "button_icon": "arrow",
+        "space_button": 24,
         "preheader_font": "site",
         "heading_font": "ogg",
         "heading_size": 30,
@@ -117,14 +122,17 @@
         "ls_heading": 1,
         "ls_body": 1,
         "bg_type": "solid",
-        "bg_color": "#FAE3DE",
+        "bg_color": "#FFEEBD",
         "bg_gradient_start": "#fbf6ee",
         "bg_gradient_end": "#e7dac4",
         "bg_gradient_angle": 180,
         "content_valign": "center",
         "min_height": 0,
         "padding_top": 40,
-        "padding_bottom": 40
+        "padding_bottom": 40,
+        "pad_mobile": false,
+        "pt_m": 40,
+        "pb_m": 40
       }
     },
     "text_columns_raVc3W": {
@@ -133,6 +141,9 @@
         "column_TwJxUR": {
           "type": "column",
           "settings": {
+            "media_type": "text",
+            "image_ratio": "1/1",
+            "image_radius": 8,
             "number": "",
             "number_size": 40,
             "eyebrow": "Passion and History",
@@ -166,6 +177,9 @@
         "column_WUJnLJ": {
           "type": "column",
           "settings": {
+            "media_type": "text",
+            "image_ratio": "1/1",
+            "image_radius": 8,
             "number": "",
             "number_size": 40,
             "eyebrow": "Product Insights",
@@ -231,7 +245,10 @@
         "content_valign": "center",
         "min_height": 0,
         "padding_top": 0,
-        "padding_bottom": 0
+        "padding_bottom": 0,
+        "pad_mobile": false,
+        "pt_m": 40,
+        "pb_m": 40
       }
     },
     "page_gallery_Dc8Yac": {
@@ -274,13 +291,19 @@
       "settings": {
         "coming_soon": false,
         "kicker": "The Gallery",
+        "intro_text": "",
+        "use_page_body": false,
         "accent_color": "",
         "heading": "",
         "text_align": "left",
         "columns": 3,
+        "columns_mobile": 2,
         "aspect_ratio": "1/1",
         "show_filters": false,
         "filter_all_label": "All",
+        "overlay_enable": true,
+        "overlay_color": "#efa527",
+        "overlay_opacity": 20,
         "preheader_font": "site",
         "heading_font": "site",
         "heading_weight": "inherit",
@@ -302,7 +325,10 @@
         "content_valign": "top",
         "min_height": 0,
         "padding_top": 80,
-        "padding_bottom": 80
+        "padding_bottom": 80,
+        "pad_mobile": false,
+        "pt_m": 40,
+        "pb_m": 40
       }
     },
     "flexible_XNz4Ab": {
@@ -379,7 +405,10 @@
         "content_valign": "top",
         "min_height": 0,
         "padding_top": 20,
-        "padding_bottom": 20
+        "padding_bottom": 20,
+        "pad_mobile": false,
+        "pt_m": 40,
+        "pb_m": 40
       }
     }
   },
