@@ -243,8 +243,8 @@
         "bg_gradient_angle": 180,
         "content_valign": "center",
         "min_height": 0,
-        "padding_top": 0,
-        "padding_bottom": 0,
+        "padding_top": 40,
+        "padding_bottom": 40,
         "pad_mobile": false,
         "pt_m": 40,
         "pb_m": 40
