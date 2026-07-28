@@ -13,7 +13,7 @@
   if s.mf_namespace != blank
     assign base_ns = s.mf_namespace
   endif
-  assign tkey = s.tagline_key | default: 'tagline'
+  assign tkey = s.tagline_key | default: 'tagline' | remove_first: '@'
   capture row_style
     render 'letter-spacing', mult: s.hover_ls, base: '0.02em'
     echo 'font-size:'
@@ -40,14 +40,16 @@
     {%- if kt == '@title' -%}
       {%- assign val = product.title -%}
     {%- elsif kt == '@tagline' -%}
-      {%- assign val = product.metafields[base_ns][tkey].value -%}
+      {%- assign tparts = tkey | split: '.' -%}
+      {%- if tparts.size > 1 -%}{%- assign val = product.metafields[tparts[0]][tparts[1]].value -%}{%- else -%}{%- assign val = product.metafields[base_ns][tkey].value -%}{%- endif -%}
     {%- elsif kt == '@price' -%}
       {%- assign val = product.price | money -%}
     {%- elsif kt == '@description' -%}
       {%- assign val = product.description | strip_html -%}
     {%- else -%}
-      {%- assign parts = key | split: '.' -%}
-      {%- if parts.size > 1 -%}{%- assign fns = parts[0] -%}{%- assign fkey = parts[1] -%}{%- else -%}{%- assign fns = base_ns -%}{%- assign fkey = key -%}{%- endif -%}
+      {%- assign mkey = key | remove_first: '@' -%}
+      {%- assign parts = mkey | split: '.' -%}
+      {%- if parts.size > 1 -%}{%- assign fns = parts[0] -%}{%- assign fkey = parts[1] -%}{%- else -%}{%- assign fns = base_ns -%}{%- assign fkey = mkey -%}{%- endif -%}
       {%- assign val = product.metafields[fns][fkey].value -%}
     {%- endif -%}
     {%- if val != blank -%}<div class="card-hover__row" style="{{ row_style }}">{{ val }}</div>{%- endif -%}

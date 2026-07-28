@@ -14,10 +14,20 @@
   if s.mf_namespace != blank
     assign ns = s.mf_namespace
   endif
-  assign tag_key = s.tagline_key | default: 'tagline'
-  assign det_key = s.details_key | default: 'prod_detail_set01'
-  assign tagline = product.metafields[ns][tag_key].value | default: s.tagline_fallback
-  assign details = product.metafields[ns][det_key].value
+  assign tk = s.tagline_key | default: 'tagline' | remove_first: '@'
+  assign tparts = tk | split: '.'
+  if tparts.size > 1
+    assign tagline = product.metafields[tparts[0]][tparts[1]].value | default: s.tagline_fallback
+  else
+    assign tagline = product.metafields[ns][tk].value | default: s.tagline_fallback
+  endif
+  assign dk = s.details_key | default: 'prod_detail_set01' | remove_first: '@'
+  assign dparts = dk | split: '.'
+  if dparts.size > 1
+    assign details = product.metafields[dparts[0]][dparts[1]].value
+  else
+    assign details = product.metafields[ns][dk].value
+  endif
   assign cart_disabled = false
   if is_coming_soon and settings.coming_soon_disable_cart
     assign cart_disabled = true
