@@ -15,7 +15,7 @@
       "settings": {
         "coming_soon": false,
         "preheader": "Our Community",
-        "accent_color": "#FBF6EE",
+        "accent_color": "#fbf6ee",
         "heading": "Moments & MUSES\nWorth Raising A Glass To",
         "subheading": "",
         "text_align": "center",
@@ -221,7 +221,7 @@
         "link_2": "",
         "link_3": "",
         "link_4": "",
-        "button_label": "View all",
+        "button_label": "",
         "button_link": "",
         "button_style": "ghost",
         "button_size": "11",
