@@ -250,7 +250,7 @@
         "image_4": "shopify://shop_images/Event_Collage_04.png",
         "link_4": "",
         "button_label": "View All",
-        "button_link": "shopify://pages/gallery",
+        "button_link": "shopify://pages/products",
         "button_style": "ghost",
         "button_size": "11",
         "preheader_font": "site",
