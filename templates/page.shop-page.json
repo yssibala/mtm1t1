@@ -196,107 +196,6 @@
         "pb_m": 40
       }
     },
-    "product_grid_fRYNCQ": {
-      "type": "product-grid",
-      "blocks": {
-        "product_AG4zdn": {
-          "type": "product",
-          "settings": {
-            "product": "muse-clio-4-pack"
-          }
-        },
-        "product_CRBAgF": {
-          "type": "product",
-          "settings": {
-            "product": "muse-4-pack"
-          }
-        },
-        "product_dDLhHF": {
-          "type": "product",
-          "settings": {
-            "product": "muse-ourania-4-pack"
-          }
-        },
-        "product_y6RkV7": {
-          "type": "product",
-          "settings": {
-            "product": "muse-flagship-flight-pack"
-          }
-        }
-      },
-      "block_order": [
-        "product_AG4zdn",
-        "product_CRBAgF",
-        "product_dDLhHF",
-        "product_y6RkV7"
-      ],
-      "name": "Product grid",
-      "settings": {
-        "coming_soon": false,
-        "collection": "flagship-flight",
-        "limit": 4,
-        "preheader": "Elevating The Occasion To Cloud Nine",
-        "heading": "The Flagship Flight Collection",
-        "subheading": "Flavor Comes First as we launch with our first three recipes. Behold!",
-        "accent_color": "#c9851a",
-        "text_align": "center",
-        "preheader_font": "site",
-        "heading_font": "ogg",
-        "heading_size": 30,
-        "heading_color": "",
-        "body_font": "site",
-        "body_size": 13,
-        "body_color": "",
-        "ls_preheader": 3,
-        "ls_heading": 5,
-        "ls_body": 5,
-        "heading_weight": "thin",
-        "card_align": "center",
-        "overlay_color": "#003e7b",
-        "overlay_opacity": 84,
-        "card_border": true,
-        "ov_font": "text",
-        "title_font": "display",
-        "title_weight": "inherit",
-        "title_size": 18,
-        "ls_title": 10,
-        "title_color": "",
-        "price_size": 15,
-        "price_color": "#c9851a",
-        "mf_namespace": "custom",
-        "tagline_key": "@tagline",
-        "show_hover": true,
-        "hover_key_1": "@title",
-        "hover_key_2": "@tagline",
-        "hover_key_3": "custom.prod_legal_text",
-        "hover_key_4": "",
-        "hover_key_5": "",
-        "hover_size": 14,
-        "hover_color": "#fbf6ee",
-        "hover_ls": 3,
-        "hover_lines": 7,
-        "button_layout": "triple",
-        "view_label": "View",
-        "cart_label": "Add to cart",
-        "cart_style": "primary",
-        "btn_size": "10",
-        "filter_type": "collection",
-        "filter_all_label": "All",
-        "filter_align": "center",
-        "bg_type": "none",
-        "bg_color": "#fbf6ee",
-        "bg_gradient_start": "#fbf6ee",
-        "bg_gradient_end": "#e7dac4",
-        "bg_gradient_angle": 180,
-        "content_valign": "center",
-        "min_height": 0,
-        "padding_top": 40,
-        "padding_bottom": 40,
-        "pad_mobile": false,
-        "pt_m": 40,
-        "pb_m": 40
-      }
-    },
     "flexible_9raGmA": {
       "type": "flexible",
       "blocks": {
@@ -364,7 +263,6 @@
   "order": [
     "hero_zBxeEz",
     "product_showcase_Qkab8W",
-    "product_grid_fRYNCQ",
     "flexible_9raGmA"
   ]
 }

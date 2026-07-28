@@ -58,6 +58,18 @@
       },
       "announcement-bar": {
         "type": "announcement-bar",
+        "blocks": {
+          "message_wWXMHM": {
+            "type": "message",
+            "settings": {
+              "text": "We are in our presale period! Therefore, we will only be processing $40+ orders, and all submitted orders will ship when our presale period ends! Thank you for your patience and patronage!",
+              "link": ""
+            }
+          }
+        },
+        "block_order": [
+          "message_wWXMHM"
+        ],
         "settings": {
           "bg_color": "#0a0b0c",
           "text_color": "#fbf6ee",
