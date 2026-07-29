@@ -40,9 +40,9 @@
         "settings": {
           "tagline": "FOR THOSE WHO INSPIRE",
           "brand_align": "center",
-          "show_newsletter": true,
-          "newsletter_heading": "Join the MUSE newsletter",
-          "show_social": true,
+          "show_newsletter": false,
+          "newsletter_heading": "Subscribe to our newsletter",
+          "show_social": false,
           "instagram": "",
           "tiktok": "",
           "facebook": "",

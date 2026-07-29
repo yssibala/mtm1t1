@@ -110,7 +110,7 @@
         "preheader": "ELEVATE THE OCCASION TO CLOUD NINE",
         "accent_color": "#c9851a",
         "heading": "THE FLAGSHIP FLIGHT COLLECTION",
-        "subheading": "Flavor Comes First as we launch with our first three recipes! Behold!",
+        "subheading": "Flavor Comes First in these Premium RTD Cocktails",
         "head_align": "center",
         "preheader_font": "site",
         "heading_font": "ogg",
@@ -216,23 +216,23 @@
           "settings": {
             "preheader": "DRINK RESPONSIBLY",
             "accent_color": "#c9851a",
-            "heading": "Celebrate Amongst The Clouds",
+            "heading": "Celebrate Ceaselessly",
             "body": "",
             "text_color": "#0a0b0c",
             "align": "center",
             "max_width": 640,
             "preheader_font": "site",
             "heading_font": "ogg",
-            "heading_size": 36,
+            "heading_size": 30,
             "heading_weight": "thin",
             "body_font": "site",
             "body_size": 16,
             "body_weight": "thin",
             "space_preheader": 20,
             "space_heading": 12,
-            "ls_preheader": 1,
-            "ls_heading": 1,
-            "ls_body": 1,
+            "ls_preheader": 3,
+            "ls_heading": 5,
+            "ls_body": 5,
             "margin_top": 0,
             "margin_bottom": 24
           }
@@ -255,8 +255,8 @@
         "padding_top": 40,
         "padding_bottom": 40,
         "pad_mobile": false,
-        "pt_m": 40,
-        "pb_m": 40
+        "pt_m": 20,
+        "pb_m": 20
       }
     }
   },
