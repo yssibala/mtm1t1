@@ -122,6 +122,11 @@ h2 { font-size: var(--fs-h2); }
 h3 { font-size: var(--fs-h3); }
 
 p { margin: 0 0 var(--space-md); color: var(--text-dark); }
+/* Let richtext paragraphs inherit the color set on their container (section body/subheading colors) */
+.body-section__body p,
+.text-columns__col .rte p,
+.gallery-row__sub p,
+.page-contact__intro p { color: inherit; }
 
 /* Serif pull-quote / editorial italic — uses Ogg Text */
 .serif, blockquote, .pull-quote {

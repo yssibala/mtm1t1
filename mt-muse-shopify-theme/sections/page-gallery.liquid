@@ -24,7 +24,7 @@
   <div class="container">
     <div class="page-gallery__head" style="text-align:{{ s.text_align | default: 'left' }};{% if s.text_align == 'center' %}margin-left:auto;margin-right:auto;{% endif %}">
       {%- if s.kicker != blank -%}<div class="kicker" style="font-family:{%- render 'font-stack', key: s.preheader_font -%};margin-bottom:{{ s.space_preheader | default: 10 }}px;{%- render 'letter-spacing', mult: s.ls_preheader, base: '0.18em' -%}{% if s.accent_color != blank %}color:{{ s.accent_color }};{% endif %}">{{ s.kicker }}</div>{%- endif -%}
-      <h1 style="font-family:{%- render 'font-stack', key: s.heading_font -%};{%- render 'font-variant', key: s.heading_weight, font: s.heading_font -%}{%- render 'letter-spacing', mult: s.ls_heading, base: '0.05em' -%}font-size:{{ s.heading_size }}px;">{{ s.heading | default: page.title | newline_to_br }}</h1>
+      <h1 style="font-family:{%- render 'font-stack', key: s.heading_font -%};{%- render 'font-variant', key: s.heading_weight, font: s.heading_font -%}{%- render 'letter-spacing', mult: s.ls_heading, base: '0.05em' -%}{% if s.heading_color != blank %}color:{{ s.heading_color }};{% endif %}font-size:{{ s.heading_size }}px;">{{ s.heading | default: page.title | newline_to_br }}</h1>
       {%- if s.intro_text != blank -%}<div class="rte page-gallery__intro">{{ s.intro_text }}</div>{%- elsif page.content != blank and s.use_page_body -%}<div class="rte page-gallery__intro">{{ page.content }}</div>{%- endif -%}
     </div>
 
@@ -134,6 +134,7 @@
         { "value": "bold", "label": "Bold (700)" },
         { "value": "black", "label": "Black (800)" } ], "default": "inherit" },
     { "type": "range", "id": "heading_size", "label": "Heading size", "min": 24, "max": 80, "step": 2, "unit": "px", "default": 44 },
+    { "type": "color", "id": "heading_color", "label": "Heading color", "info": "Leave blank to use the theme default." },
     { "type": "header", "content": "Text spacing" },
     { "type": "range", "id": "space_preheader", "label": "Space after preheader", "min": 0, "max": 80, "step": 2, "unit": "px", "default": 10 },
     { "type": "header", "content": "Letter spacing" },
