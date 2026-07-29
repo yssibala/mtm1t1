@@ -19,9 +19,11 @@
       <img src="{{ s.image | image_url: width: 2200 }}" alt="{{ s.image.alt | escape }}" width="{{ s.image.width }}" height="{{ s.image.height }}" style="width:100%;height:100%;object-fit:cover;object-position:{{ s.image_focal | default: 'center' }};opacity:{{ s.image_opacity | default: 100 | divided_by: 100.0 }};">
     </div>
   {%- endif -%}
+  {%- capture hero_preheader -%}{%- if s.preheader != blank -%}<div class="kicker" style="font-family:{%- render 'font-stack', key: s.preheader_font -%};color:{{ s.accent_color | default: '#C9851A' }};margin-bottom:{{ s.space_preheader | default: 12 }}px;{%- render 'letter-spacing', mult: s.ls_preheader, base: '0.18em' -%}{% if s.text_align == 'center' %}text-align:center;{% endif %}">{{ s.preheader }}</div>{%- endif -%}{%- endcapture -%}
   <div class="hero__grid{% if is_split %} hero__grid--split{% endif %}" style="position:relative;z-index:1;">
-    {%- comment -%} Free-standing image: above the text (centered/aligned) or in the split column {%- endcomment -%}
+    {%- comment -%} Free-standing image: above the text (centered/aligned) or in the split column. Preheader stays above the image. {%- endcomment -%}
     {%- if has_image and img_pos == 'above' -%}
+      {{ hero_preheader }}
       <div class="hero__media hero__media--stack" style="text-align:{{ img_align }};margin-bottom:{{ s.space_image | default: 32 }}px;">
         <img src="{{ s.image | image_url: width: 1600 }}" alt="{{ s.image.alt | escape }}" width="{{ s.image.width }}" height="{{ s.image.height }}" style="display:inline-block;width:{{ s.image_width | default: 100 }}%;max-width:100%;height:{% if s.image_height > 0 %}{{ s.image_height }}px{% else %}auto{% endif %};object-fit:cover;object-position:{{ s.image_focal | default: 'center' }};border-radius:{{ s.image_radius | default: 0 }}px;">
       </div>
@@ -35,9 +37,7 @@
       {%- if s.show_coming_soon -%}
         <div style="margin-bottom:16px;">{%- render 'coming-soon-badge' -%}</div>
       {%- endif -%}
-      {%- if s.preheader != blank -%}
-        <div class="kicker" style="font-family:{%- render 'font-stack', key: s.preheader_font -%};color:{{ s.accent_color | default: '#C9851A' }};margin-bottom:{{ s.space_preheader | default: 12 }}px;{%- render 'letter-spacing', mult: s.ls_preheader, base: '0.18em' -%}{% if s.text_align == 'center' %}text-align:center;{% endif %}">{{ s.preheader }}</div>
-      {%- endif -%}
+      {%- unless has_image and img_pos == 'above' -%}{{ hero_preheader }}{%- endunless -%}
       {%- if s.heading != blank -%}
         <h1 style="font-family:{%- render 'font-stack', key: s.heading_font -%};{%- render 'font-variant', key: s.heading_weight, font: s.heading_font -%}{%- render 'letter-spacing', mult: s.ls_heading, base: '0.05em' -%}{% if s.heading_color != blank %}color:{{ s.heading_color }};{% endif %}{% if s.lh_heading > 0 %}line-height:{{ s.lh_heading }};{% endif %}font-size:{{ s.heading_size }}px;margin-bottom:{{ s.space_heading | default: 16 }}px;">{{ s.heading | newline_to_br }}</h1>
       {%- endif -%}
