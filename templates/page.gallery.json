@@ -51,6 +51,8 @@
         "ls_preheader": 4,
         "ls_heading": 5,
         "ls_body": 5,
+        "lh_heading": 1.5,
+        "lh_body": 0,
         "bg_type": "image",
         "bg_color": "#fbf6ee",
         "bg_gradient_start": "#fbf6ee",
@@ -168,7 +170,7 @@
         "kicker": "Moments We've Immortalized",
         "intro_text": "",
         "use_page_body": false,
-        "accent_color": "#C9851A",
+        "accent_color": "#c9851a",
         "heading": "MUSE: GALLERY",
         "text_align": "left",
         "columns": 5,
@@ -285,6 +287,8 @@
             "ls_preheader": 1,
             "ls_heading": 1,
             "ls_body": 1,
+            "lh_heading": 0,
+            "lh_body": 0,
             "margin_top": 20,
             "margin_bottom": 40
           }
