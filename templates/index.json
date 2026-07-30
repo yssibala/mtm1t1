@@ -102,7 +102,7 @@
         "ic_interval": 3,
         "accent_color": "#c9851a",
         "button_label": "BUY NOW",
-        "button_link": "shopify://collections/all",
+        "button_link": "shopify://pages/shop",
         "button_style": "primary",
         "pill_color": "",
         "button_size": "11",
