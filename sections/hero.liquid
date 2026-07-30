@@ -13,7 +13,7 @@
   endif
   assign img_align = s.image_align | default: 'center'
 -%}
-<div class="section-wrap hero{% if has_image %} hero--img-{{ img_pos }}{% endif %}{% if s.extend_behind_header %} hero--bleed{% endif %}{% if s.coming_soon %} is-coming-soon{% endif %}"{% if s.coming_soon %} data-cs-label="{{ settings.badge_text | default: 'Coming Soon' | escape }}"{% endif %} style="{%- render 'section-style', st: s -%}text-align:{{ s.text_align | default: 'center' }};{% if has_image and img_pos == 'background' %}position:relative;{% endif %}">
+<div class="section-wrap hero{% if has_image %} hero--img-{{ img_pos }}{% endif %}{% if s.extend_behind_header %} hero--bleed{% endif %}{% if s.coming_soon %} is-coming-soon{% endif %}"{% if s.coming_soon %} data-cs-label="{{ settings.badge_text | default: 'Coming Soon' | escape }}"{% endif %}{% if s.nav_scroll_threshold > 0 %} data-nav-threshold="{{ s.nav_scroll_threshold }}"{% endif %} style="{%- render 'section-style', st: s -%}text-align:{{ s.text_align | default: 'center' }};{% if has_image and img_pos == 'background' %}position:relative;{% endif %}">
   {%- if has_image and img_pos == 'background' -%}
     <div class="hero__bg" style="position:absolute;inset:0;z-index:0;overflow:hidden;">
       <img src="{{ s.image | image_url: width: 2200 }}" alt="{{ s.image.alt | escape }}" width="{{ s.image.width }}" height="{{ s.image.height }}" style="width:100%;height:100%;object-fit:cover;object-position:{{ s.image_focal | default: 'center' }};opacity:{{ s.image_opacity | default: 100 | divided_by: 100.0 }};">
@@ -157,6 +157,7 @@
     { "type": "range", "id": "bg_gradient_angle", "label": "Gradient angle", "min": 0, "max": 360, "step": 10, "unit": "deg", "default": 180 },
     { "type": "image_picker", "id": "bg_image", "label": "Background image" },
     { "type": "header", "content": "Spacing & height" },
+    { "type": "range", "id": "nav_scroll_threshold", "label": "Nav compact after scrolling (this page)", "info": "0 = use the theme default (Header settings). Otherwise, distance in px the visitor scrolls on THIS page before the nav switches to its compact state.", "min": 0, "max": 600, "step": 10, "unit": "px", "default": 0 },
     { "type": "checkbox", "id": "extend_behind_header", "label": "Extend background behind header", "info": "Pulls the hero up so its background sits under the nav bar (no gap above it). Add Top padding below to keep the heading clear of the nav.", "default": false },
     { "type": "select", "id": "content_valign", "label": "Vertical content position", "info": "Applies when a minimum height is set.", "options": [ { "value": "top", "label": "Top" }, { "value": "center", "label": "Center" }, { "value": "bottom", "label": "Bottom" } ], "default": "top" },
     { "type": "range", "id": "min_height", "label": "Minimum height", "min": 0, "max": 1000, "step": 20, "unit": "px", "default": 0 },

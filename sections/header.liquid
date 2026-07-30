@@ -48,10 +48,17 @@
     var nav = document.getElementById('site-nav');
     if (!nav) return;
     var threshold = {{ threshold | default: 40 | json }};
+    function applyOverride() {
+      var ov = document.querySelector('[data-nav-threshold]');
+      if (ov) { var v = parseInt(ov.getAttribute('data-nav-threshold'), 10); if (!isNaN(v) && v >= 0) { threshold = v; } }
+    }
     function compute() {
       if (window.scrollY > threshold) { nav.classList.add('nav--scrolled'); }
       else { nav.classList.remove('nav--scrolled'); }
     }
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', function () { applyOverride(); compute(); });
+    } else { applyOverride(); }
     window.addEventListener('scroll', compute, { passive: true });
     window.addEventListener('pageshow', compute);
     compute();
@@ -120,6 +127,7 @@
       "type": "range",
       "id": "scroll_threshold",
       "label": "Scroll distance before compact state (px)",
+      "info": "Theme-wide default. A Hero section can override this per page (Hero > Spacing & height > \"Nav compact after scrolling\").",
       "min": 0,
       "max": 400,
       "step": 10,
