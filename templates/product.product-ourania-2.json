@@ -314,7 +314,7 @@
         "preheader_font": "site",
         "heading_font": "ogg",
         "heading_weight": "thin",
-        "heading_size": 24,
+        "heading_size": 30,
         "heading_color": "#c9b3f0",
         "space_preheader": 10,
         "ls_preheader": 1,
