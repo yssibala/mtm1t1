@@ -51,17 +51,23 @@
         "ls_preheader": 3,
         "ls_heading": 3,
         "ls_body": 3,
+        "lh_heading": 0,
+        "lh_body": 0,
         "bg_type": "image",
         "bg_color": "#fbf6ee",
         "bg_gradient_start": "#fbf6ee",
         "bg_gradient_end": "#e7dac4",
         "bg_gradient_angle": 180,
         "bg_image": "shopify://shop_images/00_Cloud_BG_C.png",
+        "nav_scroll_threshold": 0,
         "extend_behind_header": true,
         "content_valign": "top",
         "min_height": 0,
         "padding_top": 180,
-        "padding_bottom": 80
+        "padding_bottom": 80,
+        "pad_mobile": false,
+        "pt_m": 48,
+        "pb_m": 48
       }
     },
     "body_section_gthfUc": {
@@ -95,8 +101,10 @@
         "button_label": "BUY NOW",
         "button_link": "",
         "button_style": "ghost",
+        "pill_color": "",
         "button_size": "9",
         "button_icon": "none",
+        "space_button": 24,
         "preheader_font": "site",
         "heading_font": "ogg",
         "heading_size": 30,
@@ -111,6 +119,8 @@
         "ls_preheader": 1,
         "ls_heading": 1,
         "ls_body": 1,
+        "lh_heading": 0,
+        "lh_body": 0,
         "bg_type": "solid",
         "bg_color": "#ffe3dd",
         "bg_gradient_start": "#fbf6ee",
@@ -119,7 +129,10 @@
         "content_valign": "center",
         "min_height": 0,
         "padding_top": 40,
-        "padding_bottom": 40
+        "padding_bottom": 40,
+        "pad_mobile": false,
+        "pt_m": 40,
+        "pb_m": 40
       }
     },
     "text_columns_9KD69G": {
@@ -128,6 +141,9 @@
         "column_Ae6G8F": {
           "type": "column",
           "settings": {
+            "media_type": "text",
+            "image_ratio": "1/1",
+            "image_radius": 8,
             "number": "",
             "number_size": 40,
             "eyebrow": "Passion and History",
@@ -161,6 +177,9 @@
         "column_HCcbN4": {
           "type": "column",
           "settings": {
+            "media_type": "text",
+            "image_ratio": "1/1",
+            "image_radius": 8,
             "number": "",
             "number_size": 40,
             "eyebrow": "Product Insights",
@@ -218,6 +237,8 @@
         "ls_preheader": 1,
         "ls_heading": 1,
         "ls_body": 1,
+        "lh_heading": 0,
+        "lh_body": 0,
         "bg_type": "solid",
         "bg_color": "#fbf6ee",
         "bg_gradient_start": "#fbf6ee",
@@ -226,7 +247,10 @@
         "content_valign": "center",
         "min_height": 0,
         "padding_top": 0,
-        "padding_bottom": 0
+        "padding_bottom": 0,
+        "pad_mobile": false,
+        "pt_m": 40,
+        "pb_m": 40
       }
     },
     "page_gallery_xWLRMR": {
@@ -269,17 +293,24 @@
       "settings": {
         "coming_soon": false,
         "kicker": "The Gallery",
+        "intro_text": "",
+        "use_page_body": false,
         "accent_color": "",
         "heading": "",
         "text_align": "left",
         "columns": 3,
+        "columns_mobile": 2,
         "aspect_ratio": "1/1",
         "show_filters": false,
         "filter_all_label": "All",
+        "overlay_enable": true,
+        "overlay_color": "#efa527",
+        "overlay_opacity": 20,
         "preheader_font": "site",
         "heading_font": "site",
         "heading_weight": "inherit",
         "heading_size": 44,
+        "heading_color": "",
         "space_preheader": 10,
         "ls_preheader": 1,
         "ls_heading": 1,
@@ -296,8 +327,11 @@
         "bg_gradient_angle": 180,
         "content_valign": "top",
         "min_height": 0,
-        "padding_top": 80,
-        "padding_bottom": 80
+        "padding_top": 40,
+        "padding_bottom": 40,
+        "pad_mobile": false,
+        "pt_m": 40,
+        "pb_m": 40
       }
     },
     "flexible_HeD3q3": {
@@ -311,6 +345,7 @@
             "heading": "",
             "body": "",
             "text_color": "#0a0b0c",
+            "body_color": "#4c4c4b",
             "align": "left",
             "max_width": 640,
             "preheader_font": "site",
@@ -325,6 +360,8 @@
             "ls_preheader": 1,
             "ls_heading": 1,
             "ls_body": 1,
+            "lh_heading": 0,
+            "lh_body": 0,
             "margin_top": 0,
             "margin_bottom": 24
           }
@@ -361,7 +398,10 @@
         "content_valign": "top",
         "min_height": 0,
         "padding_top": 80,
-        "padding_bottom": 80
+        "padding_bottom": 80,
+        "pad_mobile": false,
+        "pt_m": 40,
+        "pb_m": 40
       }
     }
   },

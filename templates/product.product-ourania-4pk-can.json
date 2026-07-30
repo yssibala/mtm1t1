@@ -9,135 +9,6 @@
  */
 {
   "sections": {
-    "main": {
-      "type": "product",
-      "settings": {
-        "show_vendor": false
-      }
-    },
-    "body_section_8VPqeD": {
-      "type": "body-section",
-      "name": "Body section",
-      "settings": {
-        "coming_soon": false,
-        "preheader": "",
-        "heading": "Celebrate Ceaslessly\n\nWith OURANIA by MUSE",
-        "body": "<p>Share the story behind your brand here.</p>",
-        "image_position": "right",
-        "text_align": "center",
-        "media_type": "image",
-        "image": "shopify://shop_images/Render_Mockup_3840_2058_2026-07-22_5.png",
-        "ic_link_1": "",
-        "ic_link_2": "",
-        "ic_link_3": "",
-        "ic_link_4": "",
-        "ic_link_5": "",
-        "ic_link_6": "",
-        "ic_aspect": "4/3",
-        "ic_radius": 8,
-        "ic_arrows": true,
-        "ic_dots": true,
-        "ic_autoplay": false,
-        "ic_interval": 5,
-        "accent_color": "#c9851a",
-        "button_label": "View Nutrition Tabel",
-        "button_link": "https://www.mt-muse.com/clio",
-        "button_style": "primary",
-        "button_size": "9",
-        "button_icon": "arrow",
-        "preheader_font": "site",
-        "heading_font": "ogg",
-        "heading_size": 20,
-        "heading_color": "",
-        "heading_weight": "thin",
-        "body_font": "site",
-        "body_size": 13,
-        "body_color": "",
-        "body_weight": "inherit",
-        "space_preheader": 12,
-        "space_heading": 30,
-        "ls_preheader": 3,
-        "ls_heading": 4,
-        "ls_body": 5,
-        "bg_type": "none",
-        "bg_color": "#fbf6ee",
-        "bg_gradient_start": "#fbf6ee",
-        "bg_gradient_end": "#e7dac4",
-        "bg_gradient_angle": 180,
-        "content_valign": "top",
-        "min_height": 0,
-        "padding_top": 80,
-        "padding_bottom": 80
-      }
-    },
-    "page_gallery_BbXqxg": {
-      "type": "page-gallery",
-      "blocks": {
-        "image_cmyRFW": {
-          "type": "image",
-          "settings": {
-            "caption": "",
-            "category": "",
-            "link": ""
-          }
-        },
-        "image_iAAz43": {
-          "type": "image",
-          "settings": {
-            "caption": "",
-            "category": "",
-            "link": ""
-          }
-        },
-        "image_xdp9pe": {
-          "type": "image",
-          "settings": {
-            "caption": "",
-            "category": "",
-            "link": ""
-          }
-        }
-      },
-      "block_order": [
-        "image_cmyRFW",
-        "image_iAAz43",
-        "image_xdp9pe"
-      ],
-      "name": "Gallery page",
-      "settings": {
-        "coming_soon": false,
-        "kicker": "CLIO Gallery",
-        "accent_color": "",
-        "heading": "MUSE: Clio Gallery",
-        "text_align": "left",
-        "columns": 3,
-        "aspect_ratio": "1/1",
-        "show_filters": false,
-        "filter_all_label": "All",
-        "preheader_font": "site",
-        "heading_font": "site",
-        "heading_weight": "inherit",
-        "heading_size": 44,
-        "space_preheader": 10,
-        "ls_preheader": 1,
-        "ls_heading": 1,
-        "show_share": false,
-        "share_heading": "#myMUSE",
-        "share_text": "Share your moment",
-        "share_button_label": "Tag us",
-        "share_link": "",
-        "share_new_tab": true,
-        "bg_type": "none",
-        "bg_color": "#fbf6ee",
-        "bg_gradient_start": "#fbf6ee",
-        "bg_gradient_end": "#e7dac4",
-        "bg_gradient_angle": 180,
-        "content_valign": "top",
-        "min_height": 0,
-        "padding_top": 20,
-        "padding_bottom": 20
-      }
-    },
     "flexible_XNz4Ab": {
       "type": "flexible",
       "blocks": {
@@ -161,6 +32,7 @@
             "heading": "CELEBRATING THOSE WHO INSPIRE",
             "body": "<p>Everyone has a MUSE - someone whose light deserves to be celebrated<br/>for how they inspire. Tell their story or nominate them for recognition<br/>on our page and/or newsletter!</p>",
             "text_color": "#0a0b0c",
+            "body_color": "#4c4c4b",
             "align": "center",
             "max_width": 600,
             "preheader_font": "site",
@@ -175,6 +47,8 @@
             "ls_preheader": 4,
             "ls_heading": 3,
             "ls_body": 1,
+            "lh_heading": 0,
+            "lh_body": 0,
             "margin_top": 12,
             "margin_bottom": 36
           }
@@ -212,14 +86,14 @@
         "content_valign": "top",
         "min_height": 0,
         "padding_top": 20,
-        "padding_bottom": 20
+        "padding_bottom": 20,
+        "pad_mobile": false,
+        "pt_m": 40,
+        "pb_m": 40
       }
     }
   },
   "order": [
-    "main",
-    "body_section_8VPqeD",
-    "page_gallery_BbXqxg",
     "flexible_XNz4Ab"
   ]
 }
