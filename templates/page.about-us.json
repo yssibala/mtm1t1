@@ -60,7 +60,7 @@
         "bg_gradient_end": "#e7dac4",
         "bg_gradient_angle": 180,
         "bg_image": "shopify://shop_images/00_Cloud_BG_C.png",
-        "nav_scroll_threshold": 180,
+        "nav_scroll_threshold": 270,
         "extend_behind_header": true,
         "content_valign": "top",
         "min_height": 0,
