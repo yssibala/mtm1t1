@@ -1263,6 +1263,8 @@ html.age-gate-open { overflow: hidden; }
 .contact-card { background: var(--near-white); border: 1px solid var(--sand-border); border-radius: var(--radius-card); box-shadow: 0 24px 60px -32px rgba(10, 11, 12, .4); padding: clamp(24px, 3.4vw, 48px); }
 .contact-card--flat { border: 0; box-shadow: none; }
 .contact-card .page-contact__grid { margin: 0; }
+/* No details column -> collapse the card to the form width (stays full width when details are on) */
+.page-contact--solo .contact-card { max-width: 620px; margin-left: auto; margin-right: auto; }
 
 /* Cart per-item notes */
 .cart-item-note { font-size: var(--fs-small); color: var(--text-meta); margin-top: 6px; line-height: 1.5; max-width: 60ch; }
