@@ -125,6 +125,7 @@ p { margin: 0 0 var(--space-md); color: var(--text-dark); }
 /* Let richtext paragraphs inherit the color set on their container (section body/subheading colors) */
 .body-section__body p,
 .text-columns__col .rte p,
+.fx-block .rte p,
 .gallery-row__sub p,
 .page-contact__intro p { color: inherit; }
 
