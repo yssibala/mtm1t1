@@ -97,7 +97,7 @@
         "ic_interval": 5,
         "accent_color": "#c9851a",
         "button_label": "Elevate The Occasion",
-        "button_link": "shopify://collections/all",
+        "button_link": "shopify://pages/shop",
         "button_style": "primary",
         "pill_color": "",
         "button_size": "9",
