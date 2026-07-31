@@ -1,0 +1,145 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "nutrition": {
+      "type": "nutrition-facts",
+      "settings": {
+        "accent": "#C9851A",
+        "back_label": "Back to Thalia",
+        "preheader": "NUTRITION &amp; INGREDIENTS",
+        "title": "THALIA",
+        "subtitle": "ELATIONS AFTER NOON",
+        "tagline": "Made with joy and mixed with drops of sunshine.",
+        "nf_kicker": "The Fine Print",
+        "nf_heading": "Nutrition Facts",
+        "ingr_heading": "Ingredients",
+        "ingredients": "Carbonated Filtered Water, Moscato Wine, Blue Agave Spirit, Cane Sugar, Lemon Juice Concentrate, Lime Juice Concentrate, Passionfruit Juice Concentrate, Natural Flavors, Citric Acid, Sodium Benzoate, Potassium Sorbate, Edetate Calcium Disodium (EDTA).",
+        "allergens": "None",
+        "warning": "(1) According to the Surgeon General, women should not drink alcoholic beverages during pregnancy because of the risk of birth defects. (2) Consumption of alcoholic beverages impairs your ability to drive a car or operate machinery, and may cause health problems.",
+        "heading_font": "ogg",
+        "heading_weight": "medium"
+      },
+      "blocks": {
+        "stat-1": {
+          "type": "stat",
+          "settings": {
+            "value": "12.1%",
+            "label": "ABV"
+          }
+        },
+        "stat-2": {
+          "type": "stat",
+          "settings": {
+            "value": "24%",
+            "label": "JUICE CONTENT"
+          }
+        },
+        "stat-3": {
+          "type": "stat",
+          "settings": {
+            "value": "6 fl oz",
+            "label": "SERVING SIZE"
+          }
+        },
+        "stat-4": {
+          "type": "stat",
+          "settings": {
+            "value": "~4",
+            "label": "SERVINGS / BOTTLE"
+          }
+        },
+        "label-1": {
+          "type": "label",
+          "settings": {
+            "col_title": "Per Serving — 6 fl oz (177mL)",
+            "servings": "About 4 servings per container",
+            "serving_size": "6 fl oz (177mL)",
+            "calories": "200",
+            "total_fat_amt": "0g",
+            "total_fat_dv": "0%",
+            "sat_fat_amt": "0g",
+            "sat_fat_dv": "0%",
+            "trans_fat_amt": "0g",
+            "cholesterol_amt": "0mg",
+            "cholesterol_dv": "0%",
+            "sodium_amt": "20mg",
+            "sodium_dv": "1%",
+            "total_carb_amt": "21g",
+            "total_carb_dv": "8%",
+            "fiber_amt": "0g",
+            "fiber_dv": "0%",
+            "total_sugars_amt": "16g",
+            "added_sugars_amt": "14g",
+            "added_sugars_dv": "28%",
+            "protein_amt": "0g",
+            "vit_d_amt": "0mcg",
+            "vit_d_dv": "0%",
+            "calcium_amt": "0mg",
+            "calcium_dv": "0%",
+            "iron_amt": "0.1mg",
+            "iron_dv": "0%",
+            "potassium_amt": "70mg",
+            "potassium_dv": "2%",
+            "vit_c_amt": "11mg",
+            "vit_c_dv": "10%"
+          }
+        },
+        "label-2": {
+          "type": "label",
+          "settings": {
+            "col_title": "Per Bottle — 25.4 fl oz (750mL)",
+            "servings": "About 4 servings per container",
+            "serving_size": "25.4 fl oz (750mL)",
+            "calories": "870",
+            "total_fat_amt": "0g",
+            "total_fat_dv": "0%",
+            "sat_fat_amt": "0g",
+            "sat_fat_dv": "0%",
+            "trans_fat_amt": "0g",
+            "cholesterol_amt": "0mg",
+            "cholesterol_dv": "0%",
+            "sodium_amt": "75mg",
+            "sodium_dv": "3%",
+            "total_carb_amt": "90g",
+            "total_carb_dv": "33%",
+            "fiber_amt": "0g",
+            "fiber_dv": "0%",
+            "total_sugars_amt": "65g",
+            "added_sugars_amt": "59g",
+            "added_sugars_dv": "118%",
+            "protein_amt": "2g",
+            "vit_d_amt": "0mcg",
+            "vit_d_dv": "0%",
+            "calcium_amt": "10mg",
+            "calcium_dv": "0%",
+            "iron_amt": "0.3mg",
+            "iron_dv": "2%",
+            "potassium_amt": "310mg",
+            "potassium_dv": "6%",
+            "vit_c_amt": "49mg",
+            "vit_c_dv": "50%"
+          }
+        }
+      },
+      "block_order": [
+        "stat-1",
+        "stat-2",
+        "stat-3",
+        "stat-4",
+        "label-1",
+        "label-2"
+      ]
+    }
+  },
+  "order": [
+    "nutrition"
+  ]
+}
