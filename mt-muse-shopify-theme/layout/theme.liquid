@@ -43,13 +43,14 @@
   <body class="{{ template | replace: '.', '-' }}">
     {% render 'age-gate' %}
     {% section 'announcement-bar' %}
-    {%- comment -%} Per-template nav: product pages use the SPC carousel nav, all others use the standard nav. {%- endcomment -%}
-    {%- case template.name -%}
-      {%- when 'product' -%}
+    {%- comment -%} Per-template nav: product pages use the SPC carousel nav, nutrition-table pages use the nutrition SPC nav, all others use the standard nav. {%- endcomment -%}
+    {%- if template.name == 'product' -%}
         {% section 'header-spc' %}
-      {%- else -%}
+    {%- elsif template.suffix contains 'nutrition' -%}
+        {% section 'header-nutrition' %}
+    {%- else -%}
         {% section 'header' %}
-    {%- endcase -%}
+    {%- endif -%}
     <main role="main" class="main-content">
       {{ content_for_layout }}
     </main>
