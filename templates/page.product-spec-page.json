@@ -99,7 +99,7 @@
         "ic_interval": 3,
         "accent_color": "#c9851a",
         "button_label": "Buy The FLAGSHIP COLLECTION",
-        "button_link": "shopify://collections/all",
+        "button_link": "shopify://products/muse-flagship-flight-pack",
         "button_style": "primary",
         "pill_color": "",
         "button_size": "11",
