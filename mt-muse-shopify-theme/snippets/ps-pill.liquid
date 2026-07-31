@@ -19,7 +19,10 @@
   </span>
 {%- else -%}
   {%- assign href = product.url -%}
-  {%- if mode == 'url' -%}{%- assign href = url | default: '#' -%}{%- endif -%}
+  {%- if mode == 'url' -%}
+    {%- if url != blank -%}{%- assign href = url -%}
+    {%- else -%}{%- assign href = product.url | default: '#' -%}{%- endif -%}
+  {%- endif -%}
   <span class="pill pill--{{ st }}" style="font-size:{{ fs }}px;">
     <a class="pill__seg" href="{{ href }}"><span>{{ label | default: 'View' }}</span></a>
   </span>
