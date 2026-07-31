@@ -104,7 +104,7 @@
         "ic_interval": 4,
         "accent_color": "#efa527",
         "button_label": "View Nutrition Label",
-        "button_link": "https://www.mt-muse.com/thalia",
+        "button_link": "shopify://pages/nutrition-thalia",
         "button_style": "primary",
         "pill_color": "",
         "button_size": "9",
