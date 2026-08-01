@@ -92,8 +92,8 @@
       "header-nutrition": {
         "type": "header-nutrition",
         "settings": {
-          "menu_left": "",
-          "menu_right": "",
+          "menu_left": "nav-bar-menu-l",
+          "menu_right": "main-menu",
           "switcher_menu": "nutrition-tables-spc",
           "logo": "shopify://shop_images/MUSE_-_Monogram_Solo_GLD.png",
           "show_account": true,
