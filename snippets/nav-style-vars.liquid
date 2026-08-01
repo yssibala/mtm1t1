@@ -1,0 +1,7 @@
+{%- comment -%}
+  Emits CSS custom properties for nav link text styling, read by .nav-link /
+  .muse-sub in theme.css. Rendered into the <nav> element's style attribute
+  (inline — font-stack does not apply reliably inside {% style %}).
+  Param: s = section.settings (a header section's settings).
+{%- endcomment -%}
+--nav-font:{%- render 'font-stack', key: s.nav_font -%};--nav-weight:{{ s.nav_weight | default: 500 }};--nav-size:{{ s.nav_size | default: 12 }}px;--nav-transform:{{ s.nav_transform | default: 'uppercase' }};{% if s.nav_color != blank %}--nav-color:{{ s.nav_color }};{% endif %}{% if s.nav_hover_color != blank %}--nav-hover-color:{{ s.nav_hover_color }};{% endif %}{% if s.nav_ls and s.nav_ls != 1 %}--nav-ls:calc(var(--ls-label) * {{ s.nav_ls }});{% endif %}

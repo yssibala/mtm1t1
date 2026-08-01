@@ -1,10 +1,17 @@
 {%- liquid
   assign s = section.settings
+  assign has_cols = false
+  if section.blocks.size > 0 or s.show_newsletter
+    assign has_cols = true
+  endif
 -%}
-<footer class="site-footer">
+{%- capture foot_vars -%}--foot-head-font:{%- render 'font-stack', key: s.foot_head_font -%};--foot-body-font:{%- render 'font-stack', key: s.foot_body_font -%};{% if s.foot_head_color != blank %}--foot-head-color:{{ s.foot_head_color }};{% endif %}{% if s.foot_body_color != blank %}--foot-body-color:{{ s.foot_body_color }};{% endif %}{% if s.foot_head_size > 0 %}--foot-head-size:{{ s.foot_head_size }}px;{% endif %}{% if s.foot_body_size > 0 %}--foot-body-size:{{ s.foot_body_size }}px;{% endif %}{% if s.foot_head_ls and s.foot_head_ls != 1 %}--foot-head-ls:calc(.14em * {{ s.foot_head_ls }});{% endif %}{% if s.foot_body_ls and s.foot_body_ls != 1 %}--foot-body-ls:calc(.12em * {{ s.foot_body_ls }});{% endif %}{%- endcapture -%}
+{%- assign brand_align = s.brand_align | default: 'left' -%}
+{%- unless has_cols -%}{%- assign brand_align = 'center' -%}{%- endunless -%}
+<footer class="site-footer" style="{{ foot_vars }}">
   <div class="container">
-    <div class="footer-top">
-      <div class="footer-brand footer-brand--{{ s.brand_align | default: 'left' }}">
+    <div class="footer-top{% unless has_cols %} footer-top--solo{% endunless %}">
+      <div class="footer-brand footer-brand--{{ brand_align }}">
         {%- if settings.logo != blank -%}
           <img src="{{ settings.logo | image_url: width: 240 }}" alt="{{ shop.name | escape }}" width="120" height="{{ 120 | times: settings.logo.height | divided_by: settings.logo.width }}">
         {%- else -%}
@@ -22,6 +29,7 @@
         {%- endif -%}
       </div>
 
+      {%- if has_cols -%}
       <div class="footer-cols">
         {%- for block in section.blocks -%}
           {%- case block.type -%}
@@ -58,6 +66,7 @@
           </div>
         {%- endif -%}
       </div>
+      {%- endif -%}
     </div>
 
     {%- if settings.footer_show_nav and settings.footer_nav_menu != blank -%}
@@ -97,7 +106,25 @@
     { "type": "url", "id": "youtube", "label": "YouTube" },
     { "type": "header", "content": "Bottom bar" },
     { "type": "text", "id": "copyright_extra", "label": "Extra copyright text" },
-    { "type": "checkbox", "id": "show_payment_icons", "label": "Show payment icons", "default": true }
+    { "type": "checkbox", "id": "show_payment_icons", "label": "Show payment icons", "default": true },
+    { "type": "header", "content": "Typography · Headings", "info": "Column + newsletter headings." },
+    { "type": "select", "id": "foot_head_font", "label": "Font", "options": [
+        { "value": "site", "label": "Neue Haas Display Light" },
+        { "value": "display", "label": "Neue Haas Grotesk Display" },
+        { "value": "text", "label": "Neue Haas Grotesk Text" },
+        { "value": "ogg", "label": "Ogg Text (serif)" } ], "default": "site" },
+    { "type": "color", "id": "foot_head_color", "label": "Color", "info": "Blank = theme default." },
+    { "type": "range", "id": "foot_head_size", "label": "Size", "info": "0 = auto.", "min": 0, "max": 24, "step": 1, "unit": "px", "default": 0 },
+    { "type": "range", "id": "foot_head_ls", "label": "Letter spacing", "info": "1 = default, up to 10x.", "min": 1, "max": 10, "step": 1, "unit": "x", "default": 1 },
+    { "type": "header", "content": "Typography · Body", "info": "Tagline, column links, footer nav, and bottom bar." },
+    { "type": "select", "id": "foot_body_font", "label": "Font", "options": [
+        { "value": "site", "label": "Neue Haas Display Light" },
+        { "value": "display", "label": "Neue Haas Grotesk Display" },
+        { "value": "text", "label": "Neue Haas Grotesk Text" },
+        { "value": "ogg", "label": "Ogg Text (serif)" } ], "default": "site" },
+    { "type": "color", "id": "foot_body_color", "label": "Color", "info": "Blank = theme default." },
+    { "type": "range", "id": "foot_body_size", "label": "Size", "info": "0 = auto.", "min": 0, "max": 20, "step": 1, "unit": "px", "default": 0 },
+    { "type": "range", "id": "foot_body_ls", "label": "Letter spacing", "info": "1 = default, up to 10x.", "min": 1, "max": 10, "step": 1, "unit": "x", "default": 1 }
   ],
   "blocks": [
     { "type": "menu", "name": "Menu column", "settings": [

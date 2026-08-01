@@ -15,7 +15,7 @@
 
 {%- capture spc_json -%}[{%- for p in spc_collection.products limit: 24 -%}{"name":{{ p.title | json }},"url":{{ p.url | json }},"handle":{{ p.handle | json }}}{%- unless forloop.last -%},{%- endunless -%}{%- endfor -%}]{%- endcapture -%}
 
-<nav id="site-nav" class="nav--spc">
+<nav id="site-nav" class="nav--spc" style="{%- render 'nav-style-vars', s: section.settings -%}">
 
   {%- render 'nav-state1',
     menu_left: menu_left, menu_right: menu_right,
@@ -197,6 +197,26 @@
       "label": "Show search icon",
       "default": true
     },
+    { "type": "header", "content": "Nav text" },
+    { "type": "select", "id": "nav_font", "label": "Font", "options": [
+        { "value": "site", "label": "Neue Haas Display Light" },
+        { "value": "display", "label": "Neue Haas Grotesk Display" },
+        { "value": "text", "label": "Neue Haas Grotesk Text" },
+        { "value": "ogg", "label": "Ogg Text (serif)" } ], "default": "site" },
+    { "type": "select", "id": "nav_weight", "label": "Weight", "options": [
+        { "value": "300", "label": "Light (300)" },
+        { "value": "400", "label": "Regular (400)" },
+        { "value": "500", "label": "Medium (500)" },
+        { "value": "600", "label": "Semibold (600)" },
+        { "value": "700", "label": "Bold (700)" } ], "default": "500" },
+    { "type": "range", "id": "nav_size", "label": "Size", "min": 10, "max": 18, "step": 1, "unit": "px", "default": 12 },
+    { "type": "range", "id": "nav_ls", "label": "Letter spacing", "info": "1 = theme default, up to 10x.", "min": 1, "max": 10, "step": 1, "unit": "x", "default": 1 },
+    { "type": "select", "id": "nav_transform", "label": "Text case", "options": [
+        { "value": "uppercase", "label": "UPPERCASE" },
+        { "value": "none", "label": "As typed" },
+        { "value": "capitalize", "label": "Capitalize" } ], "default": "uppercase" },
+    { "type": "color", "id": "nav_color", "label": "Color", "info": "Blank = theme default." },
+    { "type": "color", "id": "nav_hover_color", "label": "Hover color", "info": "Blank = theme gold." },
     {
       "type": "header",
       "content": "Behavior"
