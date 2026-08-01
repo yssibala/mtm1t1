@@ -102,6 +102,31 @@
 
   document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeDrawer(); });
 
+  // Nav dropdowns: caret click toggles the submenu (hover still opens on desktop)
+  function closeDropdowns(except) {
+    var open = document.querySelectorAll('.muse-dropdown.is-open');
+    for (var i = 0; i < open.length; i++) {
+      if (open[i] === except) continue;
+      open[i].classList.remove('is-open');
+      var c = open[i].querySelector('.muse-caret');
+      if (c) c.setAttribute('aria-expanded', 'false');
+    }
+  }
+  document.addEventListener('click', function (e) {
+    var caret = e.target.closest('.muse-caret');
+    if (caret) {
+      e.preventDefault();
+      var dd = caret.closest('.muse-dropdown');
+      if (!dd) return;
+      var isOpen = dd.classList.toggle('is-open');
+      caret.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+      closeDropdowns(dd);
+      return;
+    }
+    if (!e.target.closest('.muse-dropdown')) closeDropdowns(null);
+  });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeDropdowns(null); });
+
   // Product gallery: thumbnail -> main image
   document.addEventListener('click', function (e) {
     var thumb = e.target.closest('.pg-thumb');
