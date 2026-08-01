@@ -93,19 +93,19 @@
     {%- if s.show_intro -%}
       <div class="nf-head">
         {%- if s.preheader != blank -%}
-          <div class="nf-preheader" style="font-family:{%- render 'font-stack', key: s.preheader_font -%};color:{{ c_pre }};{%- render 'letter-spacing', mult: s.ls_preheader, base: '.26em' -%}{% if s.preheader_size > 0 %}font-size:{{ s.preheader_size }}px;{% endif %}">{{ s.preheader }}</div>
+          <div class="nf-preheader" style="font-family:{%- render 'font-stack', key: s.preheader_font -%};color:{{ c_pre }};{%- render 'letter-spacing', mult: s.ls_preheader, base: '.26em' -%}{% if s.preheader_size > 0 %}font-size:{{ s.preheader_size }}px;{% endif %}margin-bottom:{{ s.space_preheader | default: 14 }}px;">{{ s.preheader }}</div>
         {%- endif -%}
         {%- if s.title != blank -%}
-          <h1 class="nf-title" style="font-family:{%- render 'font-stack', key: s.heading_font -%};{%- render 'font-variant', key: s.heading_weight, font: s.heading_font -%}color:{{ c_head }};{%- render 'letter-spacing', mult: s.ls_heading, base: '.02em' -%}{% if s.title_size > 0 %}font-size:{{ s.title_size }}px;{% endif %}">{{ s.title | newline_to_br }}</h1>
+          <h1 class="nf-title" style="font-family:{%- render 'font-stack', key: s.heading_font -%};{%- render 'font-variant', key: s.heading_weight, font: s.heading_font -%}color:{{ c_head }};{%- render 'letter-spacing', mult: s.ls_heading, base: '.02em' -%}{% if s.title_size > 0 %}font-size:{{ s.title_size }}px;{% endif %}margin-bottom:{{ s.space_title | default: 10 }}px;">{{ s.title | newline_to_br }}</h1>
         {%- endif -%}
         {%- if s.subtitle != blank -%}
-          <p class="nf-subtitle" style="font-family:{%- render 'font-stack', key: s.subtitle_font -%};color:{{ c_sub }};{%- render 'letter-spacing', mult: s.ls_subtitle, base: '.22em' -%}{% if s.subtitle_size > 0 %}font-size:{{ s.subtitle_size }}px;{% endif %}">{{ s.subtitle | newline_to_br }}</p>
+          <p class="nf-subtitle" style="font-family:{%- render 'font-stack', key: s.subtitle_font -%};color:{{ c_sub }};{%- render 'letter-spacing', mult: s.ls_subtitle, base: '.22em' -%}{% if s.subtitle_size > 0 %}font-size:{{ s.subtitle_size }}px;{% endif %}margin-bottom:{{ s.space_subtitle | default: 12 }}px;">{{ s.subtitle | newline_to_br }}</p>
         {%- endif -%}
         {%- if s.tagline != blank -%}
-          <p class="nf-tagline" style="font-family:{%- render 'font-stack', key: s.tagline_font -%};color:{{ c_tag }};{%- render 'letter-spacing', mult: s.ls_tagline, base: '.04em' -%}{% if s.tagline_size > 0 %}font-size:{{ s.tagline_size }}px;{% endif %}">{{ s.tagline | newline_to_br }}</p>
+          <p class="nf-tagline" style="font-family:{%- render 'font-stack', key: s.tagline_font -%};color:{{ c_tag }};{%- render 'letter-spacing', mult: s.ls_tagline, base: '.04em' -%}{% if s.tagline_size > 0 %}font-size:{{ s.tagline_size }}px;{% endif %}margin-bottom:{{ s.space_tagline | default: 12 }}px;">{{ s.tagline | newline_to_br }}</p>
         {%- endif -%}
         {%- if s.intro_body != blank -%}
-          <div class="nf-intro-body rte" style="font-family:{%- render 'font-stack', key: s.intro_body_font -%};color:{{ c_intro_body }};{%- render 'letter-spacing', mult: s.ls_intro_body, base: '.02em' -%}{% if s.intro_body_size > 0 %}font-size:{{ s.intro_body_size }}px;{% endif %}">{{ s.intro_body }}</div>
+          <div class="nf-intro-body rte" style="font-family:{%- render 'font-stack', key: s.intro_body_font -%};color:{{ c_intro_body }};{%- render 'letter-spacing', mult: s.ls_intro_body, base: '.02em' -%}{% if s.intro_body_size > 0 %}font-size:{{ s.intro_body_size }}px;{% endif %}margin-bottom:{{ s.space_intro_body | default: 0 }}px;">{{ s.intro_body }}</div>
         {%- endif -%}
       </div>
     {%- endif -%}
@@ -275,6 +275,12 @@
     { "type": "range", "id": "intro_body_size", "label": "Size", "info": "0 = auto.", "min": 0, "max": 28, "step": 1, "unit": "px", "default": 0 },
     { "type": "range", "id": "ls_intro_body", "label": "Letter spacing", "min": 1, "max": 10, "step": 1, "unit": "x", "default": 1 },
 
+    { "type": "header", "content": "Intro · Spacing between lines", "info": "Vertical gap after each intro element." },
+    { "type": "range", "id": "space_preheader", "label": "After preheader", "min": 0, "max": 80, "step": 2, "unit": "px", "default": 14 },
+    { "type": "range", "id": "space_title", "label": "After title", "min": 0, "max": 80, "step": 2, "unit": "px", "default": 10 },
+    { "type": "range", "id": "space_subtitle", "label": "After subtitle", "min": 0, "max": 80, "step": 2, "unit": "px", "default": 12 },
+    { "type": "range", "id": "space_tagline", "label": "After tagline", "min": 0, "max": 80, "step": 2, "unit": "px", "default": 12 },
+    { "type": "range", "id": "space_intro_body", "label": "After intro body", "min": 0, "max": 80, "step": 2, "unit": "px", "default": 0 },
     { "type": "header", "content": "Nutrition Facts heading" },
     { "type": "text", "id": "nf_kicker", "label": "Small kicker", "default": "The Fine Print" },
     { "type": "text", "id": "nf_heading", "label": "Heading", "default": "Nutrition Facts" },
