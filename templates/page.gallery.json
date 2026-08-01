@@ -273,7 +273,7 @@
           "settings": {
             "preheader": "",
             "accent_color": "#c9851a",
-            "heading": "CELEBRATING THOSE WHO INSPIRE:",
+            "heading": "CELEBRATING THOSE\nWHO INSPIRE:",
             "body": "<p>Everyone has a MUSE - someone whose light deserves to be celebrated<br/>for how they inspire. Tell their story or nominate them for recognition<br/>on our page and/or newsletter!</p>",
             "text_color": "#0a0b0c",
             "body_color": "#4c4c4b",
@@ -281,7 +281,7 @@
             "max_width": 600,
             "preheader_font": "site",
             "heading_font": "ogg",
-            "heading_size": 36,
+            "heading_size": 30,
             "heading_weight": "inherit",
             "body_font": "text",
             "body_size": 14,

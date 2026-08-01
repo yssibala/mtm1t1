@@ -32,6 +32,13 @@
           "logo": "shopify://shop_images/MUSE_-_Monogram_Solo_GLD.png",
           "show_account": true,
           "show_search": true,
+          "nav_font": "site",
+          "nav_weight": "500",
+          "nav_size": 12,
+          "nav_ls": 1,
+          "nav_transform": "uppercase",
+          "nav_color": "",
+          "nav_hover_color": "",
           "scroll_threshold": 50
         }
       },
@@ -49,7 +56,7 @@
           "twitter": "",
           "youtube": "",
           "copyright_extra": "",
-          "show_payment_icons": true,
+          "show_payment_icons": false,
           "foot_head_font": "site",
           "foot_head_color": "",
           "foot_head_size": 0,

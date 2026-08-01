@@ -456,7 +456,7 @@
             "max_width": 740,
             "preheader_font": "site",
             "heading_font": "ogg",
-            "heading_size": 36,
+            "heading_size": 30,
             "heading_weight": "inherit",
             "body_font": "text",
             "body_size": 14,
