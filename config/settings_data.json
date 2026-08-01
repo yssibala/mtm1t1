@@ -49,7 +49,15 @@
           "twitter": "",
           "youtube": "",
           "copyright_extra": "",
-          "show_payment_icons": true
+          "show_payment_icons": true,
+          "foot_head_font": "site",
+          "foot_head_color": "",
+          "foot_head_size": 0,
+          "foot_head_ls": 1,
+          "foot_body_font": "site",
+          "foot_body_color": "",
+          "foot_body_size": 0,
+          "foot_body_ls": 1
         }
       },
       "hero": {
@@ -98,6 +106,13 @@
           "logo": "shopify://shop_images/MUSE_-_Monogram_Solo_GLD.png",
           "show_account": true,
           "show_search": true,
+          "nav_font": "site",
+          "nav_weight": "500",
+          "nav_size": 12,
+          "nav_ls": 1,
+          "nav_transform": "uppercase",
+          "nav_color": "",
+          "nav_hover_color": "",
           "scroll_threshold": 270
         }
       }
