@@ -986,22 +986,16 @@ button.pill__seg--submit[disabled] { opacity: .5; cursor: not-allowed; }
 .fx-imgcar__slide { flex: 0 0 100%; aspect-ratio: var(--imgcar-ratio, 16 / 9); }
 .fx-imgcar__slide, .fx-imgcar__slide a { display: block; width: 100%; height: 100%; }
 .fx-imgcar__slide img { width: 100%; height: 100%; object-fit: cover; display: block; }
+/* Controls row: prev arrow · dots · next arrow, centered below the carousel */
+.fx-imgcar__controls { display: flex; align-items: center; justify-content: center; gap: 14px; margin-top: 14px; }
 .fx-imgcar__arrow {
-  position: absolute; top: 50%; transform: translateY(-50%);
-  width: var(--carousel-arrow-size, 30px); height: var(--carousel-arrow-size, 30px); border-radius: 50%;
-  display: inline-flex; align-items: center; justify-content: center;
-  background: rgba(255, 255, 255, 0.85); color: var(--near-black);
-  border: none; cursor: pointer; transition: background 0.2s;
+  width: var(--carousel-arrow-size, 28px); height: var(--carousel-arrow-size, 28px); border-radius: 50%;
+  display: inline-flex; align-items: center; justify-content: center; flex: none;
+  background: var(--near-white, #FDFCFA); color: var(--near-black);
+  border: 1px solid var(--sand-border, #E7DAC4); cursor: pointer; transition: background 0.2s, border-color 0.2s;
 }
-.fx-imgcar__arrow:hover { background: #fff; }
-.fx-imgcar__arrow--prev { left: calc(-1 * var(--carousel-arrow-out, 24px)); }
-.fx-imgcar__arrow--next { right: calc(-1 * var(--carousel-arrow-out, 24px)); }
-/* On narrow screens, keep arrows just inside the frame so they never run off-screen */
-@media (max-width: 600px) {
-  .fx-imgcar__arrow--prev { left: 6px; }
-  .fx-imgcar__arrow--next { right: 6px; }
-}
-.fx-imgcar__dots { display: flex; justify-content: center; gap: 8px; margin-top: 14px; }
+.fx-imgcar__arrow:hover { background: var(--light-sand, #F4ECDD); border-color: var(--gold-border, #E7C98A); }
+.fx-imgcar__dots { display: flex; justify-content: center; gap: 8px; }
 .fx-imgcar__dot {
   width: 8px; height: 8px; padding: 0; border-radius: 50%; border: none; cursor: pointer;
   background: var(--muse-sand, #E7DAC4); transition: background 0.2s, transform 0.2s;

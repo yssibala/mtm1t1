@@ -31,16 +31,12 @@
             {%- endfor -%}
           </div>
         </div>
-        {%- if slide_count > 1 and st.ic_arrows -%}
-          <button type="button" class="fx-imgcar__arrow fx-imgcar__arrow--prev" data-imgcar-prev aria-label="Previous image"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="m15 18-6-6 6-6"/></svg></button>
-          <button type="button" class="fx-imgcar__arrow fx-imgcar__arrow--next" data-imgcar-next aria-label="Next image"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="m9 18 6-6-6-6"/></svg></button>
-        {%- endif -%}
       </div>
-      {%- if slide_count > 1 and st.ic_dots -%}
-        <div class="fx-imgcar__dots">
-          {%- for i in (1..slide_count) -%}
-            <button type="button" class="fx-imgcar__dot{% if forloop.first %} is-active{% endif %}" data-imgcar-dot="{{ forloop.index0 }}" aria-label="Go to image {{ forloop.index }}"></button>
-          {%- endfor -%}
+      {%- if slide_count > 1 and st.ic_arrows or slide_count > 1 and st.ic_dots -%}
+        <div class="fx-imgcar__controls">
+          {%- if slide_count > 1 and st.ic_arrows -%}<button type="button" class="fx-imgcar__arrow fx-imgcar__arrow--prev" data-imgcar-prev aria-label="Previous image"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="m15 18-6-6 6-6"/></svg></button>{%- endif -%}
+          {%- if slide_count > 1 and st.ic_dots -%}<div class="fx-imgcar__dots">{%- for i in (1..slide_count) -%}<button type="button" class="fx-imgcar__dot{% if forloop.first %} is-active{% endif %}" data-imgcar-dot="{{ forloop.index0 }}" aria-label="Go to image {{ forloop.index }}"></button>{%- endfor -%}</div>{%- endif -%}
+          {%- if slide_count > 1 and st.ic_arrows -%}<button type="button" class="fx-imgcar__arrow fx-imgcar__arrow--next" data-imgcar-next aria-label="Next image"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="m9 18 6-6-6-6"/></svg></button>{%- endif -%}
         </div>
       {%- endif -%}
     </div>
