@@ -1,7 +1,7 @@
 {%- liquid assign s = section.settings -%}
 <div class="section-wrap{% if s.coming_soon %} is-coming-soon{% endif %}"{% if s.coming_soon %} data-cs-label="{{ settings.badge_text | default: 'Coming Soon' | escape }}"{% endif %} style="{%- render 'section-style', st: s -%}">
   <div class="container" style="max-width:{{ s.max_width | default: 820 }}px;text-align:{{ s.text_align | default: 'center' }};">
-    <h1 style="font-family:{%- render 'font-stack', key: s.heading_font -%};{%- render 'font-variant', font: s.heading_font -%}font-size:{{ s.heading_size }}px;">{{ page.title }}</h1>
+    <h1 class="{%- render 'mb-size', val: s.heading_size, def: 44, cls: 'mb-h' -%}" style="font-family:{%- render 'font-stack', key: s.heading_font -%};{%- render 'font-variant', font: s.heading_font -%}font-size:{{ s.heading_size }}px;">{{ page.title }}</h1>
     {%- if page.content != blank -%}<div class="rte" style="color:var(--text-mid);">{{ page.content }}</div>{%- endif -%}
   </div>
 </div>
