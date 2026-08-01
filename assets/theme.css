@@ -431,6 +431,7 @@ section, .section { padding: var(--section-pad) 0; }
 .spc-name.is-swapping { opacity: 0; }
 .spc-arrow { transition: border-color .18s ease, color .18s ease, transform .12s ease; }
 .spc-arrow:active { transform: scale(.9); }
+.spc-mobile-bar { display: none; }
 @media (prefers-reduced-motion: reduce) {
   .spc-name { transition: none; }
 }
@@ -492,6 +493,18 @@ section, .section { padding: var(--section-pad) 0; }
 @media (max-width: 960px) {
   #nav-state1, #nav-state2 { opacity: 0 !important; visibility: hidden !important; pointer-events: none !important; }
   #nav-mobile { display: flex !important; }
+  /* SPC / nutrition: carousel switcher on its own bar pinned under the nav */
+  .spc-mobile-bar {
+    display: flex; align-items: center; justify-content: center; gap: 18px;
+    position: absolute; top: 100%; left: 0; right: 0;
+    height: 42px; padding: 0 16px;
+    background: var(--bg-main); border-bottom: 1px solid var(--sand-border);
+    z-index: 49;
+  }
+  .spc-mobile-bar .spc-name { font-size: 14px; min-width: 80px; text-align: center; }
+  /* Clear content below nav (56px) + sub-bar (42px) on SPC (product) + nutrition pages */
+  body.product .main-content,
+  body[class*="nutrition"] .main-content { padding-top: calc(var(--nav-h) + 42px); }
 }
 
 /* =====================================================================
