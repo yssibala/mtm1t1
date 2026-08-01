@@ -1,1 +1,56 @@
-{ "sections": { "main": { "type": "main-search" } }, "order": ["main"] }
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-search",
+      "settings": {
+        "coming_soon": false,
+        "preheader": "Looking For Something?",
+        "accent_color": "#fbf6ee",
+        "heading": "Search MUSE",
+        "subheading": "",
+        "text_align": "center",
+        "search_placeholder": "Searching amongst our clouds for...",
+        "button_label": "Search",
+        "search_width": 740,
+        "preheader_font": "site",
+        "heading_font": "ogg",
+        "heading_size": 30,
+        "heading_color": "",
+        "heading_weight": "inherit",
+        "body_font": "site",
+        "body_size": 17,
+        "body_color": "",
+        "body_weight": "inherit",
+        "space_preheader": 12,
+        "space_heading": 30,
+        "space_search": 50,
+        "ls_preheader": 3,
+        "ls_heading": 5,
+        "ls_body": 7,
+        "bg_type": "image",
+        "bg_color": "#fbf6ee",
+        "bg_gradient_start": "#fbf6ee",
+        "bg_gradient_end": "#e7dac4",
+        "bg_gradient_angle": 180,
+        "bg_image": "shopify://shop_images/00_Cloud_BG_C.png",
+        "extend_behind_header": true,
+        "content_valign": "top",
+        "min_height": 0,
+        "padding_top": 220,
+        "padding_bottom": 180
+      }
+    }
+  },
+  "order": [
+    "main"
+  ]
+}

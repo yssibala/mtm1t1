@@ -1,1 +1,53 @@
-{ "sections": { "main": { "type": "main-404" } }, "order": ["main"] }
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-404",
+      "settings": {
+        "kicker": "Lost in the Clouds",
+        "heading": "Something Went Awry",
+        "text": "We couldn’t refill this page just now. The skies should clear shortly — give it another moment, or head back to firmer ground.",
+        "text_align": "center",
+        "show_watermark": true,
+        "watermark_text": "404",
+        "watermark_color": "",
+        "show_monogram": true,
+        "monogram_size": 120,
+        "btn1_label": "Back to homepage",
+        "btn1_link": "",
+        "btn1_style": "primary",
+        "btn2_label": "Shop Products",
+        "btn2_link": "shopify://pages/shop",
+        "btn2_style": "ghost",
+        "preheader_font": "site",
+        "accent_color": "",
+        "heading_font": "ogg",
+        "heading_size": 30,
+        "heading_color": "",
+        "heading_weight": "thin",
+        "body_font": "site",
+        "body_size": 17,
+        "body_color": "",
+        "space_preheader": 12,
+        "space_heading": 30,
+        "ls_preheader": 3,
+        "ls_heading": 5,
+        "ls_body": 5,
+        "bg_color": "",
+        "padding_top": 40,
+        "padding_bottom": 40
+      }
+    }
+  },
+  "order": [
+    "main"
+  ]
+}

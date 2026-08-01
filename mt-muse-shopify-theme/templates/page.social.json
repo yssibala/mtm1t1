@@ -1,1 +1,106 @@
-{ "sections": { "main": { "type": "page-social" } }, "order": ["main"] }
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "page-social",
+      "blocks": {
+        "channel_HTV9pD": {
+          "type": "channel",
+          "settings": {
+            "network": "instagram",
+            "label": "Instagram",
+            "url": ""
+          }
+        },
+        "channel_L6CBHk": {
+          "type": "channel",
+          "settings": {
+            "network": "tiktok",
+            "label": "Instagram",
+            "url": ""
+          }
+        },
+        "channel_qpyw3d": {
+          "type": "channel",
+          "settings": {
+            "network": "facebook",
+            "label": "Instagram",
+            "url": ""
+          }
+        }
+      },
+      "block_order": [
+        "channel_HTV9pD",
+        "channel_L6CBHk",
+        "channel_qpyw3d"
+      ],
+      "settings": {
+        "coming_soon": false,
+        "kicker": "Someone In Mind?",
+        "heading": "Nominate A MUSE",
+        "intro_text": "",
+        "use_page_body": false,
+        "text_align": "left",
+        "form_eyebrow": "Nominate a Muse",
+        "share_label": "Share",
+        "show_photo_link": true,
+        "success_heading": "Thank you for your submission!",
+        "success_text": "Our curators will notify you when we shout out your Muse! Please understand that any submissions deemed inappropriate or in violation of our company standards, the standards of social media platforms, or any other known legal regulations will not be published.",
+        "reset_label": "Share another",
+        "ph_name": "Your name",
+        "ph_handle": "Social handle (@…)",
+        "ph_platform": "Platform…",
+        "ph_nominee": "Your Muse's name (optional)",
+        "ph_email": "Your email",
+        "ph_photo": "Link to a photo or post (optional)",
+        "ph_message": "Why are they your Muse? Tell their story…",
+        "aside_text": "",
+        "follow_heading": "Follow Us On These Platforms",
+        "show_newsletter": true,
+        "newsletter_heading": "",
+        "newsletter_ph": "Your email",
+        "newsletter_button": "Subscribe",
+        "newsletter_consent": "",
+        "newsletter_success": "Thank you for subscribing!",
+        "card_border": true,
+        "card_bg": "",
+        "preheader_font": "site",
+        "accent_color": "",
+        "heading_font": "site",
+        "heading_size": 44,
+        "heading_color": "",
+        "heading_weight": "inherit",
+        "body_font": "site",
+        "body_size": 0,
+        "body_color": "",
+        "space_preheader": 10,
+        "space_heading": 12,
+        "ls_preheader": 1,
+        "ls_heading": 1,
+        "ls_body": 1,
+        "bg_type": "image",
+        "bg_color": "#fbf6ee",
+        "bg_gradient_start": "#fbf6ee",
+        "bg_gradient_end": "#e7dac4",
+        "bg_gradient_angle": 180,
+        "bg_image": "shopify://shop_images/00_Cloud_BG_C.png",
+        "extend_behind_header": true,
+        "content_valign": "top",
+        "min_height": 0,
+        "padding_top": 80,
+        "padding_bottom": 80
+      }
+    }
+  },
+  "order": [
+    "main"
+  ]
+}

@@ -30,12 +30,12 @@
     {%- if has_image and img_pos == 'above' -%}
       {{ hero_preheader }}
       <div class="hero__media hero__media--stack" style="text-align:{{ img_align }};margin-bottom:{{ s.space_image | default: 32 }}px;">
-        <img src="{{ s.image | image_url: width: 1600 }}" alt="{{ s.image.alt | escape }}" width="{{ s.image.width }}" height="{{ s.image.height }}" style="display:inline-block;width:{{ s.image_width | default: 100 }}%;max-width:100%;height:{% if s.image_height > 0 %}{{ s.image_height }}px{% else %}auto{% endif %};object-fit:cover;object-position:{{ s.image_focal | default: 'center' }};border-radius:{{ s.image_radius | default: 0 }}px;">
+        <img src="{{ s.image | image_url: width: 1600 }}" alt="{{ s.image.alt | escape }}" width="{{ s.image.width }}" height="{{ s.image.height }}" style="display:inline-block;width:{{ s.image_width | default: 100 }}%;max-width:100%;height:{% if s.image_height > 0 %}{{ s.image_height }}px{% else %}auto{% endif %};object-fit:cover;object-position:{{ s.image_focal | default: 'center' }};border-radius:{{ s.image_radius | default: 10 }}px;">
       </div>
     {%- endif -%}
     {%- if is_split -%}
       <div class="hero__media">
-        <img src="{{ s.image | image_url: width: 1400 }}" alt="{{ s.image.alt | escape }}" width="{{ s.image.width }}" height="{{ s.image.height }}" style="width:100%;height:{% if s.image_height > 0 %}{{ s.image_height }}px{% else %}auto{% endif %};object-fit:cover;object-position:{{ s.image_focal | default: 'center' }};border-radius:{{ s.image_radius | default: 0 }}px;">
+        <img src="{{ s.image | image_url: width: 1400 }}" alt="{{ s.image.alt | escape }}" width="{{ s.image.width }}" height="{{ s.image.height }}" style="width:100%;height:{% if s.image_height > 0 %}{{ s.image_height }}px{% else %}auto{% endif %};object-fit:cover;object-position:{{ s.image_focal | default: 'center' }};border-radius:{{ s.image_radius | default: 10 }}px;">
       </div>
     {%- endif -%}
     <div class="hero__text container">
@@ -57,7 +57,7 @@
     </div>
     {%- if has_image and img_pos == 'below' -%}
       <div class="hero__media hero__media--stack" style="text-align:{{ img_align }};margin-top:{{ s.space_image | default: 32 }}px;">
-        <img src="{{ s.image | image_url: width: 1600 }}" alt="{{ s.image.alt | escape }}" width="{{ s.image.width }}" height="{{ s.image.height }}" style="display:inline-block;width:{{ s.image_width | default: 100 }}%;max-width:100%;height:{% if s.image_height > 0 %}{{ s.image_height }}px{% else %}auto{% endif %};object-fit:cover;object-position:{{ s.image_focal | default: 'center' }};border-radius:{{ s.image_radius | default: 0 }}px;">
+        <img src="{{ s.image | image_url: width: 1600 }}" alt="{{ s.image.alt | escape }}" width="{{ s.image.width }}" height="{{ s.image.height }}" style="display:inline-block;width:{{ s.image_width | default: 100 }}%;max-width:100%;height:{% if s.image_height > 0 %}{{ s.image_height }}px{% else %}auto{% endif %};object-fit:cover;object-position:{{ s.image_focal | default: 'center' }};border-radius:{{ s.image_radius | default: 10 }}px;">
       </div>
     {%- endif -%}
   </div>
@@ -99,7 +99,7 @@
     { "type": "select", "id": "image_focal", "label": "Focal point (crop)", "options": [
         { "value": "center", "label": "Center" }, { "value": "top", "label": "Top" }, { "value": "bottom", "label": "Bottom" }, { "value": "left", "label": "Left" }, { "value": "right", "label": "Right" } ], "default": "center" },
     { "type": "range", "id": "image_height", "label": "Image height (0 = auto)", "min": 0, "max": 900, "step": 20, "unit": "px", "default": 0 },
-    { "type": "range", "id": "image_radius", "label": "Image corner radius", "min": 0, "max": 40, "step": 2, "unit": "px", "default": 0 },
+    { "type": "range", "id": "image_radius", "label": "Image corner radius", "info": "Applies to above/below/side images (within the section). Background images always stay square.", "min": 0, "max": 40, "step": 2, "unit": "px", "default": 10 },
     { "type": "range", "id": "image_opacity", "label": "Background image opacity", "min": 10, "max": 100, "step": 5, "unit": "%", "default": 100 },
     { "type": "header", "content": "Typography" },
     { "type": "select", "id": "preheader_font", "label": "Preheader font", "options": [

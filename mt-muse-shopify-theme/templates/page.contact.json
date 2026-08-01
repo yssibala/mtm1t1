@@ -1,1 +1,66 @@
-{ "sections": { "main": { "type": "page-contact" } }, "order": ["main"] }
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "page-contact",
+      "settings": {
+        "coming_soon": false,
+        "kicker": "",
+        "heading": "Contact Us",
+        "intro_text": "",
+        "text_align": "center",
+        "show_details": false,
+        "detail_heading": "",
+        "email": "",
+        "phone": "",
+        "address": "",
+        "hours": "",
+        "show_card": false,
+        "card_border": false,
+        "card_bg": "#fbf6ee",
+        "btn_label": "Send message",
+        "btn_style": "primary",
+        "btn_align": "center",
+        "btn_full": false,
+        "btn_size": 10,
+        "ph_message": "How can we help?",
+        "preheader_font": "site",
+        "accent_color": "",
+        "heading_font": "ogg",
+        "heading_size": 30,
+        "heading_color": "",
+        "heading_weight": "thin",
+        "body_font": "site",
+        "body_size": 0,
+        "body_color": "",
+        "space_preheader": 12,
+        "space_heading": 30,
+        "ls_preheader": 3,
+        "ls_heading": 5,
+        "ls_body": 5,
+        "bg_type": "image",
+        "bg_color": "#fbf6ee",
+        "bg_gradient_start": "#fbf6ee",
+        "bg_gradient_end": "#e7dac4",
+        "bg_gradient_angle": 180,
+        "bg_image": "shopify://shop_images/00_Cloud_BG_C.png",
+        "extend_behind_header": true,
+        "content_valign": "center",
+        "min_height": 0,
+        "padding_top": 160,
+        "padding_bottom": 80
+      }
+    }
+  },
+  "order": [
+    "main"
+  ]
+}
