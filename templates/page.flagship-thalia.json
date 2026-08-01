@@ -33,7 +33,7 @@
         "image_width": 100,
         "image_focal": "center",
         "image_height": 0,
-        "image_radius": 0,
+        "image_radius": 10,
         "image_opacity": 100,
         "preheader_font": "site",
         "heading_font": "ogg",
@@ -142,7 +142,7 @@
           "settings": {
             "media_type": "text",
             "image_ratio": "1/1",
-            "image_radius": 8,
+            "image_radius": 10,
             "number": "",
             "number_size": 40,
             "eyebrow": "Passion and History",
@@ -178,7 +178,7 @@
           "settings": {
             "media_type": "text",
             "image_ratio": "1/1",
-            "image_radius": 8,
+            "image_radius": 10,
             "number": "",
             "number_size": 40,
             "eyebrow": "Product Insights",
@@ -343,7 +343,7 @@
             "link": "",
             "align": "center",
             "width": 10,
-            "radius": 4,
+            "radius": 10,
             "margin_top": 0,
             "margin_bottom": 24
           }

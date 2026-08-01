@@ -1436,8 +1436,12 @@ a.page-gallery__share-inner:hover { border-color: var(--muse-gold-1); background
    MOBILE BASELINE RULES (<= 768px)
    ===================================================================== */
 @media (max-width: 768px) {
-  /* Hero: uniform mobile padding + centered image doubles from 25% -> 50% */
-  .section-wrap.hero { padding-top: 160px !important; padding-bottom: 40px !important; }
+  /* Section padding: non-hero sections tighten to 20/20. Background-image
+     (cloud) heroes get 160/40 with the nav overlapping the hero. Other heroes
+     keep their own padding (they're "outside" the rule). */
+  .section-wrap:not(.hero), .nutrition-facts { padding-top: 20px !important; padding-bottom: 20px !important; }
+  .section-wrap.hero.hero--img-background { padding-top: 160px !important; padding-bottom: 40px !important; }
+  .hero--img-background:not(.hero--bleed) { margin-top: calc(-1 * var(--nav-h)); }
   .hero__media--stack img { width: var(--hero-img-w-mob, 50%) !important; }
 
   /* Text baseline — applies ONLY to elements still at their default size.
@@ -1448,4 +1452,15 @@ a.page-gallery__share-inner:hover { border-color: var(--muse-gold-1); background
   /* Preheaders/kickers are class-sized (no inline size unless customized), so a
      plain rule resizes defaults while any custom inline size still wins. */
   .kicker, .nf-preheader, .nf-sec-kicker, .cloud-kicker, .share-eyebrow { font-size: 10px; }
+  /* Cloud (background-image) hero preheader stays prominent */
+  .hero--img-background .kicker { font-size: 14px !important; }
+
+  /* Pill buttons ~40% smaller */
+  .muse-pill, .muse-cta, .muse-ghost { padding: 8px 20px !important; font-size: 7px !important; }
+  .pill { font-size: 7px !important; }
+
+  /* Product card text (showcase + grid) */
+  .ps-card__title, .pg-card__title { font-size: 14px !important; letter-spacing: .08em !important; }
+  .ps-card__tagline { font-size: 12px !important; letter-spacing: .08em !important; }
+  .ps-card__desc { font-size: 10px !important; letter-spacing: .04em !important; }
 }
