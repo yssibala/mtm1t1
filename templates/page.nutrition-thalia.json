@@ -124,7 +124,7 @@
       "settings": {
         "show_coming_soon": false,
         "badge_text": "Coming soon",
-        "accent": "#EFA527",
+        "accent": "#efa527",
         "back_link": "shopify://products/muse-4-pack",
         "back_label": "Back to MUSE: Thalia",
         "back_underline": true,
@@ -156,7 +156,7 @@
         "intro_body_font": "site",
         "intro_body_color": "",
         "intro_body_size": 0,
-        "ls_intro_body": 1,
+        "ls_intro_body": 3,
         "nf_kicker": "The Fine Print",
         "nf_heading": "Nutrition Facts",
         "content_kicker_color": "",
