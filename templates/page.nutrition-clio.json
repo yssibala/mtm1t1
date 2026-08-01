@@ -211,13 +211,18 @@
         "tagline": "Made with Sincerity,\nMixed with Pride.",
         "tagline_font": "site",
         "tagline_color": "",
-        "tagline_size": 14,
+        "tagline_size": 13,
         "ls_tagline": 5,
         "intro_body": "",
         "intro_body_font": "site",
         "intro_body_color": "",
         "intro_body_size": 0,
         "ls_intro_body": 3,
+        "space_preheader": 14,
+        "space_title": 10,
+        "space_subtitle": 12,
+        "space_tagline": 12,
+        "space_intro_body": 0,
         "nf_kicker": "The Fine Print",
         "nf_heading": "Nutrition Facts",
         "content_kicker_color": "",
@@ -241,7 +246,7 @@
         "ls_warning": 5,
         "bg_color": "#fbf6ee",
         "padding_top": 0,
-        "padding_bottom": 40
+        "padding_bottom": 20
       }
     }
   },
