@@ -16,7 +16,7 @@
   {%- if slide_count > 0 -%}
     <div class="fx-imgcar" data-imgcar="{{ uid }}" data-autoplay="{{ st.ic_autoplay }}" data-interval="{{ st.ic_interval | default: 5 }}" style="display:inline-block;width:{{ st.ic_width | default: 100 }}%;max-width:100%;--imgcar-ratio:{{ st.ic_aspect | default: '4/3' }};">
       <div class="fx-imgcar__stage">
-        <div class="fx-imgcar__viewport" style="border-radius:{{ st.ic_radius | default: 8 }}px;">
+        <div class="fx-imgcar__viewport" style="border-radius:{{ st.ic_radius | default: 10 }}px;">
           <div class="fx-imgcar__track">
             {%- for i in (1..8) -%}
               {%- assign ik = 'ic_image_' | append: i -%}

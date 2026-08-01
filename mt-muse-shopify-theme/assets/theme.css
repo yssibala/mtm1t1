@@ -1437,3 +1437,12 @@ a.page-gallery__share-inner:hover { border-color: var(--muse-gold-1); background
 .footer-top--solo .footer-brand img,
 .footer-top--solo .footer-tagline { margin-left: auto; margin-right: auto; }
 .footer-top--solo .footer-social { justify-content: center; }
+
+/* =====================================================================
+   MOBILE BASELINE RULES (<= 768px)
+   ===================================================================== */
+@media (max-width: 768px) {
+  /* Hero: uniform mobile padding + centered image doubles from 25% -> 50% */
+  .section-wrap.hero { padding-top: 160px !important; padding-bottom: 40px !important; }
+  .hero__media--stack img { width: var(--hero-img-w-mob, 50%) !important; }
+}
