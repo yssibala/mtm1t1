@@ -124,7 +124,7 @@
       "settings": {
         "show_coming_soon": false,
         "badge_text": "Coming soon",
-        "accent": "#5B3CB0",
+        "accent": "#5b3cb0",
         "back_link": "shopify://products/muse-ourania-4-pack",
         "back_label": "Back to MUSE: Ourania",
         "back_underline": true,
@@ -141,10 +141,10 @@
         "heading_weight": "thin",
         "heading_color": "",
         "title_size": 40,
-        "ls_heading": 5,
+        "ls_heading": 10,
         "subtitle": "ELEGANCE AT EVENTIDE",
         "subtitle_font": "text",
-        "subtitle_color": "#5B3CB0",
+        "subtitle_color": "#5b3cb0",
         "subtitle_size": 10,
         "ls_subtitle": 4,
         "tagline": "Made with Purpose\nMixed with Intention.",
@@ -178,9 +178,9 @@
         "warning_color": "",
         "warning_size": 14,
         "ls_warning": 5,
-        "bg_color": "#fbf6ee",
-        "padding_top": 72,
-        "padding_bottom": 72
+        "bg_color": "#FBF6EE",
+        "padding_top": 0,
+        "padding_bottom": 20
       }
     }
   },
