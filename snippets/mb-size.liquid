@@ -1,0 +1,7 @@
+{%- comment -%}
+  Mobile baseline marker. Emits `cls` only when a size setting is still at its
+  DEFAULT (i.e. the merchant hasn't customized it), so the mobile media query in
+  theme.css resizes only untouched elements and leaves custom sizes alone.
+  Params: val (current setting value), def (the schema default), cls (class to emit).
+{%- endcomment -%}
+{%- if val == def -%}{{ cls }}{%- endif -%}

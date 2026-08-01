@@ -1439,4 +1439,13 @@ a.page-gallery__share-inner:hover { border-color: var(--muse-gold-1); background
   /* Hero: uniform mobile padding + centered image doubles from 25% -> 50% */
   .section-wrap.hero { padding-top: 160px !important; padding-bottom: 40px !important; }
   .hero__media--stack img { width: var(--hero-img-w-mob, 50%) !important; }
+
+  /* Text baseline — applies ONLY to elements still at their default size.
+     .mb-h / .mb-body are emitted by snippets/mb-size.liquid when a section's
+     size setting equals its default; customized sizes keep their inline value. */
+  .mb-h { font-size: 20px !important; }
+  .mb-body { font-size: 12px !important; }
+  /* Preheaders/kickers are class-sized (no inline size unless customized), so a
+     plain rule resizes defaults while any custom inline size still wins. */
+  .kicker, .nf-preheader, .nf-sec-kicker, .cloud-kicker, .share-eyebrow { font-size: 10px; }
 }

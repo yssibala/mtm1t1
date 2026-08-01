@@ -10,10 +10,10 @@
           <div class="kicker" style="font-family:{%- render 'font-stack', key: s.preheader_font -%};color:{{ s.accent_color | default: '#C9851A' }};margin-bottom:{{ s.space_preheader | default: 10 }}px;{%- render 'letter-spacing', mult: s.ls_preheader, base: '0.18em' -%}">{{ s.preheader }}</div>
         {%- endif -%}
         {%- if s.heading != blank -%}
-          <h2 style="font-family:{%- render 'font-stack', key: s.heading_font -%};{%- render 'font-variant', key: s.heading_weight, font: s.heading_font -%}{%- render 'letter-spacing', mult: s.ls_heading, base: '0.05em' -%}{% if s.heading_color != blank %}color:{{ s.heading_color }};{% endif %}font-size:{{ s.heading_size }}px;margin:0;">{{ s.heading | newline_to_br }}</h2>
+          <h2 class="{%- render 'mb-size', val: s.heading_size, def: 40, cls: 'mb-h' -%}" style="font-family:{%- render 'font-stack', key: s.heading_font -%};{%- render 'font-variant', key: s.heading_weight, font: s.heading_font -%}{%- render 'letter-spacing', mult: s.ls_heading, base: '0.05em' -%}{% if s.heading_color != blank %}color:{{ s.heading_color }};{% endif %}font-size:{{ s.heading_size }}px;margin:0;">{{ s.heading | newline_to_br }}</h2>
         {%- endif -%}
         {%- if s.subheading != blank -%}
-          <div class="rte gallery-row__sub" style="font-family:{%- render 'font-stack', key: s.body_font -%};{%- render 'letter-spacing', mult: s.ls_body, base: '0.03em' -%}font-size:{{ s.body_size | default: 16 }}px;color:{% if s.body_color != blank %}{{ s.body_color }}{% else %}var(--text-mid){% endif %};margin:10px 0 0;">{{ s.subheading | newline_to_br }}</div>
+          <div class="rte gallery-row__sub{%- render 'mb-size', val: s.body_size, def: 16, cls: ' mb-body' -%}" style="font-family:{%- render 'font-stack', key: s.body_font -%};{%- render 'letter-spacing', mult: s.ls_body, base: '0.03em' -%}font-size:{{ s.body_size | default: 16 }}px;color:{% if s.body_color != blank %}{{ s.body_color }}{% else %}var(--text-mid){% endif %};margin:10px 0 0;">{{ s.subheading | newline_to_br }}</div>
         {%- endif -%}
       </div>
       {%- if s.button_label != blank -%}
