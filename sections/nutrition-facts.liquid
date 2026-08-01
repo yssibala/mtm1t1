@@ -1,26 +1,27 @@
 {%- comment -%}
   Nutrition & Ingredients section (product-specific).
-  Two independently-styled text zones:
-    INTRO  = back link + preheader + title + subtitle + tagline + intro body
-             (togglable via show_intro — hide it to place a Hero section above).
-    CONTENT = Nutrition Facts heading + FDA label blocks + Ingredients panel.
+  Schema is grouped BY ELEMENT (each element's copy + its own font/color/size/
+  letter-spacing together). Two zones:
+    INTRO   = back link + preheader + title + subtitle + tagline + intro body
+              (togglable via show_intro — hide it to place a Hero above).
+    CONTENT = Nutrition Facts heading + FDA label blocks + Ingredients + Warning.
   Fonts/colors/sizes/letter-spacing are applied INLINE on each element (the
   theme's proven pattern) — do NOT move font-stack into the {% style %} block,
   Ogg silently falls back to the global heading font there.
+  Letter-spacing bases MUST be non-zero, or calc(base*mult) is always 0.
 {%- endcomment -%}
 {%- liquid
   assign s = section.settings
   assign accent = s.accent | default: '#C9851A'
-  # intro colors
   assign c_pre  = s.preheader_color | default: accent
   assign c_head = s.heading_color | default: '#0A0B0C'
   assign c_sub  = s.subtitle_color | default: '#9A8F7C'
   assign c_tag  = s.tagline_color | default: '#6B6156'
   assign c_intro_body = s.intro_body_color | default: '#6B6156'
-  # content colors
   assign c_nfk   = s.content_kicker_color | default: accent
   assign c_chead = s.content_heading_color | default: '#0A0B0C'
   assign c_cbody = s.content_body_color | default: '#6B6156'
+  assign c_warn  = s.warning_color | default: '#8A8378'
   assign ul_color = s.back_underline_color | default: accent
   assign labels = section.blocks | where: 'type', 'label'
   assign stats = section.blocks | where: 'type', 'stat'
@@ -43,16 +44,13 @@
   #shopify-section-{{ section.id }} .nf-subtitle { font-size: 13px; letter-spacing: .22em; text-transform: uppercase; margin: 0 0 12px; }
   #shopify-section-{{ section.id }} .nf-tagline { font-size: 16px; font-style: italic; margin: 0 0 12px; }
   #shopify-section-{{ section.id }} .nf-intro-body { font-size: 15px; line-height: 1.7; margin: 12px auto 0; max-width: 640px; }
-  /* meta strip */
   #shopify-section-{{ section.id }} .nf-meta { display: grid; grid-template-columns: repeat({{ stats.size | default: 4 }}, 1fr); gap: 16px; max-width: 760px; margin: 0 auto clamp(40px,6vw,64px); border-top: 1px solid var(--sand-border,#E7DAC4); border-bottom: 1px solid var(--sand-border,#E7DAC4); padding: 26px 0; }
   @media (max-width: 640px){ #shopify-section-{{ section.id }} .nf-meta { grid-template-columns: repeat(2,1fr); gap: 24px 16px; } }
   #shopify-section-{{ section.id }} .nf-stat { text-align: center; }
   #shopify-section-{{ section.id }} .nf-stat-val { font-size: clamp(26px,3.4vw,34px); line-height: 1; }
   #shopify-section-{{ section.id }} .nf-stat-lbl { font-size: 10px; letter-spacing: .16em; text-transform: uppercase; color: var(--text-meta,#9A8F7C); margin-top: 8px; }
-  /* section heading */
   #shopify-section-{{ section.id }} .nf-sec-kicker { text-align: center; font-size: 11px; letter-spacing: .26em; text-transform: uppercase; font-weight: 600; margin-bottom: 8px; }
   #shopify-section-{{ section.id }} .nf-sec-heading { font-size: clamp(28px,3.6vw,42px); text-align: center; margin: 0 0 44px; }
-  /* FDA label boxes */
   #shopify-section-{{ section.id }} .nf-labels { display: flex; flex-wrap: wrap; justify-content: center; gap: clamp(28px,5vw,64px); }
   #shopify-section-{{ section.id }} .nf-col { flex: 0 1 340px; }
   #shopify-section-{{ section.id }} .nf-col-title { font-size: 12px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; text-align: center; margin: 0 0 14px; color: var(--text-muted,#8A8378); }
@@ -76,12 +74,11 @@
   #shopify-section-{{ section.id }} .nf-vits { display: grid; grid-template-columns: 1fr 1fr; gap: 0; }
   #shopify-section-{{ section.id }} .nf-vit { font-size: 11px; padding: 1px 0; border-bottom: 1px solid #ccc; }
   #shopify-section-{{ section.id }} .nf-vit:nth-last-child(-n+2) { border-bottom: none; }
-  /* ingredients */
   #shopify-section-{{ section.id }} .nf-ingr { max-width: 720px; margin: clamp(44px,6vw,72px) auto 0; text-align: center; }
   #shopify-section-{{ section.id }} .nf-ingr-h { font-size: clamp(24px,3vw,32px); margin: 0 0 18px; }
   #shopify-section-{{ section.id }} .nf-ingr-p { font-size: 15px; line-height: 1.7; margin: 0 0 16px; }
   #shopify-section-{{ section.id }} .nf-ingr-p strong { color: var(--near-black,#0A0B0C); font-weight: 600; }
-  #shopify-section-{{ section.id }} .nf-warn { font-size: 12px; line-height: 1.6; color: var(--text-muted,#8A8378); margin: 16px 0 0; }
+  #shopify-section-{{ section.id }} .nf-warn { font-size: 12px; line-height: 1.6; margin: 16px 0 0; }
 {%- endstyle -%}
 
 <div class="nutrition-facts{% if s.show_coming_soon %} is-coming-soon{% endif %}"{% if s.show_coming_soon %} data-cs-label="{{ s.badge_text | default: 'Coming soon' }}"{% endif %}>
@@ -96,19 +93,19 @@
     {%- if s.show_intro -%}
       <div class="nf-head">
         {%- if s.preheader != blank -%}
-          <div class="nf-preheader" style="font-family:{%- render 'font-stack', key: s.preheader_font -%};color:{{ c_pre }};{%- render 'letter-spacing', mult: s.ls_preheader, base: '.26em' -%}">{{ s.preheader }}</div>
+          <div class="nf-preheader" style="font-family:{%- render 'font-stack', key: s.preheader_font -%};color:{{ c_pre }};{%- render 'letter-spacing', mult: s.ls_preheader, base: '.26em' -%}{% if s.preheader_size > 0 %}font-size:{{ s.preheader_size }}px;{% endif %}">{{ s.preheader }}</div>
         {%- endif -%}
         {%- if s.title != blank -%}
           <h1 class="nf-title" style="font-family:{%- render 'font-stack', key: s.heading_font -%};{%- render 'font-variant', key: s.heading_weight, font: s.heading_font -%}color:{{ c_head }};{%- render 'letter-spacing', mult: s.ls_heading, base: '.02em' -%}{% if s.title_size > 0 %}font-size:{{ s.title_size }}px;{% endif %}">{{ s.title | newline_to_br }}</h1>
         {%- endif -%}
         {%- if s.subtitle != blank -%}
-          <p class="nf-subtitle" style="font-family:{%- render 'font-stack', key: s.preheader_font -%};color:{{ c_sub }};{%- render 'letter-spacing', mult: s.ls_preheader, base: '.22em' -%}{% if s.subtitle_size > 0 %}font-size:{{ s.subtitle_size }}px;{% endif %}">{{ s.subtitle | newline_to_br }}</p>
+          <p class="nf-subtitle" style="font-family:{%- render 'font-stack', key: s.subtitle_font -%};color:{{ c_sub }};{%- render 'letter-spacing', mult: s.ls_subtitle, base: '.22em' -%}{% if s.subtitle_size > 0 %}font-size:{{ s.subtitle_size }}px;{% endif %}">{{ s.subtitle | newline_to_br }}</p>
         {%- endif -%}
         {%- if s.tagline != blank -%}
-          <p class="nf-tagline" style="font-family:{%- render 'font-stack', key: s.intro_body_font -%};color:{{ c_tag }};{%- render 'letter-spacing', mult: s.ls_intro_body, base: '0em' -%}{% if s.tagline_size > 0 %}font-size:{{ s.tagline_size }}px;{% endif %}">{{ s.tagline | newline_to_br }}</p>
+          <p class="nf-tagline" style="font-family:{%- render 'font-stack', key: s.tagline_font -%};color:{{ c_tag }};{%- render 'letter-spacing', mult: s.ls_tagline, base: '.04em' -%}{% if s.tagline_size > 0 %}font-size:{{ s.tagline_size }}px;{% endif %}">{{ s.tagline | newline_to_br }}</p>
         {%- endif -%}
         {%- if s.intro_body != blank -%}
-          <div class="nf-intro-body rte" style="font-family:{%- render 'font-stack', key: s.intro_body_font -%};color:{{ c_intro_body }};{%- render 'letter-spacing', mult: s.ls_intro_body, base: '0em' -%}{% if s.intro_body_size > 0 %}font-size:{{ s.intro_body_size }}px;{% endif %}">{{ s.intro_body }}</div>
+          <div class="nf-intro-body rte" style="font-family:{%- render 'font-stack', key: s.intro_body_font -%};color:{{ c_intro_body }};{%- render 'letter-spacing', mult: s.ls_intro_body, base: '.02em' -%}{% if s.intro_body_size > 0 %}font-size:{{ s.intro_body_size }}px;{% endif %}">{{ s.intro_body }}</div>
         {%- endif -%}
       </div>
     {%- endif -%}
@@ -178,14 +175,18 @@
 
     {%- if s.ingredients != blank or s.warning != blank -%}
       <div class="nf-ingr">
-        <h3 class="nf-ingr-h" style="font-family:{%- render 'font-stack', key: s.content_heading_font -%};{%- render 'font-variant', key: s.content_heading_weight, font: s.content_heading_font -%}color:{{ c_chead }};">{{ s.ingr_heading | default: 'Ingredients' }}</h3>
+        {%- if s.ingr_heading != blank -%}
+          <h3 class="nf-ingr-h" style="font-family:{%- render 'font-stack', key: s.content_heading_font -%};{%- render 'font-variant', key: s.content_heading_weight, font: s.content_heading_font -%}color:{{ c_chead }};{%- render 'letter-spacing', mult: s.content_ls_heading, base: '.02em' -%}{% if s.content_heading_size > 0 %}font-size:{{ s.content_heading_size }}px;{% endif %}">{{ s.ingr_heading }}</h3>
+        {%- endif -%}
         {%- if s.ingredients != blank -%}
-          <p class="nf-ingr-p" style="font-family:{%- render 'font-stack', key: s.content_body_font -%};color:{{ c_cbody }};{%- render 'letter-spacing', mult: s.content_ls_body, base: '0em' -%}{% if s.content_body_size > 0 %}font-size:{{ s.content_body_size }}px;{% endif %}">{{ s.ingredients | newline_to_br }}</p>
+          <p class="nf-ingr-p" style="font-family:{%- render 'font-stack', key: s.content_body_font -%};color:{{ c_cbody }};{%- render 'letter-spacing', mult: s.content_ls_body, base: '.02em' -%}{% if s.content_body_size > 0 %}font-size:{{ s.content_body_size }}px;{% endif %}">{{ s.ingredients | newline_to_br }}</p>
         {%- endif -%}
         {%- if s.allergens != blank -%}
-          <p class="nf-ingr-p" style="font-family:{%- render 'font-stack', key: s.content_body_font -%};color:{{ c_cbody }};{% if s.content_body_size > 0 %}font-size:{{ s.content_body_size }}px;{% endif %}"><strong>Allergens:</strong> {{ s.allergens }}</p>
+          <p class="nf-ingr-p" style="font-family:{%- render 'font-stack', key: s.content_body_font -%};color:{{ c_cbody }};{%- render 'letter-spacing', mult: s.content_ls_body, base: '.02em' -%}{% if s.content_body_size > 0 %}font-size:{{ s.content_body_size }}px;{% endif %}"><strong>Allergens:</strong> {{ s.allergens }}</p>
         {%- endif -%}
-        {%- if s.warning != blank -%}<p class="nf-warn">{% if s.warning_label != blank %}<strong>{{ s.warning_label }}</strong> {% endif %}{{ s.warning | newline_to_br }}</p>{%- endif -%}
+        {%- if s.warning != blank -%}
+          <p class="nf-warn" style="font-family:{%- render 'font-stack', key: s.warning_font -%};color:{{ c_warn }};{%- render 'letter-spacing', mult: s.ls_warning, base: '.01em' -%}{% if s.warning_size > 0 %}font-size:{{ s.warning_size }}px;{% endif %}">{% if s.warning_label != blank %}<strong>{{ s.warning_label }}</strong> {% endif %}{{ s.warning | newline_to_br }}</p>
+        {%- endif -%}
       </div>
     {%- endif -%}
   </div>
@@ -200,30 +201,35 @@
     { "type": "checkbox", "id": "show_coming_soon", "label": "Mark as \"coming soon\"", "default": false },
     { "type": "text", "id": "badge_text", "label": "Coming-soon badge text", "default": "Coming soon" },
     { "type": "color", "id": "accent", "label": "Flavor accent color", "default": "#C9851A" },
+
     { "type": "header", "content": "Back link" },
     { "type": "url", "id": "back_link", "label": "Back link" },
     { "type": "text", "id": "back_label", "label": "Back label", "default": "Back to product" },
     { "type": "checkbox", "id": "back_underline", "label": "Underline back label", "default": true },
     { "type": "color", "id": "back_underline_color", "label": "Underline color", "info": "Blank = accent." },
     { "type": "range", "id": "back_underline_weight", "label": "Underline weight", "min": 1, "max": 6, "step": 1, "unit": "px", "default": 1 },
+
     { "type": "header", "content": "Top intro", "info": "Turn off to hide the whole intro block and place a Hero section above instead." },
     { "type": "checkbox", "id": "show_intro", "label": "Show top intro", "default": true },
-    { "type": "text", "id": "preheader", "label": "Preheader", "default": "Nutrition & Ingredients" },
-    { "type": "textarea", "id": "title", "label": "Title", "info": "Press Enter for a line break.", "default": "CLIO" },
-    { "type": "textarea", "id": "subtitle", "label": "Subtitle", "info": "Press Enter for a line break.", "default": "SPONTANEITY AT SUNSET" },
-    { "type": "textarea", "id": "tagline", "label": "Tagline", "info": "Press Enter for a line break.", "default": "Made with sincerity and mixed with pride." },
-    { "type": "richtext", "id": "intro_body", "label": "Intro body text" },
-    { "type": "header", "content": "Intro — fonts" },
-    { "type": "select", "id": "preheader_font", "label": "Preheader / subtitle font", "options": [
+
+    { "type": "header", "content": "Intro · Preheader" },
+    { "type": "text", "id": "preheader", "label": "Text", "default": "Nutrition & Ingredients" },
+    { "type": "select", "id": "preheader_font", "label": "Font", "options": [
         { "value": "site", "label": "Neue Haas Display Light" },
         { "value": "display", "label": "Neue Haas Grotesk Display" },
         { "value": "text", "label": "Neue Haas Grotesk Text" },
         { "value": "ogg", "label": "Ogg Text (serif)" } ], "default": "text" },
-    { "type": "select", "id": "heading_font", "label": "Title font", "options": [
+    { "type": "color", "id": "preheader_color", "label": "Color", "info": "Blank = accent." },
+    { "type": "range", "id": "preheader_size", "label": "Size", "info": "0 = auto.", "min": 0, "max": 32, "step": 1, "unit": "px", "default": 0 },
+    { "type": "range", "id": "ls_preheader", "label": "Letter spacing", "info": "1 = default, up to 10x.", "min": 1, "max": 10, "step": 1, "unit": "x", "default": 1 },
+
+    { "type": "header", "content": "Intro · Title" },
+    { "type": "textarea", "id": "title", "label": "Text", "info": "Press Enter for a line break.", "default": "CLIO" },
+    { "type": "select", "id": "heading_font", "label": "Font", "options": [
         { "value": "site", "label": "Neue Haas Display Light" },
         { "value": "display", "label": "Neue Haas Grotesk Display" },
         { "value": "ogg", "label": "Ogg Text (serif)" } ], "default": "ogg" },
-    { "type": "select", "id": "heading_weight", "label": "Title weight & style", "options": [
+    { "type": "select", "id": "heading_weight", "label": "Weight & style", "options": [
         { "value": "inherit", "label": "Theme default" },
         { "value": "thin", "label": "Thin (200)" },
         { "value": "book", "label": "Book / Light (300)" },
@@ -234,36 +240,46 @@
         { "value": "medium-italic", "label": "Medium Italic (500)" },
         { "value": "bold", "label": "Bold (700)" },
         { "value": "black", "label": "Black (800)" } ], "default": "medium" },
-    { "type": "select", "id": "intro_body_font", "label": "Tagline / intro body font", "options": [
+    { "type": "color", "id": "heading_color", "label": "Color" },
+    { "type": "range", "id": "title_size", "label": "Size", "info": "0 = auto.", "min": 0, "max": 96, "step": 2, "unit": "px", "default": 0 },
+    { "type": "range", "id": "ls_heading", "label": "Letter spacing", "min": 1, "max": 10, "step": 1, "unit": "x", "default": 1 },
+
+    { "type": "header", "content": "Intro · Subtitle" },
+    { "type": "textarea", "id": "subtitle", "label": "Text", "info": "Press Enter for a line break.", "default": "SPONTANEITY AT SUNSET" },
+    { "type": "select", "id": "subtitle_font", "label": "Font", "options": [
+        { "value": "site", "label": "Neue Haas Display Light" },
+        { "value": "display", "label": "Neue Haas Grotesk Display" },
+        { "value": "text", "label": "Neue Haas Grotesk Text" },
+        { "value": "ogg", "label": "Ogg Text (serif)" } ], "default": "text" },
+    { "type": "color", "id": "subtitle_color", "label": "Color" },
+    { "type": "range", "id": "subtitle_size", "label": "Size", "info": "0 = auto.", "min": 0, "max": 40, "step": 1, "unit": "px", "default": 0 },
+    { "type": "range", "id": "ls_subtitle", "label": "Letter spacing", "min": 1, "max": 10, "step": 1, "unit": "x", "default": 1 },
+
+    { "type": "header", "content": "Intro · Tagline" },
+    { "type": "textarea", "id": "tagline", "label": "Text", "info": "Press Enter for a line break.", "default": "Made with sincerity and mixed with pride." },
+    { "type": "select", "id": "tagline_font", "label": "Font", "options": [
         { "value": "site", "label": "Neue Haas Display Light" },
         { "value": "text", "label": "Neue Haas Grotesk Text" },
         { "value": "ogg", "label": "Ogg Text (serif)" } ], "default": "site" },
-    { "type": "header", "content": "Intro — colors", "info": "Blank = sensible default." },
-    { "type": "color", "id": "preheader_color", "label": "Preheader color", "info": "Blank = accent." },
-    { "type": "color", "id": "heading_color", "label": "Title color" },
-    { "type": "color", "id": "subtitle_color", "label": "Subtitle color" },
-    { "type": "color", "id": "tagline_color", "label": "Tagline color" },
-    { "type": "color", "id": "intro_body_color", "label": "Intro body color" },
-    { "type": "header", "content": "Intro — sizes", "info": "0 = responsive (auto)." },
-    { "type": "range", "id": "title_size", "label": "Title size", "min": 0, "max": 96, "step": 2, "unit": "px", "default": 0 },
-    { "type": "range", "id": "subtitle_size", "label": "Subtitle size", "min": 0, "max": 40, "step": 1, "unit": "px", "default": 0 },
-    { "type": "range", "id": "tagline_size", "label": "Tagline size", "min": 0, "max": 40, "step": 1, "unit": "px", "default": 0 },
-    { "type": "range", "id": "intro_body_size", "label": "Intro body size", "min": 0, "max": 28, "step": 1, "unit": "px", "default": 0 },
-    { "type": "header", "content": "Intro — letter spacing", "info": "1 = theme default, up to 10x wider." },
-    { "type": "range", "id": "ls_preheader", "label": "Preheader / subtitle", "min": 1, "max": 10, "step": 1, "unit": "x", "default": 1 },
-    { "type": "range", "id": "ls_heading", "label": "Title", "min": 1, "max": 10, "step": 1, "unit": "x", "default": 1 },
-    { "type": "range", "id": "ls_intro_body", "label": "Tagline / intro body", "min": 1, "max": 10, "step": 1, "unit": "x", "default": 1 },
+    { "type": "color", "id": "tagline_color", "label": "Color" },
+    { "type": "range", "id": "tagline_size", "label": "Size", "info": "0 = auto.", "min": 0, "max": 40, "step": 1, "unit": "px", "default": 0 },
+    { "type": "range", "id": "ls_tagline", "label": "Letter spacing", "min": 1, "max": 10, "step": 1, "unit": "x", "default": 1 },
+
+    { "type": "header", "content": "Intro · Body" },
+    { "type": "richtext", "id": "intro_body", "label": "Text" },
+    { "type": "select", "id": "intro_body_font", "label": "Font", "options": [
+        { "value": "site", "label": "Neue Haas Display Light" },
+        { "value": "text", "label": "Neue Haas Grotesk Text" },
+        { "value": "ogg", "label": "Ogg Text (serif)" } ], "default": "site" },
+    { "type": "color", "id": "intro_body_color", "label": "Color" },
+    { "type": "range", "id": "intro_body_size", "label": "Size", "info": "0 = auto.", "min": 0, "max": 28, "step": 1, "unit": "px", "default": 0 },
+    { "type": "range", "id": "ls_intro_body", "label": "Letter spacing", "min": 1, "max": 10, "step": 1, "unit": "x", "default": 1 },
+
     { "type": "header", "content": "Nutrition Facts heading" },
     { "type": "text", "id": "nf_kicker", "label": "Small kicker", "default": "The Fine Print" },
     { "type": "text", "id": "nf_heading", "label": "Heading", "default": "Nutrition Facts" },
-    { "type": "header", "content": "Ingredients" },
-    { "type": "text", "id": "ingr_heading", "label": "Heading", "default": "Ingredients" },
-    { "type": "textarea", "id": "ingredients", "label": "Ingredients list", "info": "Press Enter for a line break." },
-    { "type": "text", "id": "allergens", "label": "Allergens", "default": "None" },
-    { "type": "text", "id": "warning_label", "label": "Warning label", "default": "GOVERNMENT WARNING:" },
-    { "type": "textarea", "id": "warning", "label": "Warning text", "info": "Press Enter for a line break.", "default": "(1) According to the Surgeon General, women should not drink alcoholic beverages during pregnancy because of the risk of birth defects. (2) Consumption of alcoholic beverages impairs your ability to drive a car or operate machinery, and may cause health problems." },
-    { "type": "header", "content": "Content — fonts", "info": "Applies to the Nutrition Facts heading + Ingredients." },
-    { "type": "select", "id": "content_heading_font", "label": "Heading font", "options": [
+    { "type": "color", "id": "content_kicker_color", "label": "Kicker color", "info": "Blank = accent." },
+    { "type": "select", "id": "content_heading_font", "label": "Heading font", "info": "Shared by this heading + the Ingredients heading.", "options": [
         { "value": "site", "label": "Neue Haas Display Light" },
         { "value": "display", "label": "Neue Haas Grotesk Display" },
         { "value": "ogg", "label": "Ogg Text (serif)" } ], "default": "ogg" },
@@ -274,20 +290,33 @@
         { "value": "roman", "label": "Roman / Regular (400)" },
         { "value": "medium", "label": "Medium (500)" },
         { "value": "bold", "label": "Bold (700)" } ], "default": "medium" },
+    { "type": "color", "id": "content_heading_color", "label": "Heading color" },
+    { "type": "range", "id": "content_heading_size", "label": "Heading size", "info": "0 = auto.", "min": 0, "max": 64, "step": 2, "unit": "px", "default": 0 },
+    { "type": "range", "id": "content_ls_heading", "label": "Heading letter spacing", "min": 1, "max": 10, "step": 1, "unit": "x", "default": 1 },
+
+    { "type": "header", "content": "Ingredients" },
+    { "type": "text", "id": "ingr_heading", "label": "Heading", "default": "Ingredients" },
+    { "type": "textarea", "id": "ingredients", "label": "Ingredients list", "info": "Press Enter for a line break." },
+    { "type": "text", "id": "allergens", "label": "Allergens", "default": "None" },
     { "type": "select", "id": "content_body_font", "label": "Body font", "options": [
         { "value": "site", "label": "Neue Haas Display Light" },
         { "value": "text", "label": "Neue Haas Grotesk Text" },
         { "value": "ogg", "label": "Ogg Text (serif)" } ], "default": "site" },
-    { "type": "header", "content": "Content — colors", "info": "Blank = sensible default." },
-    { "type": "color", "id": "content_kicker_color", "label": "Kicker color", "info": "Blank = accent." },
-    { "type": "color", "id": "content_heading_color", "label": "Heading color" },
     { "type": "color", "id": "content_body_color", "label": "Body color" },
-    { "type": "header", "content": "Content — sizes", "info": "0 = responsive (auto)." },
-    { "type": "range", "id": "content_heading_size", "label": "Heading size", "min": 0, "max": 64, "step": 2, "unit": "px", "default": 0 },
-    { "type": "range", "id": "content_body_size", "label": "Body size", "min": 0, "max": 28, "step": 1, "unit": "px", "default": 0 },
-    { "type": "header", "content": "Content — letter spacing", "info": "1 = theme default, up to 10x wider." },
-    { "type": "range", "id": "content_ls_heading", "label": "Heading", "min": 1, "max": 10, "step": 1, "unit": "x", "default": 1 },
-    { "type": "range", "id": "content_ls_body", "label": "Body", "min": 1, "max": 10, "step": 1, "unit": "x", "default": 1 },
+    { "type": "range", "id": "content_body_size", "label": "Body size", "info": "0 = auto.", "min": 0, "max": 28, "step": 1, "unit": "px", "default": 0 },
+    { "type": "range", "id": "content_ls_body", "label": "Body letter spacing", "min": 1, "max": 10, "step": 1, "unit": "x", "default": 1 },
+
+    { "type": "header", "content": "Government Warning", "info": "Independent controls in case a compliance revision is ever needed." },
+    { "type": "text", "id": "warning_label", "label": "Label", "default": "GOVERNMENT WARNING:" },
+    { "type": "textarea", "id": "warning", "label": "Text", "info": "Press Enter for a line break.", "default": "(1) According to the Surgeon General, women should not drink alcoholic beverages during pregnancy because of the risk of birth defects. (2) Consumption of alcoholic beverages impairs your ability to drive a car or operate machinery, and may cause health problems." },
+    { "type": "select", "id": "warning_font", "label": "Font", "options": [
+        { "value": "site", "label": "Neue Haas Display Light" },
+        { "value": "text", "label": "Neue Haas Grotesk Text" },
+        { "value": "ogg", "label": "Ogg Text (serif)" } ], "default": "site" },
+    { "type": "color", "id": "warning_color", "label": "Color" },
+    { "type": "range", "id": "warning_size", "label": "Size", "info": "0 = auto.", "min": 0, "max": 24, "step": 1, "unit": "px", "default": 0 },
+    { "type": "range", "id": "ls_warning", "label": "Letter spacing", "min": 1, "max": 10, "step": 1, "unit": "x", "default": 1 },
+
     { "type": "header", "content": "Background & spacing" },
     { "type": "color", "id": "bg_color", "label": "Background color", "default": "#FBF6EE" },
     { "type": "range", "id": "padding_top", "label": "Top padding", "min": 0, "max": 200, "step": 4, "unit": "px", "default": 72 },
