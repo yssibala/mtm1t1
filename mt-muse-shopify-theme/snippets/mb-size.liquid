@@ -1,7 +1,21 @@
 {%- comment -%}
-  Mobile baseline marker. Emits `cls` only when a size setting is still at its
-  DEFAULT (i.e. the merchant hasn't customized it), so the mobile media query in
-  theme.css resizes only untouched elements and leaves custom sizes alone.
+  Mobile baseline marker. Emits `cls` when a size setting should be resized by
+  the mobile media query in theme.css, i.e. when it's still at its DEFAULT (the
+  merchant hasn't customized it) OR when it sits at a shared "standardizable"
+  value — headers at 30px, body at 17px — so those also collapse to the mobile
+  baseline. Custom sizes outside these values keep their inline value untouched.
   Params: val (current setting value), def (the schema default), cls (class to emit).
 {%- endcomment -%}
-{%- if val == def -%}{{ cls }}{%- endif -%}
+{%- liquid
+  assign hit = false
+  if val == def
+    assign hit = true
+  endif
+  if cls contains 'mb-h' and val == 30
+    assign hit = true
+  endif
+  if cls contains 'mb-body' and val == 17
+    assign hit = true
+  endif
+-%}
+{%- if hit -%}{{ cls }}{%- endif -%}
