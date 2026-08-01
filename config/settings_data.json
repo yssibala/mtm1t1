@@ -40,7 +40,7 @@
         "settings": {
           "tagline": "FOR THOSE WHO INSPIRE",
           "brand_align": "center",
-          "show_newsletter": true,
+          "show_newsletter": false,
           "newsletter_heading": "Subscribe to our newsletter",
           "show_social": false,
           "instagram": "",
@@ -49,7 +49,7 @@
           "twitter": "",
           "youtube": "",
           "copyright_extra": "",
-          "show_payment_icons": false
+          "show_payment_icons": true
         }
       },
       "hero": {
