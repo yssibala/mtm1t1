@@ -1050,6 +1050,17 @@ body.has-announcement #site-nav { top: 40px; }
 .announcement-bar__msg { display: none; }
 .announcement-bar__msg.is-active { display: block; }
 .announcement-bar__msg a { text-decoration: underline; }
+/* Ticker (continuous NYSE-style scroll) */
+.announcement-bar--ticker { justify-content: flex-start; padding: 0 20px; }
+.announcement-bar--ticker[data-dismissible="true"] { padding-right: 44px; }
+.announcement-bar__ticker { flex: 1; overflow: hidden; }
+.announcement-bar__ticker-inner { display: inline-flex; align-items: center; white-space: nowrap; will-change: transform; animation: announce-ticker var(--ticker-dur, 30s) linear infinite; }
+.announcement-bar--ticker:hover .announcement-bar__ticker-inner { animation-play-state: paused; }
+.announcement-bar__msg-inline { display: inline-flex; align-items: center; }
+.announcement-bar__msg-inline a { text-decoration: underline; }
+.announcement-bar__sep { display: inline-block; margin: 0 clamp(24px, 6vw, 56px); opacity: .55; }
+@keyframes announce-ticker { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+@media (prefers-reduced-motion: reduce) { .announcement-bar__ticker-inner { animation: none; } }
 .announcement-bar__close {
   position: absolute;
   right: 16px; top: 50%;
@@ -1465,8 +1476,8 @@ a.page-gallery__share-inner:hover { border-color: var(--muse-gold-1); background
   /* Preheaders/kickers are class-sized (no inline size unless customized), so a
      plain rule resizes defaults while any custom inline size still wins. */
   .kicker, .nf-preheader, .nf-sec-kicker, .cloud-kicker, .share-eyebrow { font-size: 10px; }
-  /* Cloud (background-image) hero preheader stays prominent */
-  .hero--img-background .kicker { font-size: 14px !important; }
+  /* Cloud (background-image) hero: preheader stays at the 10px baseline; body text 12px */
+  .hero--img-background .hero__text p { font-size: 12px !important; }
 
   /* Pill buttons ~40% smaller */
   .muse-pill, .muse-cta, .muse-ghost { padding: 8px 20px !important; font-size: 7px !important; }
