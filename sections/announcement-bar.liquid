@@ -1,20 +1,36 @@
 {%- liquid
   assign s = section.settings
+  assign mode = s.display_mode | default: 'ticker'
 -%}
 {%- if section.blocks.size > 0 -%}
-<div class="announcement-bar" data-announcement style="background:{{ s.bg_color }};color:{{ s.text_color }};"
+<div class="announcement-bar announcement-bar--{{ mode }}" data-announcement style="background:{{ s.bg_color }};color:{{ s.text_color }};"
      data-rotate="{{ s.rotate_seconds }}"{% if s.dismissible %} data-dismissible="true"{% endif %}>
-  <div class="announcement-bar__track">
-    {%- for block in section.blocks -%}
-      <div class="announcement-bar__msg{% if forloop.first %} is-active{% endif %}" {{ block.shopify_attributes }}>
-        {%- if block.settings.link != blank -%}
-          <a href="{{ block.settings.link }}" style="color:inherit;">{{ block.settings.text }}</a>
-        {%- else -%}
-          {{ block.settings.text }}
-        {%- endif -%}
+  {%- if mode == 'ticker' -%}
+    <div class="announcement-bar__ticker">
+      <div class="announcement-bar__ticker-inner" style="--ticker-dur:{{ s.ticker_seconds | default: 30 }}s;">
+        {%- for pass in (1..2) -%}
+          {%- for block in section.blocks -%}
+            <span class="announcement-bar__msg-inline"{% if pass == 2 %} aria-hidden="true"{% else %} {{ block.shopify_attributes }}{% endif %}>
+              {%- if block.settings.link != blank -%}<a href="{{ block.settings.link }}" style="color:inherit;">{{ block.settings.text }}</a>{%- else -%}{{ block.settings.text }}{%- endif -%}
+            </span>
+            <span class="announcement-bar__sep" aria-hidden="true">✦</span>
+          {%- endfor -%}
+        {%- endfor -%}
       </div>
-    {%- endfor -%}
-  </div>
+    </div>
+  {%- else -%}
+    <div class="announcement-bar__track">
+      {%- for block in section.blocks -%}
+        <div class="announcement-bar__msg{% if forloop.first %} is-active{% endif %}" {{ block.shopify_attributes }}>
+          {%- if block.settings.link != blank -%}
+            <a href="{{ block.settings.link }}" style="color:inherit;">{{ block.settings.text }}</a>
+          {%- else -%}
+            {{ block.settings.text }}
+          {%- endif -%}
+        </div>
+      {%- endfor -%}
+    </div>
+  {%- endif -%}
   {%- if s.dismissible -%}
     <button type="button" class="announcement-bar__close" data-announcement-close aria-label="Dismiss">
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
@@ -32,7 +48,7 @@
       var close = bar.querySelector('[data-announcement-close]');
       if (close) close.addEventListener('click', function () { bar.style.display = 'none'; document.body.classList.remove('has-announcement'); try { sessionStorage.setItem(key, '1'); } catch (e) {} });
     }
-    var msgs = bar.querySelectorAll('.announcement-bar__msg');
+    var msgs = bar.querySelectorAll('.announcement-bar__track .announcement-bar__msg');
     var secs = parseInt(bar.getAttribute('data-rotate'), 10);
     if (msgs.length > 1 && secs > 0) {
       var i = 0;
@@ -50,9 +66,13 @@
 {
   "name": "Announcement bar",
   "settings": [
+    { "type": "select", "id": "display_mode", "label": "Display mode", "options": [
+      { "value": "ticker", "label": "Ticker (continuous scroll)" },
+      { "value": "rotate", "label": "Rotate (fade between messages)" } ], "default": "ticker" },
+    { "type": "range", "id": "ticker_seconds", "label": "Ticker loop duration", "info": "Ticker mode. Lower = faster.", "min": 10, "max": 90, "step": 5, "unit": "s", "default": 30 },
+    { "type": "range", "id": "rotate_seconds", "label": "Rotate every (0 = off)", "info": "Rotate mode only.", "min": 0, "max": 12, "step": 1, "unit": "s", "default": 4 },
     { "type": "color", "id": "bg_color", "label": "Background", "default": "#0A0B0C" },
     { "type": "color", "id": "text_color", "label": "Text", "default": "#FBF6EE" },
-    { "type": "range", "id": "rotate_seconds", "label": "Rotate every (0 = off)", "min": 0, "max": 12, "step": 1, "unit": "s", "default": 4 },
     { "type": "checkbox", "id": "dismissible", "label": "Allow dismiss", "default": true }
   ],
   "blocks": [
@@ -61,7 +81,7 @@
       { "type": "url", "id": "link", "label": "Link (optional)" }
     ] }
   ],
-  "max_blocks": 5,
+  "max_blocks": 8,
   "presets": [ { "name": "Announcement bar", "blocks": [ { "type": "message" } ] } ]
 }
 {% endschema %}
