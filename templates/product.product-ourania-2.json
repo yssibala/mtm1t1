@@ -362,7 +362,7 @@
             "heading": "CELEBRATING THOSE WHO INSPIRE",
             "body": "<p>Everyone has a MUSE - someone whose light deserves to be celebrated<br/>for how they inspire. Tell their story or nominate them for recognition<br/>on our page and/or newsletter!</p>",
             "text_color": "#241046",
-            "body_color": "#4c4c4b",
+            "body_color": "#000000",
             "align": "center",
             "max_width": 600,
             "preheader_font": "site",
