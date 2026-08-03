@@ -128,9 +128,9 @@
         "min_height": 0,
         "padding_top": 40,
         "padding_bottom": 40,
-        "pad_mobile": false,
-        "pt_m": 40,
-        "pb_m": 40
+        "pad_mobile": true,
+        "pt_m": 20,
+        "pb_m": 20
       }
     },
     "body_section_FbXAkj": {
@@ -393,7 +393,7 @@
         "heading": "THE TEAM",
         "text_align": "left",
         "columns": 3,
-        "columns_mobile": 2,
+        "columns_mobile": 3,
         "aspect_ratio": "1/1",
         "show_filters": false,
         "filter_all_label": "All",
@@ -423,9 +423,9 @@
         "min_height": 0,
         "padding_top": 40,
         "padding_bottom": 40,
-        "pad_mobile": false,
-        "pt_m": 40,
-        "pb_m": 40
+        "pad_mobile": true,
+        "pt_m": 20,
+        "pb_m": 20
       }
     },
     "flexible_j47wLB": {
