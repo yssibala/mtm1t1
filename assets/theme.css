@@ -667,7 +667,11 @@ button.pill__seg--submit[disabled] { opacity: .5; cursor: not-allowed; }
   font: inherit; letter-spacing: normal; -moz-appearance: textfield; padding: 0;
 }
 .ps-qty__n::-webkit-outer-spin-button, .ps-qty__n::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
-@media (max-width: 600px) { .product-showcase__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 768px) { .product-showcase__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 460px) { .product-showcase__grid { grid-template-columns: 1fr; } }
+/* Product grid: 2-up on phones, 1-up on the smallest */
+@media (max-width: 768px) { .pg-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 460px) { .pg-grid { grid-template-columns: 1fr; } }
 
 /* =====================================================================
    PRODUCT GRID — quick-shop overlay card
@@ -1496,4 +1500,7 @@ a.page-gallery__share-inner:hover { border-color: var(--muse-gold-1); background
 
   /* Footer body text (tagline, column links, footer nav, bottom bar) */
   .footer-tagline, .footer-col a, .footer-nav a, .site-footer p { font-size: 7px !important; }
+
+  /* Non-hero images/carousels widen on mobile: narrow (<80%) ones go full-width */
+  .fx-imgcar, .fx-img { width: var(--img-w-mob, 100%) !important; }
 }

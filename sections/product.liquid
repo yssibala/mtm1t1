@@ -41,7 +41,7 @@
   <div class="product-info">
     {%- if product.vendor != blank and s.show_vendor -%}<div class="kicker" style="margin-bottom:8px;">{{ product.vendor }}</div>{%- endif -%}
     <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;">
-      <h1 style="font-family:var(--font-display);margin:0;">{{ product.title }}</h1>
+      <h1 class="mb-h" style="font-family:{%- render 'font-stack', key: 'ogg' -%};font-weight:200;{%- render 'letter-spacing', mult: 5, base: '0.05em' -%}margin:0;">{{ product.title }}</h1>
       {%- if is_coming_soon -%}{%- render 'coming-soon-badge' -%}{%- endif -%}
     </div>
 
@@ -123,7 +123,7 @@
     {%- endunless -%}
 
     {%- if product.description != blank -%}
-      <div class="product-description rte">{{ product.description }}</div>
+      <div class="product-description rte mb-body">{{ product.description }}</div>
     {%- endif -%}
   </div>
 </div>
