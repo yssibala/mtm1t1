@@ -180,6 +180,17 @@ section, .section { padding: var(--section-pad) 0; }
   font-size: var(--fs-label); letter-spacing: .16em; text-transform: uppercase; font-weight: var(--fw-semibold);
   white-space: nowrap;
 }
+/* Top-of-page sections: keep the pill ≥60px below the fixed nav so it isn't hidden.
+   Non-bleeding sections start at var(--nav-h); bleeding ones start under the nav. */
+.hero.is-coming-soon::before,
+.page-contact.is-coming-soon::before,
+.page-social.is-coming-soon::before,
+.search-hero.is-coming-soon::before,
+.account-page.is-coming-soon::before,
+.cart-page.is-coming-soon::before,
+.nutrition-facts.is-coming-soon::before { top: 60px; }
+.section-wrap--bleed.is-coming-soon::before,
+.hero--bleed.is-coming-soon::before { top: calc(var(--nav-h) + 60px); }
 
 /* =====================================================================
    PILL BUTTONS (.muse-pill / .muse-cta / .muse-ghost)
@@ -362,7 +373,9 @@ section, .section { padding: var(--section-pad) 0; }
 }
 
 /* Dropdowns (native menu children) */
-.muse-dropdown { position: relative; display: inline-flex; align-items: center; gap: 3px; }
+/* Full nav-bar height so the dropdown menu (top:100%) opens flush BELOW the nav
+   bar's bottom border, instead of overlapping it. (Matches #site-nav height.) */
+.muse-dropdown { position: relative; display: inline-flex; align-items: center; gap: 3px; height: 56px; }
 .muse-caret {
   display: inline-flex; align-items: center; justify-content: center;
   background: none; border: 0; padding: 2px; margin: 0;
