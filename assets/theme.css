@@ -310,8 +310,12 @@ section, .section { padding: var(--section-pad) 0; }
   align-items: center;
   gap: clamp(20px, 3vw, 48px);
 }
-/* State-1: keep icons clear of the right-hand links region */
-.nav-bar--1 .nav-right { gap: clamp(16px, 2vw, 28px); }
+/* State-1: a ghost icon-block on the left mirrors the real icons on the right, so
+   both menu halves are the same width and the items are symmetric around the logo.
+   .nav-left / .nav-right are equal flex:1 halves; the ghost/icons are flex:none. */
+.nav-left, .nav-bar--1 .nav-right { display: flex; align-items: center; flex: 1; min-width: 0; }
+.nav-left .nav-links, .nav-bar--1 .nav-right .nav-links { flex: 1; }
+.nav-ghost { visibility: hidden; pointer-events: none; flex: none; }
 /* Spread links evenly across their half so 1-2 items don't crunch at the edge.
    space-evenly already distributes free space, so the fixed gap is only a floor. */
 .nav-links--spread { gap: clamp(12px, 2vw, 32px); }
@@ -496,7 +500,7 @@ section, .section { padding: var(--section-pad) 0; }
   background: rgba(247, 241, 232, .6);
   border-bottom: 1px solid rgba(231, 218, 196, .3);
 }
-@media (max-width: 960px) {
+@media (max-width: 768px) {
   #nav-state1, #nav-state2 { opacity: 0 !important; visibility: hidden !important; pointer-events: none !important; }
   #nav-mobile { display: flex !important; }
   /* SPC / nutrition: carousel switcher on its own bar pinned under the nav */
@@ -986,7 +990,7 @@ button.pill__seg--submit[disabled] { opacity: .5; cursor: not-allowed; }
   /* Never more than 2 across on tablet, whatever the desktop count. */
   .text-columns__grid { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
 }
-@media (max-width: 600px) {
+@media (max-width: 768px) {
   .text-columns__grid { grid-template-columns: 1fr !important; }
 }
 

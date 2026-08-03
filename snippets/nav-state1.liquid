@@ -1,14 +1,19 @@
 {%- comment -%}
   Shared State-1 bar (full-width, top-of-page) used by both nav bars.
+  The left side carries a hidden "ghost" copy of the icons so both menu halves
+  are the same width — keeping the menu items symmetric around the centre logo.
   Params: menu_left, menu_right (linklists), section_logo, show_account, show_search.
 {%- endcomment -%}
 <div id="nav-state1" class="nav-bar nav-bar--1">
-  <div class="nav-links nav-links--spread" style="flex:1;justify-content:space-evenly;">
-    {%- render 'nav-links', menu: menu_left, fallback: 'left' -%}
+  <div class="nav-left">
+    <div class="nav-ghost" aria-hidden="true">{%- render 'nav-icons', show_account: show_account, show_search: show_search -%}</div>
+    <div class="nav-links nav-links--spread" style="justify-content:space-evenly;">
+      {%- render 'nav-links', menu: menu_left, fallback: 'left' -%}
+    </div>
   </div>
   {%- render 'nav-logo', section_logo: section_logo -%}
-  <div class="nav-right" style="flex:1;display:flex;align-items:center;">
-    <div class="nav-links nav-links--spread" style="flex:1;justify-content:space-evenly;">
+  <div class="nav-right">
+    <div class="nav-links nav-links--spread" style="justify-content:space-evenly;">
       {%- render 'nav-links', menu: menu_right, fallback: 'right' -%}
     </div>
     {%- render 'nav-icons', show_account: show_account, show_search: show_search -%}
