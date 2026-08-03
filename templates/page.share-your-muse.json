@@ -12,7 +12,7 @@
     "main": {
       "type": "page-social",
       "settings": {
-        "coming_soon": false,
+        "coming_soon": true,
         "kicker": "Celebrating Those Who Inspire",
         "heading": "",
         "intro_text": "",
