@@ -1,14 +1,24 @@
 {%- comment -%}
   Mobile dropdown list built from the two header menus (Admin > Navigation),
-  with fallbacks. Params: menu_left, menu_right (linklist objects).
+  with fallbacks. Items that have children collapse behind a caret so the open
+  menu stays compact. Params: menu_left, menu_right (linklist objects).
 {%- endcomment -%}
 <div id="nav-mobile-menu">
   {%- if menu_left != blank and menu_left.links.size > 0 -%}
     {%- for link in menu_left.links -%}
-      <a href="{{ link.url }}" class="mob-item">{{ link.title }}</a>
-      {%- for child in link.links -%}
-        <a href="{{ child.url }}" class="mob-sub">{{ child.title }}</a>
-      {%- endfor -%}
+      {%- if link.links.size > 0 -%}
+        <div class="mob-group">
+          <div class="mob-parent">
+            <a href="{{ link.url }}" class="mob-item">{{ link.title }}</a>
+            <button type="button" class="mob-caret" data-mob-toggle aria-expanded="false" aria-label="Toggle {{ link.title | escape }} submenu"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></button>
+          </div>
+          <div class="mob-subs">
+            {%- for child in link.links -%}<a href="{{ child.url }}" class="mob-sub">{{ child.title }}</a>{%- endfor -%}
+          </div>
+        </div>
+      {%- else -%}
+        <a href="{{ link.url }}" class="mob-item">{{ link.title }}</a>
+      {%- endif -%}
     {%- endfor -%}
   {%- else -%}
     <a href="{{ routes.root_url }}pages/about" class="mob-item">About</a>
@@ -18,10 +28,19 @@
 
   {%- if menu_right != blank and menu_right.links.size > 0 -%}
     {%- for link in menu_right.links -%}
-      <a href="{{ link.url }}" class="mob-item">{{ link.title }}</a>
-      {%- for child in link.links -%}
-        <a href="{{ child.url }}" class="mob-sub">{{ child.title }}</a>
-      {%- endfor -%}
+      {%- if link.links.size > 0 -%}
+        <div class="mob-group">
+          <div class="mob-parent">
+            <a href="{{ link.url }}" class="mob-item">{{ link.title }}</a>
+            <button type="button" class="mob-caret" data-mob-toggle aria-expanded="false" aria-label="Toggle {{ link.title | escape }} submenu"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></button>
+          </div>
+          <div class="mob-subs">
+            {%- for child in link.links -%}<a href="{{ child.url }}" class="mob-sub">{{ child.title }}</a>{%- endfor -%}
+          </div>
+        </div>
+      {%- else -%}
+        <a href="{{ link.url }}" class="mob-item">{{ link.title }}</a>
+      {%- endif -%}
     {%- endfor -%}
   {%- else -%}
     <a href="{{ routes.all_products_collection_url }}" class="mob-item">Products</a>

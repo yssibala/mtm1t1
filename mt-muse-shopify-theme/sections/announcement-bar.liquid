@@ -7,7 +7,7 @@
      data-rotate="{{ s.rotate_seconds }}"{% if s.dismissible %} data-dismissible="true"{% endif %}>
   {%- if mode == 'ticker' -%}
     <div class="announcement-bar__ticker">
-      <div class="announcement-bar__ticker-inner" style="--ticker-dur:{{ s.ticker_seconds | default: 30 }}s;">
+      <div class="announcement-bar__ticker-inner" style="--ticker-dur:{{ s.ticker_seconds | default: 30 }}s;font-size:{{ s.ticker_size | default: 11 }}px;">
         {%- for pass in (1..2) -%}
           {%- for block in section.blocks -%}
             <span class="announcement-bar__msg-inline"{% if pass == 2 %} aria-hidden="true"{% else %} {{ block.shopify_attributes }}{% endif %}>
@@ -70,6 +70,7 @@
       { "value": "ticker", "label": "Ticker (continuous scroll)" },
       { "value": "rotate", "label": "Rotate (fade between messages)" } ], "default": "ticker" },
     { "type": "range", "id": "ticker_seconds", "label": "Ticker loop duration", "info": "Ticker mode. Lower = faster.", "min": 10, "max": 90, "step": 5, "unit": "s", "default": 30 },
+    { "type": "range", "id": "ticker_size", "label": "Ticker text size", "info": "Ticker mode.", "min": 8, "max": 18, "step": 1, "unit": "px", "default": 11 },
     { "type": "range", "id": "rotate_seconds", "label": "Rotate every (0 = off)", "info": "Rotate mode only.", "min": 0, "max": 12, "step": 1, "unit": "s", "default": 4 },
     { "type": "color", "id": "bg_color", "label": "Background", "default": "#0A0B0C" },
     { "type": "color", "id": "text_color", "label": "Text", "default": "#FBF6EE" },
