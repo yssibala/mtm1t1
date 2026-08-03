@@ -127,6 +127,16 @@
   });
   document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeDropdowns(null); });
 
+  // Mobile menu: caret collapses/expands each submenu group
+  document.addEventListener('click', function (e) {
+    var toggle = e.target.closest('[data-mob-toggle]');
+    if (!toggle) return;
+    var group = toggle.closest('.mob-group');
+    if (!group) return;
+    var open = group.classList.toggle('is-open');
+    toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+  });
+
   // Product gallery: thumbnail -> main image
   document.addEventListener('click', function (e) {
     var thumb = e.target.closest('.pg-thumb');
