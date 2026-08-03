@@ -298,7 +298,7 @@
         "heading": "THALIA: GALLERY",
         "text_align": "left",
         "columns": 3,
-        "columns_mobile": 2,
+        "columns_mobile": 3,
         "aspect_ratio": "1/1",
         "show_filters": false,
         "filter_all_label": "All",

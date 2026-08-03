@@ -7,6 +7,9 @@
                  ic_arrows, ic_dots, ic_autoplay, ic_interval, ic_width, ic_align.
 {%- endcomment -%}
 {%- assign ic_align = st.ic_align | default: 'center' -%}
+{%- assign icw = st.ic_width | default: 100 -%}
+{%- assign icw_mob = icw -%}
+{%- if icw < 80 -%}{%- assign icw_mob = 100 -%}{%- endif -%}
 {%- assign slide_count = 0 -%}
 {%- for i in (1..8) -%}
   {%- assign ik = 'ic_image_' | append: i -%}
@@ -14,7 +17,7 @@
 {%- endfor -%}
 <div class="fx-imgcar-wrap" style="text-align:{{ ic_align }};">
   {%- if slide_count > 0 -%}
-    <div class="fx-imgcar" data-imgcar="{{ uid }}" data-autoplay="{{ st.ic_autoplay }}" data-interval="{{ st.ic_interval | default: 5 }}" style="display:inline-block;width:{{ st.ic_width | default: 100 }}%;max-width:100%;--imgcar-ratio:{{ st.ic_aspect | default: '4/3' }};">
+    <div class="fx-imgcar" data-imgcar="{{ uid }}" data-autoplay="{{ st.ic_autoplay }}" data-interval="{{ st.ic_interval | default: 5 }}" style="display:inline-block;width:{{ icw }}%;--img-w-mob:{{ icw_mob }}%;max-width:100%;--imgcar-ratio:{{ st.ic_aspect | default: '4/3' }};">
       <div class="fx-imgcar__stage">
         <div class="fx-imgcar__viewport" style="border-radius:{{ st.ic_radius | default: 10 }}px;">
           <div class="fx-imgcar__track">
