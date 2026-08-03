@@ -86,9 +86,12 @@
           "message_wWXMHM"
         ],
         "settings": {
+          "display_mode": "ticker",
+          "ticker_seconds": 30,
+          "ticker_size": 9,
+          "rotate_seconds": 5,
           "bg_color": "#0a0b0c",
           "text_color": "#fbf6ee",
-          "rotate_seconds": 4,
           "dismissible": true
         }
       },
