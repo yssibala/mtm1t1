@@ -31,12 +31,9 @@
           </div>
 
         {%- when 'image' -%}
-          {%- assign bw = block.settings.width | default: 100 -%}
-          {%- assign bw_mob = bw -%}
-          {%- if bw < 80 -%}{%- assign bw_mob = 100 -%}{%- endif -%}
           <div class="fx-block" {{ block.shopify_attributes }} style="text-align:{{ a }};margin-top:{{ block.settings.margin_top }}px;margin-bottom:{{ block.settings.margin_bottom }}px;">
             {%- if block.settings.image != blank -%}
-              {%- capture fx_img -%}<img class="fx-img" src="{{ block.settings.image | image_url: width: 1600 }}" alt="{{ block.settings.image.alt | escape }}" width="{{ block.settings.image.width }}" height="{{ block.settings.image.height }}" loading="lazy" style="display:inline-block;width:{{ block.settings.width }}%;--img-w-mob:{{ bw_mob }}%;height:auto;border-radius:{{ block.settings.radius }}px;">{%- endcapture -%}
+              {%- capture fx_img -%}<img src="{{ block.settings.image | image_url: width: 1600 }}" alt="{{ block.settings.image.alt | escape }}" width="{{ block.settings.image.width }}" height="{{ block.settings.image.height }}" loading="lazy" style="display:inline-block;width:{{ block.settings.width }}%;height:auto;border-radius:{{ block.settings.radius }}px;">{%- endcapture -%}
               {%- if block.settings.link != blank -%}<a href="{{ block.settings.link }}">{{ fx_img }}</a>{%- else -%}{{ fx_img }}{%- endif -%}
             {%- else -%}
               <div class="fx-placeholder" style="width:{{ block.settings.width }}%;display:inline-block;">{{ 'image' | placeholder_svg_tag }}</div>

@@ -1501,6 +1501,8 @@ a.page-gallery__share-inner:hover { border-color: var(--muse-gold-1); background
   /* Footer body text (tagline, column links, footer nav, bottom bar) */
   .footer-tagline, .footer-col a, .footer-nav a, .site-footer p { font-size: 7px !important; }
 
-  /* Non-hero images/carousels widen on mobile: narrow (<80%) ones go full-width */
-  .fx-imgcar, .fx-img { width: var(--img-w-mob, 100%) !important; }
+  /* Non-hero CAROUSELS widen on mobile: narrow (<80%) ones go full-width.
+     (Single images keep their set width — small decorative images like the
+     monogram should not balloon.) */
+  .fx-imgcar { width: var(--img-w-mob, 100%) !important; }
 }
