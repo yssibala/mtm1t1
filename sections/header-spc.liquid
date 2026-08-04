@@ -101,35 +101,25 @@
     for (var i = 0; i < items.length; i++) { if (items[i].handle === current) { idx = i; break; } }
 
     var names = nav.querySelectorAll('.js-spc-name');
-    var swapTimer = null;
-    var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
     function apply() {
       var it = items[idx];
-      for (var n = 0; n < names.length; n++) {
-        names[n].textContent = it.name;
-        names[n].setAttribute('href', it.url);
-        names[n].classList.remove('is-swapping');
-      }
+      for (var n = 0; n < names.length; n++) { names[n].textContent = it.name; names[n].setAttribute('href', it.url); }
     }
-    function step(d) {
-      idx = (idx + d + items.length) % items.length;
-      if (reduce) { apply(); return; }
-      for (var n = 0; n < names.length; n++) { names[n].classList.add('is-swapping'); }
-      if (swapTimer) clearTimeout(swapTimer);
-      swapTimer = setTimeout(apply, 160); // matches .spc-name transition
+    // Arrows navigate straight to the previous/next product's page
+    function go(d) {
+      var ni = (idx + d + items.length) % items.length;
+      if (items[ni]) window.location.href = items[ni].url;
     }
-
     var prevs = nav.querySelectorAll('.js-spc-prev');
     var nexts = nav.querySelectorAll('.js-spc-next');
-    for (var a = 0; a < prevs.length; a++) { prevs[a].addEventListener('click', function () { step(-1); }); }
-    for (var b = 0; b < nexts.length; b++) { nexts[b].addEventListener('click', function () { step(1); }); }
+    for (var a = 0; a < prevs.length; a++) { prevs[a].addEventListener('click', function () { go(-1); }); }
+    for (var b = 0; b < nexts.length; b++) { nexts[b].addEventListener('click', function () { go(1); }); }
 
-    // Keyboard: arrow keys cycle when the nav is compact (State 2)
+    // Keyboard: arrow keys navigate when the nav is compact (State 2)
     document.addEventListener('keydown', function (e) {
       if (!nav.classList.contains('nav--scrolled')) return;
-      if (e.key === 'ArrowLeft') { step(-1); }
-      else if (e.key === 'ArrowRight') { step(1); }
+      if (e.key === 'ArrowLeft') { go(-1); }
+      else if (e.key === 'ArrowRight') { go(1); }
     });
 
     apply();

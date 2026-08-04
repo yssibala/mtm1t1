@@ -63,12 +63,16 @@
               {%- if slides == '' -%}{%- assign slides = item -%}{%- else -%}{%- assign slides = slides | append: ',' | append: item -%}{%- endif -%}
             {%- endif -%}
           {%- endfor -%}
-          <div class="fx-block fx-carousel" data-fx-carousel="{{ block.id }}" {{ block.shopify_attributes }} style="margin-top:{{ block.settings.margin_top }}px;margin-bottom:{{ block.settings.margin_bottom }}px;">
-            <div class="spc-switcher" style="justify-content:{{ justify }};">
-              <button type="button" class="spc-arrow" data-fx-prev aria-label="Previous"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="m15 18-6-6 6-6"/></svg></button>
-              <a class="spc-name" data-fx-name href="#" style="font-family:{%- render 'font-stack', key: block.settings.font -%};font-size:{{ block.settings.size }}px;"></a>
-              <button type="button" class="spc-arrow" data-fx-next aria-label="Next"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="m9 18 6-6-6-6"/></svg></button>
-            </div>
+          {%- assign scount = slides | split: '"name"' | size | minus: 1 -%}
+          <div class="fx-block fx-slidecar" data-fx-carousel="{{ block.id }}" data-autoplay="{{ block.settings.autoplay }}" data-interval="{{ block.settings.interval | default: 5 }}" {{ block.shopify_attributes }} style="text-align:{{ a }};margin-top:{{ block.settings.margin_top }}px;margin-bottom:{{ block.settings.margin_bottom }}px;">
+            <a class="fx-slidecar__name" data-fx-name href="#" style="font-family:{%- render 'font-stack', key: block.settings.font -%};font-size:{{ block.settings.size }}px;"></a>
+            {%- if scount > 1 and block.settings.show_arrows or scount > 1 and block.settings.show_dots -%}
+              <div class="fx-imgcar__controls" style="justify-content:{{ justify }};">
+                {%- if scount > 1 and block.settings.show_arrows -%}<button type="button" class="fx-imgcar__arrow fx-imgcar__arrow--prev" data-fx-prev aria-label="Previous"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="m15 18-6-6 6-6"/></svg></button>{%- endif -%}
+                {%- if scount > 1 and block.settings.show_dots -%}<div class="fx-imgcar__dots">{%- for i in (1..scount) -%}<button type="button" class="fx-imgcar__dot{% if forloop.first %} is-active{% endif %}" data-fx-dot="{{ forloop.index0 }}" aria-label="Go to slide {{ forloop.index }}"></button>{%- endfor -%}</div>{%- endif -%}
+                {%- if scount > 1 and block.settings.show_arrows -%}<button type="button" class="fx-imgcar__arrow fx-imgcar__arrow--next" data-fx-next aria-label="Next"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="m9 18 6-6-6-6"/></svg></button>{%- endif -%}
+              </div>
+            {%- endif -%}
           </div>
           <script>
             (function () {
@@ -77,19 +81,23 @@
               var items = [{{ slides }}];
               if (!items.length) return;
               var name = root.querySelector('[data-fx-name]');
-              var idx = 0, t = null;
+              var dots = root.querySelectorAll('[data-fx-dot]');
+              var idx = 0, timer = null;
+              var autoplay = root.getAttribute('data-autoplay') === 'true';
               var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-              function apply() { name.textContent = items[idx].name; name.setAttribute('href', items[idx].url); name.classList.remove('is-swapping'); }
-              function step(d) {
-                idx = (idx + d + items.length) % items.length;
-                if (reduce) { apply(); return; }
-                name.classList.add('is-swapping');
-                if (t) clearTimeout(t);
-                t = setTimeout(apply, 160);
+              var interval = (parseFloat(root.getAttribute('data-interval')) || 5) * 1000;
+              function apply() {
+                name.textContent = items[idx].name; name.setAttribute('href', items[idx].url);
+                for (var d = 0; d < dots.length; d++) { dots[d].classList.toggle('is-active', d === idx); }
               }
-              root.querySelector('[data-fx-prev]').addEventListener('click', function () { step(-1); });
-              root.querySelector('[data-fx-next]').addEventListener('click', function () { step(1); });
-              apply();
+              function step(d) { idx = (idx + d + items.length) % items.length; apply(); }
+              function start() { if (autoplay && !reduce && interval > 0 && !timer) { timer = setInterval(function () { step(1); }, interval); } }
+              function stop() { if (timer) { clearInterval(timer); timer = null; } }
+              var pv = root.querySelector('[data-fx-prev]'); if (pv) pv.addEventListener('click', function () { step(-1); stop(); start(); });
+              var nx = root.querySelector('[data-fx-next]'); if (nx) nx.addEventListener('click', function () { step(1); stop(); start(); });
+              for (var d = 0; d < dots.length; d++) { (function (k) { dots[k].addEventListener('click', function () { idx = k; apply(); stop(); start(); }); })(d); }
+              root.addEventListener('mouseenter', stop); root.addEventListener('mouseleave', start);
+              apply(); start();
             })();
           </script>
 
@@ -367,6 +375,11 @@
         { "type": "url", "id": "slide_5_link", "label": "Slide 5 link" },
         { "type": "text", "id": "slide_6_label", "label": "Slide 6 label" },
         { "type": "url", "id": "slide_6_link", "label": "Slide 6 link" },
+        { "type": "header", "content": "Controls" },
+        { "type": "checkbox", "id": "show_arrows", "label": "Show arrows", "default": true },
+        { "type": "checkbox", "id": "show_dots", "label": "Show dots", "default": true },
+        { "type": "checkbox", "id": "autoplay", "label": "Auto-advance", "default": false },
+        { "type": "range", "id": "interval", "label": "Auto-advance every", "min": 2, "max": 12, "step": 1, "unit": "s", "default": 5 },
         { "type": "range", "id": "margin_top", "label": "Space above", "min": 0, "max": 120, "step": 4, "unit": "px", "default": 0 },
         { "type": "range", "id": "margin_bottom", "label": "Space below", "min": 0, "max": 120, "step": 4, "unit": "px", "default": 24 }
       ]
