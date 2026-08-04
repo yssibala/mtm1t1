@@ -924,6 +924,9 @@ button.pill__seg--submit[disabled] { opacity: .5; cursor: not-allowed; }
 .pill__divider { width: 1px; align-self: stretch; background: rgba(10, 11, 12, .28); }
 .pill--primary { background: var(--muse-gold-1); color: var(--near-black); border: 1.5px solid var(--muse-gold-1); }
 .pill--primary:hover { background: var(--muse-gold-dark); border-color: var(--muse-gold-dark); }
+/* Keep the pill's LABEL colour on hover/focus — the global a:hover (gold) was
+   turning the inner link text gold on the gold hover fill, hiding it. */
+.pill:hover .pill__seg, .pill:focus-within .pill__seg { color: inherit; }
 .pill--ghost { background: transparent; color: var(--near-black); border: 1.5px solid var(--near-black); }
 .pill--ghost:hover { background: var(--near-black); color: var(--bg-main); }
 .pill--ghost .pill__divider { background: rgba(10, 11, 12, .28); }
