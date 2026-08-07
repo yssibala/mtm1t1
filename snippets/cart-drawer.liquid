@@ -12,6 +12,7 @@
       <p class="cart-drawer__empty">Your cart is empty.</p>
     </div>
     <footer class="cart-drawer__foot">
+      <div class="cart-drawer__discount" data-cart-discount {% if cart.total_discount == 0 %}hidden{% endif %}>{%- if cart.total_discount > 0 -%}You save {{ cart.total_discount | money }}{%- endif -%}</div>
       <div class="cart-drawer__subtotal">
         <span>Subtotal</span>
         <strong data-cart-subtotal>{{ cart.total_price | money }}</strong>
