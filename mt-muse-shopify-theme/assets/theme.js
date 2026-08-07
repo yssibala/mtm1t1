@@ -24,7 +24,14 @@
     if (!drawer) return;
     var items = drawer.querySelector('[data-cart-items]');
     var subtotal = drawer.querySelector('[data-cart-subtotal]');
+    var discEl = drawer.querySelector('[data-cart-discount]');
     if (subtotal) subtotal.textContent = money(cart.total_price);
+    if (discEl) {
+      if (cart.total_discount > 0) {
+        discEl.hidden = false;
+        discEl.textContent = (drawer.getAttribute('data-savings-label') || 'You save') + ' ' + money(cart.total_discount);
+      } else { discEl.hidden = true; discEl.textContent = ''; }
+    }
     if (!items) return;
     if (!cart.items.length) {
       items.innerHTML = '<p class="cart-drawer__empty">Your cart is empty.</p>';
@@ -34,6 +41,14 @@
     cart.items.forEach(function (it) {
       var img = it.image ? '<img src="' + it.image.replace(/(\.[a-z]+)(\?.*)?$/i, '_120x$1$2') + '" alt="" width="60">' : '';
       var variant = (it.variant_title && it.variant_title.indexOf('Default') === -1) ? '<div class="cart-line__variant">' + it.variant_title + '</div>' : '';
+      var priceHtml = (it.original_line_price > it.final_line_price)
+        ? '<s class="cart-line__was">' + money(it.original_line_price) + '</s> ' + money(it.final_line_price)
+        : money(it.final_line_price);
+      var discHtml = '';
+      (it.line_level_discount_allocations || []).forEach(function (a) {
+        var t = (a.discount_application && a.discount_application.title) ? a.discount_application.title : 'Discount';
+        discHtml += '<div class="cart-line__disc">' + t + ' (&minus;' + money(a.amount) + ')</div>';
+      });
       html += '<div class="cart-line" data-key="' + it.key + '">' +
         '<div class="cart-line__media">' + img + '</div>' +
         '<div class="cart-line__info">' +
@@ -45,7 +60,7 @@
             '<button type="button" class="cart-line__remove" data-line-remove aria-label="Remove">Remove</button>' +
           '</div>' +
         '</div>' +
-        '<div class="cart-line__price">' + money(it.final_line_price) + '</div>' +
+        '<div class="cart-line__price">' + priceHtml + discHtml + '</div>' +
       '</div>';
     });
     items.innerHTML = html;
@@ -70,6 +85,15 @@
     }).then(function (r) { return r.json(); }).then(renderCart);
   }
 
+  function showFormError(form, msg) {
+    var el = form.querySelector('[data-form-error]');
+    if (!el) { el = document.createElement('p'); el.setAttribute('data-form-error', ''); el.className = 'product-form__error'; form.appendChild(el); }
+    el.textContent = msg; el.hidden = false;
+  }
+  function clearFormError(form) {
+    var el = form.querySelector('[data-form-error]'); if (el) { el.hidden = true; el.textContent = ''; }
+  }
+
   // Intercept product add-to-cart forms
   document.addEventListener('submit', function (e) {
     var form = e.target;
@@ -77,9 +101,13 @@
     e.preventDefault();
     var btn = form.querySelector('[data-add-btn]');
     if (btn) btn.disabled = true;
-    fetch('/cart/add.js', { method: 'POST', headers: { 'Accept': 'application/json' }, body: new FormData(form) })
-      .then(function (r) { return r.json(); })
-      .then(function () { refresh(true); })
+    clearFormError(form);
+    fetch('/cart/add.js', { method: 'POST', headers: { 'Accept': 'application/json', 'X-Requested-With': 'XMLHttpRequest' }, body: new FormData(form) })
+      .then(function (r) { return r.json().then(function (data) { return { ok: r.ok, data: data }; }); })
+      .then(function (res) {
+        if (!res.ok) { showFormError(form, (res.data && (res.data.description || res.data.message)) || 'Sorry — this item could not be added.'); return; }
+        refresh(true);
+      })
       .catch(function () { form.submit(); })
       .finally(function () { if (btn) btn.disabled = false; });
   });

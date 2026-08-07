@@ -1529,3 +1529,9 @@ a.page-gallery__share-inner:hover { border-color: var(--muse-gold-1); background
      monogram should not balloon.) */
   .fx-imgcar { width: var(--img-w-mob, 100%) !important; }
 }
+
+/* Cart: add-to-cart error + discount display */
+.product-form__error { color: var(--clio, #CC2200); font-size: 13px; margin-top: 10px; }
+.cart-line__was { color: var(--text-meta); margin-right: 6px; }
+.cart-line__disc { color: var(--muse-gold-dark); font-size: 12px; font-weight: 400; margin-top: 2px; }
+.cart-drawer__discount { color: var(--muse-gold-dark); font-size: 13px; text-align: right; margin-bottom: 6px; }
