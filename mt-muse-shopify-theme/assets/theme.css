@@ -1529,17 +1529,3 @@ a.page-gallery__share-inner:hover { border-color: var(--muse-gold-1); background
      monogram should not balloon.) */
   .fx-imgcar { width: var(--img-w-mob, 100%) !important; }
 }
-
-/* ─────────────────────────────────────────────────────────────
-   WCAG-AA CONTRAST TRIAL — About Us page only (body.page-about-us)
-   Gold used as TEXT (preheaders, inline links, prices) fails AA on the
-   cream background: #C9851A = 2.85:1, #EFA527 = 1.94:1 (need 4.5:1).
-   This darkens gold TEXT to #8A5A0F (5.5:1 on cream) while leaving the
-   bright gold FILLS (buttons/pills, dark text on gold) untouched.
-   Scoped to one page so it can be judged before a sitewide roll-out;
-   to promote it, drop the `body.page-about-us` prefix from each rule.
-   ───────────────────────────────────────────────────────────── */
-body.page-about-us { --muse-gold-dark: #8A5A0F; }
-body.page-about-us a:not(.pill):not(.btn) { color: #8A5A0F; }
-body.page-about-us a:not(.pill):not(.btn):hover { color: #6E480C; }
-body.page-about-us .kicker { color: #8A5A0F !important; }
