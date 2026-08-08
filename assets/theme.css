@@ -1062,7 +1062,7 @@ body.has-announcement #site-nav { top: 40px; }
 .section-wrap--bleed { margin-top: calc(-1 * var(--nav-h)); }
 /* Section padding via variables so a mobile breakpoint can override cleanly */
 .section-wrap { padding-top: var(--sec-pt, 64px); padding-bottom: var(--sec-pb, 64px); }
-@media (max-width: 749px) {
+@media (max-width: 768px) {
   .section-wrap { padding-top: var(--sec-pt-m, var(--sec-pt, 64px)); padding-bottom: var(--sec-pb-m, var(--sec-pb, 64px)); }
 }
 .announcement-bar {
@@ -1405,7 +1405,7 @@ html.age-gate-open { overflow: hidden; }
 .share-news__consent input { margin-top: 2px; accent-color: var(--muse-gold-1); width: 15px; height: 15px; }
 .share-news__consent span { font-size: var(--fs-small); color: var(--text-mid); line-height: 1.5; }
 .share-divider { border-top: 1px solid var(--sand-border); padding-top: 22px; }
-@media (max-width: 760px) {
+@media (max-width: 768px) {
   .share-card { grid-template-columns: 1fr; }
   .share-card__col--form { border-right: 0; border-bottom: 1px solid var(--sand-border); }
 }
