@@ -21,6 +21,8 @@ These colors appear site-wide and define the MUSE visual identity.
 | `#E7DAC4` | 🟤 | **Sand / Taupe** — borders, dividers, horizontal rules, nav underlines | 84 | All pages, nav.js, nav-spc.js, cart-ui.js |
 | `#F4ECDD` | 🍂 | **Light Sand** — hover background on dropdown menu items (`.muse-sub:hover`) | 42 | nav.js, nav-spc.js (injected CSS) |
 | `#241808` | 🌑 | **Deep Brown-Black** — hero text shadow tints, dark overlay gradients | 17 | flagship-detail.html, nutrition-facts.html, products.html |
+| `#071b30` | 🟦 | **Navy** — brand core | — | Brand palette |
+| `#1a60ae` | 🔵 | **Light Blue** — brand core | — | Brand palette |
 
 ---
 
@@ -186,4 +188,6 @@ Thalia Red          (uses #EFA527 / #C9851A)
 Clio Red            #CC2200   rgb(204,34,0)
 Ourania Purple      #8B5CF6   rgb(139,92,246)
 Cart Badge          #FF3B30   rgb(255,59,48)
+Navy                #071b30   rgb(7,27,48)
+Light Blue          #1a60ae   rgb(26,96,174)
 ```

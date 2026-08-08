@@ -94,10 +94,18 @@
     var el = form.querySelector('[data-form-error]'); if (el) { el.hidden = true; el.textContent = ''; }
   }
 
-  // Intercept product add-to-cart forms
+  // Intercept ALL add-to-cart forms (product page + product cards on shop/collection/showcase),
+  // so every "Add to cart" opens the slide-out drawer instead of navigating to /cart.
+  function isAddToCartForm(form) {
+    if (!form || form.nodeName !== 'FORM') return false;
+    if (form.classList && form.classList.contains('product-form')) return true;
+    var ft = form.querySelector('input[name="form_type"]');
+    if (ft && ft.value === 'product') return true;
+    return (form.getAttribute('action') || '').indexOf('/cart/add') > -1;
+  }
   document.addEventListener('submit', function (e) {
     var form = e.target;
-    if (!form.classList || !form.classList.contains('product-form')) return;
+    if (!isAddToCartForm(form)) return;
     e.preventDefault();
     var btn = form.querySelector('[data-add-btn]');
     if (btn) btn.disabled = true;

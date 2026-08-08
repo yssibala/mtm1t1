@@ -22,7 +22,7 @@
       <p style="color:var(--text-mid);">{{ s.empty_text | default: 'Your cart is currently empty.' }}</p>
       <a href="{{ routes.all_products_collection_url }}" class="muse-pill muse-cta" style="margin-top:16px;">{{ s.empty_button | default: 'Continue shopping' }}</a>
     {%- else -%}
-      {%- form 'cart', cart -%}
+      {%- form 'cart' -%}
         {%- for item in cart.items -%}
           <div style="display:flex;align-items:flex-start;gap:16px;padding:16px 0;border-bottom:1px solid var(--sand-border);">
             {%- if item.image -%}
