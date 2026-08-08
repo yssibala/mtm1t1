@@ -87,7 +87,8 @@
               var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
               var interval = (parseFloat(root.getAttribute('data-interval')) || 5) * 1000;
               function apply() {
-                name.textContent = items[idx].name; name.setAttribute('href', items[idx].url);
+                name.textContent = items[idx].name;
+                if (items[idx].url && items[idx].url !== '#') { name.setAttribute('href', items[idx].url); } else { name.removeAttribute('href'); }
                 for (var d = 0; d < dots.length; d++) { dots[d].classList.toggle('is-active', d === idx); }
               }
               function step(d) { idx = (idx + d + items.length) % items.length; apply(); }
