@@ -16,25 +16,42 @@
     assign head_margin = 'margin-left:auto;margin-right:auto;'
   endif
 -%}
+{%- capture default_reasons -%}
+Customer Support
+Order Support
+B2B Sales
+DTC Sales
+Partnerships & Collaborations
+Something Else
+{%- endcapture -%}
 <div class="section-wrap page-contact{% unless has_details %} page-contact--solo{% endunless %}{% if s.extend_behind_header %} section-wrap--bleed{% endif %}{% if s.coming_soon %} is-coming-soon{% endif %}"{% if s.coming_soon %} data-cs-label="{{ settings.badge_text | default: 'Coming Soon' | escape }}"{% endif %} style="{%- render 'section-style', st: s -%}">
   <div class="container">
+    {%- if s.show_alert -%}<div class="cf-alert" data-cf-alert role="alert" aria-live="assertive" hidden style="--cf-alert-bg:{{ s.alert_bg | default: '#FFFFFF' }};--cf-alert-border:{{ s.alert_border | default: '#0A0B0C' }};--cf-alert-text:{{ s.alert_text_color | default: '#0A0B0C' }};">{{ s.alert_text | default: 'Please fill out required sections so that we may address your message to the best of our abilities!' }}</div>{%- endif -%}
+    {%- if s.show_card -%}<div class="contact-card{% if s.card_border == false %} contact-card--flat{% endif %}"{% if s.card_bg != blank %} style="background:{{ s.card_bg }};"{% endif %}>{%- endif -%}
     <div class="page-contact__head" style="text-align:{{ align }};{{ head_margin }}">
       {%- if s.kicker != blank -%}<div class="kicker" style="font-family:{%- render 'font-stack', key: s.preheader_font -%};{% if s.accent_color != blank %}color:{{ s.accent_color }};{% endif %}margin-bottom:{{ s.space_preheader | default: 10 }}px;{%- render 'letter-spacing', mult: s.ls_preheader, base: '0.18em' -%}">{{ s.kicker }}</div>{%- endif -%}
       {%- if contact_heading != blank -%}<h1 class="{%- render 'mb-size', val: s.heading_size, def: 44, cls: 'mb-h' -%}" style="font-family:{%- render 'font-stack', key: s.heading_font -%};{%- render 'font-variant', key: s.heading_weight, font: s.heading_font -%}{%- render 'letter-spacing', mult: s.ls_heading, base: '0.05em' -%}{% if s.heading_color != blank %}color:{{ s.heading_color }};{% endif %}font-size:{{ s.heading_size }}px;margin-bottom:{{ s.space_heading | default: 12 }}px;">{{ contact_heading | newline_to_br }}</h1>{%- endif -%}
       {%- if s.intro_text != blank -%}<div class="rte page-contact__intro" style="font-family:{%- render 'font-stack', key: s.body_font -%};{%- render 'letter-spacing', mult: s.ls_body, base: '0.03em' -%}{% if s.body_color != blank %}color:{{ s.body_color }};{% endif %}{% if s.body_size > 0 %}font-size:{{ s.body_size }}px;{% endif %}">{{ s.intro_text }}</div>{%- elsif page.content != blank -%}<div class="rte page-contact__intro" style="font-family:{%- render 'font-stack', key: s.body_font -%};{% if s.body_size > 0 %}font-size:{{ s.body_size }}px;{% endif %}">{{ page.content }}</div>{%- endif -%}
     </div>
-    {%- if s.show_card -%}<div class="contact-card{% if s.card_border == false %} contact-card--flat{% endif %}"{% if s.card_bg != blank %} style="background:{{ s.card_bg }};"{% endif %}>{%- endif -%}
     <div class="page-contact__grid">
       <div class="page-contact__form">
-        {%- form 'contact' -%}
+        {%- form 'contact', novalidate: 'novalidate' -%}
           {{ form.errors | default_errors }}
           {%- if form.posted_successfully? -%}<p class="page-contact__ok">Thank you — we’ll be in touch soon.</p>{%- endif -%}
           <div class="field-row">
-            <input type="text" name="contact[name]" placeholder="Name" value="{% if form.name %}{{ form.name }}{% elsif customer %}{{ customer.name }}{% endif %}" aria-label="Name" required>
-            <input type="email" name="contact[email]" placeholder="Email" value="{% if form.email %}{{ form.email }}{% elsif customer %}{{ customer.email }}{% endif %}" aria-label="Email" required>
+            <span class="cf-field cf-req"><input type="text" name="contact[name]" placeholder="Name" value="{% if form.name %}{{ form.name }}{% elsif customer %}{{ customer.name }}{% endif %}" aria-label="Name" required></span>
+            <span class="cf-field cf-req"><input type="email" name="contact[email]" placeholder="Email" value="{% if form.email %}{{ form.email }}{% elsif customer %}{{ customer.email }}{% endif %}" aria-label="Email" required></span>
           </div>
-          <input type="tel" name="contact[phone]" placeholder="Phone (optional)" aria-label="Phone">
-          <textarea name="contact[body]" rows="5" placeholder="{{ s.ph_message | default: 'How can we help?' }}" aria-label="Message" required>{% if form.body %}{{ form.body }}{% endif %}</textarea>
+          <span class="cf-field cf-req cf-field--select">
+            <select name="contact[reason]" aria-label="Reason for contact" required>
+              <option value="" disabled{% unless form.reason %} selected{% endunless %}>{{ s.reason_label | default: 'What brings you in today?' }}</option>
+              {%- assign reason_opts = s.reason_options | default: default_reasons | newline_to_br | split: '<br />' -%}
+              {%- for opt in reason_opts -%}{%- assign o = opt | strip -%}{%- if o != blank -%}<option value="{{ o | escape }}"{% if form.reason == o %} selected{% endif %}>{{ o }}</option>{%- endif -%}{%- endfor -%}
+            </select>
+          </span>
+          <input type="text" name="contact[order_number]" placeholder="{{ s.ph_order | default: 'Order number (optional)' }}" aria-label="Order number" value="{% if form.order_number %}{{ form.order_number }}{% endif %}">
+          <input type="tel" name="contact[phone]" placeholder="Phone (optional)" aria-label="Phone" value="{% if form.phone %}{{ form.phone }}{% endif %}">
+          <span class="cf-field cf-req"><textarea name="contact[body]" rows="5" placeholder="{{ s.ph_message | default: 'How can we help?' }}" aria-label="Message" required>{% if form.body %}{{ form.body }}{% endif %}</textarea></span>
           <div class="contact-submit"{% if s.btn_align == 'center' %} style="text-align:center;"{% elsif s.btn_align == 'right' %} style="text-align:right;"{% endif %}>
             <button type="submit" class="muse-pill {% if s.btn_style == 'ghost' %}muse-ghost{% else %}muse-cta{% endif %}" style="{% if s.btn_full %}width:100%;{% endif %}font-size:{{ s.btn_size | default: 12 }}px;">{{ s.btn_label | default: 'Send message' }}</button>
           </div>
@@ -53,6 +70,29 @@
     {%- if s.show_card -%}</div>{%- endif -%}
   </div>
 </div>
+<script>
+  (function () {
+    var root = document.getElementById('shopify-section-{{ section.id }}');
+    if (!root) return;
+    var form = root.querySelector('.page-contact__form form');
+    var alertEl = root.querySelector('[data-cf-alert]');
+    if (!form) return;
+    form.addEventListener('submit', function (e) {
+      var invalid = false;
+      var reqs = form.querySelectorAll('[required]');
+      for (var i = 0; i < reqs.length; i++) {
+        if (!reqs[i].value || !String(reqs[i].value).trim()) { invalid = true; break; }
+      }
+      var email = form.querySelector('input[type="email"]');
+      if (!invalid && email && email.value.indexOf('@') === -1) { invalid = true; }
+      if (invalid) {
+        e.preventDefault();
+        if (alertEl) { alertEl.hidden = false; alertEl.scrollIntoView({ behavior: 'smooth', block: 'center' }); }
+      }
+    });
+    form.addEventListener('input', function () { if (alertEl && !alertEl.hidden) alertEl.hidden = true; });
+  })();
+</script>
 {% schema %}
 {
   "name": "Contact page",
@@ -83,6 +123,17 @@
     { "type": "checkbox", "id": "btn_full", "label": "Full width", "default": false },
     { "type": "range", "id": "btn_size", "label": "Button text size", "min": 10, "max": 20, "step": 1, "unit": "px", "default": 12 },
     { "type": "text", "id": "ph_message", "label": "Message field placeholder", "default": "How can we help?" },
+    { "type": "header", "content": "Reason dropdown & fields" },
+    { "type": "text", "id": "reason_label", "label": "Dropdown placeholder", "default": "What brings you in today?" },
+    { "type": "textarea", "id": "reason_options", "label": "Dropdown options", "info": "One option per line.", "default": "Customer Support\nOrder Support\nB2B Sales\nDTC Sales\nPartnerships & Collaborations\nSomething Else" },
+    { "type": "text", "id": "ph_order", "label": "Order-number placeholder (optional field)", "default": "Order number (optional)" },
+    { "type": "header", "content": "Required-field alert" },
+    { "type": "paragraph", "content": "Shown when the visitor presses Send with a required field (name, email, reason, or message) empty." },
+    { "type": "checkbox", "id": "show_alert", "label": "Show required-field alert", "default": true },
+    { "type": "textarea", "id": "alert_text", "label": "Alert text", "default": "Please fill out required sections so that we may address your message to the best of our abilities!" },
+    { "type": "color", "id": "alert_bg", "label": "Alert background", "default": "#FFFFFF" },
+    { "type": "color", "id": "alert_border", "label": "Alert border", "default": "#0A0B0C" },
+    { "type": "color", "id": "alert_text_color", "label": "Alert text color", "default": "#0A0B0C" },
     { "type": "header", "content": "Typography" },
     { "type": "select", "id": "preheader_font", "label": "Preheader font", "options": [
         { "value": "site", "label": "Neue Haas Display Light" },
