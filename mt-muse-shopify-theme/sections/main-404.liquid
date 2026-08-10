@@ -17,7 +17,8 @@
     <div class="cloud-watermark" aria-hidden="true"{% if s.watermark_color != blank %} style="color:{{ s.watermark_color }};"{% endif %}>{{ s.watermark_text | default: '404' }}</div>
   {%- endif -%}
   {%- if s.show_monogram -%}
-    <img class="cloud-monogram" src="{{ 'muse-monogram-solo-gld.png' | asset_url }}" alt="{{ shop.name | escape }}" width="497" height="477" style="height:clamp(64px,8vw,{{ s.monogram_size | default: 88 }}px);">
+    {%- if settings.logo_2 != blank -%}{%- assign mono_src = settings.logo_2 | image_url: width: 500 -%}{%- assign mono_w = settings.logo_2.width -%}{%- assign mono_h = settings.logo_2.height -%}{%- else -%}{%- assign mono_src = 'muse-monogram-solo-gld.png' | asset_url -%}{%- assign mono_w = 497 -%}{%- assign mono_h = 477 -%}{%- endif -%}
+    <img class="cloud-monogram" src="{{ mono_src }}" alt="{{ shop.name | escape }}" width="{{ mono_w }}" height="{{ mono_h }}" style="height:clamp(64px,8vw,{{ s.monogram_size | default: 88 }}px);">
   {%- endif -%}
   {%- if s.kicker != blank -%}
     <div class="cloud-kicker" style="font-family:{%- render 'font-stack', key: s.preheader_font -%};{% if s.accent_color != blank %}color:{{ s.accent_color }};{% endif %}margin-bottom:{{ s.space_preheader | default: 16 }}px;{%- render 'letter-spacing', mult: s.ls_preheader, base: '0.32em' -%}">{{ s.kicker }}</div>
