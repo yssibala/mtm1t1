@@ -103,7 +103,7 @@
         "ic_autoplay": false,
         "ic_interval": 4,
         "accent_color": "#cc2200",
-        "button_label": "View Nutrition Label",
+        "button_label": "",
         "button_link": "shopify://pages/nutrition-clio",
         "button_style": "primary",
         "pill_color": "",

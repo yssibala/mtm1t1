@@ -80,7 +80,7 @@
       "name": "Body section",
       "settings": {
         "coming_soon": false,
-        "preheader": "SPONTANEITY AT SUNSET",
+        "preheader": "Elations After Noon",
         "heading": "Made with Joy,\nMixed With Drops of Sunshine",
         "body": "<p>As the sun approaches its apex above, the festivities continue to reach new peaks in the presence of Thalia. The good times seem endless and only get better as laughter continues to erupt and permeate room.<br/><br/>To create something others would choose when making their most fond memories under the sun - the joy of iterating on a personal favorite is what led to this Margarita Inspired recipe.<br/><br/>An uplifting white wine, a festive agave liqueur, and a brilliant blend that features lemon, lime, and a little sunshine - everything coming together and led by the heartwarming addition of passionfruit...<br/><br/>Blended and mixed, from our angels to your lips.<br/>Bask in good vibes with Thalia.</p>",
         "image_position": "right",
@@ -103,7 +103,7 @@
         "ic_autoplay": false,
         "ic_interval": 4,
         "accent_color": "#efa527",
-        "button_label": "View Nutrition Label",
+        "button_label": "",
         "button_link": "shopify://pages/nutrition-thalia",
         "button_style": "primary",
         "pill_color": "",
