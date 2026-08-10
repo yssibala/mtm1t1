@@ -8,7 +8,8 @@
   <div id="age-gate" class="age-gate" hidden role="dialog" aria-modal="true" aria-label="Age verification">
     <div class="age-gate__inner">
       {%- if settings.age_show_monogram -%}
-        <img class="cloud-monogram" src="{{ 'muse-monogram-solo-gld.png' | asset_url }}" alt="{{ shop.name | escape }}" width="497" height="477" style="height:clamp(88px,11vw,132px);">
+        {%- if settings.logo_2 != blank -%}{%- assign mono_src = settings.logo_2 | image_url: width: 500 -%}{%- assign mono_w = settings.logo_2.width -%}{%- assign mono_h = settings.logo_2.height -%}{%- else -%}{%- assign mono_src = 'muse-monogram-solo-gld.png' | asset_url -%}{%- assign mono_w = 497 -%}{%- assign mono_h = 477 -%}{%- endif -%}
+        <img class="cloud-monogram" src="{{ mono_src }}" alt="{{ shop.name | escape }}" width="{{ mono_w }}" height="{{ mono_h }}" style="height:clamp(88px,11vw,132px);">
       {%- endif -%}
       {%- if settings.age_kicker != blank -%}<div class="cloud-kicker">{{ settings.age_kicker }}</div>{%- endif -%}
       <h1 class="cloud-title" style="font-size:clamp(30px,4.6vw,60px);">{{ settings.age_heading | default: 'Are you 21 or older?' }}</h1>

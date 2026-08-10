@@ -13,7 +13,13 @@
       {
         "type": "image_picker",
         "id": "logo",
-        "label": "Logo"
+        "label": "Logo 1 (wordmark)"
+      },
+      {
+        "type": "image_picker",
+        "id": "logo_2",
+        "label": "Logo 2 (monogram)",
+        "info": "Second logo. Used for the floating monogram on the Coming soon, 404, and age-verification screens. Leave blank to use the bundled gold monogram."
       },
       {
         "type": "color",
