@@ -12,9 +12,43 @@
     "main": {
       "type": "main-password",
       "settings": {
-        "page_mode": "launched"
+        "page_mode": "launched",
+        "kicker": "Still Amongst The Clouds",
+        "heading": "Coming Soon",
+        "text": "We’re crafting something worth celebrating. This page is still amongst the clouds — check back soon and be sure to raise a glass with us!",
+        "text_align": "center",
+        "show_monogram": true,
+        "monogram_size": 150,
+        "show_newsletter": true,
+        "email_label": "Email address",
+        "newsletter_button": "",
+        "success_text": "Thank you — we’ll be in touch soon.",
+        "show_consent": true,
+        "consent_text": "",
+        "password_label": "Enter store password",
+        "foot_text": "",
+        "preheader_font": "site",
+        "accent_color": "",
+        "heading_font": "ogg",
+        "heading_size": 0,
+        "heading_color": "",
+        "heading_weight": "inherit",
+        "body_font": "site",
+        "body_size": 0,
+        "body_color": "",
+        "space_preheader": 16,
+        "space_heading": 20,
+        "space_form": 28,
+        "ls_preheader": 1,
+        "ls_heading": 1,
+        "ls_body": 1,
+        "bg_color": "",
+        "padding_top": 40,
+        "padding_bottom": 40
       }
     }
   },
-  "order": ["main"]
+  "order": [
+    "main"
+  ]
 }
