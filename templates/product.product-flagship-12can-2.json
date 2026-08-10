@@ -1,0 +1,368 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "hero_GAXWLN": {
+      "type": "hero",
+      "name": "Hero",
+      "settings": {
+        "coming_soon": false,
+        "preheader": "",
+        "accent_color": "#efa527",
+        "heading": "The Flagship Flight Bundle",
+        "subheading": "Celebrate Ceaselessly",
+        "text_align": "center",
+        "show_coming_soon": false,
+        "button_label": "",
+        "button_link": "",
+        "button_icon": "none",
+        "button_style": "primary",
+        "button2_label": "",
+        "button2_link": "",
+        "button2_icon": "none",
+        "button_size": "11",
+        "image_position": "below",
+        "image_align": "center",
+        "image_width": 100,
+        "image_focal": "center",
+        "image_height": 0,
+        "image_radius": 10,
+        "image_opacity": 100,
+        "preheader_font": "site",
+        "heading_font": "ogg",
+        "heading_size": 36,
+        "heading_color": "#c9851a",
+        "heading_weight": "inherit",
+        "body_font": "site",
+        "body_size": 18,
+        "body_color": "#efa527",
+        "body_weight": "inherit",
+        "space_preheader": 26,
+        "space_heading": 10,
+        "space_buttons": 24,
+        "space_image": 32,
+        "ls_preheader": 3,
+        "ls_heading": 5,
+        "ls_body": 5,
+        "lh_heading": 0,
+        "lh_body": 0,
+        "bg_type": "solid",
+        "bg_color": "#fbf6ee",
+        "bg_gradient_start": "#fbf6ee",
+        "bg_gradient_end": "#fbf6ee",
+        "bg_gradient_angle": 180,
+        "nav_scroll_threshold": 200,
+        "extend_behind_header": true,
+        "content_valign": "center",
+        "min_height": 0,
+        "padding_top": 120,
+        "padding_bottom": 20,
+        "pad_mobile": false,
+        "pt_m": 48,
+        "pb_m": 48
+      }
+    },
+    "main": {
+      "type": "product",
+      "settings": {
+        "show_vendor": true
+      }
+    },
+    "text_columns_pqWY7c": {
+      "type": "text-columns",
+      "blocks": {
+        "column_jm9aEd": {
+          "type": "column",
+          "settings": {
+            "media_type": "text",
+            "image_ratio": "1/1",
+            "image_radius": 10,
+            "number": "",
+            "number_size": 40,
+            "eyebrow": "Passion and History",
+            "heading": "Meanings: Behind The Muse",
+            "body": "<p>There is a beauty in being inspired. To come across an idea, something never seen or heard before, yearning to be manifested. A heavenly gift, whispered into the heart by angels.<br/><br/>MUSE pays homage to this via our flagship series - a trio of canned cocktail recipes that represent those who inspire all of us.<br/><br/>To be unwavering in our passion (CLIO),<br/>To share our joy without restraint (THALIA)<br/>To be elegant in our execution (OURANIA),</p><p>That is how we inspire.</p><p>That is what it means to be a MUSE.</p>",
+            "align": "center",
+            "divider": false,
+            "divider_color": "#8e1216",
+            "accent_color": "#efa527",
+            "text_color": "#c9851a",
+            "body_color": "#241808",
+            "eyebrow_font": "site",
+            "heading_font": "ogg",
+            "heading_weight": "inherit",
+            "heading_size": 26,
+            "body_font": "site",
+            "body_weight": "inherit",
+            "body_size": 13,
+            "space_heading": 20,
+            "ls_eyebrow": 3,
+            "ls_heading": 3,
+            "ls_body": 5,
+            "button_label": "Read The Lore",
+            "button_link": "shopify://pages/coming-soon",
+            "button_style": "primary",
+            "button_icon": "none",
+            "button_size": "8",
+            "space_button": 30
+          }
+        },
+        "column_4kA6a3": {
+          "type": "column",
+          "settings": {
+            "media_type": "text",
+            "image_ratio": "1/1",
+            "image_radius": 10,
+            "number": "",
+            "number_size": 40,
+            "eyebrow": "Product Insights",
+            "heading": "The Flagship Trio:\nCanned Cocktails",
+            "body": "<p>Featured Cocktails:</p><p>CLIO: Scarlet Sangria Cocktail<br/>THALIA: Margarita Inspired Cocktail<br/>OURANIA: Aviation Inspired Cocktail<br/><br/>Main Flavor Profiles:</p><p>CLIO: Strawberry, Fruity, and Citrus Notes<br/>THALIA: Sweet, Fruity, and Citrus Notes<br/>OURANIA: Blackberry, Lavender - & Herbal Notes<br/><br/>Alcohol Content: 12% ABV (all products)<br/>Please Drink Responsibly</p>",
+            "align": "center",
+            "divider": false,
+            "divider_color": "#e7dac4",
+            "accent_color": "#efa527",
+            "text_color": "#c9851a",
+            "body_color": "#241808",
+            "eyebrow_font": "site",
+            "heading_font": "ogg",
+            "heading_weight": "inherit",
+            "heading_size": 26,
+            "body_font": "site",
+            "body_weight": "thin",
+            "body_size": 12,
+            "space_heading": 20,
+            "ls_eyebrow": 3,
+            "ls_heading": 3,
+            "ls_body": 5,
+            "button_label": "Shop The Flagship Collection",
+            "button_link": "shopify://pages/shop",
+            "button_style": "primary",
+            "button_icon": "none",
+            "button_size": "8",
+            "space_button": 20
+          }
+        }
+      },
+      "block_order": [
+        "column_jm9aEd",
+        "column_4kA6a3"
+      ],
+      "name": "Text columns",
+      "settings": {
+        "coming_soon": false,
+        "preheader": "",
+        "heading": "",
+        "subheading": "",
+        "accent_color": "#c9851a",
+        "head_align": "center",
+        "columns": 2,
+        "gap": 8,
+        "preheader_font": "site",
+        "heading_font": "ogg",
+        "heading_weight": "inherit",
+        "heading_size": 40,
+        "body_font": "site",
+        "subheading_size": 17,
+        "space_preheader": 10,
+        "space_heading": 12,
+        "space_head": 32,
+        "ls_preheader": 1,
+        "ls_heading": 1,
+        "ls_body": 1,
+        "lh_heading": 0,
+        "lh_body": 0,
+        "bg_type": "solid",
+        "bg_color": "#fbf6ee",
+        "bg_gradient_start": "#fbf6ee",
+        "bg_gradient_end": "#a9d1ff",
+        "bg_gradient_angle": 180,
+        "content_valign": "center",
+        "min_height": 0,
+        "padding_top": 40,
+        "padding_bottom": 40,
+        "pad_mobile": false,
+        "pt_m": 40,
+        "pb_m": 40
+      }
+    },
+    "page_gallery_MzQTHT": {
+      "type": "page-gallery",
+      "blocks": {
+        "image_JVbkJg": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/11_Clio_1B.png",
+            "caption": "",
+            "category": "",
+            "link": ""
+          }
+        },
+        "image_pBFXtq": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/11_Thalia_1B.png",
+            "caption": "",
+            "category": "",
+            "link": ""
+          }
+        },
+        "image_iQWL6k": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/11_Ourania_1B.png",
+            "caption": "",
+            "category": "",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "image_JVbkJg",
+        "image_pBFXtq",
+        "image_iQWL6k"
+      ],
+      "name": "Gallery page",
+      "settings": {
+        "coming_soon": false,
+        "kicker": "An Inspiring Trifecta",
+        "intro_text": "",
+        "use_page_body": false,
+        "accent_color": "#efa527",
+        "heading": "MUSE: Flagship Trio Gallery",
+        "text_align": "left",
+        "columns": 3,
+        "columns_mobile": 2,
+        "aspect_ratio": "1/1",
+        "show_filters": false,
+        "filter_all_label": "All",
+        "overlay_enable": true,
+        "overlay_color": "#efa527",
+        "overlay_opacity": 20,
+        "preheader_font": "site",
+        "heading_font": "ogg",
+        "heading_weight": "thin",
+        "heading_size": 30,
+        "heading_color": "#c9851a",
+        "space_preheader": 10,
+        "ls_preheader": 3,
+        "ls_heading": 5,
+        "show_share": false,
+        "share_heading": "#myMUSE",
+        "share_text": "Share your moment",
+        "share_button_label": "Tag us",
+        "share_link": "",
+        "share_new_tab": true,
+        "bg_type": "solid",
+        "bg_color": "#fbf6ee",
+        "bg_gradient_start": "#a9d1ff",
+        "bg_gradient_end": "#1d61ae",
+        "bg_gradient_angle": 180,
+        "content_valign": "top",
+        "min_height": 0,
+        "padding_top": 40,
+        "padding_bottom": 40,
+        "pad_mobile": false,
+        "pt_m": 40,
+        "pb_m": 40
+      }
+    },
+    "flexible_NEnc8z": {
+      "type": "flexible",
+      "blocks": {
+        "image_FJQNjg": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/MUSE_-_Monogram_slim_EFA527.png",
+            "link": "",
+            "align": "center",
+            "width": 10,
+            "radius": 10,
+            "margin_top": 0,
+            "margin_bottom": 24
+          }
+        },
+        "text_erVhjW": {
+          "type": "text",
+          "settings": {
+            "preheader": "",
+            "accent_color": "#c9851a",
+            "heading": "CELEBRATING THOSE WHO INSPIRE",
+            "body": "<p>Everyone has a MUSE - someone whose light deserves to be celebrated<br/>for how they inspire. Tell their story or nominate them for recognition<br/>on our page and/or newsletter!</p>",
+            "text_color": "#c9851a",
+            "body_color": "#4c4c4b",
+            "align": "center",
+            "max_width": 600,
+            "preheader_font": "site",
+            "heading_font": "ogg",
+            "heading_size": 26,
+            "heading_weight": "thin",
+            "body_font": "site",
+            "body_size": 16,
+            "body_weight": "inherit",
+            "space_preheader": 12,
+            "space_heading": 20,
+            "ls_preheader": 4,
+            "ls_heading": 3,
+            "ls_body": 1,
+            "lh_heading": 0,
+            "lh_body": 0,
+            "margin_top": 12,
+            "margin_bottom": 36
+          }
+        },
+        "button_3pFcxq": {
+          "type": "button",
+          "settings": {
+            "label": "Share your MUSE",
+            "url": "shopify://pages/share-your-muse",
+            "icon": "none",
+            "style": "primary",
+            "label2": "",
+            "url2": "",
+            "icon2": "none",
+            "btn_size": "11",
+            "align": "center",
+            "margin_top": 0,
+            "margin_bottom": 0
+          }
+        }
+      },
+      "block_order": [
+        "image_FJQNjg",
+        "text_erVhjW",
+        "button_3pFcxq"
+      ],
+      "name": "Flexible section",
+      "settings": {
+        "coming_soon": false,
+        "bg_type": "gradient",
+        "bg_color": "#fbf6ee",
+        "bg_gradient_start": "#fbf6ee",
+        "bg_gradient_end": "#fbf6ee",
+        "bg_gradient_angle": 180,
+        "content_valign": "top",
+        "min_height": 0,
+        "padding_top": 40,
+        "padding_bottom": 40,
+        "pad_mobile": false,
+        "pt_m": 40,
+        "pb_m": 40
+      }
+    }
+  },
+  "order": [
+    "hero_GAXWLN",
+    "main",
+    "text_columns_pqWY7c",
+    "page_gallery_MzQTHT",
+    "flexible_NEnc8z"
+  ]
+}
