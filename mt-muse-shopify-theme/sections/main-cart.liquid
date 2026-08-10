@@ -20,7 +20,7 @@
     <div class="cart-wrap"><div class="cart-card{% if s.card_border == false %} cart-card--noborder{% endif %}"{% if s.card_bg != blank %} style="background:{{ s.card_bg }};"{% endif %}>
     {%- if cart.item_count == 0 -%}
       <p style="color:var(--text-mid);">{{ s.empty_text | default: 'Your cart is currently empty.' }}</p>
-      <a href="{{ routes.all_products_collection_url }}" class="muse-pill muse-cta" style="margin-top:16px;">{{ s.empty_button | default: 'Continue shopping' }}</a>
+      <a href="{{ pages['shop'].url | default: routes.all_products_collection_url }}" class="muse-pill muse-cta" style="margin-top:16px;">{{ s.empty_button | default: 'Continue shopping' }}</a>
     {%- else -%}
       {%- form 'cart', cart -%}
         {%- for item in cart.items -%}
