@@ -1360,6 +1360,22 @@ html.age-gate-open { overflow: hidden; }
 .cart-wrap { max-width: 820px; margin-left: auto; margin-right: auto; }
 .cart-card { background: var(--near-white); border: 1px solid var(--sand-border); border-radius: var(--radius-card); box-shadow: 0 24px 60px -32px rgba(10, 11, 12, .4); padding: clamp(22px, 3.2vw, 44px); }
 .cart-card--noborder { border: 0; box-shadow: none; background: transparent; padding: 0; }
+/* Cart line items: keep content inside the card; wrap qty+price under the title on mobile */
+.cart-line-item__info { min-width: 0; overflow-wrap: anywhere; }
+.cart-line-item__info a { overflow-wrap: anywhere; }
+@media (max-width: 560px) {
+  .cart-line-item { flex-wrap: wrap; gap: 12px !important; }
+  .cart-line-item__info { flex: 1 1 calc(100% - 72px); }
+  .cart-line-item__qty { order: 2; }
+  .cart-line-item__price { order: 3; margin-left: auto; }
+}
+/* Shipping-restriction pop-up (cart page) */
+.cart-notice { position: fixed; inset: 0; z-index: 200; display: flex; align-items: center; justify-content: center; }
+.cart-notice[hidden] { display: none; }
+.cart-notice__overlay { position: absolute; inset: 0; background: rgba(10, 11, 12, .5); }
+.cart-notice__box { position: relative; background: var(--near-white); border: 1px solid var(--sand-border); border-radius: var(--radius-card); box-shadow: 0 24px 60px -20px rgba(10, 11, 12, .5); width: calc(100% - 40px); max-width: 440px; padding: 30px 28px; color: var(--near-black); line-height: 1.55; }
+.cart-notice__x { position: absolute; top: 8px; right: 12px; background: none; border: 0; padding: 4px; font-size: 22px; line-height: 1; color: var(--near-black); cursor: pointer; }
+.cart-notice__head { font-weight: var(--fw-medium); margin-bottom: 8px; }
 
 /* Search section (hero-style) */
 .search-hero__form { display: flex; gap: 12px; flex-wrap: nowrap; }
