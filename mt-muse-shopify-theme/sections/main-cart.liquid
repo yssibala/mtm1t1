@@ -17,6 +17,16 @@
       {%- if s.intro_text != blank -%}<div class="rte page-contact__intro" style="font-family:{%- render 'font-stack', key: s.body_font -%};{% if s.body_color != blank %}color:{{ s.body_color }};{% endif %}{% if s.body_size > 0 %}font-size:{{ s.body_size }}px;{% endif %}">{{ s.intro_text }}</div>{%- endif -%}
     </div>
 
+    {%- if s.ship_notice_enable -%}
+    <div class="cart-notice" data-cart-notice hidden role="dialog" aria-modal="true" aria-label="{{ s.ship_notice_heading | default: 'Shipping notice' | escape }}">
+      <div class="cart-notice__overlay" data-cart-notice-close></div>
+      <div class="cart-notice__box" style="font-family:{%- render 'font-stack', key: 'site' -%};font-size:13px;">
+        <button type="button" class="cart-notice__x" data-cart-notice-close aria-label="Dismiss">&times;</button>
+        {%- if s.ship_notice_heading != blank -%}<div class="cart-notice__head">{{ s.ship_notice_heading }}</div>{%- endif -%}
+        <div class="cart-notice__body">{{ s.ship_notice_text | default: 'At this time, we can only ship to select U.S. states. Any order placed for delivery to a state or address outside our current shipping area will be refunded upon processing.' | newline_to_br }}</div>
+      </div>
+    </div>
+    {%- endif -%}
     <div class="cart-wrap"><div class="cart-card{% if s.card_border == false %} cart-card--noborder{% endif %}"{% if s.card_bg != blank %} style="background:{{ s.card_bg }};"{% endif %}>
     {%- if cart.item_count == 0 -%}
       <p style="color:var(--text-mid);">{{ s.empty_text | default: 'Your cart is currently empty.' }}</p>
@@ -24,11 +34,11 @@
     {%- else -%}
       {%- form 'cart', cart -%}
         {%- for item in cart.items -%}
-          <div style="display:flex;align-items:flex-start;gap:16px;padding:16px 0;border-bottom:1px solid var(--sand-border);">
+          <div class="cart-line-item" style="display:flex;align-items:flex-start;gap:16px;padding:16px 0;border-bottom:1px solid var(--sand-border);">
             {%- if item.image -%}
               <img src="{{ item.image | image_url: width: 120 }}" alt="{{ item.title | escape }}" width="60" height="60" style="width:60px;height:60px;object-fit:cover;border-radius:var(--radius-card);">
             {%- endif -%}
-            <div style="flex:1;">
+            <div class="cart-line-item__info" style="flex:1;">
               <a href="{{ item.url }}" style="color:var(--near-black);font-weight:var(--fw-medium);">{{ item.product.title }}</a>
               {%- unless item.variant.title contains 'Default' -%}<div style="color:var(--text-meta);font-size:var(--fs-small);">{{ item.variant.title }}</div>{%- endunless -%}
               {%- if s.show_item_desc and item.product.description != blank -%}<div class="cart-item-note">{%- if s.item_desc_words > 0 -%}{{ item.product.description | strip_html | truncatewords: s.item_desc_words }}{%- else -%}{{ item.product.description | strip_html }}{%- endif -%}</div>{%- endif -%}
@@ -44,8 +54,8 @@
               {%- endfor -%}
               {%- if s.show_disclosure and s.item_disclosure != blank -%}<div class="cart-item-note cart-item-note--disclosure">{{ s.item_disclosure }}</div>{%- endif -%}
             </div>
-            <input type="number" name="updates[]" value="{{ item.quantity }}" min="0" aria-label="Quantity" style="width:64px;padding:8px;border:1px solid var(--sand-border);border-radius:var(--radius-card);">
-            <div style="min-width:90px;text-align:right;color:var(--muse-gold-dark);font-weight:var(--fw-semibold);">
+            <input type="number" name="updates[]" value="{{ item.quantity }}" min="0" aria-label="Quantity" class="cart-line-item__qty" style="width:64px;padding:8px;border:1px solid var(--sand-border);border-radius:var(--radius-card);">
+            <div class="cart-line-item__price" style="min-width:90px;text-align:right;color:var(--muse-gold-dark);font-weight:var(--fw-semibold);">
               {%- if item.original_line_price > item.final_line_price -%}<s style="color:var(--text-meta);font-weight:400;">{{ item.original_line_price | money }}</s><br>{%- endif -%}
               {{ item.final_line_price | money }}
               {%- for alloc in item.line_level_discount_allocations -%}<div style="color:var(--muse-gold-dark);font-size:var(--fs-small);font-weight:400;">{{ alloc.discount_application.title }} (&minus;{{ alloc.amount | money }})</div>{%- endfor -%}
@@ -78,6 +88,15 @@
     </div></div>
   </div>
 </div>
+<script>
+  (function () {
+    var n = document.querySelector('[data-cart-notice]');
+    if (!n) return;
+    n.hidden = false;
+    n.addEventListener('click', function (e) { if (e.target.closest('[data-cart-notice-close]')) n.hidden = true; });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape') n.hidden = true; });
+  })();
+</script>
 {% schema %}
 {
   "name": "Cart",
@@ -97,6 +116,11 @@
     { "type": "checkbox", "id": "show_update", "label": "Show \"Update\" button", "default": true },
     { "type": "text", "id": "update_label", "label": "Update button", "default": "Update" },
     { "type": "text", "id": "checkout_label", "label": "Checkout button", "default": "Checkout" },
+    { "type": "header", "content": "Shipping-restriction pop-up" },
+    { "type": "paragraph", "content": "Pop-up shown when a customer opens the cart page. Note: the checkout page is hosted by Shopify and can't show this pop-up — enforce which states you ship to under Settings → Shipping." },
+    { "type": "checkbox", "id": "ship_notice_enable", "label": "Show shipping-restriction pop-up", "default": true },
+    { "type": "text", "id": "ship_notice_heading", "label": "Pop-up heading", "default": "Shipping notice" },
+    { "type": "textarea", "id": "ship_notice_text", "label": "Pop-up message", "default": "At this time, we can only ship to the following U.S. states: [add your states here]. Any order placed for delivery to a state or address outside this list will be refunded upon processing. Thank you for understanding." },
     { "type": "header", "content": "Per-item text (compliance)" },
     { "type": "paragraph", "content": "Optional text shown under each cart line — useful for descriptions, disclosures, and legal metafields." },
     { "type": "checkbox", "id": "show_item_desc", "label": "Show product description", "default": false },
