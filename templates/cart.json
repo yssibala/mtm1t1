@@ -13,6 +13,9 @@
       "type": "main-cart",
       "settings": {
         "coming_soon": false,
+        "ship_notice_enable": true,
+        "ship_notice_heading": "Shipping notice",
+        "ship_notice_text": "At this time, we can only ship to the following U.S. states: AZ, CA, CO, CT, DC, DE, FL, GA, IA, ID, IL, IN, KS, KY, LA, MA, MD, ME, MI, MN, MO, NC, ND, NE, NH, NJ, NM, NV, NY, OH, OR, PA, RI, SC, SD, TN, TX, VA, VT, WA, WI, WV, WY. Any order placed for delivery to a state or address outside this list will be refunded upon processing. Thank you for understanding.",
         "preheader": "",
         "heading": "Your Cart",
         "intro_text": "",
