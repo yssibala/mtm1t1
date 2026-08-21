@@ -24,7 +24,7 @@
       <img src="{{ s.image | image_url: width: 2200 }}" alt="{{ s.image.alt | escape }}" width="{{ s.image.width }}" height="{{ s.image.height }}" style="width:100%;height:100%;object-fit:cover;object-position:{{ s.image_focal | default: 'center' }};opacity:{{ s.image_opacity | default: 100 | divided_by: 100.0 }};">
     </div>
   {%- endif -%}
-  {%- capture hero_preheader -%}{%- if s.preheader != blank -%}<div class="kicker" style="font-family:{%- render 'font-stack', key: s.preheader_font -%};color:{{ s.accent_color | default: '#C9851A' }};margin-bottom:{{ s.space_preheader | default: 12 }}px;{%- render 'letter-spacing', mult: s.ls_preheader, base: '0.18em' -%}{% if s.text_align == 'center' %}text-align:center;{% endif %}">{{ s.preheader }}</div>{%- endif -%}{%- endcapture -%}
+  {%- capture hero_preheader -%}{%- if s.preheader != blank -%}<div class="kicker" style="font-family:{%- render 'font-stack', key: s.preheader_font -%};color:{{ s.accent_color | default: '#C9851A' }};margin-bottom:{{ s.space_preheader | default: 12 }}px;{% if s.preheader_size > 0 %}font-size:{{ s.preheader_size }}px;{% endif %}{%- render 'letter-spacing', mult: s.ls_preheader, base: '0.18em' -%}{% if s.text_align == 'center' %}text-align:center;{% endif %}">{{ s.preheader }}</div>{%- endif -%}{%- endcapture -%}
   <div class="hero__grid{% if is_split %} hero__grid--split{% endif %}" style="position:relative;z-index:1;">
     {%- comment -%} Free-standing image: above the text (centered/aligned) or in the split column. Preheader stays above the image. {%- endcomment -%}
     {%- if has_image and img_pos == 'above' -%}
@@ -107,6 +107,7 @@
         { "value": "display", "label": "Neue Haas Grotesk Display (Adobe)" },
         { "value": "text", "label": "Neue Haas Grotesk Text (Adobe)" },
         { "value": "ogg", "label": "Ogg Text (Adobe serif)" } ], "default": "site" },
+    { "type": "range", "id": "preheader_size", "label": "Preheader size", "info": "0 = theme default.", "min": 0, "max": 40, "step": 1, "unit": "px", "default": 0 },
     { "type": "select", "id": "heading_font", "label": "Heading font", "options": [
         { "value": "site", "label": "Neue Haas Display Light" },
         { "value": "display", "label": "Neue Haas Grotesk Display (Adobe)" },

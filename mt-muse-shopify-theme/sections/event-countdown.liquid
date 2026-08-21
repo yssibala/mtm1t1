@@ -4,7 +4,7 @@
 -%}
 <div class="section-wrap event-countdown{% if s.coming_soon %} is-coming-soon{% endif %}"{% if s.coming_soon %} data-cs-label="{{ settings.badge_text | default: 'Coming Soon' | escape }}"{% endif %} style="{%- render 'section-style', st: s -%}">
   <div class="container" style="text-align:{{ align }};">
-    {%- if s.preheader != blank -%}<div class="kicker" style="font-family:{%- render 'font-stack', key: s.preheader_font -%};{% if s.accent_color != blank %}color:{{ s.accent_color }};{% endif %}margin-bottom:{{ s.space_preheader | default: 10 }}px;{%- render 'letter-spacing', mult: s.ls_preheader, base: '0.18em' -%}">{{ s.preheader }}</div>{%- endif -%}
+    {%- if s.preheader != blank -%}<div class="kicker" style="font-family:{%- render 'font-stack', key: s.preheader_font -%};{% if s.accent_color != blank %}color:{{ s.accent_color }};{% endif %}margin-bottom:{{ s.space_preheader | default: 10 }}px;{% if s.preheader_size > 0 %}font-size:{{ s.preheader_size }}px;{% endif %}{%- render 'letter-spacing', mult: s.ls_preheader, base: '0.18em' -%}">{{ s.preheader }}</div>{%- endif -%}
     {%- if s.heading != blank -%}<h2 class="{%- render 'mb-size', val: s.heading_size, def: 40, cls: 'mb-h' -%}" style="font-family:{%- render 'font-stack', key: s.heading_font -%};{%- render 'font-variant', key: s.heading_weight, font: s.heading_font -%}{%- render 'letter-spacing', mult: s.ls_heading, base: '0.05em' -%}{% if s.heading_color != blank %}color:{{ s.heading_color }};{% endif %}font-size:{{ s.heading_size | default: 40 }}px;margin:0 0 {{ s.space_heading | default: 24 }}px;">{{ s.heading | newline_to_br }}</h2>{%- endif -%}
     <div class="evt-cd" data-countdown data-target="{{ s.target_date }}" style="--evt-accent:{{ s.number_color | default: '#8B5CF6' }};--evt-num:{{ s.number_size | default: 44 }}px;justify-content:{% if align == 'left' %}flex-start{% elsif align == 'right' %}flex-end{% else %}center{% endif %};">
       <div class="evt-cd__unit"><span class="evt-cd__num" data-cd-days>--</span><span class="evt-cd__lbl">{{ s.label_days | default: 'Days' }}</span></div>
@@ -64,6 +64,7 @@
         { "value": "display", "label": "Neue Haas Grotesk Display (Adobe)" },
         { "value": "text", "label": "Neue Haas Grotesk Text (Adobe)" },
         { "value": "ogg", "label": "Ogg Text (Adobe serif)" } ], "default": "text" },
+    { "type": "range", "id": "preheader_size", "label": "Preheader size", "info": "0 = theme default.", "min": 0, "max": 40, "step": 1, "unit": "px", "default": 0 },
     { "type": "color", "id": "accent_color", "label": "Preheader color", "info": "Blank = theme default.", "default": "#8B5CF6" },
     { "type": "select", "id": "heading_font", "label": "Heading font", "options": [
         { "value": "site", "label": "Neue Haas Display Light" },
