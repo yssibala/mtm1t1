@@ -8,7 +8,7 @@
 {%- capture foot_vars -%}--foot-head-font:{%- render 'font-stack', key: s.foot_head_font -%};--foot-body-font:{%- render 'font-stack', key: s.foot_body_font -%};{% if s.foot_head_color != blank %}--foot-head-color:{{ s.foot_head_color }};{% endif %}{% if s.foot_body_color != blank %}--foot-body-color:{{ s.foot_body_color }};{% endif %}{% if s.foot_head_size > 0 %}--foot-head-size:{{ s.foot_head_size }}px;{% endif %}{% if s.foot_body_size > 0 %}--foot-body-size:{{ s.foot_body_size }}px;{% endif %}{% if s.foot_head_ls and s.foot_head_ls != 1 %}--foot-head-ls:calc(.14em * {{ s.foot_head_ls }});{% endif %}{% if s.foot_body_ls and s.foot_body_ls != 1 %}--foot-body-ls:calc(.12em * {{ s.foot_body_ls }});{% endif %}{%- endcapture -%}
 {%- assign brand_align = s.brand_align | default: 'left' -%}
 {%- unless has_cols -%}{%- assign brand_align = 'center' -%}{%- endunless -%}
-<footer class="site-footer" style="{{ foot_vars }}">
+<footer class="site-footer" style="{{ foot_vars }}{% if s.bg_color != blank %}background:{{ s.bg_color }};{% endif %}">
   <div class="container">
     <div class="footer-top{% unless has_cols %} footer-top--solo{% endunless %}">
       <div class="footer-brand footer-brand--{{ brand_align }}">
@@ -94,6 +94,7 @@
     { "type": "select", "id": "brand_align", "label": "Brand alignment (logo + tagline)", "options": [
         { "value": "left", "label": "Left" }, { "value": "center", "label": "Center" }, { "value": "right", "label": "Right" } ], "default": "left" },
     { "type": "paragraph", "content": "The footer navigation bar is now set in Theme settings > Footer, so it stays consistent site-wide." },
+    { "type": "color", "id": "bg_color", "label": "Background override", "info": "Blank = theme default footer background. Set per page when the footer is placed inside a page (e.g. the event page)." },
     { "type": "header", "content": "Newsletter" },
     { "type": "checkbox", "id": "show_newsletter", "label": "Show newsletter signup", "default": true },
     { "type": "text", "id": "newsletter_heading", "label": "Newsletter heading", "default": "Join the muse list" },
@@ -134,6 +135,7 @@
       { "type": "text", "id": "heading", "label": "Heading", "default": "About" },
       { "type": "richtext", "id": "text", "label": "Text" } ] }
   ],
-  "max_blocks": 4
+  "max_blocks": 4,
+  "presets": [{ "name": "Footer" }]
 }
 {% endschema %}
