@@ -42,19 +42,21 @@
   </head>
   <body class="{{ template | replace: '.', '-' }}">
     {% render 'age-gate' %}
-    {% section 'announcement-bar' %}
-    {%- comment -%} Per-template nav: product pages use the SPC carousel nav, nutrition-table pages use the nutrition SPC nav, all others use the standard nav. {%- endcomment -%}
+    {%- unless template.suffix contains 'event' -%}{% section 'announcement-bar' %}{%- endunless -%}
+    {%- comment -%} Per-template nav: product pages use the SPC carousel nav, nutrition-table pages use the nutrition SPC nav, event pages supply their own nav section, all others use the standard nav. {%- endcomment -%}
     {%- if template.name == 'product' -%}
         {% section 'header-spc' %}
     {%- elsif template.suffix contains 'nutrition' -%}
         {% section 'header-nutrition' %}
+    {%- elsif template.suffix contains 'event' -%}
+        {%- comment -%} Event microsite renders its own nav as its first section {%- endcomment -%}
     {%- else -%}
         {% section 'header' %}
     {%- endif -%}
     <main role="main" class="main-content">
       {{ content_for_layout }}
     </main>
-    {% section 'footer' %}
+    {%- unless template.suffix contains 'event' -%}{% section 'footer' %}{%- endunless -%}
     {% render 'cart-drawer' %}
     <script src="{{ 'theme.js' | asset_url }}" defer></script>
   </body>

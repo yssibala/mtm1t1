@@ -1,0 +1,106 @@
+{%- liquid
+  assign s = section.settings
+  assign align = s.text_align | default: 'center'
+-%}
+<div class="section-wrap event-countdown{% if s.coming_soon %} is-coming-soon{% endif %}"{% if s.coming_soon %} data-cs-label="{{ settings.badge_text | default: 'Coming Soon' | escape }}"{% endif %} style="{%- render 'section-style', st: s -%}">
+  <div class="container" style="text-align:{{ align }};">
+    {%- if s.preheader != blank -%}<div class="kicker" style="font-family:{%- render 'font-stack', key: s.preheader_font -%};{% if s.accent_color != blank %}color:{{ s.accent_color }};{% endif %}margin-bottom:{{ s.space_preheader | default: 10 }}px;{%- render 'letter-spacing', mult: s.ls_preheader, base: '0.18em' -%}">{{ s.preheader }}</div>{%- endif -%}
+    {%- if s.heading != blank -%}<h2 class="{%- render 'mb-size', val: s.heading_size, def: 40, cls: 'mb-h' -%}" style="font-family:{%- render 'font-stack', key: s.heading_font -%};{%- render 'font-variant', key: s.heading_weight, font: s.heading_font -%}{%- render 'letter-spacing', mult: s.ls_heading, base: '0.05em' -%}{% if s.heading_color != blank %}color:{{ s.heading_color }};{% endif %}font-size:{{ s.heading_size | default: 40 }}px;margin:0 0 {{ s.space_heading | default: 24 }}px;">{{ s.heading | newline_to_br }}</h2>{%- endif -%}
+    <div class="evt-cd" data-countdown data-target="{{ s.target_date }}" style="--evt-accent:{{ s.number_color | default: '#8B5CF6' }};--evt-num:{{ s.number_size | default: 44 }}px;justify-content:{% if align == 'left' %}flex-start{% elsif align == 'right' %}flex-end{% else %}center{% endif %};">
+      <div class="evt-cd__unit"><span class="evt-cd__num" data-cd-days>--</span><span class="evt-cd__lbl">{{ s.label_days | default: 'Days' }}</span></div>
+      <div class="evt-cd__unit"><span class="evt-cd__num" data-cd-hours>--</span><span class="evt-cd__lbl">{{ s.label_hours | default: 'Hours' }}</span></div>
+      <div class="evt-cd__unit"><span class="evt-cd__num" data-cd-mins>--</span><span class="evt-cd__lbl">{{ s.label_mins | default: 'Minutes' }}</span></div>
+      <div class="evt-cd__unit"><span class="evt-cd__num" data-cd-secs>--</span><span class="evt-cd__lbl">{{ s.label_secs | default: 'Seconds' }}</span></div>
+    </div>
+    {%- if s.expired_text != blank -%}<div class="evt-cd__done" data-cd-expired hidden style="font-family:{%- render 'font-stack', key: s.body_font -%};margin-top:16px;">{{ s.expired_text }}</div>{%- endif -%}
+  </div>
+</div>
+<script>
+  (function () {
+    var root = document.getElementById('shopify-section-{{ section.id }}');
+    if (!root) return;
+    var cd = root.querySelector('[data-countdown]');
+    if (!cd) return;
+    var target = new Date(cd.getAttribute('data-target')).getTime();
+    if (isNaN(target)) return;
+    var elD = cd.querySelector('[data-cd-days]'), elH = cd.querySelector('[data-cd-hours]'),
+        elM = cd.querySelector('[data-cd-mins]'), elS = cd.querySelector('[data-cd-secs]');
+    var done = root.querySelector('[data-cd-expired]');
+    function pad(n) { return (n < 10 ? '0' : '') + n; }
+    var t;
+    function tick() {
+      var diff = target - Date.now();
+      if (diff <= 0) { cd.style.display = 'none'; if (done) done.hidden = false; if (t) clearInterval(t); return; }
+      if (elD) elD.textContent = Math.floor(diff / 86400000);
+      if (elH) elH.textContent = pad(Math.floor(diff % 86400000 / 3600000));
+      if (elM) elM.textContent = pad(Math.floor(diff % 3600000 / 60000));
+      if (elS) elS.textContent = pad(Math.floor(diff % 60000 / 1000));
+    }
+    tick(); t = setInterval(tick, 1000);
+  })();
+</script>
+{% schema %}
+{
+  "name": "Event countdown",
+  "settings": [
+    { "type": "header", "content": "Coming soon" },
+    { "type": "checkbox", "id": "coming_soon", "label": "Grey out + show \"coming soon\" badge", "default": false },
+    { "type": "header", "content": "Header" },
+    { "type": "text", "id": "preheader", "label": "Preheader", "default": "One night, by invitation" },
+    { "type": "text", "id": "heading", "label": "Heading", "info": "Press Enter for a line break.", "default": "The Evening" },
+    { "type": "select", "id": "text_align", "label": "Alignment", "options": [ { "value": "left", "label": "Left" }, { "value": "center", "label": "Center" }, { "value": "right", "label": "Right" } ], "default": "center" },
+    { "type": "header", "content": "Countdown" },
+    { "type": "text", "id": "target_date", "label": "Target date & time", "info": "ISO format with timezone offset, e.g. 2026-09-19T18:30:00-04:00 (Sep 19 2026, 6:30 PM Eastern).", "default": "2026-09-19T18:30:00-04:00" },
+    { "type": "color", "id": "number_color", "label": "Number color", "default": "#8B5CF6" },
+    { "type": "range", "id": "number_size", "label": "Number size", "min": 24, "max": 88, "step": 2, "unit": "px", "default": 44 },
+    { "type": "text", "id": "label_days", "label": "Days label", "default": "Days" },
+    { "type": "text", "id": "label_hours", "label": "Hours label", "default": "Hours" },
+    { "type": "text", "id": "label_mins", "label": "Minutes label", "default": "Minutes" },
+    { "type": "text", "id": "label_secs", "label": "Seconds label", "default": "Seconds" },
+    { "type": "text", "id": "expired_text", "label": "Text shown after the date passes", "default": "The evening has arrived." },
+    { "type": "header", "content": "Typography" },
+    { "type": "select", "id": "preheader_font", "label": "Preheader font", "options": [
+        { "value": "site", "label": "Neue Haas Display Light" },
+        { "value": "display", "label": "Neue Haas Grotesk Display (Adobe)" },
+        { "value": "text", "label": "Neue Haas Grotesk Text (Adobe)" },
+        { "value": "ogg", "label": "Ogg Text (Adobe serif)" } ], "default": "text" },
+    { "type": "color", "id": "accent_color", "label": "Preheader color", "info": "Blank = theme default.", "default": "#8B5CF6" },
+    { "type": "select", "id": "heading_font", "label": "Heading font", "options": [
+        { "value": "site", "label": "Neue Haas Display Light" },
+        { "value": "display", "label": "Neue Haas Grotesk Display (Adobe)" },
+        { "value": "ogg", "label": "Ogg Text (Adobe serif)" } ], "default": "ogg" },
+    { "type": "range", "id": "heading_size", "label": "Heading size", "min": 24, "max": 80, "step": 2, "unit": "px", "default": 40 },
+    { "type": "color", "id": "heading_color", "label": "Heading color", "info": "Blank = theme default." },
+    { "type": "select", "id": "heading_weight", "label": "Heading weight & style", "options": [
+        { "value": "inherit", "label": "Theme default" },
+        { "value": "thin", "label": "Thin (200)" },
+        { "value": "book", "label": "Book / Light (300)" },
+        { "value": "roman", "label": "Roman / Regular (400)" },
+        { "value": "medium", "label": "Medium (500)" },
+        { "value": "bold", "label": "Bold (700)" } ], "default": "thin" },
+    { "type": "select", "id": "body_font", "label": "Expired-text font", "options": [
+        { "value": "site", "label": "Neue Haas Display Light" },
+        { "value": "text", "label": "Neue Haas Grotesk Text (Adobe)" },
+        { "value": "ogg", "label": "Ogg Text (Adobe serif)" } ], "default": "site" },
+    { "type": "header", "content": "Text spacing" },
+    { "type": "range", "id": "space_preheader", "label": "Space after preheader", "min": 0, "max": 60, "step": 2, "unit": "px", "default": 10 },
+    { "type": "range", "id": "space_heading", "label": "Space after heading", "min": 0, "max": 60, "step": 2, "unit": "px", "default": 24 },
+    { "type": "header", "content": "Letter spacing" },
+    { "type": "range", "id": "ls_preheader", "label": "Preheader letter spacing", "min": 1, "max": 10, "step": 1, "unit": "x", "default": 1 },
+    { "type": "range", "id": "ls_heading", "label": "Heading letter spacing", "min": 1, "max": 10, "step": 1, "unit": "x", "default": 1 },
+    { "type": "header", "content": "Background" },
+    { "type": "select", "id": "bg_type", "label": "Background type", "options": [ { "value": "none", "label": "None" }, { "value": "solid", "label": "Solid color" }, { "value": "gradient", "label": "Gradient" }, { "value": "image", "label": "Image" } ], "default": "none" },
+    { "type": "color", "id": "bg_color", "label": "Solid color", "default": "#FBF6EE" },
+    { "type": "color", "id": "bg_gradient_start", "label": "Gradient start", "default": "#FBF6EE" },
+    { "type": "color", "id": "bg_gradient_end", "label": "Gradient end", "default": "#E7DAC4" },
+    { "type": "range", "id": "bg_gradient_angle", "label": "Gradient angle", "min": 0, "max": 360, "step": 10, "unit": "deg", "default": 180 },
+    { "type": "image_picker", "id": "bg_image", "label": "Background image" },
+    { "type": "header", "content": "Spacing & height" },
+    { "type": "checkbox", "id": "extend_behind_header", "label": "Extend background behind header", "default": false },
+    { "type": "range", "id": "min_height", "label": "Minimum height", "min": 0, "max": 1000, "step": 20, "unit": "px", "default": 0 },
+    { "type": "range", "id": "padding_top", "label": "Top padding", "min": 0, "max": 200, "step": 4, "unit": "px", "default": 40 },
+    { "type": "range", "id": "padding_bottom", "label": "Bottom padding", "min": 0, "max": 200, "step": 4, "unit": "px", "default": 40 }
+  ],
+  "presets": [{ "name": "Event countdown" }]
+}
+{% endschema %}

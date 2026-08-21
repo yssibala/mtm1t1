@@ -1,0 +1,73 @@
+{%- liquid assign s = section.settings -%}
+<nav class="evt-nav" data-evt-nav style="--evt-nav-bg:{{ s.bg_color | default: '#FBF6EE' }};--evt-nav-fg:{{ s.text_color | default: '#0A0B0C' }};">
+  <div class="evt-nav__inner container">
+    <a class="evt-nav__brand" href="#top" style="font-family:{%- render 'font-stack', key: 'ogg' -%};{%- render 'letter-spacing', mult: 4, base: '0.06em' -%}">
+      {%- if s.show_monogram -%}
+        {%- if settings.logo_2 != blank -%}<img class="evt-nav__mono" src="{{ settings.logo_2 | image_url: width: 120 }}" alt="{{ shop.name | escape }}" width="{{ settings.logo_2.width }}" height="{{ settings.logo_2.height }}">
+        {%- else -%}<img class="evt-nav__mono" src="{{ 'muse-monogram-solo-gld.png' | asset_url }}" alt="{{ shop.name | escape }}" width="497" height="477">{%- endif -%}
+      {%- endif -%}
+      {%- if s.brand_text != blank -%}<span>{{ s.brand_text }}</span>{%- endif -%}
+    </a>
+    <button type="button" class="evt-nav__toggle" data-evt-nav-toggle aria-label="Menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <div class="evt-nav__links" data-evt-nav-links>
+      {%- for block in section.blocks -%}
+        {%- if block.type == 'link' and block.settings.label != blank -%}
+          <a class="evt-nav__link" href="#{{ block.settings.target }}" data-evt-nav-close {{ block.shopify_attributes }} style="font-family:{%- render 'font-stack', key: 'text' -%};{%- render 'letter-spacing', mult: 3, base: '0.12em' -%}">{{ block.settings.label }}</a>
+        {%- endif -%}
+      {%- endfor -%}
+      {%- if s.cta_label != blank -%}<a class="evt-nav__cta muse-pill muse-cta" href="{{ s.cta_link | default: '#' }}"{% if s.cta_new_tab %} target="_blank" rel="noopener"{% endif %} style="font-size:{{ s.cta_size | default: 11 }}px;">{{ s.cta_label }}</a>{%- endif -%}
+    </div>
+  </div>
+</nav>
+<span id="top"></span>
+<script>
+  (function () {
+    var root = document.getElementById('shopify-section-{{ section.id }}');
+    if (!root) return;
+    var nav = root.querySelector('[data-evt-nav]');
+    var toggle = root.querySelector('[data-evt-nav-toggle]');
+    var links = root.querySelector('[data-evt-nav-links]');
+    if (toggle && links) {
+      toggle.addEventListener('click', function () {
+        var open = nav.classList.toggle('is-open');
+        toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+      });
+      links.addEventListener('click', function (e) {
+        var a = e.target.closest('.evt-nav__link');
+        if (a) {
+          var href = a.getAttribute('href') || '';
+          if (href.charAt(0) === '#' && href.length > 1) {
+            var tgt = document.getElementById(href.slice(1));
+            if (tgt) { e.preventDefault(); tgt.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+          }
+          nav.classList.remove('is-open'); toggle.setAttribute('aria-expanded', 'false');
+        }
+      });
+    }
+  })();
+</script>
+{% schema %}
+{
+  "name": "Event nav",
+  "settings": [
+    { "type": "checkbox", "id": "show_monogram", "label": "Show monogram", "default": true },
+    { "type": "text", "id": "brand_text", "label": "Brand text", "default": "OURANIA" },
+    { "type": "color", "id": "bg_color", "label": "Bar background", "default": "#FBF6EE" },
+    { "type": "color", "id": "text_color", "label": "Bar text", "default": "#0A0B0C" },
+    { "type": "header", "content": "Get-tickets button" },
+    { "type": "text", "id": "cta_label", "label": "Button label", "default": "Get Tickets" },
+    { "type": "url", "id": "cta_link", "label": "Ticketing link", "info": "Where the Get Tickets buttons go (external RSVP / ticketing page)." },
+    { "type": "checkbox", "id": "cta_new_tab", "label": "Open in new tab", "default": true },
+    { "type": "range", "id": "cta_size", "label": "Button text size", "min": 10, "max": 16, "step": 1, "unit": "px", "default": 11 }
+  ],
+  "blocks": [
+    { "type": "link", "name": "Nav link", "settings": [
+      { "type": "text", "id": "label", "label": "Label", "default": "Details" },
+      { "type": "text", "id": "target", "label": "Scrolls to (section anchor)", "info": "The DOM id of the target section, e.g. shopify-section-details. Use the section's key from the template." }
+    ] }
+  ],
+  "presets": [{ "name": "Event nav" }]
+}
+{% endschema %}
