@@ -1377,6 +1377,48 @@ html.age-gate-open { overflow: hidden; }
 .cart-notice__x { position: absolute; top: 8px; right: 12px; background: none; border: 0; padding: 4px; font-size: 22px; line-height: 1; color: var(--near-black); cursor: pointer; }
 .cart-notice__head { font-weight: var(--fw-medium); margin-bottom: 8px; }
 
+/* ============ Event microsite (event-invite template) ============ */
+.evt-nav { position: sticky; top: 0; z-index: 60; background: var(--evt-nav-bg, #FBF6EE); color: var(--evt-nav-fg, #0A0B0C); border-bottom: 1px solid var(--sand-border); }
+.evt-nav__inner { display: flex; align-items: center; justify-content: space-between; gap: 20px; min-height: 60px; }
+.evt-nav__brand { display: inline-flex; align-items: center; gap: 10px; color: inherit; font-size: 16px; text-transform: uppercase; }
+.evt-nav__mono { height: 26px; width: auto; }
+.evt-nav__links { display: flex; align-items: center; gap: clamp(16px, 2.2vw, 30px); }
+.evt-nav__link { color: inherit; font-size: 12px; text-transform: uppercase; opacity: .85; }
+.evt-nav__link:hover { opacity: 1; color: var(--ourania, #8B5CF6); }
+.evt-nav__cta { margin-left: 6px; }
+.evt-nav__toggle { display: none; flex-direction: column; gap: 4px; background: none; border: 0; padding: 8px; cursor: pointer; color: inherit; }
+.evt-nav__toggle span { width: 22px; height: 2px; background: currentColor; display: block; }
+@media (max-width: 768px) {
+  .evt-nav__toggle { display: inline-flex; }
+  .evt-nav__links { position: absolute; left: 0; right: 0; top: 100%; flex-direction: column; align-items: stretch; gap: 0; background: var(--evt-nav-bg, #FBF6EE); border-bottom: 1px solid var(--sand-border); padding: 8px 0; display: none; }
+  .evt-nav.is-open .evt-nav__links { display: flex; }
+  .evt-nav__link { padding: 12px 24px; }
+  .evt-nav__cta { margin: 10px 24px; text-align: center; }
+}
+.page-event-invite-page .shopify-section { scroll-margin-top: 72px; }
+.evt-cd { display: flex; flex-wrap: wrap; gap: clamp(14px, 4vw, 44px); }
+.evt-cd__unit { display: flex; flex-direction: column; align-items: center; min-width: 56px; }
+.evt-cd__num { font-family: var(--font-text); font-size: var(--evt-num, 44px); font-weight: 300; line-height: 1; color: var(--evt-accent, #8B5CF6); font-variant-numeric: tabular-nums; }
+.evt-cd__lbl { margin-top: 8px; font-size: 11px; letter-spacing: .18em; text-transform: uppercase; color: var(--text-meta); }
+.evt-cd__done { color: var(--evt-accent, #8B5CF6); font-size: 15px; }
+.evt-footer { background: var(--evt-ft-bg, #0A0B0C); color: var(--evt-ft-fg, #FDFCFA); padding: 56px 0 28px; }
+.evt-footer__inner { display: grid; grid-template-columns: 1.3fr 2fr; gap: 40px; }
+.evt-footer__mono { height: 54px; width: auto; margin-bottom: 14px; display: block; }
+.evt-footer__name { font-size: 20px; text-transform: uppercase; margin-bottom: 10px; }
+.evt-footer__tagline { color: inherit; opacity: .7; font-size: 13px; max-width: 320px; line-height: 1.6; }
+.evt-footer__cols { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
+.evt-footer__col-head { font-size: 11px; text-transform: uppercase; opacity: .55; margin-bottom: 12px; }
+.evt-footer__link { display: block; color: inherit; opacity: .82; font-size: 13px; padding: 4px 0; }
+.evt-footer__link:hover { opacity: 1; color: var(--evt-ft-accent, #8B5CF6); }
+.evt-footer__bar { display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; margin-top: 40px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,.12); }
+.evt-footer__motto { font-size: 11px; text-transform: uppercase; opacity: .6; }
+.evt-footer__legal { display: flex; gap: 18px; flex-wrap: wrap; font-size: 11px; opacity: .55; }
+@media (max-width: 768px) {
+  .evt-footer__inner { grid-template-columns: 1fr; gap: 28px; }
+  .evt-footer__cols { grid-template-columns: repeat(2, 1fr); }
+  .evt-footer__bar { flex-direction: column; align-items: flex-start; }
+}
+
 /* Search section (hero-style) */
 .search-hero__form { display: flex; gap: 12px; flex-wrap: nowrap; }
 .search-hero__form input[type="search"] {

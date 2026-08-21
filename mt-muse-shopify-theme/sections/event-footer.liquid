@@ -1,0 +1,63 @@
+{%- liquid assign s = section.settings -%}
+<footer class="evt-footer" style="--evt-ft-bg:{{ s.bg_color | default: '#0A0B0C' }};--evt-ft-fg:{{ s.text_color | default: '#FDFCFA' }};--evt-ft-accent:{{ s.accent_color | default: '#8B5CF6' }};">
+  <div class="container evt-footer__inner">
+    <div class="evt-footer__brand">
+      {%- if s.show_monogram -%}
+        {%- if settings.logo_2 != blank -%}<img class="evt-footer__mono" src="{{ settings.logo_2 | image_url: width: 160 }}" alt="{{ shop.name | escape }}" width="{{ settings.logo_2.width }}" height="{{ settings.logo_2.height }}">
+        {%- else -%}<img class="evt-footer__mono" src="{{ 'muse-monogram-solo-gld.png' | asset_url }}" alt="{{ shop.name | escape }}" width="497" height="477">{%- endif -%}
+      {%- endif -%}
+      {%- if s.brand_text != blank -%}<div class="evt-footer__name" style="font-family:{%- render 'font-stack', key: 'ogg' -%};{%- render 'letter-spacing', mult: 4, base: '0.06em' -%}">{{ s.brand_text }}</div>{%- endif -%}
+      {%- if s.tagline != blank -%}<p class="evt-footer__tagline">{{ s.tagline }}</p>{%- endif -%}
+    </div>
+    <div class="evt-footer__cols">
+      {%- for block in section.blocks -%}
+        {%- if block.type == 'column' -%}
+          <div class="evt-footer__col" {{ block.shopify_attributes }}>
+            {%- if block.settings.heading != blank -%}<div class="evt-footer__col-head" style="{%- render 'letter-spacing', mult: 3, base: '0.14em' -%}">{{ block.settings.heading }}</div>{%- endif -%}
+            {%- for i in (1..6) -%}
+              {%- assign lk = 'label_' | append: i -%}{%- assign uk = 'url_' | append: i -%}
+              {%- assign lbl = block.settings[lk] -%}
+              {%- if lbl != blank -%}<a class="evt-footer__link" href="{{ block.settings[uk] | default: '#' }}">{{ lbl }}</a>{%- endif -%}
+            {%- endfor -%}
+          </div>
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+  </div>
+  <div class="container evt-footer__bar">
+    {%- if s.motto != blank -%}<div class="evt-footer__motto" style="{%- render 'letter-spacing', mult: 3, base: '0.2em' -%}">{{ s.motto }}</div>{%- endif -%}
+    <div class="evt-footer__legal">
+      {%- if s.copyright != blank -%}<span>{{ s.copyright }}</span>{%- endif -%}
+      {%- if s.responsibly != blank -%}<span>{{ s.responsibly }}</span>{%- endif -%}
+    </div>
+  </div>
+</footer>
+{% schema %}
+{
+  "name": "Event footer",
+  "settings": [
+    { "type": "checkbox", "id": "show_monogram", "label": "Show monogram", "default": true },
+    { "type": "text", "id": "brand_text", "label": "Brand name", "default": "MUSE" },
+    { "type": "textarea", "id": "tagline", "label": "Tagline", "default": "Premium RTD cocktails & beverage catering. Celebrate amongst the clouds." },
+    { "type": "color", "id": "bg_color", "label": "Background", "default": "#0A0B0C" },
+    { "type": "color", "id": "text_color", "label": "Text", "default": "#FDFCFA" },
+    { "type": "color", "id": "accent_color", "label": "Accent (headings/hover)", "default": "#8B5CF6" },
+    { "type": "header", "content": "Bottom bar" },
+    { "type": "text", "id": "motto", "label": "Motto", "default": "CULTIVATE · COMMEMORATE · CELEBRATE" },
+    { "type": "text", "id": "copyright", "label": "Copyright", "default": "© 2026 MUSE. All Rights Reserved." },
+    { "type": "text", "id": "responsibly", "label": "Responsibly line", "default": "Please enjoy responsibly. 21+" }
+  ],
+  "blocks": [
+    { "type": "column", "name": "Column", "settings": [
+      { "type": "text", "id": "heading", "label": "Column heading", "default": "The Night" },
+      { "type": "text", "id": "label_1", "label": "Link 1 label" }, { "type": "url", "id": "url_1", "label": "Link 1 URL" },
+      { "type": "text", "id": "label_2", "label": "Link 2 label" }, { "type": "url", "id": "url_2", "label": "Link 2 URL" },
+      { "type": "text", "id": "label_3", "label": "Link 3 label" }, { "type": "url", "id": "url_3", "label": "Link 3 URL" },
+      { "type": "text", "id": "label_4", "label": "Link 4 label" }, { "type": "url", "id": "url_4", "label": "Link 4 URL" },
+      { "type": "text", "id": "label_5", "label": "Link 5 label" }, { "type": "url", "id": "url_5", "label": "Link 5 URL" },
+      { "type": "text", "id": "label_6", "label": "Link 6 label" }, { "type": "url", "id": "url_6", "label": "Link 6 URL" }
+    ] }
+  ],
+  "presets": [{ "name": "Event footer" }]
+}
+{% endschema %}
