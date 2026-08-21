@@ -9,10 +9,15 @@
  */
 {
   "current": {
-    "logo": "shopify://shop_images/MUSE_-_Name_LOGO_BLK_2.png",
-    "logo_2": "shopify://shop_images/MUSE_-_Monogram_slim_EFA527.png",
+    "logo": "shopify://shop_images/MUSE_-_Monogram_slim_EFA527.png",
+    "logo_2": "shopify://shop_images/MUSE_-_Name_LOGO_BLK_2.png",
+    "newsletter_name": "The Cloud Cabana",
     "newsletter_consent": "Yes, send me information regarding launches, events, discounts, & the occasional updates!",
     "heading_font": "ogg",
+    "age_gate_enable": true,
+    "age_heading": "Are you 21 years old or older?",
+    "age_text": "You must be of 21+ years old to enter.",
+    "age_deny": "Sorry — you must be 21+ years old to enter.",
     "placeholder_bg": "#F1E6D3",
     "nav_bg_opacity": 85,
     "footer_show_nav": true,
