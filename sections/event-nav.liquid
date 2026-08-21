@@ -1,24 +1,59 @@
-{%- liquid assign s = section.settings -%}
-<nav class="evt-nav" data-evt-nav style="--evt-nav-bg:{{ s.bg_color | default: '#FBF6EE' }};--evt-nav-fg:{{ s.text_color | default: '#0A0B0C' }};">
-  <div class="evt-nav__inner container">
-    <a class="evt-nav__brand" href="#top" style="font-family:{%- render 'font-stack', key: 'ogg' -%};{%- render 'letter-spacing', mult: 4, base: '0.06em' -%}">
-      {%- if s.show_monogram -%}
-        {%- if settings.logo_2 != blank -%}<img class="evt-nav__mono" src="{{ settings.logo_2 | image_url: width: 120 }}" alt="{{ shop.name | escape }}" width="{{ settings.logo_2.width }}" height="{{ settings.logo_2.height }}">
-        {%- else -%}<img class="evt-nav__mono" src="{{ 'muse-monogram-solo-gld.png' | asset_url }}" alt="{{ shop.name | escape }}" width="497" height="477">{%- endif -%}
-      {%- endif -%}
-      {%- if s.brand_text != blank -%}<span>{{ s.brand_text }}</span>{%- endif -%}
-    </a>
-    <button type="button" class="evt-nav__toggle" data-evt-nav-toggle aria-label="Menu" aria-expanded="false">
-      <span></span><span></span><span></span>
-    </button>
-    <div class="evt-nav__links" data-evt-nav-links>
-      {%- for block in section.blocks -%}
-        {%- if block.type == 'link' and block.settings.label != blank -%}
-          <a class="evt-nav__link" href="#{{ block.settings.target }}" data-evt-nav-close {{ block.shopify_attributes }} style="font-family:{%- render 'font-stack', key: 'text' -%};{%- render 'letter-spacing', mult: 3, base: '0.12em' -%}">{{ block.settings.label }}</a>
-        {%- endif -%}
-      {%- endfor -%}
-      {%- if s.cta_label != blank -%}<a class="evt-nav__cta muse-pill muse-cta" href="{{ s.cta_link | default: '#' }}"{% if s.cta_new_tab %} target="_blank" rel="noopener"{% endif %} style="font-size:{{ s.cta_size | default: 11 }}px;">{{ s.cta_label }}</a>{%- endif -%}
+{%- comment -%}
+  Event microsite nav — mirrors the standard site nav's two-state opacity crossfade.
+  State 1 (top)     : link | superimposed center images (+brand) | link + Get Tickets
+  State 2 (scrolled): image1 + image2(offset) lockup | centered links | Get Tickets
+  Toggled by .evt-nav--scrolled; default switch point is the end of the hero section.
+{%- endcomment -%}
+{%- liquid
+  assign s = section.settings
+  assign links = section.blocks | where: 'type', 'link'
+  assign half = links.size | plus: 1 | divided_by: 2
+-%}
+<nav id="evt-nav" class="evt-nav" style="
+  --h1:{{ s.nav_h1 | default: 84 }}px;--h2:{{ s.nav_h2 | default: 56 }}px;
+  --evt-bg:{{ s.bg_color | default: '#FBF6EE' }};--evt-bg2:{{ s.bg_color_2 | default: s.bg_color | default: '#FBF6EE' }};--evt-fg:{{ s.text_color | default: '#0A0B0C' }};
+  --img-max-h:{{ s.img_max_h | default: 34 }}px;--img2-offset:{{ s.img_2_offset | default: 44 }}px;
+  --evt-brand-font:{%- render 'font-stack', key: s.brand_font -%};--evt-brand-size:{{ s.brand_size | default: 16 }}px;--evt-brand-weight:{{ s.brand_weight | default: 400 }};--evt-brand-transform:{{ s.brand_transform | default: 'uppercase' }};--evt-brand-ls:calc(0.06em * {{ s.brand_ls | default: 1 }});{% if s.brand_color != blank %}--evt-brand-color:{{ s.brand_color }};{% endif %}
+  --evt-link-font:{%- render 'font-stack', key: s.link_font -%};--evt-link-size:{{ s.link_size | default: 12 }}px;--evt-link-weight:{{ s.link_weight | default: 500 }};--evt-link-transform:{{ s.link_transform | default: 'uppercase' }};--evt-link-ls:calc(0.12em * {{ s.link_ls | default: 1 }});{% if s.link_color != blank %}--evt-link-color:{{ s.link_color }};{% endif %}{% if s.link_hover_color != blank %}--evt-link-hover:{{ s.link_hover_color }};{% endif %}
+">
+  {%- capture lockup -%}
+    {%- if s.img_1 != blank and s.img_1_opacity > 0 -%}<img class="evt-nav__img evt-nav__img--1" src="{{ s.img_1 | image_url: width: 240 }}" alt="" width="{{ s.img_1.width }}" height="{{ s.img_1.height }}" style="opacity:{{ s.img_1_opacity | times: 0.01 }};">{%- endif -%}
+    {%- if s.img_2 != blank and s.img_2_opacity > 0 -%}<img class="evt-nav__img evt-nav__img--2" src="{{ s.img_2 | image_url: width: 240 }}" alt="" width="{{ s.img_2.width }}" height="{{ s.img_2.height }}" style="opacity:{{ s.img_2_opacity | times: 0.01 }};">{%- endif -%}
+    {%- if s.brand_text != blank -%}<span class="evt-nav__brand">{{ s.brand_text }}</span>{%- endif -%}
+  {%- endcapture -%}
+  {%- capture cta -%}{%- if s.cta_label != blank -%}<a class="evt-nav__cta muse-pill muse-cta" href="{{ s.cta_link | default: '#' }}"{% if s.cta_new_tab %} target="_blank" rel="noopener"{% endif %} style="font-size:{{ s.cta_size | default: 11 }}px;">{{ s.cta_label }}</a>{%- endif -%}{%- endcapture -%}
+
+  <!-- STATE 1: links flank centered image stack -->
+  <div class="evt-nav__bar evt-nav__bar--1 container">
+    <div class="evt-nav__col evt-nav__col--l">
+      {%- for b in links -%}{%- if forloop.index <= half -%}<a class="evt-nav__link" href="#{{ b.settings.target }}" data-evt-scroll>{{ b.settings.label }}</a>{%- endif -%}{%- endfor -%}
     </div>
+    <a class="evt-nav__center" href="#top" aria-label="{{ s.brand_text | default: shop.name | escape }}">
+      <span class="evt-nav__stack">{{ lockup }}</span>
+    </a>
+    <div class="evt-nav__col evt-nav__col--r">
+      {%- for b in links -%}{%- if forloop.index > half -%}<a class="evt-nav__link" href="#{{ b.settings.target }}" data-evt-scroll>{{ b.settings.label }}</a>{%- endif -%}{%- endfor -%}
+      {{ cta }}
+    </div>
+  </div>
+
+  <!-- STATE 2: lockup left, centered links, CTA right -->
+  <div class="evt-nav__bar evt-nav__bar--2 container">
+    <a class="evt-nav__lockup" href="#top" aria-label="{{ s.brand_text | default: shop.name | escape }}">{{ lockup }}</a>
+    <div class="evt-nav__links2">
+      {%- for b in links -%}<a class="evt-nav__link" href="#{{ b.settings.target }}" data-evt-scroll data-evt-nav-close>{{ b.settings.label }}</a>{%- endfor -%}
+    </div>
+    <div class="evt-nav__cta2">{{ cta }}</div>
+  </div>
+
+  <!-- MOBILE -->
+  <div class="evt-nav__mobile container">
+    <button type="button" class="evt-nav__toggle" data-evt-nav-toggle aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
+    <a class="evt-nav__center evt-nav__center--m" href="#top"><span class="evt-nav__stack">{{ lockup }}</span></a>
+    {{ cta }}
+  </div>
+  <div class="evt-nav__panel" data-evt-nav-links>
+    {%- for b in links -%}<a class="evt-nav__link" href="#{{ b.settings.target }}" data-evt-scroll data-evt-nav-close>{{ b.settings.label }}</a>{%- endfor -%}
   </div>
 </nav>
 <span id="top"></span>
@@ -26,46 +61,99 @@
   (function () {
     var root = document.getElementById('shopify-section-{{ section.id }}');
     if (!root) return;
-    var nav = root.querySelector('[data-evt-nav]');
+    var nav = root.querySelector('#evt-nav');
+    if (!nav) return;
+    var manual = {{ s.scroll_threshold | default: 0 | json }};
+    function compute() {
+      var scrolled;
+      if (manual > 0) { scrolled = window.scrollY > manual; }
+      else {
+        var hero = document.getElementById('shopify-section-hero');
+        scrolled = hero ? (hero.getBoundingClientRect().bottom <= nav.offsetHeight + 4) : (window.scrollY > 60);
+      }
+      nav.classList.toggle('evt-nav--scrolled', scrolled);
+    }
+    compute();
+    window.addEventListener('scroll', compute, { passive: true });
+    window.addEventListener('resize', compute);
+    window.addEventListener('pageshow', compute);
+
     var toggle = root.querySelector('[data-evt-nav-toggle]');
-    var links = root.querySelector('[data-evt-nav-links]');
-    if (toggle && links) {
+    if (toggle) {
       toggle.addEventListener('click', function () {
         var open = nav.classList.toggle('is-open');
         toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
       });
-      links.addEventListener('click', function (e) {
-        var a = e.target.closest('.evt-nav__link');
-        if (a) {
-          var href = a.getAttribute('href') || '';
-          if (href.charAt(0) === '#' && href.length > 1) {
-            var tgt = document.getElementById(href.slice(1));
-            if (tgt) { e.preventDefault(); tgt.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
-          }
-          nav.classList.remove('is-open'); toggle.setAttribute('aria-expanded', 'false');
-        }
-      });
     }
+    nav.addEventListener('click', function (e) {
+      var a = e.target.closest('[data-evt-scroll]');
+      if (a) {
+        var href = a.getAttribute('href') || '';
+        if (href.charAt(0) === '#' && href.length > 1) {
+          var tgt = document.getElementById(href.slice(1));
+          if (tgt) { e.preventDefault(); tgt.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+        }
+        nav.classList.remove('is-open');
+        if (toggle) toggle.setAttribute('aria-expanded', 'false');
+      }
+    });
   })();
 </script>
 {% schema %}
 {
   "name": "Event nav",
   "settings": [
-    { "type": "checkbox", "id": "show_monogram", "label": "Show monogram", "default": true },
-    { "type": "text", "id": "brand_text", "label": "Brand text", "default": "OURANIA" },
-    { "type": "color", "id": "bg_color", "label": "Bar background", "default": "#FBF6EE" },
-    { "type": "color", "id": "text_color", "label": "Bar text", "default": "#0A0B0C" },
+    { "type": "header", "content": "Behavior & height" },
+    { "type": "range", "id": "nav_h1", "label": "Bar height — State 1 (top)", "min": 48, "max": 140, "step": 2, "unit": "px", "default": 84 },
+    { "type": "range", "id": "nav_h2", "label": "Bar height — State 2 (scrolled)", "min": 40, "max": 100, "step": 2, "unit": "px", "default": 56 },
+    { "type": "range", "id": "scroll_threshold", "label": "Switch to State 2 after (px)", "info": "0 = switch at the end of the hero (first section). Any other value = switch after that many px scrolled.", "min": 0, "max": 800, "step": 10, "default": 0 },
+    { "type": "color", "id": "bg_color", "label": "Bar background — State 1", "default": "#FBF6EE" },
+    { "type": "color", "id": "bg_color_2", "label": "Bar background — State 2", "info": "Blank = same as State 1.", "default": "#FBF6EE" },
+    { "type": "color", "id": "text_color", "label": "Bar text / icons", "default": "#0A0B0C" },
+    { "type": "header", "content": "Center images (superimposed)" },
+    { "type": "paragraph", "content": "Two images stacked in the center in State 1. In State 2 the first sits where the logo goes and the second sits to its right. Opacity 0 (or no image) removes that layer." },
+    { "type": "image_picker", "id": "img_1", "label": "Image 1" },
+    { "type": "range", "id": "img_1_opacity", "label": "Image 1 opacity", "min": 0, "max": 100, "step": 5, "unit": "%", "default": 100 },
+    { "type": "image_picker", "id": "img_2", "label": "Image 2" },
+    { "type": "range", "id": "img_2_opacity", "label": "Image 2 opacity", "min": 0, "max": 100, "step": 5, "unit": "%", "default": 100 },
+    { "type": "range", "id": "img_max_h", "label": "Image height", "min": 16, "max": 64, "step": 2, "unit": "px", "default": 34 },
+    { "type": "range", "id": "img_2_offset", "label": "State 2: image 2 offset right", "min": 0, "max": 220, "step": 4, "unit": "px", "default": 44 },
+    { "type": "header", "content": "Brand text" },
+    { "type": "text", "id": "brand_text", "label": "Brand text", "info": "Shown next to the images. Leave blank for images only." },
+    { "type": "select", "id": "brand_font", "label": "Font", "options": [
+        { "value": "site", "label": "Neue Haas Display Light" },
+        { "value": "display", "label": "Neue Haas Grotesk Display" },
+        { "value": "text", "label": "Neue Haas Grotesk Text" },
+        { "value": "ogg", "label": "Ogg Text (serif)" } ], "default": "ogg" },
+    { "type": "range", "id": "brand_size", "label": "Size", "min": 10, "max": 32, "step": 1, "unit": "px", "default": 16 },
+    { "type": "select", "id": "brand_weight", "label": "Weight", "options": [
+        { "value": "200", "label": "Thin (200)" }, { "value": "300", "label": "Light (300)" }, { "value": "400", "label": "Regular (400)" }, { "value": "500", "label": "Medium (500)" }, { "value": "700", "label": "Bold (700)" } ], "default": "400" },
+    { "type": "range", "id": "brand_ls", "label": "Letter spacing", "min": 1, "max": 10, "step": 1, "unit": "x", "default": 1 },
+    { "type": "select", "id": "brand_transform", "label": "Text case", "options": [ { "value": "uppercase", "label": "UPPERCASE" }, { "value": "none", "label": "As typed" }, { "value": "capitalize", "label": "Capitalize" } ], "default": "uppercase" },
+    { "type": "color", "id": "brand_color", "label": "Color", "info": "Blank = bar text color." },
+    { "type": "header", "content": "Nav links" },
+    { "type": "select", "id": "link_font", "label": "Font", "options": [
+        { "value": "site", "label": "Neue Haas Display Light" },
+        { "value": "display", "label": "Neue Haas Grotesk Display" },
+        { "value": "text", "label": "Neue Haas Grotesk Text" },
+        { "value": "ogg", "label": "Ogg Text (serif)" } ], "default": "text" },
+    { "type": "range", "id": "link_size", "label": "Size", "min": 10, "max": 18, "step": 1, "unit": "px", "default": 12 },
+    { "type": "select", "id": "link_weight", "label": "Weight", "options": [
+        { "value": "300", "label": "Light (300)" }, { "value": "400", "label": "Regular (400)" }, { "value": "500", "label": "Medium (500)" }, { "value": "600", "label": "Semibold (600)" }, { "value": "700", "label": "Bold (700)" } ], "default": "500" },
+    { "type": "range", "id": "link_ls", "label": "Letter spacing", "min": 1, "max": 10, "step": 1, "unit": "x", "default": 1 },
+    { "type": "select", "id": "link_transform", "label": "Text case", "options": [ { "value": "uppercase", "label": "UPPERCASE" }, { "value": "none", "label": "As typed" }, { "value": "capitalize", "label": "Capitalize" } ], "default": "uppercase" },
+    { "type": "color", "id": "link_color", "label": "Color", "info": "Blank = bar text color." },
+    { "type": "color", "id": "link_hover_color", "label": "Hover color", "info": "Blank = Ourania violet." },
     { "type": "header", "content": "Get-tickets button" },
     { "type": "text", "id": "cta_label", "label": "Button label", "default": "Get Tickets" },
-    { "type": "url", "id": "cta_link", "label": "Ticketing link", "info": "Where the Get Tickets buttons go (external RSVP / ticketing page)." },
+    { "type": "url", "id": "cta_link", "label": "Ticketing link" },
     { "type": "checkbox", "id": "cta_new_tab", "label": "Open in new tab", "default": true },
     { "type": "range", "id": "cta_size", "label": "Button text size", "min": 10, "max": 16, "step": 1, "unit": "px", "default": 11 }
   ],
   "blocks": [
     { "type": "link", "name": "Nav link", "settings": [
       { "type": "text", "id": "label", "label": "Label", "default": "Details" },
-      { "type": "text", "id": "target", "label": "Scrolls to (section anchor)", "info": "The DOM id of the target section, e.g. shopify-section-details. Use the section's key from the template." }
+      { "type": "text", "id": "target", "label": "Scrolls to (section anchor)", "info": "DOM id of the target section, e.g. shopify-section-details." }
     ] }
   ],
   "presets": [{ "name": "Event nav" }]
