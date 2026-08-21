@@ -9,8 +9,8 @@
  */
 {
   "current": {
-    "logo": "shopify://shop_images/MUSE_-_Monogram_slim_EFA527.png",
-    "logo_2": "shopify://shop_images/MUSE_-_Name_LOGO_BLK_2.png",
+    "logo": "shopify://shop_images/MUSE_-_Name_LOGO_BLK_2.png",
+    "logo_2": "shopify://shop_images/MUSE_-_Monogram_slim_EFA527.png",
     "newsletter_name": "The Cloud Cabana",
     "newsletter_consent": "Yes, send me information regarding launches, events, discounts, & the occasional updates!",
     "heading_font": "ogg",
@@ -54,6 +54,7 @@
         "settings": {
           "tagline": "FOR THOSE WHO INSPIRE",
           "brand_align": "center",
+          "bg_color": "",
           "show_newsletter": false,
           "newsletter_heading": "Subscribe to our newsletter",
           "show_social": false,
