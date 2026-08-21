@@ -1,237 +1,758 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "nav": {
       "type": "event-nav",
+      "blocks": {
+        "link_atcnkG": {
+          "type": "link",
+          "settings": {
+            "label": "Details",
+            "target": "shopify-section-details"
+          }
+        },
+        "l4": {
+          "type": "link",
+          "settings": {
+            "label": "Dress Code",
+            "target": "shopify-section-dresscode"
+          }
+        }
+      },
+      "block_order": [
+        "link_atcnkG",
+        "l4"
+      ],
       "settings": {
         "show_monogram": true,
-        "brand_text": "OURANIA",
+        "brand_text": "MUSE",
+        "bg_color": "#fbf6ee",
+        "text_color": "#0a0b0c",
         "cta_label": "Get Tickets",
-        "cta_new_tab": true
-      },
-      "blocks": {
-        "l1": { "type": "link", "settings": { "label": "Details", "target": "shopify-section-details" } },
-        "l2": { "type": "link", "settings": { "label": "The Evening", "target": "shopify-section-evening" } },
-        "l3": { "type": "link", "settings": { "label": "The Flagship Trio", "target": "shopify-section-trio" } },
-        "l4": { "type": "link", "settings": { "label": "Dress Code", "target": "shopify-section-dresscode" } },
-        "l5": { "type": "link", "settings": { "label": "Tickets", "target": "shopify-section-tickets" } }
-      },
-      "block_order": ["l1", "l2", "l3", "l4", "l5"]
+        "cta_link": "",
+        "cta_new_tab": true,
+        "cta_size": 10
+      }
     },
     "hero": {
       "type": "hero",
       "settings": {
-        "preheader": "By Invitation · Ourania",
-        "accent_color": "#8B5CF6",
+        "coming_soon": false,
+        "preheader": "Celebrate With Us",
+        "accent_color": "#6515C4",
         "heading": "Elegance\nat Eventide",
-        "subheading": "The MUSE launch, in person. One night in Atlanta beneath the violet hour to raise the first glass of Ourania — made with intention and mixed with the quiet of nightfall.",
+        "subheading": "As the violet hours settle in, we'll raise a glass\nin this celebratory event to mark the arrival\nof one of our flagship Muses.",
         "text_align": "center",
+        "show_coming_soon": false,
         "button_label": "Secure Your Ticket",
+        "button_link": "",
+        "button_icon": "none",
         "button_style": "primary",
+        "button2_label": "",
+        "button2_link": "",
+        "button2_icon": "none",
+        "button_size": "11",
+        "image_position": "below",
+        "image_align": "center",
+        "image_width": 100,
+        "image_focal": "center",
+        "image_height": 0,
+        "image_radius": 10,
+        "image_opacity": 100,
         "preheader_font": "text",
         "heading_font": "ogg",
+        "heading_size": 44,
+        "heading_color": "",
         "heading_weight": "thin",
-        "heading_size": 64,
         "body_font": "site",
-        "padding_top": 140,
-        "padding_bottom": 32
+        "body_size": 14,
+        "body_color": "",
+        "body_weight": "inherit",
+        "space_preheader": 12,
+        "space_heading": 24,
+        "space_buttons": 24,
+        "space_image": 32,
+        "ls_preheader": 3,
+        "ls_heading": 5,
+        "ls_body": 5,
+        "lh_heading": 0,
+        "lh_body": 0,
+        "bg_type": "none",
+        "bg_color": "#fbf6ee",
+        "bg_gradient_start": "#fbf6ee",
+        "bg_gradient_end": "#e7dac4",
+        "bg_gradient_angle": 180,
+        "nav_scroll_threshold": 0,
+        "extend_behind_header": false,
+        "content_valign": "top",
+        "min_height": 0,
+        "padding_top": 100,
+        "padding_bottom": 40,
+        "pad_mobile": false,
+        "pt_m": 48,
+        "pb_m": 48
       }
     },
     "countdown": {
       "type": "event-countdown",
       "settings": {
+        "coming_soon": false,
         "preheader": "One night, by invitation",
         "heading": "The Evening",
-        "target_date": "2026-09-19T18:30:00-04:00",
-        "number_color": "#8B5CF6",
-        "accent_color": "#8B5CF6",
         "text_align": "center",
+        "target_date": "2026-09-19T18:30:00-04:00",
+        "number_color": "#8D3FEA",
+        "number_size": 44,
+        "label_days": "Days",
+        "label_hours": "Hours",
+        "label_mins": "Minutes",
+        "label_secs": "Seconds",
+        "expired_text": "The Celebration has started, and the Muses have arrived.",
+        "preheader_font": "text",
+        "accent_color": "#6515C4",
         "heading_font": "ogg",
+        "heading_size": 36,
+        "heading_color": "",
         "heading_weight": "thin",
-        "padding_top": 16,
-        "padding_bottom": 56
+        "body_font": "site",
+        "space_preheader": 10,
+        "space_heading": 24,
+        "ls_preheader": 2,
+        "ls_heading": 3,
+        "bg_type": "none",
+        "bg_color": "#fbf6ee",
+        "bg_gradient_start": "#fbf6ee",
+        "bg_gradient_end": "#e7dac4",
+        "bg_gradient_angle": 180,
+        "extend_behind_header": false,
+        "min_height": 0,
+        "padding_top": 20,
+        "padding_bottom": 20
       }
     },
     "details": {
       "type": "text-columns",
+      "blocks": {
+        "c1": {
+          "type": "column",
+          "settings": {
+            "media_type": "text",
+            "image_ratio": "1/1",
+            "image_radius": 10,
+            "number": "",
+            "number_size": 40,
+            "eyebrow": "Date",
+            "heading": "Sat · Sep 19",
+            "body": "<p>2026</p>",
+            "align": "center",
+            "divider": false,
+            "divider_color": "#e7dac4",
+            "accent_color": "#6515C4",
+            "text_color": "#0a0b0c",
+            "body_color": "#4c4c4b",
+            "eyebrow_font": "site",
+            "heading_font": "ogg",
+            "heading_weight": "inherit",
+            "heading_size": 24,
+            "body_font": "site",
+            "body_weight": "inherit",
+            "body_size": 16,
+            "space_heading": 12,
+            "ls_eyebrow": 1,
+            "ls_heading": 1,
+            "ls_body": 1,
+            "button_label": "",
+            "button_link": "",
+            "button_style": "ghost",
+            "button_icon": "none",
+            "button_size": "11",
+            "space_button": 20
+          }
+        },
+        "c2": {
+          "type": "column",
+          "settings": {
+            "media_type": "text",
+            "image_ratio": "1/1",
+            "image_radius": 10,
+            "number": "",
+            "number_size": 40,
+            "eyebrow": "Time",
+            "heading": "7:30 – 11:30 PM",
+            "body": "<p>Doors at 7:30</p>",
+            "align": "center",
+            "divider": false,
+            "divider_color": "#e7dac4",
+            "accent_color": "#6515C4",
+            "text_color": "#0a0b0c",
+            "body_color": "#4c4c4b",
+            "eyebrow_font": "site",
+            "heading_font": "ogg",
+            "heading_weight": "inherit",
+            "heading_size": 24,
+            "body_font": "site",
+            "body_weight": "inherit",
+            "body_size": 16,
+            "space_heading": 12,
+            "ls_eyebrow": 1,
+            "ls_heading": 1,
+            "ls_body": 1,
+            "button_label": "",
+            "button_link": "",
+            "button_style": "ghost",
+            "button_icon": "none",
+            "button_size": "11",
+            "space_button": 20
+          }
+        },
+        "c3": {
+          "type": "column",
+          "settings": {
+            "media_type": "text",
+            "image_ratio": "1/1",
+            "image_radius": 10,
+            "number": "",
+            "number_size": 40,
+            "eyebrow": "Location",
+            "heading": "Atlanta, GA",
+            "body": "<p>Address sent with your ticket</p>",
+            "align": "center",
+            "divider": false,
+            "divider_color": "#e7dac4",
+            "accent_color": "#6515C4",
+            "text_color": "#0a0b0c",
+            "body_color": "#4c4c4b",
+            "eyebrow_font": "site",
+            "heading_font": "ogg",
+            "heading_weight": "inherit",
+            "heading_size": 24,
+            "body_font": "site",
+            "body_weight": "inherit",
+            "body_size": 16,
+            "space_heading": 12,
+            "ls_eyebrow": 1,
+            "ls_heading": 1,
+            "ls_body": 1,
+            "button_label": "",
+            "button_link": "",
+            "button_style": "ghost",
+            "button_icon": "none",
+            "button_size": "11",
+            "space_button": 20
+          }
+        },
+        "c4": {
+          "type": "column",
+          "settings": {
+            "media_type": "text",
+            "image_ratio": "1/1",
+            "image_radius": 10,
+            "number": "",
+            "number_size": 40,
+            "eyebrow": "Attire",
+            "heading": "Cocktail",
+            "body": "<p>Lavender, violet, navy or beige</p>",
+            "align": "center",
+            "divider": false,
+            "divider_color": "#e7dac4",
+            "accent_color": "#6515C4",
+            "text_color": "#0a0b0c",
+            "body_color": "#4c4c4b",
+            "eyebrow_font": "site",
+            "heading_font": "ogg",
+            "heading_weight": "inherit",
+            "heading_size": 24,
+            "body_font": "site",
+            "body_weight": "inherit",
+            "body_size": 16,
+            "space_heading": 12,
+            "ls_eyebrow": 1,
+            "ls_heading": 1,
+            "ls_body": 1,
+            "button_label": "",
+            "button_link": "",
+            "button_style": "ghost",
+            "button_icon": "none",
+            "button_size": "11",
+            "space_button": 20
+          }
+        }
+      },
+      "block_order": [
+        "c1",
+        "c2",
+        "c3",
+        "c4"
+      ],
       "settings": {
+        "coming_soon": false,
         "preheader": "One night, by invitation",
         "heading": "The Particulars",
-        "accent_color": "#8B5CF6",
+        "subheading": "",
+        "accent_color": "#6515C4",
         "head_align": "center",
         "columns": 4,
+        "gap": 32,
+        "preheader_font": "site",
         "heading_font": "ogg",
-        "padding_top": 56,
-        "padding_bottom": 40
-      },
-      "blocks": {
-        "c1": { "type": "column", "settings": { "eyebrow": "Date", "heading": "Sat · Sep 19", "body": "<p>2026</p>", "align": "center", "accent_color": "#8B5CF6", "heading_size": 24 } },
-        "c2": { "type": "column", "settings": { "eyebrow": "Time", "heading": "6:30 – 11:30 PM", "body": "<p>Doors at 6:30</p>", "align": "center", "accent_color": "#8B5CF6", "heading_size": 24 } },
-        "c3": { "type": "column", "settings": { "eyebrow": "Place", "heading": "Atlanta, GA", "body": "<p>Address sent with your ticket</p>", "align": "center", "accent_color": "#8B5CF6", "heading_size": 24 } },
-        "c4": { "type": "column", "settings": { "eyebrow": "Attire", "heading": "Cocktail", "body": "<p>Lavender, violet, navy or beige</p>", "align": "center", "accent_color": "#8B5CF6", "heading_size": 24 } }
-      },
-      "block_order": ["c1", "c2", "c3", "c4"]
+        "heading_weight": "inherit",
+        "heading_size": 30,
+        "body_font": "site",
+        "subheading_size": 13,
+        "space_preheader": 10,
+        "space_heading": 12,
+        "space_head": 48,
+        "ls_preheader": 2,
+        "ls_heading": 3,
+        "ls_body": 1,
+        "lh_heading": 0,
+        "lh_body": 0,
+        "bg_type": "none",
+        "bg_color": "#fbf6ee",
+        "bg_gradient_start": "#fbf6ee",
+        "bg_gradient_end": "#e7dac4",
+        "bg_gradient_angle": 180,
+        "content_valign": "top",
+        "min_height": 0,
+        "padding_top": 40,
+        "padding_bottom": 40,
+        "pad_mobile": false,
+        "pt_m": 40,
+        "pb_m": 40
+      }
     },
     "dresscode": {
       "type": "text-columns",
+      "blocks": {
+        "d2": {
+          "type": "column",
+          "settings": {
+            "media_type": "text",
+            "image_ratio": "1/1",
+            "image_radius": 10,
+            "number": "",
+            "number_size": 40,
+            "eyebrow": "Violet",
+            "heading": "",
+            "body": "<p><strong>Main</strong>: Regal, Bold, Intentional.</p>",
+            "align": "center",
+            "divider": false,
+            "divider_color": "#e7dac4",
+            "accent_color": "#540FA7",
+            "text_color": "#0a0b0c",
+            "body_color": "#4c4c4b",
+            "eyebrow_font": "site",
+            "heading_font": "ogg",
+            "heading_weight": "inherit",
+            "heading_size": 26,
+            "body_font": "site",
+            "body_weight": "inherit",
+            "body_size": 16,
+            "space_heading": 12,
+            "ls_eyebrow": 1,
+            "ls_heading": 1,
+            "ls_body": 1,
+            "button_label": "",
+            "button_link": "",
+            "button_style": "ghost",
+            "button_icon": "none",
+            "button_size": "11",
+            "space_button": 20
+          }
+        },
+        "d1": {
+          "type": "column",
+          "settings": {
+            "media_type": "text",
+            "image_ratio": "1/1",
+            "image_radius": 10,
+            "number": "",
+            "number_size": 40,
+            "eyebrow": "Lavender",
+            "heading": "",
+            "body": "<p><strong>Main</strong>: The soft touch of Eventide.</p>",
+            "align": "center",
+            "divider": false,
+            "divider_color": "#e7dac4",
+            "accent_color": "#A287E9",
+            "text_color": "#0a0b0c",
+            "body_color": "#4c4c4b",
+            "eyebrow_font": "site",
+            "heading_font": "ogg",
+            "heading_weight": "inherit",
+            "heading_size": 26,
+            "body_font": "site",
+            "body_weight": "inherit",
+            "body_size": 16,
+            "space_heading": 12,
+            "ls_eyebrow": 1,
+            "ls_heading": 1,
+            "ls_body": 1,
+            "button_label": "",
+            "button_link": "",
+            "button_style": "ghost",
+            "button_icon": "none",
+            "button_size": "11",
+            "space_button": 20
+          }
+        },
+        "d3": {
+          "type": "column",
+          "settings": {
+            "media_type": "text",
+            "image_ratio": "1/1",
+            "image_radius": 10,
+            "number": "",
+            "number_size": 40,
+            "eyebrow": "Navy",
+            "heading": "",
+            "body": "<p><strong>ALT</strong>: Starlit in nightfall.</p>",
+            "align": "center",
+            "divider": false,
+            "divider_color": "#e7dac4",
+            "accent_color": "#0F2468",
+            "text_color": "#0a0b0c",
+            "body_color": "#4c4c4b",
+            "eyebrow_font": "site",
+            "heading_font": "ogg",
+            "heading_weight": "inherit",
+            "heading_size": 26,
+            "body_font": "site",
+            "body_weight": "inherit",
+            "body_size": 16,
+            "space_heading": 12,
+            "ls_eyebrow": 1,
+            "ls_heading": 1,
+            "ls_body": 1,
+            "button_label": "",
+            "button_link": "",
+            "button_style": "ghost",
+            "button_icon": "none",
+            "button_size": "11",
+            "space_button": 20
+          }
+        },
+        "d4": {
+          "type": "column",
+          "settings": {
+            "media_type": "text",
+            "image_ratio": "1/1",
+            "image_radius": 10,
+            "number": "",
+            "number_size": 40,
+            "eyebrow": "Beige",
+            "heading": "",
+            "body": "<p><strong>ALT</strong>: Warm, light.</p>",
+            "align": "center",
+            "divider": false,
+            "divider_color": "#e7dac4",
+            "accent_color": "#CDB48A",
+            "text_color": "#0a0b0c",
+            "body_color": "#4c4c4b",
+            "eyebrow_font": "site",
+            "heading_font": "ogg",
+            "heading_weight": "inherit",
+            "heading_size": 26,
+            "body_font": "site",
+            "body_weight": "inherit",
+            "body_size": 16,
+            "space_heading": 12,
+            "ls_eyebrow": 1,
+            "ls_heading": 1,
+            "ls_body": 1,
+            "button_label": "",
+            "button_link": "",
+            "button_style": "ghost",
+            "button_icon": "none",
+            "button_size": "11",
+            "space_button": 20
+          }
+        }
+      },
+      "block_order": [
+        "d2",
+        "d1",
+        "d3",
+        "d4"
+      ],
       "settings": {
+        "coming_soon": false,
         "preheader": "Dress Code",
-        "heading": "Cocktail, in Eventide",
-        "subheading": "<p>Dress to the hour: lavender and violet for Ourania, or navy and beige for the house. Black is always welcome as a base.</p><p><strong>Encouraged:</strong> cocktail attire · suiting and separates · slip dresses · a violet accent worn somewhere visible. <strong>Please skip:</strong> denim · athletic wear · red — the night belongs to Ourania, not Clio.</p>",
-        "accent_color": "#8B5CF6",
+        "heading": "Evening Royalty",
+        "subheading": "<p>Attire:<br/>Cocktail, Formal, Suits & Separates</p><p>Colors:<br/>(Main) Violet, Lavender<br/>(Alternate) Navy, Beige<br/>*Black is always welcome as a base.*</p><p><strong>Encouraged:</strong> cocktail attire · suiting and separates<br/><strong>Please skip:</strong> denim · athletic wear · red · yellow/orange</p>",
+        "accent_color": "#6515C4",
         "head_align": "center",
         "columns": 4,
+        "gap": 32,
+        "preheader_font": "site",
         "heading_font": "ogg",
+        "heading_weight": "inherit",
+        "heading_size": 30,
+        "body_font": "site",
+        "subheading_size": 14,
+        "space_preheader": 10,
+        "space_heading": 12,
+        "space_head": 48,
+        "ls_preheader": 2,
+        "ls_heading": 3,
+        "ls_body": 3,
+        "lh_heading": 0,
+        "lh_body": 0,
+        "bg_type": "none",
+        "bg_color": "#fbf6ee",
+        "bg_gradient_start": "#fbf6ee",
+        "bg_gradient_end": "#e7dac4",
+        "bg_gradient_angle": 180,
+        "content_valign": "top",
+        "min_height": 0,
         "padding_top": 56,
-        "padding_bottom": 40
-      },
-      "blocks": {
-        "d1": { "type": "column", "settings": { "eyebrow": "Lavender", "body": "<p>The soft edge of eventide.</p>", "align": "center", "accent_color": "#B9A7E8" } },
-        "d2": { "type": "column", "settings": { "eyebrow": "Violet", "body": "<p>Ourania herself. Wear it boldly.</p>", "align": "center", "accent_color": "#8B5CF6" } },
-        "d3": { "type": "column", "settings": { "eyebrow": "Navy", "body": "<p>House color. Suiting, velvet, silk.</p>", "align": "center", "accent_color": "#1A2340" } },
-        "d4": { "type": "column", "settings": { "eyebrow": "Beige", "body": "<p>House color. Warm, never stark white.</p>", "align": "center", "accent_color": "#B39B72" } }
-      },
-      "block_order": ["d1", "d2", "d3", "d4"]
-    },
-    "evening": {
-      "type": "text-columns",
-      "settings": {
-        "preheader": "What the night includes",
-        "heading": "The Evening",
-        "subheading": "<p>A single seating, a single SKU at the center, and the people who inspired it. Ourania closes the day — so we open the doors as the light goes violet.</p>",
-        "accent_color": "#8B5CF6",
-        "head_align": "center",
-        "columns": 3,
-        "heading_font": "ogg",
-        "padding_top": 56,
-        "padding_bottom": 24
-      },
-      "blocks": {
-        "e1": { "type": "column", "settings": { "heading": "Two Cocktails on the House", "body": "<p>Your first two pours are ours — Ourania over a single clear cube, or whichever sister you prefer.</p>", "align": "left", "heading_size": 20 } },
-        "e2": { "type": "column", "settings": { "heading": "Guided Tasting of the Trio", "body": "<p>A led flight of all three recipes with the team who built them, in the order the day intends.</p>", "align": "left", "heading_size": 20 } },
-        "e3": { "type": "column", "settings": { "heading": "Catered Dinner Service", "body": "<p>Full catering through the evening, styled to the line — passed plates and seated bites.</p>", "align": "left", "heading_size": 20 } }
-      },
-      "block_order": ["e1", "e2", "e3"]
-    },
-    "evening2": {
-      "type": "text-columns",
-      "settings": {
-        "head_align": "center",
-        "columns": 3,
-        "padding_top": 0,
-        "padding_bottom": 56
-      },
-      "blocks": {
-        "e4": { "type": "column", "settings": { "heading": "Shuttle & Valet", "body": "<p>Complimentary valet at the door, plus a shuttle loop running to nearby parking all night.</p>", "align": "left", "heading_size": 20 } },
-        "e5": { "type": "column", "settings": { "heading": "The Room, and the People In It", "body": "<p>Founders, makers, hospitality and creative professionals — an evening built for real introductions.</p>", "align": "left", "heading_size": 20 } },
-        "e6": { "type": "column", "settings": { "heading": "Live Set & the Muses Toast", "body": "<p>One live set, one toast to the people who inspired the line, and an open floor after.</p>", "align": "left", "heading_size": 20 } }
-      },
-      "block_order": ["e4", "e5", "e6"]
-    },
-    "trio": {
-      "type": "text-columns",
-      "settings": {
-        "preheader": "The full trio, poured once",
-        "heading": "The Flagship Trio — In Full Attendance",
-        "subheading": "<p>The night belongs to eventide, but noon and sunset make an appearance — one guided flight, all three recipes, in the order the day intends.</p>",
-        "accent_color": "#8B5CF6",
-        "head_align": "center",
-        "columns": 3,
-        "heading_font": "ogg",
-        "padding_top": 56,
-        "padding_bottom": 56
-      },
-      "blocks": {
-        "t1": { "type": "column", "settings": { "eyebrow": "Noon", "heading": "Thalia", "body": "<p>Elations After Noon — made with Joy and mixed with drops of Sunshine.</p><p>12.1% ABV · 6 fl oz</p>", "align": "center", "accent_color": "#EFA527", "heading_font": "ogg" } },
-        "t2": { "type": "column", "settings": { "eyebrow": "Sunset", "heading": "Clio", "body": "<p>Spontaneity at Sunset — made with Sincerity and mixed with Pride.</p><p>12% ABV · 6 fl oz</p>", "align": "center", "accent_color": "#CC2200", "heading_font": "ogg" } },
-        "t3": { "type": "column", "settings": { "eyebrow": "Night", "heading": "Ourania", "body": "<p>Elegance at Eventide — made with Purpose and mixed with Intention.</p><p>12.1% ABV · 6 fl oz</p>", "align": "center", "accent_color": "#8B5CF6", "heading_font": "ogg" } }
-      },
-      "block_order": ["t1", "t2", "t3"]
+        "padding_bottom": 40,
+        "pad_mobile": false,
+        "pt_m": 40,
+        "pb_m": 40
+      }
     },
     "gallery": {
       "type": "page-gallery",
+      "blocks": {
+        "g1": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/11_Ourania_1B.png",
+            "caption": "Eventide",
+            "category": "",
+            "link": ""
+          }
+        },
+        "g3": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/MUSE_03_-_OURANIA_4-Can_Render.png",
+            "caption": "Ourania",
+            "category": "",
+            "link": ""
+          }
+        },
+        "g2": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/11_Ourania_1C.png",
+            "caption": "The Pour",
+            "category": "",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "g1",
+        "g3",
+        "g2"
+      ],
       "settings": {
-        "kicker": "From our catering floors & private tastings",
-        "heading": "Nights Before This One",
-        "accent_color": "#8B5CF6",
+        "coming_soon": false,
+        "kicker": "A Glimpse of Past Events",
+        "intro_text": "",
+        "use_page_body": false,
+        "accent_color": "#6515C4",
+        "heading": "From The Nights Before This",
         "text_align": "center",
         "columns": 3,
         "columns_mobile": 2,
-        "aspect_ratio": "4/5",
-        "overlay_color": "#8B5CF6",
-        "padding_top": 56,
-        "padding_bottom": 56
-      },
-      "blocks": {
-        "g1": { "type": "image", "settings": { "image": "shopify://shop_images/11_Ourania_1B.png", "caption": "Eventide" } },
-        "g2": { "type": "image", "settings": { "image": "shopify://shop_images/11_Ourania_1C.png", "caption": "The Pour" } },
-        "g3": { "type": "image", "settings": { "image": "shopify://shop_images/MUSE_03_-_OURANIA_4-Can_Render.png", "caption": "Ourania" } }
-      },
-      "block_order": ["g1", "g2", "g3"]
+        "aspect_ratio": "1/1",
+        "show_filters": false,
+        "filter_all_label": "All",
+        "overlay_enable": false,
+        "overlay_color": "#8b5cf6",
+        "overlay_opacity": 20,
+        "preheader_font": "site",
+        "heading_font": "ogg",
+        "heading_weight": "inherit",
+        "heading_size": 30,
+        "heading_color": "",
+        "space_preheader": 10,
+        "ls_preheader": 2,
+        "ls_heading": 3,
+        "show_share": false,
+        "share_heading": "#myMUSE",
+        "share_text": "Share your moment",
+        "share_button_label": "Tag us",
+        "share_link": "",
+        "share_new_tab": true,
+        "bg_type": "none",
+        "bg_color": "#fbf6ee",
+        "bg_gradient_start": "#fbf6ee",
+        "bg_gradient_end": "#e7dac4",
+        "bg_gradient_angle": 180,
+        "content_valign": "top",
+        "min_height": 0,
+        "padding_top": 40,
+        "padding_bottom": 40,
+        "pad_mobile": false,
+        "pt_m": 40,
+        "pb_m": 40
+      }
     },
     "tickets": {
       "type": "flexible",
-      "settings": { "bg_type": "solid", "bg_color": "#F4ECDD", "padding_top": 64, "padding_bottom": 64 },
       "blocks": {
-        "tk_text": { "type": "text", "settings": { "preheader": "150 tickets, each one named", "accent_color": "#8B5CF6", "heading": "Secure Your Ticket", "body": "<p>Your invitation code and the exact address arrive by text and email the moment your ticket is confirmed. Bring whoever you like — every guest secures their own.</p><p><em>Tickets close September 12 · named and non-transferable · by attending you consent to event photography. Questions: events@mt-muse.com</em></p>", "align": "center", "max_width": 620, "heading_font": "ogg", "heading_size": 44, "margin_bottom": 20 } },
-        "tk_btn": { "type": "button", "settings": { "label": "Get Tickets", "style": "primary", "align": "center" } }
+        "tk_text": {
+          "type": "text",
+          "settings": {
+            "preheader": "Don't Miss Out",
+            "accent_color": "#6515C4",
+            "heading": "Secure Your Ticket",
+            "body": "",
+            "text_color": "#0a0b0c",
+            "body_color": "#4c4c4b",
+            "align": "center",
+            "max_width": 620,
+            "preheader_font": "site",
+            "heading_font": "ogg",
+            "heading_size": 30,
+            "heading_weight": "inherit",
+            "body_font": "site",
+            "body_size": 12,
+            "body_weight": "inherit",
+            "space_preheader": 12,
+            "space_heading": 20,
+            "ls_preheader": 3,
+            "ls_heading": 4,
+            "ls_body": 4,
+            "lh_heading": 0,
+            "lh_body": 0,
+            "margin_top": 0,
+            "margin_bottom": 0
+          }
+        },
+        "tk_btn": {
+          "type": "button",
+          "settings": {
+            "label": "Get Tickets",
+            "url": "",
+            "icon": "none",
+            "style": "primary",
+            "label2": "",
+            "url2": "",
+            "icon2": "none",
+            "btn_size": "11",
+            "align": "center",
+            "margin_top": 0,
+            "margin_bottom": 24
+          }
+        }
       },
-      "block_order": ["tk_text", "tk_btn"]
-    },
-    "holddate": {
-      "type": "flexible",
-      "settings": { "bg_type": "none", "padding_top": 48, "padding_bottom": 48 },
-      "blocks": {
-        "hd_text": { "type": "text", "settings": { "preheader": "Hold the date", "accent_color": "#8B5CF6", "heading": "Saturday, September 19", "body": "<p>6:30 PM – 11:30 PM · Atlanta, Georgia</p>", "align": "center", "max_width": 620, "heading_font": "ogg", "heading_size": 36, "margin_bottom": 16 } },
-        "hd_btn": { "type": "button", "settings": { "label": "Add to Calendar", "style": "ghost", "align": "center" } }
-      },
-      "block_order": ["hd_text", "hd_btn"]
-    },
-    "share": {
-      "type": "flexible",
-      "settings": { "bg_type": "solid", "bg_color": "#F4ECDD", "padding_top": 56, "padding_bottom": 56 },
-      "blocks": {
-        "sh_text": { "type": "text", "settings": { "preheader": "Bring your own Muse", "accent_color": "#8B5CF6", "heading": "Share the Invitation", "body": "<p>Pass this page to anyone who belongs in the room. Each guest secures their own ticket and their own code.</p>", "align": "center", "max_width": 620, "heading_font": "ogg", "heading_size": 36, "margin_bottom": 16 } },
-        "sh_btn": { "type": "button", "settings": { "label": "Copy Invite Link", "style": "ghost", "align": "center" } }
-      },
-      "block_order": ["sh_text", "sh_btn"]
-    },
-    "gettingthere": {
-      "type": "text-columns",
+      "block_order": [
+        "tk_text",
+        "tk_btn"
+      ],
       "settings": {
-        "preheader": "Getting there",
-        "heading": "Atlanta, Georgia",
-        "subheading": "<p>The address travels with your ticket. Expect intown Atlanta, minutes from the Beltline, with valet and rideshare access at the door.</p><p>Rideshare drop-off directly at the entrance · Valet from 6:00 PM · covered lots within a block · MARTA within a short ride · exact address sent with your ticket confirmation.</p>",
-        "accent_color": "#8B5CF6",
-        "head_align": "center",
-        "columns": 3,
-        "heading_font": "ogg",
-        "padding_top": 56,
-        "padding_bottom": 64
-      },
-      "blocks": {
-        "gt1": { "type": "column", "settings": { "eyebrow": "Your Code", "body": "<p>A code arrives by text and email with your ticket. Quote it at the door — we cross-reference it against your name.</p>", "align": "left" } },
-        "gt2": { "type": "column", "settings": { "eyebrow": "House Rules", "body": "<p>21+ with government-issued ID. Tickets are named and non-transferable; every guest buys their own.</p>", "align": "left" } },
-        "gt3": { "type": "column", "settings": { "eyebrow": "Need Anything", "body": "<p>Reach the events team at events@mt-muse.com or (404) 555-0148 up to the night of.</p>", "align": "left" } }
-      },
-      "block_order": ["gt1", "gt2", "gt3"]
+        "coming_soon": false,
+        "bg_type": "solid",
+        "bg_color": "#f4ecdd",
+        "bg_gradient_start": "#fbf6ee",
+        "bg_gradient_end": "#e7dac4",
+        "bg_gradient_angle": 180,
+        "content_valign": "top",
+        "min_height": 0,
+        "padding_top": 40,
+        "padding_bottom": 40,
+        "pad_mobile": true,
+        "pt_m": 40,
+        "pb_m": 40
+      }
     },
     "footer": {
       "type": "event-footer",
+      "blocks": {
+        "fc1": {
+          "type": "column",
+          "settings": {
+            "heading": "The Night",
+            "label_1": "Details",
+            "url_1": "#shopify-section-details",
+            "label_2": "The Evening",
+            "url_2": "#shopify-section-evening",
+            "label_3": "The Flagship Trio",
+            "url_3": "#shopify-section-trio",
+            "label_4": "Dress Code",
+            "url_4": "#shopify-section-dresscode",
+            "label_5": "Tickets",
+            "url_5": "#shopify-section-tickets",
+            "label_6": "",
+            "url_6": ""
+          }
+        },
+        "fc2": {
+          "type": "column",
+          "settings": {
+            "heading": "The Trio",
+            "label_1": "Thalia",
+            "url_1": "shopify://products/muse-thalia-4-pack",
+            "label_2": "Clio",
+            "url_2": "shopify://products/muse-clio-4-pack",
+            "label_3": "Ourania",
+            "url_3": "shopify://products/muse-ourania-4-pack",
+            "label_4": "",
+            "url_4": "",
+            "label_5": "",
+            "url_5": "",
+            "label_6": "",
+            "url_6": ""
+          }
+        },
+        "fc3": {
+          "type": "column",
+          "settings": {
+            "heading": "Contact",
+            "label_1": "events@mt-muse.com",
+            "url_1": "mailto:events@mt-muse.com",
+            "label_2": "+1 (404) 555-0148",
+            "url_2": "tel:+14045550148",
+            "label_3": "",
+            "url_3": "",
+            "label_4": "",
+            "url_4": "",
+            "label_5": "",
+            "url_5": "",
+            "label_6": "",
+            "url_6": ""
+          }
+        }
+      },
+      "block_order": [
+        "fc1",
+        "fc2",
+        "fc3"
+      ],
       "settings": {
         "show_monogram": true,
         "brand_text": "MUSE",
         "tagline": "Premium RTD cocktails & beverage catering. Celebrate amongst the clouds.",
+        "bg_color": "#0a0b0c",
+        "text_color": "#fdfcfa",
+        "accent_color": "#8b5cf6",
         "motto": "CULTIVATE · COMMEMORATE · CELEBRATE",
         "copyright": "© 2026 MUSE. All Rights Reserved.",
         "responsibly": "Please enjoy responsibly. 21+"
-      },
-      "blocks": {
-        "fc1": { "type": "column", "settings": { "heading": "The Night", "label_1": "Details", "url_1": "#shopify-section-details", "label_2": "The Evening", "url_2": "#shopify-section-evening", "label_3": "The Flagship Trio", "url_3": "#shopify-section-trio", "label_4": "Dress Code", "url_4": "#shopify-section-dresscode", "label_5": "Tickets", "url_5": "#shopify-section-tickets" } },
-        "fc2": { "type": "column", "settings": { "heading": "The Trio", "label_1": "Thalia", "url_1": "shopify://products/muse-thalia-4-pack", "label_2": "Clio", "url_2": "shopify://products/muse-clio-4-pack", "label_3": "Ourania", "url_3": "shopify://products/muse-ourania-4-pack" } },
-        "fc3": { "type": "column", "settings": { "heading": "Contact", "label_1": "events@mt-muse.com", "url_1": "mailto:events@mt-muse.com", "label_2": "+1 (404) 555-0148", "url_2": "tel:+14045550148" } }
-      },
-      "block_order": ["fc1", "fc2", "fc3"]
+      }
     }
   },
-  "order": ["nav", "hero", "countdown", "details", "dresscode", "evening", "evening2", "trio", "gallery", "tickets", "holddate", "share", "gettingthere", "footer"]
+  "order": [
+    "nav",
+    "hero",
+    "countdown",
+    "details",
+    "dresscode",
+    "gallery",
+    "tickets",
+    "footer"
+  ]
 }
