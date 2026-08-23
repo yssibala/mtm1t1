@@ -17,11 +17,12 @@
   --evt-link-font:{%- render 'font-stack', key: s.link_font -%};--evt-link-size:{{ s.link_size | default: 12 }}px;--evt-link-weight:{{ s.link_weight | default: 500 }};--evt-link-transform:{{ s.link_transform | default: 'uppercase' }};--evt-link-ls:calc(0.12em * {{ s.link_ls | default: 1 }});{% if s.link_color != blank %}--evt-link-color:{{ s.link_color }};{% endif %}{% if s.link_hover_color != blank %}--evt-link-hover:{{ s.link_hover_color }};{% endif %}
 ">
   {%- capture lockup -%}
-    {%- if s.img_1 != blank and s.img_1_opacity > 0 -%}<img class="evt-nav__img evt-nav__img--1" src="{{ s.img_1 | image_url: width: 480 }}" alt="" width="{{ s.img_1.width }}" height="{{ s.img_1.height }}" style="height:{{ s.img_1_size | default: 34 }}px;width:auto;opacity:{{ s.img_1_opacity | times: 0.01 }};">{%- endif -%}
-    {%- if s.img_2 != blank and s.img_2_opacity > 0 -%}<img class="evt-nav__img evt-nav__img--2" src="{{ s.img_2 | image_url: width: 480 }}" alt="" width="{{ s.img_2.width }}" height="{{ s.img_2.height }}" style="height:{{ s.img_2_size | default: 34 }}px;width:auto;opacity:{{ s.img_2_opacity | times: 0.01 }};">{%- endif -%}
+    {%- if s.img_1 != blank and s.img_1_opacity > 0 -%}<img class="evt-nav__img evt-nav__img--1" src="{{ s.img_1 | image_url: width: 480 }}" alt="" width="{{ s.img_1.width }}" height="{{ s.img_1.height }}" style="height:{{ s.img_1_size | default: 13 }}px;width:auto;opacity:{{ s.img_1_opacity | times: 0.01 }};">{%- endif -%}
+    {%- if s.img_2 != blank and s.img_2_opacity > 0 -%}<img class="evt-nav__img evt-nav__img--2" src="{{ s.img_2 | image_url: width: 480 }}" alt="" width="{{ s.img_2.width }}" height="{{ s.img_2.height }}" style="height:{{ s.img_2_size | default: 38 }}px;width:auto;opacity:{{ s.img_2_opacity | times: 0.01 }};">{%- endif -%}
     {%- if s.brand_text != blank -%}<span class="evt-nav__brand">{{ s.brand_text }}</span>{%- endif -%}
   {%- endcapture -%}
-  {%- capture cta -%}{%- if s.cta_label != blank -%}<a class="evt-nav__cta muse-pill muse-cta" href="{{ s.cta_link | default: '#' }}"{% if s.cta_new_tab %} target="_blank" rel="noopener"{% endif %} style="font-size:{{ s.cta_button_size | default: '11' }}px;">{{ s.cta_label }}</a>{%- endif -%}{%- endcapture -%}
+  {%- assign cta_pad_v = s.cta_pad | default: 14 -%}{%- assign cta_pad_h = cta_pad_v | times: 2.4 | round -%}
+  {%- capture cta -%}{%- if s.cta_label != blank -%}<a class="evt-nav__cta muse-pill muse-cta" href="{{ s.cta_link | default: '#' }}"{% if s.cta_new_tab %} target="_blank" rel="noopener"{% endif %} style="font-size:{{ s.cta_text_size | default: 11 }}px;padding:{{ cta_pad_v }}px {{ cta_pad_h }}px;">{{ s.cta_label }}</a>{%- endif -%}{%- endcapture -%}
 
   <!-- STATE 1: links flank centered image stack -->
   <div class="evt-nav__bar evt-nav__bar--1 container">
@@ -114,10 +115,10 @@
     { "type": "header", "content": "Center images (superimposed)" },
     { "type": "paragraph", "content": "Two images stacked in the center in State 1. In State 2 the first sits where the logo goes and the second sits to its right. Opacity 0 (or no image) removes that layer." },
     { "type": "image_picker", "id": "img_1", "label": "Image 1" },
-    { "type": "range", "id": "img_1_size", "label": "Image 1 height", "info": "Width scales automatically (aspect ratio kept).", "min": 12, "max": 120, "step": 1, "unit": "px", "default": 34 },
+    { "type": "range", "id": "img_1_size", "label": "Image 1 height", "info": "Width scales automatically (aspect ratio kept).", "min": 8, "max": 120, "step": 1, "unit": "px", "default": 13 },
     { "type": "range", "id": "img_1_opacity", "label": "Image 1 opacity", "min": 0, "max": 100, "step": 5, "unit": "%", "default": 100 },
     { "type": "image_picker", "id": "img_2", "label": "Image 2" },
-    { "type": "range", "id": "img_2_size", "label": "Image 2 height", "info": "Width scales automatically (aspect ratio kept).", "min": 12, "max": 120, "step": 1, "unit": "px", "default": 34 },
+    { "type": "range", "id": "img_2_size", "label": "Image 2 height", "info": "Width scales automatically (aspect ratio kept).", "min": 8, "max": 120, "step": 1, "unit": "px", "default": 38 },
     { "type": "range", "id": "img_2_opacity", "label": "Image 2 opacity", "min": 0, "max": 100, "step": 5, "unit": "%", "default": 100 },
     { "type": "range", "id": "img_2_offset", "label": "State 2: image 2 offset right", "min": 0, "max": 220, "step": 4, "unit": "px", "default": 44 },
     { "type": "header", "content": "Brand text" },
@@ -150,13 +151,8 @@
     { "type": "text", "id": "cta_label", "label": "Button label", "default": "Get Tickets" },
     { "type": "url", "id": "cta_link", "label": "Ticketing link" },
     { "type": "checkbox", "id": "cta_new_tab", "label": "Open in new tab", "default": true },
-    { "type": "select", "id": "cta_button_size", "label": "Button size", "info": "Matches the theme's standard button sizes.", "options": [
-        { "value": "11", "label": "Standard" },
-        { "value": "10", "label": "Small" },
-        { "value": "9", "label": "Smaller" },
-        { "value": "8", "label": "Compact" },
-        { "value": "7", "label": "Mini" },
-        { "value": "6", "label": "Tiny" } ], "default": "11" }
+    { "type": "range", "id": "cta_text_size", "label": "Button text size", "min": 5, "max": 20, "step": 1, "unit": "px", "default": 11 },
+    { "type": "range", "id": "cta_pad", "label": "Button bar size (padding)", "info": "Padding around the label — sizes the whole pill bar.", "min": 2, "max": 26, "step": 1, "unit": "px", "default": 14 }
   ],
   "blocks": [
     { "type": "link", "name": "Nav link", "settings": [
