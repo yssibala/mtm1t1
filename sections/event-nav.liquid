@@ -19,11 +19,13 @@
   {%- assign img1_show = false -%}
   {%- if s.img_1 != blank and s.img_1_opacity > 0 -%}{%- assign img1_show = true -%}{%- endif -%}
   {%- if s.img_1 != blank and s.img_1_opacity_2 > 0 -%}{%- assign img1_show = true -%}{%- endif -%}
-  {%- capture lockup -%}
-    {%- if img1_show -%}<img class="evt-nav__img evt-nav__img--1" src="{{ s.img_1 | image_url: width: 480 }}" alt="" width="{{ s.img_1.width }}" height="{{ s.img_1.height }}" style="height:{{ s.img_1_size | default: 13 }}px;width:auto;">{%- endif -%}
-    {%- if s.img_2 != blank and s.img_2_opacity > 0 -%}<img class="evt-nav__img evt-nav__img--2" src="{{ s.img_2 | image_url: width: 480 }}" alt="" width="{{ s.img_2.width }}" height="{{ s.img_2.height }}" style="height:{{ s.img_2_size | default: 38 }}px;width:auto;opacity:{{ s.img_2_opacity | times: 0.01 }};">{%- endif -%}
-    {%- if s.brand_text != blank -%}<span class="evt-nav__brand">{{ s.brand_text }}</span>{%- endif -%}
-  {%- endcapture -%}
+  {%- capture img1_tag -%}{%- if img1_show -%}<img class="evt-nav__img evt-nav__img--1" src="{{ s.img_1 | image_url: width: 480 }}" alt="" width="{{ s.img_1.width }}" height="{{ s.img_1.height }}" style="height:{{ s.img_1_size | default: 13 }}px;width:auto;">{%- endif -%}{%- endcapture -%}
+  {%- capture img2_tag -%}{%- if s.img_2 != blank and s.img_2_opacity > 0 -%}<img class="evt-nav__img evt-nav__img--2" src="{{ s.img_2 | image_url: width: 480 }}" alt="" width="{{ s.img_2.width }}" height="{{ s.img_2.height }}" style="height:{{ s.img_2_size | default: 38 }}px;width:auto;opacity:{{ s.img_2_opacity | times: 0.01 }};">{%- endif -%}{%- endcapture -%}
+  {%- capture brand_tag -%}{%- if s.brand_text != blank -%}<span class="evt-nav__brand">{{ s.brand_text }}</span>{%- endif -%}{%- endcapture -%}
+  {%- capture lockup -%}{{ img1_tag }}{{ img2_tag }}{{ brand_tag }}{%- endcapture -%}
+  {%- assign link1 = s.logo_link_1 | default: '#top' -%}
+  {%- assign link2a = s.logo1_link_2 | default: '#top' -%}
+  {%- assign link2b = s.logo2_link_2 | default: '#top' -%}
   {%- assign cta_pad_v = s.cta_pad | default: 14 -%}{%- assign cta_pad_h = cta_pad_v | times: 2.4 | round -%}
   {%- capture cta -%}{%- if s.cta_label != blank -%}<a class="evt-nav__cta muse-pill muse-cta" href="{{ s.cta_link | default: '#' }}"{% if s.cta_new_tab %} target="_blank" rel="noopener"{% endif %} style="font-size:{{ s.cta_text_size | default: 11 }}px;padding:{{ cta_pad_v }}px {{ cta_pad_h }}px;">{{ s.cta_label }}</a>{%- endif -%}{%- endcapture -%}
 
@@ -32,7 +34,7 @@
     <div class="evt-nav__side evt-nav__side--l">
       {%- for b in links -%}{%- if forloop.index <= half -%}<a class="evt-nav__link" href="#{{ b.settings.target }}" data-evt-scroll>{{ b.settings.label }}</a>{%- endif -%}{%- endfor -%}
     </div>
-    <a class="evt-nav__center" href="#top" aria-label="{{ s.brand_text | default: shop.name | escape }}">
+    <a class="evt-nav__center" href="{{ link1 }}" aria-label="{{ s.brand_text | default: shop.name | escape }}">
       <span class="evt-nav__stack">{{ lockup }}</span>
     </a>
     <div class="evt-nav__side evt-nav__side--r">
@@ -43,7 +45,11 @@
 
   <!-- STATE 2: logos far left, Get Tickets centered, links flank it (offset by --off2) -->
   <div class="evt-nav__bar evt-nav__bar--2 container">
-    <a class="evt-nav__lockup" href="#top" aria-label="{{ s.brand_text | default: shop.name | escape }}">{{ lockup }}</a>
+    <div class="evt-nav__lockup" aria-label="{{ s.brand_text | default: shop.name | escape }}">
+      {%- if img1_tag != blank -%}<a class="evt-nav__lk" href="{{ link2a }}">{{ img1_tag }}</a>{%- endif -%}
+      {%- if img2_tag != blank -%}<a class="evt-nav__lk" href="{{ link2b }}">{{ img2_tag }}</a>{%- endif -%}
+      {{ brand_tag }}
+    </div>
     <div class="evt-nav__side evt-nav__side--l">
       {%- for b in links -%}{%- if forloop.index <= half -%}<a class="evt-nav__link" href="#{{ b.settings.target }}" data-evt-scroll data-evt-nav-close>{{ b.settings.label }}</a>{%- endif -%}{%- endfor -%}
     </div>
@@ -56,7 +62,7 @@
   <!-- MOBILE -->
   <div class="evt-nav__mobile container">
     <button type="button" class="evt-nav__toggle" data-evt-nav-toggle aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
-    <a class="evt-nav__center evt-nav__center--m" href="#top"><span class="evt-nav__stack">{{ lockup }}</span></a>
+    <a class="evt-nav__center evt-nav__center--m" href="{{ link1 }}"><span class="evt-nav__stack">{{ lockup }}</span></a>
     {{ cta }}
   </div>
   <div class="evt-nav__panel" data-evt-nav-links>
@@ -130,6 +136,10 @@
     { "type": "range", "id": "img_2_size", "label": "Image 2 height", "info": "Width scales automatically (aspect ratio kept).", "min": 8, "max": 108, "step": 1, "unit": "px", "default": 38 },
     { "type": "range", "id": "img_2_opacity", "label": "Image 2 opacity", "min": 0, "max": 100, "step": 5, "unit": "%", "default": 100 },
     { "type": "range", "id": "img_2_offset", "label": "State 2: image 2 offset right", "min": 0, "max": 220, "step": 4, "unit": "px", "default": 44 },
+    { "type": "header", "content": "Logo links" },
+    { "type": "url", "id": "logo_link_1", "label": "State 1 — both logos link to", "info": "In State 1 the two logos are one clickable unit. Blank = scroll to top." },
+    { "type": "url", "id": "logo1_link_2", "label": "State 2 — Image 1 links to", "info": "In State 2 each logo links separately. Blank = scroll to top." },
+    { "type": "url", "id": "logo2_link_2", "label": "State 2 — Image 2 links to", "info": "Blank = scroll to top." },
     { "type": "header", "content": "Brand text" },
     { "type": "text", "id": "brand_text", "label": "Brand text", "info": "Shown next to the images. Leave blank for images only." },
     { "type": "select", "id": "brand_font", "label": "Font", "options": [

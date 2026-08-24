@@ -1,7 +1,7 @@
 {%- liquid assign s = section.settings -%}
-<footer class="evt-footer" style="--evt-ft-bg:{{ s.bg_color | default: '#0A0B0C' }};--evt-ft-fg:{{ s.text_color | default: '#FDFCFA' }};--evt-ft-accent:{{ s.accent_color | default: '#8B5CF6' }};">
+<footer class="evt-footer" style="--evt-ft-bg:{{ s.bg_color | default: '#0A0B0C' }};--evt-ft-fg:{{ s.text_color | default: '#FDFCFA' }};--evt-ft-accent:{{ s.accent_color | default: '#8B5CF6' }};--ft-cols:{{ s.footer_cols | default: 3 }};--ft-cols-m:{% if s.footer_cols == 1 %}1{% else %}2{% endif %};--ft-col-gap:{{ s.col_gap | default: 28 }}px;--ft-col-align:{{ s.col_align | default: 'left' }};--ft-head-size:{{ s.head_size | default: 11 }}px;--ft-link-size:{{ s.link_size | default: 13 }}px;--ft-mono-size:{{ s.mono_size | default: 54 }}px;--ft-brand-size:{{ s.brand_size | default: 20 }}px;--ft-tagline-size:{{ s.tagline_size | default: 13 }}px;--ft-bottom-size:{{ s.bottom_size | default: 11 }}px;{% if s.col_width > 0 %}--ft-col-maxw:{{ s.col_width }}px;{% endif %}">
   <div class="container evt-footer__inner">
-    <div class="evt-footer__brand">
+    <div class="evt-footer__brand evt-footer__brand--{{ s.brand_align | default: 'left' }}">
       {%- if s.show_monogram -%}
         {%- if settings.logo_2 != blank -%}<img class="evt-footer__mono" src="{{ settings.logo_2 | image_url: width: 160 }}" alt="{{ shop.name | escape }}" width="{{ settings.logo_2.width }}" height="{{ settings.logo_2.height }}">
         {%- else -%}<img class="evt-footer__mono" src="{{ 'muse-monogram-solo-gld.png' | asset_url }}" alt="{{ shop.name | escape }}" width="497" height="477">{%- endif -%}
@@ -42,7 +42,20 @@
     { "type": "color", "id": "bg_color", "label": "Background", "default": "#0A0B0C" },
     { "type": "color", "id": "text_color", "label": "Text", "default": "#FDFCFA" },
     { "type": "color", "id": "accent_color", "label": "Accent (headings/hover)", "default": "#8B5CF6" },
+    { "type": "header", "content": "Columns layout & text" },
+    { "type": "range", "id": "footer_cols", "label": "Number of columns", "min": 1, "max": 4, "step": 1, "default": 3 },
+    { "type": "range", "id": "col_gap", "label": "Gap between columns", "min": 0, "max": 80, "step": 2, "unit": "px", "default": 28 },
+    { "type": "range", "id": "col_width", "label": "Max width per column", "info": "0 = columns share the space equally.", "min": 0, "max": 360, "step": 10, "unit": "px", "default": 0 },
+    { "type": "select", "id": "col_align", "label": "Column text alignment", "options": [ { "value": "left", "label": "Left" }, { "value": "center", "label": "Center" }, { "value": "right", "label": "Right" } ], "default": "left" },
+    { "type": "range", "id": "head_size", "label": "Column heading size", "min": 9, "max": 22, "step": 1, "unit": "px", "default": 11 },
+    { "type": "range", "id": "link_size", "label": "Column link size", "min": 10, "max": 22, "step": 1, "unit": "px", "default": 13 },
+    { "type": "header", "content": "Brand block (logo · name · tagline)" },
+    { "type": "select", "id": "brand_align", "label": "Brand alignment", "info": "Aligns the monogram, brand name, and tagline together.", "options": [ { "value": "left", "label": "Left" }, { "value": "center", "label": "Center" }, { "value": "right", "label": "Right" } ], "default": "left" },
+    { "type": "range", "id": "mono_size", "label": "Monogram size", "min": 20, "max": 120, "step": 2, "unit": "px", "default": 54 },
+    { "type": "range", "id": "brand_size", "label": "Brand name size", "min": 12, "max": 44, "step": 1, "unit": "px", "default": 20 },
+    { "type": "range", "id": "tagline_size", "label": "Tagline size", "min": 10, "max": 22, "step": 1, "unit": "px", "default": 13 },
     { "type": "header", "content": "Bottom bar" },
+    { "type": "range", "id": "bottom_size", "label": "Bottom bar text size", "min": 9, "max": 18, "step": 1, "unit": "px", "default": 11 },
     { "type": "text", "id": "motto", "label": "Motto", "default": "CULTIVATE · COMMEMORATE · CELEBRATE" },
     { "type": "text", "id": "copyright", "label": "Copyright", "default": "© 2026 MUSE. All Rights Reserved." },
     { "type": "text", "id": "responsibly", "label": "Responsibly line", "default": "Please enjoy responsibly. 21+" }
