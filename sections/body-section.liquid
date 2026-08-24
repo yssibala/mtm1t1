@@ -24,15 +24,17 @@
       {%- endif -%}
     </div>
     <div class="body-section__media">
-      {%- if s.media_type == 'video' -%}
-        {%- render 'media-video', vid: s.video, asset: s.video_asset, vid_url: s.video_url, ratio: s.video_ratio, fit: s.video_fit, radius: s.video_radius, autoplay: s.video_autoplay, loop: s.video_loop, controls: s.video_controls, title: s.heading -%}
-      {%- elsif s.media_type == 'carousel' -%}
-        {%- render 'image-carousel', uid: section.id, st: s -%}
-      {%- elsif s.image != blank -%}
-        <img src="{{ s.image | image_url: width: 1200 }}" alt="{{ s.image.alt | default: s.heading | escape }}" width="{{ s.image.width }}" height="{{ s.image.height }}" loading="lazy">
-      {%- else -%}
-        <div class="body-section__placeholder">{{ 'image' | placeholder_svg_tag }}</div>
-      {%- endif -%}
+      <div class="body-section__media-inner" style="width:{{ s.media_width | default: 100 }}%;margin-left:auto;margin-right:auto;">
+        {%- if s.media_type == 'video' -%}
+          {%- render 'media-video', vid: s.video, asset: s.video_asset, vid_url: s.video_url, ratio: s.video_ratio, fit: s.video_fit, radius: s.video_radius, autoplay: s.video_autoplay, loop: s.video_loop, controls: s.video_controls, title: s.heading -%}
+        {%- elsif s.media_type == 'carousel' -%}
+          {%- render 'image-carousel', uid: section.id, st: s -%}
+        {%- elsif s.image != blank -%}
+          <img src="{{ s.image | image_url: width: 1200 }}" alt="{{ s.image.alt | default: s.heading | escape }}" width="{{ s.image.width }}" height="{{ s.image.height }}" loading="lazy">
+        {%- else -%}
+          <div class="body-section__placeholder">{{ 'image' | placeholder_svg_tag }}</div>
+        {%- endif -%}
+      </div>
     </div>
   </div>
 </div>
@@ -53,6 +55,7 @@
     { "type": "select", "id": "media_type", "label": "Media type", "info": "Show a single image, a carousel, or a video in the same spot.", "options": [
         { "value": "image", "label": "Single image" }, { "value": "carousel", "label": "Image carousel" }, { "value": "video", "label": "Video" } ], "default": "image" },
     { "type": "image_picker", "id": "image", "label": "Image (single image mode)" },
+    { "type": "range", "id": "media_width", "label": "Media size", "info": "Scale the image / video / carousel down within its column. 100% = full column width; centered when smaller.", "min": 20, "max": 100, "step": 5, "unit": "%", "default": 100 },
     { "type": "header", "content": "Video (when media type = Video)" },
     { "type": "paragraph", "content": "Upload a video to Content → Files and pick it below (best quality + the crop effect). Or paste a YouTube/Vimeo link." },
     { "type": "video", "id": "video", "label": "Video (Shopify-hosted)" },
