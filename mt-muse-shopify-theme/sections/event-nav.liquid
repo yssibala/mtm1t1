@@ -12,7 +12,7 @@
 <nav id="evt-nav" class="evt-nav" style="
   --h1:{{ s.nav_h1 | default: 84 }}px;--h2:{{ s.nav_h2 | default: 56 }}px;
   --evt-bg:{{ s.bg_color | default: '#FBF6EE' }};--evt-bg2:{{ s.bg_color_2 | default: s.bg_color | default: '#FBF6EE' }};--evt-fg:{{ s.text_color | default: '#0A0B0C' }};
-  --img2-offset:{{ s.img_2_offset | default: 44 }}px;--img1-op1:{{ s.img_1_opacity | times: 0.01 }};--img1-op2:{{ s.img_1_opacity_2 | default: 100 | times: 0.01 }};
+  --img2-offset:{{ s.img_2_offset | default: 44 }}px;--img1-op1:{{ s.img_1_opacity | times: 0.01 }};--img1-op2:{{ s.img_1_opacity_2 | default: 100 | times: 0.01 }};--off1:{{ s.offset_1 | default: 100 }}px;--off2:{{ s.offset_2 | default: 100 }}px;
   --evt-brand-font:{%- render 'font-stack', key: s.brand_font -%};--evt-brand-size:{{ s.brand_size | default: 16 }}px;--evt-brand-weight:{{ s.brand_weight | default: 400 }};--evt-brand-transform:{{ s.brand_transform | default: 'uppercase' }};--evt-brand-ls:calc(0.06em * {{ s.brand_ls | default: 1 }});{% if s.brand_color != blank %}--evt-brand-color:{{ s.brand_color }};{% endif %}
   --evt-link-font:{%- render 'font-stack', key: s.link_font -%};--evt-link-size:{{ s.link_size | default: 12 }}px;--evt-link-weight:{{ s.link_weight | default: 500 }};--evt-link-transform:{{ s.link_transform | default: 'uppercase' }};--evt-link-ls:calc(0.12em * {{ s.link_ls | default: 1 }});{% if s.link_color != blank %}--evt-link-color:{{ s.link_color }};{% endif %}{% if s.link_hover_color != blank %}--evt-link-hover:{{ s.link_hover_color }};{% endif %}
 ">
@@ -27,27 +27,29 @@
   {%- assign cta_pad_v = s.cta_pad | default: 14 -%}{%- assign cta_pad_h = cta_pad_v | times: 2.4 | round -%}
   {%- capture cta -%}{%- if s.cta_label != blank -%}<a class="evt-nav__cta muse-pill muse-cta" href="{{ s.cta_link | default: '#' }}"{% if s.cta_new_tab %} target="_blank" rel="noopener"{% endif %} style="font-size:{{ s.cta_text_size | default: 11 }}px;padding:{{ cta_pad_v }}px {{ cta_pad_h }}px;">{{ s.cta_label }}</a>{%- endif -%}{%- endcapture -%}
 
-  <!-- STATE 1: links flank centered image stack -->
+  <!-- STATE 1: links flank the centered logo (offset by --off1); CTA far right -->
   <div class="evt-nav__bar evt-nav__bar--1 container">
-    <div class="evt-nav__col evt-nav__col--l">
+    <div class="evt-nav__side evt-nav__side--l">
       {%- for b in links -%}{%- if forloop.index <= half -%}<a class="evt-nav__link" href="#{{ b.settings.target }}" data-evt-scroll>{{ b.settings.label }}</a>{%- endif -%}{%- endfor -%}
     </div>
     <a class="evt-nav__center" href="#top" aria-label="{{ s.brand_text | default: shop.name | escape }}">
       <span class="evt-nav__stack">{{ lockup }}</span>
     </a>
-    <div class="evt-nav__col evt-nav__col--r">
+    <div class="evt-nav__side evt-nav__side--r">
       {%- for b in links -%}{%- if forloop.index > half -%}<a class="evt-nav__link" href="#{{ b.settings.target }}" data-evt-scroll>{{ b.settings.label }}</a>{%- endif -%}{%- endfor -%}
-      {{ cta }}
     </div>
+    <div class="evt-nav__cta1">{{ cta }}</div>
   </div>
 
-  <!-- STATE 2: lockup left, centered links, CTA right -->
+  <!-- STATE 2: Get Tickets centered, links flank it (offset by --off2) -->
   <div class="evt-nav__bar evt-nav__bar--2 container">
-    <a class="evt-nav__lockup" href="#top" aria-label="{{ s.brand_text | default: shop.name | escape }}">{{ lockup }}</a>
-    <div class="evt-nav__links2">
-      {%- for b in links -%}<a class="evt-nav__link" href="#{{ b.settings.target }}" data-evt-scroll data-evt-nav-close>{{ b.settings.label }}</a>{%- endfor -%}
+    <div class="evt-nav__side evt-nav__side--l">
+      {%- for b in links -%}{%- if forloop.index <= half -%}<a class="evt-nav__link" href="#{{ b.settings.target }}" data-evt-scroll data-evt-nav-close>{{ b.settings.label }}</a>{%- endif -%}{%- endfor -%}
     </div>
-    <div class="evt-nav__cta2">{{ cta }}</div>
+    <div class="evt-nav__center2">{{ cta }}</div>
+    <div class="evt-nav__side evt-nav__side--r">
+      {%- for b in links -%}{%- if forloop.index > half -%}<a class="evt-nav__link" href="#{{ b.settings.target }}" data-evt-scroll data-evt-nav-close>{{ b.settings.label }}</a>{%- endif -%}{%- endfor -%}
+    </div>
   </div>
 
   <!-- MOBILE -->
@@ -112,6 +114,8 @@
     { "type": "range", "id": "nav_h1", "label": "Bar height — State 1 (top)", "min": 48, "max": 140, "step": 2, "unit": "px", "default": 84 },
     { "type": "range", "id": "nav_h2", "label": "Bar height — State 2 (scrolled)", "min": 40, "max": 100, "step": 2, "unit": "px", "default": 56 },
     { "type": "range", "id": "scroll_threshold", "label": "Switch to State 2 after (px)", "info": "0 = switch at the end of the hero (first section). Any other value = switch after that many px scrolled.", "min": 0, "max": 800, "step": 10, "default": 0 },
+    { "type": "range", "id": "offset_1", "label": "Link offset from center — State 1", "info": "How far each nav link sits from the page center (the logo). Same distance left and right.", "min": 40, "max": 440, "step": 5, "unit": "px", "default": 100 },
+    { "type": "range", "id": "offset_2", "label": "Link offset from center — State 2", "info": "How far each nav link sits from the centered Get Tickets button. Same distance left and right.", "min": 40, "max": 440, "step": 5, "unit": "px", "default": 100 },
     { "type": "color", "id": "bg_color", "label": "Bar background — State 1", "default": "#FBF6EE" },
     { "type": "color", "id": "bg_color_2", "label": "Bar background — State 2", "info": "Blank = same as State 1.", "default": "#FBF6EE" },
     { "type": "color", "id": "text_color", "label": "Bar text / icons", "default": "#0A0B0C" },
