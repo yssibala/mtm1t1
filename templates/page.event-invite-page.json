@@ -59,7 +59,7 @@
         "link_ls": 3,
         "link_transform": "uppercase",
         "link_color": "",
-        "link_hover_color": "#6515C4",
+        "link_hover_color": "#6515c4",
         "cta_label": "Get Tickets",
         "cta_link": "https://luma.com/dket4n5p",
         "cta_new_tab": true,
@@ -136,7 +136,7 @@
         "preheader": "Join Us",
         "heading": "Overview",
         "subheading": "<p>Join us for an evening of luxury with sophisticated professionals and entrepreneurs for a wonderous occasion: Our launch as a premium ready-to-drink cocktail brand.<br/><br/></p>",
-        "accent_color": "#C9851A",
+        "accent_color": "#c9851a",
         "head_align": "center",
         "head_layout": "top",
         "columns": 3,
@@ -157,9 +157,9 @@
         "lh_heading": 0,
         "lh_body": 0,
         "bg_type": "none",
-        "bg_color": "#FBF6EE",
-        "bg_gradient_start": "#FBF6EE",
-        "bg_gradient_end": "#E7DAC4",
+        "bg_color": "#fbf6ee",
+        "bg_gradient_start": "#fbf6ee",
+        "bg_gradient_end": "#e7dac4",
         "bg_gradient_angle": 180,
         "content_valign": "center",
         "min_height": 0,
@@ -219,6 +219,14 @@
         "image_position": "right",
         "text_align": "center",
         "media_type": "image",
+        "image": "shopify://shop_images/Elegance_At_Eventide_1.png",
+        "video_url": "",
+        "video_ratio": "1/1",
+        "video_fit": "cover",
+        "video_radius": 10,
+        "video_autoplay": true,
+        "video_loop": true,
+        "video_controls": false,
         "ic_link_1": "",
         "ic_link_2": "",
         "ic_link_3": "",
@@ -231,7 +239,7 @@
         "ic_dots": true,
         "ic_autoplay": false,
         "ic_interval": 5,
-        "accent_color": "#6515C4",
+        "accent_color": "#6515c4",
         "button_label": "",
         "button_link": "",
         "button_style": "primary",
@@ -240,6 +248,7 @@
         "button_icon": "none",
         "space_button": 24,
         "preheader_font": "site",
+        "preheader_size": 11,
         "heading_font": "ogg",
         "heading_size": 34,
         "heading_color": "",
@@ -256,9 +265,9 @@
         "lh_heading": 0,
         "lh_body": 0,
         "bg_type": "none",
-        "bg_color": "#FBF6EE",
-        "bg_gradient_start": "#FBF6EE",
-        "bg_gradient_end": "#E7DAC4",
+        "bg_color": "#fbf6ee",
+        "bg_gradient_start": "#fbf6ee",
+        "bg_gradient_end": "#e7dac4",
         "bg_gradient_angle": 180,
         "content_valign": "top",
         "min_height": 0,
@@ -662,35 +671,21 @@
         "g1": {
           "type": "image",
           "settings": {
+            "media_type": "video",
             "image": "shopify://shop_images/Gallery_10B.png",
             "caption": "",
             "category": "",
-            "link": ""
-          }
-        },
-        "g3": {
-          "type": "image",
-          "settings": {
-            "image": "shopify://shop_images/Gallery_13B.png",
-            "caption": "",
-            "category": "",
-            "link": ""
-          }
-        },
-        "g2": {
-          "type": "image",
-          "settings": {
-            "image": "shopify://shop_images/Gallery_05B.png",
-            "caption": "",
-            "category": "",
-            "link": ""
+            "link": "",
+            "video_url": "",
+            "video_fit": "cover",
+            "video_autoplay": true,
+            "video_loop": true,
+            "video_controls": false
           }
         }
       },
       "block_order": [
-        "g1",
-        "g3",
-        "g2"
+        "g1"
       ],
       "settings": {
         "coming_soon": false,
