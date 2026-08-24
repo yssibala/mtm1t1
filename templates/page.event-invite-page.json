@@ -413,7 +413,7 @@
         "bg_gradient_angle": 180,
         "content_valign": "top",
         "min_height": 0,
-        "padding_top": 40,
+        "padding_top": 20,
         "padding_bottom": 20,
         "pad_mobile": false,
         "pt_m": 40,
@@ -574,6 +574,7 @@
         "d3",
         "d4"
       ],
+      "disabled": true,
       "settings": {
         "coming_soon": false,
         "preheader": "Dress Code & Theme",
@@ -620,7 +621,7 @@
           "type": "image",
           "settings": {
             "image": "shopify://shop_images/Gallery_10B.png",
-            "caption": "Eventide",
+            "caption": "",
             "category": "",
             "link": ""
           }
@@ -629,7 +630,7 @@
           "type": "image",
           "settings": {
             "image": "shopify://shop_images/Gallery_13B.png",
-            "caption": "Ourania",
+            "caption": "",
             "category": "",
             "link": ""
           }
@@ -638,7 +639,7 @@
           "type": "image",
           "settings": {
             "image": "shopify://shop_images/Gallery_05B.png",
-            "caption": "The Pour",
+            "caption": "",
             "category": "",
             "link": ""
           }
@@ -655,7 +656,7 @@
         "intro_text": "",
         "use_page_body": false,
         "accent_color": "#6515c4",
-        "heading": "Memorable Moments",
+        "heading": "Memorable Moments Past",
         "text_align": "center",
         "columns": 3,
         "columns_mobile": 2,
@@ -748,6 +749,7 @@
         "tk_text",
         "tk_btn"
       ],
+      "disabled": true,
       "settings": {
         "coming_soon": false,
         "bg_type": "solid",
