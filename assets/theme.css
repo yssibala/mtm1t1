@@ -1501,6 +1501,7 @@ html.age-gate-open { overflow: hidden; }
 }
 
 .page-gallery__grid { display: grid; grid-template-columns: repeat(var(--cols, 3), 1fr); gap: clamp(12px, 2vw, 24px); }
+.page-gallery__grid--single { max-width: 480px; margin-left: auto; margin-right: auto; }
 .page-gallery__grid .gallery-cell {
   position: relative; overflow: hidden; border-radius: var(--radius-card); margin: 0;
   aspect-ratio: var(--ratio, 1/1);
