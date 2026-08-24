@@ -42,7 +42,7 @@
         <figure class="gallery-cell" data-category="{{ block.settings.category | handleize }}" {{ block.shopify_attributes }}>
           {%- capture cell_media -%}
             {%- if block.settings.media_type == 'video' -%}
-              {%- render 'media-video', vid: block.settings.video, vid_url: block.settings.video_url, fit: block.settings.video_fit, radius: 0, autoplay: block.settings.video_autoplay, loop: block.settings.video_loop, controls: block.settings.video_controls, fill: true, title: block.settings.caption -%}
+              {%- render 'media-video', vid: block.settings.video, asset: block.settings.video_asset, vid_url: block.settings.video_url, fit: block.settings.video_fit, radius: 0, autoplay: block.settings.video_autoplay, loop: block.settings.video_loop, controls: block.settings.video_controls, fill: true, title: block.settings.caption -%}
             {%- elsif block.settings.image != blank -%}
               <img src="{{ block.settings.image | image_url: width: 900 }}" alt="{{ block.settings.caption | escape }}" width="{{ block.settings.image.width }}" height="{{ block.settings.image.height }}" loading="lazy">
             {%- else -%}
@@ -177,6 +177,7 @@
       { "type": "header", "content": "Video (when media type = Video)" },
       { "type": "paragraph", "content": "Plays inside the cell using the gallery's aspect ratio above. Upload to Content → Files (best), or paste a YouTube/Vimeo link." },
       { "type": "video", "id": "video", "label": "Video (Shopify-hosted)" },
+      { "type": "text", "id": "video_asset", "label": "…or theme-asset video file", "info": "Filename of a video in the theme's assets folder, e.g. event-video.mp4." },
       { "type": "video_url", "id": "video_url", "label": "…or YouTube / Vimeo link", "accept": ["youtube", "vimeo"] },
       { "type": "select", "id": "video_fit", "label": "Fit", "options": [ { "value": "cover", "label": "Cover (crop to fill)" }, { "value": "contain", "label": "Contain (fit whole video)" } ], "default": "cover" },
       { "type": "checkbox", "id": "video_autoplay", "label": "Autoplay (muted loop)", "default": true },

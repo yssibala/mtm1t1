@@ -25,7 +25,7 @@
     </div>
     <div class="body-section__media">
       {%- if s.media_type == 'video' -%}
-        {%- render 'media-video', vid: s.video, vid_url: s.video_url, ratio: s.video_ratio, fit: s.video_fit, radius: s.video_radius, autoplay: s.video_autoplay, loop: s.video_loop, controls: s.video_controls, title: s.heading -%}
+        {%- render 'media-video', vid: s.video, asset: s.video_asset, vid_url: s.video_url, ratio: s.video_ratio, fit: s.video_fit, radius: s.video_radius, autoplay: s.video_autoplay, loop: s.video_loop, controls: s.video_controls, title: s.heading -%}
       {%- elsif s.media_type == 'carousel' -%}
         {%- render 'image-carousel', uid: section.id, st: s -%}
       {%- elsif s.image != blank -%}
@@ -56,6 +56,7 @@
     { "type": "header", "content": "Video (when media type = Video)" },
     { "type": "paragraph", "content": "Upload a video to Content → Files and pick it below (best quality + the crop effect). Or paste a YouTube/Vimeo link." },
     { "type": "video", "id": "video", "label": "Video (Shopify-hosted)" },
+    { "type": "text", "id": "video_asset", "label": "…or theme-asset video file", "info": "Filename of a video in the theme's assets folder, e.g. event-video.mp4. Use this when Shopify Files won't accept the upload." },
     { "type": "video_url", "id": "video_url", "label": "…or video link (YouTube / Vimeo)", "accept": ["youtube", "vimeo"] },
     { "type": "select", "id": "video_ratio", "label": "Video viewport ratio", "info": "The shape the video plays in — the video is cropped/fitted to this regardless of its own ratio.", "options": [
         { "value": "9/16", "label": "Vertical / phone (9:16)" },
