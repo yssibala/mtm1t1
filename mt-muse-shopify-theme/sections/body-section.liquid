@@ -24,7 +24,24 @@
       {%- endif -%}
     </div>
     <div class="body-section__media">
-      {%- if s.media_type == 'carousel' -%}
+      {%- if s.media_type == 'video' -%}
+        {%- if s.video != blank -%}
+          <div class="body-section__video" style="aspect-ratio:{{ s.video_ratio | default: '16/9' }};border-radius:{{ s.video_radius | default: 10 }}px;--vid-fit:{{ s.video_fit | default: 'cover' }};">
+            {{ s.video | video_tag: image_size: '1200x', class: 'body-section__video-el', autoplay: s.video_autoplay, loop: s.video_loop, muted: s.video_autoplay, controls: s.video_controls, playsinline: true }}
+          </div>
+        {%- elsif s.video_url != blank -%}
+          {%- assign vp = s.video_url -%}
+          <div class="body-section__video body-section__video--embed" style="aspect-ratio:{{ s.video_ratio | default: '16/9' }};border-radius:{{ s.video_radius | default: 10 }}px;">
+            {%- if vp.type == 'youtube' -%}
+              <iframe src="https://www.youtube.com/embed/{{ vp.id }}?rel=0&playsinline=1{% if s.video_autoplay %}&autoplay=1&mute=1{% endif %}{% if s.video_loop %}&loop=1&playlist={{ vp.id }}{% endif %}{% unless s.video_controls %}&controls=0{% endunless %}" title="{{ s.heading | escape }}" frameborder="0" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+            {%- elsif vp.type == 'vimeo' -%}
+              <iframe src="https://player.vimeo.com/video/{{ vp.id }}?dnt=1{% if s.video_autoplay %}&autoplay=1&muted=1{% endif %}{% if s.video_loop %}&loop=1{% endif %}{% unless s.video_controls %}&controls=0{% endunless %}" title="{{ s.heading | escape }}" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+            {%- endif -%}
+          </div>
+        {%- else -%}
+          <div class="body-section__placeholder">{{ 'image' | placeholder_svg_tag }}</div>
+        {%- endif -%}
+      {%- elsif s.media_type == 'carousel' -%}
         {%- render 'image-carousel', uid: section.id, st: s -%}
       {%- elsif s.image != blank -%}
         <img src="{{ s.image | image_url: width: 1200 }}" alt="{{ s.image.alt | default: s.heading | escape }}" width="{{ s.image.width }}" height="{{ s.image.height }}" loading="lazy">
@@ -48,9 +65,27 @@
         { "value": "left", "label": "Left" }, { "value": "right", "label": "Right" } ], "default": "right" },
     { "type": "select", "id": "text_align", "label": "Text alignment", "options": [
         { "value": "left", "label": "Left" }, { "value": "center", "label": "Center" }, { "value": "right", "label": "Right" } ], "default": "left" },
-    { "type": "select", "id": "media_type", "label": "Media type", "info": "Show a single image, or a carousel in the same spot.", "options": [
-        { "value": "image", "label": "Single image" }, { "value": "carousel", "label": "Image carousel" } ], "default": "image" },
+    { "type": "select", "id": "media_type", "label": "Media type", "info": "Show a single image, a carousel, or a video in the same spot.", "options": [
+        { "value": "image", "label": "Single image" }, { "value": "carousel", "label": "Image carousel" }, { "value": "video", "label": "Video" } ], "default": "image" },
     { "type": "image_picker", "id": "image", "label": "Image (single image mode)" },
+    { "type": "header", "content": "Video (when media type = Video)" },
+    { "type": "paragraph", "content": "Upload a video to Content → Files and pick it below (best quality + the crop effect). Or paste a YouTube/Vimeo link." },
+    { "type": "video", "id": "video", "label": "Video (Shopify-hosted)" },
+    { "type": "video_url", "id": "video_url", "label": "…or video link (YouTube / Vimeo)", "accept": ["youtube", "vimeo"] },
+    { "type": "select", "id": "video_ratio", "label": "Video viewport ratio", "info": "The shape the video plays in — the video is cropped/fitted to this regardless of its own ratio.", "options": [
+        { "value": "9/16", "label": "Vertical / phone (9:16)" },
+        { "value": "3/4", "label": "Portrait (3:4)" },
+        { "value": "4/5", "label": "Portrait (4:5)" },
+        { "value": "1/1", "label": "Square (1:1)" },
+        { "value": "4/3", "label": "Standard (4:3)" },
+        { "value": "3/2", "label": "Landscape (3:2)" },
+        { "value": "16/9", "label": "Wide (16:9)" } ], "default": "1/1" },
+    { "type": "select", "id": "video_fit", "label": "Video fit", "info": "Cover = fill the viewport and crop (best for a set ratio). Contain = show the whole video (may letterbox).", "options": [
+        { "value": "cover", "label": "Cover (crop to fill)" }, { "value": "contain", "label": "Contain (fit whole video)" } ], "default": "cover" },
+    { "type": "range", "id": "video_radius", "label": "Video corner radius", "min": 0, "max": 40, "step": 2, "unit": "px", "default": 10 },
+    { "type": "checkbox", "id": "video_autoplay", "label": "Autoplay (muted loop)", "info": "Autoplay requires the video to be muted (browser rule).", "default": true },
+    { "type": "checkbox", "id": "video_loop", "label": "Loop", "default": true },
+    { "type": "checkbox", "id": "video_controls", "label": "Show playback controls", "info": "Turn on if autoplay is off, so visitors can start it.", "default": false },
     { "type": "header", "content": "Media carousel (when media type = carousel)" },
     { "type": "image_picker", "id": "ic_image_1", "label": "Carousel image 1" },
     { "type": "url", "id": "ic_link_1", "label": "Image 1 link" },
