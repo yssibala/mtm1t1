@@ -41,7 +41,9 @@
       {%- for block in section.blocks -%}
         <figure class="gallery-cell" data-category="{{ block.settings.category | handleize }}" {{ block.shopify_attributes }}>
           {%- capture cell_media -%}
-            {%- if block.settings.image != blank -%}
+            {%- if block.settings.media_type == 'video' -%}
+              {%- render 'media-video', vid: block.settings.video, vid_url: block.settings.video_url, fit: block.settings.video_fit, radius: 0, autoplay: block.settings.video_autoplay, loop: block.settings.video_loop, controls: block.settings.video_controls, fill: true, title: block.settings.caption -%}
+            {%- elsif block.settings.image != blank -%}
               <img src="{{ block.settings.image | image_url: width: 900 }}" alt="{{ block.settings.caption | escape }}" width="{{ block.settings.image.width }}" height="{{ block.settings.image.height }}" loading="lazy">
             {%- else -%}
               {%- render 'placeholder-tile' -%}
@@ -166,11 +168,20 @@
     { "type": "range", "id": "pb_m", "label": "Mobile bottom padding", "min": 0, "max": 200, "step": 4, "unit": "px", "default": 40 }
   ],
   "blocks": [
-    { "type": "image", "name": "Image", "settings": [
+    { "type": "image", "name": "Media", "settings": [
+      { "type": "select", "id": "media_type", "label": "Media type", "options": [ { "value": "image", "label": "Image" }, { "value": "video", "label": "Video" } ], "default": "image" },
       { "type": "image_picker", "id": "image", "label": "Image" },
       { "type": "text", "id": "caption", "label": "Caption (optional)" },
       { "type": "text", "id": "category", "label": "Category (optional)", "info": "Used for the filter buttons. Same spelling = same group." },
-      { "type": "url", "id": "link", "label": "Link (optional)" } ] }
+      { "type": "url", "id": "link", "label": "Link (optional)" },
+      { "type": "header", "content": "Video (when media type = Video)" },
+      { "type": "paragraph", "content": "Plays inside the cell using the gallery's aspect ratio above. Upload to Content → Files (best), or paste a YouTube/Vimeo link." },
+      { "type": "video", "id": "video", "label": "Video (Shopify-hosted)" },
+      { "type": "video_url", "id": "video_url", "label": "…or YouTube / Vimeo link", "accept": ["youtube", "vimeo"] },
+      { "type": "select", "id": "video_fit", "label": "Fit", "options": [ { "value": "cover", "label": "Cover (crop to fill)" }, { "value": "contain", "label": "Contain (fit whole video)" } ], "default": "cover" },
+      { "type": "checkbox", "id": "video_autoplay", "label": "Autoplay (muted loop)", "default": true },
+      { "type": "checkbox", "id": "video_loop", "label": "Loop", "default": true },
+      { "type": "checkbox", "id": "video_controls", "label": "Show playback controls", "default": false } ] }
   ],
   "max_blocks": 40,
   "presets": [{ "name": "Gallery page", "blocks": [ { "type": "image" }, { "type": "image" }, { "type": "image" } ] }]

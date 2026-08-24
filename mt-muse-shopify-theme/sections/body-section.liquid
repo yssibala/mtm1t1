@@ -9,7 +9,7 @@
   <div class="container body-section__inner{% if img_right %} body-section--img-right{% endif %}">
     <div class="body-section__text" style="text-align:{{ s.text_align | default: 'left' }};">
       {%- if s.preheader != blank -%}
-        <div class="kicker" style="font-family:{%- render 'font-stack', key: s.preheader_font -%};color:{{ s.accent_color | default: '#C9851A' }};margin-bottom:{{ s.space_preheader | default: 12 }}px;{%- render 'letter-spacing', mult: s.ls_preheader, base: '0.18em' -%}">{{ s.preheader }}</div>
+        <div class="kicker" style="font-family:{%- render 'font-stack', key: s.preheader_font -%};color:{{ s.accent_color | default: '#C9851A' }};margin-bottom:{{ s.space_preheader | default: 12 }}px;{% if s.preheader_size > 0 %}font-size:{{ s.preheader_size }}px;{% endif %}{%- render 'letter-spacing', mult: s.ls_preheader, base: '0.18em' -%}">{{ s.preheader }}</div>
       {%- endif -%}
       {%- if s.heading != blank -%}
         <h2 class="{%- render 'mb-size', val: s.heading_size, def: 40, cls: 'mb-h' -%}" style="font-family:{%- render 'font-stack', key: s.heading_font -%};{%- render 'font-variant', key: s.heading_weight, font: s.heading_font -%}{%- render 'letter-spacing', mult: s.ls_heading, base: '0.05em' -%}{% if s.heading_color != blank %}color:{{ s.heading_color }};{% endif %}{% if s.lh_heading > 0 %}line-height:{{ s.lh_heading }};{% endif %}font-size:{{ s.heading_size }}px;margin-bottom:{{ s.space_heading | default: 16 }}px;">{{ s.heading | newline_to_br }}</h2>
@@ -25,22 +25,7 @@
     </div>
     <div class="body-section__media">
       {%- if s.media_type == 'video' -%}
-        {%- if s.video != blank -%}
-          <div class="body-section__video" style="aspect-ratio:{{ s.video_ratio | default: '16/9' }};border-radius:{{ s.video_radius | default: 10 }}px;--vid-fit:{{ s.video_fit | default: 'cover' }};">
-            {{ s.video | video_tag: image_size: '1200x', class: 'body-section__video-el', autoplay: s.video_autoplay, loop: s.video_loop, muted: s.video_autoplay, controls: s.video_controls, playsinline: true }}
-          </div>
-        {%- elsif s.video_url != blank -%}
-          {%- assign vp = s.video_url -%}
-          <div class="body-section__video body-section__video--embed" style="aspect-ratio:{{ s.video_ratio | default: '16/9' }};border-radius:{{ s.video_radius | default: 10 }}px;">
-            {%- if vp.type == 'youtube' -%}
-              <iframe src="https://www.youtube.com/embed/{{ vp.id }}?rel=0&playsinline=1{% if s.video_autoplay %}&autoplay=1&mute=1{% endif %}{% if s.video_loop %}&loop=1&playlist={{ vp.id }}{% endif %}{% unless s.video_controls %}&controls=0{% endunless %}" title="{{ s.heading | escape }}" frameborder="0" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen loading="lazy"></iframe>
-            {%- elsif vp.type == 'vimeo' -%}
-              <iframe src="https://player.vimeo.com/video/{{ vp.id }}?dnt=1{% if s.video_autoplay %}&autoplay=1&muted=1{% endif %}{% if s.video_loop %}&loop=1{% endif %}{% unless s.video_controls %}&controls=0{% endunless %}" title="{{ s.heading | escape }}" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen loading="lazy"></iframe>
-            {%- endif -%}
-          </div>
-        {%- else -%}
-          <div class="body-section__placeholder">{{ 'image' | placeholder_svg_tag }}</div>
-        {%- endif -%}
+        {%- render 'media-video', vid: s.video, vid_url: s.video_url, ratio: s.video_ratio, fit: s.video_fit, radius: s.video_radius, autoplay: s.video_autoplay, loop: s.video_loop, controls: s.video_controls, title: s.heading -%}
       {%- elsif s.media_type == 'carousel' -%}
         {%- render 'image-carousel', uid: section.id, st: s -%}
       {%- elsif s.image != blank -%}
@@ -124,6 +109,7 @@
         { "value": "display", "label": "Neue Haas Grotesk Display (Adobe)" },
         { "value": "text", "label": "Neue Haas Grotesk Text (Adobe)" },
         { "value": "ogg", "label": "Ogg Text (Adobe serif)" } ], "default": "site" },
+    { "type": "range", "id": "preheader_size", "label": "Preheader size", "info": "0 = theme default.", "min": 0, "max": 40, "step": 1, "unit": "px", "default": 0 },
     { "type": "select", "id": "heading_font", "label": "Heading font", "options": [
         { "value": "site", "label": "Neue Haas Display Light" },
         { "value": "display", "label": "Neue Haas Grotesk Display (Adobe)" },

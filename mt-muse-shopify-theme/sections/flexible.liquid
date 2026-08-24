@@ -40,6 +40,13 @@
             {%- endif -%}
           </div>
 
+        {%- when 'video' -%}
+          <div class="fx-block" {{ block.shopify_attributes }} style="text-align:{{ a }};margin-top:{{ block.settings.margin_top }}px;margin-bottom:{{ block.settings.margin_bottom }}px;">
+            <div class="fx-video-wrap" style="display:inline-block;width:{{ block.settings.width | default: 100 }}%;vertical-align:top;">
+              {%- render 'media-video', vid: block.settings.video, vid_url: block.settings.video_url, ratio: block.settings.ratio, fit: block.settings.fit, radius: block.settings.radius, autoplay: block.settings.autoplay, loop: block.settings.loop, controls: block.settings.controls -%}
+            </div>
+          </div>
+
         {%- when 'button' -%}
           <div class="fx-block" {{ block.shopify_attributes }} style="display:flex;justify-content:{{ justify }};margin-top:{{ block.settings.margin_top }}px;margin-bottom:{{ block.settings.margin_bottom }}px;">
             {%- render 'pill-button', label: block.settings.label, url: block.settings.url, style: block.settings.style, icon: block.settings.icon, size: block.settings.btn_size, label2: block.settings.label2, url2: block.settings.url2, icon2: block.settings.icon2 -%}
@@ -292,6 +299,34 @@
             { "value": "left", "label": "Left" }, { "value": "center", "label": "Center" }, { "value": "right", "label": "Right" } ], "default": "center" },
         { "type": "range", "id": "width", "label": "Width", "min": 5, "max": 100, "step": 5, "unit": "%", "default": 100 },
         { "type": "range", "id": "radius", "label": "Corner radius", "min": 0, "max": 40, "step": 2, "unit": "px", "default": 10 },
+        { "type": "range", "id": "margin_top", "label": "Space above", "min": 0, "max": 120, "step": 4, "unit": "px", "default": 0 },
+        { "type": "range", "id": "margin_bottom", "label": "Space below", "min": 0, "max": 120, "step": 4, "unit": "px", "default": 24 }
+      ]
+    },
+    {
+      "type": "video",
+      "name": "Video",
+      "settings": [
+        { "type": "paragraph", "content": "Upload a video to Content → Files and pick it (best quality + the crop effect), or paste a YouTube/Vimeo link." },
+        { "type": "video", "id": "video", "label": "Video (Shopify-hosted)" },
+        { "type": "video_url", "id": "video_url", "label": "…or video link (YouTube / Vimeo)", "accept": ["youtube", "vimeo"] },
+        { "type": "select", "id": "ratio", "label": "Viewport ratio", "info": "Video is cropped/fitted to this shape regardless of its own ratio.", "options": [
+            { "value": "9/16", "label": "Vertical / phone (9:16)" },
+            { "value": "3/4", "label": "Portrait (3:4)" },
+            { "value": "4/5", "label": "Portrait (4:5)" },
+            { "value": "1/1", "label": "Square (1:1)" },
+            { "value": "4/3", "label": "Standard (4:3)" },
+            { "value": "3/2", "label": "Landscape (3:2)" },
+            { "value": "16/9", "label": "Wide (16:9)" } ], "default": "1/1" },
+        { "type": "select", "id": "fit", "label": "Fit", "options": [
+            { "value": "cover", "label": "Cover (crop to fill)" }, { "value": "contain", "label": "Contain (fit whole video)" } ], "default": "cover" },
+        { "type": "range", "id": "width", "label": "Width", "min": 5, "max": 100, "step": 5, "unit": "%", "default": 100 },
+        { "type": "range", "id": "radius", "label": "Corner radius", "min": 0, "max": 40, "step": 2, "unit": "px", "default": 10 },
+        { "type": "select", "id": "align", "label": "Alignment", "options": [
+            { "value": "left", "label": "Left" }, { "value": "center", "label": "Center" }, { "value": "right", "label": "Right" } ], "default": "center" },
+        { "type": "checkbox", "id": "autoplay", "label": "Autoplay (muted loop)", "default": true },
+        { "type": "checkbox", "id": "loop", "label": "Loop", "default": true },
+        { "type": "checkbox", "id": "controls", "label": "Show playback controls", "default": false },
         { "type": "range", "id": "margin_top", "label": "Space above", "min": 0, "max": 120, "step": 4, "unit": "px", "default": 0 },
         { "type": "range", "id": "margin_bottom", "label": "Space below", "min": 0, "max": 120, "step": 4, "unit": "px", "default": 24 }
       ]
