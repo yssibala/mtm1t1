@@ -12,12 +12,15 @@
 <nav id="evt-nav" class="evt-nav" style="
   --h1:{{ s.nav_h1 | default: 84 }}px;--h2:{{ s.nav_h2 | default: 56 }}px;
   --evt-bg:{{ s.bg_color | default: '#FBF6EE' }};--evt-bg2:{{ s.bg_color_2 | default: s.bg_color | default: '#FBF6EE' }};--evt-fg:{{ s.text_color | default: '#0A0B0C' }};
-  --img2-offset:{{ s.img_2_offset | default: 44 }}px;
+  --img2-offset:{{ s.img_2_offset | default: 44 }}px;--img1-op1:{{ s.img_1_opacity | times: 0.01 }};--img1-op2:{{ s.img_1_opacity_2 | default: 100 | times: 0.01 }};
   --evt-brand-font:{%- render 'font-stack', key: s.brand_font -%};--evt-brand-size:{{ s.brand_size | default: 16 }}px;--evt-brand-weight:{{ s.brand_weight | default: 400 }};--evt-brand-transform:{{ s.brand_transform | default: 'uppercase' }};--evt-brand-ls:calc(0.06em * {{ s.brand_ls | default: 1 }});{% if s.brand_color != blank %}--evt-brand-color:{{ s.brand_color }};{% endif %}
   --evt-link-font:{%- render 'font-stack', key: s.link_font -%};--evt-link-size:{{ s.link_size | default: 12 }}px;--evt-link-weight:{{ s.link_weight | default: 500 }};--evt-link-transform:{{ s.link_transform | default: 'uppercase' }};--evt-link-ls:calc(0.12em * {{ s.link_ls | default: 1 }});{% if s.link_color != blank %}--evt-link-color:{{ s.link_color }};{% endif %}{% if s.link_hover_color != blank %}--evt-link-hover:{{ s.link_hover_color }};{% endif %}
 ">
+  {%- assign img1_show = false -%}
+  {%- if s.img_1 != blank and s.img_1_opacity > 0 -%}{%- assign img1_show = true -%}{%- endif -%}
+  {%- if s.img_1 != blank and s.img_1_opacity_2 > 0 -%}{%- assign img1_show = true -%}{%- endif -%}
   {%- capture lockup -%}
-    {%- if s.img_1 != blank and s.img_1_opacity > 0 -%}<img class="evt-nav__img evt-nav__img--1" src="{{ s.img_1 | image_url: width: 480 }}" alt="" width="{{ s.img_1.width }}" height="{{ s.img_1.height }}" style="height:{{ s.img_1_size | default: 13 }}px;width:auto;opacity:{{ s.img_1_opacity | times: 0.01 }};">{%- endif -%}
+    {%- if img1_show -%}<img class="evt-nav__img evt-nav__img--1" src="{{ s.img_1 | image_url: width: 480 }}" alt="" width="{{ s.img_1.width }}" height="{{ s.img_1.height }}" style="height:{{ s.img_1_size | default: 13 }}px;width:auto;">{%- endif -%}
     {%- if s.img_2 != blank and s.img_2_opacity > 0 -%}<img class="evt-nav__img evt-nav__img--2" src="{{ s.img_2 | image_url: width: 480 }}" alt="" width="{{ s.img_2.width }}" height="{{ s.img_2.height }}" style="height:{{ s.img_2_size | default: 38 }}px;width:auto;opacity:{{ s.img_2_opacity | times: 0.01 }};">{%- endif -%}
     {%- if s.brand_text != blank -%}<span class="evt-nav__brand">{{ s.brand_text }}</span>{%- endif -%}
   {%- endcapture -%}
@@ -116,7 +119,8 @@
     { "type": "paragraph", "content": "Two images stacked in the center in State 1. In State 2 the first sits where the logo goes and the second sits to its right. Opacity 0 (or no image) removes that layer." },
     { "type": "image_picker", "id": "img_1", "label": "Image 1" },
     { "type": "range", "id": "img_1_size", "label": "Image 1 height", "info": "Width scales automatically (aspect ratio kept).", "min": 8, "max": 108, "step": 1, "unit": "px", "default": 13 },
-    { "type": "range", "id": "img_1_opacity", "label": "Image 1 opacity", "min": 0, "max": 100, "step": 5, "unit": "%", "default": 100 },
+    { "type": "range", "id": "img_1_opacity", "label": "Image 1 opacity — State 1 (top)", "min": 0, "max": 100, "step": 5, "unit": "%", "default": 100 },
+    { "type": "range", "id": "img_1_opacity_2", "label": "Image 1 opacity — State 2 (scrolled)", "min": 0, "max": 100, "step": 5, "unit": "%", "default": 100 },
     { "type": "image_picker", "id": "img_2", "label": "Image 2" },
     { "type": "range", "id": "img_2_size", "label": "Image 2 height", "info": "Width scales automatically (aspect ratio kept).", "min": 8, "max": 108, "step": 1, "unit": "px", "default": 38 },
     { "type": "range", "id": "img_2_opacity", "label": "Image 2 opacity", "min": 0, "max": 100, "step": 5, "unit": "%", "default": 100 },

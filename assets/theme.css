@@ -1390,6 +1390,8 @@ html.age-gate-open { overflow: hidden; }
 .evt-nav__link:hover { opacity: 1; color: var(--evt-link-hover, var(--ourania, #8B5CF6)); }
 .evt-nav__brand { color: var(--evt-brand-color, var(--evt-fg, #0A0B0C)); font-family: var(--evt-brand-font); font-size: var(--evt-brand-size, 16px); font-weight: var(--evt-brand-weight, 400); text-transform: var(--evt-brand-transform, uppercase); letter-spacing: var(--evt-brand-ls, .06em); white-space: nowrap; }
 .evt-nav__img { height: var(--img-max-h, 34px); width: auto; display: block; }
+.evt-nav__bar--1 .evt-nav__img--1, .evt-nav__center--m .evt-nav__img--1 { opacity: var(--img1-op1, 1); }
+.evt-nav__bar--2 .evt-nav__img--1 { opacity: var(--img1-op2, 1); }
 .evt-nav__bar--1 { justify-content: space-between; gap: 16px; }
 .evt-nav__col { display: flex; align-items: center; gap: clamp(14px, 2vw, 26px); flex: 1; }
 .evt-nav__col--r { justify-content: flex-end; }
