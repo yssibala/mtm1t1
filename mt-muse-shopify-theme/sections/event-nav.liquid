@@ -41,8 +41,9 @@
     <div class="evt-nav__cta1">{{ cta }}</div>
   </div>
 
-  <!-- STATE 2: Get Tickets centered, links flank it (offset by --off2) -->
+  <!-- STATE 2: logos far left, Get Tickets centered, links flank it (offset by --off2) -->
   <div class="evt-nav__bar evt-nav__bar--2 container">
+    <a class="evt-nav__lockup" href="#top" aria-label="{{ s.brand_text | default: shop.name | escape }}">{{ lockup }}</a>
     <div class="evt-nav__side evt-nav__side--l">
       {%- for b in links -%}{%- if forloop.index <= half -%}<a class="evt-nav__link" href="#{{ b.settings.target }}" data-evt-scroll data-evt-nav-close>{{ b.settings.label }}</a>{%- endif -%}{%- endfor -%}
     </div>
