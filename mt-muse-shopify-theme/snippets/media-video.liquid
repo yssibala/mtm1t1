@@ -4,6 +4,7 @@
   of the source's own ratio.
   Params:
     vid       — a `video` setting object (Shopify-hosted). Preferred.
+    asset     — a theme-asset video filename in assets/, e.g. 'event-video.mp4'.
     vid_url   — a `video_url` setting object (YouTube/Vimeo) fallback.
     ratio     — CSS aspect-ratio, e.g. '1/1', '9/16', '16/9' (ignored when fill).
     fit       — 'cover' (crop to fill) | 'contain' (fit whole). Default cover.
@@ -35,6 +36,8 @@
 -%}
 {%- if vid != blank -%}
   <div class="{{ box_class }}" style="{{ box_style }}">{{ vid | video_tag: image_size: '1200x', class: 'media-video__el', autoplay: autoplay, loop: loop, muted: autoplay, controls: controls, playsinline: true }}</div>
+{%- elsif asset != blank -%}
+  <div class="{{ box_class }}" style="{{ box_style }}"><video class="media-video__el"{% if autoplay %} autoplay muted{% endif %}{% if loop %} loop{% endif %}{% if controls %} controls{% endif %} playsinline preload="metadata"><source src="{{ asset | asset_url }}" type="video/mp4"></video></div>
 {%- elsif vid_url != blank -%}
   <div class="{{ box_class }} media-video--embed" style="{{ box_style }}">
     {%- if vid_url.type == 'youtube' -%}

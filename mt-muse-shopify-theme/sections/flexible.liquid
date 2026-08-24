@@ -43,7 +43,7 @@
         {%- when 'video' -%}
           <div class="fx-block" {{ block.shopify_attributes }} style="text-align:{{ a }};margin-top:{{ block.settings.margin_top }}px;margin-bottom:{{ block.settings.margin_bottom }}px;">
             <div class="fx-video-wrap" style="display:inline-block;width:{{ block.settings.width | default: 100 }}%;vertical-align:top;">
-              {%- render 'media-video', vid: block.settings.video, vid_url: block.settings.video_url, ratio: block.settings.ratio, fit: block.settings.fit, radius: block.settings.radius, autoplay: block.settings.autoplay, loop: block.settings.loop, controls: block.settings.controls -%}
+              {%- render 'media-video', vid: block.settings.video, asset: block.settings.video_asset, vid_url: block.settings.video_url, ratio: block.settings.ratio, fit: block.settings.fit, radius: block.settings.radius, autoplay: block.settings.autoplay, loop: block.settings.loop, controls: block.settings.controls -%}
             </div>
           </div>
 
@@ -309,6 +309,7 @@
       "settings": [
         { "type": "paragraph", "content": "Upload a video to Content → Files and pick it (best quality + the crop effect), or paste a YouTube/Vimeo link." },
         { "type": "video", "id": "video", "label": "Video (Shopify-hosted)" },
+        { "type": "text", "id": "video_asset", "label": "…or theme-asset video file", "info": "Filename of a video in the theme's assets folder, e.g. event-video.mp4." },
         { "type": "video_url", "id": "video_url", "label": "…or video link (YouTube / Vimeo)", "accept": ["youtube", "vimeo"] },
         { "type": "select", "id": "ratio", "label": "Viewport ratio", "info": "Video is cropped/fitted to this shape regardless of its own ratio.", "options": [
             { "value": "9/16", "label": "Vertical / phone (9:16)" },
