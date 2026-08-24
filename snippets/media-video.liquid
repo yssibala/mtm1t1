@@ -1,0 +1,48 @@
+{%- comment -%}
+  Video viewport — plays a Shopify-hosted video (video_tag) or a YouTube/Vimeo
+  link inside a chosen aspect-ratio box, cropped/fitted via object-fit, independent
+  of the source's own ratio.
+  Params:
+    vid       — a `video` setting object (Shopify-hosted). Preferred.
+    vid_url   — a `video_url` setting object (YouTube/Vimeo) fallback.
+    ratio     — CSS aspect-ratio, e.g. '1/1', '9/16', '16/9' (ignored when fill).
+    fit       — 'cover' (crop to fill) | 'contain' (fit whole). Default cover.
+    radius    — corner radius px. Default 10.
+    autoplay, loop, controls — booleans.
+    title     — accessible title for embeds.
+    fill      — when true, fills the parent (no own ratio) — for fixed-ratio cells.
+{%- endcomment -%}
+{%- liquid
+  assign v_fit = fit | default: 'cover'
+  assign v_radius = radius | default: 10
+  assign v_title = title | default: shop.name
+  assign box_class = 'media-video'
+  if fill
+    assign box_class = 'media-video media-video--fill'
+  endif
+  capture box_style
+    unless fill
+      echo 'aspect-ratio:'
+      echo ratio | default: '1/1'
+      echo ';'
+    endunless
+    echo 'border-radius:'
+    echo v_radius
+    echo 'px;--vid-fit:'
+    echo v_fit
+    echo ';'
+  endcapture
+-%}
+{%- if vid != blank -%}
+  <div class="{{ box_class }}" style="{{ box_style }}">{{ vid | video_tag: image_size: '1200x', class: 'media-video__el', autoplay: autoplay, loop: loop, muted: autoplay, controls: controls, playsinline: true }}</div>
+{%- elsif vid_url != blank -%}
+  <div class="{{ box_class }} media-video--embed" style="{{ box_style }}">
+    {%- if vid_url.type == 'youtube' -%}
+      <iframe src="https://www.youtube.com/embed/{{ vid_url.id }}?rel=0&playsinline=1{% if autoplay %}&autoplay=1&mute=1{% endif %}{% if loop %}&loop=1&playlist={{ vid_url.id }}{% endif %}{% unless controls %}&controls=0{% endunless %}" title="{{ v_title | escape }}" frameborder="0" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+    {%- elsif vid_url.type == 'vimeo' -%}
+      <iframe src="https://player.vimeo.com/video/{{ vid_url.id }}?dnt=1{% if autoplay %}&autoplay=1&muted=1{% endif %}{% if loop %}&loop=1{% endif %}{% unless controls %}&controls=0{% endunless %}" title="{{ v_title | escape }}" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+    {%- endif -%}
+  </div>
+{%- else -%}
+  <div class="{{ box_class }} media-video--empty" style="{{ box_style }}">{{ 'image' | placeholder_svg_tag }}</div>
+{%- endif -%}
