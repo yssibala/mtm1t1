@@ -1402,7 +1402,7 @@ html.age-gate-open { overflow: hidden; }
 .evt-nav__bar--1 .evt-nav__side--r { left: calc(50% + var(--off1, 100px)); }
 .evt-nav__bar--2 .evt-nav__side--l { right: calc(50% + var(--off2, 100px)); }
 .evt-nav__bar--2 .evt-nav__side--r { left: calc(50% + var(--off2, 100px)); }
-.evt-nav__cta1 { position: absolute; right: 0; top: 0; bottom: 0; display: flex; align-items: center; }
+.evt-nav__cta1 { position: absolute; right: 20px; top: 0; bottom: 0; display: flex; align-items: center; }
 .evt-nav__center2 { position: absolute; left: 50%; transform: translateX(-50%); top: 0; bottom: 0; display: flex; align-items: center; }
 .evt-nav__center { position: absolute; left: 50%; transform: translateX(-50%); display: inline-flex; align-items: center; gap: 10px; color: inherit; }
 .evt-nav__stack { display: inline-grid; place-items: center; }
