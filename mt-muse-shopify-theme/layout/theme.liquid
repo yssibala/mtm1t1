@@ -43,8 +43,10 @@
   <body class="{{ template | replace: '.', '-' }}">
     {% render 'age-gate' %}
     {%- unless template.suffix contains 'event' -%}{% section 'announcement-bar' %}{%- endunless -%}
-    {%- comment -%} Per-template nav: product pages use the SPC carousel nav, nutrition-table pages use the nutrition SPC nav, event pages supply their own nav section, all others use the standard nav. {%- endcomment -%}
-    {%- if template.name == 'product' -%}
+    {%- comment -%} Per-template nav: trio product pages use the SPC carousel nav; the flagship flight (a bundle, not one of the three muses) uses the standard nav; nutrition-table pages use the nutrition SPC nav; event pages supply their own nav section; all others use the standard nav. {%- endcomment -%}
+    {%- if template.name == 'product' and template.suffix contains 'flagship' -%}
+        {% section 'header' %}
+    {%- elsif template.name == 'product' -%}
         {% section 'header-spc' %}
     {%- elsif template.suffix contains 'nutrition' -%}
         {% section 'header-nutrition' %}
