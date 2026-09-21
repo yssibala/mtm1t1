@@ -15,10 +15,18 @@
 <div class="section-wrap product-showcase{% if s.coming_soon %} is-coming-soon{% endif %}"{% if s.coming_soon %} data-cs-label="{{ settings.badge_text | default: 'Coming Soon' | escape }}"{% endif %} data-ps="{{ section.id }}" style="{%- render 'section-style', st: s -%}">
   <div class="container">
     {%- if s.preheader != blank or s.heading != blank or s.subheading != blank -%}
-      <div class="product-showcase__head" style="text-align:{{ s.head_align | default: 'center' }};margin-bottom:var(--space-xl);">
+      <div class="product-showcase__head" style="text-align:{{ s.head_align | default: 'center' }};margin-bottom:{% if s.notice_text != blank %}{{ s.notice_space_top | default: 40 }}px{% else %}var(--space-xl){% endif %};">
         {%- if s.preheader != blank -%}<div class="kicker" style="font-family:{%- render 'font-stack', key: s.preheader_font -%};color:{{ s.accent_color | default: '#C9851A' }};margin-bottom:10px;{%- render 'letter-spacing', mult: s.ls_preheader, base: '0.18em' -%}">{{ s.preheader }}</div>{%- endif -%}
         {%- if s.heading != blank -%}<h2 class="{%- render 'mb-size', val: s.heading_size, def: 40, cls: 'mb-h' -%}" style="font-family:{%- render 'font-stack', key: s.heading_font -%};{%- render 'font-variant', key: s.heading_weight, font: s.heading_font -%}{%- render 'letter-spacing', mult: s.ls_heading, base: '0.05em' -%}{% if s.heading_color != blank %}color:{{ s.heading_color }};{% endif %}font-size:{{ s.heading_size }}px;margin:0;">{{ s.heading | newline_to_br }}</h2>{%- endif -%}
         {%- if s.subheading != blank -%}<div class="rte{%- render 'mb-size', val: s.subheading_size, def: 17, cls: ' mb-body' -%}" style="max-width:640px;margin-top:10px;{% if s.head_align == 'center' %}margin-left:auto;margin-right:auto;{% elsif s.head_align == 'right' %}margin-left:auto;{% endif %}font-family:{%- render 'font-stack', key: s.body_font -%};{%- render 'letter-spacing', mult: s.ls_body, base: '0.03em' -%}font-size:{{ s.subheading_size | default: 17 }}px;color:var(--text-mid);">{{ s.subheading | newline_to_br }}</div>{%- endif -%}
+      </div>
+    {%- endif -%}
+
+    {%- comment -%} Optional notice / announcement strip — sits under the subheading, above the cards. {%- endcomment -%}
+    {%- if s.notice_text != blank -%}
+      {%- assign n_align = s.notice_align | default: 'center' -%}
+      <div class="product-showcase__notice" style="text-align:{{ n_align }};margin-bottom:{{ s.notice_space_bottom | default: 32 }}px;">
+        <div class="rte{%- render 'mb-size', val: s.notice_size, def: 15, cls: ' mb-body' -%}" style="{% if s.notice_maxw > 0 %}max-width:{{ s.notice_maxw }}px;{% if n_align == 'center' %}margin-left:auto;margin-right:auto;{% elsif n_align == 'right' %}margin-left:auto;{% endif %}{% endif %}font-family:{%- render 'font-stack', key: s.notice_font -%};{%- render 'font-variant', key: s.notice_weight, font: s.notice_font -%}{%- render 'letter-spacing', mult: s.notice_ls, base: '0.03em' -%}font-size:{{ s.notice_size | default: 15 }}px;color:{% if s.notice_color != blank %}{{ s.notice_color }}{% else %}var(--text-mid){% endif %};{% if s.notice_bg != blank and s.notice_bg != 'rgba(0,0,0,0)' %}background:{{ s.notice_bg }};{% endif %}{% if s.notice_pad > 0 %}padding:{{ s.notice_pad }}px;{% endif %}{% if s.notice_radius > 0 %}border-radius:{{ s.notice_radius }}px;{% endif %}{% if s.notice_border and s.notice_border_color != blank %}border:1px solid {{ s.notice_border_color }};{% endif %}">{{ s.notice_text }}</div>
       </div>
     {%- endif -%}
 
@@ -127,6 +135,26 @@
     { "type": "select", "id": "body_font", "label": "Subheading font", "options": [
         { "value": "site", "label": "Neue Haas Display Light" }, { "value": "text", "label": "Neue Haas Grotesk Text (Adobe)" }, { "value": "ogg", "label": "Ogg Text (Adobe serif)" } ], "default": "site" },
     { "type": "range", "id": "subheading_size", "label": "Subheading size", "min": 13, "max": 28, "step": 1, "unit": "px", "default": 17 },
+    { "type": "header", "content": "Notice / announcement (optional)" },
+    { "type": "paragraph", "content": "An optional block of text between the subheading and the first row of product cards — for news, promotions, or global discount messaging. Leave the text blank to hide it entirely." },
+    { "type": "richtext", "id": "notice_text", "label": "Notice text", "info": "Supports bold, italic, links and multiple paragraphs." },
+    { "type": "select", "id": "notice_font", "label": "Font", "options": [
+        { "value": "site", "label": "Neue Haas Display Light" }, { "value": "display", "label": "Neue Haas Grotesk Display (Adobe)" }, { "value": "text", "label": "Neue Haas Grotesk Text (Adobe)" }, { "value": "ogg", "label": "Ogg Text (Adobe serif)" } ], "default": "site" },
+    { "type": "select", "id": "notice_weight", "label": "Weight & style", "options": [
+        { "value": "inherit", "label": "Theme default" }, { "value": "thin", "label": "Thin (200)" }, { "value": "book", "label": "Book / Light (300)" }, { "value": "book-italic", "label": "Book Italic (300)" }, { "value": "roman", "label": "Roman / Regular (400)" }, { "value": "roman-italic", "label": "Roman Italic (400)" }, { "value": "medium", "label": "Medium (500)" }, { "value": "medium-italic", "label": "Medium Italic (500)" }, { "value": "bold", "label": "Bold (700)" }, { "value": "black", "label": "Black (800)" } ], "default": "inherit" },
+    { "type": "range", "id": "notice_size", "label": "Size", "min": 11, "max": 32, "step": 1, "unit": "px", "default": 15 },
+    { "type": "color", "id": "notice_color", "label": "Text color", "info": "Leave blank to use the theme default." },
+    { "type": "range", "id": "notice_ls", "label": "Letter spacing", "min": 1, "max": 10, "step": 1, "unit": "x", "default": 1 },
+    { "type": "select", "id": "notice_align", "label": "Text alignment", "options": [
+        { "value": "left", "label": "Left" }, { "value": "center", "label": "Center" }, { "value": "right", "label": "Right" } ], "default": "center" },
+    { "type": "range", "id": "notice_maxw", "label": "Maximum width", "info": "0 = full container width.", "min": 0, "max": 1200, "step": 20, "default": 720 },
+    { "type": "color", "id": "notice_bg", "label": "Background color", "info": "Leave blank for no background." },
+    { "type": "color", "id": "notice_border_color", "label": "Border color", "info": "Leave blank for no border." },
+    { "type": "checkbox", "id": "notice_border", "label": "Show border", "default": false },
+    { "type": "range", "id": "notice_pad", "label": "Inner padding", "info": "Space inside the background/border box.", "min": 0, "max": 60, "step": 2, "unit": "px", "default": 0 },
+    { "type": "range", "id": "notice_radius", "label": "Corner radius", "min": 0, "max": 40, "step": 2, "unit": "px", "default": 0 },
+    { "type": "range", "id": "notice_space_top", "label": "Space above (from subheading)", "min": 0, "max": 160, "step": 4, "unit": "px", "default": 40 },
+    { "type": "range", "id": "notice_space_bottom", "label": "Space below (to product cards)", "min": 0, "max": 160, "step": 4, "unit": "px", "default": 32 },
     { "type": "header", "content": "Card layout" },
     { "type": "select", "id": "card_align", "label": "Card text alignment", "options": [
         { "value": "left", "label": "Left" }, { "value": "center", "label": "Center" } ], "default": "left" },
