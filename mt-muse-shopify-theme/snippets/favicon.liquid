@@ -1,0 +1,17 @@
+{%- comment -%}
+  Browser-tab icon. Rendered from <head> in both theme.liquid and password.liquid.
+
+  If "Favicon" is set in Theme settings > Brand, that image is used and resized by
+  Shopify's CDN. Otherwise the theme falls back to the bundled gold monogram:
+  favicon.svg (crisp at every size, preferred by modern browsers) with
+  muse-monogram-solo-gld.png behind it for older browsers and iOS home screens.
+{%- endcomment -%}
+{%- if settings.favicon != blank -%}
+  <link rel="icon" type="image/png" sizes="32x32" href="{{ settings.favicon | image_url: width: 32, height: 32 }}">
+  <link rel="icon" type="image/png" sizes="192x192" href="{{ settings.favicon | image_url: width: 192, height: 192 }}">
+  <link rel="apple-touch-icon" sizes="180x180" href="{{ settings.favicon | image_url: width: 180, height: 180 }}">
+{%- else -%}
+  <link rel="icon" type="image/svg+xml" href="{{ 'favicon.svg' | asset_url }}">
+  <link rel="icon" type="image/png" href="{{ 'muse-monogram-solo-gld.png' | asset_url }}">
+  <link rel="apple-touch-icon" href="{{ 'muse-monogram-solo-gld.png' | asset_url }}">
+{%- endif -%}
