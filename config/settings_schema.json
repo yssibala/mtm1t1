@@ -32,6 +32,12 @@
         "id": "share_image",
         "label": "Default social share image",
         "info": "Used for Open Graph / Twitter when a page has no image of its own."
+      },
+      {
+        "type": "image_picker",
+        "id": "favicon",
+        "label": "Favicon (browser tab icon)",
+        "info": "Square image, 192x192px or larger. Leave blank to use the bundled gold monogram."
       }
     ]
   },
