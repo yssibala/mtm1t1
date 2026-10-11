@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg id="MUSE_Favicon" data-name="MUSE Favicon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 517.15 517.15">
+<!-- Browser-tab icon. Generated from muse-solo-logo-gld.svg.
+     The source file keeps the full bottle-label artboard (viewBox 517.15x416.69)
+     while the monogram itself occupies only a 119.03x114.45 box in the middle,
+     so rendering it unchanged puts a ~4px speck in a 16px tab. The viewBox below
+     is cropped square to the artwork and must stay that way. -->
+<svg id="MUSE_Favicon" data-name="MUSE Favicon" xmlns="http://www.w3.org/2000/svg" viewBox="199.06 148.83 119.03 119.03">
   <defs>
     <style>
       .cls-1 {
@@ -7,7 +12,6 @@
       }
     </style>
   </defs>
-  <g transform="translate(0.00,50.23)">
   <g id="Front_Monogram" data-name="Front Monogram">
     <g id="Monogram">
       <g>
@@ -40,5 +44,4 @@
       </g>
     </g>
   </g>
-</g>
 </svg>
