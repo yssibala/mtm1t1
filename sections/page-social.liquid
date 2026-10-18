@@ -3,6 +3,15 @@
   assign nl_head = s.newsletter_heading | default: settings.newsletter_name
   assign nl_consent = s.newsletter_consent | default: settings.newsletter_consent
   assign social_heading = s.heading | default: page.title
+  comment
+    The aside column is only worth rendering if something will actually appear in it.
+    With no feature image, no aside text and no social-link blocks, turning the
+    newsletter off would otherwise leave an empty padded white panel beside the form.
+  endcomment
+  assign has_aside = false
+  if s.aside_image != blank or s.aside_text != blank or section.blocks.size > 0 or s.show_newsletter
+    assign has_aside = true
+  endif
 -%}
 <div class="section-wrap page-contact page-social{% if s.extend_behind_header %} section-wrap--bleed{% endif %}{% if s.coming_soon %} is-coming-soon{% endif %}"{% if s.coming_soon %} data-cs-label="{{ settings.badge_text | default: 'Coming Soon' | escape }}"{% endif %} style="{%- render 'section-style', st: s -%}">
   <div class="container">
@@ -13,7 +22,7 @@
     </div>
 
     <div class="share-wrap">
-      <div class="share-card{% if s.card_border == false %} share-card--noborder{% endif %}"{% if s.card_bg != blank %} style="background:{{ s.card_bg }};"{% endif %}>
+      <div class="share-card{% unless has_aside %} share-card--single{% endunless %}{% if s.card_border == false %} share-card--noborder{% endif %}"{% if s.card_bg != blank %} style="background:{{ s.card_bg }};"{% endif %}>
 
         {%- comment -%} ---------- FORM COLUMN ---------- {%- endcomment -%}
         <div class="share-card__col share-card__col--form">
@@ -55,6 +64,7 @@
         </div>
 
         {%- comment -%} ---------- ASIDE COLUMN ---------- {%- endcomment -%}
+        {%- if has_aside -%}
         <div class="share-card__col">
           <div class="share-aside">
             {%- if s.aside_image != blank -%}
@@ -103,6 +113,7 @@
             {%- endif -%}
           </div>
         </div>
+        {%- endif -%}
 
       </div>
     </div>
