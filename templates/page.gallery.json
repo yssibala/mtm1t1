@@ -37,6 +37,7 @@
         "image_radius": 10,
         "image_opacity": 100,
         "preheader_font": "site",
+        "preheader_size": 0,
         "heading_font": "ogg",
         "heading_size": 30,
         "heading_color": "#fbf6ee",
@@ -77,95 +78,328 @@
         "image_trLjk6": {
           "type": "image",
           "settings": {
+            "media_type": "image",
             "image": "shopify://shop_images/11_Clio_1B.png",
             "caption": "CLIO - SPONTANEITY AT SUNSET",
-            "category": "",
-            "link": ""
-          }
-        },
-        "image_cHddTa": {
-          "type": "image",
-          "settings": {
-            "image": "shopify://shop_images/11_Thalia_1B.png",
-            "caption": "Thalia - Elations At High Noon",
-            "category": "",
-            "link": ""
+            "category": "All, Clio, Collage",
+            "link": "",
+            "video_asset": "",
+            "video_url": "",
+            "video_fit": "cover",
+            "video_autoplay": true,
+            "video_loop": true,
+            "video_controls": false
           }
         },
         "image_ierKTc": {
           "type": "image",
           "settings": {
+            "media_type": "image",
             "image": "shopify://shop_images/11_Ourania_1B.png",
             "caption": "Ourania - Elegance At Eventide",
+            "category": "All, Ourania, Collage",
+            "link": "",
+            "video_asset": "",
+            "video_url": "",
+            "video_fit": "cover",
+            "video_autoplay": true,
+            "video_loop": true,
+            "video_controls": false
+          }
+        },
+        "image_cHddTa": {
+          "type": "image",
+          "settings": {
+            "media_type": "image",
+            "image": "shopify://shop_images/11_Thalia_1B.png",
+            "caption": "Thalia - Elations At High Noon",
+            "category": "All, Thalia, Collage",
+            "link": "",
+            "video_asset": "",
+            "video_url": "",
+            "video_fit": "cover",
+            "video_autoplay": true,
+            "video_loop": true,
+            "video_controls": false
+          }
+        },
+        "image_kfKR8W": {
+          "type": "image",
+          "settings": {
+            "media_type": "image",
+            "image": "shopify://shop_images/Muse_Disco___Diamonds_2026_-21.jpg",
+            "caption": "",
             "category": "",
-            "link": ""
+            "link": "",
+            "video_asset": "",
+            "video_url": "",
+            "video_fit": "cover",
+            "video_autoplay": true,
+            "video_loop": true,
+            "video_controls": false
+          }
+        },
+        "image_WMWrFj": {
+          "type": "image",
+          "settings": {
+            "media_type": "image",
+            "image": "shopify://shop_images/7b1f6892-c4d8-4cbb-9918-7ad4212d79bd.jpg",
+            "caption": "",
+            "category": "",
+            "link": "",
+            "video_asset": "",
+            "video_url": "",
+            "video_fit": "cover",
+            "video_autoplay": true,
+            "video_loop": true,
+            "video_controls": false
+          }
+        },
+        "image_j4J8HW": {
+          "type": "image",
+          "settings": {
+            "media_type": "image",
+            "image": "shopify://shop_images/Muse_Disco___Diamonds_2026_-5_4x5_a.jpg",
+            "caption": "",
+            "category": "",
+            "link": "",
+            "video_asset": "",
+            "video_url": "",
+            "video_fit": "cover",
+            "video_autoplay": true,
+            "video_loop": true,
+            "video_controls": false
+          }
+        },
+        "image_EH68Ne": {
+          "type": "image",
+          "settings": {
+            "media_type": "image",
+            "image": "shopify://shop_images/Muse_Disco___Diamonds_2026_-39_4x5_01bb2e6a-7a07-4537-96fb-47288522c491.jpg",
+            "caption": "",
+            "category": "",
+            "link": "",
+            "video_asset": "",
+            "video_url": "",
+            "video_fit": "cover",
+            "video_autoplay": true,
+            "video_loop": true,
+            "video_controls": false
+          }
+        },
+        "image_3aNUBw": {
+          "type": "image",
+          "settings": {
+            "media_type": "image",
+            "image": "shopify://shop_images/Muse_Disco___Diamonds_2026.jpg",
+            "caption": "",
+            "category": "",
+            "link": "",
+            "video_asset": "",
+            "video_url": "",
+            "video_fit": "cover",
+            "video_autoplay": true,
+            "video_loop": true,
+            "video_controls": false
           }
         },
         "image_gf6YQM": {
           "type": "image",
           "settings": {
+            "media_type": "image",
             "image": "shopify://shop_images/Gallery_05B.png",
             "caption": "",
+            "category": "All, Venue",
+            "link": "",
+            "video_asset": "",
+            "video_url": "",
+            "video_fit": "cover",
+            "video_autoplay": true,
+            "video_loop": true,
+            "video_controls": false
+          }
+        },
+        "image_mHYjT8": {
+          "type": "image",
+          "settings": {
+            "media_type": "image",
+            "image": "shopify://shop_images/dc0d0a60-ea4e-4d4b-866f-a5bf08899e01.jpg",
+            "caption": "",
             "category": "",
-            "link": ""
+            "link": "",
+            "video_asset": "",
+            "video_url": "",
+            "video_fit": "cover",
+            "video_autoplay": true,
+            "video_loop": true,
+            "video_controls": false
+          }
+        },
+        "image_dWJ6gK": {
+          "type": "image",
+          "settings": {
+            "media_type": "image",
+            "image": "shopify://shop_images/Muse_Disco___Diamonds_2026_-40.jpg",
+            "caption": "",
+            "category": "",
+            "link": "",
+            "video_asset": "",
+            "video_url": "",
+            "video_fit": "cover",
+            "video_autoplay": true,
+            "video_loop": true,
+            "video_controls": false
+          }
+        },
+        "image_kXRK6J": {
+          "type": "image",
+          "settings": {
+            "media_type": "image",
+            "image": "shopify://shop_images/FFBF24FA.jpg",
+            "caption": "",
+            "category": "",
+            "link": "",
+            "video_asset": "",
+            "video_url": "",
+            "video_fit": "cover",
+            "video_autoplay": true,
+            "video_loop": true,
+            "video_controls": false
+          }
+        },
+        "image_hJr4nj": {
+          "type": "image",
+          "settings": {
+            "media_type": "image",
+            "image": "shopify://shop_images/460011ec-12a8-4715-8b4a-6f3a974734a9.png",
+            "caption": "",
+            "category": "",
+            "link": "",
+            "video_asset": "",
+            "video_url": "",
+            "video_fit": "cover",
+            "video_autoplay": true,
+            "video_loop": true,
+            "video_controls": false
+          }
+        },
+        "image_c6KVbc": {
+          "type": "image",
+          "settings": {
+            "media_type": "image",
+            "image": "shopify://shop_images/7d9178df-fbcd-42f5-8c3d-e43ce1d731c3.jpg",
+            "caption": "",
+            "category": "",
+            "link": "",
+            "video_asset": "",
+            "video_url": "",
+            "video_fit": "cover",
+            "video_autoplay": true,
+            "video_loop": true,
+            "video_controls": false
+          }
+        },
+        "image_7ceB6a": {
+          "type": "image",
+          "settings": {
+            "media_type": "image",
+            "image": "shopify://shop_images/Muse_Disco___Diamonds_2026_-3_4x5_a.jpg",
+            "caption": "",
+            "category": "",
+            "link": "",
+            "video_asset": "",
+            "video_url": "",
+            "video_fit": "cover",
+            "video_autoplay": true,
+            "video_loop": true,
+            "video_controls": false
           }
         },
         "image_3NpFbb": {
           "type": "image",
           "settings": {
+            "media_type": "image",
             "image": "shopify://shop_images/Gallery_14B.png",
             "caption": "",
-            "category": "",
-            "link": ""
+            "category": "All, Venue",
+            "link": "",
+            "video_asset": "",
+            "video_url": "",
+            "video_fit": "cover",
+            "video_autoplay": true,
+            "video_loop": true,
+            "video_controls": false
           }
         },
-        "image_CCB93Q": {
+        "image_BcXChF": {
           "type": "image",
           "settings": {
-            "image": "shopify://shop_images/Gallery_06B.png",
+            "media_type": "image",
+            "image": "shopify://shop_images/Muse_Disco___Diamonds_2026_-50.jpg",
             "caption": "",
             "category": "",
-            "link": ""
+            "link": "",
+            "video_asset": "",
+            "video_url": "",
+            "video_fit": "cover",
+            "video_autoplay": true,
+            "video_loop": true,
+            "video_controls": false
           }
         },
-        "image_ianKLt": {
+        "image_cyTkLW": {
           "type": "image",
           "settings": {
-            "image": "shopify://shop_images/Gallery_10B.png",
+            "media_type": "image",
+            "image": "shopify://shop_images/1d6502f6-a04c-41a3-aabf-aeec197ab21c.jpg",
             "caption": "",
             "category": "",
-            "link": ""
+            "link": "",
+            "video_asset": "",
+            "video_url": "",
+            "video_fit": "cover",
+            "video_autoplay": true,
+            "video_loop": true,
+            "video_controls": false
           }
         },
-        "image_MmAaPR": {
+        "image_WYdgrW": {
           "type": "image",
           "settings": {
-            "image": "shopify://shop_images/Gallery_12B.png",
+            "media_type": "image",
+            "image": "shopify://shop_images/IMG_1394.jpg",
             "caption": "",
             "category": "",
-            "link": ""
-          }
-        },
-        "image_G3qCDz": {
-          "type": "image",
-          "settings": {
-            "image": "shopify://shop_images/Gallery_13B.png",
-            "caption": "",
-            "category": "",
-            "link": ""
+            "link": "",
+            "video_asset": "",
+            "video_url": "",
+            "video_fit": "cover",
+            "video_autoplay": true,
+            "video_loop": true,
+            "video_controls": false
           }
         }
       },
       "block_order": [
         "image_trLjk6",
-        "image_cHddTa",
         "image_ierKTc",
+        "image_cHddTa",
+        "image_kfKR8W",
+        "image_WMWrFj",
+        "image_j4J8HW",
+        "image_EH68Ne",
+        "image_3aNUBw",
         "image_gf6YQM",
+        "image_mHYjT8",
+        "image_dWJ6gK",
+        "image_kXRK6J",
+        "image_hJr4nj",
+        "image_c6KVbc",
+        "image_7ceB6a",
         "image_3NpFbb",
-        "image_CCB93Q",
-        "image_ianKLt",
-        "image_MmAaPR",
-        "image_G3qCDz"
+        "image_BcXChF",
+        "image_cyTkLW",
+        "image_WYdgrW"
       ],
       "settings": {
         "coming_soon": false,
@@ -178,12 +412,13 @@
         "columns": 5,
         "columns_mobile": 2,
         "aspect_ratio": "1/1",
-        "show_filters": true,
+        "show_filters": false,
         "filter_all_label": "All",
         "overlay_enable": true,
         "overlay_color": "#efa527",
         "overlay_opacity": 20,
         "preheader_font": "site",
+        "preheader_size": 0,
         "heading_font": "ogg",
         "heading_weight": "thin",
         "heading_size": 30,
@@ -215,16 +450,20 @@
       "type": "gallery-row",
       "name": "Gallery row",
       "settings": {
-        "coming_soon": true,
+        "coming_soon": false,
         "preheader": "Moments and Muses Worth raising a glass to",
         "heading": "GALLERY HIGHLIGHTS",
         "subheading": "",
         "accent_color": "#c9851a",
         "text_align": "center",
         "aspect_ratio": "1/1",
+        "image_1": "shopify://shop_images/IMG_3775.jpg",
         "link_1": "",
+        "image_2": "shopify://shop_images/IMG_1394.jpg",
         "link_2": "",
+        "image_3": "shopify://shop_images/Muse_Disco___Diamonds_2026.jpg",
         "link_3": "",
+        "image_4": "shopify://shop_images/Muse_Disco___Diamonds_2026_-39_4x5_01bb2e6a-7a07-4537-96fb-47288522c491.jpg",
         "link_4": "",
         "button_label": "",
         "button_link": "",
@@ -280,6 +519,7 @@
             "align": "center",
             "max_width": 600,
             "preheader_font": "site",
+            "preheader_size": 0,
             "heading_font": "ogg",
             "heading_size": 30,
             "heading_weight": "inherit",
