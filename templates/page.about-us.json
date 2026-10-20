@@ -84,6 +84,15 @@
         "text_align": "center",
         "media_type": "image",
         "image": "shopify://shop_images/Gallery_11_-_Rooftop_Bar_CC_Tagline_2.png",
+        "media_width": 100,
+        "video_asset": "",
+        "video_url": "",
+        "video_ratio": "1/1",
+        "video_fit": "cover",
+        "video_radius": 10,
+        "video_autoplay": true,
+        "video_loop": true,
+        "video_controls": false,
         "ic_link_1": "",
         "ic_link_2": "",
         "ic_link_3": "",
@@ -105,6 +114,7 @@
         "button_icon": "none",
         "space_button": 24,
         "preheader_font": "site",
+        "preheader_size": 0,
         "heading_font": "ogg",
         "heading_size": 30,
         "heading_color": "#000000",
@@ -141,11 +151,20 @@
         "coming_soon": false,
         "preheader": "Fueled By Inspiration",
         "heading": "MOMENTS ENGRAVED INTO MEMORIES",
-        "body": "<p>The greatest moments life has to offer are meant to be lived, not merely remembered. That is how moments become memories, how memories becomes monuments, and how monuments become myths.<br/><br/>In this way, MUSE seeks to elevate the occasion, providing a beverage fit for the moments we'll all engrave into memory. Our premium ready-to-drink cocktails were crafted to be poured amongst the clouds, where every gathering becomes a legend worth retelling.</p>",
+        "body": "<p>The greatest moments life has to offer are meant to be lived, not merely remembered. That is how moments become memories, how memories becomes monuments, and how monuments become myths.<br/><br/>In this way, MUSE seeks to elevate the occasion, providing a beverage fit for the moments we'll all engrave into memory. Our premium ready-to-drink cocktails were crafted to be poured amongst the clouds, where every gathering becomes a legend worth telling.</p>",
         "image_position": "left",
         "text_align": "center",
         "media_type": "image",
         "image": "shopify://shop_images/Gallery_9.png",
+        "media_width": 100,
+        "video_asset": "",
+        "video_url": "",
+        "video_ratio": "1/1",
+        "video_fit": "cover",
+        "video_radius": 10,
+        "video_autoplay": true,
+        "video_loop": true,
+        "video_controls": false,
         "ic_link_1": "",
         "ic_link_2": "",
         "ic_link_3": "",
@@ -167,6 +186,7 @@
         "button_icon": "none",
         "space_button": 30,
         "preheader_font": "site",
+        "preheader_size": 0,
         "heading_font": "ogg",
         "heading_size": 30,
         "heading_color": "",
@@ -359,25 +379,46 @@
         "image_L6Qabc": {
           "type": "image",
           "settings": {
+            "media_type": "image",
             "caption": "",
             "category": "",
-            "link": ""
+            "link": "",
+            "video_asset": "",
+            "video_url": "",
+            "video_fit": "cover",
+            "video_autoplay": true,
+            "video_loop": true,
+            "video_controls": false
           }
         },
         "image_EgVXJT": {
           "type": "image",
           "settings": {
+            "media_type": "image",
             "caption": "",
             "category": "",
-            "link": ""
+            "link": "",
+            "video_asset": "",
+            "video_url": "",
+            "video_fit": "cover",
+            "video_autoplay": true,
+            "video_loop": true,
+            "video_controls": false
           }
         },
         "image_8kaVxj": {
           "type": "image",
           "settings": {
+            "media_type": "image",
             "caption": "",
             "category": "",
-            "link": ""
+            "link": "",
+            "video_asset": "",
+            "video_url": "",
+            "video_fit": "cover",
+            "video_autoplay": true,
+            "video_loop": true,
+            "video_controls": false
           }
         }
       },
