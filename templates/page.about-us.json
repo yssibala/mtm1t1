@@ -373,106 +373,6 @@
         "pb_m": 40
       }
     },
-    "page_gallery_QcamKU": {
-      "type": "page-gallery",
-      "blocks": {
-        "image_L6Qabc": {
-          "type": "image",
-          "settings": {
-            "media_type": "image",
-            "caption": "",
-            "category": "",
-            "link": "",
-            "video_asset": "",
-            "video_url": "",
-            "video_fit": "cover",
-            "video_autoplay": true,
-            "video_loop": true,
-            "video_controls": false
-          }
-        },
-        "image_EgVXJT": {
-          "type": "image",
-          "settings": {
-            "media_type": "image",
-            "caption": "",
-            "category": "",
-            "link": "",
-            "video_asset": "",
-            "video_url": "",
-            "video_fit": "cover",
-            "video_autoplay": true,
-            "video_loop": true,
-            "video_controls": false
-          }
-        },
-        "image_8kaVxj": {
-          "type": "image",
-          "settings": {
-            "media_type": "image",
-            "caption": "",
-            "category": "",
-            "link": "",
-            "video_asset": "",
-            "video_url": "",
-            "video_fit": "cover",
-            "video_autoplay": true,
-            "video_loop": true,
-            "video_controls": false
-          }
-        }
-      },
-      "block_order": [
-        "image_L6Qabc",
-        "image_EgVXJT",
-        "image_8kaVxj"
-      ],
-      "name": "Gallery page",
-      "settings": {
-        "coming_soon": true,
-        "kicker": "Who We Are",
-        "intro_text": "",
-        "use_page_body": false,
-        "accent_color": "#c9851a",
-        "heading": "THE TEAM",
-        "text_align": "left",
-        "columns": 3,
-        "columns_mobile": 3,
-        "aspect_ratio": "1/1",
-        "show_filters": false,
-        "filter_all_label": "All",
-        "overlay_enable": true,
-        "overlay_color": "#efa527",
-        "overlay_opacity": 20,
-        "preheader_font": "site",
-        "preheader_size": 0,
-        "heading_font": "ogg",
-        "heading_weight": "thin",
-        "heading_size": 30,
-        "heading_color": "",
-        "space_preheader": 10,
-        "ls_preheader": 3,
-        "ls_heading": 5,
-        "show_share": false,
-        "share_heading": "#myMUSE",
-        "share_text": "Share your moment",
-        "share_button_label": "Tag us",
-        "share_link": "",
-        "share_new_tab": true,
-        "bg_type": "none",
-        "bg_color": "#fbf6ee",
-        "bg_gradient_start": "#fbf6ee",
-        "bg_gradient_end": "#e7dac4",
-        "bg_gradient_angle": 180,
-        "content_valign": "top",
-        "min_height": 0,
-        "padding_top": 40,
-        "padding_bottom": 40,
-        "pad_mobile": true,
-        "pt_m": 20,
-        "pb_m": 20
-      }
-    },
     "flexible_j47wLB": {
       "type": "flexible",
       "blocks": {
@@ -563,7 +463,6 @@
     "body_section_gthfUc",
     "body_section_FbXAkj",
     "text_columns_zMX3xJ",
-    "page_gallery_QcamKU",
     "flexible_j47wLB"
   ]
 }
