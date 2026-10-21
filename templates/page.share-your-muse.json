@@ -33,7 +33,7 @@
         "ph_message": "Why are they your Muse? Tell their story…",
         "aside_text": "",
         "follow_heading": "Follow us amongst the clouds",
-        "show_newsletter": true,
+        "show_newsletter": false,
         "newsletter_heading": "",
         "newsletter_ph": "Your email",
         "newsletter_button": "Subscribe",
