@@ -1,1 +1,62 @@
-{ "sections": { "main": { "type": "main-page" } }, "order": ["main"] }
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "settings": {
+        "coming_soon": false,
+        "text_align": "center",
+        "max_width": 820,
+        "heading_font": "site",
+        "heading_size": 44,
+        "bg_type": "none",
+        "bg_color": "#fbf6ee",
+        "bg_gradient_start": "#fbf6ee",
+        "bg_gradient_end": "#e7dac4",
+        "bg_gradient_angle": 180,
+        "content_valign": "top",
+        "min_height": 0,
+        "padding_top": 40,
+        "padding_bottom": 40
+      }
+    },
+    "17927796922d2fb230": {
+      "type": "apps",
+      "blocks": {
+        "forms_inline_9DPcrV": {
+          "type": "shopify://apps/forms/blocks/inline/8744a304-fcb1-4347-b211-bb6b4759a76a",
+          "settings": {
+            "form_id": "1212924",
+            "text_color": "#202020",
+            "button_background_color": "#202020",
+            "button_label_color": "#FFFFFF",
+            "links_color": "#1878B9",
+            "errors_color": "#E02229",
+            "text_alignment": "center",
+            "form_alignment": "center",
+            "padding_top": 0,
+            "padding_bottom": 24,
+            "padding_right": 0,
+            "padding_left": 0
+          }
+        }
+      },
+      "block_order": [
+        "forms_inline_9DPcrV"
+      ],
+      "settings": {}
+    }
+  },
+  "order": [
+    "main",
+    "17927796922d2fb230"
+  ]
+}
