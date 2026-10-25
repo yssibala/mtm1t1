@@ -49,9 +49,40 @@
       {%- if s.subheading != blank -%}
         <p class="{%- render 'mb-size', val: s.body_size, def: 20, cls: 'mb-body' -%}" style="max-width:620px;{% if s.text_align == 'center' %}margin-left:auto;margin-right:auto;{% endif %}font-family:{%- render 'font-stack', key: s.body_font -%};{%- render 'font-variant', key: s.body_weight, font: s.body_font -%}{%- render 'letter-spacing', mult: s.ls_body, base: '0.03em' -%}{% if s.body_color != blank %}color:{{ s.body_color }};{% endif %}{% if s.lh_body > 0 %}line-height:{{ s.lh_body }};{% endif %}font-size:{{ s.body_size }}px;margin-bottom:0;">{{ s.subheading | newline_to_br }}</p>
       {%- endif -%}
-      {%- if s.button_label != blank or s.button2_label != blank -%}
+{%- comment -%} Each segment can be hidden on its own; if only the second is shown it is promoted into the first slot so the pill never renders an empty segment. {%- endcomment -%}
+{%- liquid
+  assign hb1_on = false
+  assign hb2_on = false
+  if s.show_button != false and s.button_label != blank
+    assign hb1_on = true
+  endif
+  if s.show_button2 != false and s.button2_label != blank
+    assign hb2_on = true
+  endif
+  assign hb_l1 = ''
+  assign hb_u1 = ''
+  assign hb_i1 = 'none'
+  assign hb_l2 = ''
+  assign hb_u2 = ''
+  assign hb_i2 = 'none'
+  if hb1_on
+    assign hb_l1 = s.button_label
+    assign hb_u1 = s.button_link
+    assign hb_i1 = s.button_icon
+    if hb2_on
+      assign hb_l2 = s.button2_label
+      assign hb_u2 = s.button2_link
+      assign hb_i2 = s.button2_icon
+    endif
+  elsif hb2_on
+    assign hb_l1 = s.button2_label
+    assign hb_u1 = s.button2_link
+    assign hb_i1 = s.button2_icon
+  endif
+-%}
+      {%- if hb1_on or hb2_on -%}
         <div style="margin-top:{{ s.space_buttons | default: 24 }}px;display:flex;gap:16px;flex-wrap:wrap;{% if s.text_align == 'center' %}justify-content:center;{% elsif s.text_align == 'right' %}justify-content:flex-end;{% endif %}">
-          {%- render 'pill-button', label: s.button_label, url: s.button_link, style: s.button_style, icon: s.button_icon, size: s.button_size, label2: s.button2_label, url2: s.button2_link, icon2: s.button2_icon -%}
+          {%- render 'pill-button', label: hb_l1, url: hb_u1, style: s.button_style, icon: hb_i1, size: s.button_size, label2: hb_l2, url2: hb_u2, icon2: hb_i2 -%}
         </div>
       {%- endif -%}
     </div>
@@ -77,12 +108,14 @@
         { "value": "left", "label": "Left" }, { "value": "center", "label": "Center" }, { "value": "right", "label": "Right" } ], "default": "center" },
     { "type": "checkbox", "id": "show_coming_soon", "label": "Show coming soon badge", "default": false },
     { "type": "header", "content": "Button (single or dual pill)" },
+    { "type": "checkbox", "id": "show_button", "label": "Show first button", "info": "Uncheck to hide the button without losing its label or link.", "default": true },
     { "type": "text", "id": "button_label", "label": "Button label", "default": "Shop Now" },
     { "type": "url", "id": "button_link", "label": "Button link" },
     { "type": "select", "id": "button_icon", "label": "Button icon", "options": [
         { "value": "none", "label": "None" }, { "value": "arrow", "label": "Arrow" }, { "value": "cart", "label": "Cart" }, { "value": "search", "label": "Search" }, { "value": "account", "label": "Account" } ], "default": "none" },
     { "type": "select", "id": "button_style", "label": "Button style", "options": [
         { "value": "primary", "label": "Gold (filled)" }, { "value": "ghost", "label": "Outline" } ], "default": "primary" },
+    { "type": "checkbox", "id": "show_button2", "label": "Show second button", "info": "Uncheck to hide the button without losing its label or link.", "default": true },
     { "type": "text", "id": "button2_label", "label": "Second button label (adds a dual pill)" },
     { "type": "url", "id": "button2_link", "label": "Second button link" },
     { "type": "select", "id": "button2_icon", "label": "Second button icon", "options": [

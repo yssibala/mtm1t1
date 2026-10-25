@@ -48,15 +48,48 @@
           </div>
 
         {%- when 'button' -%}
+          {%- comment -%} Each segment hides on its own; if only the second is shown it is promoted into the first slot so the pill never renders an empty segment. {%- endcomment -%}
+          {%- liquid
+            assign fb1_on = false
+            assign fb2_on = false
+            if block.settings.show_button != false and block.settings.label != blank
+              assign fb1_on = true
+            endif
+            if block.settings.show_button2 != false and block.settings.label2 != blank
+              assign fb2_on = true
+            endif
+            assign fb_l1 = ''
+            assign fb_u1 = ''
+            assign fb_i1 = 'none'
+            assign fb_l2 = ''
+            assign fb_u2 = ''
+            assign fb_i2 = 'none'
+            if fb1_on
+              assign fb_l1 = block.settings.label
+              assign fb_u1 = block.settings.url
+              assign fb_i1 = block.settings.icon
+              if fb2_on
+                assign fb_l2 = block.settings.label2
+                assign fb_u2 = block.settings.url2
+                assign fb_i2 = block.settings.icon2
+              endif
+            elsif fb2_on
+              assign fb_l1 = block.settings.label2
+              assign fb_u1 = block.settings.url2
+              assign fb_i1 = block.settings.icon2
+            endif
+          -%}
+          {%- if fb1_on or fb2_on -%}
           <div class="fx-block" {{ block.shopify_attributes }} style="display:flex;justify-content:{{ justify }};margin-top:{{ block.settings.margin_top }}px;margin-bottom:{{ block.settings.margin_bottom }}px;">
-            {%- render 'pill-button', label: block.settings.label, url: block.settings.url, style: block.settings.style, icon: block.settings.icon, size: block.settings.btn_size, label2: block.settings.label2, url2: block.settings.url2, icon2: block.settings.icon2 -%}
+            {%- render 'pill-button', label: fb_l1, url: fb_u1, style: block.settings.style, icon: fb_i1, size: block.settings.btn_size, label2: fb_l2, url2: fb_u2, icon2: fb_i2 -%}
           </div>
+          {%- endif -%}
 
         {%- when 'buttons' -%}
           <div class="fx-block" {{ block.shopify_attributes }} style="display:flex;flex-wrap:wrap;align-items:center;gap:{{ block.settings.gap | default: 16 }}px;justify-content:{{ justify }};margin-top:{{ block.settings.margin_top }}px;margin-bottom:{{ block.settings.margin_bottom }}px;">
-            {%- if block.settings.label_1 != blank -%}{%- render 'pill-button', label: block.settings.label_1, url: block.settings.url_1, style: block.settings.style_1, icon: block.settings.icon_1, size: block.settings.btn_size -%}{%- endif -%}
-            {%- if block.settings.label_2 != blank -%}{%- render 'pill-button', label: block.settings.label_2, url: block.settings.url_2, style: block.settings.style_2, icon: block.settings.icon_2, size: block.settings.btn_size -%}{%- endif -%}
-            {%- if block.settings.label_3 != blank -%}{%- render 'pill-button', label: block.settings.label_3, url: block.settings.url_3, style: block.settings.style_3, icon: block.settings.icon_3, size: block.settings.btn_size -%}{%- endif -%}
+            {%- if block.settings.show_1 != false and block.settings.label_1 != blank -%}{%- render 'pill-button', label: block.settings.label_1, url: block.settings.url_1, style: block.settings.style_1, icon: block.settings.icon_1, size: block.settings.btn_size -%}{%- endif -%}
+            {%- if block.settings.show_2 != false and block.settings.label_2 != blank -%}{%- render 'pill-button', label: block.settings.label_2, url: block.settings.url_2, style: block.settings.style_2, icon: block.settings.icon_2, size: block.settings.btn_size -%}{%- endif -%}
+            {%- if block.settings.show_3 != false and block.settings.label_3 != blank -%}{%- render 'pill-button', label: block.settings.label_3, url: block.settings.url_3, style: block.settings.style_3, icon: block.settings.icon_3, size: block.settings.btn_size -%}{%- endif -%}
           </div>
 
         {%- when 'carousel' -%}
@@ -338,12 +371,14 @@
       "type": "button",
       "name": "Button",
       "settings": [
+        { "type": "checkbox", "id": "show_button", "label": "Show first button", "info": "Uncheck to hide the button without losing its label or link.", "default": true },
         { "type": "text", "id": "label", "label": "Label", "default": "Discover" },
         { "type": "url", "id": "url", "label": "Link" },
         { "type": "select", "id": "icon", "label": "Icon", "options": [
             { "value": "none", "label": "None" }, { "value": "arrow", "label": "Arrow" }, { "value": "cart", "label": "Cart" }, { "value": "search", "label": "Search" }, { "value": "account", "label": "Account" } ], "default": "none" },
         { "type": "select", "id": "style", "label": "Style", "options": [
             { "value": "primary", "label": "Gold (filled)" }, { "value": "ghost", "label": "Outline" } ], "default": "primary" },
+        { "type": "checkbox", "id": "show_button2", "label": "Show second button", "info": "Uncheck to hide the button without losing its label or link.", "default": true },
         { "type": "text", "id": "label2", "label": "Second label (dual pill)" },
         { "type": "url", "id": "url2", "label": "Second link" },
         { "type": "select", "id": "icon2", "label": "Second icon", "options": [
@@ -367,6 +402,7 @@
         { "type": "select", "id": "btn_size", "label": "Button size", "options": [
             { "value": "11", "label": "Standard" }, { "value": "10", "label": "10% smaller" }, { "value": "9", "label": "20% smaller" }, { "value": "8", "label": "30% smaller" }, { "value": "7", "label": "40% smaller" }, { "value": "6", "label": "50% smaller" } ], "default": "11" },
         { "type": "header", "content": "Button 1" },
+        { "type": "checkbox", "id": "show_1", "label": "Show button 1", "info": "Uncheck to hide the button without losing its label or link.", "default": true },
         { "type": "text", "id": "label_1", "label": "Label", "default": "Learn more" },
         { "type": "url", "id": "url_1", "label": "Link" },
         { "type": "select", "id": "style_1", "label": "Style", "options": [
@@ -374,6 +410,7 @@
         { "type": "select", "id": "icon_1", "label": "Icon", "options": [
             { "value": "none", "label": "None" }, { "value": "arrow", "label": "Arrow" }, { "value": "cart", "label": "Cart" }, { "value": "search", "label": "Search" }, { "value": "account", "label": "Account" } ], "default": "none" },
         { "type": "header", "content": "Button 2" },
+        { "type": "checkbox", "id": "show_2", "label": "Show button 2", "info": "Uncheck to hide the button without losing its label or link.", "default": true },
         { "type": "text", "id": "label_2", "label": "Label", "default": "Contact us" },
         { "type": "url", "id": "url_2", "label": "Link" },
         { "type": "select", "id": "style_2", "label": "Style", "options": [
@@ -381,6 +418,7 @@
         { "type": "select", "id": "icon_2", "label": "Icon", "options": [
             { "value": "none", "label": "None" }, { "value": "arrow", "label": "Arrow" }, { "value": "cart", "label": "Cart" }, { "value": "search", "label": "Search" }, { "value": "account", "label": "Account" } ], "default": "none" },
         { "type": "header", "content": "Button 3 (optional)" },
+        { "type": "checkbox", "id": "show_3", "label": "Show button 3", "info": "Uncheck to hide the button without losing its label or link.", "default": true },
         { "type": "text", "id": "label_3", "label": "Label" },
         { "type": "url", "id": "url_3", "label": "Link" },
         { "type": "select", "id": "style_3", "label": "Style", "options": [
