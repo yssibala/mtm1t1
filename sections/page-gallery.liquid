@@ -58,7 +58,7 @@
         {%- capture share_inner -%}
           {%- if s.share_heading != blank -%}<div class="page-gallery__share-tag" style="font-family:{%- render 'font-stack', key: s.heading_font -%};">{{ s.share_heading }}</div>{%- endif -%}
           {%- if s.share_text != blank -%}<div class="page-gallery__share-text">{{ s.share_text }}</div>{%- endif -%}
-          {%- if s.share_button_label != blank -%}<span class="page-gallery__share-cta">{{ s.share_button_label }}</span>{%- endif -%}
+          {%- if s.show_share_button != false and s.share_button_label != blank -%}<span class="page-gallery__share-cta">{{ s.share_button_label }}</span>{%- endif -%}
         {%- endcapture -%}
         <div class="gallery-cell gallery-cell--share">
           {%- if s.share_link != blank -%}<a class="page-gallery__share-inner" href="{{ s.share_link }}"{% if s.share_new_tab %} target="_blank" rel="noopener"{% endif %}>{{ share_inner }}</a>{%- else -%}<div class="page-gallery__share-inner">{{ share_inner }}</div>{%- endif -%}
@@ -147,6 +147,7 @@
     { "type": "checkbox", "id": "show_share", "label": "Show share block", "default": false },
     { "type": "text", "id": "share_heading", "label": "Heading", "default": "#myMUSE" },
     { "type": "text", "id": "share_text", "label": "Text", "default": "Share your moment" },
+    { "type": "checkbox", "id": "show_share_button", "label": "Show button", "info": "Uncheck to hide the button without losing its label or link.", "default": true },
     { "type": "text", "id": "share_button_label", "label": "Button label", "default": "Tag us" },
     { "type": "url", "id": "share_link", "label": "Link", "info": "Where the block points (e.g. your Instagram profile)." },
     { "type": "checkbox", "id": "share_new_tab", "label": "Open link in a new tab", "default": true },

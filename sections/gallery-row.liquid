@@ -16,7 +16,7 @@
           <div class="rte gallery-row__sub{%- render 'mb-size', val: s.body_size, def: 16, cls: ' mb-body' -%}" style="font-family:{%- render 'font-stack', key: s.body_font -%};{%- render 'letter-spacing', mult: s.ls_body, base: '0.03em' -%}font-size:{{ s.body_size | default: 16 }}px;color:{% if s.body_color != blank %}{{ s.body_color }}{% else %}var(--text-mid){% endif %};margin:10px 0 0;">{{ s.subheading | newline_to_br }}</div>
         {%- endif -%}
       </div>
-      {%- if s.button_label != blank -%}
+      {%- if s.show_button != false and s.button_label != blank -%}
         <div class="gallery-row__cta">
           {%- render 'pill-button', label: s.button_label, url: s.button_link, style: s.button_style, icon: 'arrow', size: s.button_size -%}
         </div>
@@ -69,6 +69,7 @@
     { "type": "image_picker", "id": "image_4", "label": "Image 4" },
     { "type": "url", "id": "link_4", "label": "Image 4 link" },
     { "type": "header", "content": "View-all button" },
+    { "type": "checkbox", "id": "show_button", "label": "Show button", "info": "Uncheck to hide the button without losing its label or link.", "default": true },
     { "type": "text", "id": "button_label", "label": "Button label", "default": "View all" },
     { "type": "url", "id": "button_link", "label": "Button link" },
     { "type": "select", "id": "button_style", "label": "Button style", "options": [
